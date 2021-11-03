@@ -157,6 +157,7 @@ class PlayState extends MusicBeatState
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
 	private var BAMBICUTSCENEICONHURHURHUR:HealthIcon;
+	private var camDialogue:FlxCamera;
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
@@ -272,9 +273,12 @@ class PlayState extends MusicBeatState
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
+		camDialogue = new FlxCamera();
+		camDialogue.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
+		FlxG.cameras.add(camDialogue);
 
 		FlxCamera.defaultCameras = [camGame];
 		persistentUpdate = true;
@@ -397,7 +401,7 @@ class PlayState extends MusicBeatState
 					camPos.x += 600;
 					tweenCamIn();
 				}
-			case "tristan" | 'tristan-beta':
+			case "tristan" | 'tristan-beta' | 'tristan-golden':
 				dad.y += 325;
 				dad.x += 100;
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
@@ -418,12 +422,12 @@ class PlayState extends MusicBeatState
 				}
 			case 'bambi-3d':
 				{
-					dad.y += 100;
+					dad.y += 35;
 					camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
 				}
 			case 'bambi-unfair':
 				{
-					dad.y += 100;
+					dad.y += 90;
 					camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 50);
 				}
 			case 'bambi' | 'bambi-old' | 'bambi-bevel' | 'what-lmao':
@@ -669,7 +673,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		kadeEngineWatermark.cameras = [camHUD];
-		doof.cameras = [camHUD];
+		doof.cameras = [camDialogue];
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -963,6 +967,7 @@ class PlayState extends MusicBeatState
 
 	function schoolIntro(?dialogueBox:DialogueBox, isStart:Bool = true):Void
 	{
+		inCutscene = true;
 		camFollow.setPosition(boyfriend.getGraphicMidpoint().x - 200, dad.getGraphicMidpoint().y - 10);
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		black.scrollFactor.set();
@@ -1575,7 +1580,7 @@ class PlayState extends MusicBeatState
 							add(BAMBICUTSCENEICONHURHURHUR);
 							BAMBICUTSCENEICONHURHURHUR.cameras = [camHUD];
 							BAMBICUTSCENEICONHURHURHUR.x = -100;
-							FlxTween.linearMotion(BAMBICUTSCENEICONHURHURHUR, -100, BAMBICUTSCENEICONHURHURHUR.y, iconP2.x, BAMBICUTSCENEICONHURHURHUR.y, 0.3);
+							FlxTween.linearMotion(BAMBICUTSCENEICONHURHURHUR, -100, BAMBICUTSCENEICONHURHURHUR.y, iconP2.x, BAMBICUTSCENEICONHURHURHUR.y, 0.3, true, {ease: FlxEase.expoInOut});
 							new FlxTimer().start(0.3, FlingCharacterIconToOblivionAndBeyond);
 						}
 					case 5824:
@@ -1602,7 +1607,7 @@ class PlayState extends MusicBeatState
 						dad.visible = false;
 						dadmirror.visible = true;
 						curbg.visible = true;
-						iconP2.animation.play('dave-angey');
+						iconP2.animation.play(dadmirror.curCharacter);
 					case 664 | 684:
 						dad.visible = true;
 						dadmirror.visible = false;
@@ -1615,7 +1620,7 @@ class PlayState extends MusicBeatState
 						curbg.loadGraphic(Paths.image('dave/redsky'));
 						curbg.alpha = 1;
 						curbg.visible = true;
-						iconP2.animation.play('dave-angey');
+						iconP2.animation.play(dadmirror.curCharacter);
 					case 1180:
 						dad.visible = true;
 						dadmirror.visible = false;
@@ -2047,7 +2052,7 @@ class PlayState extends MusicBeatState
 			add(BAMBICUTSCENEICONHURHURHUR);
 			BAMBICUTSCENEICONHURHURHUR.cameras = [camHUD];
 			BAMBICUTSCENEICONHURHURHUR.x = -100;
-			FlxTween.linearMotion(BAMBICUTSCENEICONHURHURHUR, -100, BAMBICUTSCENEICONHURHURHUR.y, iconP2.x, BAMBICUTSCENEICONHURHURHUR.y, 0.3);
+			FlxTween.linearMotion(BAMBICUTSCENEICONHURHURHUR, -100, BAMBICUTSCENEICONHURHURHUR.y, iconP2.x, BAMBICUTSCENEICONHURHURHUR.y, 0.3, true, {ease: FlxEase.expoInOut});
 			new FlxTimer().start(0.3, FlingCharacterIconToOblivionAndBeyond);
 		}
 		#end
@@ -2224,6 +2229,21 @@ class PlayState extends MusicBeatState
 						{
 							FlxG.switchState(new StoryMenuState());
 						};
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'splitathon':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new StoryMenuState());
+						};
+						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					default:
 						FlxG.switchState(new StoryMenuState());
@@ -2257,6 +2277,18 @@ class PlayState extends MusicBeatState
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('insanity/endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = nextSong;
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'splitathon':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
+						doof.scrollFactor.set();
+						doof.finishThing = nextSong;
+						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					case 'glitch':
 						canPause = false;
@@ -2313,6 +2345,7 @@ class PlayState extends MusicBeatState
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('insanity/endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = ughWhyDoesThisHaveToFuckingExist;
+						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					case 'maze':
 						canPause = false;
@@ -2323,6 +2356,18 @@ class PlayState extends MusicBeatState
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('maze/endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = ughWhyDoesThisHaveToFuckingExist;
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'splitathon':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
+						doof.scrollFactor.set();
+						doof.finishThing = ughWhyDoesThisHaveToFuckingExist;
+						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					default:
 						FlxG.switchState(new FreeplayState());
@@ -2668,7 +2713,8 @@ class PlayState extends MusicBeatState
 			}
 			else if (!theFunne)
 			{
-				badNoteCheck(null);
+				if(!inCutscene)
+					badNoteCheck(null);
 			}
 		}
 
@@ -3132,7 +3178,7 @@ class PlayState extends MusicBeatState
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
 				}
 			case 'mealie':
-				switch (curBeat)
+				switch (curStep)
 				{
 					case 1776:
 						var position = dad.getPosition();
@@ -3168,7 +3214,7 @@ class PlayState extends MusicBeatState
 		if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance)
 		{
 			boyfriend.playAnim('idle');
-			if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
+			if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" && SONG.song.toLowerCase() != "furiosity")
 			{
 				boyfriend.color = nightColor;
 			}
