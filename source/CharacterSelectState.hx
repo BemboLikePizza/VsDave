@@ -106,13 +106,13 @@ class CharacterSelectState extends MusicBeatState
 
 		FlxG.sound.playMusic(Paths.music("goodEnding"),1,true);
 
-		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('dave/sky_night'));
+		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/dave-house/sky_night', 'shared'));
 		bg.antialiasing = true;
 		bg.scrollFactor.set(0.9, 0.9);
 		bg.active = false;
 		add(bg);
 	
-		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/hills_night'));
+		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/hills_night', 'shared'));
 		stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
 		stageHills.updateHitbox();
 		stageHills.antialiasing = true;
@@ -120,7 +120,7 @@ class CharacterSelectState extends MusicBeatState
 		stageHills.active = false;
 		add(stageHills);
 	
-		var gate:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/gate_night'));
+		var gate:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/gate_night', 'shared'));
 		gate.setGraphicSize(Std.int(gate.width * 1.2));
 		gate.updateHitbox();
 		gate.antialiasing = true;
@@ -128,7 +128,7 @@ class CharacterSelectState extends MusicBeatState
 		gate.active = false;
 		add(gate);
 		
-		var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/grass_night'));
+		var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/grass_night', 'shared'));
 		stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
 		stageFront.updateHitbox();
 		stageFront.antialiasing = true;
@@ -175,7 +175,7 @@ class CharacterSelectState extends MusicBeatState
 		funnyIconMan.visible = false;
 		add(funnyIconMan);
 
-		var tutorialThing:FlxSprite = new FlxSprite(-130, -90).loadGraphic(Paths.image('charSelectGuide'));
+		var tutorialThing:FlxSprite = new FlxSprite(-130, -90).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
@@ -192,7 +192,7 @@ class CharacterSelectState extends MusicBeatState
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, 0);
 
-			babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+			babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets');
 			babyArrow.animation.addByPrefix('green', 'arrowUP');
 			babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 			babyArrow.animation.addByPrefix('purple', 'arrowLEFT');

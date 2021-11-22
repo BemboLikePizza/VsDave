@@ -155,7 +155,7 @@ class DialogueBox extends FlxSpriteGroup
 				add(face);
 			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'cheating' | 'unfairness' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'old-house' | 'old-insanity' | 'old-blocked' | 'old-corn-theft' | 'old-maze' | 'beta-maze' | 'old-splitathon':
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.frames = Paths.getSparrowAtlas('ui/speech_bubble_talking');
 				box.setGraphicSize(Std.int(box.width / textBoxSizeFix));
 				box.updateHitbox();
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);

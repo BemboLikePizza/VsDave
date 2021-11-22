@@ -80,10 +80,11 @@ class CreditsMenuState extends MusicBeatState
             new Social('twitter', 'https://twitter.com/TheBuilderXD')
          ]
       ),
-      new Person("CyndaquilDAC", CreditsType.Dev, "Programmer, Menu Button Artist",
+      new Person("Cuzsie", CreditsType.Dev, "Programmer",
          [
-            new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
-            new Social('twitter', 'https://twitter.com/CyndaquilDAC')
+            new Social('discord', 'https://discord.gg/s5hdfdqBp2'),
+            new Social('gamebanana', 'https://gamebanana.com/members/1833894'),
+            new Social('twitter', 'https://twitter.com/cuzsiedev')
          ]
       ),
       new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist",
@@ -113,6 +114,12 @@ class CreditsMenuState extends MusicBeatState
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, EMFNF2 help",
          [
             new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
+         ]
+      ),
+      new Person("CyndaquilDAC", CreditsType.Contributor, "Programmer, Menu Button Artist",
+         [
+            new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
+            new Social('twitter', 'https://twitter.com/CyndaquilDAC')
          ]
       ),
       new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie song, Beta tester",

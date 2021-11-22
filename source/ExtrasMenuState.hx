@@ -104,7 +104,7 @@ class ExtrasMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
+		var tex = Paths.getSparrowAtlas('ui/FNF_main_menu_assets');
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
