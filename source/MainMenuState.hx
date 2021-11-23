@@ -116,7 +116,6 @@ class MainMenuState extends MusicBeatState
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = true;
-		bg.color = 0xFFFDE871;
 		add(bg);	
 
 		magenta = new FlxSprite(-80).loadGraphic(bg.graphic);
@@ -202,7 +201,7 @@ class MainMenuState extends MusicBeatState
 	{
 		if (lilMenuGuy == null)
 		{
-			lilMenuGuy = new FlxSprite(700,190);
+			lilMenuGuy = new FlxSprite(-500,190);
 			add(lilMenuGuy);
 		}
 		lilMenuGuy.loadGraphic(Paths.image("menuCharacters/" + optionShit[curSelected] + "_char", 'preload'));
