@@ -43,7 +43,7 @@ class StoryMenuState extends MusicBeatState
 
 	public static var dofunnytristan:Bool = false;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['empty', 'bf', 'gf'],
@@ -332,7 +332,7 @@ class StoryMenuState extends MusicBeatState
 					leftArrow.animation.play('press');
 				else
 					leftArrow.animation.play('idle');
-
+				
 				if (controls.RIGHT_P)
 					changeDifficulty(1);
 				if (controls.LEFT_P)
@@ -444,7 +444,7 @@ class StoryMenuState extends MusicBeatState
 					case 3:
 						sprDifficulty.animation.play('unnerfed');
 						sprDifficulty.offset.x = 70;
-						sprDifficulty.offset.y = 20;
+						sprDifficulty.offset.y = 0;
 				}
 		}
 	}
@@ -465,9 +465,6 @@ class StoryMenuState extends MusicBeatState
 
 		updateDifficultySprite();
 
-		if(curWeek != 3)
-			sprDifficulty.alpha = 0;
-
 		// USING THESE WEIRD VALUES SO THAT IT DOESNT FLOAT UP
 		sprDifficulty.y = leftArrow.y - 15;
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
@@ -476,8 +473,7 @@ class StoryMenuState extends MusicBeatState
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
 		#end
 
-		if(curWeek != 3)
-			FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07);
+		FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07);
 	}
 
 	var lerpScore:Int = 0;
@@ -492,7 +488,7 @@ class StoryMenuState extends MusicBeatState
 			curIndex = weekData.length - 1;
 		if (actualWeeks[curIndex] == 4 && !tristanunlocked) curIndex += (change > 0 ? 1 : -1); //repeat it again
 		curWeek = actualWeeks[curIndex];
-		if (curWeek != 1) //no trying to use unnerfed on non-week 7 songs
+		if (curWeek != 1) //no trying to use unnerfed on non-week 1 songs
 		{
 			if (curDifficulty < 0)
 				curDifficulty = 2;
@@ -502,13 +498,6 @@ class StoryMenuState extends MusicBeatState
 		if (curWeek == 3)
 		{
 			curDifficulty = 1;
-			leftArrow.visible = false;
-			rightArrow.visible = false;
-		}
-		else
-		{
-			leftArrow.visible = true;
-			rightArrow.visible = true;
 		}
 
 		updateDifficultySprite();
