@@ -86,7 +86,7 @@ class CreditsMenuState extends MusicBeatState
             new Social('twitter', 'https://twitter.com/CyndaquilDAC')
          ]
       ),
-      new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist",
+      new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist & More",
          [
             new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
             new Social('twitter', 'https://twitter.com/am_erizur')
@@ -98,7 +98,7 @@ class CreditsMenuState extends MusicBeatState
             new Social('twitter', 'https://twitter.com/RealT5mpler')
          ]
       ),
-       new Person("Cleary", CreditsType.Dev, "Original artist, Censored songs, Moral support",
+       new Person("Cleary", CreditsType.Dev, "Creator of original concepts, original artist, Censored songs, Moral support",
          [
             new Social('youtube', 'https://www.youtube.com/channel/UCddoqqR4JgTsv8PChblD1aQ'),
             new Social('twitter', 'https://twitter.com/LemonLover699')

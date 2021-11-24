@@ -611,7 +611,10 @@ class ChartingState extends MusicBeatState
 		{
 			changeNoteSustain(-Conductor.stepCrochet);
 		}
-
+		if (FlxG.keys.justPressed.J)
+		{
+			convertToMultiSectionChart();
+		}
 		if (FlxG.keys.justPressed.TAB)
 		{
 			if (FlxG.keys.pressed.SHIFT)
@@ -950,8 +953,6 @@ class ChartingState extends MusicBeatState
 			var daSus = i[2];
 			var daStyle = i[3];
 
-			
-
 			var note:Note = new Note(daStrumTime, daNoteInfo % 4, null, false, true, daStyle);
 			note.sustainLength = daSus;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
@@ -969,8 +970,43 @@ class ChartingState extends MusicBeatState
 			}
 		}
 	}
+	function convertToMultiSectionChart()
+	{
+		for (section in 0..._song.notes.length)
+		{
+			for (note in _song.notes[section].sectionNotes)
+			{
+				var noteStrumTime = note[0];
 
-	private function addSection(lengthInSteps:Int = 16):Void
+				var noteSectionNumber = Math.floor(noteStrumTime / sectionLengthFromBpm(_song.bpm));
+				var newSection = _song.notes[noteSectionNumber];
+				if (newSection == null)
+				{
+					newSection = addSection();
+				}
+				_song.notes[section].sectionNotes.remove(note);
+				newSection.sectionNotes.push(note);
+				trace('note used to be on section ' + section + ", it is now on section: " + noteSectionNumber);
+				trace("NOTE'S NEW SECTION'S START TIME:" + getStartTimeOfSection(noteSectionNumber));
+			}
+		}
+		updateGrid();
+	}
+	function getStartTimeOfSection(section:Int):Float
+	{
+		var daBPM:Int = _song.bpm;
+		var daPos:Float = 0;
+		for (i in 0...section)
+		{
+			daPos += 4 * (1000 * 60 / daBPM);
+		}
+		return daPos;
+	}
+	function sectionLengthFromBpm(bpm:Float):Float
+	{
+		return 4 * (1000 * 60 / bpm);
+	}
+	private function addSection(lengthInSteps:Int = 16):SwagSection
 	{
 		var sec:SwagSection = {
 			lengthInSteps: lengthInSteps,
@@ -983,6 +1019,8 @@ class ChartingState extends MusicBeatState
 		};
 
 		_song.notes.push(sec);
+
+		return sec;
 	}
 
 	function selectNote(note:Note):Void

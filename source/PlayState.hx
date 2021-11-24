@@ -204,6 +204,8 @@ class PlayState extends MusicBeatState
 
 	var nightColor:FlxColor = 0xFF878787;
 
+	var possibleNotes:Array<Note> = [];
+
 	override public function create()
 	{
 		theFunne = FlxG.save.data.newInput;
@@ -2015,7 +2017,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if(daNote.mustPress && daNote.finishedGenerating)
+						if(daNote.mustPress && daNote.finishedGenerating && possibleNotes.contains(daNote))
 							noteMiss(daNote.noteData);
 							health -= 0.075;
 							trace("miss note");
@@ -2648,7 +2650,7 @@ class PlayState extends MusicBeatState
 		{
 			boyfriend.holdTimer = 0;
 
-			var possibleNotes:Array<Note> = [];
+			possibleNotes = [];
 
 			var ignoreList:Array<Int> = [];
 
