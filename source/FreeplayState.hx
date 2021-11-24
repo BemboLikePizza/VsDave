@@ -41,7 +41,7 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var AllPossibleSongs:Array<String> = ["Dave", "Joke", "Extra", 'Base'];
+	private var AllPossibleSongs:Array<String> = ["Dave", "Joke", "Extra", 'Fanmade'];
 
 	private var CurrentPack:Int = 0;
 
@@ -74,7 +74,7 @@ class FreeplayState extends MusicBeatState
 		bg.color = 0xFF4965FF;
 		add(bg);
 
-		CurrentSongIcon = new FlxSprite(0,0).loadGraphic(Paths.image('week_icons_' + (AllPossibleSongs[CurrentPack].toLowerCase())));
+		CurrentSongIcon = new FlxSprite(0,0).loadGraphic(Paths.image('weekIcons/week_icons_' + (AllPossibleSongs[CurrentPack].toLowerCase()), "preload"));
 
 		CurrentSongIcon.centerOffsets(false);
 		CurrentSongIcon.x = (FlxG.width / 2) - 256;
@@ -95,26 +95,26 @@ class FreeplayState extends MusicBeatState
 	{
 		switch (AllPossibleSongs[CurrentPack].toLowerCase())
 		{
-			case 'base':
-				addWeek(['Tutorial'], 0, ['gf']);
 			case 'dave':
+				addWeek(['Tutorial'], 0, ['gf']);	
 				addWeek(['House', 'Insanity', 'Polygonized'], 1, ['dave', 'dave', 'dave-angey']);
 				addWeek(['Bonus-Song'], 1,['dave']);
 				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
 				addWeek(['Splitathon'], 3,['the-duo']);
 			case 'joke':
-				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
+				addWeek(['Supernovae', 'Glitch', 'Vs-Dave-Thanksgiving'], 2, ['bambi-stupid']);
 				if (FlxG.save.data.cheatingFound)
 					addWeek(['Cheating'], 2, ['bambi-3d']);
 				if(FlxG.save.data.unfairnessFound)
 					addWeek(['Unfairness'], 2, ['bambi-unfair']);
 			case 'extra':
+				addWeek(['Furiosity', 'Old-House', 'Old-Insanity'], 1, ['dave-angey', 'dave-old', 'dave-old']);
+				addWeek(['Old-Blocked', 'Old-Corn-Theft', 'Old-Maze', 'Beta-Maze'], 2, ['bambi-farmer-beta', 'bambi-farmer-beta', 'bambi-farmer-beta', 'bambi-farmer-beta']);
+				addWeek(['Old-Splitathon'], 3, ['the-duo']);
+			case 'fanmade':
 				addWeek(['Mealie'], 2, ['bambi-loser']);
-				addWeek(['Furiosity', 'Old-Insanity'], 1, ['dave-angey', 'dave-old']);
-				addWeek(['Old-Corn-Theft', 'Old-Maze'], 2, ['bambi-farmer-beta', 'bambi-farmer-beta']);
 		}
 	}
-
 
 	public function GoToActualFreeplay()
 	{
@@ -182,7 +182,7 @@ class FreeplayState extends MusicBeatState
 		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282,AllPossibleSongs[CurrentPack],true,false);
 		NameAlpha.screenCenter(X);
 		add(NameAlpha);
-		CurrentSongIcon.loadGraphic(Paths.image('week_icons_' + (AllPossibleSongs[CurrentPack].toLowerCase())));
+		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (AllPossibleSongs[CurrentPack].toLowerCase())));
 	}
 
 	override function beatHit()
@@ -296,20 +296,12 @@ class FreeplayState extends MusicBeatState
 	function changeDiff(change:Int = 0)
 	{
 		curDifficulty += change;
-		if (songs[curSelected].week != 1 && songs[curSelected].songName.toLowerCase() != 'blocked' || songs[curSelected].songName == 'Old-Insanity')
-		{
+
 		if (curDifficulty < 0)
 			curDifficulty = 2;
 		if (curDifficulty > 2)
 			curDifficulty = 0;
-		}
-		else
-		{
-			if (curDifficulty < 0)
-				curDifficulty = 3;
-			if (curDifficulty > 3)
-				curDifficulty = 0;
-		}
+
 		if (songs[curSelected].week == 3)
 		{
 			curDifficulty = 1;
@@ -359,14 +351,11 @@ class FreeplayState extends MusicBeatState
 		if (curSelected >= songs.length)
 			curSelected = 0;
 
-		if (songs[curSelected].week != 1 || songs[curSelected].songName == 'Old-Insanity')
-		{
-			if (curDifficulty < 0)
-				curDifficulty = 2;
+		if (curDifficulty < 0)
+			curDifficulty = 2;
 
-			if (curDifficulty > 2)
-				curDifficulty = 0;
-		}
+		if (curDifficulty > 2)
+			curDifficulty = 0;
 
 		if (songs[curSelected].week == 3)
 		{

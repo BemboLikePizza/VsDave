@@ -27,7 +27,7 @@ class ExtrasMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
-	var optionShit:Array<String> = ['ost', 'credits', 'merch', 'discord'];
+	var optionShit:Array<String> = ['ost', 'credits', 'discord'];
 
 	var newGaming:FlxText;
 	var newGaming2:FlxText;
@@ -104,7 +104,7 @@ class ExtrasMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
+		var tex = Paths.getSparrowAtlas('ui/FNF_main_menu_assets');
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
@@ -190,8 +190,6 @@ class ExtrasMenuState extends MusicBeatState
                     {
                         case 'discord':
                             fancyOpenURL("https://www.discord.gg/vsdave");
-                        case 'merch':
-                            fancyOpenURL("https://my-store-c1bc70.creator-spring.com/");
                     }
 				}
                 else
@@ -220,14 +218,6 @@ class ExtrasMenuState extends MusicBeatState
                                 var daChoice:String = optionShit[curSelected];
                                 switch (daChoice)
                                 {
-                                    case 'story mode':
-                                        FlxG.switchState(new StoryMenuState());
-                                        trace("Story Menu Selected");
-                                    case 'freeplay':
-                                        FlxG.switchState(new FreeplayState());
-                                        trace("Freeplay Menu Selected");
-                                    case 'options':
-                                        FlxG.switchState(new OptionsMenu());
                                     case 'ost':
                                         FlxG.switchState(new MusicPlayerState());
                                     case 'credits':

@@ -23,7 +23,7 @@ class EndingState extends MusicBeatState
 	{
 		super.create();
 		var end:FlxSprite = new FlxSprite(0, 0);
-		end.loadGraphic(Paths.image("dave/" + _ending));
+		end.loadGraphic(Paths.image("dave/endings/" + _ending));
 		FlxG.sound.playMusic(Paths.music(_song),1,true);
 		add(end);
 		FlxG.camera.fade(FlxColor.BLACK, 0.8, true);	
