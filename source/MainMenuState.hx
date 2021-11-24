@@ -184,12 +184,8 @@ class MainMenuState extends MusicBeatState
 		versionShit.antialiasing = true;
 		add(versionShit);
 
-
-		if (FlxG.save.data.dfjk)
-			controls.setKeyboardScheme(KeyboardScheme.Solo, true);
-		else
-			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
-
+		ChangeKeybinds.loadControls(controls);
+		
 		changeItem();
 
 		super.create();

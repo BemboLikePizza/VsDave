@@ -17,9 +17,6 @@ class SaveDataHandler
 		if (FlxG.save.data.downscroll == null)
 			FlxG.save.data.downscroll = false;
 
-		if (FlxG.save.data.dfjk == null)
-			FlxG.save.data.dfjk = false;
-
 		if (FlxG.save.data.freeplayCuts == null)
 			FlxG.save.data.freeplayCuts = false;
 
