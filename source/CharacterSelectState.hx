@@ -106,7 +106,7 @@ class CharacterSelectState extends MusicBeatState
 
 		FlxG.sound.playMusic(Paths.music("goodEnding"),1,true);
 
-		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/dave-house/sky_night', 'shared'));
+		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night', 'shared'));
 		bg.antialiasing = true;
 		bg.scrollFactor.set(0.9, 0.9);
 		bg.active = false;

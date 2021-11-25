@@ -33,6 +33,7 @@ class AnimationDebug extends MusicBeatState
 
 	override function create()
 	{
+		
 		FlxG.sound.music.stop();
 
 		FlxG.mouse.visible = true;
@@ -97,7 +98,6 @@ class AnimationDebug extends MusicBeatState
 
 			if (pushList)
 				animList.push(anim);
-
 			daLoop++;
 		}
 	}
@@ -174,7 +174,6 @@ class AnimationDebug extends MusicBeatState
 			updateTexts();
 			genBoyOffsets(false);
 		}
-
 		var upP = FlxG.keys.anyJustPressed([UP]);
 		var rightP = FlxG.keys.anyJustPressed([RIGHT]);
 		var downP = FlxG.keys.anyJustPressed([DOWN]);

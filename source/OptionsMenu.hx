@@ -43,7 +43,6 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off") 
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"));
 		
-		trace(controlsStrings);
 
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));

@@ -22,6 +22,10 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.math.FlxMath;
 
+/*
+ello again!! another reminder to not use my coding without my permission/without checking in with me :))
+-vs dave dev T5mpler
+*/
 class ChangeKeybinds extends MusicBeatSubstate
 {
 	var keybindState:KeybindState = KeybindState.Selecting;
@@ -52,7 +56,8 @@ class ChangeKeybinds extends MusicBeatSubstate
       add(bg);
 
 		var title:FlxText = new FlxText(0, 100, 0, "Select a control and then select a keybind");
-		title.setFormat(Paths.font('vcr.ttf'), 35, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		title.setFormat(Paths.font('comic.ttf'), 35, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		title.borderSize = 2;
 		title.screenCenter(X);
 		title.alpha = 0;
 		add(title);
@@ -63,7 +68,7 @@ class ChangeKeybinds extends MusicBeatSubstate
 			var controlText = new ControlText(control, '', null, [], []);
 			
 			var controlTitle = new FlxText(FlxG.width / 2 - 300, 200 + (i * 50), 0, control.title + ":");
-			controlTitle.setFormat(Paths.font('vcr.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			controlTitle.setFormat(Paths.font('comic.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			controlTitle.alpha = 0;
 			add(controlTitle);
 
@@ -86,7 +91,7 @@ class ChangeKeybinds extends MusicBeatSubstate
 					keybindTextX = FlxG.width / 2 + (actionKey * 100);
 				}
 				var keybindText = new FlxText(keybindTextX, controlTitle.y, 0, Std.string(currentActionKey));
-				keybindText.setFormat(Paths.font('vcr.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+				keybindText.setFormat(Paths.font('comic.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 				keybindText.alpha = 0;
 				add(keybindText);
 
@@ -98,7 +103,7 @@ class ChangeKeybinds extends MusicBeatSubstate
 		}
 		
 		var resetKeybindsText = new FlxText(0, FlxG.height - 50, 0, "Reset To Default Keybinds");
-		resetKeybindsText.setFormat(Paths.font('vcr.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		resetKeybindsText.setFormat(Paths.font('comic.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		resetKeybindsText.alpha = 0;
 		resetKeybindsText.screenCenter(X);
 		add(resetKeybindsText);
@@ -324,11 +329,12 @@ class ChangeKeybinds extends MusicBeatSubstate
 	{
 		if (selected)
 		{
-			text.setFormat(Paths.font('vcr.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			text.setFormat(Paths.font('comic.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			text.borderSize = 2;
 		}
 		else
 		{
-			text.setFormat(Paths.font('vcr.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER);
+			text.setFormat(Paths.font('comic.ttf'), 30, FlxColor.WHITE, FlxTextAlign.CENTER);
 		}
 	}
 	public static function keybindsFromControlString(controlString:ControlString, controls:Controls):Array<FlxKey>

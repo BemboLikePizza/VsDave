@@ -51,11 +51,6 @@ class TitleState extends MusicBeatState
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 		
-		#if sys
-		if (!sys.FileSystem.exists(Sys.getCwd() + "\\assets\\replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "\\assets\\replays");
-		#end
-
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)
 		{
@@ -348,7 +343,7 @@ class TitleState extends MusicBeatState
 			case 2:
 				addMoreText('MoldyGH\nMissingTextureMan101\nRapparep LOL');
 			case 3:
-				addMoreText('TheBuilderXD\nCyndaquilDAC\nErizur');
+				addMoreText('TheBuilderXD\nCyndaquilDAC\nErizur\nT5mpler');
 			case 4:
 				addMoreText('and our wonderful contributors!');
 			case 5:

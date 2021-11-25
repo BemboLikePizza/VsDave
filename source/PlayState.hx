@@ -758,7 +758,7 @@ class PlayState extends MusicBeatState
 			case 'house':
 				defaultCamZoom = 0.9;
 				curStage = 'daveHouse';
-				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/dave-house/sky'));
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky'));
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.75, 0.75);
 				bg.active = false;
@@ -824,13 +824,9 @@ class PlayState extends MusicBeatState
 						curStage = 'bambiFarm';
 				}
 	
-				var skyType:String = curStage == 'bambiFarmNight' ? 'dave/sky_night' : 'dave/sky';
-				if(curStage == 'bambiFarmSunset')
-				{
-					skyType = 'backgrounds/dave-house/sky_sunset';
-				}
+				var skyType:String = curStage == 'bambiFarmNight' ? 'sky_night' : curStage == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 	
-				var bg:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image(skyType));
+				var bg:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('backgrounds/shared/' + skyType));
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.9, 0.9);
 				bg.active = false;
@@ -873,28 +869,22 @@ class PlayState extends MusicBeatState
 				sign.active = false;
 				sprites.add(sign);
 
-				if (curStage == 'bambiFarmNight')
+				var variantColor:FlxColor = FlxColor.WHITE;
+				switch (curStage)
 				{
-					hills.color = nightColor;
-					farm.color = nightColor;
-					foreground.color = nightColor;
-					cornSet.color = nightColor;
-					cornSet2.color = nightColor;
-					fence.color = nightColor;
-					sign.color = nightColor;
+					case 'bambiFarmNight':
+						variantColor = nightColor;
+					case 'bambiFarmSunset':
+						variantColor = sunsetColor;
 				}
+				hills.color = variantColor;
+				farm.color = variantColor;
+				foreground.color = variantColor;
+				cornSet.color = variantColor;
+				cornSet2.color = variantColor;
+				fence.color = variantColor;
+				sign.color = variantColor;
 
-				if (curStage == 'bambiFarmSunset')
-				{
-					hills.color = sunsetColor;
-					farm.color = sunsetColor;
-					foreground.color = sunsetColor;
-					cornSet.color = sunsetColor;
-					cornSet2.color = sunsetColor;
-					fence.color = sunsetColor;
-					sign.color = sunsetColor;
-				}
-				
 				add(bg);
 				add(hills);
 				add(farm);
@@ -908,7 +898,7 @@ class PlayState extends MusicBeatState
 			case 'house-night':
 				defaultCamZoom = 0.9;
 				curStage = 'daveHouse_night';
-				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/dave-house/sky_night'));
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.75, 0.75);
 				bg.active = false;
@@ -978,36 +968,6 @@ class PlayState extends MusicBeatState
 				{
 					UsingNewCam = true;
 				}
-			default:
-				defaultCamZoom = 0.9;
-				curStage = 'stage';
-				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/stage/stageback'));
-				bg.antialiasing = true;
-				bg.scrollFactor.set(0.9, 0.9);
-				bg.active = false;
-				
-				sprites.add(bg);
-				add(bg);
-	
-				var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('backgrounds/stage/stagefront'));
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-				stageFront.updateHitbox();
-				stageFront.antialiasing = true;
-				stageFront.scrollFactor.set(0.9, 0.9);
-				stageFront.active = false;
-
-				sprites.add(stageFront);
-				add(stageFront);
-	
-				var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('backgrounds/stage/stagecurtains'));
-				stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-				stageCurtains.updateHitbox();
-				stageCurtains.antialiasing = true;
-				stageCurtains.scrollFactor.set(1.3, 1.3);
-				stageCurtains.active = false;
-	
-				sprites.add(stageCurtains);
-				add(stageCurtains);
 			case 'house-sunset':
 				defaultCamZoom = 0.9;
 				curStage = 'daveHouse_sunset';
@@ -1051,6 +1011,36 @@ class PlayState extends MusicBeatState
 				gate.color = sunsetColor;
 				stageHills.color = sunsetColor;
 				stageFront.color = sunsetColor;
+			default:
+				defaultCamZoom = 0.9;
+				curStage = 'stage';
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/stage/stageback'));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.9, 0.9);
+				bg.active = false;
+				
+				sprites.add(bg);
+				add(bg);
+	
+				var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('backgrounds/stage/stagefront'));
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+				stageFront.updateHitbox();
+				stageFront.antialiasing = true;
+				stageFront.scrollFactor.set(0.9, 0.9);
+				stageFront.active = false;
+
+				sprites.add(stageFront);
+				add(stageFront);
+	
+				var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('backgrounds/stage/stagecurtains'));
+				stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+				stageCurtains.updateHitbox();
+				stageCurtains.antialiasing = true;
+				stageCurtains.scrollFactor.set(1.3, 1.3);
+				stageCurtains.active = false;
+	
+				sprites.add(stageCurtains);
+				add(stageCurtains);
 		}
 		return sprites;
 	}
@@ -1127,7 +1117,6 @@ class PlayState extends MusicBeatState
 			}
 
 			switch (swagCounter)
-
 			{
 				case 0:
 					FlxG.sound.play(Paths.sound('intro3'), 0.6);
@@ -1321,9 +1310,6 @@ class PlayState extends MusicBeatState
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				else
-				{
-				}
 
 			}
 			daBeats += 1;
@@ -1359,25 +1345,22 @@ class PlayState extends MusicBeatState
 
 				babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
+				babyArrow.x += Note.swagWidth * Math.abs(i);
 				switch (Math.abs(i))
 				{
 					case 0:
-						babyArrow.x += Note.swagWidth * 0;
 						babyArrow.animation.addByPrefix('static', 'arrowLEFT');
 						babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
 						babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
 					case 1:
-						babyArrow.x += Note.swagWidth * 1;
 						babyArrow.animation.addByPrefix('static', 'arrowDOWN');
 						babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
 						babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
 					case 2:
-						babyArrow.x += Note.swagWidth * 2;
 						babyArrow.animation.addByPrefix('static', 'arrowUP');
 						babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
 						babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
 					case 3:
-						babyArrow.x += Note.swagWidth * 3;
 						babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
 						babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
 						babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
@@ -1397,25 +1380,22 @@ class PlayState extends MusicBeatState
 						babyArrow.antialiasing = true;
 						babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
+						babyArrow.x += Note.swagWidth * Math.abs(i);
 						switch (Math.abs(i))
 						{
 							case 0:
-								babyArrow.x += Note.swagWidth * 0;
 								babyArrow.animation.addByPrefix('static', 'arrowLEFT');
 								babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
 								babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
 							case 1:
-								babyArrow.x += Note.swagWidth * 1;
 								babyArrow.animation.addByPrefix('static', 'arrowDOWN');
 								babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
 								babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
 							case 2:
-								babyArrow.x += Note.swagWidth * 2;
 								babyArrow.animation.addByPrefix('static', 'arrowUP');
 								babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
 								babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
 							case 3:
-								babyArrow.x += Note.swagWidth * 3;
 								babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
 								babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
 								babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
@@ -2025,6 +2005,7 @@ class PlayState extends MusicBeatState
 				unspawnNotes.splice(index, 1);
 			}
 		}
+		var currentSection = SONG.notes[Math.floor(curStep / 16)];
 
 		if (generatedMusic)
 		{
@@ -2049,9 +2030,9 @@ class PlayState extends MusicBeatState
 					var altAnim:String = "";
 					var healthtolower:Float = 0.02;
 
-					if (SONG.notes[Math.floor(curStep / 16)] != null)
+					if (currentSection != null)
 					{
-						if (SONG.notes[Math.floor(curStep / 16)].altAnim)
+						if (currentSection.altAnim)
 							if (SONG.song.toLowerCase() != "cheating")
 							{
 								altAnim = '-alt';
@@ -2618,17 +2599,7 @@ class PlayState extends MusicBeatState
 			totalNotesHit += 1;
 			sicks++;
 		}
-		switch (notedata)
-		{
-			case 2:
-				score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[2], 0), Int);
-			case 3:
-				score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[1], 0), Int);
-			case 1:
-				score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[3], 0), Int);
-			case 0:
-				score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[0], 0), Int);
-		}
+		score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[notedata], 0), Int);
 
 		if (daRating != 'shit' || daRating != 'bad')
 		{
@@ -3019,14 +2990,15 @@ class PlayState extends MusicBeatState
 		var downP = controls.DOWN_P;
 		var leftP = controls.LEFT_P;
 
-		if (leftP)
-			noteMiss(0);
-		if (upP)
-			noteMiss(2);
-		if (rightP)
-			noteMiss(3);
-		if (downP)
-			noteMiss(1);
+		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
+
+		for (i in 0...controlArray.length)
+		{
+			if (controlArray[i])
+			{
+				noteMiss(i);
+			}	
+		}
 		updateAccuracy();
 	}
 
@@ -3454,40 +3426,41 @@ class PlayState extends MusicBeatState
 
 	public function splitathonExpression(expression:String, x:Float, y:Float):Void
 	{
-		if (SONG.song.toLowerCase() == 'splitathon')
+		switch (SONG.song.toLowerCase())
 		{
-			if(daveExpressionSplitathon != null)
-			{
-				remove(daveExpressionSplitathon);
-			}
-			if (expression != 'lookup')
-			{
-				camFollow.setPosition(dad.getGraphicMidpoint().x + 100, boyfriend.getGraphicMidpoint().y + 150);
-			}
-			boyfriend.stunned = true;
-			thing.color = nightColor;
-			thing.x = x;
-			thing.y = y;
-			remove(dad);
+			case 'splitathon' | 'old-splitathon':
+				if (daveExpressionSplitathon != null)
+				{
+					remove(daveExpressionSplitathon);
+				}
+				if (expression != 'lookup')
+				{
+					camFollow.setPosition(dad.getGraphicMidpoint().x + 100, boyfriend.getGraphicMidpoint().y + 150);
+				}
+				boyfriend.stunned = true;
+				thing.color = nightColor;
+				thing.x = x;
+				thing.y = y;
+				remove(dad);
 
-			switch (expression)
-			{
-				case 'bambi-what':
-					thing.frames = Paths.getSparrowAtlas('splitathon/Bambi_WaitWhatNow');
-					thing.animation.addByPrefix('uhhhImConfusedWhatsHappening', 'what', 24);
-					thing.animation.play('uhhhImConfusedWhatsHappening');
-				case 'bambi-corn':
-					thing.frames = Paths.getSparrowAtlas('splitathon/Bambi_ChillingWithTheCorn');
-					thing.animation.addByPrefix('justGonnaChillHereEatinCorn', 'cool', 24);
-					thing.animation.play('justGonnaChillHereEatinCorn');
-			}
-			if (!splitathonExpressionAdded)
-			{
-				splitathonExpressionAdded = true;
-				add(thing);
-			}
-			thing.antialiasing = true;
-			boyfriend.stunned = false;
+				switch (expression)
+				{
+					case 'bambi-what':
+						thing.frames = Paths.getSparrowAtlas('splitathon/Bambi_WaitWhatNow');
+						thing.animation.addByPrefix('uhhhImConfusedWhatsHappening', 'what', 24);
+						thing.animation.play('uhhhImConfusedWhatsHappening');
+					case 'bambi-corn':
+						thing.frames = Paths.getSparrowAtlas('splitathon/Bambi_ChillingWithTheCorn');
+						thing.animation.addByPrefix('justGonnaChillHereEatinCorn', 'cool', 24);
+						thing.animation.play('justGonnaChillHereEatinCorn');
+				}
+				if (!splitathonExpressionAdded)
+				{
+					splitathonExpressionAdded = true;
+					add(thing);
+				}
+				thing.antialiasing = true;
+				boyfriend.stunned = false;
 		}
 	}
 }
