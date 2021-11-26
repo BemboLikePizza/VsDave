@@ -3332,7 +3332,7 @@ class PlayState extends MusicBeatState
 			if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance)
 				{
 					boyfriend.playAnim('idle', true);
-					if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" && SONG.song.toLowerCase() != "furiosity")
+					if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
 					{
 						boyfriend.color = nightColor;
 					}
