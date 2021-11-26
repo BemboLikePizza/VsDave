@@ -41,7 +41,7 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var AllPossibleSongs:Array<String> = ["Dave", "Joke", "Extra", 'Fanmade'];
+	private var AllPossibleSongs:Array<String> = ["Dave", "Joke", "Extra"];
 
 	private var CurrentPack:Int = 0;
 
@@ -108,11 +108,10 @@ class FreeplayState extends MusicBeatState
 				if(FlxG.save.data.unfairnessFound)
 					addWeek(['Unfairness'], 2, ['bambi-unfair']);
 			case 'extra':
+				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Furiosity', 'Old-House', 'Old-Insanity'], 1, ['dave-angey', 'dave-old', 'dave-old']);
 				addWeek(['Old-Blocked', 'Old-Corn-Theft', 'Old-Maze', 'Beta-Maze'], 2, ['bambi-farmer-beta', 'bambi-farmer-beta', 'bambi-farmer-beta', 'bambi-farmer-beta']);
 				addWeek(['Old-Splitathon'], 3, ['the-duo']);
-			case 'fanmade':
-				addWeek(['Mealie'], 2, ['bambi-loser']);
 		}
 	}
 
@@ -316,26 +315,21 @@ class FreeplayState extends MusicBeatState
 
 	function updateDifficultyText()
 	{
-		var stupidBitch = curChar;
-		if(stupidBitch.toLowerCase() == 'bf-pixel')
-		{
-			stupidBitch = 'bf';
-		}
 		switch (songs[curSelected].week)
 		{
 			case 3:
-				diffText.text = 'FINALE' + " - " + stupidBitch.toUpperCase();
+				diffText.text = 'FINALE' + " - " + curChar.toUpperCase();
 			default:
 				switch (curDifficulty)
 				{
 					case 0:
-						diffText.text = "EASY" + " - " + stupidBitch.toUpperCase();
+						diffText.text = "EASY" + " - " + curChar.toUpperCase();
 					case 1:
-						diffText.text = 'NORMAL' + " - " + stupidBitch.toUpperCase();
+						diffText.text = 'NORMAL' + " - " + curChar.toUpperCase();
 					case 2:
-						diffText.text = "HARD" + " - " + stupidBitch.toUpperCase();
+						diffText.text = "HARD" + " - " + curChar.toUpperCase();
 					case 3:
-						diffText.text = "LEGACY" + " - " + stupidBitch.toUpperCase();
+						diffText.text = "LEGACY" + " - " + curChar.toUpperCase();
 				}
 		}
 	}

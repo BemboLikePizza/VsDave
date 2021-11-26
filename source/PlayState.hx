@@ -1202,8 +1202,11 @@ class PlayState extends MusicBeatState
 		lastReportedPlayheadPosition = 0;
 
 		if (!paused)
+		{
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
-		vocals.play();
+			vocals.play();
+		}
+			
 		if (FlxG.save.data.tristanProgress == "pending play" && isStoryMode && storyWeek != 10)
 		{
 			FlxG.sound.music.volume = 0;
@@ -1564,6 +1567,11 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		elapsedtime += elapsed;
+		if (paused && FlxG.sound.music != null && vocals != null && vocals.playing)
+		{
+			FlxG.sound.music.pause();
+			vocals.pause();
+		}
 		if (curbg != null)
 		{
 			if (curbg.active) // only the furiosity background is active
@@ -2466,7 +2474,10 @@ class PlayState extends MusicBeatState
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('insanity/endDialogue')));
 						doof.scrollFactor.set();
-						doof.finishThing = FlxG.switchState(new FreeplayState());
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					case 'maze' | 'old-maze' | 'beta-maze':
@@ -2477,7 +2488,10 @@ class PlayState extends MusicBeatState
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('maze/endDialogue')));
 						doof.scrollFactor.set();
-						doof.finishThing = FlxG.switchState(new FreeplayState());
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					case 'splitathon' | 'old-splitathon':
@@ -2488,7 +2502,10 @@ class PlayState extends MusicBeatState
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
 						doof.scrollFactor.set();
-						doof.finishThing = FlxG.switchState(new FreeplayState());
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					default:
@@ -3165,7 +3182,7 @@ class PlayState extends MusicBeatState
 	{
 		super.beatHit();
 
-		currentSection = SONG.notes[Std.int(curStep / 16)];
+		var currentSection = SONG.notes[Std.int(curStep / 16)];
 		if (!UsingNewCam)
 		{
 			if (generatedMusic && currentSection != null)
