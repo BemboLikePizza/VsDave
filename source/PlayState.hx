@@ -2064,32 +2064,28 @@ class PlayState extends MusicBeatState
 					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 
-					if (SONG.song.toLowerCase() != 'senpai' && SONG.song.toLowerCase() != 'roses' && SONG.song.toLowerCase() != 'thorns')
+					dadStrums.forEach(function(sprite:FlxSprite)
 					{
-						dadStrums.forEach(function(sprite:FlxSprite)
+						if (Math.abs(Math.round(Math.abs(daNote.noteData)) % 4) == sprite.ID)
+						{
+							sprite.animation.play('confirm', true);
+							if (sprite.animation.curAnim.name == 'confirm')
 							{
-								if (Math.abs(Math.round(Math.abs(daNote.noteData)) % 4) == sprite.ID)
-								{
-									sprite.animation.play('confirm', true);
-									if (sprite.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
-									{
-										sprite.centerOffsets();
-										sprite.offset.x -= 13;
-										sprite.offset.y -= 13;
-									}
-									else
-									{
-										sprite.centerOffsets();
-									}
-									sprite.animation.finishCallback = function(name:String)
-									{
-										sprite.animation.play('static',true);
-										sprite.centerOffsets();
-									}
-		
-								}
-							});
-					}
+								sprite.centerOffsets();
+								sprite.offset.x -= 13;
+								sprite.offset.y -= 13;
+							}
+							else
+							{
+								sprite.centerOffsets();
+							}
+							sprite.animation.finishCallback = function(name:String)
+							{
+								sprite.animation.play('static',true);
+								sprite.centerOffsets();
+							}
+						}
+					});
 					if (UsingNewCam)
 					{
 						focusOnDadGlobal = true;
@@ -2470,7 +2466,7 @@ class PlayState extends MusicBeatState
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('insanity/endDialogue')));
 						doof.scrollFactor.set();
-						doof.finishThing = ughWhyDoesThisHaveToFuckingExist;
+						doof.finishThing = FlxG.switchState(new FreeplayState());
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					case 'maze' | 'old-maze' | 'beta-maze':
@@ -2481,7 +2477,7 @@ class PlayState extends MusicBeatState
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('maze/endDialogue')));
 						doof.scrollFactor.set();
-						doof.finishThing = ughWhyDoesThisHaveToFuckingExist;
+						doof.finishThing = FlxG.switchState(new FreeplayState());
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					case 'splitathon' | 'old-splitathon':
@@ -2492,7 +2488,7 @@ class PlayState extends MusicBeatState
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
 						doof.scrollFactor.set();
-						doof.finishThing = ughWhyDoesThisHaveToFuckingExist;
+						doof.finishThing = FlxG.switchState(new FreeplayState());
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					default:
@@ -2505,11 +2501,6 @@ class PlayState extends MusicBeatState
 			}
 			
 		}
-	}
-
-	function ughWhyDoesThisHaveToFuckingExist() 
-	{
-		FlxG.switchState(new FreeplayState());
 	}
 
 	var endingSong:Bool = false;
@@ -2760,6 +2751,7 @@ class PlayState extends MusicBeatState
 		var leftR = controls.LEFT_R;
 
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
+		var releaseArray:Array<Bool> = [leftR, downR, upR, rightR];
 
 		// FlxG.watch.addQuick('asdfa', upP);
 		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
@@ -2870,38 +2862,13 @@ class PlayState extends MusicBeatState
 
 		playerStrums.forEach(function(spr:FlxSprite)
 		{
-			switch (spr.ID)
+			if (controlArray[spr.ID] && spr.animation.curAnim.name != 'confirm')
 			{
-				case 2:
-					if (upP && spr.animation.curAnim.name != 'confirm')
-					{
-						spr.animation.play('pressed');
-					}
-					if (upR)
-					{
-						spr.animation.play('static');
-					}
-				case 3:
-					if (rightP && spr.animation.curAnim.name != 'confirm')
-						spr.animation.play('pressed');
-					if (rightR)
-					{
-						spr.animation.play('static');
-					}
-				case 1:
-					if (downP && spr.animation.curAnim.name != 'confirm')
-						spr.animation.play('pressed');
-					if (downR)
-					{
-						spr.animation.play('static');
-					}
-				case 0:
-					if (leftP && spr.animation.curAnim.name != 'confirm')
-						spr.animation.play('pressed');
-					if (leftR)
-					{
-						spr.animation.play('static');
-					}
+				spr.animation.play('pressed');
+			}
+			if (releaseArray[spr.ID])
+			{
+				spr.animation.play('static');
 			}
 
 			if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
@@ -3198,26 +3165,18 @@ class PlayState extends MusicBeatState
 	{
 		super.beatHit();
 
+		currentSection = SONG.notes[Std.int(curStep / 16)];
 		if (!UsingNewCam)
 		{
-			if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
+			if (generatedMusic && currentSection != null)
 			{
 				if (curBeat % 4 == 0)
 				{
-					// trace(PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection);
+					// trace(currentSection.mustHitSection);
 				}
 
-				if (!PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
-				{
-					focusOnDadGlobal = true;
-					ZoomCam(true);
-				}
-
-				if (PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
-				{
-					focusOnDadGlobal = false;
-					ZoomCam(false);
-				}
+				focusOnDadGlobal = !currentSection.mustHitSection;
+				ZoomCam(!currentSection.mustHitSection);
 			}
 		}
 		if (generatedMusic)
@@ -3225,11 +3184,11 @@ class PlayState extends MusicBeatState
 			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
 		}
 
-		if (SONG.notes[Math.floor(curStep / 16)] != null)
+		if (currentSection != null)
 		{
-			if (SONG.notes[Math.floor(curStep / 16)].changeBPM)
+			if (currentSection.changeBPM)
 			{
-				Conductor.changeBPM(SONG.notes[Math.floor(curStep / 16)].bpm);
+				Conductor.changeBPM(currentSection.bpm);
 				FlxG.log.add('CHANGED BPM!');
 			}
 			// else
