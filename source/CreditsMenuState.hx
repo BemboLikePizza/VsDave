@@ -1,4 +1,4 @@
-package;
+(package;
 
 #if desktop
 import cpp.abi.Abi;
@@ -645,3 +645,4 @@ enum State
 {
    SelectingName; OnName;
 }
+)
