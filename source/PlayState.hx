@@ -210,6 +210,9 @@ class PlayState extends MusicBeatState
 
 	var possibleNotes:Array<Note> = [];
 
+
+	var blockedAssets:Array<FlxObject> = []; // dont fuck with this, this is for that one part in blocked where the bg goes all weird n stuff
+
 	override public function create()
 	{
 		theFunne = FlxG.save.data.newInput;
@@ -837,37 +840,44 @@ class PlayState extends MusicBeatState
 				hills.scrollFactor.set(0.9, 0.7);
 				hills.active = false;
 				sprites.add(hills);
+				blockedAssets.push(hills);
 	
 				var farm:FlxSprite = new FlxSprite(150, 250).loadGraphic(Paths.image('backgrounds/farm/funfarmhouse'));
 				farm.antialiasing = true;
 				farm.scrollFactor.set(1.1, 0.9);
 				farm.active = false;
 				sprites.add(farm);
+				blockedAssets.push(farm);
 				
 				var foreground:FlxSprite = new FlxSprite(-400, 600).loadGraphic(Paths.image('backgrounds/farm/grass lands'));
 				foreground.antialiasing = true;
 				foreground.active = false;
 				sprites.add(foreground);
+				blockedAssets.push(foreground);
 				
 				var cornSet:FlxSprite = new FlxSprite(-350, 325).loadGraphic(Paths.image('backgrounds/farm/Cornys'));
 				cornSet.antialiasing = true;
 				cornSet.active = false;
 				sprites.add(cornSet);
+				blockedAssets.push(cornSet);
 				
 				var cornSet2:FlxSprite = new FlxSprite(1050, 325).loadGraphic(Paths.image('backgrounds/farm/Cornys'));
 				cornSet2.antialiasing = true;
 				cornSet2.active = false;
 				sprites.add(cornSet2);
+				blockedAssets.push(cornSet2);
 				
 				var fence:FlxSprite = new FlxSprite(-350, 450).loadGraphic(Paths.image('backgrounds/farm/crazy fences'));
 				fence.antialiasing = true;
 				fence.active = false;
 				sprites.add(fence);
+				blockedAssets.push(fence);
 	
 				var sign:FlxSprite = new FlxSprite(0, 500).loadGraphic(Paths.image('backgrounds/farm/Sign'));
 				sign.antialiasing = true;
 				sign.active = false;
 				sprites.add(sign);
+				blockedAssets.push(sign);
 
 				var variantColor:FlxColor = FlxColor.WHITE;
 				switch (curStage)
@@ -3093,13 +3103,32 @@ class PlayState extends MusicBeatState
 		{
 			resyncVocals();
 		}
-
 		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
 		{
 			// dad.dance();
 		}
+		
+		
+		// Cool events n stuff
 		switch (SONG.song.toLowerCase())
 		{
+			case 'blocked':
+				switch (curStep)
+				{
+					case 511:
+						FlxTween.tween(gf, {y: gf.y + 10000}, 5, {ease: FlxEase.cubeInOut});	
+						for(item in blockedAssets)
+						{
+							FlxTween.tween(item, {y: item.y + 10000}, 5, {ease: FlxEase.cubeInOut}); // ass quass
+						}
+					case 870:
+						FlxTween.tween(gf, {y: gf.y - 10000}, 1, {ease: FlxEase.cubeInOut});	
+						for(item in blockedAssets)
+						{
+							FlxTween.tween(item, {y: item.y - 10000}, 1, {ease: FlxEase.cubeInOut});
+						}
+				}
+			
 			case 'furiosity':
 				switch (curStep)
 				{
