@@ -98,24 +98,23 @@ class CreditsMenuState extends MusicBeatState
       ]),
 
       new Person("T5mpler", CreditsType.Dev, "Programmer",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
-         new Social('twitter', 'https://twitter.com/RealT5mpler'),
-         new Social('souncloud', 'https://soundcloud.com/t5mpler')
-      ]),
-       
+         [
+            new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
+            new Social('twitter', 'https://twitter.com/RealT5mpler'),
+            new Social('souncloud', 'https://soundcloud.com/t5mpler')
+         ]
+      ),
+      new Person("Stats45", CreditsType.Dev, "Minor programming, Moral support",
+         [
+            new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
+         ]
+      ),
+      //contributors
       new Person("Cleary", CreditsType.Dev, "Creator of original concepts, original artist, Censored songs, Moral support",
       [
-         new Social('youtube', 'https://www.youtube.com/channel/UCddoqqR4JgTsv8PChblD1aQ'),
-         new Social('twitter', 'https://twitter.com/LemonLover699')
-      ]),
-
-      new Person("Stats45", CreditsType.Dev, "Minor programming, Moral support",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
-      ]),
-
-      // Contributors //
+         
+      ]
+   ),
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, EMFNF2 help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
@@ -664,56 +663,4 @@ enum CreditsType
 enum State
 {
    SelectingName; OnName;
-}
-class ProfilePicture extends FlxSprite
-{
-	public var sprTracker:FlxSprite;
-
-
-	public function new(char:String = 'bf', isPlayer:Bool = false)
-	{
-		super();
-		loadGraphic(Paths.image('ui/pfpGrid'), true, 150, 150);
-
-		antialiasing = true;
-		animation.add('MoldyGH', [0, 1], 0, false, isPlayer);
-		animation.add('MissingTextureMan101', [0, 1], 0, false, isPlayer);
-		animation.add('rapparep lol', [2, 2], 0, false, isPlayer);
-		animation.add('TheBuilderXD', [3, 4], 0, false, isPlayer);
-		animation.add('Cuzsie', [5, 6], 0, false, isPlayer);
-		animation.add('Erizur', [7], 0, false, isPlayer);
-		animation.add('T5mpler', [8, 9], 0, false, isPlayer);
-		animation.add('Cleary', [8, 9], 0, false, isPlayer);
-		animation.add('Stats45', [10, 11], 0, false, isPlayer);
-		
-      animation.add('Zmac', [8, 9], 0, false, isPlayer);
-		animation.add('CyndaquilDAC', [28, 29], 0, false, isPlayer);
-		animation.add('Alexander Cooper 19', [38, 39], 0, false, isPlayer);
-		
-      animation.add('mamakotomi', [36, 37], 0, false, isPlayer);
-		animation.add('wildy', [8, 9], 0, false, isPlayer);
-		animation.add('Billy Bobbo', [12, 13], 0, false, isPlayer);
-		animation.add('mantis', [12, 13], 0, false, isPlayer);
-		animation.add('ArturSef', [12, 13], 0, false, isPlayer);
-		animation.add('1irx', [12, 13], 0, false, isPlayer);
-		animation.add('KayipKux', [13, 13], 0, false, isPlayer);
-		animation.add('normal', [18, 19], 0, false, isPlayer);
-		animation.add('Rendurse', [20, 21], 0, false, isPlayer);
-		animation.add('Lordryan1999', [40, 41], 0, false, isPlayer);
-		animation.add('Vanquiler', [18, 19], 0, false, isPlayer);
-		
-
-		animation.play(char);
-		scrollFactor.set();
-	}
-
-	override function update(elapsed:Float)
-	{
-		super.update(elapsed);
-		offset.set(Std.int(FlxMath.bound(width - 150,0)),Std.int(FlxMath.bound(height - 150,0)));
-
-
-		if (sprTracker != null)
-			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
-	}
 }

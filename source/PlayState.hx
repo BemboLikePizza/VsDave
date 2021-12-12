@@ -588,7 +588,7 @@ class PlayState extends MusicBeatState
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
 
-		if (FlxG.save.data.downscroll || SONG.song.toLowerCase() == "unfairness")
+		if (FlxG.save.data.downscroll)
 			strumLine.y = FlxG.height - 165;
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
@@ -622,7 +622,7 @@ class PlayState extends MusicBeatState
 		FlxG.fixedTimestep = false;
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
-		if (FlxG.save.data.downscroll || SONG.song.toLowerCase() == "unfairness")
+		if (FlxG.save.data.downscroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
@@ -958,7 +958,7 @@ class PlayState extends MusicBeatState
 						curStage = 'cheating';
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
-						curStage = 'unfairness';
+						curStage = 'unfairness'; 
 					default:
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky'));
 						curStage = 'daveEvilHouse';
@@ -974,9 +974,10 @@ class PlayState extends MusicBeatState
 				testshader.waveSpeed = 2;
 				bg.shader = testshader.shader;
 				curbg = bg;
-				if (SONG.song.toLowerCase() == 'furiosity' || SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'unfairness')
+				switch (SONG.song.toLowerCase())
 				{
-					UsingNewCam = true;
+					case 'furiosity' | 'polygonized' | 'unfairness':
+						UsingNewCam = true;
 				}
 			case 'house-sunset':
 				defaultCamZoom = 0.9;
@@ -1591,6 +1592,11 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (FlxG.keys.justPressed.MINUS)
+			FlxG.camera.zoom += 2;
+		if (FlxG.keys.justPressed.PLUS)
+			FlxG.camera.zoom -= 2;
+
 		//welcome to 3d sinning avenue
 		if(funnyFloatyBoys.contains(dad.curCharacter.toLowerCase()) && canFloat)
 		{
@@ -1623,19 +1629,20 @@ class PlayState extends MusicBeatState
 			});
 		}
 
+		var change = FlxG.save.data.downscroll ? 1 : -1;
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you
+		{
+			playerStrums.forEach(function(spr:FlxSprite)
 			{
-				playerStrums.forEach(function(spr:FlxSprite)
-				{
-					spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + (spr.ID)) * 300);
-					spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(elapsedtime + (spr.ID)) * 300);
-				});
-				dadStrums.forEach(function(spr:FlxSprite)
-				{
-					spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID )) * 2) * 300);
-					spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
-				});
-			}
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * change) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * change) * 300);
+			});
+			dadStrums.forEach(function(spr:FlxSprite)
+			{
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID )) * 2 * change) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2 * change) * 300);
+			});
+		}
 
 		if (SONG.song.toLowerCase() == 'vs-dave-thanksgiving' && !inCutscene) // the thanksgiving
 		{
@@ -2013,7 +2020,8 @@ class PlayState extends MusicBeatState
 
 		if (unspawnNotes[0] != null)
 		{
-			if (unspawnNotes[0].strumTime - Conductor.songPosition < (SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500))
+			var time = SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500;
+			if (unspawnNotes[0].strumTime - Conductor.songPosition < time)
 			{
 				var dunceNote:Note = unspawnNotes[0];
 				notes.add(dunceNote);
@@ -2127,6 +2135,7 @@ class PlayState extends MusicBeatState
 					notes.remove(daNote, true);
 					daNote.destroy();
 				}
+				var change = FlxG.save.data.downscroll ? -1 : 1;
 				switch (SONG.song.toLowerCase())
 				{
 					case 'unfairness':
