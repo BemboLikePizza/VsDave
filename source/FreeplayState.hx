@@ -99,6 +99,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Tutorial'], 0, ['gf']);	
 				addWeek(['House', 'Insanity', 'Polygonized'], 1, ['dave', 'dave', 'dave-angey']);
 				addWeek(['Bonus-Song'], 1,['dave']);
+				addWeek(['Interdimensional'], 1, ['dave-angey']);
 				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
 				addWeek(['Splitathon'], 3,['the-duo']);
 			case 'joke':

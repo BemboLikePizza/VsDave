@@ -1,4 +1,4 @@
-(package;
+package;
 
 #if desktop
 import cpp.abi.Abi;
@@ -100,18 +100,17 @@ class CreditsMenuState extends MusicBeatState
             new Social('souncloud', 'https://soundcloud.com/t5mpler')
          ]
       ),
-       new Person("Cleary", CreditsType.Dev, "Creator of original concepts, original artist, Censored songs, Moral support",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCddoqqR4JgTsv8PChblD1aQ'),
-            new Social('twitter', 'https://twitter.com/LemonLover699')
-         ]
-      ),
       new Person("Stats45", CreditsType.Dev, "Minor programming, Moral support",
          [
             new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
          ]
       ),
       //contributors
+      new Person("Cleary", CreditsType.Dev, "Creator of original concepts, original artist, Censored songs, Moral support",
+      [
+         
+      ]
+   ),
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, EMFNF2 help",
          [
             new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
@@ -645,4 +644,3 @@ enum State
 {
    SelectingName; OnName;
 }
-)
