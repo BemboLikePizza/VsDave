@@ -26,6 +26,7 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxStringUtil;
 import lime.utils.Assets;
+import flixel.addons.display.FlxBackdrop;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -38,6 +39,8 @@ i have to put this here just in case you think of doing so
 class CreditsMenuState extends MusicBeatState
 {
 	var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
+   var checkeredBackground:FlxBackdrop;
+   var overlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/CoolOverlay'));
    var selectedFormat:FlxText;
    var defaultFormat:FlxText;
    var curNameSelected:Int = 0;
@@ -52,47 +55,48 @@ class CreditsMenuState extends MusicBeatState
    var curSocialMediaSelected:Int = 0;
    var socialButtons:Array<SocialButton> = new Array<SocialButton>();
    var hasSocialMedia:Bool = true;
+   
    var peopleInCredits:Array<Person> = 
    [
-      //devs
-     new Person("MoldyGH", CreditsType.Dev, "Director, Creator, Programmer, Musician, Main Developer",
-        [
-           new Social('youtube', 'https://www.youtube.com/channel/UCHIvkOUDfbMCv-BEIPGgpmA'), 
-           new Social('twitter', 'https://twitter.com/moldy_gh'),
-           new Social('soundcloud', 'https://soundcloud.com/moldygh')
-         ]
-      ),
+      // Developers //
+      new Person("MoldyGH", CreditsType.Dev, "Director, Creator, Programmer, Musician, Main Developer",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCHIvkOUDfbMCv-BEIPGgpmA'), 
+         new Social('twitter', 'https://twitter.com/moldy_gh'),
+         new Social('soundcloud', 'https://soundcloud.com/moldygh')
+      ]),
+     
       new Person("MissingTextureMan101", CreditsType.Dev, "Secondary Developer and Programmer",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
-            new Social('twitter', 'https://twitter.com/OfficialMTM101')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
+         new Social('twitter', 'https://twitter.com/OfficialMTM101')
+      ]),
+      
       new Person("rapparep lol", CreditsType.Dev, "Main Artist",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCKfdkmcdFftv4pFWr0Bh45A'),
-            new Social('twitter', 'https://twitter.com/rappareplol')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCKfdkmcdFftv4pFWr0Bh45A'),
+         new Social('twitter', 'https://twitter.com/rappareplol')
+      ]),
+
       new Person("TheBuilderXD", CreditsType.Dev, "Gamebanana Page Manager, Secondary Artist",
-         [
-            new Social('youtube', 'https://www.youtube.com/user/99percentMember'),
-            new Social('twitter', 'https://twitter.com/TheBuilderXD')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/user/99percentMember'),
+         new Social('twitter', 'https://twitter.com/TheBuilderXD')
+      ]),
+      
       new Person("Cuzsie", CreditsType.Dev, "Programmer",
-         [
-            new Social('discord', 'https://discord.gg/s5hdfdqBp2'),
-            new Social('gamebanana', 'https://gamebanana.com/members/1833894'),
-            new Social('twitter', 'https://twitter.com/cuzsiedev')
-         ]
-      ),
+      [
+         new Social('discord', 'https://discord.gg/s5hdfdqBp2'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1833894'),
+         new Social('twitter', 'https://twitter.com/cuzsiedev')
+      ]),
+      
       new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist & More",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
-            new Social('twitter', 'https://twitter.com/am_erizur')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
+         new Social('twitter', 'https://twitter.com/am_erizur')
+      ]),
+
       new Person("T5mpler", CreditsType.Dev, "Programmer",
          [
             new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
@@ -112,85 +116,80 @@ class CreditsMenuState extends MusicBeatState
       ]
    ),
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, EMFNF2 help",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
-         ]
-      ),
-      new Person("CyndaquilDAC", CreditsType.Contributor, "Programmer, Menu Button Artist",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
-            new Social('twitter', 'https://twitter.com/CyndaquilDAC')
-         ]
-      ),
-      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie song, Beta tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
-            new Social('twitter', 'https://twitter.com/Zander_cooper19')
-         ]
-      ),
-      //beta testers
-      new Person("mamakotomi", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('twitter', 'https://www.twitter.com/mamakotomii')
-         ]
-      ),
-      new Person("wildy", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
-            new Social('twitter', 'https://twitter.com/wildythomas1233')
-         ]
-      ),
-      new Person("Billy Bobbo", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
-            new Social('twitter', 'https://twitter.com/BillyBobboLOL')
-         ]
-      ),
-      new Person("mantis", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('discord', 'mantis#6969')
-         ]
-      ),
-      new Person("ArturSef", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('gamebanana', 'https://gamebanana.com/members/1766076')
-         ]
-      ),
-      new Person("1irx", CreditsType.BetaTester, "Beta Tester",
-         [
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
+      ]),
 
-         ]
-      ),
+      new Person("CyndaquilDAC", CreditsType.Contributor, "Programmer, Menu Button Artist",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
+         new Social('twitter', 'https://twitter.com/CyndaquilDAC')
+      ]),
+     
+      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie song, Beta tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
+         new Social('twitter', 'https://twitter.com/Zander_cooper19')
+      ]),
+      
+      // Beta Testers //
+      new Person("mamakotomi", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('twitter', 'https://www.twitter.com/mamakotomii')
+      ]),
+
+      new Person("wildy", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+
+      new Person("Billy Bobbo", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
+         new Social('twitter', 'https://twitter.com/BillyBobboLOL')
+      ]),
+      
+      new Person("mantis", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('discord', 'mantis#6969')
+      ]),
+      
+      new Person("ArturSef", CreditsType.BetaTester, "Beta Tester",
+      [  
+         new Social('gamebanana', 'https://gamebanana.com/members/1766076')
+      ]),
+      
+      new Person("1irx", CreditsType.BetaTester, "Beta Tester",
+      []),
+
       new Person("KayipKux", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCKwsYcSSdpeZOodnPldfn6Q'),
-            new Social('gamebanana', 'https://gamebanana.com/members/1726754')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCKwsYcSSdpeZOodnPldfn6Q'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1726754')
+      ]),
       new Person("normal", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
-            new Social('roblox', 'https://www.roblox.com/users/1368920745')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
+         new Social('roblox', 'https://www.roblox.com/users/1368920745')
+      ]),
+
       new Person("Rendurse", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('twitter', 'https://twitter.com/RendurseDev')
-         ]
-      ),
+      [
+         new Social('twitter', 'https://twitter.com/RendurseDev')
+      ]),
+
       new Person("Lordryan1999", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
-            new Social('twitter', 'https://twitter.com/lr1999_baldi')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
+         new Social('twitter', 'https://twitter.com/lr1999_baldi')
+      ]),
       new Person("Vanquiler", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('discord', 'Vanquiler#3026'),
-            new Social('twitch', 'https://www.twitch.tv/vanquiler'),
-            new Social('roblox', 'https://www.roblox.com/users/1505830747')
-         ]
-      ),
+      [
+         new Social('discord', 'Vanquiler#3026'),
+         new Social('twitch', 'https://www.twitch.tv/vanquiler'),
+         new Social('roblox', 'https://www.roblox.com/users/1505830747')
+      ]),
    ];
 
 	override function create()
@@ -215,6 +214,15 @@ class CreditsMenuState extends MusicBeatState
 		bg.color = 0xFFFF0000;
       bg.scrollFactor.set();
 		add(bg);
+
+      checkeredBackground = new FlxBackdrop(Paths.image('ui/checkeredBG', "preload"), 0.2, 0.2, true, true);
+		add(checkeredBackground);
+		checkeredBackground.scrollFactor.set(0, 0.07);
+
+
+		overlay.color = 0xFFFF0000;
+      overlay.scrollFactor.set();
+		add(overlay);
       
       var developers:Array<Person> = new Array<Person>();
       var betaTesters:Array<Person> = new Array<Person>();
@@ -270,8 +278,11 @@ class CreditsMenuState extends MusicBeatState
          creditsTextGroup.push(creditsTextItem);
          menuItems.push(creditsTextItem);
       }
+      
       var selection = 0;
+      
       changeSelection();
+      
       for (creditsText in creditsTextGroup)
       {
          creditsText.selectionId = selection - curNameSelected;
@@ -288,6 +299,9 @@ class CreditsMenuState extends MusicBeatState
    
 	override function update(elapsed:Float)
    {
+      checkeredBackground.x -= 0.45 / (100 / 60);
+		checkeredBackground.y -= 0.16 / (100 / 60);
+      
       var fadeTimer:Float = 0.08;
       var upPressed = controls.UP_P;
 		var downPressed = controls.DOWN_P;
@@ -296,7 +310,7 @@ class CreditsMenuState extends MusicBeatState
       switch (state)
       {
          case State.SelectingName:
-				if (upPressed)
+			   if (upPressed)
 				{
                changeSelection(-1);
 				}
@@ -327,6 +341,7 @@ class CreditsMenuState extends MusicBeatState
                   }
                }
 				}
+         
          case State.OnName:
             if (back && !transitioning)
             {
@@ -542,8 +557,7 @@ class CreditsMenuState extends MusicBeatState
          {
             var offsetY:Float = 20;
             discordText = new FlxText(socialGraphic.x + 100, socialGraphic.y + (i * 100) + offsetY, 0, social.socialLink, 40);
-            discordText.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle,
-               defaultFormat.borderColor);
+            discordText.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle, defaultFormat.borderColor);
             discordText.alpha = 0;
             discordText.updateHitbox();
             discordText.scrollFactor.set();
