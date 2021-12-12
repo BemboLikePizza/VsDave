@@ -1592,6 +1592,11 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (FlxG.keys.justPressed.MINUS)
+			FlxG.camera.zoom += 2;
+		if (FlxG.keys.justPressed.PLUS)
+			FlxG.camera.zoom -= 2;
+
 		//welcome to 3d sinning avenue
 		if(funnyFloatyBoys.contains(dad.curCharacter.toLowerCase()) && canFloat)
 		{
