@@ -3128,22 +3128,6 @@ class PlayState extends MusicBeatState
 		// Cool events n stuff
 		switch (SONG.song.toLowerCase())
 		{
-			case 'blocked':
-				switch (curStep)
-				{
-					case 511:
-						FlxTween.tween(gf, {y: gf.y + 10000}, 5, {ease: FlxEase.cubeInOut});	
-						for(item in blockedAssets)
-						{
-							FlxTween.tween(item, {y: item.y + 10000}, 5, {ease: FlxEase.cubeInOut}); // ass quass
-						}
-					case 870:
-						FlxTween.tween(gf, {y: gf.y - 10000}, 1, {ease: FlxEase.cubeInOut});	
-						for(item in blockedAssets)
-						{
-							FlxTween.tween(item, {y: item.y - 10000}, 1, {ease: FlxEase.cubeInOut});
-						}
-				}
 			
 			case 'furiosity':
 				switch (curStep)
