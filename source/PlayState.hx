@@ -1952,22 +1952,7 @@ class PlayState extends MusicBeatState
 			{
 				if(!perfectMode)
 				{
-					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition()
-						.y, formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
-
-						#if desktop
-						DiscordClient.changePresence("GAME OVER -- "
-						+ SONG.song
-						+ " ("
-						+ storyDifficultyText
-						+ ") ",
-						"\nAcc: "
-						+ truncateFloat(accuracy, 2)
-						+ "% | Score: "
-						+ songScore
-						+ " | Misses: "
-						+ misses, iconRPC);
-						#end
+					gameOver();
 				}
 			}
 			else
@@ -1995,22 +1980,7 @@ class PlayState extends MusicBeatState
 						{
 							FlxG.save.data.unlockedcharacters[7] = true;
 						}
-						openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition()
-							.y, formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
-
-							#if desktop
-							DiscordClient.changePresence("GAME OVER -- "
-							+ SONG.song
-							+ " ("
-							+ storyDifficultyText
-							+ ") ",
-							"\nAcc: "
-							+ truncateFloat(accuracy, 2)
-							+ "% | Score: "
-							+ songScore
-							+ " | Misses: "
-							+ misses, iconRPC);
-							#end
+						gameOver();
 					}
 				}
 			}
@@ -2141,7 +2111,7 @@ class PlayState extends MusicBeatState
 					case 'unfairness':
 						if (daNote.MyStrum != null)
 						{
-							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
+							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 						}
 					default:
 						if (FlxG.save.data.downscroll)
@@ -2154,8 +2124,7 @@ class PlayState extends MusicBeatState
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				var strumliney = daNote.MyStrum != null ? daNote.MyStrum.y : strumLine.y;
-
-				if (daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll || SONG.song.toLowerCase() == "unfairness") || daNote.y < -daNote.height && (!FlxG.save.data.downscroll && SONG.song.toLowerCase() != "unfairness"))
+				if (daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll) || daNote.y < -daNote.height && (!FlxG.save.data.downscroll) || (SONG.song.toLowerCase() == 'unfairness' && !FlxG.save.data.downscroll && daNote.y <= strumliney - 106))
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
 					{
@@ -2167,7 +2136,7 @@ class PlayState extends MusicBeatState
 					{
 						if(daNote.mustPress && daNote.finishedGenerating && possibleNotes.contains(daNote))
 							noteMiss(daNote.noteData);
-							health -= 0.075;
+							//health -= 0.075;
 							trace("miss note");
 							vocals.volume = 0;
 					}
@@ -3366,6 +3335,41 @@ class PlayState extends MusicBeatState
 			dad.playAnim('cheer', true);
 			boyfriend.playAnim('hey', true);
 		}
+	}
+	function gameOver()
+	{
+		var chance = FlxG.random.int(0, 99);
+		if (chance <= 4)
+		{
+			openSubState(new TheFunnySubState(formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
+			#if desktop
+				DiscordClient.changePresence("GAME OVER -- "
+				+ SONG.song
+				+ " ("
+				+ storyDifficultyText
+				+ ") ",
+				"\n what", iconRPC);
+			#end
+		}
+		else
+		{
+			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y,
+			formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
+			#if desktop
+				DiscordClient.changePresence("GAME OVER -- "
+				+ SONG.song
+				+ " ("
+				+ storyDifficultyText
+				+ ") ",
+				"\nAcc: "
+				+ truncateFloat(accuracy, 2)
+				+ "% | Score: "
+				+ songScore
+				+ " | Misses: "
+				+ misses, iconRPC);
+			#end
+		}
+		
 	}
 
 	function eatShit(ass:String):Void
