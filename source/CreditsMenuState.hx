@@ -150,6 +150,12 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/BillyBobboLOL')
       ]),
       
+      new Person("Foxnap", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
+         new Social('twitter', 'https://twitter.com/Foxnap2')
+      ]),
+
       new Person("mantis", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('discord', 'mantis#6969')
@@ -189,7 +195,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('discord', 'Vanquiler#3026'),
          new Social('twitch', 'https://www.twitch.tv/vanquiler'),
          new Social('roblox', 'https://www.roblox.com/users/1505830747')
-      ]),
+      ])
    ];
 
 	override function create()
@@ -211,7 +217,7 @@ class CreditsMenuState extends MusicBeatState
       selectedFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       
       bg.loadGraphic(MainMenuState.randomizeBG());
-		bg.color = 0xFFFF0000;
+		bg.color = FlxColor.LIME;
       bg.scrollFactor.set();
 		add(bg);
 
@@ -220,7 +226,7 @@ class CreditsMenuState extends MusicBeatState
 		checkeredBackground.scrollFactor.set(0, 0.07);
 
 
-		overlay.color = 0xFFFF0000;
+		overlay.color = FlxColor.LIME;
       overlay.scrollFactor.set();
 		add(overlay);
       

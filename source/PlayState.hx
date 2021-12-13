@@ -189,6 +189,8 @@ class PlayState extends MusicBeatState
 
 	public static var theFunne:Bool = true;
 
+	public static var commitDownScroll:Bool = true;
+
 	var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
 
@@ -219,6 +221,8 @@ class PlayState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 		eyesoreson = FlxG.save.data.eyesores;
+
+		commitDownScroll = FlxG.save.data.downscroll;
 
 		sicks = 0;
 		bads = 0;
@@ -296,6 +300,8 @@ class PlayState extends MusicBeatState
 		Conductor.changeBPM(SONG.bpm);
 
 		theFunne = theFunne && SONG.song.toLowerCase() != 'unfairness';
+
+		commitDownScroll = commitDownScroll || SONG.song.toLowerCase() == 'unfairness';
 
 		var crazyNumber:Int;
 		crazyNumber = FlxG.random.int(0, 5);
@@ -587,8 +593,7 @@ class PlayState extends MusicBeatState
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
-
-		if (FlxG.save.data.downscroll)
+		if (commitDownScroll)
 			strumLine.y = FlxG.height - 165;
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
@@ -621,8 +626,8 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
-		if (FlxG.save.data.downscroll)
+		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+		if (commitDownScroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
@@ -2091,9 +2096,10 @@ class PlayState extends MusicBeatState
 					switch (SONG.song.toLowerCase())
 					{
 						case 'cheating':
-							health -= healthtolower;							
+							health -= healthtolower;
+							
 						case 'unfairness':
-							health -= (healthtolower / 6);
+							health -= (healthtolower / 5);
 					}
 					// boyfriend.playAnim('hit',true);
 					dad.holdTimer = 0;
@@ -2105,19 +2111,16 @@ class PlayState extends MusicBeatState
 					notes.remove(daNote, true);
 					daNote.destroy();
 				}
-				var change = FlxG.save.data.downscroll ? -1 : 1;
+				var change = commitDownScroll ? -1 : 1;
 				switch (SONG.song.toLowerCase())
 				{
 					case 'unfairness':
 						if (daNote.MyStrum != null)
 						{
-							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
+							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 						}
 					default:
-						if (FlxG.save.data.downscroll)
-							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
-						else
-							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
+							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 				}
 				// trace(daNote.y);
 				// WIP interpolation shit? Need to fix the pause issue
@@ -2892,7 +2895,6 @@ class PlayState extends MusicBeatState
 		if (!boyfriend.stunned)
 		{
 			health -= 0.04;
-			trace("note miss");
 			if (combo > 5 && gf.animOffsets.exists('sad'))
 			{
 				gf.playAnim('sad');
@@ -3090,22 +3092,6 @@ class PlayState extends MusicBeatState
 		// Cool events n stuff
 		switch (SONG.song.toLowerCase())
 		{
-			case 'blocked':
-				switch (curStep)
-				{
-					case 511:
-						FlxTween.tween(gf, {y: gf.y + 10000}, 5, {ease: FlxEase.cubeInOut});	
-						for(item in blockedAssets)
-						{
-							FlxTween.tween(item, {y: item.y + 10000}, 5, {ease: FlxEase.cubeInOut}); // ass quass
-						}
-					case 870:
-						FlxTween.tween(gf, {y: gf.y - 10000}, 1, {ease: FlxEase.cubeInOut});	
-						for(item in blockedAssets)
-						{
-							FlxTween.tween(item, {y: item.y - 10000}, 1, {ease: FlxEase.cubeInOut});
-						}
-				}
 			
 			case 'furiosity':
 				switch (curStep)

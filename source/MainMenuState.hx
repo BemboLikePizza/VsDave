@@ -198,7 +198,7 @@ class MainMenuState extends MusicBeatState
 		if (lilMenuGuy == null)
 		{
 			lilMenuGuy = new FlxSprite(520,-70);
-			add(lilMenuGuy);
+			// add(lilMenuGuy);
 		}
 		lilMenuGuy.loadGraphic(Paths.image("menuCharacters/" + optionShit[curSelected] + "_char", 'preload'));
 	}
