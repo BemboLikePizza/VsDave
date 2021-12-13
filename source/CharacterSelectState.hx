@@ -67,7 +67,8 @@ class CharacterSelectState extends MusicBeatState
 		new CharacterInSelect(['what-lmao', 'marcello-dave'], [0, 0, 0, 0], ["IF YOU SEE THIS CHRACTER, REPORT IT TO THE DEVS!", "IF YOU SEE THIS CHRACTER, REPORT IT TO THE DEVS!"]),
 		new CharacterInSelect(['tristan', 'tristan-beta'], [2, 0.5, 0.5, 0.5], ["Tristan", 'Tristan (Beta)']),
 		new CharacterInSelect(['dave', 'dave-annoyed', 'dave-splitathon'], [0.25, 0.25, 2, 2], ["Dave", "Dave (Insanity)", 'Dave (Splitathon)']),
-		new CharacterInSelect(['bambi', 'bambi-new', 'bambi-splitathon', 'bambi-angey', 'bambi-old', 'bambi-bevel'], [0, 0, 3, 0], ["Mr. Bambi", 'Mr. Bambi (Farmer)', 'Mr. Bambi (Splitathon)', 'Mr. Bambi (Angry)', 'Mr. Bambi (Joke)', 'Mr. Bambi (Bevel)']),
+		//these are the canon bambis' names according to marcello, dont change them back
+		new CharacterInSelect(['bambi', 'bambi-new', 'bambi-splitathon', 'bambi-angey', 'bambi-old', 'bambi-bevel'], [0, 0, 3, 0], ["Mr. Bambi", 'Bambi (Farmer)', 'Bambi (Splitathon)', 'Bambie', 'Bambi (Joke)', 'Bambi (Bevel)']),
 		new CharacterInSelect(['dave-angey'], [2, 2, 0.25, 0.25], ["3D Dave"]),
 		new CharacterInSelect(['tristan-golden'], [0.25, 0.25, 0.25, 2], ["Golden Tristan"]),
 		new CharacterInSelect(['bambi-3d', 'bambi-unfair'], [0, 3, 0, 0], ["3D Bambi", 'Unfair Bambi']),
@@ -105,13 +106,13 @@ class CharacterSelectState extends MusicBeatState
 
 		FlxG.sound.playMusic(Paths.music("goodEnding"),1,true);
 
-		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('dave/sky_night'));
+		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night', 'shared'));
 		bg.antialiasing = true;
 		bg.scrollFactor.set(0.9, 0.9);
 		bg.active = false;
 		add(bg);
 	
-		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/hills_night'));
+		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/hills_night', 'shared'));
 		stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
 		stageHills.updateHitbox();
 		stageHills.antialiasing = true;
@@ -119,7 +120,7 @@ class CharacterSelectState extends MusicBeatState
 		stageHills.active = false;
 		add(stageHills);
 	
-		var gate:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/gate_night'));
+		var gate:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/gate_night', 'shared'));
 		gate.setGraphicSize(Std.int(gate.width * 1.2));
 		gate.updateHitbox();
 		gate.antialiasing = true;
@@ -127,7 +128,7 @@ class CharacterSelectState extends MusicBeatState
 		gate.active = false;
 		add(gate);
 		
-		var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('dave/grass_night'));
+		var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/grass_night', 'shared'));
 		stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
 		stageFront.updateHitbox();
 		stageFront.antialiasing = true;
@@ -174,7 +175,7 @@ class CharacterSelectState extends MusicBeatState
 		funnyIconMan.visible = false;
 		add(funnyIconMan);
 
-		var tutorialThing:FlxSprite = new FlxSprite(-130, -90).loadGraphic(Paths.image('charSelectGuide'));
+		var tutorialThing:FlxSprite = new FlxSprite(-130, -90).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
@@ -191,7 +192,7 @@ class CharacterSelectState extends MusicBeatState
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, 0);
 
-			babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+			babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets');
 			babyArrow.animation.addByPrefix('green', 'arrowUP');
 			babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 			babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -406,25 +407,35 @@ class CharacterSelectState extends MusicBeatState
 				char.y = 100;
 			case 'bambi-3d':
 				char.y = 100 + 350;
+				char.x += 100;
 			case 'bambi-unfair':
 				char.y = 100 + 575;
+				char.x += 100;
 			case 'bambi' | 'bambi-old' | 'bambi-bevel' | 'what-lmao':
 				char.y = 100 + 400;
+				char.y -= 75;
 			case 'bambi-new' | 'bambi-farmer-beta':
 				char.y = 100 + 450;
+				char.y -= 75;
 			case 'bambi-splitathon':
 				char.y = 100 + 400;
 			case 'bambi-angey':
 				char.y = 100 + 450;
+				char.y -= 75;
 		}
 		add(char);
 		funnyIconMan.animation.play(char.curCharacter);
-		if (!FlxG.save.data.unlockedcharacters[current])
+		if (!FlxG.save.data.unlockedcharacters[currentReal])
 		{
 			char.color = FlxColor.BLACK;
 			funnyIconMan.color = FlxColor.BLACK;
 			funnyIconMan.animation.curAnim.curFrame = 1;
 			characterText.text = '???';
+			if(char.curCharacter == 'bambi-3d' || char.curCharacter == 'bambi-unfair')
+			{
+				//funny canon name
+				characterText.text = '[EXPUNGED]';
+			}
 		}
 		characterText.screenCenter(X);
 		notemodtext.text = FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[0]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[3]) + "x        " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[2]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[1]) + "x";
@@ -433,9 +444,9 @@ class CharacterSelectState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-		if (char != null && !selectedCharacter)
+		if (char != null && !selectedCharacter && curBeat % 2 == 0)
 		{
-			char.playAnim('idle');
+			char.playAnim('idle', true);
 		}
 	}
 	

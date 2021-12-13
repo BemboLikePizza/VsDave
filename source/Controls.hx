@@ -561,6 +561,32 @@ class Controls extends FlxActionSet
 		}
 		#end
 	}
+	public function stringControlToControl(control:String):Control
+	{
+		switch (control)
+		{
+			case 'left' | 'left-press' | "left-release":
+				return Control.LEFT;
+			case 'down' | 'down-press' | 'down-release':
+				return Control.DOWN;
+			case 'up' | 'up-press' | 'up-release':
+				return Control.UP;
+			case 'right' | 'right-press' | 'right-release':
+				return Control.RIGHT;
+			case 'accept':
+				return Control.ACCEPT;
+			case 'back':
+				return Control.BACK;
+			case 'reset':
+				return Control.RESET;
+			case 'cheat':
+				return Control.CHEAT;
+			case 'pause':
+				return Control.PAUSE;
+			default:
+				return null;
+		}
+	}
 
 	function removeKeyboard()
 	{

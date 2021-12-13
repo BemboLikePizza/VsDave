@@ -33,13 +33,14 @@ class Character extends FlxSprite
 		this.isPlayer = isPlayer;
 
 		var tex:FlxAtlasFrames;
+		
 		antialiasing = true;
 
 		switch (curCharacter)
 		{
 			case 'gf':
 				// GIRLFRIEND CODE
-				tex = Paths.getSparrowAtlas('GF_assets');
+				tex = Paths.getSparrowAtlas('characters/GF_assets', 'shared');
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -70,7 +71,7 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 
 			case 'gf-christmas':
-				tex = Paths.getSparrowAtlas('christmas/gfChristmas');
+				tex = Paths.getSparrowAtlas('christmas/gfChristmas', 'shared');
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -101,7 +102,7 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 
 			case 'gf-pixel':
-				tex = Paths.getSparrowAtlas('weeb/gfPixel');
+				tex = Paths.getSparrowAtlas('weeb/gfPixel', 'shared');
 				frames = tex;
 				animation.addByIndices('singUP', 'GF IDLE', [2], "", 24, false);
 				animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -124,7 +125,7 @@ class Character extends FlxSprite
 
 			case 'dave':
 				// DAVE SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/dave_sheet');
+				tex = Paths.getSparrowAtlas('dave/characters/dave_sheet', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idleDance', 24, false);
 				animation.addByPrefix('singUP', 'Up', 24, false);
@@ -141,7 +142,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'dave-old':
 				// DAVE SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/dave_old');
+				tex = Paths.getSparrowAtlas('dave/characters/dave_old', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Dave idle dance', 24, false);
 				animation.addByPrefix('singUP', 'Dave Sing Note UP', 24, false);
@@ -162,7 +163,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'dave-annoyed':
 				// DAVE SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/Dave_insanity_lol');
+				tex = Paths.getSparrowAtlas('dave/characters/Dave_insanity_lol', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singUP', 'Up', 24, false);
@@ -180,7 +181,7 @@ class Character extends FlxSprite
 	
 				playAnim('idle');
 			case 'dave-annoyed-3d':
-				frames = Paths.getSparrowAtlas('dave/Dave_insanity_3d');
+				frames = Paths.getSparrowAtlas('dave/characters/Dave_insanity_3d', 'shared');
 				animation.addByPrefix('idle', 'DaveAngry idle dance', 24, false);
 				animation.addByPrefix('singUP', 'DaveAngry Sing Note UP', 24, false);
 				animation.addByPrefix('singRIGHT', 'DaveAngry Sing Note RIGHT', 24, false);
@@ -202,7 +203,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'dave-3d-standing-bruh-what':
 				// DAVE SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/local_disabled_man_regains_control_of_his_legs_after_turning_3d');
+				tex = Paths.getSparrowAtlas('dave/characters/local_disabled_man_regains_control_of_his_legs_after_turning_3d', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'DaveAngry idle dance', 24, false);
 				animation.addByPrefix('singUP', 'DaveAngry Sing Note UP', 24, false);
@@ -220,7 +221,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'dave-angey':
 				// DAVE SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/Dave_Furiosity');
+				tex = Paths.getSparrowAtlas('dave/characters/Dave_Furiosity', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'IDLE', 24, false);
 				animation.addByPrefix('singUP', 'UP', 24, false);
@@ -241,7 +242,7 @@ class Character extends FlxSprite
 
 			case 'bambi-3d':
 				// BAMBI SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/bambi_angryboy');
+				tex = Paths.getSparrowAtlas('bambi/characters/bambi_angryboy', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'DaveAngry idle dance', 24, false);
 				animation.addByPrefix('singUP', 'DaveAngry Sing Note UP', 24, false);
@@ -263,7 +264,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'bambi-unfair':
 				// BAMBI SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('bambi/unfair_bambi');
+				tex = Paths.getSparrowAtlas('bambi/unfair_bambi', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idle', 24, false);
 				animation.addByPrefix('singUP', 'singUP', 24, false);
@@ -284,7 +285,7 @@ class Character extends FlxSprite
 		
 				playAnim('idle');
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('BOYFRIEND');
+				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -325,7 +326,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'tristan':
-				var tex = Paths.getSparrowAtlas('dave/TRISTAN');
+				var tex = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -367,7 +368,7 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'tristan-beta':
-				var tex = Paths.getSparrowAtlas('beta_tristan');
+				var tex = Paths.getSparrowAtlas('characters/beta_tristan', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -409,7 +410,7 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'bf-christmas':
-				var tex = Paths.getSparrowAtlas('christmas/bfChristmas');
+				var tex = Paths.getSparrowAtlas('christmas/bfChristmas', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -439,7 +440,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'marcello-dave':
-				var tex = Paths.getSparrowAtlas('dave/secret/Marcello_Dave_Assets');
+				var tex = Paths.getSparrowAtlas('dave/secret/Marcello_Dave_Assets', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'totally dave idle dance', 24, false);
 				animation.addByPrefix('singUP', 'totally dave NOTE UP0', 24, false);
@@ -462,7 +463,7 @@ class Character extends FlxSprite
 				antialiasing = false;
 				
 			case 'bf-pixel':
-				frames = Paths.getSparrowAtlas('weeb/bfPixel');
+				frames = Paths.getSparrowAtlas('weeb/bfPixel', 'shared');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
@@ -502,7 +503,7 @@ class Character extends FlxSprite
 				flipX = true;
 				
 			case 'bf-pixel-dead':
-				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD');
+				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD', 'shared');
 				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
 				animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
 				animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
@@ -521,7 +522,7 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'bambi':
-				var tex = Paths.getSparrowAtlas('dave/bambi');
+				var tex = Paths.getSparrowAtlas('bambi/characters/bambi', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -556,7 +557,7 @@ class Character extends FlxSprite
 
 
 			case 'bambi-old':
-				var tex = Paths.getSparrowAtlas('dave/bambi-old');
+				var tex = Paths.getSparrowAtlas('bambi/characters/bambi-old', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'MARCELLO idle dance', 24, false);
 				animation.addByPrefix('singUP', 'MARCELLO NOTE UP0', 24, false);
@@ -590,7 +591,7 @@ class Character extends FlxSprite
 				flipX = true;
 				
 			case 'bambi-new':
-				frames = Paths.getSparrowAtlas('bambi/bambiRemake');
+				frames = Paths.getSparrowAtlas('bambi/bambiRemake', 'shared');
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singUP', 'up', 24, false);
@@ -598,15 +599,15 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'right', 24, false);
 
 				addOffset('idle');
-				addOffset("singUP", 36, -5);
-				addOffset("singRIGHT", -45, -11);
-				addOffset("singLEFT", -10, -9);
+				addOffset("singUP", 45, 3);
+				addOffset("singRIGHT", -23, -6);
+				addOffset("singLEFT", -10, -8);
 				addOffset("singDOWN", -12, -48);
 
 				playAnim('idle');
 
 			case 'bambi-farmer-beta':
-				frames = Paths.getSparrowAtlas('bambi/bamber_farm_beta_man');
+				frames = Paths.getSparrowAtlas('bambi/bamber_farm_beta_man', 'shared');
 				animation.addByPrefix('idle', 'idle', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singUP', 'up', 24, false);
@@ -622,7 +623,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'dave-splitathon':
-				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Dave');
+				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Dave', 'shared');
 				animation.addByPrefix('idle', 'SplitIdle', 24, false);
 				animation.addByPrefix('singDOWN', 'SplitDown', 24, false);
 				animation.addByPrefix('singUP', 'SplitUp', 24, false);
@@ -644,7 +645,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 				
 			case 'bambi-splitathon':
-				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Bambi');
+				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Bambi', 'shared');
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singDOWN', 'Down', 24, false);
 				animation.addByPrefix('singUP', 'Up', 24, false);
@@ -660,7 +661,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 				
 			case 'tristan-golden':
-				var tex = Paths.getSparrowAtlas('dave/tristan_golden');
+				var tex = Paths.getSparrowAtlas('dave/tristan_golden', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -702,7 +703,7 @@ class Character extends FlxSprite
 	
 				flipX = true;
 			case 'bambi-angey':
-				frames = Paths.getSparrowAtlas('bambi/bambimaddddd');
+				frames = Paths.getSparrowAtlas('bambi/bambimaddddd', 'shared');
 				animation.addByPrefix('idle', 'idle', 24, true);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
@@ -717,7 +718,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'bambi-bevel':
-				var tex = Paths.getSparrowAtlas('bambi/bevel_bambi');
+				var tex = Paths.getSparrowAtlas('bambi/bevel_bambi', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'MARCELLO idle dance', 24, false);
 				animation.addByPrefix('singUP', 'MARCELLO NOTE UP0', 24, false);
@@ -756,7 +757,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'what-lmao':
-				var tex = Paths.getSparrowAtlas('bambi/what');
+				var tex = Paths.getSparrowAtlas('bambi/what', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'MARCELLO idle dance', 24, false);
 				animation.addByPrefix('singUP', 'MARCELLO NOTE UP0', 24, false);
@@ -861,7 +862,7 @@ class Character extends FlxSprite
 							playAnim('danceLeft', true);
 					}
 				default:
-					playAnim('idle');
+					playAnim('idle', true);
 			}
 		}
 	}

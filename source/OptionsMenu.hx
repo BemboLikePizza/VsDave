@@ -14,6 +14,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import flixel.util.FlxTimer;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -33,9 +34,15 @@ class OptionsMenu extends MusicBeatState
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
-		controlsStrings = CoolUtil.coolStringFile((FlxG.save.data.dfjk ? 'DFJK' : 'WASD') + "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") + "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') + "\nAccuracy " + (FlxG.save.data.accuracyDisplay ? "off" : "on") + "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') + "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off") + "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"));
+		controlsStrings = CoolUtil.coolStringFile(
+			"Change Keybinds"
+			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
+			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') 
+			+ "\nAccuracy " + (FlxG.save.data.accuracyDisplay ? "off" : "on") 
+			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
+			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off") 
+			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"));
 		
-		trace(controlsStrings);
 
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -98,67 +105,29 @@ class OptionsMenu extends MusicBeatState
 				switch(curSelected)
 				{
 					case 0:
-						FlxG.save.data.dfjk = !FlxG.save.data.dfjk;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.dfjk ? 'DFJK' : 'WASD'), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected;
-						ctrl.screenCenter(X);
-						ctrl.itemType = 'Vertical';
-						grpControls.add(ctrl);
-						if (FlxG.save.data.dfjk)
-							controls.setKeyboardScheme(KeyboardScheme.Solo, true);
-						else
-							controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
-						
+						new FlxTimer().start(0.01, function(timer:FlxTimer)
+						{
+							openSubState(new ChangeKeybinds());
+						});
+						updateGroupControls("Change Keybinds", 0, 'Vertical');
 					case 1:
 						FlxG.save.data.newInput = !FlxG.save.data.newInput;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping"), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 1;
-						ctrl.screenCenter(X);
-						ctrl.itemType = 'Vertical';
-						grpControls.add(ctrl);
+						updateGroupControls((FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping"), 1, 'Vertical');	
 					case 2:
 						FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll'), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 2;
-						ctrl.screenCenter(X);
-						ctrl.itemType = 'Vertical';
-						grpControls.add(ctrl);
+						updateGroupControls((FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll'), 2, 'Vertical');
 					case 3:
 						FlxG.save.data.accuracyDisplay = !FlxG.save.data.accuracyDisplay;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, "Accuracy " + (FlxG.save.data.accuracyDisplay ? "off" : "on"), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 3;
-						ctrl.screenCenter(X);
-						ctrl.itemType = 'Vertical';
-						grpControls.add(ctrl);
+						updateGroupControls("Accuracy " + (FlxG.save.data.accuracyDisplay ? "off" : "on"), 3, 'Vertical');	
 					case 4:
 						FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 4;
-						ctrl.screenCenter(X);
-						ctrl.itemType = 'Vertical';
-						grpControls.add(ctrl);
+						updateGroupControls((FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), 4, 'Vertical');	
 					case 5:
 						FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 5;
-						ctrl.screenCenter(X);
-						ctrl.itemType = 'Vertical';
-						grpControls.add(ctrl);
+						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 5, 'Vertical');	
 					case 6:
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), true, false);
-						ctrl.isMenuItem = true;
-						ctrl.targetY = curSelected - 6;
-						ctrl.screenCenter(X);
-						ctrl.itemType = 'Vertical';
-						grpControls.add(ctrl);
-						
+						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 6, 'Vertical');	
 				}
 			}
 	}
@@ -169,6 +138,15 @@ class OptionsMenu extends MusicBeatState
 	{
 		super.beatHit();
 		FlxTween.tween(FlxG.camera, {zoom:1.05}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
+	}
+	function updateGroupControls(controlText:String, yIndex:Int, controlTextItemType:String)
+	{
+		var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, controlText, true, false);
+		ctrl.screenCenter(X);
+		ctrl.isMenuItem = true;
+		ctrl.targetY = curSelected - yIndex;
+		ctrl.itemType = controlTextItemType;
+		grpControls.add(ctrl);
 	}
 
 	function changeSelection(change:Int = 0)
