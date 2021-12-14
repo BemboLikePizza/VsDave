@@ -335,10 +335,6 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('blocked/retardedDialogue'));
 			case 'corn-theft' | 'old-corn-theft':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('corn-theft/cornDialogue'));
-			case 'cheating':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('cheating/cheaterDialogue'));
-			case 'unfairness':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('unfairness/unfairDialogue'));
 			case 'maze':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('maze/mazeDialogue'));
 			case 'splitathon':
@@ -2125,7 +2121,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if(daNote.mustPress && daNote.finishedGenerating)
+						if(daNote.mustPress && daNote.finishedGenerating && !daNote.wasGoodHit) //to compensate for lag
 							//health -= 0.075;
 							noteMiss(daNote.noteData);
 							vocals.volume = 0;
