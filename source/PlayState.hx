@@ -626,7 +626,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
 		if (commitDownScroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
@@ -2138,9 +2138,8 @@ class PlayState extends MusicBeatState
 					else
 					{
 						if(daNote.mustPress && daNote.finishedGenerating && possibleNotes.contains(daNote))
-							noteMiss(daNote.noteData);
 							//health -= 0.075;
-							trace("miss note");
+							noteMiss(daNote.noteData);
 							vocals.volume = 0;
 					}
 
@@ -2892,7 +2891,7 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1):Void
 	{
-		if (!boyfriend.stunned)
+		if (true)
 		{
 			health -= 0.04;
 			if (combo > 5 && gf.animOffsets.exists('sad'))
