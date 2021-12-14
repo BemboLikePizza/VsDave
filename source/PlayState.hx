@@ -189,8 +189,6 @@ class PlayState extends MusicBeatState
 
 	public static var theFunne:Bool = true;
 
-	public static var commitDownScroll:Bool = true;
-
 	var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
 
@@ -221,8 +219,6 @@ class PlayState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 		eyesoreson = FlxG.save.data.eyesores;
-
-		commitDownScroll = FlxG.save.data.downscroll;
 
 		sicks = 0;
 		bads = 0;
@@ -300,8 +296,6 @@ class PlayState extends MusicBeatState
 		Conductor.changeBPM(SONG.bpm);
 
 		theFunne = theFunne && SONG.song.toLowerCase() != 'unfairness';
-
-		commitDownScroll = commitDownScroll || SONG.song.toLowerCase() == 'unfairness';
 
 		var crazyNumber:Int;
 		crazyNumber = FlxG.random.int(0, 5);
@@ -593,7 +587,7 @@ class PlayState extends MusicBeatState
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
-		if (commitDownScroll)
+		if (FlxG.save.data.downscroll)
 			strumLine.y = FlxG.height - 165;
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
@@ -963,7 +957,7 @@ class PlayState extends MusicBeatState
 						curStage = 'cheating';
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
-						curStage = 'unfairness'; 
+						curStage = 'unfairness';
 					default:
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky'));
 						curStage = 'daveEvilHouse';
@@ -1597,11 +1591,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (FlxG.keys.justPressed.MINUS)
-			FlxG.camera.zoom += 2;
-		if (FlxG.keys.justPressed.PLUS)
-			FlxG.camera.zoom -= 2;
-
 		//welcome to 3d sinning avenue
 		if(funnyFloatyBoys.contains(dad.curCharacter.toLowerCase()) && canFloat)
 		{
@@ -1995,8 +1984,7 @@ class PlayState extends MusicBeatState
 
 		if (unspawnNotes[0] != null)
 		{
-			var time = SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500;
-			if (unspawnNotes[0].strumTime - Conductor.songPosition < time)
+			if (unspawnNotes[0].strumTime - Conductor.songPosition < (SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500))
 			{
 				var dunceNote:Note = unspawnNotes[0];
 				notes.add(dunceNote);
@@ -2111,7 +2099,7 @@ class PlayState extends MusicBeatState
 					notes.remove(daNote, true);
 					daNote.destroy();
 				}
-				var change = commitDownScroll ? -1 : 1;
+				var change = FlxG.save.data.downscroll ? -1 : 1;
 				switch (SONG.song.toLowerCase())
 				{
 					case 'unfairness':
@@ -3324,7 +3312,7 @@ class PlayState extends MusicBeatState
 	function gameOver()
 	{
 		var chance = FlxG.random.int(0, 99);
-		if (chance <= 4)
+		if (chance <= 99)
 		{
 			openSubState(new TheFunnySubState(formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
 			#if desktop
