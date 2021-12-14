@@ -40,6 +40,9 @@ class MusicPlayerState extends MusicBeatState
     private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
 
+    private var iconP1:HealthIcon;
+	private var iconP2:HealthIcon;
+
     private var barText:FlxText;
   
     override function create()
@@ -73,7 +76,7 @@ class MusicPlayerState extends MusicBeatState
         {
             var songText:Alphabet = new Alphabet(0, 0, songs[i].songName + (songs[i].hasVocals ? "" : "-Inst"), true, false);
             songText.isMenuItem = true;
-            songText.screenCenter(X);
+            //songText.SwitchXandY = true; this is stinky and dumb
             songText.targetY = i;
             grpSongs.add(songText);
 
@@ -96,6 +99,14 @@ class MusicPlayerState extends MusicBeatState
 		healthBar.scrollFactor.set();
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		add(healthBar);
+
+        iconP1 = new HealthIcon("bf", true);
+		iconP1.y = healthBar.y - (iconP1.height / 2);
+		add(iconP1);
+
+		iconP2 = new HealthIcon("bf-old", false);
+		iconP2.y = healthBar.y - (iconP2.height / 2);
+		add(iconP2);
 
         barText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 50, 0, "", 20);
 		barText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
@@ -121,6 +132,10 @@ class MusicPlayerState extends MusicBeatState
 
         playdist = 1 - (FlxG.sound.music.time / FlxG.sound.music.length);
 
+        //copied from playstate
+        iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01) - 26);
+		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - 26);
+
         var currentTimeFormatted = FlxStringUtil.formatTime(FlxG.sound.music.time / 1000);
         var lengthFormatted = FlxStringUtil.formatTime(FlxG.sound.music.length / 1000);
         if (currentlyplaying)
@@ -145,6 +160,16 @@ class MusicPlayerState extends MusicBeatState
                 #end
             }
         }
+
+        if (healthBar.percent < 20)
+			iconP1.animation.curAnim.curFrame = 1;
+		else
+			iconP1.animation.curAnim.curFrame = 0;
+
+		if (healthBar.percent > 80)
+			iconP2.animation.curAnim.curFrame = 1;
+		else
+			iconP2.animation.curAnim.curFrame = 0;
 
 		if (upP)
 		{
@@ -211,7 +236,7 @@ class MusicPlayerState extends MusicBeatState
 
                     item.alpha = 0.6;
                     // item.setGraphicSize(Std.int(item.width * 0.8));
-                    item.screenCenter(X);
+
                     if (item.targetY == 0)
                     {
                        item.alpha = 1;
@@ -278,7 +303,6 @@ class MusicPlayerState extends MusicBeatState
                             //item.alpha = 0;
                         }
                     // item.setGraphicSize(Std.int(item.width * 0.8));
-                    item.screenCenter(X);
 
                     if (item.targetY == 0)
                     {
@@ -293,11 +317,15 @@ class MusicPlayerState extends MusicBeatState
 
     function HideBar()
     {
+        FlxTween.tween(iconP1, {alpha: 0}, 0.15);
+        FlxTween.tween(iconP2, {alpha: 0}, 0.15);
         FlxTween.tween(barText, {alpha: 0}, 0.15);
         FlxTween.tween(healthBar, {alpha: 0}, 0.15);
         FlxTween.tween(healthBarBG, {alpha: 0}, 0.15);
         new FlxTimer().start(0.15, function(bitchFuckAssDickCockBalls:FlxTimer)
         {
+            iconP1.visible = false;
+            iconP2.visible = false;
             barText.visible = false;
             healthBar.visible = false;
             healthBarBG.visible = false;
@@ -306,12 +334,19 @@ class MusicPlayerState extends MusicBeatState
 
     function ShowBar(char:String)
     {
+        iconP1.alpha = 0;
+        iconP2.alpha = 0;
         barText.alpha = 0;
         healthBar.alpha = 0;
         healthBarBG.alpha = 0;
+        iconP1.visible = true;
+        iconP2.animation.play(char);
+        iconP2.visible = true;
         barText.visible = true;
         healthBar.visible = true;
         healthBarBG.visible = true;
+        FlxTween.tween(iconP1, {alpha: 1}, 0.15);
+        FlxTween.tween(iconP2, {alpha: 1}, 0.15);
         FlxTween.tween(barText, {alpha: 1}, 0.15);
         FlxTween.tween(healthBar, {alpha: 1}, 0.15);
         FlxTween.tween(healthBarBG, {alpha: 1}, 0.15);
@@ -355,14 +390,15 @@ class MusicPlayerState extends MusicBeatState
             if(item.targetY != 0)
             {
                 FlxTween.tween(item, {alpha: 0.6}, 0.15);
+                //item.alpha = 0.6;
             }
+            // item.setGraphicSize(Std.int(item.width * 0.8));
 
-            item.screenCenter(X);
-            
             if (item.targetY == 0)
-            {
-                item.alpha = 1;
-            }
+               {
+                   item.alpha = 1;
+                   // item.setGraphicSize(Std.int(item.width));
+               }
         }
     }
 }

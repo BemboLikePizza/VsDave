@@ -2126,9 +2126,8 @@ class PlayState extends MusicBeatState
 					else
 					{
 						if(daNote.mustPress && daNote.finishedGenerating && possibleNotes.contains(daNote))
+							//health -= 0.075;
 							noteMiss(daNote.noteData);
-							health -= 0.075;
-							trace("miss note");
 							vocals.volume = 0;
 					}
 
@@ -2880,7 +2879,7 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1):Void
 	{
-		if (!boyfriend.stunned)
+		if (true)
 		{
 			health -= 0.04;
 			if (combo > 5 && gf.animOffsets.exists('sad'))
