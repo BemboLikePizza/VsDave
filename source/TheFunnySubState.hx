@@ -7,11 +7,12 @@ import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.FlxSprite;
+import flash.system.System;
 
 class TheFunnySubState extends MusicBeatSubstate
 {
    var timer:Float = 0;
-   var toPlayFor:Float;
+   var toPlayFor:Float = FlxG.random.float(5, 10);
 
    var funnySprite:FlxSprite;
    var stageSuffix:String;
@@ -20,6 +21,7 @@ class TheFunnySubState extends MusicBeatSubstate
 
 	public function new(char:String)
 	{
+      super();
 		switch (char)
 		{
 			case 'bf-pixel':
@@ -47,7 +49,6 @@ class TheFunnySubState extends MusicBeatSubstate
          timer = 3;
          canStart = true;
       };
-      super();
 	}
 
 	override function update(elapsed:Float)
@@ -57,18 +58,17 @@ class TheFunnySubState extends MusicBeatSubstate
          timer -= elapsed;
          if (timer <= -toPlayFor)
          {
-            Sys.exit(0);
+            System.exit(0);
          }
-      }
-      if (timer <= 0)
-      {
-         funnySprite.scale.set(FlxG.random.float(0, 5), FlxG.random.float(0, 5));
-         funnySprite.color = FlxColor.fromRGBFloat(FlxG.random.float(0, 1), FlxG.random.float(0, 1), FlxG.random.float(0, 1));
-         if (!audioPlayed)
+         if (timer <= 0)
          {
-            audioPlayed = true;
-            toPlayFor = FlxG.random.float(5, 10);
-            FlxG.sound.play(Paths.sound('ohno'));
+            funnySprite.scale.set(FlxG.random.float(0, 5), FlxG.random.float(0, 5));
+            funnySprite.color = FlxColor.fromRGBFloat(FlxG.random.float(0, 1), FlxG.random.float(0, 1), FlxG.random.float(0, 1));
+            if (!audioPlayed)
+            {
+               audioPlayed = true;
+               FlxG.sound.play(Paths.sound('ohno'));
+            }
          }
       }
 	}
