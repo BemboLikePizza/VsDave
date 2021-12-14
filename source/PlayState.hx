@@ -1590,11 +1590,11 @@ class PlayState extends MusicBeatState
 		//welcome to 3d sinning avenue
 		if(funnyFloatyBoys.contains(dad.curCharacter.toLowerCase()) && canFloat)
 		{
-			dad.y += (Math.sin(elapsedtime) * 0.6);
+			dad.y += (Math.sin(elapsedtime) * 0.4);
 		}
 		if(funnyFloatyBoys.contains(boyfriend.curCharacter.toLowerCase()) && canFloat)
 		{
-			boyfriend.y += (Math.sin(elapsedtime) * 0.6);
+			boyfriend.y += (Math.sin(elapsedtime) * 0.4);
 		}
 		/*if(funnyFloatyBoys.contains(dadmirror.curCharacter.toLowerCase()))
 		{
@@ -1602,7 +1602,7 @@ class PlayState extends MusicBeatState
 		}*/
 		if(funnyFloatyBoys.contains(gf.curCharacter.toLowerCase()) && canFloat)
 		{
-			gf.y += (Math.sin(elapsedtime) * 0.6);
+			gf.y += (Math.sin(elapsedtime) * 0.4);
 		}
 
 		if (SONG.song.toLowerCase() == 'cheating' && !inCutscene) // fuck you
@@ -1620,7 +1620,7 @@ class PlayState extends MusicBeatState
 		}
 
 		var change = FlxG.save.data.downscroll ? 1 : -1;
-		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you
+		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -2040,11 +2040,6 @@ class PlayState extends MusicBeatState
 							case 'RIGHT':
 								fuckingDumbassBullshitFuckYou = 'LEFT';
 						}
-					}
-					if(dad.curCharacter == 'bambi-unfair' || dad.curCharacter == 'bambi-3d')
-					{
-						FlxG.camera.shake(0.0075, 0.1);
-						camHUD.shake(0.0045, 0.1);
 					}
 					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
