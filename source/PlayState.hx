@@ -2125,7 +2125,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if(daNote.mustPress && daNote.finishedGenerating && possibleNotes.contains(daNote))
+						if(daNote.mustPress && daNote.finishedGenerating)
 							//health -= 0.075;
 							noteMiss(daNote.noteData);
 							vocals.volume = 0;
