@@ -616,8 +616,13 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
+<<<<<<< Updated upstream
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
 		if (FlxG.save.data.downscroll)
+=======
+		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar', 'preload'));
+		if (commitDownScroll)
+>>>>>>> Stashed changes
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
@@ -2865,13 +2870,14 @@ class PlayState extends MusicBeatState
 	{
 		if (true)
 		{
+			misses++;	
 			health -= 0.04;
 			if (combo > 5 && gf.animOffsets.exists('sad'))
 			{
 				gf.playAnim('sad');
 			}
 			combo = 0;
-			misses++;
+			trace("cool ass miss");
 
 			songScore -= 10;
 

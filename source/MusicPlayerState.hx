@@ -76,7 +76,10 @@ class MusicPlayerState extends MusicBeatState
         {
             var songText:Alphabet = new Alphabet(0, 0, songs[i].songName + (songs[i].hasVocals ? "" : "-Inst"), true, false);
             songText.isMenuItem = true;
+<<<<<<< Updated upstream
             //songText.SwitchXandY = true; this is stinky and dumb
+=======
+>>>>>>> Stashed changes
             songText.targetY = i;
             grpSongs.add(songText);
 
@@ -236,7 +239,10 @@ class MusicPlayerState extends MusicBeatState
 
                     item.alpha = 0.6;
                     // item.setGraphicSize(Std.int(item.width * 0.8));
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                     if (item.targetY == 0)
                     {
                        item.alpha = 1;
