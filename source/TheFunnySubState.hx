@@ -43,7 +43,7 @@ class TheFunnySubState extends MusicBeatSubstate
                assetName = '99';
          }
 
-         var funnySprite:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('funny/' + assetName));
+         funnySprite = new FlxSprite(0, 0).loadGraphic(Paths.image('funny/' + assetName));
          funnySprite.screenCenter();
          add(funnySprite);
          timer = 3;

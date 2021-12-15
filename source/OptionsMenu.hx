@@ -38,7 +38,6 @@ class OptionsMenu extends MusicBeatState
 			"Change Keybinds"
 			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
 			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') 
-			+ "\nAccuracy " + (FlxG.save.data.accuracyDisplay ? "off" : "on") 
 			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off") 
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"));
@@ -117,17 +116,14 @@ class OptionsMenu extends MusicBeatState
 						FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
 						updateGroupControls((FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll'), 2, 'Vertical');
 					case 3:
-						FlxG.save.data.accuracyDisplay = !FlxG.save.data.accuracyDisplay;
-						updateGroupControls("Accuracy " + (FlxG.save.data.accuracyDisplay ? "off" : "on"), 3, 'Vertical');	
-					case 4:
 						FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
-						updateGroupControls((FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), 4, 'Vertical');	
-					case 5:
+						updateGroupControls((FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), 3, 'Vertical');	
+					case 4:
 						FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
-						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 5, 'Vertical');	
-					case 6:
+						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 4, 'Vertical');	
+					case 5:
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 6, 'Vertical');	
+						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 5, 'Vertical');	
 				}
 			}
 	}
