@@ -200,12 +200,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/wildythomas1233')
       ]),
       
-      new Person("vex", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
-         new Social('twitter', 'https://twitter.com/wildythomas1233')
-      ]),
-
       new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),

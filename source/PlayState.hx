@@ -616,13 +616,8 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
-<<<<<<< Updated upstream
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
 		if (FlxG.save.data.downscroll)
-=======
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar', 'preload'));
-		if (commitDownScroll)
->>>>>>> Stashed changes
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
