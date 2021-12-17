@@ -96,6 +96,12 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
          new Social('twitter', 'https://twitter.com/am_erizur')
       ]),
+      
+      new Person("Somf", CreditsType.Dev, "Charter",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
+         new Social('twitter', 'https://twitter.com/am_erizur')
+      ]),
 
       new Person("T5mpler", CreditsType.Dev, "Programmer",
          [
@@ -109,12 +115,24 @@ class CreditsMenuState extends MusicBeatState
             new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
          ]
       ),
+      
+      //translators
+      new Person("Aizakku", CreditsType.Translator, "Portguese Translator",
+      [
+            new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
+      ]),
+      
+      new Person("Soulegal", CreditsType.Translator, "Brazillian Translator",
+      [
+            new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
+      ]),
+      
       //contributors
-      new Person("Cleary", CreditsType.Dev, "Creator of original concepts, original artist, Censored songs, Moral support",
+      new Person("Cleary", CreditsType.Contributor, "Creator of original concepts, original artist, Censored songs, Moral support",
       [
          
-      ]
-   ),
+      ]),
+
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, EMFNF2 help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
@@ -132,10 +150,18 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
       ]),
       
-      // Beta Testers //
-      new Person("mamakotomi", CreditsType.BetaTester, "Beta Tester",
+      new Person("logspa", CreditsType.Contributor, "Menu Character Design",
       [
-         new Social('twitter', 'https://www.twitter.com/mamakotomii')
+         new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
+         new Social('twitter', 'https://twitter.com/Zander_cooper19')
+      ]),
+
+      // Beta Testers //
+      
+      new Person("Billy Bobbo", CreditsType.BetaTester, "Moral Support, Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
+         new Social('twitter', 'https://twitter.com/BillyBobboLOL')
       ]),
 
       new Person("wildy", CreditsType.BetaTester, "Beta Tester",
@@ -144,16 +170,97 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/wildythomas1233')
       ]),
 
-      new Person("Billy Bobbo", CreditsType.BetaTester, "Beta Tester",
+      new Person("peejeada", CreditsType.BetaTester, "Beta Tester & Supporter",
       [
-         new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
-         new Social('twitter', 'https://twitter.com/BillyBobboLOL')
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+
+      new Person("Devianator", CreditsType.BetaTester, "Beta Tester, and helping with Credits icons",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+      
+      new Person("Bendy", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+      
+      new Person("weednose", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+      
+      new Person("vex", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+      
+      new Person("vex", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+
+      new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+
+      new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+
+      new Person("TrustVVorthy", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+      
+      new Person("Oxygen", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('discord', 'mantis#6969')
+      ]),
+      
+      new Person("Gorbini", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
+         new Social('twitter', 'https://twitter.com/Foxnap2')
+      ]),
+
+      new Person("sk0rbias", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+      
+      new Person("Mooncakeez", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
       ]),
       
       new Person("Foxnap", CreditsType.BetaTester, "Beta Tester",
       [
          new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
          new Social('twitter', 'https://twitter.com/Foxnap2')
+      ]),
+
+      new Person("A5CEN", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('discord', 'mantis#6969')
+      ]),
+      
+      new Person("nihilistt", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('discord', 'mantis#6969')
       ]),
 
       new Person("mantis", CreditsType.BetaTester, "Beta Tester",
@@ -166,14 +273,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('gamebanana', 'https://gamebanana.com/members/1766076')
       ]),
       
-      new Person("1irx", CreditsType.BetaTester, "Beta Tester",
-      []),
-
-      new Person("KayipKux", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCKwsYcSSdpeZOodnPldfn6Q'),
-         new Social('gamebanana', 'https://gamebanana.com/members/1726754')
-      ]),
       new Person("normal", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
@@ -231,29 +330,33 @@ class CreditsMenuState extends MusicBeatState
 		add(overlay);
       
       var developers:Array<Person> = new Array<Person>();
-      var betaTesters:Array<Person> = new Array<Person>();
+      var translators:Array<Person> = new Array<Person>();
       var contributors:Array<Person> = new Array<Person>();
+      var betaTesters:Array<Person> = new Array<Person>();
 
       for (person in peopleInCredits) 
       {
          switch (person.creditsType)
          {
             case Dev: developers.push(person);
-            case BetaTester: betaTesters.push(person);
+            case Translator: translators.push(person);
             case Contributor: contributors.push(person);
+            case BetaTester: betaTesters.push(person);
          }
       }
 
       for (i in 0...peopleInCredits.length)
       {
          var currentPerson = peopleInCredits[i];
-         if (currentPerson == developers[0] || currentPerson == contributors[0] || currentPerson == betaTesters[0])
+         if (currentPerson == developers[0] || currentPerson == contributors[0] || currentPerson == betaTesters[0] || currentPerson == translators[0])
          {
             var textString:String = '';
             switch (currentPerson.creditsType)
             {
                case Dev:
                   textString = 'Developers';
+               case Translator:
+                  textString = 'Translators';
                case Contributor:
                   textString = 'Contributors';
                case BetaTester:
@@ -266,7 +369,10 @@ class CreditsMenuState extends MusicBeatState
             titleText.screenCenter(X);
             titleText.scrollFactor.set(0, 1);
 
-            var creditsTextTitleText = new CreditsText(titleText, false);
+            var personIcon:PersonIcon = new PersonIcon(titleText);
+            add(personIcon);
+
+            var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
             creditsTextGroup.push(creditsTextTitleText);
             add(titleText);
          }
@@ -277,8 +383,13 @@ class CreditsMenuState extends MusicBeatState
          textItem.borderQuality = 3;
          textItem.screenCenter(X);
          textItem.scrollFactor.set(0, 1);
-         
-         var creditsTextItem:CreditsText = new CreditsText(textItem, true);
+
+
+         var personIcon:PersonIcon = new PersonIcon(textItem);
+         personIcon.loadGraphic(Paths.image('credits/icons/' + currentPerson.name));
+         add(personIcon);
+
+         var creditsTextItem:CreditsText = new CreditsText(textItem, true, personIcon);
 
          add(textItem);
          creditsTextGroup.push(creditsTextItem);
@@ -296,7 +407,7 @@ class CreditsMenuState extends MusicBeatState
       }
       for (creditsText in creditsTextGroup)
       {
-         var scaledY = FlxMath.remapToRange(creditsText.selectionId, 0, 1, 0, 1.3);
+         var scaledY = FlxMath.remapToRange(creditsText.selectionId, 0, 1, 0, 1.5);
          creditsText.text.y = scaledY * 75 + (FlxG.height * 0.5);
       }
 
@@ -334,6 +445,7 @@ class CreditsMenuState extends MusicBeatState
                for (creditsText in creditsTextGroup)
                {
                   FlxTween.tween(creditsText.text, {alpha: 0}, fadeTimer);
+                  FlxTween.tween(creditsText.icon, {alpha: 0}, fadeTimer);
                   if (creditsText == creditsTextGroup[creditsTextGroup.length - 1])
                   {
                      FlxTween.tween(creditsText.text, {alpha: 0}, fadeTimer, 
@@ -347,7 +459,6 @@ class CreditsMenuState extends MusicBeatState
                   }
                }
 				}
-         
          case State.OnName:
             if (back && !transitioning)
             {
@@ -373,6 +484,7 @@ class CreditsMenuState extends MusicBeatState
                            for (creditsText in creditsTextGroup)
                            {
                               FlxTween.tween(creditsText.text, {alpha: 1}, fadeTimer);
+                              FlxTween.tween(creditsText.icon, {alpha: 0}, fadeTimer);
                               if (creditsText == creditsTextGroup[creditsTextGroup.length - 1])
                               {
                                  FlxTween.tween(creditsText.text, {alpha: 1}, fadeTimer, 
@@ -638,11 +750,34 @@ class CreditsText
    public var text:FlxText;
    public var menuItem:Bool;
    public var selectionId:Int;
+   public var icon:PersonIcon;
 
-   public function new(text:FlxText, menuItem:Bool)
+   public function new(text:FlxText, menuItem:Bool, icon:PersonIcon)
    {
       this.text = text;
       this.menuItem = menuItem;
+      this.icon = icon;
+   }
+}
+class PersonIcon extends FlxSprite
+{
+   public var tracker:FlxObject;
+
+   public function new(tracker:FlxObject)
+   {
+      this.tracker = tracker;
+      super();
+   }
+   public override function update(elapsed:Float)
+   {
+      super.update(elapsed);
+      if (tracker != null) 
+      {
+         var biggerValue = Math.max(tracker.height, height);
+         var smallerValue = Math.min(tracker.height, height);
+
+         setPosition(tracker.x + tracker.width + 20, tracker.y + (smallerValue - biggerValue) / 2);
+      }
    }
 }
 class SocialButton
@@ -658,7 +793,7 @@ class SocialButton
 }
 enum CreditsType
 {
-   Dev; BetaTester; Contributor;
+   Dev; Translator; Contributor; BetaTester;
 }
 enum State
 {
