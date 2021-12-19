@@ -235,6 +235,10 @@ class MusicPlayerState extends MusicBeatState
 
                     item.alpha = 0.6;
                     // item.setGraphicSize(Std.int(item.width * 0.8));
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                     if (item.targetY == 0)
                     {
                        item.alpha = 1;
