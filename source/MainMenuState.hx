@@ -72,18 +72,9 @@ class MainMenuState extends MusicBeatState
 		'backgrounds/T5mpler'
 	];
 
-	/*public var menuCharacters:Array<String> = 
-	[
-		'dave',
-		'tristan',
-		'bambi-new'
-	];*/
-
 	var logoBl:FlxSprite;
 
 	var lilMenuGuy:FlxSprite;
-
-	// cvar character:Character;
 
 	override function create()
 	{
@@ -128,17 +119,6 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 
-		checkeredBackground = new FlxBackdrop(Paths.image('ui/checkeredBG', "preload"), 0.2, 0.2, true, true);
-		add(checkeredBackground);
-		checkeredBackground.scrollFactor.set(0, 0.07);
-		
-
-		var coolSideBar:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image("mainMenu/Menu_Side", "preload"));
-		coolSideBar.setGraphicSize(1280,720);
-		coolSideBar.screenCenter();
-		coolSideBar.scrollFactor.set();
-		add(coolSideBar);
-
 
 		logoBl = new FlxSprite(900, -200);
 		logoBl.loadGraphic(Paths.image('ui/logo', 'preload'));
@@ -168,8 +148,8 @@ class MainMenuState extends MusicBeatState
 			menuItem.ID = i;
 			menuItem.y = 60 + (i * 150) - 200;
 			menuItem.screenCenter(X);
-			menuItem.x = menuItem.x - 350;
-			menuItem.setGraphicSize(Std.int(menuItem.width * 0.95));
+			//menuItem.x = menuItem.x - 350;
+			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.95));
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set(0, 1);
 			menuItem.antialiasing = true;
@@ -193,31 +173,9 @@ class MainMenuState extends MusicBeatState
 
 	var selectedSomethin:Bool = false;
 
-	function updateChar()
-	{
-		if (lilMenuGuy == null)
-		{
-			lilMenuGuy = new FlxSprite(520,-70);
-			// add(lilMenuGuy);
-		}
-		lilMenuGuy.loadGraphic(Paths.image("menuCharacters/" + optionShit[curSelected] + "_char", 'preload'));
-	}
-
-
 
 	override function update(elapsed:Float)
 	{
-		checkeredBackground.x -= 0.45 / (100 / 60);
-		checkeredBackground.y -= 0.16 / (100 / 60);
-		
-
-		#if debug
-		if (FlxG.keys.justPressed.R)
-		{
-			updateChar();
-		}
-		#end
-
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
@@ -325,8 +283,6 @@ class MainMenuState extends MusicBeatState
 
 			spr.updateHitbox();
 		});
-
-		updateChar();
 	}
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
 	{
