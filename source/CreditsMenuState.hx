@@ -206,12 +206,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/wildythomas1233')
       ]),
 
-      new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
-         new Social('twitter', 'https://twitter.com/wildythomas1233')
-      ]),
-
       new Person("TrustVVorthy", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
@@ -308,6 +302,8 @@ class CreditsMenuState extends MusicBeatState
       state = State.SelectingName;
       defaultFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
       selectedFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+      selectedFormat.borderSize = 2;
+      selectedFormat.borderQuality = 2;
       
       bg.loadGraphic(MainMenuState.randomizeBG());
 		bg.color = FlxColor.LIME;
@@ -364,6 +360,7 @@ class CreditsMenuState extends MusicBeatState
             titleText.scrollFactor.set(0, 1);
 
             var personIcon:PersonIcon = new PersonIcon(titleText);
+            personIcon.loadGraphic(Paths.image('credits/icons/titles/' + textString));
             add(personIcon);
 
             var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
@@ -373,8 +370,6 @@ class CreditsMenuState extends MusicBeatState
 
          var textItem:FlxText = new FlxText(0, i * 50, 0, currentPerson.name, 32);
          textItem.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle, defaultFormat.borderColor);
-         textItem.borderSize = 3;
-         textItem.borderQuality = 3;
          textItem.screenCenter(X);
          textItem.scrollFactor.set(0, 1);
 
@@ -478,7 +473,7 @@ class CreditsMenuState extends MusicBeatState
                            for (creditsText in creditsTextGroup)
                            {
                               FlxTween.tween(creditsText.text, {alpha: 1}, fadeTimer);
-                              FlxTween.tween(creditsText.icon, {alpha: 0}, fadeTimer);
+                              FlxTween.tween(creditsText.icon, {alpha: 1}, fadeTimer);
                               if (creditsText == creditsTextGroup[creditsTextGroup.length - 1])
                               {
                                  FlxTween.tween(creditsText.text, {alpha: 1}, fadeTimer, 
@@ -566,6 +561,8 @@ class CreditsMenuState extends MusicBeatState
       {
 		   currentText.setFormat(selectedFormat.font, selectedFormat.size, selectedFormat.color, selectedFormat.alignment, selectedFormat.borderStyle, 
             selectedFormat.borderColor);
+         currentText.borderSize = selectedFormat.borderSize;
+         currentText.borderQuality = selectedFormat.borderQuality;
       }
 		for (i in 0...menuItems.length)
 		{

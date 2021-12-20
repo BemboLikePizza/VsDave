@@ -210,8 +210,9 @@ class PlayState extends MusicBeatState
 
 	var possibleNotes:Array<Note> = [];
 
+	var tweenList:Array<FlxTween> = new Array<FlxTween>();
 
-	var blockedAssets:Array<FlxObject> = []; // dont fuck with this, this is for that one part in blocked where the bg goes all weird n stuff
+	var bfTween:ColorTween;
 
 	override public function create()
 	{
@@ -353,10 +354,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'house';
 				case 'polygonized' | 'furiosity':
 					stageCheck = 'red-void';
-				case 'blocked' | 'corn-theft' | 'old-corn-theft':
+				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
-				case 'maze':
-					stageCheck = 'farm-sunset';
 				case 'splitathon' | 'mealie':
 					stageCheck = 'farm-night';
 				case 'cheating':
@@ -377,13 +376,14 @@ class PlayState extends MusicBeatState
 		}
 
 		backgroundSprites = createBackgroundSprites(stageCheck);
-		if (SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'furiosity')
+		switch (SONG.song.toLowerCase())
 		{
-			normalDaveBG = createBackgroundSprites('house-night');
-			for (bgSprite in normalDaveBG)
-			{
-				bgSprite.alpha = 0;
-			}
+			case 'polygonized' | 'furiosity':
+				normalDaveBG = createBackgroundSprites('house-night');
+				for (bgSprite in normalDaveBG)
+				{
+					bgSprite.alpha = 0;
+				}
 		}
 		var gfVersion:String = 'gf';
 
@@ -429,7 +429,31 @@ class PlayState extends MusicBeatState
 				dadmirror = new Character(100, 100, "dave-angey");
 			
 		}
-		
+		if (SONG.song.toLowerCase() == 'maze')
+		{
+			for (i in 0...backgroundSprites.members.length)
+			{
+				var bgSprite = backgroundSprites.members[i];
+				var tween:FlxTween;
+				switch (i)
+				{
+					case 0:
+						tween = FlxTween.tween(bgSprite, {alpha: 0}, sectionStartTime(64) / 1000);
+					case 1:
+						tween = FlxTween.tween(bgSprite, {alpha: 1}, sectionStartTime(64) / 1000);
+					default:
+						tween = FlxTween.color(bgSprite, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
+				}
+				tweenList.push(tween);
+			}
+			var gfTween = FlxTween.color(gf, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
+			var bambiTween = FlxTween.color(dad, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
+			bfTween = FlxTween.color(boyfriend, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
+			
+			tweenList.push(gfTween);
+			tweenList.push(bambiTween);
+			tweenList.push(bfTween);
+		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
@@ -664,6 +688,7 @@ class PlayState extends MusicBeatState
 		{
 			textYPos = healthBarBG.y + 30;
 		}
+
 		// Add Kade Engine watermark
 		var kadeEngineWatermark = new FlxText(4, textYPos, 0,
 		SONG.song
@@ -828,50 +853,55 @@ class PlayState extends MusicBeatState
 				bg.scrollFactor.set(0.9, 0.9);
 				bg.active = false;
 				sprites.add(bg);
+
+				if (SONG.song.toLowerCase() == 'maze')
+				{
+					var nightBG:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
+					nightBG.antialiasing = true;
+					nightBG.scrollFactor.set(0.9, 0.9);
+					nightBG.active = false;
+					nightBG.alpha = 0;
+
+					add(nightBG);
+					sprites.add(nightBG);
+				}
 	
 				var hills:FlxSprite = new FlxSprite(-250, 200).loadGraphic(Paths.image('backgrounds/farm/orangey hills'));
 				hills.antialiasing = true;
 				hills.scrollFactor.set(0.9, 0.7);
 				hills.active = false;
 				sprites.add(hills);
-				blockedAssets.push(hills);
 	
 				var farm:FlxSprite = new FlxSprite(150, 250).loadGraphic(Paths.image('backgrounds/farm/funfarmhouse'));
 				farm.antialiasing = true;
 				farm.scrollFactor.set(1.1, 0.9);
 				farm.active = false;
 				sprites.add(farm);
-				blockedAssets.push(farm);
 				
 				var foreground:FlxSprite = new FlxSprite(-400, 600).loadGraphic(Paths.image('backgrounds/farm/grass lands'));
 				foreground.antialiasing = true;
 				foreground.active = false;
 				sprites.add(foreground);
-				blockedAssets.push(foreground);
 				
 				var cornSet:FlxSprite = new FlxSprite(-350, 325).loadGraphic(Paths.image('backgrounds/farm/Cornys'));
 				cornSet.antialiasing = true;
 				cornSet.active = false;
 				sprites.add(cornSet);
-				blockedAssets.push(cornSet);
 				
 				var cornSet2:FlxSprite = new FlxSprite(1050, 325).loadGraphic(Paths.image('backgrounds/farm/Cornys'));
 				cornSet2.antialiasing = true;
 				cornSet2.active = false;
 				sprites.add(cornSet2);
-				blockedAssets.push(cornSet2);
 				
 				var fence:FlxSprite = new FlxSprite(-350, 450).loadGraphic(Paths.image('backgrounds/farm/crazy fences'));
 				fence.antialiasing = true;
 				fence.active = false;
 				sprites.add(fence);
-				blockedAssets.push(fence);
 	
 				var sign:FlxSprite = new FlxSprite(0, 500).loadGraphic(Paths.image('backgrounds/farm/Sign'));
 				sign.antialiasing = true;
 				sign.active = false;
 				sprites.add(sign);
-				blockedAssets.push(sign);
 
 				var variantColor:FlxColor = FlxColor.WHITE;
 				switch (curStage)
@@ -1016,6 +1046,7 @@ class PlayState extends MusicBeatState
 				gate.color = sunsetColor;
 				stageHills.color = sunsetColor;
 				stageFront.color = sunsetColor;
+
 			default:
 				defaultCamZoom = 0.9;
 				curStage = 'stage';
@@ -1450,6 +1481,16 @@ class PlayState extends MusicBeatState
 				FlxG.sound.music.pause();
 				vocals.pause();
 			}
+			if (SONG.song.toLowerCase() == 'maze')
+			{
+				for (tween in tweenList)
+				{
+					if (!tween.finished)
+					{
+						tween.active = false;
+					}
+				}
+			}
 
 			#if desktop
 			DiscordClient.changePresence("PAUSED on "
@@ -1466,6 +1507,7 @@ class PlayState extends MusicBeatState
 			#end
 			if (!startTimer.finished)
 				startTimer.active = false;
+		
 		}
 
 		super.openSubState(SubState);
@@ -1500,6 +1542,17 @@ class PlayState extends MusicBeatState
 
 			if (!startTimer.finished)
 				startTimer.active = true;
+
+			if (SONG.song.toLowerCase() == 'maze')
+			{
+				for (tween in tweenList)
+				{
+					if (!tween.finished)
+					{
+						tween.active = true;
+					}
+				}
+			}
 			paused = false;
 
 			if (startTimer.finished)
@@ -1535,7 +1588,6 @@ class PlayState extends MusicBeatState
 	function resyncVocals():Void
 	{
 		vocals.pause();
-
 		FlxG.sound.music.play();
 		Conductor.songPosition = FlxG.sound.music.time;
 		vocals.time = Conductor.songPosition;
@@ -1656,7 +1708,17 @@ class PlayState extends MusicBeatState
 			
 			healthBarBG.angle = ((FlxG.height / 5) - (healthBarBG.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
 		}
-			
+		if (SONG.song.toLowerCase() == 'maze')
+		{
+			for (tween in tweenList)
+			{
+				if (tween.active && !tween.finished)
+				{
+					tween.percent = FlxG.sound.music.time / sectionStartTime(64);
+				}
+			}
+		}
+
 		FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
 		if (shakeCam && eyesoreson)
 		{
@@ -2872,8 +2934,6 @@ class PlayState extends MusicBeatState
 				gf.playAnim('sad');
 			}
 			combo = 0;
-			trace("cool ass miss");
-
 			songScore -= 10;
 
 			FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
@@ -2898,6 +2958,10 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				if (SONG.song.toLowerCase() == 'maze')
+				{
+					bfTween.active = false;
+				}
 				boyfriend.color = 0xFF000084;
 				//'LEFT', 'DOWN', 'UP', 'RIGHT'
 				var fuckingDumbassBullshitFuckYou:String;
@@ -2998,9 +3062,13 @@ class PlayState extends MusicBeatState
 			{
 				boyfriend.color = sunsetColor;
 			}
-			else
+			else if (SONG.song.toLowerCase() != 'maze')
 			{
 				boyfriend.color = FlxColor.WHITE;
+			}
+			else if (!bfTween.active && !bfTween.finished)
+			{
+				bfTween.active = true;
 			}
 
 			//'LEFT', 'DOWN', 'UP', 'RIGHT'
@@ -3271,21 +3339,25 @@ class PlayState extends MusicBeatState
 		if(curBeat % 2 == 0)
 		{
 			if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance)
+			{
+				boyfriend.playAnim('idle', true);
+				if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
 				{
-					boyfriend.playAnim('idle', true);
-					if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
-					{
-						boyfriend.color = nightColor;
-					}
-					else if(sunsetLevels.contains(curStage))
-					{
-						boyfriend.color = sunsetColor;
-					}
-					else
-					{
-						boyfriend.color = FlxColor.WHITE;
-					}
+					boyfriend.color = nightColor;
 				}
+				else if(sunsetLevels.contains(curStage))
+				{
+					boyfriend.color = sunsetColor;
+				}
+				else if (SONG.song.toLowerCase() == 'maze' && !bfTween.active && !bfTween.finished)
+				{
+					bfTween.active = true;
+				}
+				else
+				{
+					//boyfriend.color = FlxColor.WHITE;
+				}
+			}
 		}
 
 		if (curBeat % 8 == 7 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf') // fixed your stupid fucking code ninjamuffin this is literally the easiest shit to fix like come on seriously why are you so dumb
@@ -3438,5 +3510,15 @@ class PlayState extends MusicBeatState
 				thing.antialiasing = true;
 				boyfriend.stunned = false;
 		}
+	}
+	function sectionStartTime(section:Int):Float
+	{
+		var daBPM:Int = SONG.bpm;
+		var daPos:Float = 0;
+		for (i in 0...section)
+		{
+			daPos += 4 * (1000 * 60 / daBPM);
+		}
+		return daPos;
 	}
 }
