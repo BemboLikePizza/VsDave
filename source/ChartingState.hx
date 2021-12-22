@@ -561,6 +561,10 @@ class ChartingState extends MusicBeatState
 			
 			strumLine.y = getYfromStrum(Conductor.songPosition % (Conductor.stepCrochet * getSongLengthInSteps()));
 		}
+		if (FlxG.keys.justPressed.M)
+		{
+			convertToMultiSectionChart();
+		}
 		if (curBeat % 4 == 0 && curStep >= 16 * (curSection + 1))
 		{
 			trace(curStep);
@@ -780,6 +784,16 @@ class ChartingState extends MusicBeatState
 			+ "\nSec Start: "
 			+ sectionStartTime(curSection);
 		super.update(elapsed);
+	}
+	
+	function convertToMultiSectionChart()
+	{
+		var songSections = (FlxG.sound.music.length / Conductor.stepCrochet) / 16;
+
+		if (i in 0...2)
+		{
+			
+		}
 	}
 
 	function changeNoteSustain(value:Float):Void
@@ -1003,28 +1017,7 @@ class ChartingState extends MusicBeatState
 			}
 		}
 	}
-	function convertToMultiSectionChart()
-	{
-		for (section in 0..._song.notes.length)
-		{
-			for (note in _song.notes[section].sectionNotes)
-			{
-				var noteStrumTime = note[0];
-
-				var noteSectionNumber = Math.floor(noteStrumTime / sectionLengthFromBpm(_song.bpm));
-				var newSection = _song.notes[noteSectionNumber];
-				if (newSection == null)
-				{
-					newSection = addSection();
-				}
-				_song.notes[section].sectionNotes.remove(note);
-				newSection.sectionNotes.push(note);
-				trace('note used to be on section ' + section + ", it is now on section: " + noteSectionNumber);
-				trace("NOTE'S NEW SECTION'S START TIME:" + getStartTimeOfSection(noteSectionNumber));
-			}
-		}
-		updateGrid();
-	}
+	
 	function getStartTimeOfSection(section:Int):Float
 	{
 		var daBPM:Int = _song.bpm;
