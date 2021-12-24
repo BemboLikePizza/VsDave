@@ -118,13 +118,13 @@ class CreditsMenuState extends MusicBeatState
       //translators
       new Person("Aizakku", CreditsType.Translator, "Portguese Translator",
       [
-         new Social('youtube', 'https://www.youtube.com/channel/UCmSCR85PlhbHGHm-wxiA6sA')
+         new Social('youtube', 'https://www.youtube.com/channel/UCmSCR85PlhbHGHm-wxiA6sA'),
          new Social('twitter', 'https://twitter.com/ItsAizakku')
       ]),
       
       new Person("Soulegal", CreditsType.Translator, "Brazillian Translator",
       [
-            new Social('youtube', 'https://www.youtube.com/channel/UC7VSf4ITAMN83hL3zQbqt3w')
+            new Social('youtube', 'https://www.youtube.com/channel/UC7VSf4ITAMN83hL3zQbqt3w'),
             new Social('twitter', 'https://twitter.com/nickstwt')
       ]),
       

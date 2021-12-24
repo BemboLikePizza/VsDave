@@ -561,10 +561,6 @@ class ChartingState extends MusicBeatState
 			
 			strumLine.y = getYfromStrum(Conductor.songPosition % (Conductor.stepCrochet * getSongLengthInSteps()));
 		}
-		if (FlxG.keys.justPressed.M)
-		{
-			convertToMultiSectionChart();
-		}
 		if (curBeat % 4 == 0 && curStep >= 16 * (curSection + 1))
 		{
 			trace(curStep);
@@ -788,11 +784,27 @@ class ChartingState extends MusicBeatState
 	
 	function convertToMultiSectionChart()
 	{
-		var songSections = (FlxG.sound.music.length / Conductor.stepCrochet) / 16;
+		var songSections = Std.int(Math.floor((FlxG.sound.music.length / Conductor.stepCrochet) / 16));
 
-		if (i in 0...2)
+		for (section in _song.notes)
 		{
-			
+			for (i in 0...section.sectionNotes.length - (section.sectionNotes.length - 4))
+			{
+				var note = section.sectionNotes[i];
+				var strumTime = note[0];
+				for (j in 0...songSections)
+				{
+					if (_song.notes[j] == null)
+					{
+						addSection();
+					}
+					if (strumTime - sectionStartTime(j) < 0)
+					{
+						var noteNewSection = j - 1;
+						trace('Note ' + i + "'s new section will be " + noteNewSection);
+					}
+				}
+			}
 		}
 	}
 
