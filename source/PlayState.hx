@@ -378,6 +378,11 @@ class PlayState extends MusicBeatState
 		backgroundSprites = createBackgroundSprites(stageCheck);
 		switch (SONG.song.toLowerCase())
 		{
+			case 'supernovae' | 'glitch' | 'secret':
+				UsingNewCam = true;
+		}
+		switch (SONG.song.toLowerCase())
+		{
 			case 'polygonized' | 'furiosity':
 				normalDaveBG = createBackgroundSprites('house-night');
 				for (bgSprite in normalDaveBG)
@@ -817,7 +822,6 @@ class PlayState extends MusicBeatState
 				sprites.add(stageFront);
 				add(stageFront);
 
-				UsingNewCam = true;
 				if (SONG.song.toLowerCase() == 'insanity')
 				{
 					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky_insanity'));
@@ -928,7 +932,6 @@ class PlayState extends MusicBeatState
 				add(fence);
 				add(sign);
 	
-				UsingNewCam = true;
 			case 'house-night':
 				defaultCamZoom = 0.9;
 				curStage = 'daveHouse_night';
@@ -969,7 +972,6 @@ class PlayState extends MusicBeatState
 				sprites.add(stageFront);
 				add(stageFront);
 
-				UsingNewCam = true;
 			case 'red-void' | 'green-void' | 'glitchy-void':
 				defaultCamZoom = 0.9;
 				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky'));
@@ -1001,7 +1003,6 @@ class PlayState extends MusicBeatState
 				switch (SONG.song.toLowerCase())
 				{
 					case 'furiosity' | 'polygonized' | 'unfairness':
-						UsingNewCam = true;
 				}
 			case 'house-sunset':
 				defaultCamZoom = 0.9;

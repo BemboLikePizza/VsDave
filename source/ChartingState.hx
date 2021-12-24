@@ -644,10 +644,6 @@ class ChartingState extends MusicBeatState
 		{
 			changeNoteSustain(-Conductor.stepCrochet);
 		}
-		if (FlxG.keys.justPressed.J)
-		{
-			convertToMultiSectionChart();
-		}
 		if (FlxG.keys.justPressed.TAB)
 		{
 			if (FlxG.keys.pressed.SHIFT)
@@ -782,32 +778,6 @@ class ChartingState extends MusicBeatState
 		super.update(elapsed);
 	}
 	
-	function convertToMultiSectionChart()
-	{
-		var songSections = Std.int(Math.floor((FlxG.sound.music.length / Conductor.stepCrochet) / 16));
-
-		for (section in _song.notes)
-		{
-			for (i in 0...section.sectionNotes.length - (section.sectionNotes.length - 4))
-			{
-				var note = section.sectionNotes[i];
-				var strumTime = note[0];
-				for (j in 0...songSections)
-				{
-					if (_song.notes[j] == null)
-					{
-						addSection();
-					}
-					if (strumTime - sectionStartTime(j) < 0)
-					{
-						var noteNewSection = j - 1;
-						trace('Note ' + i + "'s new section will be " + noteNewSection);
-					}
-				}
-			}
-		}
-	}
-
 	function changeNoteSustain(value:Float):Void
 	{
 		if (curSelectedNote != null)
