@@ -784,7 +784,6 @@ class ChartingState extends MusicBeatState
 	
 	function convertToMultiSectionChart()
 	{
-<<<<<<< HEAD
 		var songSections = Std.int(Math.floor((FlxG.sound.music.length / Conductor.stepCrochet) / 16));
 
 		for (section in _song.notes)
@@ -807,9 +806,6 @@ class ChartingState extends MusicBeatState
 				}
 			}
 		}
-=======
-		var songSections = (FlxG.sound.music.length / Conductor.stepCrochet) / 16;
->>>>>>> f62e49cdbe2a6d323b43fd1bb0ada89d8713bec5
 	}
 
 	function changeNoteSustain(value:Float):Void
