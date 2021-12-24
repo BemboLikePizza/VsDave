@@ -789,11 +789,6 @@ class ChartingState extends MusicBeatState
 	function convertToMultiSectionChart()
 	{
 		var songSections = (FlxG.sound.music.length / Conductor.stepCrochet) / 16;
-
-		if (i in 0...2)
-		{
-			
-		}
 	}
 
 	function changeNoteSustain(value:Float):Void
