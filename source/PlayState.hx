@@ -1482,7 +1482,7 @@ class PlayState extends MusicBeatState
 				FlxG.sound.music.pause();
 				vocals.pause();
 			}
-			if (SONG.song.toLowerCase() == 'maze')
+			if (tweenList != null && tweenList.length != 0)
 			{
 				for (tween in tweenList)
 				{
@@ -1544,7 +1544,7 @@ class PlayState extends MusicBeatState
 			if (!startTimer.finished)
 				startTimer.active = true;
 
-			if (SONG.song.toLowerCase() == 'maze')
+			if (tweenList != null && tweenList.length != 0)
 			{
 				for (tween in tweenList)
 				{
@@ -1709,7 +1709,7 @@ class PlayState extends MusicBeatState
 			
 			healthBarBG.angle = ((FlxG.height / 5) - (healthBarBG.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
 		}
-		if (SONG.song.toLowerCase() == 'maze')
+		if (tweenList != null && tweenList.length != 0)
 		{
 			for (tween in tweenList)
 			{
@@ -2959,10 +2959,6 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				if (SONG.song.toLowerCase() == 'maze')
-				{
-					bfTween.active = false;
-				}
 				boyfriend.color = 0xFF000084;
 				//'LEFT', 'DOWN', 'UP', 'RIGHT'
 				var fuckingDumbassBullshitFuckYou:String;
@@ -3059,17 +3055,21 @@ class PlayState extends MusicBeatState
 			{
 				boyfriend.color = nightColor;
 			}
-			else if(sunsetLevels.contains(curStage))
+			else if (sunsetLevels.contains(curStage))
 			{
 				boyfriend.color = sunsetColor;
 			}
-			else if (SONG.song.toLowerCase() != 'maze')
+			else if (bfTween == null)
 			{
-				//boyfriend.color = FlxColor.WHITE;
+				boyfriend.color = FlxColor.WHITE;
 			}
-			else if (!bfTween.active && !bfTween.finished)
+			else
 			{
-				bfTween.active = true;
+				if (!bfTween.active && !bfTween.finished)
+				{
+					bfTween.active = true;
+				}
+				boyfriend.color = bfTween.color;
 			}
 
 			//'LEFT', 'DOWN', 'UP', 'RIGHT'
@@ -3350,13 +3350,17 @@ class PlayState extends MusicBeatState
 				{
 					boyfriend.color = sunsetColor;
 				}
-				else if (SONG.song.toLowerCase() == 'maze' && !bfTween.active && !bfTween.finished)
+				else if (bfTween == null)
 				{
-					bfTween.active = true;
+					boyfriend.color = FlxColor.WHITE;
 				}
 				else
 				{
-					//boyfriend.color = FlxColor.WHITE;
+					if (!bfTween.active && !bfTween.finished)
+					{
+						bfTween.active = true;
+					}
+					boyfriend.color = bfTween.color;
 				}
 			}
 		}

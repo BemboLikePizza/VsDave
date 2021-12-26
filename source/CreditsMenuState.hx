@@ -196,6 +196,11 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/vex________')
       ]),
       
+      new Person("Ace", CreditsType.BetaTester, "Beta Tester",
+      [
+         
+      ]),
+      
       new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCUmuZE0RPjvUhB036T6omfQ')
