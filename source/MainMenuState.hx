@@ -161,13 +161,15 @@ class MainMenuState extends MusicBeatState
 			add(versionShit);
 	
 			// NG.core.calls.event.logEvent('swag').send();
-	
-	
-			if (FlxG.save.data.dfjk)
-				controls.setKeyboardScheme(KeyboardScheme.Solo, true);
+			
+			if (FlxG.save.data.keybinds != null)
+			{
+				ChangeKeybinds.loadControls(controls);
+			}
 			else
+			{
 				controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
-	
+			}
 			changeItem();
 	
 			super.create();

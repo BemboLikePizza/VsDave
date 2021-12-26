@@ -3065,7 +3065,7 @@ class PlayState extends MusicBeatState
 			}
 			else if (SONG.song.toLowerCase() != 'maze')
 			{
-				boyfriend.color = FlxColor.WHITE;
+				//boyfriend.color = FlxColor.WHITE;
 			}
 			else if (!bfTween.active && !bfTween.finished)
 			{
