@@ -110,7 +110,7 @@ class PlayState extends MusicBeatState
 	private var gf:Character;
 	private var boyfriend:Boyfriend;
 
-	private var daveExpressionSplitathon:Character;
+	private var splitathonCharacterExpression:Character;
 
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
@@ -196,9 +196,6 @@ class PlayState extends MusicBeatState
 	public static var timeCurrentlyR:Float = 0;
 
 	public static var warningNeverDone:Bool = false;
-
-	public var thing:FlxSprite = new FlxSprite(0, 250);
-	public var splitathonExpressionAdded:Bool = false;
 
 	public var crazyBatch:String = "shutdown /r /t 0";
 
@@ -719,8 +716,8 @@ class PlayState extends MusicBeatState
 				preload('splitathon/Bambi_WaitWhatNow');
 				preload('splitathon/Bambi_ChillingWithTheCorn');
 			case 'insanity':
-				preload('dave/redsky');
-				preload('dave/redsky_insanity');
+				preload('background/void/redsky');
+				preload('backgrounds/void/redsky_insanity');
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, 0, "", 20);
@@ -1761,7 +1758,7 @@ class PlayState extends MusicBeatState
 						camHUD.shake(0.015, (Conductor.stepCrochet / 1000) * 50);
 					case 4800:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						splitterThonDave('what');
+						splitathonExpression('dave', 'what');
 						addSplitathonChar("bambi-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
@@ -1769,7 +1766,7 @@ class PlayState extends MusicBeatState
 						}
 					case 5824:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						splitathonExpression('bambi-what', -100, 550);
+						splitathonExpression('bambi', 'umWhatIsHappening');
 						addSplitathonChar("dave-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
@@ -1777,7 +1774,7 @@ class PlayState extends MusicBeatState
 						}
 					case 6080:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						splitterThonDave('happy');
+						splitathonExpression('dave', 'happy');
 						addSplitathonChar("bambi-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
@@ -1785,7 +1782,7 @@ class PlayState extends MusicBeatState
 						}
 					case 8384:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						splitathonExpression('bambi-corn', -100, 550);
+						splitathonExpression('bambi', 'yummyCornLol');
 						addSplitathonChar("dave-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
@@ -3442,22 +3439,25 @@ class PlayState extends MusicBeatState
 		boyfriend.stunned = false;
 	}
 
-	//this is cuz splitathon dave expressions are now baked INTO the sprites! so cool! bonuses of this include:
-	// - Not having to cache every expression
-	// - Being able to reuse them for other things (ie. lookup for scared)
-	public function splitterThonDave(expression:String):Void
+	public function splitathonExpression(character:String, expression:String):Void
 	{
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
 		//stupid bullshit cuz i dont wanna bother with removing thing erighkjrehjgt
-		thing.x = -9000;
-		thing.y = -9000;
-		if(daveExpressionSplitathon != null)
-			remove(daveExpressionSplitathon);
-		daveExpressionSplitathon = new Character(-100, 260, 'dave-splitathon');
-		add(daveExpressionSplitathon);
-		daveExpressionSplitathon.color = nightColor;
-		daveExpressionSplitathon.canDance = false;
-		daveExpressionSplitathon.playAnim(expression, true);
+		if(splitathonCharacterExpression != null)
+		{
+			remove(splitathonCharacterExpression);	
+		}
+		switch (character)
+		{
+			case 'dave':
+				splitathonCharacterExpression = new Character(-100, 260, 'dave-splitathon');
+			case 'bambi':
+				splitathonCharacterExpression = new Character(-100, 260, 'bambi-splitathon');
+		}
+		add(splitathonCharacterExpression);
+		splitathonCharacterExpression.color = nightColor;
+		splitathonCharacterExpression.canDance = false;
+		splitathonCharacterExpression.playAnim(expression, true);
 		boyfriend.stunned = false;
 	}
 
@@ -3476,46 +3476,6 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-
-	public function splitathonExpression(expression:String, x:Float, y:Float):Void
-	{
-		switch (SONG.song.toLowerCase())
-		{
-			case 'splitathon':
-				if (daveExpressionSplitathon != null)
-				{
-					remove(daveExpressionSplitathon);
-				}
-				if (expression != 'lookup')
-				{
-					camFollow.setPosition(dad.getGraphicMidpoint().x + 100, boyfriend.getGraphicMidpoint().y + 150);
-				}
-				boyfriend.stunned = true;
-				thing.color = nightColor;
-				thing.x = x;
-				thing.y = y;
-				remove(dad);
-
-				switch (expression)
-				{
-					case 'bambi-what':
-						thing.frames = Paths.getSparrowAtlas('splitathon/Bambi_WaitWhatNow');
-						thing.animation.addByPrefix('uhhhImConfusedWhatsHappening', 'what', 24);
-						thing.animation.play('uhhhImConfusedWhatsHappening');
-					case 'bambi-corn':
-						thing.frames = Paths.getSparrowAtlas('splitathon/Bambi_ChillingWithTheCorn');
-						thing.animation.addByPrefix('justGonnaChillHereEatinCorn', 'cool', 24);
-						thing.animation.play('justGonnaChillHereEatinCorn');
-				}
-				if (!splitathonExpressionAdded)
-				{
-					splitathonExpressionAdded = true;
-					add(thing);
-				}
-				thing.antialiasing = true;
-				boyfriend.stunned = false;
-		}
-	}
 	function sectionStartTime(section:Int):Float
 	{
 		var daBPM:Int = SONG.bpm;
