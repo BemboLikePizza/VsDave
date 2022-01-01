@@ -12,4 +12,3 @@ external,a-new-day,dave,good
 external,bambi-speak,bambi,bad
 external,good-ending,bf-old,good
 external,bad-ending,bf-old,bad
-internal,old-corn-theft,bambi,bad
