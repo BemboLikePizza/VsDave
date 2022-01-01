@@ -28,6 +28,9 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 	var versionShit:FlxText;
+
+	var languages:Array<String> = ['English', 'Spanish', 'Portuguese', 'Brazillian'];
+	var currentLanguage:Int = 0;
 	override function create()
 	{
 		#if desktop
@@ -40,7 +43,9 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') 
 			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off") 
-			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"));
+			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
+			+ "\n" + 'Current Language ' + FlxG.save.data.language
+			);
 		
 
 		menuBG.color = 0xFFea71fd;
@@ -123,7 +128,11 @@ class OptionsMenu extends MusicBeatState
 						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 4, 'Vertical');	
 					case 5:
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 5, 'Vertical');	
+						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 5, 'Vertical');
+					case 6:
+						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
+						FlxG.save.data.language = languages[currentLanguage];
+						updateGroupControls(languages[currentLanguage], 6, 'Vertical');
 				}
 			}
 	}

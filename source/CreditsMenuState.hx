@@ -131,13 +131,6 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
       ]),
-
-      new Person("Cynda", CreditsType.Contributor, "Programmer, Menu Button Artist",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
-         new Social('twitter', 'https://twitter.com/CyndaquilDAC')
-      ]),
-     
       new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie song, Beta tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
