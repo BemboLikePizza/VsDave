@@ -38,31 +38,19 @@ class HealthIcon extends FlxSprite
 		animation.add('dave-annoyed', [8, 9], 0, false, isPlayer);
 		animation.add('dave-angey', [10, 11], 0, false, isPlayer);
 		animation.add('dave-splitathon', [8, 9], 0, false, isPlayer);
-		animation.add('dave-3d-standing-bruh-what', [28, 29], 0, false, isPlayer);
-		animation.add('dave-annoyed-3d', [38, 39], 0, false, isPlayer);
-		animation.add('dave-old', [36, 37], 0, false, isPlayer);
-		animation.add('marcello-dave', [8, 9], 0, false, isPlayer);
 
 		animation.add('bambi', [12, 13], 0, false, isPlayer);
 		animation.add('bambi-splitathon', [12, 13], 0, false, isPlayer);
 		animation.add('bambi-new', [12, 13], 0, false, isPlayer);
-		animation.add('bambi-farmer-beta', [12, 13], 0, false, isPlayer);
 
 		animation.add('bambi-loser', [13, 13], 0, false, isPlayer);
 
 		animation.add('bambi-stupid', [18, 19], 0, false, isPlayer);
 		animation.add('bambi-3d', [20, 21], 0, false, isPlayer);
-		animation.add('bambi-unfair', [40, 41], 0, false, isPlayer);
-		animation.add('bambi-old', [18, 19], 0, false, isPlayer);
-		animation.add('bambi-angey', [24, 25], 0, false, isPlayer);
-		animation.add('bambi-bevel', [30, 31], 0, false, isPlayer);
+		animation.add('bambi-unfair', [26, 27], 0, false, isPlayer);
 
 		animation.add('tristan', [14, 15], 0, false, isPlayer);
 		animation.add('tristan-golden', [22, 23], 0, false, isPlayer);
-		animation.add('tristan-beta', [34, 35], 0, false, isPlayer);
-
-		animation.add('the-duo', [16, 17], 0, false, isPlayer);
-		animation.add('what-lmao', [18, 19], 0, false, isPlayer);
 		animation.play(char);
 		if (noAaChars.contains(char))
 		{
