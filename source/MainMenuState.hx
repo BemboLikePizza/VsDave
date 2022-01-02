@@ -210,7 +210,7 @@ class MainMenuState extends MusicBeatState
 						switch(optionShit[curSelected])
 						{
 							case 'discord':
-								fancyOpenURL("https://www.discord.gg/vsdave");
+								fancyOpenURL("https://www.discord.gg/vsdave"); // DONT join i remove this later we no discord
 						}
 					}
 					else
@@ -243,6 +243,9 @@ class MainMenuState extends MusicBeatState
 											FlxG.switchState(new StoryMenuState());
 											trace("Story Menu Selected");
 										case 'freeplay':
+											if (FlxG.random.bool(0.1))
+												fancyOpenURL("https://www.youtube.com/watch?v=Z7wWa1G9_30%22");
+										
 											FlxG.switchState(new FreeplayState());
 											trace("Freeplay Menu Selected");
 										case 'options':

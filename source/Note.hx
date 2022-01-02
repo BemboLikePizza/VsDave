@@ -132,6 +132,8 @@ class Note extends FlxSprite
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'cheating':
+			if (!PlayState.pussyMode)	
+			{
 				switch (noteData)
 				{
 					case 0:
@@ -153,7 +155,29 @@ class Note extends FlxSprite
 				}
 				flipY = (Math.round(Math.random()) == 0); //fuck you
 				flipX = (Math.round(Math.random()) == 1);
-
+			}
+			else
+			{
+				switch (noteData)
+				{
+					case 0:
+						x += swagWidth * 0;
+						notetolookfor = 0;
+						animation.play('purpleScroll');
+					case 1:
+						notetolookfor = 1;
+						x += swagWidth * 1;
+						animation.play('blueScroll');
+					case 2:
+						notetolookfor = 2;
+						x += swagWidth * 2;
+						animation.play('greenScroll');
+					case 3:
+						notetolookfor = 3;
+						x += swagWidth * 3;
+						animation.play('redScroll');
+				}
+			}
 			default:
 				switch (noteData)
 				{
@@ -178,7 +202,7 @@ class Note extends FlxSprite
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'cheating' | 'unfairness':
-				if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+				if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState") && !PlayState.pussyMode)
 				{
 					var state:PlayState = cast(FlxG.state,PlayState);
 					InPlayState = true;
@@ -206,7 +230,7 @@ class Note extends FlxSprite
 					}
 				}
 		}
-		if (PlayState.SONG.song.toLowerCase() == 'unfairness')
+		if (PlayState.SONG.song.toLowerCase() == 'unfairness' && !PlayState.pussyMode)
 		{
 			var rng:FlxRandom = new FlxRandom();
 			if (rng.int(0,120) == 1)
@@ -216,6 +240,16 @@ class Note extends FlxSprite
 			else
 			{
 				LocalScrollSpeed = rng.float(1,3);
+			}
+		}
+		else if (PlayState.pussyMode)
+		{
+			switch (PlayState.SONG.song.toLowerCase())
+			{
+				case "unfairness":
+					LocalScrollSpeed = 2;
+				case "cheating":
+					LocalScrollSpeed = 1;
 			}
 		}
 		

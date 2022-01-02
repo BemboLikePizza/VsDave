@@ -43,6 +43,7 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import flash.system.System;
+import flixel.util.FlxSpriteUtil;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -211,6 +212,8 @@ class PlayState extends MusicBeatState
 
 	var bfTween:ColorTween;
 
+	public static var pussyMode:Bool = false;
+
 	override public function create()
 	{
 		theFunne = FlxG.save.data.newInput;
@@ -293,7 +296,8 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
-		theFunne = theFunne && SONG.song.toLowerCase() != 'unfairness';
+		if (!pussyMode)
+			theFunne = theFunne && SONG.song.toLowerCase() != 'unfairness';
 
 		var crazyNumber:Int;
 		crazyNumber = FlxG.random.int(0, 5);
@@ -311,12 +315,14 @@ class PlayState extends MusicBeatState
 				trace("suck my balls");
 			case 5:
 				trace('i hate sick');
+			case 6:
+				trace('lmao secret message hahahaha you cant get me hahahahah secret message bambi phone do you want do you want phone phone phone phone');
 		}
 
 		switch (SONG.song.toLowerCase())
 		{
 			case 'tutorial':
-				dialogue = [":gf:Hey, you're pretty cute.", ':gf:Use the arrow keys to keep up \nwith me singing.'];
+				dialogue = [":gf:Hey, you're pretty cute.", ':bambi:ok now FUCKING sing or break phone.. '];
 			case 'house':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('house/houseDialogue'));
 			case 'insanity':
@@ -656,6 +662,10 @@ class PlayState extends MusicBeatState
 			default:
 				credits = '';
 		}
+
+		if (pussyMode)
+			credits = credits + "\nPussy Mode ENABLED";
+
 		var randomThingy:Int = FlxG.random.int(0, 2);
 		var engineName:String = 'stupid';
 		switch(randomThingy)
@@ -950,7 +960,7 @@ class PlayState extends MusicBeatState
 				add(stageFront);
 
 			case 'red-void' | 'green-void' | 'glitchy-void':
-				defaultCamZoom = 0.9;
+				defaultCamZoom = 0.7;
 				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky'));
 				bg.active = true;
 	
@@ -1632,7 +1642,7 @@ class PlayState extends MusicBeatState
 			gf.y += (Math.sin(elapsedtime) * 0.4);
 		}
 
-		if (SONG.song.toLowerCase() == 'cheating' && !inCutscene) // fuck you
+		if (SONG.song.toLowerCase() == 'cheating' && !inCutscene && !pussyMode) // fuck you
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -1647,7 +1657,7 @@ class PlayState extends MusicBeatState
 		}
 
 		var change = FlxG.save.data.downscroll ? 1 : -1;
-		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
+		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene && !pussyMode) // fuck you x2
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -1804,7 +1814,8 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
+		var funny:String = if (pussyMode) { " PUSSY!"; } else {Std.string(songScore);};
+		scoreTxt.text = "Score:" + funny + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
 		
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -2011,7 +2022,16 @@ class PlayState extends MusicBeatState
 
 		if (unspawnNotes[0] != null)
 		{
-			if (unspawnNotes[0].strumTime - Conductor.songPosition < (SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500))
+			var thing:Int = (SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500);
+			switch (pussyMode) // im lazy and just wanna get this done ok?
+			{
+				case true:
+					thing = 1500;
+				case false:
+					// your not a pussy <3
+			}
+
+			if (unspawnNotes[0].strumTime - Conductor.songPosition < thing)
 			{
 				var dunceNote:Note = unspawnNotes[0];
 				notes.add(dunceNote);
@@ -2109,6 +2129,7 @@ class PlayState extends MusicBeatState
 							health -= healthtolower;
 							
 						case 'unfairness':
+						if (!pussyMode)	
 							health -= (healthtolower / 5);
 					}
 					// boyfriend.playAnim('hit',true);
@@ -2125,19 +2146,20 @@ class PlayState extends MusicBeatState
 				switch (SONG.song.toLowerCase())
 				{
 					case 'unfairness':
-						if (daNote.MyStrum != null)
-						{
+						if (daNote.MyStrum != null && !pussyMode)
 							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
-						}
-					default:
+
+						else if (pussyMode)
 							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
+					default:
+						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 				}
 				// trace(daNote.y);
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				var strumliney = daNote.MyStrum != null ? daNote.MyStrum.y : strumLine.y;
-				if (daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll) || daNote.y < -daNote.height && (!FlxG.save.data.downscroll) || (SONG.song.toLowerCase() == 'unfairness' && !FlxG.save.data.downscroll && daNote.y <= strumliney - 106))
+				if (daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll) || daNote.y < -daNote.height && (!FlxG.save.data.downscroll) || (SONG.song.toLowerCase() == 'unfairness' && !FlxG.save.data.downscroll && daNote.y <= strumliney - 106 && !pussyMode))
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
 					{
@@ -2371,7 +2393,8 @@ class PlayState extends MusicBeatState
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
-							FlxG.switchState(new StoryMenuState());
+							FlxG.switchState(new CreditsMenuState());
+							trace("fuck you");
 						};
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
@@ -3175,6 +3198,24 @@ class PlayState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
+
+		switch(SONG.song.toLowerCase())
+		{
+			case 'unfairness':
+				switch (curBeat)
+				{
+					case 640:
+						playerStrums.forEach(function(spr:FlxSprite)
+						{
+							FlxSpriteUtil.fadeOut(spr, 10, null);
+						});
+
+						dadStrums.forEach(function(spr:FlxSprite)
+						{
+							FlxSpriteUtil.fadeOut(spr, 5, null);
+						});
+				}
+		}
 
 		var currentSection = SONG.notes[Std.int(curStep / 16)];
 		if (!UsingNewCam)

@@ -138,7 +138,7 @@ class CreditsMenuState extends MusicBeatState
       ]),
       
       new Person("logspa", CreditsType.Contributor, "Menu Character Design",
-      [
+      [  
          new Social('youtube', 'https://www.youtube.com/channel/UCz_dSpnfh9USvpuShDwtP9Q'),
          new Social('twitter', 'https://twitter.com/spa_log')
       ]),
