@@ -349,7 +349,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'house' | 'insanity' | 'supernovae':
 					stageCheck = 'house';
-				case 'polygonized' | 'furiosity':
+				case 'polygonized' | 'furiosity' | 'interdimensional':
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
