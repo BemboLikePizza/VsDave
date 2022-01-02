@@ -232,7 +232,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave' | 'dave-old' | 'dave-angey':
 				iconRPC = 'icon_dave';
-			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-bevel' | 'what-lmao' | 'bambi-farmer-beta' | 'bambi-3d' | 'bambi-unfair':
+			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'what-lmao' | 'bambi-farmer-beta' | 'bambi-3d' | 'bambi-unfair':
 				iconRPC = 'icon_bambi';
 			default:
 				iconRPC = 'icon_none';
@@ -401,8 +401,7 @@ class PlayState extends MusicBeatState
 
 		var charoffsetx:Float = 0;
 		var charoffsety:Float = 0;
-		if (formoverride == "bf-pixel"
-			&& (SONG.song != "Tutorial" && SONG.song != "Roses" && SONG.song != "Thorns" && SONG.song != "Senpai"))
+		if (formoverride == "bf-pixel" && SONG.song != "Tutorial")
 		{
 			gfVersion = 'gf-pixel';
 			charoffsetx += 300;
@@ -469,49 +468,38 @@ class PlayState extends MusicBeatState
 					camPos.x += 600;
 					tweenCamIn();
 				}
-			case "tristan" | 'tristan-beta' | 'tristan-golden':
+			case "tristan" | 'tristan-golden':
 				dad.y += 325;
 				dad.x += 100;
+
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
-				{
-					dad.y += 160;
-					dad.x += 250;
-				}
-			case 'dave-old':
-				{
-					dad.y += 270;
-					dad.x += 150;
-				}
-			case 'dave-angey' | 'dave-annoyed-3d' | 'dave-3d-standing-bruh-what':
-				{
-					dad.y += 0;
-					dad.x += 150;
-					camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
-				}
+				dad.y += 160;
+				dad.x += 250;
+
+			case 'dave-angey' | 'dave-annoyed-3d':
+				dad.y += 0;
+				dad.x += 150;
+				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
+
 			case 'bambi-3d':
-				{
-					dad.y += 35;
-					camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
-				}
+				dad.y += 35;
+				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
+
 			case 'bambi-unfair':
-				{
-					dad.y += 90;
-					camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 50);
-				}
-			case 'bambi' | 'bambi-old' | 'bambi-bevel' | 'what-lmao':
-				{
-					dad.y += 400;
-				}
+				dad.y += 90;
+				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 50);
+
+			case 'bambi' | 'bambi-old' | 'what-lmao':
+				dad.y += 400;
+
 			case 'bambi-new' | 'bambi-farmer-beta':
-				{
-					dad.y += 450;
-					dad.x += 200;
-				}
+				dad.y += 450;
+				dad.x += 200;
+
 			case 'bambi-splitathon':
-				{
-					dad.x += 175;
-					dad.y += 400;
-				}
+				dad.x += 175;
+				dad.y += 400;
+
 			case 'bambi-angey':
 				dad.y += 450;
 				dad.x += 100;
@@ -534,25 +522,20 @@ class PlayState extends MusicBeatState
 
 		switch (boyfriend.curCharacter)
 		{
-			case "tristan" | 'tristan-beta' | 'tristan-golden':
+			case "tristan" | 'tristan-golden':
 				boyfriend.y = 100 + 325;
-				boyfriendOldIcon = 'tristan-beta';
+				boyfriendOldIcon = 'tristan';
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
 				boyfriend.y = 100 + 160;
-				boyfriendOldIcon = 'dave-old';
-			case 'dave-old':
-				boyfriend.y = 100 + 270;
 				boyfriendOldIcon = 'dave';
-			case 'dave-angey' | 'dave-annoyed-3d' | 'dave-3d-standing-bruh-what':
+			case 'dave-angey' | 'dave-annoyed-3d':
 				boyfriend.y = 100;
 				switch(boyfriend.curCharacter)
 				{
 					case 'dave-angey':
 						boyfriendOldIcon = 'dave-annoyed-3d';
 					case 'dave-annoyed-3d':
-						boyfriendOldIcon = 'dave-3d-standing-bruh-what';
-					case 'dave-3d-standing-bruh-what':
-						boyfriendOldIcon = 'dave-old';
+						boyfriendOldIcon = 'dave-angey';
 				}
 			case 'bambi-3d':
 				boyfriend.y = 100 + 350;
@@ -560,7 +543,7 @@ class PlayState extends MusicBeatState
 			case 'bambi-unfair':
 				boyfriend.y = 100 + 575;
 				boyfriendOldIcon = 'bambi-old';
-			case 'bambi' | 'bambi-old' | 'bambi-bevel' | 'what-lmao':
+			case 'bambi' | 'bambi-old' | 'what-lmao':
 				boyfriend.y = 100 + 400;
 				boyfriendOldIcon = 'bambi-old';
 			case 'bambi-new' | 'bambi-farmer-beta':
@@ -695,7 +678,7 @@ class PlayState extends MusicBeatState
 		var kadeEngineWatermark = new FlxText(4, textYPos, 0,
 		SONG.song
 		+ " "
-		+ (!curSong.toLowerCase().endsWith('splitathon') ? (storyDifficulty == 3 ? "Legacy" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") : "Finale")
+		+ (!curSong.toLowerCase().endsWith('splitathon') ? (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") : "Finale")
 		+ " - " + engineName + "Engine (KE 1.2)", 16);
 		kadeEngineWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
@@ -712,9 +695,6 @@ class PlayState extends MusicBeatState
 		}
 		switch (curSong.toLowerCase())
 		{
-			case 'splitathon':
-				preload('splitathon/Bambi_WaitWhatNow');
-				preload('splitathon/Bambi_ChillingWithTheCorn');
 			case 'insanity':
 				preload('background/void/redsky');
 				preload('backgrounds/void/redsky_insanity');
@@ -1135,8 +1115,6 @@ class PlayState extends MusicBeatState
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
-			introAssets.set('school', ['weeb/pixelUI/ready-pixel', 'weeb/pixelUI/set-pixel', 'weeb/pixelUI/date-pixel']);
-			introAssets.set('schoolEvil', ['weeb/pixelUI/ready-pixel', 'weeb/pixelUI/set-pixel', 'weeb/pixelUI/date-pixel']);
 
 			var introAlts:Array<String> = introAssets.get('default');
 			var altSuffix:String = "";
@@ -2272,7 +2250,7 @@ class PlayState extends MusicBeatState
 
 			switch(boyfriend.curCharacter)
 			{
-				case 'dave-angey' | 'dave-annoyed-3d' | 'dave-3d-standing-bruh-what':
+				case 'dave-angey' | 'dave-annoyed-3d':
 					camFollow.y = boyfriend.getMidpoint().y;
 				case 'bambi-3d' | 'bambi-unfair':
 					camFollow.y = boyfriend.getMidpoint().y - 350;
@@ -2548,14 +2526,13 @@ class PlayState extends MusicBeatState
 	{
 		var difficulty:String = "";
 
-		if (storyDifficulty == 0)
-			difficulty = '-easy';
-
-		if (storyDifficulty == 2)
-			difficulty = '-hard';
-
-		if (storyDifficulty == 3)
-			difficulty = '-hard';
+		switch (storyDifficulty)
+		{
+			case 0:
+				difficulty = '-easy';
+			case 2:
+				difficulty = '-hard;'
+		}
 
 		trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
 
@@ -2643,16 +2620,7 @@ class PlayState extends MusicBeatState
 					daRating = 'bad';
 			 */
 
-			var pixelShitPart1:String = "";
-			var pixelShitPart2:String = '';
-
-			if (curStage.startsWith('school'))
-			{
-				pixelShitPart1 = 'weeb/pixelUI/';
-				pixelShitPart2 = '-pixel';
-			}
-
-			rating.loadGraphic(Paths.image("ui/" + pixelShitPart1 + daRating + pixelShitPart2));
+			rating.loadGraphic(Paths.image("ui/" + daRating));
 			rating.screenCenter();
 			rating.x = coolText.x - 40;
 			rating.y -= 60;
@@ -2660,7 +2628,7 @@ class PlayState extends MusicBeatState
 			rating.velocity.y -= FlxG.random.int(140, 175);
 			rating.velocity.x -= FlxG.random.int(0, 10);
 
-			var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/" + pixelShitPart1 + 'combo' + pixelShitPart2));
+			var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/combo"));
 			comboSpr.screenCenter();
 			comboSpr.x = coolText.x;
 			comboSpr.acceleration.y = 600;
@@ -2675,11 +2643,6 @@ class PlayState extends MusicBeatState
 				rating.antialiasing = true;
 				comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
 				comboSpr.antialiasing = true;
-			}
-			else
-			{
-				rating.setGraphicSize(Std.int(rating.width * daPixelZoom * 0.7));
-				comboSpr.setGraphicSize(Std.int(comboSpr.width * daPixelZoom * 0.7));
 			}
 
 			comboSpr.updateHitbox();
@@ -2701,7 +2664,7 @@ class PlayState extends MusicBeatState
 			var daLoop:Int = 0;
 			for (i in seperatedScore)
 			{
-				var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/" + pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
+				var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/num" + Std.int(i)));
 				numScore.screenCenter();
 				numScore.x = coolText.x + (43 * daLoop) - 90;
 				numScore.y += 80;

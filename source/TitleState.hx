@@ -339,11 +339,11 @@ class TitleState extends MusicBeatState
 		switch (curBeat)
 		{
 			case 1:
-			createCoolText(['Created by people like:']);
+			createCoolText(['Created by:']);
 			case 2:
 				addMoreText('MoldyGH\nMissingTextureMan101\nRapparep LOL');
 			case 3:
-				addMoreText('TheBuilderXD\nCyndaquilDAC\nErizur\nT5mpler');
+				addMoreText('TheBuilderXD\nErizur\nT5mpler');
 			case 4:
 				addMoreText('and our wonderful contributors!');
 			case 5:

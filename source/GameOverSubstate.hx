@@ -16,7 +16,6 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	public function new(x:Float, y:Float,char:String)
 	{
-		var daStage = PlayState.curStage;
 		var daBf:String = '';
 		switch (char)
 		{
@@ -31,11 +30,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		}
 		if (char == "what-lmao")
 		{
-			char = "bambi-bevel";
-		}
-		if (char == "bf-car")
-		{
-			char = "bf-death";
+			char = "bambi-old";
 		}
 
 		super();
