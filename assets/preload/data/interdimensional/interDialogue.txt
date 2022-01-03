@@ -1,0 +1,7 @@
+setfont_normal:dave:ЩО ВІДБУВАЄТЬСЯ
+:dave:ይህ የሆነው ለምንድነው
+distort:dave:โลกยังคงเป็นสามมิติ
+undistort:dave:ستموت
+:dave:ВЕРНУТЬ МЕНЯ К ОБЫЧНОЙ ФОРМЕ
+:dave:나를 다시 데려오려면 그보다 더 많은 일을 해야 할 것입니다
+:bf:Boop bap
