@@ -58,6 +58,8 @@ class FreeplayState extends MusicBeatState
 
 	private var iconArray:Array<HealthIcon> = [];
 
+	var songDifficulties:Array<String> = new Array<String>();
+
 	override function create()
 	{
 		#if desktop
@@ -117,6 +119,7 @@ class FreeplayState extends MusicBeatState
 
 	public function GoToActualFreeplay()
 	{
+
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
@@ -296,15 +299,12 @@ class FreeplayState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 0)
-			curDifficulty = 2;
-		if (curDifficulty > 2)
-			curDifficulty = 0;
+		var highestDifficulty = difficultyIntToInt(songDifficulties[songDifficulties.length - 1]);
+		
+		var lowestDifficulty = difficultyIntToInt(songDifficulties[0]);
 
-		if (songs[curSelected].week == 3)
-		{
-			curDifficulty = 1;
-		}
+		curDifficulty = cast(FlxMath.bound(curDifficulty, lowestDifficulty, highestDifficulty), Int);
+
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		#end
@@ -320,41 +320,54 @@ class FreeplayState extends MusicBeatState
 			case 3:
 				diffText.text = 'FINALE' + " - " + curChar.toUpperCase();
 			default:
-				switch (curDifficulty)
+				if (songDifficulties.length > 0)
 				{
-					case 0:
-						diffText.text = "EASY" + " - " + curChar.toUpperCase();
-					case 1:
-						diffText.text = 'NORMAL' + " - " + curChar.toUpperCase();
-					case 2:
-						diffText.text = "HARD" + " - " + curChar.toUpperCase();
-					case 3:
-						diffText.text = "LEGACY" + " - " + curChar.toUpperCase();
+					switch (songDifficulties[difficultyIntToInt(songDifficulties[curDifficulty])])
+					{
+						case '-easy':
+							diffText.text = "EASY" + " - " + curChar.toUpperCase();
+						case '':
+							diffText.text = 'NORMAL' + " - " + curChar.toUpperCase();
+						case '-hard':
+							diffText.text = "HARD" + " - " + curChar.toUpperCase();
+					}
 				}
+				else
+				{
+					diffText.text = 'NO DIFFICULTIES';
+				}
+					
 		}
 	}
 
 	function changeSelection(change:Int = 0)
 	{
+		songDifficulties = new Array<String>();
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		curSelected += change;
 
+		if (curSelected > songs.length - 1)
+			curSelected = 0;
+			
 		if (curSelected < 0)
 			curSelected = songs.length - 1;
 
-		if (curSelected >= songs.length)
-			curSelected = 0;
+		var difficultyStems = ['-easy', '', '-hard'];
 
-		if (curDifficulty < 0)
-			curDifficulty = 2;
-
-		if (curDifficulty > 2)
-			curDifficulty = 0;
-
-		if (songs[curSelected].week == 3)
+		for (difficulty in difficultyStems)
 		{
-			curDifficulty = 1;
+			if (Assets.exists(Paths.jsonFile(songs[curSelected].songName.toLowerCase(), difficulty)))
+			{
+				songDifficulties.push(difficulty);
+			}
 		}
+		
+		var highestDifficulty = difficultyIntToInt(songDifficulties[songDifficulties.length - 1]);
+		
+		var lowestDifficulty = difficultyIntToInt(songDifficulties[0]);
+
+		curDifficulty = cast(FlxMath.bound(curDifficulty, lowestDifficulty, highestDifficulty), Int);
+
 
 		curChar = Highscore.getChar(songs[curSelected].songName, curDifficulty);
 		updateDifficultyText();
@@ -389,6 +402,16 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 		FlxTween.color(bg, 0.25, bg.color, songColors[songs[curSelected].week]);
+	}
+	function difficultyIntToInt(diff:String):Int
+	{
+		switch (diff)
+		{
+			case '-easy': return 0;
+			case '': return 1;
+			case '-hard': return 2;
+		}
+		return -1;
 	}
 }
 
