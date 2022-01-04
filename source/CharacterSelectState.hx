@@ -17,14 +17,6 @@ import flixel.util.FlxStringUtil;
 	i do not give you guys permission to grab this specific code and re-use it in your own mods without asking me first.
 	the secondary dev, ben
 */
-
-/**
-	Dear ben,
-		Please shut the fuck up about the commiters
-
-	the one dumbass dev, cuzsie
-**/
-
 class CharacterInSelect
 {
 	public var names:Array<String>;
@@ -70,7 +62,7 @@ class CharacterSelectState extends MusicBeatState
 	
 	public var characters:Array<CharacterInSelect> = 
 	[
-		new CharacterInSelect(['bf', 'bf-pixel', 'bf-christmas'], [1, 1, 1, 1], ["Boyfriend", "Pixel Boyfriend", "Christmas Boyfriend"]),
+		new CharacterInSelect(['bf', 'bf-pixel'], [1, 1, 1, 1], ["Boyfriend", "Pixel Boyfriend"]),
 		new CharacterInSelect(['dave', 'dave-annoyed', 'dave-splitathon'], [0.25, 0.25, 2, 2], ["Dave", "Dave (Insanity)", 'Dave (Splitathon)']),
 		new CharacterInSelect(['dave-angey'], [2, 2, 0.25, 0.25], ["3D Dave"]),
 		new CharacterInSelect(['tristan'], [2, 0.5, 0.5, 0.5], ["Tristan"]),

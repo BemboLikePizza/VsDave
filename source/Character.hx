@@ -100,11 +100,10 @@ class Character extends FlxSprite
 				addOffset("singRIGHTmiss");
 				addOffset("singLEFTmiss");
 				addOffset("singDOWNmiss");
-				if (!PlayState.curStage.startsWith('school'))
-				{
-					globaloffset[0] = -200;
-					globaloffset[1] = -175;
-				}
+					
+				globaloffset[0] = -200;
+				globaloffset[1] = -175;
+				
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
 
