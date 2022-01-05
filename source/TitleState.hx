@@ -338,20 +338,11 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-<<<<<<< Updated upstream
-			case 1:
-			createCoolText(['Created by:']);
-=======
->>>>>>> Stashed changes
 			case 2:
-				createCoolText(['Created by people like:']);
+				createCoolText(['Created by:']);
 				addMoreText('MoldyGH\nMissingTextureMan101\nRapparep LOL');
 			case 3:
-<<<<<<< Updated upstream
-				addMoreText('TheBuilderXD\nErizur\nT5mpler');
-=======
 				addMoreText('TheBuilderXD\nCuzsie\nErizur\nT5mpler');
->>>>>>> Stashed changes
 			case 4:
 				addMoreText('and our wonderful contributors!');
 			case 5:

@@ -2554,7 +2554,7 @@ class PlayState extends MusicBeatState
 			case 0:
 				difficulty = '-easy';
 			case 2:
-				difficulty = '-hard;'
+				difficulty = '-hard';
 		}
 
 		trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
