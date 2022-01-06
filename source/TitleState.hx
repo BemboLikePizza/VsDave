@@ -338,10 +338,8 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-			case 1:
-			createCoolText(['Created by:']);
 			case 2:
-				createCoolText(['Created by people like:']);
+				createCoolText(['Created by:']);
 				addMoreText('MoldyGH\nMissingTextureMan101\nRapparep LOL');
 			case 3:
 				addMoreText('TheBuilderXD\nCuzsie\nErizur\nT5mpler');
@@ -386,6 +384,7 @@ class TitleState extends MusicBeatState
 			remove(credGroup);
 			skippedIntro = true;
 
+			trace("Its fading time :mhm:");
 			FlxG.camera.fade(FlxColor.WHITE, 2.5, true);
 		}
 	}

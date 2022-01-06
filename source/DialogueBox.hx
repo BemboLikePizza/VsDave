@@ -104,12 +104,17 @@ class DialogueBox extends FlxSpriteGroup
 		add(blackScreen);
 		
 		var hasDialog = false;
+<<<<<<< HEAD
 		
 		box = new FlxSprite(-20, 400);
 		
+=======
+
+		box = new FlxSprite(-20, 400);
+>>>>>>> 444608c1185313fcfe69b54b0b9d8e46b6610970
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'cheating' | 'unfairness' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'old-corn-theft':
+			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'cheating' | 'unfairness' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'old-corn-theft': //ass hole
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('ui/speech_bubble_talking');
 				box.setGraphicSize(Std.int(box.width / textBoxSizeFix));
