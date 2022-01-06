@@ -18,13 +18,6 @@ import flixel.util.FlxStringUtil;
 	the secondary dev, ben
 */
 
-/**
-	Dear ben,
-		Please shut the fuck up about the commiters
-
-	the one dumbass dev, cuzsie
-**/
-
 class CharacterInSelect
 {
 	public var names:Array<String>;
@@ -193,7 +186,6 @@ class CharacterSelectState extends MusicBeatState
 
 	private function generateStaticArrows():Void
 	{
-		
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
@@ -404,13 +396,13 @@ class CharacterSelectState extends MusicBeatState
 
 		switch (char.curCharacter)
 		{
-			case "tristan" | 'tristan-beta' | 'tristan-golden':
+			case "tristan" | 'tristan-golden':
 				char.y = 100 + 325;
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
 				char.y = 100 + 160;
 			case 'dave-old':
 				char.y = 100 + 270;
-			case 'dave-angey' | 'dave-annoyed-3d' | 'dave-3d-standing-bruh-what':
+			case 'dave-angey' | 'dave-annoyed-3d':
 				char.y = 100;
 			case 'bambi-3d':
 				char.y = 100 + 350;
@@ -418,7 +410,7 @@ class CharacterSelectState extends MusicBeatState
 			case 'bambi-unfair':
 				char.y = 100 + 575;
 				char.x += 100;
-			case 'bambi' | 'bambi-old' | 'bambi-bevel' | 'what-lmao':
+			case 'bambi' | 'bambi-old':
 				char.y = 100 + 400;
 				char.y -= 75;
 			case 'bambi-new' | 'bambi-farmer-beta':
