@@ -961,7 +961,7 @@ class PlayState extends MusicBeatState
 
 			case 'red-void' | 'green-void' | 'glitchy-void':
 				defaultCamZoom = 0.7;
-				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky'));
+				var bg:FlxSprite = new FlxSprite(-600, -200);
 				bg.active = true;
 	
 				switch (bgName.toLowerCase())
@@ -971,6 +971,8 @@ class PlayState extends MusicBeatState
 						curStage = 'cheating';
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
+						bg.setPosition(300, 200);
+						bg.setGraphicSize(Std.int(bg.width * 2));
 						curStage = 'unfairness';
 					default:
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky'));
@@ -987,10 +989,7 @@ class PlayState extends MusicBeatState
 				testshader.waveSpeed = 2;
 				bg.shader = testshader.shader;
 				curbg = bg;
-				switch (SONG.song.toLowerCase())
-				{
-					case 'furiosity' | 'polygonized' | 'unfairness':
-				}
+				
 			case 'house-sunset':
 				defaultCamZoom = 0.9;
 				curStage = 'daveHouse_sunset';
