@@ -19,7 +19,7 @@ class HealthIcon extends FlxSprite
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
-		loadGraphic(Paths.image('ui/iconGrid/' + char + '-icon', 'preload'), true, 150, 150);
+		loadGraphic(Paths.image('ui/iconGrid/' + char, 'preload'), true, 150, 150);
 
 		antialiasing = !noAaChars.contains(char);
 		animation.add(char, [0, 1], 0, false, isPlayer);

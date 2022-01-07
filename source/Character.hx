@@ -80,7 +80,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'bf-pixel':
-				frames = Paths.getSparrowAtlas('weeb/bfPixel');
+				frames = Paths.getSparrowAtlas('weeb/bfPixel', 'shared');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
@@ -119,7 +119,7 @@ class Character extends FlxSprite
 				flipX = true;
 				
 			case 'bf-pixel-dead':
-				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD');
+				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD', 'shared');
 				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
 				animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
 				animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
@@ -257,27 +257,6 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -34);
 				addOffset("scared", 0, -2);
 	
-				playAnim('idle');
-			case 'dave-annoyed-3d':
-				frames = Paths.getSparrowAtlas('dave/characters/Dave_insanity_3d', 'shared');
-				animation.addByPrefix('idle', 'DaveAngry idle dance', 24, false);
-				animation.addByPrefix('singUP', 'DaveAngry Sing Note UP', 24, false);
-				animation.addByPrefix('singRIGHT', 'DaveAngry Sing Note RIGHT', 24, false);
-				animation.addByPrefix('singDOWN', 'DaveAngry Sing Note DOWN', 24, false);
-				animation.addByPrefix('singLEFT', 'DaveAngry Sing Note LEFT', 24, false);
-		
-				addOffset('idle');
-				addOffset("singUP");
-				addOffset("singRIGHT");
-				addOffset("singLEFT");
-				addOffset("singDOWN");
-				globaloffset[0] = 150;
-				globaloffset[1] = 450; //this is the y
-				furiosityScale = 1.5;
-				setGraphicSize(Std.int(width / furiosityScale));
-			   updateHitbox();
-			   antialiasing = false;
-		
 				playAnim('idle');
 			case 'dave-angey':
 				// DAVE SHITE ANIMATION LOADING CODE
@@ -588,7 +567,7 @@ class Character extends FlxSprite
 	
 				flipX = true;
 			
-				case 'marcello-dave':
+			case 'marcello-dave':
 				var tex = Paths.getSparrowAtlas('dave/secret/Marcello_Dave_Assets', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'totally dave idle dance', 24, false);
@@ -610,42 +589,6 @@ class Character extends FlxSprite
 				flipX = true;
 
 				antialiasing = false;
-				
-			case 'what-lmao':
-				var tex = Paths.getSparrowAtlas('bambi/what', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'MARCELLO idle dance', 24, false);
-				animation.addByPrefix('singUP', 'MARCELLO NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'MARCELLO NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'MARCELLO NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'MARCELLO NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'MARCELLO NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'MARCELLO NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'MARCELLO NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'MARCELLO NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'MARCELLO HEY', 24, false);
-
-				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
-				animation.addByPrefix('scared', 'MARCELLO idle shaking', 24);
-				animation.addByPrefix('hit', 'MARCELLO hit', 24, false);
-
-				addOffset('idle');
-				addOffset("singUP", -59, 37);
-				addOffset("singRIGHT", -38, -3);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -59, 37);
-				addOffset("singRIGHTmiss", -38, -3);
-				addOffset("singLEFTmiss", 12, -6);
-				addOffset("singDOWNmiss", -10, -50);
-				addOffset("hey", 3, 21);
-				addOffset('scared', -24, -10);
-
-				playAnim('idle');
-
-				nativelyPlayable = true;
-
-				flipX = true;
 		}
 		dance();
 

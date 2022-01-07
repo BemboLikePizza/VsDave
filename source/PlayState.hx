@@ -235,7 +235,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave' | 'dave-old' | 'dave-angey':
 				iconRPC = 'icon_dave';
-			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'what-lmao' | 'bambi-farmer-beta' | 'bambi-3d' | 'bambi-unfair':
+			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-farmer-beta' | 'bambi-3d' | 'bambi-unfair':
 				iconRPC = 'icon_bambi';
 			default:
 				iconRPC = 'icon_none';
@@ -415,14 +415,10 @@ class PlayState extends MusicBeatState
 			charoffsetx += 300;
 			charoffsety += 300;
 		}
-		if(formoverride == "bf-christmas")
-		{
-			gfVersion = 'gf-christmas';
-		}
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		if (!(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel" || formoverride == "bf-christmas") && SONG.song != "Tutorial")
+		if (!(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel") && SONG.song != "Tutorial")
 		{
 			gf.visible = false;
 		}
@@ -436,7 +432,6 @@ class PlayState extends MusicBeatState
 		{
 			default:
 				dadmirror = new Character(100, 100, "dave-angey");
-			
 		}
 		if (SONG.song.toLowerCase() == 'maze')
 		{
@@ -484,7 +479,7 @@ class PlayState extends MusicBeatState
 				dad.y += 160;
 				dad.x += 250;
 
-			case 'dave-angey' | 'dave-annoyed-3d':
+			case 'dave-angey':
 				dad.y += 0;
 				dad.x += 150;
 				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
@@ -497,7 +492,7 @@ class PlayState extends MusicBeatState
 				dad.y += 90;
 				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 50);
 
-			case 'bambi' | 'bambi-old' | 'what-lmao':
+			case 'bambi' | 'bambi-old':
 				dad.y += 400;
 
 			case 'bambi-new' | 'bambi-farmer-beta':
@@ -536,31 +531,19 @@ class PlayState extends MusicBeatState
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
 				boyfriend.y = 100 + 160;
 				boyfriendOldIcon = 'dave';
-			case 'dave-angey' | 'dave-annoyed-3d':
+			case 'dave-angey':
 				boyfriend.y = 100;
-				switch(boyfriend.curCharacter)
-				{
-					case 'dave-angey':
-						boyfriendOldIcon = 'dave-annoyed-3d';
-					case 'dave-annoyed-3d':
-						boyfriendOldIcon = 'dave-angey';
-				}
+				boyfriendOldIcon = 'dave-angey';
 			case 'bambi-3d':
 				boyfriend.y = 100 + 350;
 				boyfriendOldIcon = 'bambi-old';
 			case 'bambi-unfair':
 				boyfriend.y = 100 + 575;
 				boyfriendOldIcon = 'bambi-old';
-			case 'bambi' | 'bambi-old' | 'what-lmao':
+			case 'bambi' | 'bambi-old':
 				boyfriend.y = 100 + 400;
 				boyfriendOldIcon = 'bambi-old';
-			case 'bambi-new' | 'bambi-farmer-beta':
-				boyfriend.y = 100 + 450;
-				boyfriendOldIcon = 'bambi-old';
-			case 'bambi-splitathon':
-				boyfriend.y = 100 + 400;
-				boyfriendOldIcon = 'bambi-old';
-			case 'bambi-angey':
+			case 'bambi-new' | 'bambi-farmer-beta' | 'bambi-splitathon' | 'bambi-angey':
 				boyfriend.y = 100 + 450;
 				boyfriendOldIcon = 'bambi-old';
 		}

@@ -368,7 +368,6 @@ class TitleState extends MusicBeatState
 				addMoreText('Mod');
 			case 15:
 				deleteCoolText();
-				FlxG.camera.fade(FlxColor.WHITE, 0.3, false);
 			case 16:
 				skipIntro();
 		}
@@ -384,7 +383,6 @@ class TitleState extends MusicBeatState
 			remove(credGroup);
 			skippedIntro = true;
 
-			trace("Its fading time :mhm:");
 			FlxG.camera.fade(FlxColor.WHITE, 2.5, true);
 		}
 	}
