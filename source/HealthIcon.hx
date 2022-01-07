@@ -9,7 +9,6 @@ class HealthIcon extends FlxSprite
 
 	public var noAaChars:Array<String> = [
 		'dave-angey',
-		'dave-annoyed-3d',
 		'bambi-3d',
 		'bf-pixel',
 		'gf-pixel',

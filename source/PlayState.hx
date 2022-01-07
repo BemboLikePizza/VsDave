@@ -212,6 +212,10 @@ class PlayState extends MusicBeatState
 
 	var bfTween:ColorTween;
 
+	var tweenTime:Float;
+
+	var tweenInitalized:Bool;
+
 	public static var pussyMode:Bool = false;
 
 	override public function create()
@@ -435,25 +439,35 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'maze')
 		{
+			tweenTime = sectionStartTime(32);
 			for (i in 0...backgroundSprites.members.length)
 			{
 				var bgSprite = backgroundSprites.members[i];
-				var tween:FlxTween;
+				var tween:FlxTween = null;
 				switch (i)
 				{
 					case 0:
-						tween = FlxTween.tween(bgSprite, {alpha: 0}, sectionStartTime(64) / 1000);
+						tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000);
 					case 1:
-						tween = FlxTween.tween(bgSprite, {alpha: 1}, sectionStartTime(64) / 1000);
+						tween = FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000));
+					case 2:
+						tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000));
 					default:
-						tween = FlxTween.color(bgSprite, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
+						tween = FlxTween.color(bgSprite, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
+							FlxTween.color(bgSprite, tweenTime / 1000, sunsetColor, nightColor)
+							);
 				}
 				tweenList.push(tween);
 			}
-			var gfTween = FlxTween.color(gf, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
-			var bambiTween = FlxTween.color(dad, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
-			bfTween = FlxTween.color(boyfriend, sectionStartTime(64) / 1000, FlxColor.WHITE, nightColor);
-			
+			var gfTween = FlxTween.color(gf, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(gf, tweenTime / 1000, sunsetColor, nightColor));
+			var bambiTween = FlxTween.color(dad, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(dad, tweenTime / 1000, sunsetColor, nightColor));
+			bfTween = FlxTween.color(boyfriend, tweenTime / 1000, FlxColor.WHITE, sunsetColor, {
+				onComplete: function(tween:FlxTween)
+				{
+					bfTween = FlxTween.color(boyfriend, tweenTime / 1000, sunsetColor, nightColor);
+				}
+			});
+
 			tweenList.push(gfTween);
 			tweenList.push(bambiTween);
 			tweenList.push(bfTween);
@@ -832,6 +846,15 @@ class PlayState extends MusicBeatState
 
 				if (SONG.song.toLowerCase() == 'maze')
 				{
+					var sunsetBG:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('backgrounds/shared/sky_sunset'));
+					sunsetBG.antialiasing = true;
+					sunsetBG.scrollFactor.set(0.9, 0.9);
+					sunsetBG.active = false;
+					sunsetBG.alpha = 0;
+
+					add(sunsetBG);
+					sprites.add(sunsetBG);
+
 					var nightBG:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
 					nightBG.antialiasing = true;
 					nightBG.scrollFactor.set(0.9, 0.9);
@@ -1684,7 +1707,7 @@ class PlayState extends MusicBeatState
 			{
 				if (tween.active && !tween.finished)
 				{
-					tween.percent = FlxG.sound.music.time / sectionStartTime(64);
+					tween.percent = FlxG.sound.music.time / tweenTime;
 				}
 			}
 		}
@@ -1725,11 +1748,12 @@ class PlayState extends MusicBeatState
 			case 'splitathon':
 				switch (curStep)
 				{
-					case 10:
+					case 4750:
 						dad.canDance = false;
 						dad.playAnim('scared', true);
 						camHUD.shake(0.015, (Conductor.stepCrochet / 1000) * 50);
-					case 15:
+					case 4800:
+						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('dave', 'what');
 						addSplitathonChar("bambi-splitathon");
@@ -1737,7 +1761,8 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('bambi', 'dave');
 						}
-					case 20:
+					case 5824:
+						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'umWhatIsHappening');
 						addSplitathonChar("dave-splitathon");
@@ -1745,7 +1770,8 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('dave', 'bambi');
 						}
-					case 25:
+					case 6080:
+						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('dave', 'happy');
 						addSplitathonChar("bambi-splitathon");
@@ -1753,7 +1779,8 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('bambi', 'dave');
 						}
-					case 30:
+					case 8384:
+						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'yummyCornLol');
 						addSplitathonChar("dave-splitathon");
@@ -1761,10 +1788,6 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('dave', 'bambi');
 						}
-					case 9 | 14 | 19 | 24 | 29:
-						//bullshit
-						hasTriggeredDumbshit = false;
-						updatevels = false;
 				}
 			case 'insanity':
 				switch (curStep)
@@ -2241,7 +2264,7 @@ class PlayState extends MusicBeatState
 
 			switch (dad.curCharacter)
 			{
-				case 'dave-angey' | 'dave-annoyed-3d' | 'dave-3d-standing-bruh-what':
+				case 'dave-angey':
 					camFollow.y = dad.getMidpoint().y;
 			}
 
@@ -3184,24 +3207,6 @@ class PlayState extends MusicBeatState
 	{
 		super.beatHit();
 
-		switch(SONG.song.toLowerCase())
-		{
-			case 'unfairness':
-				switch (curBeat)
-				{
-					case 640:
-						playerStrums.forEach(function(spr:FlxSprite)
-						{
-							FlxSpriteUtil.fadeOut(spr, 10, null);
-						});
-
-						dadStrums.forEach(function(spr:FlxSprite)
-						{
-							FlxSpriteUtil.fadeOut(spr, 5, null);
-						});
-				}
-		}
-
 		var currentSection = SONG.notes[Std.int(curStep / 16)];
 		if (!UsingNewCam)
 		{
@@ -3404,6 +3409,11 @@ class PlayState extends MusicBeatState
 			trace(dialogue[0]);
 		}
 	}
+	function resetVelocity()
+	{
+		hasTriggeredDumbshit = false;
+		updatevels = false;
+	}
 
 	public function addSplitathonChar(char:String):Void
 	{
@@ -3441,7 +3451,7 @@ class PlayState extends MusicBeatState
 			case 'dave':
 				splitathonCharacterExpression = new Character(-100, 260, 'dave-splitathon');
 			case 'bambi':
-				splitathonCharacterExpression = new Character(-110, 550, 'bambi-splitathon');
+				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}
 		add(splitathonCharacterExpression);
 		splitathonCharacterExpression.color = nightColor;
