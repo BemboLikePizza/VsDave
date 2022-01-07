@@ -345,6 +345,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogue'));
 			case 'vs-dave-thanksgiving':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('vs-dave-thanksgiving/lmaoDialogue'));
+			case 'interdimensional':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('interdimensional/interDialogue'));
 		}
 
 		var stageCheck:String = 'stage';
@@ -975,7 +977,7 @@ class PlayState extends MusicBeatState
 						bg.setGraphicSize(Std.int(bg.width * 2));
 						curStage = 'unfairness';
 					default:
-						bg.loadGraphic(Paths.image('backgrounds/void/redsky'));
+						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 						curStage = 'daveEvilHouse';
 				}
 				
@@ -1733,17 +1735,18 @@ class PlayState extends MusicBeatState
 				iconP1.animation.play(boyfriendOldIcon);
 			}
 		}
+		//4750, 4800, 5824, 6080, 8384
 
 		switch (SONG.song.toLowerCase())
 		{
 			case 'splitathon':
 				switch (curStep)
 				{
-					case 4750:
+					case 10:
 						dad.canDance = false;
 						dad.playAnim('scared', true);
 						camHUD.shake(0.015, (Conductor.stepCrochet / 1000) * 50);
-					case 4800:
+					case 15:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('dave', 'what');
 						addSplitathonChar("bambi-splitathon");
@@ -1751,7 +1754,7 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('bambi', 'dave');
 						}
-					case 5824:
+					case 20:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'umWhatIsHappening');
 						addSplitathonChar("dave-splitathon");
@@ -1759,7 +1762,7 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('dave', 'bambi');
 						}
-					case 6080:
+					case 25:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('dave', 'happy');
 						addSplitathonChar("bambi-splitathon");
@@ -1767,7 +1770,7 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('bambi', 'dave');
 						}
-					case 8384:
+					case 30:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'yummyCornLol');
 						addSplitathonChar("dave-splitathon");
@@ -1775,7 +1778,7 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('dave', 'bambi');
 						}
-					case 5823 | 6079 | 8383 | 8750:
+					case 9 | 14 | 19 | 24 | 29:
 						//bullshit
 						hasTriggeredDumbshit = false;
 						updatevels = false;
@@ -3455,7 +3458,7 @@ class PlayState extends MusicBeatState
 			case 'dave':
 				splitathonCharacterExpression = new Character(-100, 260, 'dave-splitathon');
 			case 'bambi':
-				splitathonCharacterExpression = new Character(-100, 260, 'bambi-splitathon');
+				splitathonCharacterExpression = new Character(-110, 550, 'bambi-splitathon');
 		}
 		add(splitathonCharacterExpression);
 		splitathonCharacterExpression.color = nightColor;
