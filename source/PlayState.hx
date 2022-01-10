@@ -214,8 +214,6 @@ class PlayState extends MusicBeatState
 
 	var tweenTime:Float;
 
-	var tweenInitalized:Bool;
-
 	public static var pussyMode:Bool = false;
 
 	override public function create()
@@ -361,7 +359,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'house' | 'insanity' | 'supernovae':
 					stageCheck = 'house';
-				case 'polygonized' | 'furiosity' | 'interdimensional':
+				case 'polygonized' | 'furiosity':
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
@@ -371,6 +369,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'green-void';
 				case 'unfairness':
 					stageCheck = 'glitchy-void';
+				case 'interdimensional':
+					stageCheck = 'interdimension-void';
 				case 'bonus-song' | 'glitch':
 					stageCheck = 'house-night';
 				case 'secret' | 'vs-dave-thanksgiving':
@@ -967,7 +967,7 @@ class PlayState extends MusicBeatState
 				sprites.add(stageFront);
 				add(stageFront);
 
-			case 'red-void' | 'green-void' | 'glitchy-void':
+			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
 				defaultCamZoom = 0.7;
 				var bg:FlxSprite = new FlxSprite(-600, -200);
 				bg.active = true;
@@ -982,6 +982,8 @@ class PlayState extends MusicBeatState
 						bg.setPosition(300, 200);
 						bg.setGraphicSize(Std.int(bg.width * 2));
 						curStage = 'unfairness';
+					case 'interdimension-void':
+						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
 					default:
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 						curStage = 'daveEvilHouse';

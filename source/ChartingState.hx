@@ -635,6 +635,10 @@ class ChartingState extends MusicBeatState
 			vocals.stop();
 			FlxG.switchState(new PlayState());
 		}
+		if (FlxG.keys.justPressed.C)
+		{
+			//um(); // please work
+		}
 
 		if (FlxG.keys.justPressed.E)
 		{
@@ -1112,6 +1116,7 @@ class ChartingState extends MusicBeatState
 
 		autosaveSong();
 	}
+
 
 	function getStrumTime(yPos:Float):Float
 	{
