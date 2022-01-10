@@ -979,8 +979,8 @@ class PlayState extends MusicBeatState
 						curStage = 'cheating';
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
-						bg.setPosition(300, 200);
-						bg.setGraphicSize(Std.int(bg.width * 2));
+						bg.setPosition(200, 200);
+						bg.setGraphicSize(Std.int(bg.width * 3));
 						curStage = 'unfairness';
 					case 'interdimension-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
