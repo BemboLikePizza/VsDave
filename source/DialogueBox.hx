@@ -130,7 +130,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'house' | 'insanity' | 'furiosity' | 'polygonized':
+			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'interdimensional:
 				portraitLeftCharacter = 'dave';
 				
 			case 'blocked' | 'corn-theft' | 'maze' | 'supernovae' | 'glitch' | 'splitathon' | 'cheating' | 'unfairness' | 'old-corn-theft':
@@ -378,7 +378,7 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/dave_insanity';
 						portrait.portraitPrefix = 'dave insanity portrait';
 
-					case 'furiosity' | 'polygonized':
+					case 'furiosity' | 'polygonized' | 'interdimensional':
 						portrait.portraitPath = 'dialogue/dave_furiosity';
 						portrait.portraitPrefix = 'dave furiosity portrait';
 
@@ -390,7 +390,7 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/dave_splitathon';
 						portrait.portraitPrefix = 'dave splitathon portrait';
 
-					case 'old-house' | 'old-insanity' | 'old-blocked' | 'old-corn-theft' | 'old-maze' | 'old-splitathon' | 'supernovae' | 'glitch' | 'vs-dave-thanksgiving':
+					case 'old-corn-theft' | 'supernovae' | 'glitch' | 'vs-dave-thanksgiving':
 						portrait.portraitPath = 'dialogue/old_dave_portrait';
 						portrait.portraitPrefix = 'dave Portrait ';
 

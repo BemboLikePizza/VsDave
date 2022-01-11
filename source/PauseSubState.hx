@@ -17,9 +17,7 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = null;
-
-	var menuItemsPolished:Array<String> = null;
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
 
 	var curSelected:Int = 0;
 
@@ -28,20 +26,6 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
-
-		var thing:String = PlayState.pussyMode ? "ON" : "OFF";
-
-		if (PlayState.SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == "cheating")
-		{
-			menuItems = ['Resume', 'Restart Song', 'Pussy Mode', 'Exit to menu'];
-			menuItemsPolished = ['Resume', 'Restart Song', 'Pussy Mode', 'Exit to menu'];
-		}
-		else
-		{
-			menuItems = ['Resume', 'Restart Song', 'Exit to menu'];
-			menuItemsPolished = ['Resume', 'Restart Song', 'Exit to menu'];
-		}
-
 
 		pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
 		pauseMusic.volume = 0;
@@ -83,7 +67,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...menuItems.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItemsPolished[i], true, false);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpMenuShit.add(songText);
@@ -123,10 +107,6 @@ class PauseSubState extends MusicBeatSubstate
 				case "Resume":
 					close();
 				case "Restart Song":
-					FlxG.resetState();
-				case "Pussy Mode":
-					PlayState.pussyMode = !PlayState.pussyMode;
-					trace(PlayState.pussyMode ? "you turned on PUSSY MODE meaning you are a PUSSY." : "you turned off PUSSY MODE meaning you are a chad.");
 					FlxG.resetState();
 				case "Exit to menu":
 					PlayState.screenshader.shader.uampmul.value[0] = 0;

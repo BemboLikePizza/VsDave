@@ -1,4 +1,5 @@
 package;
+import Controls.Control;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -35,7 +36,6 @@ class CharacterSelectState extends MusicBeatState
 {
 	public var char:Boyfriend;
 	public var current:Int = 0;
-	public var currentReal:Int = 0;
 	public var curForm:Int = 0;
 	public var notemodtext:FlxText;
 	public var characterText:FlxText;
@@ -58,20 +58,17 @@ class CharacterSelectState extends MusicBeatState
 	var currentSelectedCharacter:CharacterInSelect;
 
 	var noteMsTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
-
-	//it goes left,right,up,down
 	
 	public var characters:Array<CharacterInSelect> = 
 	[
 		new CharacterInSelect(['bf', 'bf-pixel'], [1, 1, 1, 1], ["Boyfriend", "Pixel Boyfriend"]),
 		new CharacterInSelect(['dave', 'dave-annoyed', 'dave-splitathon'], [0.25, 0.25, 2, 2], ["Dave", "Dave (Insanity)", 'Dave (Splitathon)']),
-		//these are the canon bambis' names according to marcello, dont change them back
 		new CharacterInSelect(['bambi', 'bambi-new', 'bambi-splitathon', 'bambi-angey', 'bambi-old'], [0, 0, 3, 0], ["Mr. Bambi", 'Bambi (Farmer)', 'Bambi (Splitathon)', 'Bambie', 'Bambi (Joke)']),
 		new CharacterInSelect(['dave', 'dave-annoyed', 'dave-splitathon'], [0.25, 0.25, 2, 2], ["Dave", "Dave (Insanity)", 'Dave (Splitathon)']),
 		new CharacterInSelect(['dave-angey'], [2, 2, 0.25, 0.25], ["3D Dave"]),
 		new CharacterInSelect(['tristan'], [2, 0.5, 0.5, 0.5], ["Tristan"]),
 		new CharacterInSelect(['tristan-golden'], [0.25, 0.25, 0.25, 2], ["Golden Tristan"]),
-		new CharacterInSelect(['bambi-3d', 'bambi-unfair'], [0, 3, 0, 0], ["3D Bambi", 'Unfair Bambi']),
+		new CharacterInSelect(['bambi-3d', 'bambi-unfair'], [0, 3, 0, 0], ["[EXPUNGED]", "[EXPUNGED]"]),
 	];
 	public function new() 
 	{
@@ -91,7 +88,7 @@ class CharacterSelectState extends MusicBeatState
 		FlxG.cameras.add(camHUD);
 		FlxCamera.defaultCameras = [camGame];
 
-		currentSelectedCharacter = characters[currentReal];
+		currentSelectedCharacter = characters[current];
 
 		if (FlxG.save.data.unlockedcharacters == null)
 		{
@@ -234,7 +231,9 @@ class CharacterSelectState extends MusicBeatState
 		}
 	}
 	override public function update(elapsed:Float):Void 
-	{
+	{	
+		var controlSet:Array<Bool> = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
+
 		super.update(elapsed);
 		//FlxG.camera.focusOn(FlxG.ce);
 
@@ -242,41 +241,27 @@ class CharacterSelectState extends MusicBeatState
 		{
 			LoadingState.loadAndSwitchState(new FreeplayState());
 		}
-
-		if(controls.LEFT_P && !PressedTheFunny)
+		
+		for (i in 0...controlSet.length)
 		{
-			if(!char.nativelyPlayable)
+			if (controlSet[i] && !PressedTheFunny)
 			{
-				char.playAnim('singRIGHT', true);
+				switch (i)
+				{
+					case 1:
+						char.playAnim(char.nativelyPlayable ? 'singLEFT' : 'singRIGHT', true);
+					case 2:
+						char.playAnim('singDOWN', true);
+					case 3:
+						char.playAnim('singUP', true);
+					case 4:
+						char.playAnim(char.nativelyPlayable ? 'singRIGHT' : 'singLEFT', true);
+				}
 			}
-			else
-			{
-				char.playAnim('singLEFT', true);
-			}
-
-		}
-		if(controls.RIGHT_P && !PressedTheFunny)
-		{
-			if(!char.nativelyPlayable)
-			{
-				char.playAnim('singLEFT', true);
-			}
-			else
-			{
-				char.playAnim('singRIGHT', true);
-			}
-		}
-		if(controls.UP_P && !PressedTheFunny)
-		{
-			char.playAnim('singUP', true);
-		}
-		if(controls.DOWN_P && !PressedTheFunny)
-		{
-			char.playAnim('singDOWN', true);
 		}
 		if (controls.ACCEPT)
 		{
-			if (!FlxG.save.data.unlockedcharacters[currentReal])
+			if (!FlxG.save.data.unlockedcharacters[current])
 			{
 				FlxG.camera.shake(0.05, 0.1);
 				FlxG.sound.play(Paths.sound('badnoise1'), 0.9);
@@ -299,31 +284,15 @@ class CharacterSelectState extends MusicBeatState
 		}
 		if (FlxG.keys.justPressed.LEFT && !selectedCharacter)
 		{
-			//currentReal order should be 0, 1 (skipped anyways), 3, 4, 2, 5, 7, 6
 			curForm = 0;
 			current--;
 			if (current < 0)
 			{
 				current = characters.length - 1;
 			}
-			if(current == 1)
+			if (current > characters.length - 1)
 			{
 				current = 0;
-			}
-			switch(current)
-			{
-				case 2:
-					currentReal = 3;
-				case 3:
-					currentReal = 4;
-				case 4:
-					currentReal = 2;
-				case 6:
-					currentReal = 7;
-				case 7:
-					currentReal = 6;
-				default:
-					currentReal = current;
 			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
@@ -331,31 +300,15 @@ class CharacterSelectState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.RIGHT && !selectedCharacter)
 		{
-			//currentReal order should be 0, 1 (skipped anyways), 3, 4, 2, 5, 7, 6
 			curForm = 0;
 			current++;
 			if (current > characters.length - 1)
 			{
 				current = 0;
 			}
-			if(current == 1)
+			if (current < 0)
 			{
-				current = 2;
-			}
-			switch(current)
-			{
-				case 2:
-					currentReal = 3;
-				case 3:
-					currentReal = 4;
-				case 4:
-					currentReal = 2;
-				case 6:
-					currentReal = 7;
-				case 7:
-					currentReal = 6;
-				default:
-					currentReal = current;
+				current = characters.length - 1;
 			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
@@ -365,7 +318,7 @@ class CharacterSelectState extends MusicBeatState
 			curForm--;
 			if (curForm < 0)
 			{
-				curForm = characters[currentReal].names.length - 1;
+				curForm = characters[current].names.length - 1;
 			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
@@ -374,7 +327,7 @@ class CharacterSelectState extends MusicBeatState
 		if (FlxG.keys.justPressed.UP && !selectedCharacter)
 		{
 			curForm++;
-			if (curForm > characters[currentReal].names.length - 1)
+			if (curForm > characters[current].names.length - 1)
 			{
 				curForm = 0;
 			}
@@ -386,12 +339,11 @@ class CharacterSelectState extends MusicBeatState
 	public function UpdateBF()
 	{
 		funnyIconMan.color = FlxColor.WHITE;
-		currentSelectedCharacter = characters[currentReal];
+		currentSelectedCharacter = characters[current];
 		characterText.text = currentSelectedCharacter.polishedNames[curForm];
 		char.destroy();
-		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, currentSelectedCharacter.names[curForm]);
+		char = new Boyfriend(FlxG.width / 2, 450, currentSelectedCharacter.names[curForm]);
 		char.screenCenter();
-		char.y = 450;
 
 		switch (char.curCharacter)
 		{
@@ -401,7 +353,7 @@ class CharacterSelectState extends MusicBeatState
 				char.y = 100 + 160;
 			case 'dave-old':
 				char.y = 100 + 270;
-			case 'dave-angey' | 'dave-annoyed-3d':
+			case 'dave-angey':
 				char.y = 100;
 			case 'bambi-3d':
 				char.y = 100 + 350;
@@ -423,17 +375,12 @@ class CharacterSelectState extends MusicBeatState
 		}
 		add(char);
 		funnyIconMan.animation.play(char.curCharacter);
-		if (!FlxG.save.data.unlockedcharacters[currentReal])
+		if (!FlxG.save.data.unlockedcharacters[current])
 		{
 			char.color = FlxColor.BLACK;
 			funnyIconMan.color = FlxColor.BLACK;
 			funnyIconMan.animation.curAnim.curFrame = 1;
 			characterText.text = '???';
-			if(char.curCharacter == 'bambi-3d' || char.curCharacter == 'bambi-unfair')
-			{
-				//funny canon name
-				characterText.text = '[EXPUNGED]';
-			}
 		}
 		characterText.screenCenter(X);
 		notemodtext.text = FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[0]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[3]) + "x        " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[2]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[1]) + "x";

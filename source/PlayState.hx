@@ -214,8 +214,6 @@ class PlayState extends MusicBeatState
 
 	var tweenTime:Float;
 
-	public static var pussyMode:Bool = false;
-
 	override public function create()
 	{
 		theFunne = FlxG.save.data.newInput;
@@ -298,7 +296,6 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
-		if (!pussyMode)
 			theFunne = theFunne && SONG.song.toLowerCase() != 'unfairness';
 
 		var crazyNumber:Int;
@@ -662,9 +659,6 @@ class PlayState extends MusicBeatState
 				credits = '';
 		}
 
-		if (pussyMode)
-			credits = credits + "\nPussy Mode ENABLED";
-
 		var randomThingy:Int = FlxG.random.int(0, 2);
 		var engineName:String = 'stupid';
 		switch(randomThingy)
@@ -979,11 +973,12 @@ class PlayState extends MusicBeatState
 						curStage = 'cheating';
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
-						bg.setPosition(200, 200);
+						bg.setPosition(0, 200);
 						bg.setGraphicSize(Std.int(bg.width * 3));
 						curStage = 'unfairness';
 					case 'interdimension-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
+						curStage = 'interdimension';
 					default:
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 						curStage = 'daveEvilHouse';
@@ -1651,7 +1646,7 @@ class PlayState extends MusicBeatState
 			gf.y += (Math.sin(elapsedtime) * 0.4);
 		}
 
-		if (SONG.song.toLowerCase() == 'cheating' && !inCutscene && !pussyMode) // fuck you
+		if (SONG.song.toLowerCase() == 'cheating' && !inCutscene) // fuck you
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -1666,7 +1661,7 @@ class PlayState extends MusicBeatState
 		}
 
 		var change = FlxG.save.data.downscroll ? 1 : -1;
-		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene && !pussyMode) // fuck you x2
+		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -1824,8 +1819,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		var funny:String = if (pussyMode) { " PUSSY!"; } else {Std.string(songScore);};
-		scoreTxt.text = "Score:" + funny + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
+		scoreTxt.text = "Score:" + Std.string(songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
 		
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -2033,13 +2027,6 @@ class PlayState extends MusicBeatState
 		if (unspawnNotes[0] != null)
 		{
 			var thing:Int = (SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500);
-			switch (pussyMode) // im lazy and just wanna get this done ok?
-			{
-				case true:
-					thing = 1500;
-				case false:
-					// your not a pussy <3
-			}
 
 			if (unspawnNotes[0].strumTime - Conductor.songPosition < thing)
 			{
@@ -2139,7 +2126,6 @@ class PlayState extends MusicBeatState
 							health -= healthtolower;
 							
 						case 'unfairness':
-						if (!pussyMode)	
 							health -= (healthtolower / 5);
 					}
 					// boyfriend.playAnim('hit',true);
@@ -2156,11 +2142,9 @@ class PlayState extends MusicBeatState
 				switch (SONG.song.toLowerCase())
 				{
 					case 'unfairness':
-						if (daNote.MyStrum != null && !pussyMode)
+						if (daNote.MyStrum != null)
 							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 
-						else if (pussyMode)
-							daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 					default:
 						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 				}
@@ -2169,7 +2153,7 @@ class PlayState extends MusicBeatState
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				var strumliney = daNote.MyStrum != null ? daNote.MyStrum.y : strumLine.y;
-				if (daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll) || daNote.y < -daNote.height && (!FlxG.save.data.downscroll) || (SONG.song.toLowerCase() == 'unfairness' && !FlxG.save.data.downscroll && daNote.y <= strumliney - 106 && !pussyMode))
+				if (daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll) || daNote.y < -daNote.height && (!FlxG.save.data.downscroll) || (SONG.song.toLowerCase() == 'unfairness' && !FlxG.save.data.downscroll && daNote.y <= strumliney - 106))
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
 					{
@@ -2404,7 +2388,6 @@ class PlayState extends MusicBeatState
 						doof.finishThing = function()
 						{
 							FlxG.switchState(new CreditsMenuState());
-							trace("fuck you");
 						};
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);

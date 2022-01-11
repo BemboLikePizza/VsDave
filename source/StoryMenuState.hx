@@ -30,10 +30,11 @@ class StoryMenuState extends MusicBeatState
 		['House', 'Insanity', 'Polygonized'],
 		['Blocked', 'Corn-Theft', 'Maze'],
 		['Splitathon'],
+		['Shredder', 'Wtf', 'Interdimensional'],
 		['huh', 'huh', 'huh']
 	];
 
-	var actualWeeks:Array<Dynamic> = [0, 1, 4, 2, 3];
+	var actualWeeks:Array<Dynamic> = [0, 1, 5, 2, 3, 4];
 
 	var curDifficulty:Int = 1;
 
@@ -43,10 +44,11 @@ class StoryMenuState extends MusicBeatState
 
 	public static var dofunnytristan:Bool = false;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['empty', 'bf', 'gf'],
+		['empty', 'empty', 'empty'],
 		['empty', 'empty', 'empty'],
 		['empty', 'empty', 'empty'],
 		['empty', 'empty', 'empty'],
@@ -58,7 +60,8 @@ class StoryMenuState extends MusicBeatState
 		"Dave's Fun Rapping Battle!",
 		"Mr. Bambi's Fun Corn Maze!",
 		"The Finale",
-		'?????????'
+		"Bambi's Corn Festival!",
+		"??????"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -86,7 +89,8 @@ class StoryMenuState extends MusicBeatState
         0xFFca1f6f, // GF
 		0xFF4965FF, // DAVE
 		0xFF00B515, // MISTER BAMBI RETARD
-		0xFF00FFFF //SPLIT THE THONNNNN
+		0xFF00FFFF, //SPLIT THE THONNNNN
+		0xFF800080 //FESTEVAL
     ];
 
 	override function create()
@@ -156,7 +160,7 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in 0...weekData.length)
 		{
-			if (actualWeeks[i] == 4 && !tristanunlocked) continue;
+			if (actualWeeks[i] == 5 && !tristanunlocked) continue;
 				var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, actualWeeks[i]);
 				weekThing.y += ((weekThing.height + 20) * actualWeeks[i]);
 				weekThing.targetY = actualWeeks[i];
@@ -198,7 +202,6 @@ class StoryMenuState extends MusicBeatState
 
 				grpWeekCharacters.add(weekCharacterThing);
 		}
-		//daveimage = new FlxSprite(0,56).loadGraphic(Paths.image("dave/storyModeBGDave"));
 
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
@@ -537,6 +540,9 @@ class StoryMenuState extends MusicBeatState
 				position = new FlxPoint(600, 55);
 			case 3:
 				path = Paths.image("dave/splitathon", "shared");
+				position = new FlxPoint(600, 55);
+			case 4:
+				path = Paths.image("dave/festival", "shared");
 				position = new FlxPoint(600, 55);
 			default:
 				path = Paths.image("blank", "shared");
