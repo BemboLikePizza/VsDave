@@ -370,7 +370,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'interdimension-void';
 				case 'bonus-song' | 'glitch':
 					stageCheck = 'house-night';
-				case 'secret' | 'vs-dave-thanksgiving':
+				case 'secret' | 'overdrive':
 					stageCheck = 'house-sunset';
 				case 'tutorial':
 					stageCheck = 'stage';
@@ -817,6 +817,46 @@ class PlayState extends MusicBeatState
 					bg.shader = testshader.shader;
 					curbg = bg;
 				}
+			case 'house-night':
+				defaultCamZoom = 0.9;
+				curStage = 'daveHouse_night';
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.75, 0.75);
+				bg.active = false;
+				
+				sprites.add(bg);
+				add(bg);
+	
+				var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/hills_night'));
+				stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
+				stageHills.updateHitbox();
+				stageHills.antialiasing = true;
+				stageHills.scrollFactor.set(0.8, 0.8);
+				stageHills.active = false;
+
+				sprites.add(stageHills);
+				add(stageHills);
+	
+				var gate:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/gate_night'));
+				gate.setGraphicSize(Std.int(gate.width * 1.2));
+				gate.updateHitbox();
+				gate.antialiasing = true;
+				gate.scrollFactor.set(0.9, 0.9);
+				gate.active = false;
+
+				sprites.add(gate);
+				add(gate);
+	
+				var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/grass_night'));
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
+				stageFront.updateHitbox();
+				stageFront.antialiasing = true;
+				stageFront.active = false;
+
+				sprites.add(stageFront);
+				add(stageFront);
+
 			case 'farm' | 'farm-night' | 'farm-sunset':
 				defaultCamZoom = 0.9;
 
@@ -921,46 +961,6 @@ class PlayState extends MusicBeatState
 				add(fence);
 				add(sign);
 	
-			case 'house-night':
-				defaultCamZoom = 0.9;
-				curStage = 'daveHouse_night';
-				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
-				bg.antialiasing = true;
-				bg.scrollFactor.set(0.75, 0.75);
-				bg.active = false;
-				
-				sprites.add(bg);
-				add(bg);
-	
-				var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/hills_night'));
-				stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
-				stageHills.updateHitbox();
-				stageHills.antialiasing = true;
-				stageHills.scrollFactor.set(0.8, 0.8);
-				stageHills.active = false;
-
-				sprites.add(stageHills);
-				add(stageHills);
-	
-				var gate:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/gate_night'));
-				gate.setGraphicSize(Std.int(gate.width * 1.2));
-				gate.updateHitbox();
-				gate.antialiasing = true;
-				gate.scrollFactor.set(0.9, 0.9);
-				gate.active = false;
-
-				sprites.add(gate);
-				add(gate);
-	
-				var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/grass_night'));
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
-				stageFront.updateHitbox();
-				stageFront.antialiasing = true;
-				stageFront.active = false;
-
-				sprites.add(stageFront);
-				add(stageFront);
-
 			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
 				defaultCamZoom = 0.7;
 				var bg:FlxSprite = new FlxSprite(-600, -200);
@@ -978,6 +978,7 @@ class PlayState extends MusicBeatState
 						curStage = 'unfairness';
 					case 'interdimension-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
+						bg.setPosition(-700, -300);
 						curStage = 'interdimension';
 					default:
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));

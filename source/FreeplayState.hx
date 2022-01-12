@@ -110,6 +110,7 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Unfairness'], 2, ['bambi-unfair']);
 			case 'extra':
 				addWeek(['Mealie'], 2, ['bambi-loser']);
+				addWeek(['Overdrive'], 1, ['dave']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
 				addWeek(['Old-Corn-Theft'], 2, ['bambi-farmer-beta']);
 		}
