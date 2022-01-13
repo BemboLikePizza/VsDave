@@ -1982,7 +1982,7 @@ class PlayState extends MusicBeatState
 
 			if(shakeCam)
 			{
-				FlxG.save.data.unlockedcharacters[7] = true;
+				CharacterSelectState.unlockCharacter('bambi-3d');
 			}
 
 			if (!shakeCam)
@@ -2004,7 +2004,7 @@ class PlayState extends MusicBeatState
 						default:
 							if(shakeCam)
 							{
-								FlxG.save.data.unlockedcharacters[7] = true;
+								CharacterSelectState.unlockCharacter('bambi-3d');
 							}
 							FlxG.switchState(new EndingState('rtxx_ending', 'badEnding'));
 					}
@@ -2015,7 +2015,7 @@ class PlayState extends MusicBeatState
 					{
 						if(shakeCam)
 						{
-							FlxG.save.data.unlockedcharacters[7] = true;
+							CharacterSelectState.unlockCharacter('bambi-3d');
 						}
 						gameOver();
 					}
@@ -2307,7 +2307,7 @@ class PlayState extends MusicBeatState
 
 		if (curSong.toLowerCase() == 'bonus-song')
 		{
-			FlxG.save.data.unlockedcharacters[3] = true;
+			CharacterSelectState.unlockCharacter('dave');
 		}
 
 		if (isStoryMode)
@@ -2331,9 +2331,9 @@ class PlayState extends MusicBeatState
 					break;
 				}
 			}
-			if (allSongsCompleted && !FlxG.save.data.unlockedcharacters[6])
+			if (allSongsCompleted && CharacterSelectState.isLocked('tristan-golden'))
 			{
-				FlxG.save.data.unlockedcharacters[6] = true;
+				CharacterSelectState.unlockCharacter('tristan-golden');
 			}
 			FlxG.save.data.songsCompleted = completedSongs;
 			FlxG.save.flush();
@@ -2346,18 +2346,18 @@ class PlayState extends MusicBeatState
 				{
 					case 'polygonized':
 						FlxG.save.data.tristanProgress = "unlocked";
+						CharacterSelectState.unlockCharacter('tristan');
 						if (health >= 0.1)
 						{
-							FlxG.save.data.unlockedcharacters[2] = true;
 							if (storyDifficulty == 2)
 							{
-								FlxG.save.data.unlockedcharacters[5] = true;
+								CharacterSelectState.unlockCharacter('dave-angey');
 							}
 							FlxG.switchState(new EndingState('goodEnding', 'goodEnding'));
 						}
 						else if (health < 0.1)
 						{
-							FlxG.save.data.unlockedcharacters[4] = true;
+							CharacterSelectState.unlockCharacter('bambi');
 							FlxG.switchState(new EndingState('vomit_ending', 'badEnding'));
 						}
 						else

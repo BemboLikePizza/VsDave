@@ -108,10 +108,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/RealT5mpler'),
          new Social('souncloud', 'https://soundcloud.com/t5mpler')
       ]),
-      new Person("Steph45", CreditsType.Dev, "Minor programming, Moral support",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
-      ]),
       
       //translators
       new Person("Aizakku", CreditsType.Translator, "Portguese Translator",
@@ -127,6 +123,10 @@ class CreditsMenuState extends MusicBeatState
       ]),
       
       //contributors
+      new Person("Steph45", CreditsType.Contributor, "Minor programming, Moral support",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
+      ]),
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, YAFN help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')

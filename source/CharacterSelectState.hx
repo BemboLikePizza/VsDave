@@ -21,15 +21,25 @@ import flixel.util.FlxStringUtil;
 
 class CharacterInSelect
 {
-	public var names:Array<String>;
+	public var name:String;
 	public var noteMs:Array<Float>;
-	public var polishedNames:Array<String>;
+	public var forms:Array<CharacterForm>;
 
-	public function new(names:Array<String>, noteMs:Array<Float>, polishedNames:Array<String>)
+	public function new(name:String, noteMs:Array<Float>, forms:Array<CharacterForm>)
 	{
-		this.names = names;
+		this.name = name;
 		this.noteMs = noteMs;
-		this.polishedNames = polishedNames;
+		this.forms = forms;
+	}
+}
+class CharacterForm
+{
+	var name:String;
+	var polishedName:String;
+	public function new(name:String, polishedName:String)
+	{
+		this.name = name;
+		this.polishedName = polishedName;
 	}
 }
 class CharacterSelectState extends MusicBeatState
@@ -61,14 +71,36 @@ class CharacterSelectState extends MusicBeatState
 	
 	public var characters:Array<CharacterInSelect> = 
 	[
-		new CharacterInSelect(['bf', 'bf-pixel'], [1, 1, 1, 1], ["Boyfriend", "Pixel Boyfriend"]),
-		new CharacterInSelect(['dave', 'dave-annoyed', 'dave-splitathon'], [0.25, 0.25, 2, 2], ["Dave", "Dave (Insanity)", 'Dave (Splitathon)']),
-		new CharacterInSelect(['bambi', 'bambi-new', 'bambi-splitathon', 'bambi-angey', 'bambi-old'], [0, 0, 3, 0], ["Mr. Bambi", 'Bambi (Farmer)', 'Bambi (Splitathon)', 'Bambie', 'Bambi (Joke)']),
-		new CharacterInSelect(['dave', 'dave-annoyed', 'dave-splitathon'], [0.25, 0.25, 2, 2], ["Dave", "Dave (Insanity)", 'Dave (Splitathon)']),
-		new CharacterInSelect(['dave-angey'], [2, 2, 0.25, 0.25], ["3D Dave"]),
-		new CharacterInSelect(['tristan'], [2, 0.5, 0.5, 0.5], ["Tristan"]),
-		new CharacterInSelect(['tristan-golden'], [0.25, 0.25, 0.25, 2], ["Golden Tristan"]),
-		new CharacterInSelect(['bambi-3d', 'bambi-unfair'], [0, 3, 0, 0], ["[EXPUNGED]", "[EXPUNGED]"]),
+		new CharacterInSelect('bf', [1, 1, 1, 1], [
+			new CharacterForm('bf', 'Boyfriend'),
+			new CharacterForm('bf-pixel', 'Pixel Boyfriend')
+		]),
+		new CharacterInSelect('dave', [0.25, 0.25, 2, 2], [
+			new CharacterForm('dave', 'Dave'),
+			new CharacterForm('dave-annoyed', 'Dave (Insanity)'),
+			new CharacterForm('dave-splitathon', 'Dave (Splitathon)')
+		]),
+		new CharacterInSelect('bambi', [0, 0, 3, 0], [
+			new CharacterForm('bambi', 'Mr. Bambi'),
+			new CharacterForm('bambi-new', 'Bambi (Farmer)'),
+			new CharacterForm('bambi-splitathon', 'Bambi (Splitathon)'),
+			new CharacterForm('bambi-angey', 'Bambi (Splitathon)'),
+			new CharacterForm('bambi-old', 'Bambi (Joke)')
+		]),
+		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [
+			new CharacterForm('dave-angey', '3D Dave')
+		]),
+		new CharacterInSelect('tristan', [2, 0.5, 0.5, 0.5], [
+			new CharacterForm('tristan', 'Tristan')
+		]),
+		new CharacterInSelect('tristan-golden', [0.25, 0.25, 0.25, 2], [
+			new CharacterForm('tristan-golden', 'Golden Tristan')
+		]),
+		new CharacterInSelect('bambi-3d', [0, 3, 0, 0], [
+			new CharacterForm('bambi-3d', '[EXPUNGED]'),
+			new CharacterForm('bambi-unfair', '[EXPUNGED]')
+		]),
+
 	];
 	public function new() 
 	{
@@ -92,12 +124,15 @@ class CharacterSelectState extends MusicBeatState
 
 		if (FlxG.save.data.unlockedcharacters == null)
 		{
-			FlxG.save.data.unlockedcharacters = [true,true,false,false,false,false,false,false];
+			FlxG.save.data.unlockedcharacters = ['bf'];
 		}
 
-		if(isDebug)	
+		if (isDebug)	
 		{
-			FlxG.save.data.unlockedcharacters = [true,true,true,true,true,true,true,true]; //unlock everyone
+			for (character in characters)
+			{
+				unlockCharacter(character.name); //unlock everyone
+			}
 		}
 
 		FlxG.sound.playMusic(Paths.music("goodEnding"),1,true);
@@ -261,7 +296,7 @@ class CharacterSelectState extends MusicBeatState
 		}
 		if (controls.ACCEPT)
 		{
-			if (!FlxG.save.data.unlockedcharacters[current])
+			if (isLocked(characters[current].name))
 			{
 				FlxG.camera.shake(0.05, 0.1);
 				FlxG.sound.play(Paths.sound('badnoise1'), 0.9);
@@ -290,10 +325,6 @@ class CharacterSelectState extends MusicBeatState
 			{
 				current = characters.length - 1;
 			}
-			if (current > characters.length - 1)
-			{
-				current = 0;
-			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
@@ -306,10 +337,6 @@ class CharacterSelectState extends MusicBeatState
 			{
 				current = 0;
 			}
-			if (current < 0)
-			{
-				current = characters.length - 1;
-			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
@@ -318,16 +345,15 @@ class CharacterSelectState extends MusicBeatState
 			curForm--;
 			if (curForm < 0)
 			{
-				curForm = characters[current].names.length - 1;
+				curForm = characters[current].forms.length - 1;
 			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
-
 		if (FlxG.keys.justPressed.UP && !selectedCharacter)
 		{
 			curForm++;
-			if (curForm > characters[current].names.length - 1)
+			if (curForm > characters[current].forms.length - 1)
 			{
 				curForm = 0;
 			}
@@ -335,14 +361,25 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
 	}
+	public static function unlockCharacter(character:String)
+	{
+		if (!FlxG.save.data.unlockedcharacters.push(character))
+		{
+			FlxG.save.data.unlockedcharacters.push(character);
+		}
+	}
+	public static function isLocked(character:String):Bool
+	{
+		return !FlxG.save.data.unlockedcharacters.contains(character);
+	}
 
 	public function UpdateBF()
 	{
 		funnyIconMan.color = FlxColor.WHITE;
 		currentSelectedCharacter = characters[current];
-		characterText.text = currentSelectedCharacter.polishedNames[curForm];
+		characterText.text = currentSelectedCharacter.forms[curForm].polishedNames;
 		char.destroy();
-		char = new Boyfriend(FlxG.width / 2, 450, currentSelectedCharacter.names[curForm]);
+		char = new Boyfriend(FlxG.width / 2, 450, currentSelectedCharacter.forms[curForm].name);
 		char.screenCenter();
 
 		switch (char.curCharacter)
@@ -375,7 +412,7 @@ class CharacterSelectState extends MusicBeatState
 		}
 		add(char);
 		funnyIconMan.animation.play(char.curCharacter);
-		if (!FlxG.save.data.unlockedcharacters[current])
+		if (isLocked(characters[current].name))
 		{
 			char.color = FlxColor.BLACK;
 			funnyIconMan.color = FlxColor.BLACK;
@@ -399,8 +436,8 @@ class CharacterSelectState extends MusicBeatState
 	public function endIt(e:FlxTimer = null)
 	{
 		trace("ENDING");
-		PlayState.characteroverride = currentSelectedCharacter.names[0];
-		PlayState.formoverride = currentSelectedCharacter.names[curForm];
+		PlayState.characteroverride = currentSelectedCharacter.forms[0].name;
+		PlayState.formoverride = currentSelectedCharacter.forms[curForm].name;
 		PlayState.curmult = currentSelectedCharacter.noteMs;
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
