@@ -34,8 +34,8 @@ class CharacterInSelect
 }
 class CharacterForm
 {
-	var name:String;
-	var polishedName:String;
+	public var name:String;
+	public var polishedName:String;
 	public function new(name:String, polishedName:String)
 	{
 		this.name = name;
@@ -124,10 +124,10 @@ class CharacterSelectState extends MusicBeatState
 
 		if (FlxG.save.data.unlockedcharacters == null)
 		{
-			FlxG.save.data.unlockedcharacters = ['bf'];
+			reset();
 		}
 
-		if (isDebug)	
+		if (isDebug)
 		{
 			for (character in characters)
 			{
@@ -135,7 +135,7 @@ class CharacterSelectState extends MusicBeatState
 			}
 		}
 
-		FlxG.sound.playMusic(Paths.music("goodEnding"),1,true);
+		FlxG.sound.playMusic(Paths.music("goodEnding"), 1, true);
 
 		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night', 'shared'));
 		bg.antialiasing = true;
@@ -199,6 +199,15 @@ class CharacterSelectState extends MusicBeatState
 		characterText.screenCenter(X);
 		characterText.cameras = [camHUD];
 		add(characterText);
+		
+		var resetText = new FlxText((FlxG.width / 2) + 300, (FlxG.height / 8) - 225, "Press R To Reset");
+		resetText.font = 'Comic Sans MS Bold';
+		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		resetText.autoSize = false;
+		resetText.fieldWidth = FlxG.height;
+		resetText.borderSize = 5;
+		resetText.cameras = [camHUD];
+		add(resetText);
 
 		funnyIconMan = new HealthIcon('bf', true);
 		funnyIconMan.sprTracker = characterText;
@@ -360,6 +369,11 @@ class CharacterSelectState extends MusicBeatState
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
+		if (FlxG.keys.justPressed.R && !selectedCharacter)
+		{
+			reset();
+			FlxG.resetState();
+		}
 	}
 	public static function unlockCharacter(character:String)
 	{
@@ -370,21 +384,28 @@ class CharacterSelectState extends MusicBeatState
 	}
 	public static function isLocked(character:String):Bool
 	{
+		trace('checking to see if ' + character + ' is locked');
 		return !FlxG.save.data.unlockedcharacters.contains(character);
+	}
+	public static function reset()
+	{
+		FlxG.save.data.unlockedcharacters = new Array<String>();
+		unlockCharacter('bf');
+		FlxG.save.flush();
 	}
 
 	public function UpdateBF()
 	{
 		funnyIconMan.color = FlxColor.WHITE;
 		currentSelectedCharacter = characters[current];
-		characterText.text = currentSelectedCharacter.forms[curForm].polishedNames;
+		characterText.text = currentSelectedCharacter.forms[curForm].polishedName;
 		char.destroy();
 		char = new Boyfriend(FlxG.width / 2, 450, currentSelectedCharacter.forms[curForm].name);
 		char.screenCenter();
 
 		switch (char.curCharacter)
 		{
-			case "tristan" | 'tristan-golden':
+			case 'tristan' | 'tristan-golden':
 				char.y = 100 + 325;
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
 				char.y = 100 + 160;

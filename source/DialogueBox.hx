@@ -130,7 +130,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'interdimensional:
+			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'interdimensional':
 				portraitLeftCharacter = 'dave';
 				
 			case 'blocked' | 'corn-theft' | 'maze' | 'supernovae' | 'glitch' | 'splitathon' | 'cheating' | 'unfairness' | 'old-corn-theft':
