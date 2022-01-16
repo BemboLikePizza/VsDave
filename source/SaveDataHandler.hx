@@ -35,5 +35,7 @@ class SaveDataHandler
 		{
 			FlxG.save.data.language = 'English';
 		}
+		if (FlxG.save.data.songPosition == null)
+			FlxG.save.data.songPosition = true;
     }
 }

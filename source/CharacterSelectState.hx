@@ -56,7 +56,7 @@ class CharacterSelectState extends MusicBeatState
 
 	var notestuffs:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 
-	public var isDebug:Bool = false; //CHANGE THIS TO FALSE BEFORE YOU COMMIT RETARDS
+	public var isDebug:Bool = false;
 
 	public var PressedTheFunny:Bool = false;
 
@@ -200,7 +200,7 @@ class CharacterSelectState extends MusicBeatState
 		characterText.cameras = [camHUD];
 		add(characterText);
 		
-		var resetText = new FlxText((FlxG.width / 2) + 300, (FlxG.height / 8) - 225, "Press R To Reset");
+		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, "Press R To Reset");
 		resetText.font = 'Comic Sans MS Bold';
 		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		resetText.autoSize = false;
@@ -215,7 +215,7 @@ class CharacterSelectState extends MusicBeatState
 		funnyIconMan.visible = false;
 		add(funnyIconMan);
 
-		var tutorialThing:FlxSprite = new FlxSprite(-130, -90).loadGraphic(Paths.image('ui/charSelectGuide'));
+		var tutorialThing:FlxSprite = new FlxSprite(-100, -150).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
@@ -384,7 +384,6 @@ class CharacterSelectState extends MusicBeatState
 	}
 	public static function isLocked(character:String):Bool
 	{
-		trace('checking to see if ' + character + ' is locked');
 		return !FlxG.save.data.unlockedcharacters.contains(character);
 	}
 	public static function reset()
@@ -456,7 +455,6 @@ class CharacterSelectState extends MusicBeatState
 	
 	public function endIt(e:FlxTimer = null)
 	{
-		trace("ENDING");
 		PlayState.characteroverride = currentSelectedCharacter.forms[0].name;
 		PlayState.formoverride = currentSelectedCharacter.forms[curForm].name;
 		PlayState.curmult = currentSelectedCharacter.noteMs;

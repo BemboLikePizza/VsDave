@@ -41,8 +41,9 @@ class OptionsMenu extends MusicBeatState
 			"Change Keybinds"
 			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
 			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') 
+			+ "\n" + (FlxG.save.data.songPosition ? 'Song Position On' : 'Song Position Off')
 			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
-			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off") 
+			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off")
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
 			+ "\n" + 'Current Language ' + FlxG.save.data.language
 			);
@@ -121,18 +122,21 @@ class OptionsMenu extends MusicBeatState
 						FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
 						updateGroupControls((FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll'), 2, 'Vertical');
 					case 3:
-						FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
-						updateGroupControls((FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), 3, 'Vertical');	
+						FlxG.save.data.songPosition = !FlxG.save.data.songPosition;
+						updateGroupControls((FlxG.save.data.songPosition ? 'Song Position On' : 'Song Position Off'), 3, 'Vertical');	
 					case 4:
-						FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
-						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 4, 'Vertical');	
+						FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
+						updateGroupControls((FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), 4, 'Vertical');	
 					case 5:
-						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 5, 'Vertical');
+						FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
+						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 5, 'Vertical');	
 					case 6:
+						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
+						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 6, 'Vertical');
+					case 7:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						FlxG.save.data.language = languages[currentLanguage];
-						updateGroupControls(languages[currentLanguage], 6, 'Vertical');
+						updateGroupControls(languages[currentLanguage], 7, 'Vertical');
 				}
 			}
 	}

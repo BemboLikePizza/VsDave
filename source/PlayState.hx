@@ -559,14 +559,14 @@ class PlayState extends MusicBeatState
 				boyfriendOldIcon = 'bambi-old';
 		}
 
-		if(darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
+		if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
 		{
 			dad.color = nightColor;
 			gf.color = nightColor;
 			boyfriend.color = nightColor;
 		}
 
-		if(sunsetLevels.contains(curStage))
+		if (sunsetLevels.contains(curStage))
 		{
 			dad.color = sunsetColor;
 			gf.color = sunsetColor;
@@ -626,6 +626,31 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 
 		FlxG.fixedTimestep = false;
+
+		if (FlxG.save.data.songPosition)
+		{
+			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 60 : -20;
+
+			var songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
+			songPosBG.screenCenter(X);
+			songPosBG.scrollFactor.set();
+			add(songPosBG);
+			
+			var songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), Conductor, 
+			'songPosition', 0, FlxG.sound.music.length);
+			songPosBar.scrollFactor.set();
+			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
+			add(songPosBar);
+			
+			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5) - 20, songPosBG.y - 20, 0, SONG.song, 32);
+			if (FlxG.save.data.downscroll)
+				songName.y -= 3;
+			
+			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			songName.scrollFactor.set();
+			songName.borderSize = 2.5;
+			add(songName);
+		}
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
 		if (FlxG.save.data.downscroll)
@@ -872,7 +897,7 @@ class PlayState extends MusicBeatState
 	
 				var skyType:String = curStage == 'bambiFarmNight' ? 'sky_night' : curStage == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 	
-				var bg:FlxSprite = new FlxSprite(-700, 0).loadGraphic(Paths.image('backgrounds/shared/' + skyType));
+				var bg:FlxSprite = new FlxSprite(-400, 0).loadGraphic(Paths.image('backgrounds/shared/' + skyType));
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.9, 0.9);
 				bg.active = false;
@@ -898,68 +923,75 @@ class PlayState extends MusicBeatState
 					add(nightBG);
 					sprites.add(nightBG);
 				}
-	
-				var hills:FlxSprite = new FlxSprite(-250, 200).loadGraphic(Paths.image('backgrounds/farm/orangey hills'));
-				hills.antialiasing = true;
-				hills.scrollFactor.set(0.9, 0.7);
-				hills.active = false;
-				sprites.add(hills);
-	
-				var farm:FlxSprite = new FlxSprite(150, 250).loadGraphic(Paths.image('backgrounds/farm/funfarmhouse'));
-				farm.antialiasing = true;
-				farm.scrollFactor.set(1.1, 0.9);
-				farm.active = false;
-				sprites.add(farm);
 				
-				var foreground:FlxSprite = new FlxSprite(-400, 600).loadGraphic(Paths.image('backgrounds/farm/grass lands'));
-				foreground.antialiasing = true;
-				foreground.active = false;
-				sprites.add(foreground);
+				var flatGrass:FlxSprite = new FlxSprite(500, 200).loadGraphic(Paths.image('backgrounds/farm/gm_flatgrass'));
+				flatGrass.antialiasing = true;
+				flatGrass.scrollFactor.set(0.9, 0.9);
+				flatGrass.active = false;
+				sprites.add(flatGrass);
 				
-				var cornSet:FlxSprite = new FlxSprite(-350, 325).loadGraphic(Paths.image('backgrounds/farm/Cornys'));
-				cornSet.antialiasing = true;
-				cornSet.active = false;
-				sprites.add(cornSet);
+				var farmhouse:FlxSprite = new FlxSprite(-700, 50).loadGraphic(Paths.image('backgrounds/farm/farmhouse'));
+				farmhouse.antialiasing = true;
+				farmhouse.scrollFactor.set(1, 1);
+				farmhouse.active = false;
+				sprites.add(farmhouse);
 				
-				var cornSet2:FlxSprite = new FlxSprite(1050, 325).loadGraphic(Paths.image('backgrounds/farm/Cornys'));
-				cornSet2.antialiasing = true;
-				cornSet2.active = false;
-				sprites.add(cornSet2);
+				var path:FlxSprite = new FlxSprite(-700, 500).loadGraphic(Paths.image('backgrounds/farm/path'));
+				path.antialiasing = true;
+				path.scrollFactor.set(1, 1);
+				path.active = false;
+				sprites.add(path);
 				
-				var fence:FlxSprite = new FlxSprite(-350, 450).loadGraphic(Paths.image('backgrounds/farm/crazy fences'));
-				fence.antialiasing = true;
-				fence.active = false;
-				sprites.add(fence);
-	
-				var sign:FlxSprite = new FlxSprite(0, 500).loadGraphic(Paths.image('backgrounds/farm/Sign'));
-				sign.antialiasing = true;
-				sign.active = false;
-				sprites.add(sign);
+				var cornMaze:FlxSprite = new FlxSprite(-300, 200).loadGraphic(Paths.image('backgrounds/farm/cornmaze'));
+				cornMaze.antialiasing = true;
+				cornMaze.scrollFactor.set(1, 1);
+				cornMaze.active = false;
+				sprites.add(cornMaze);
+				
+				var cornMaze2:FlxSprite = new FlxSprite(1000, 150).loadGraphic(Paths.image('backgrounds/farm/cornmaze2'));
+				cornMaze2.antialiasing = true;
+				cornMaze2.scrollFactor.set(1, 1);
+				cornMaze2.active = false;
+				sprites.add(cornMaze2);
+				
+				var cornbag:FlxSprite = new FlxSprite(1150, 500).loadGraphic(Paths.image('backgrounds/farm/cornbag'));
+				cornbag.antialiasing = true;
+				cornbag.scrollFactor.set(1, 1);
+				cornbag.active = false;
+				sprites.add(cornbag);
 
+				var sign:FlxSprite = new FlxSprite(-50, 600).loadGraphic(Paths.image('backgrounds/farm/sign'));
+				sign.antialiasing = true;
+				sign.scrollFactor.set(1, 1);
+				sign.active = false;
+				sprites.add(sign);	
+				
 				var variantColor:FlxColor = FlxColor.WHITE;
 				switch (curStage)
 				{
 					case 'bambiFarmNight':
 						variantColor = nightColor;
 					case 'bambiFarmSunset':
-						variantColor = sunsetColor;
+						variantColor = sunsetColor; 
 				}
-				hills.color = variantColor;
-				farm.color = variantColor;
-				foreground.color = variantColor;
-				cornSet.color = variantColor;
-				cornSet2.color = variantColor;
-				fence.color = variantColor;
+				
+				flatGrass.color = variantColor;
+				farmhouse.color = variantColor;
+				path.color = variantColor;
+				cornMaze.color = variantColor;
+				cornMaze2.color = variantColor;
+				cornbag.color = variantColor;
 				sign.color = variantColor;
-
+				
 				add(bg);
-				add(hills);
-				add(farm);
-				add(foreground);
-				add(cornSet);
-				add(cornSet2);
-				add(fence);
+				add(flatGrass);
+				add(farmhouse);
+				add(path);
+				add(cornMaze);
+				add(cornMaze2);
+				add(cornbag);
 				add(sign);
+
 	
 			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
 				defaultCamZoom = 0.7;
