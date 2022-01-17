@@ -642,7 +642,7 @@ class PlayState extends MusicBeatState
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
 			add(songPosBar);
 			
-			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5) - 20, songPosBG.y - 20, 0, SONG.song, 32);
+			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5) - 40, songPosBG.y - 25, 0, SONG.song, 32);
 			if (FlxG.save.data.downscroll)
 				songName.y -= 3;
 			

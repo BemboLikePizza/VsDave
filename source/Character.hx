@@ -338,11 +338,11 @@ class Character extends FlxSprite
 
 			case 'bambi-new':
 				frames = Paths.getSparrowAtlas('bambi/bambiRemake', 'shared');
-				animation.addByPrefix('idle', 'Idle', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('idle', 'bambi idle', 24, false);
+				animation.addByPrefix('singDOWN', 'bambi down', 24, false);
+				animation.addByPrefix('singUP', 'bambi up', 24, false);
+				animation.addByPrefix('singLEFT', 'bambi left', 24, false);
+				animation.addByPrefix('singRIGHT', 'bambi right', 24, false);
 
 				addOffset('idle');
 				addOffset("singUP", 45, 3);

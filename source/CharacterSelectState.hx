@@ -215,13 +215,11 @@ class CharacterSelectState extends MusicBeatState
 		funnyIconMan.visible = false;
 		add(funnyIconMan);
 
-		var tutorialThing:FlxSprite = new FlxSprite(-100, -150).loadGraphic(Paths.image('ui/charSelectGuide'));
+		var tutorialThing:FlxSprite = new FlxSprite(-200, -150).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
-		add(tutorialThing);
-
-		
+		add(tutorialThing);		
 	}
 
 	private function generateStaticArrows():Void
