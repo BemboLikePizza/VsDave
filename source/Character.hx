@@ -345,10 +345,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'bambi right', 24, false);
 
 				addOffset('idle');
-				addOffset("singUP", 45, 3);
-				addOffset("singRIGHT", -23, -6);
-				addOffset("singLEFT", -10, -8);
-				addOffset("singDOWN", -12, -48);
+				addOffset("singLEFT");
+				addOffset("singUP", 23, 36);
+				addOffset("singDOWN", 22, -72);
+				addOffset("singRIGHT", -21, 0);
 
 				playAnim('idle');
 
