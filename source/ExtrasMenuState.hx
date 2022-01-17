@@ -27,7 +27,7 @@ class ExtrasMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
-	var optionShit:Array<String> = ['ost', 'credits', 'discord'];
+	var optionShit:Array<String> = ['ost', 'discord'];
 
 	var newGaming:FlxText;
 	var newGaming2:FlxText;
@@ -82,7 +82,7 @@ class ExtrasMenuState extends MusicBeatState
 
 		daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
 		
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(randomizeBG());
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(MainMenuState.randomizeBG());
 		bg.scrollFactor.set();
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
@@ -268,10 +268,5 @@ class ExtrasMenuState extends MusicBeatState
 
 			spr.updateHitbox();
 		});
-	}
-	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
-	{
-		var chance:Int = FlxG.random.int(0, bgPaths.length - 1);
-		return Paths.image(bgPaths[chance]);
 	}
 }

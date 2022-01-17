@@ -1890,9 +1890,18 @@ class PlayState extends MusicBeatState
 					FlxG.switchState(new PlayState());
 					return;
 				case 'unfairness':
+					#if !debug	
 					shakeCam = false;
 					screenshader.Enabled = false;
 					FlxG.switchState(new YouCheatedSomeoneIsComing());
+					#else
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new ChartingState());
+					#if desktop
+					DiscordClient.changePresence("Chart Editor", null, null, true);
+					#end
+					#end
 				default:
 					shakeCam = false;
 					screenshader.Enabled = false;
@@ -3130,19 +3139,31 @@ class PlayState extends MusicBeatState
 	{
 		super.stepHit();
 		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
-		{
 			resyncVocals();
-		}
-		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
-		{
-			// dad.dance();
-		}
-		
-		
+	
 		// Cool events n stuff
 		switch (SONG.song.toLowerCase())
 		{
-			
+			case 'unfairness':
+				switch(curStep)
+				{
+					case 2560:
+						// TODO: add ui fadeout
+					
+						dadStrums.forEach(function(spr:FlxSprite)
+						{
+							FlxTween.tween(spr, {alpha: 0}, 6);
+						});
+					case 2688:
+						playerStrums.forEach(function(spr:FlxSprite)
+						{
+							FlxTween.tween(spr, {alpha: 0}, 6);
+						});
+
+					case 3072:
+						FlxG.camera.flash(FlxColor.WHITE, 1);
+						dad.visible = false;
+				}	
 			case 'furiosity':
 				switch (curStep)
 				{
