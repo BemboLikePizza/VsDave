@@ -65,6 +65,8 @@ class FreeplayState extends MusicBeatState
 	var titles:Array<Alphabet> = [];
 	var icons:Array<FlxSprite> = [];
 
+	var doneCoolTrans:Bool = false;
+
 	override function create()
 	{
 		#if desktop
@@ -112,7 +114,7 @@ class FreeplayState extends MusicBeatState
 
 		add(camFollow);
 		
-		FlxG.camera.follow(camFollow, LOCKON, 0.01);
+		FlxG.camera.follow(camFollow, LOCKON, 0.04);
 		FlxG.camera.focusOn(camFollow.getPosition());
 
 		super.create();
@@ -216,6 +218,22 @@ class FreeplayState extends MusicBeatState
 		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[CurrentPack].toLowerCase())));*/
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	override function beatHit()
 	{
 		super.beatHit();
@@ -241,7 +259,6 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-
 		if (!InMainFreeplayState) 
 		{
 			if (controls.LEFT_P)
@@ -256,7 +273,6 @@ class FreeplayState extends MusicBeatState
 			{
 				loadingPack = true;
 				LoadProperPack();
-				// FlxTween.tween(CurrentSongIcon, {alpha: 0}, 0.3);
 				
 				for (item in icons) { FlxTween.tween(item, {alpha: 0}, 0.3); }
 				for (item in titles) { FlxTween.tween(item, {alpha: 0}, 0.3); }
