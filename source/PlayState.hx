@@ -214,6 +214,9 @@ class PlayState extends MusicBeatState
 
 	var tweenTime:Float;
 
+	var songPosBar:FlxBar;
+	var songPosBG:FlxSprite;
+
 	override public function create()
 	{
 		theFunne = FlxG.save.data.newInput;
@@ -508,7 +511,7 @@ class PlayState extends MusicBeatState
 
 			case 'bambi-new' | 'bambi-farmer-beta':
 				dad.y += 450;
-				dad.x += 200;
+				dad.x += 150;
 
 			case 'bambi-splitathon':
 				dad.x += 175;
@@ -631,18 +634,18 @@ class PlayState extends MusicBeatState
 		{
 			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 60 : -20;
 
-			var songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
+			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
 			songPosBG.screenCenter(X);
 			songPosBG.scrollFactor.set();
 			add(songPosBG);
 			
-			var songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), Conductor, 
+			songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), Conductor, 
 			'songPosition', 0, FlxG.sound.music.length);
 			songPosBar.scrollFactor.set();
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
 			add(songPosBar);
 			
-			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5) - 40, songPosBG.y - 25, 0, SONG.song, 32);
+			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5) - 30, songPosBG.y - 15, 0, SONG.song, 32);
 			if (FlxG.save.data.downscroll)
 				songName.y -= 3;
 			
@@ -650,6 +653,10 @@ class PlayState extends MusicBeatState
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5;
 			add(songName);
+
+			songPosBG.cameras = [camHUD];
+			songPosBar.cameras = [camHUD];
+			songName.cameras = [camHUD];
 		}
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
@@ -1265,7 +1272,6 @@ class PlayState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 			vocals.play();
 		}
-			
 		if (FlxG.save.data.tristanProgress == "pending play" && isStoryMode && storyWeek != 10)
 		{
 			FlxG.sound.music.volume = 0;
@@ -1286,14 +1292,13 @@ class PlayState extends MusicBeatState
 			+ misses, iconRPC);
 		#end
 		FlxG.sound.music.onComplete = endSong;
+		songPosBar.setRange(0, FlxG.sound.music.length);
 	}
 
 	var debugNum:Int = 0;
 
 	private function generateSong(dataPath:String):Void
 	{
-		// FlxG.log.add(ChartParser.parse());
-
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
 
@@ -1316,7 +1321,6 @@ class PlayState extends MusicBeatState
 
 		var playerCounter:Int = 0;
 
-		var daBeats:Int = 0; // Not exactly representative of 'daBeats' lol, just how much it has looped
 		for (section in noteData)
 		{
 			var coolSection:Int = Std.int(section.lengthInSteps / 4);
@@ -1374,7 +1378,6 @@ class PlayState extends MusicBeatState
 				}
 
 			}
-			daBeats += 1;
 		}
 
 		// trace(unspawnNotes.length);

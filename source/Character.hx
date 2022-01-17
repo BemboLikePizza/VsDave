@@ -345,10 +345,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'bambi right', 24, false);
 
 				addOffset('idle');
-				addOffset("singUP", 45, 3);
-				addOffset("singRIGHT", -23, -6);
-				addOffset("singLEFT", -10, -8);
-				addOffset("singDOWN", -12, -48);
+				addOffset("singLEFT");
+				addOffset("singUP", 23, 36);
+				addOffset("singDOWN", 22, -72);
+				addOffset("singRIGHT", -21, 0);
 
 				playAnim('idle');
 
@@ -567,7 +567,23 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 	
 				flipX = true;
-			
+			case 'tristan-festival':
+				frames = Paths.getSparrowAtlas('festival/tristan_festival');
+				
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				
+				addOffset('idle');
+				addOffset('singLEFT');
+				addOffset('singDOWN');
+				addOffset('singUP');
+				addOffset('singRIGHT');
+				
+				playAnim('idle');
+				
 			case 'marcello-dave':
 				var tex = Paths.getSparrowAtlas('dave/secret/Marcello_Dave_Assets', 'shared');
 				frames = tex;
