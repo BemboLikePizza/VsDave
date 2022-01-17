@@ -54,7 +54,8 @@ class FreeplayState extends MusicBeatState
     	0xFFca1f6f, // GF
 		0xFF4965FF, // DAVE
 		0xFF00B515, // MISTER BAMBI RETARD
-		0xFF00FFFF //SPLIT THE THONNNNN
+		0xFF00FFFF, //SPLIT THE THONNNNN
+		0xFF800080  //FESTIVAL
     ];
 
 	private var camFollow:FlxObject;
