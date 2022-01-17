@@ -13,6 +13,7 @@ import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxStringUtil;
 import lime.utils.Assets;
+import flixel.FlxObject;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -41,7 +42,7 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var AllPossibleSongs:Array<String> = ["Dave", "Joke", "Extra"];
+	private var Catagories:Array<String> = ["Dave", "Joke", "Extra"];
 
 	private var CurrentPack:Int = 0;
 
@@ -56,7 +57,13 @@ class FreeplayState extends MusicBeatState
 		0xFF00FFFF //SPLIT THE THONNNNN
     ];
 
+	private var camFollow:FlxObject;
+	private static var prevCamFollow:FlxObject;
+
 	private var iconArray:Array<HealthIcon> = [];
+
+	var titles:Array<Alphabet> = [];
+	var icons:Array<FlxSprite> = [];
 
 	override function create()
 	{
@@ -72,28 +79,48 @@ class FreeplayState extends MusicBeatState
 
 		bg.loadGraphic(MainMenuState.randomizeBG());
 		bg.color = 0xFF4965FF;
+		bg.scrollFactor.set();
 		add(bg);
 
-		CurrentSongIcon = new FlxSprite(0,0).loadGraphic(Paths.image('weekIcons/week_icons_' + (AllPossibleSongs[CurrentPack].toLowerCase()), "preload"));
+		for (i in 0...Catagories.length)
+		{
+			var NameAlpha:Alphabet = new Alphabet(40,(FlxG.height / 2) - 282,Catagories[i],true,false);
+			
+			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[i].toLowerCase()), "preload"));
+			CurrentSongIcon.centerOffsets(false);
+			CurrentSongIcon.x = (1000 * i + 1);
+			CurrentSongIcon.y = (FlxG.height / 2) - 256;
+			CurrentSongIcon.antialiasing = true;
+			add(CurrentSongIcon);
+			icons.push(CurrentSongIcon);
 
-		CurrentSongIcon.centerOffsets(false);
-		CurrentSongIcon.x = (FlxG.width / 2) - 256;
-		CurrentSongIcon.y = (FlxG.height / 2) - 256;
-		CurrentSongIcon.antialiasing = true;
+			// NameAlpha.screenCenter(X);
+			Highscore.load();
+			NameAlpha.x = CurrentSongIcon.x;
+			add(NameAlpha);
+			titles.push(NameAlpha);
+		}
 
-		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282,AllPossibleSongs[CurrentPack],true,false);
-		NameAlpha.screenCenter(X);
-		Highscore.load();
-		add(NameAlpha);
+		camFollow = new FlxObject(0, 0, 1, 1);
+		camFollow.setPosition(icons[CurrentPack].x + 256, icons[CurrentPack].y + 256);
 
-		add(CurrentSongIcon);
+		if (prevCamFollow != null)
+		{
+			camFollow = prevCamFollow;
+			prevCamFollow = null;
+		}
+
+		add(camFollow);
+		
+		FlxG.camera.follow(camFollow, LOCKON, 0.01);
+		FlxG.camera.focusOn(camFollow.getPosition());
 
 		super.create();
 	}
 
 	public function LoadProperPack()
 	{
-		switch (AllPossibleSongs[CurrentPack].toLowerCase())
+		switch (Catagories[CurrentPack].toLowerCase())
 		{
 			case 'dave':
 				addWeek(['Tutorial'], 0, ['gf']);	
@@ -112,7 +139,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Overdrive'], 1, ['dave']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
-				addWeek(['Old-Corn-Theft'], 2, ['bambi-farmer-beta']);
+				addWeek(['vs-dave-rap'], 2, ['none']);
 		}
 	}
 
@@ -127,10 +154,12 @@ class FreeplayState extends MusicBeatState
 			songText.isMenuItem = true;
 			songText.itemType = 'D-Shape';
 			songText.targetY = i;
+			songText.scrollFactor.set();
 			grpSongs.add(songText);
 
 			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
 			icon.sprTracker = songText;
+			icon.scrollFactor.set();
 
 			iconArray.push(icon);
 			add(icon);
@@ -143,11 +172,13 @@ class FreeplayState extends MusicBeatState
 		var scoreBG:FlxSprite = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
 		scoreBG.y = -200;
+		scoreBG.scrollFactor.set();
 		add(scoreBG);
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		diffText.y = -200;
+		diffText.scrollFactor.set();
 
 		add(diffText);
 
@@ -171,18 +202,18 @@ class FreeplayState extends MusicBeatState
 	{
 		CurrentPack += change;
 		if (CurrentPack == -1)
-		{
-			CurrentPack = AllPossibleSongs.length - 1;
-		}
-		if (CurrentPack == AllPossibleSongs.length)
-		{
+			CurrentPack = Catagories.length - 1;
+		
+		if (CurrentPack == Catagories.length)
 			CurrentPack = 0;
-		}
-		NameAlpha.destroy();
-		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282,AllPossibleSongs[CurrentPack],true,false);
+
+		camFollow.setPosition(icons[CurrentPack].x + 256, icons[CurrentPack].y + 256);
+
+		/*NameAlpha.destroy();
+		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282,Catagories[CurrentPack],true,false);
 		NameAlpha.screenCenter(X);
 		add(NameAlpha);
-		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (AllPossibleSongs[CurrentPack].toLowerCase())));
+		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[CurrentPack].toLowerCase())));*/
 	}
 
 	override function beatHit()
@@ -225,12 +256,16 @@ class FreeplayState extends MusicBeatState
 			{
 				loadingPack = true;
 				LoadProperPack();
-				FlxTween.tween(CurrentSongIcon, {alpha: 0}, 0.3);
-				FlxTween.tween(NameAlpha, {alpha: 0}, 0.3);
+				// FlxTween.tween(CurrentSongIcon, {alpha: 0}, 0.3);
+				
+				for (item in icons) { FlxTween.tween(item, {alpha: 0}, 0.3); }
+				for (item in titles) { FlxTween.tween(item, {alpha: 0}, 0.3); }
+
 				new FlxTimer().start(0.5, function(Dumbshit:FlxTimer)
 				{
-					CurrentSongIcon.visible = false;
-					NameAlpha.visible = false;
+					for (item in icons) { item.visible = false; }
+					for (item in titles) { item.visible = false; }
+
 					GoToActualFreeplay();
 					InMainFreeplayState = true;
 					loadingPack = false;
