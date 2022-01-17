@@ -582,6 +582,8 @@ class Character extends FlxSprite
 				addOffset('singUP');
 				addOffset('singRIGHT');
 				
+				nativelyPlayable = true;
+				flipX = true;
 				playAnim('idle');
 				
 			case 'marcello-dave':

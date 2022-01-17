@@ -129,10 +129,9 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Tutorial'], 0, ['gf']);	
 				addWeek(['House', 'Insanity', 'Polygonized'], 1, ['dave', 'dave', 'dave-angey']);
 				addWeek(['Bonus-Song'], 1, ['dave']);
-				addWeek(['Shredder'], 4, ['bambi']);
-				addWeek(['Interdimensional'], 4, ['dave-angey']);
 				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
+				addWeek(['Shredder', 'Greetings', 'Interdimensional'], 4, ['bambi', 'tristan-festival', 'dave-angey']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
 				if (FlxG.save.data.cheatingFound)
@@ -219,22 +218,6 @@ class FreeplayState extends MusicBeatState
 		add(NameAlpha);
 		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[CurrentPack].toLowerCase())));*/
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	override function beatHit()
 	{
