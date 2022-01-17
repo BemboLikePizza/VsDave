@@ -363,7 +363,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
-				case 'splitathon' | 'mealie':
+				case 'splitathon' | 'mealie' | 'shredder':
 					stageCheck = 'farm-night';
 				case 'cheating':
 					stageCheck = 'green-void';
