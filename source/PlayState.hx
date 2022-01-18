@@ -577,7 +577,7 @@ class PlayState extends MusicBeatState
 		}
 		switch (curStage)
 		{
-			case 'farm' | 'farm-night' | 'farm-sunset'
+			case 'farm' | 'farm-night' | 'farm-sunset':
 				dad.y -= 100;
 		}
 
