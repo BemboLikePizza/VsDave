@@ -367,8 +367,10 @@ class PlayState extends MusicBeatState
 					stageCheck = 'farm-night';
 				case 'cheating':
 					stageCheck = 'green-void';
-				case 'unfairness' | 'kabunga':
+				case 'unfairness':
 					stageCheck = 'glitchy-void';
+				case 'kabunga':
+					stageCheck = 'exbungo-land';
 				case 'interdimensional':
 					stageCheck = 'interdimension-void';
 				case 'bonus-song' | 'glitch':
@@ -1011,7 +1013,7 @@ class PlayState extends MusicBeatState
 				add(sign);
 
 	
-			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
+			case 'red-void' | 'green-void' | 'glitchy-void' | 'exbungo-land' | 'interdimension-void':
 				defaultCamZoom = 0.7;
 				var bg:FlxSprite = new FlxSprite(-600, -200);
 				bg.active = true;
@@ -1030,9 +1032,10 @@ class PlayState extends MusicBeatState
 						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
 						bg.setPosition(-700, -300);
 						curStage = 'interdimension';
-					default:
-						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
-						curStage = 'daveEvilHouse';
+					case 'exbungo-land':
+						bg.loadGraphic(Paths.image('backgrounds/void/Exbongo'));
+						bg.setPosition(-850, -350);
+						curStage = 'kabunga';
 				}
 				
 				sprites.add(bg);
@@ -1886,7 +1889,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-				case 'supernovae' | 'glitch' | 'vs-dave-thanksgiving':
+				case 'supernovae':
 					PlayState.SONG = Song.loadFromJson("cheating", "cheating"); // you dun fucked up
 					FlxG.save.data.cheatingFound = true;
 					shakeCam = false;
@@ -1901,14 +1904,14 @@ class PlayState extends MusicBeatState
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				case 'unfairness':
+				case 'glitch':
 					PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
 					FlxG.save.data.exbungoFound = true;
 					shakeCam = false;
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				case 'kabunga':
+				case 'unfairness' | 'kabunga':
 					#if !debug	
 					shakeCam = false;
 					screenshader.Enabled = false;
