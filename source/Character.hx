@@ -608,6 +608,31 @@ class Character extends FlxSprite
 				flipX = true;
 
 				antialiasing = false;
+			case 'exbungo':
+				var tex = Paths.getSparrowAtlas('bambi/exbungo', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP");
+				addOffset("singRIGHT");
+				addOffset("singLEFT");
+				addOffset("singDOWN");
+	
+				playAnim('idle');
+	
+				nativelyPlayable = true;
+	
+				flipX = true;
+
+				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
+				updateHitbox();
+	
+				antialiasing = false;
 		}
 		dance();
 

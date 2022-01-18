@@ -95,7 +95,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'dave-annoyed-3d', 'dave-3d-standing-bruh-what', 'bambi-unfair'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'dave-annoyed-3d', 'dave-3d-standing-bruh-what', 'bambi-unfair', 'exbungo'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -367,7 +367,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'farm-night';
 				case 'cheating':
 					stageCheck = 'green-void';
-				case 'unfairness':
+				case 'unfairness' | 'kabunga':
 					stageCheck = 'glitchy-void';
 				case 'interdimensional':
 					stageCheck = 'interdimension-void';
@@ -690,6 +690,8 @@ class PlayState extends MusicBeatState
 				credits = "Ghost tapping is forced off! Screw you!";
 			case 'cheating':
 				credits = 'Screw you!';
+			case 'kabunga':
+				credits = 'នេះគឺជាការសរសេរសម្ងាត់ដែលអ្នកនឹងឃើញនៅក្នុងបទចម្រៀងនេះ។';
 			case 'vs-dave-thanksgiving':
 				credits = 'What the hell!';
 			default:
@@ -1898,6 +1900,13 @@ class PlayState extends MusicBeatState
 					FlxG.switchState(new PlayState());
 					return;
 				case 'unfairness':
+					PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
+					FlxG.save.data.exbungoFound = true;
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
+					return;
+				case 'kabunga':
 					#if !debug	
 					shakeCam = false;
 					screenshader.Enabled = false;
