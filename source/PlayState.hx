@@ -236,7 +236,7 @@ class PlayState extends MusicBeatState
 		// To avoid having duplicate images in Discord assets
 		switch (SONG.player2)
 		{
-			case 'dave' | 'dave-old' | 'dave-angey':
+			case 'dave' | 'dave-angey':
 				iconRPC = 'icon_dave';
 			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-farmer-beta' | 'bambi-3d' | 'bambi-unfair':
 				iconRPC = 'icon_bambi';
