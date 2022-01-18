@@ -637,7 +637,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.songPosition)
 		{
-			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 45 : strumLine.y - 20;
+			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 60 : strumLine.y - 20;
 
 			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
 			songPosBG.screenCenter(X);
@@ -650,13 +650,17 @@ class PlayState extends MusicBeatState
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
 			add(songPosBar);
 			
-			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - (SONG.song.length * 5) - 30, songPosBG.y - 15, 0, SONG.song, 32);
-			if (FlxG.save.data.downscroll)
-				songName.y -= 3;
-			
+			var songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
 			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5;
+
+			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
+			var yValues = CoolUtil.getMinAndMax(songName.height, songPosBG.height);
+			
+			songName.x = songPosBG.x - ((xValues[0] - xValues[1]) / 2);
+			songName.y = songPosBG.y + ((yValues[0] - yValues[1]) / 2);
+
 			add(songName);
 
 			songPosBG.cameras = [camHUD];
@@ -778,7 +782,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'cheating' | 'unfairness':
+				case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'cheating' | 'interdimensional':
 					schoolIntro(doof);
 				default:
 					startCountdown();
@@ -1781,7 +1785,6 @@ class PlayState extends MusicBeatState
 				iconP1.animation.play(boyfriendOldIcon);
 			}
 		}
-		//4750, 4800, 5824, 6080, 8384
 
 		switch (SONG.song.toLowerCase())
 		{
@@ -1793,7 +1796,6 @@ class PlayState extends MusicBeatState
 						dad.playAnim('scared', true);
 						camHUD.shake(0.015, (Conductor.stepCrochet / 1000) * 50);
 					case 4800:
-						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('dave', 'what');
 						addSplitathonChar("bambi-splitathon");
@@ -1802,7 +1804,6 @@ class PlayState extends MusicBeatState
 							throwThatBitchInThere('bambi', 'dave');
 						}
 					case 5824:
-						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'umWhatIsHappening');
 						addSplitathonChar("dave-splitathon");
@@ -1811,7 +1812,6 @@ class PlayState extends MusicBeatState
 							throwThatBitchInThere('dave', 'bambi');
 						}
 					case 6080:
-						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('dave', 'happy');
 						addSplitathonChar("bambi-splitathon");
@@ -1820,7 +1820,6 @@ class PlayState extends MusicBeatState
 							throwThatBitchInThere('bambi', 'dave');
 						}
 					case 8384:
-						resetVelocity();
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'yummyCornLol');
 						addSplitathonChar("dave-splitathon");
@@ -1828,6 +1827,9 @@ class PlayState extends MusicBeatState
 						{
 							throwThatBitchInThere('dave', 'bambi');
 						}
+					case 4799 | 5823 | 6079 | 8383:
+						hasTriggeredDumbshit = false;
+						updatevels = false;
 				}
 			case 'insanity':
 				switch (curStep)
@@ -1959,12 +1961,14 @@ class PlayState extends MusicBeatState
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
 
+		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(dad.curCharacter));
 		if (FlxG.keys.justPressed.TWO)
 			FlxG.switchState(new AnimationDebug(boyfriend.curCharacter));
 		if (FlxG.keys.justPressed.THREE)
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
+		#end
 		if (startingSong)
 		{
 			if (startedCountdown)
@@ -3465,11 +3469,6 @@ class PlayState extends MusicBeatState
 			trace(dialogue[0]);
 		}
 	}
-	function resetVelocity()
-	{
-		hasTriggeredDumbshit = false;
-		updatevels = false;
-	}
 
 	public function addSplitathonChar(char:String):Void
 	{
@@ -3482,7 +3481,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave-splitathon':
 				{
-					dad.y += 160;
+					dad.y += 250;
 					dad.x += 250;
 				}
 			case 'bambi-splitathon':
@@ -3505,11 +3504,15 @@ class PlayState extends MusicBeatState
 		switch (character)
 		{
 			case 'dave':
-				splitathonCharacterExpression = new Character(-100, 260, 'dave-splitathon');
+				splitathonCharacterExpression = new Character(-100, 350, 'dave-splitathon');
 			case 'bambi':
 				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}
 		add(splitathonCharacterExpression);
+
+		remove(backgroundSprites.members[7]);
+		add(backgroundSprites.members[7]);
+		
 		splitathonCharacterExpression.color = nightColor;
 		splitathonCharacterExpression.canDance = false;
 		splitathonCharacterExpression.playAnim(expression, true);

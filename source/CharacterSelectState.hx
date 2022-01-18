@@ -122,11 +122,11 @@ class CharacterSelectState extends MusicBeatState
 
 		currentSelectedCharacter = characters[current];
 
-		if (FlxG.save.data.unlockedcharacters == null)
+		var testLock:Array<Bool> = FlxG.save.data.unlockedcharacters;
+		if (testLock != null)
 		{
 			reset();
 		}
-
 		if (isDebug)
 		{
 			for (character in characters)
@@ -215,7 +215,7 @@ class CharacterSelectState extends MusicBeatState
 		funnyIconMan.visible = false;
 		add(funnyIconMan);
 
-		var tutorialThing:FlxSprite = new FlxSprite(-150, -220).loadGraphic(Paths.image('ui/charSelectGuide'));
+		var tutorialThing:FlxSprite = new FlxSprite(-150, -50).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];

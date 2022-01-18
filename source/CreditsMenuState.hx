@@ -39,7 +39,6 @@ i have to put this here just in case you think of doing so
 class CreditsMenuState extends MusicBeatState
 {
 	var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
-   var checkeredBackground:FlxBackdrop;
    var overlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/CoolOverlay'));
    var selectedFormat:FlxText;
    var defaultFormat:FlxText;
@@ -97,10 +96,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/am_erizur')
       ]),
       
-      new Person("Somf", CreditsType.Dev, "Charter & Spanish Translator",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCspbOv2BXbDANpJyjguce2Q'),
-      ]),
 
       new Person("T5mpler", CreditsType.Dev, "Programmer & Assistor",
       [
@@ -110,6 +105,12 @@ class CreditsMenuState extends MusicBeatState
       ]),
       
       //translators
+      
+      new Person("Somf", CreditsType.Dev, "Spanish Translator",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCspbOv2BXbDANpJyjguce2Q'),
+      ]),
+      
       new Person("Aizakku", CreditsType.Translator, "Portguese Translator",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCmSCR85PlhbHGHm-wxiA6sA'),
@@ -137,14 +138,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
       ]),
       
-      new Person("logspa", CreditsType.Contributor, "Menu Character Design",
-      [  
-         new Social('youtube', 'https://www.youtube.com/channel/UCz_dSpnfh9USvpuShDwtP9Q'),
-         new Social('twitter', 'https://twitter.com/spa_log')
-      ]),
-
-      // Beta Testers //
-      
       new Person("Devianator", CreditsType.BetaTester, "Beta Tester, and helping with Credits icons",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCcaYOWO98UIsJ54t_aV6JHw'),
@@ -156,6 +149,14 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
          new Social('twitter', 'https://twitter.com/sk0rbias')
       ]),
+      
+      new Person("logspa", CreditsType.Contributor, "Menu Character Design",
+      [  
+         new Social('youtube', 'https://www.youtube.com/channel/UCz_dSpnfh9USvpuShDwtP9Q'),
+         new Social('twitter', 'https://twitter.com/spa_log')
+      ]),
+
+      // Beta Testers //
       
       new Person("Billy Bobbo", CreditsType.BetaTester, "Moral Support, Beta Tester",
       [
@@ -181,7 +182,7 @@ class CreditsMenuState extends MusicBeatState
       
       new Person("weednose", CreditsType.BetaTester, "Beta Tester",
       [
-         
+         new Social('twitter', 'https://twitter.com/GucciWallece')
       ]),
       
       new Person("vex", CreditsType.BetaTester, "Beta Tester",
@@ -297,10 +298,6 @@ class CreditsMenuState extends MusicBeatState
       bg.scrollFactor.set();
 		add(bg);
 
-      checkeredBackground = new FlxBackdrop(Paths.image('ui/checkeredBG', "preload"), 0.2, 0.2, true, true);
-		add(checkeredBackground);
-		checkeredBackground.scrollFactor.set(0, 0.07);
-
 
 		overlay.color = FlxColor.LIME;
       overlay.scrollFactor.set();
@@ -392,9 +389,6 @@ class CreditsMenuState extends MusicBeatState
    
 	override function update(elapsed:Float)
    {
-      checkeredBackground.x -= 0.45 / (100 / 60);
-		checkeredBackground.y -= 0.16 / (100 / 60);
-      
       var fadeTimer:Float = 0.08;
       var upPressed = controls.UP_P;
 		var downPressed = controls.DOWN_P;
@@ -413,7 +407,7 @@ class CreditsMenuState extends MusicBeatState
             }
 				if (back)
 				{
-					FlxG.switchState(new ExtrasMenuState());
+					FlxG.switchState(new MainMenuState());
 				}
 				if (accept && !transitioning)
 				{
