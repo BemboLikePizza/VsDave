@@ -575,6 +575,11 @@ class PlayState extends MusicBeatState
 			gf.color = sunsetColor;
 			boyfriend.color = sunsetColor;
 		}
+		switch (curStage)
+		{
+			case 'farm' | 'farm-night' | 'farm-sunset'
+				dad.y -= 100;
+		}
 
 		add(gf);
 
