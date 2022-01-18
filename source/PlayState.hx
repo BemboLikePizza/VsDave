@@ -363,7 +363,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
-				case 'splitathon' | 'mealie':
+				case 'splitathon' | 'mealie' | 'shredder':
 					stageCheck = 'farm-night';
 				case 'cheating':
 					stageCheck = 'green-void';
@@ -575,6 +575,11 @@ class PlayState extends MusicBeatState
 			gf.color = sunsetColor;
 			boyfriend.color = sunsetColor;
 		}
+		switch (curStage)
+		{
+			case 'farm' | 'farm-night' | 'farm-sunset':
+				dad.y -= 100;
+		}
 
 		add(gf);
 
@@ -632,7 +637,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.songPosition)
 		{
-			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 60 : -20;
+			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 45 : strumLine.y - 20;
 
 			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
 			songPosBG.screenCenter(X);
@@ -931,7 +936,7 @@ class PlayState extends MusicBeatState
 					sprites.add(nightBG);
 				}
 				
-				var flatGrass:FlxSprite = new FlxSprite(500, 200).loadGraphic(Paths.image('backgrounds/farm/gm_flatgrass'));
+				var flatGrass:FlxSprite = new FlxSprite(500, 100).loadGraphic(Paths.image('backgrounds/farm/gm_flatgrass'));
 				flatGrass.antialiasing = true;
 				flatGrass.scrollFactor.set(0.9, 0.9);
 				flatGrass.active = false;
