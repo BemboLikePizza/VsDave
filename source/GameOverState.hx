@@ -52,6 +52,32 @@ class GameOverState extends FlxTransitionableState
 		FlxTween.tween(restart, {alpha: 1}, 1, {ease: FlxEase.quartInOut});
 		FlxTween.tween(restart, {y: restart.y + 40}, 7, {ease: FlxEase.quartInOut, type: PINGPONG});
 
+		/*
+
+		private void Update()
+	{
+		this.delay -= 1f * Time.deltaTime;
+		if (this.delay <= 0f)
+		{
+			if (this.chance < 1f)
+			{
+				SceneManager.LoadScene("MainMenu");
+				return;
+			}
+			this.image.transform.localScale = new Vector3(UnityEngine.Random.Range(0f, 5f), UnityEngine.Random.Range(0f, 5f), UnityEngine.Random.Range(0f, 1f));
+			this.image.color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
+			if (!this.audioDevice.isPlaying)
+			{
+				this.audioDevice.Play();
+			}
+			if (this.delay <= -5f)
+			{
+				SceneManager.LoadScene("MainMenu");
+			}
+		}
+	}
+	*/
+
 		super.create();
 	}
 

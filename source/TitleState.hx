@@ -338,12 +338,11 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-			case 1:
-			createCoolText(['Created by people like:']);
 			case 2:
+				createCoolText(['Created by:']);
 				addMoreText('MoldyGH\nMissingTextureMan101\nRapparep LOL');
 			case 3:
-				addMoreText('TheBuilderXD\nCyndaquilDAC\nErizur\nT5mpler');
+				addMoreText('TheBuilderXD\nCuzsie\nErizur\nT5mpler');
 			case 4:
 				addMoreText('and our wonderful contributors!');
 			case 5:
@@ -381,10 +380,10 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
-
-			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
+
+			FlxG.camera.fade(FlxColor.WHITE, 2.5, true);
 		}
 	}
 }

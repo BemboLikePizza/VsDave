@@ -15,9 +15,9 @@ class Boyfriend extends Character
 	{
 		switch (char)
 		{
-			case "dave" | "dave-old" | "dave-annoyed" | 'dave-splitathon':
+			case "dave" | "dave-annoyed" | 'dave-splitathon':
 				super(x, y - 40, char, true);
-			case 'dave-angey' | 'dave-annoyed-3d' | 'dave-3d-standing-bruh-what':
+			case 'dave-angey' | 'dave-annoyed-3d':
 				super(x, y - 225, char, true);
 			default:
 				super(x, y, char, true);

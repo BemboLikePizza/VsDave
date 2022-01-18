@@ -1,4 +1,4 @@
-(package;
+package;
 
 #if desktop
 import cpp.abi.Abi;
@@ -26,6 +26,7 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxStringUtil;
 import lime.utils.Assets;
+import flixel.addons.display.FlxBackdrop;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -38,6 +39,8 @@ i have to put this here just in case you think of doing so
 class CreditsMenuState extends MusicBeatState
 {
 	var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
+   var checkeredBackground:FlxBackdrop;
+   var overlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/CoolOverlay'));
    var selectedFormat:FlxText;
    var defaultFormat:FlxText;
    var curNameSelected:Int = 0;
@@ -52,146 +55,221 @@ class CreditsMenuState extends MusicBeatState
    var curSocialMediaSelected:Int = 0;
    var socialButtons:Array<SocialButton> = new Array<SocialButton>();
    var hasSocialMedia:Bool = true;
+   
    var peopleInCredits:Array<Person> = 
    [
-      //devs
-     new Person("MoldyGH", CreditsType.Dev, "Director, Creator, Programmer, Musician, Main Developer",
-        [
-           new Social('youtube', 'https://www.youtube.com/channel/UCHIvkOUDfbMCv-BEIPGgpmA'), 
-           new Social('twitter', 'https://twitter.com/moldy_gh'),
-           new Social('soundcloud', 'https://soundcloud.com/moldygh')
-         ]
-      ),
+      // Developers //
+      new Person("MoldyGH", CreditsType.Dev, "Director, Creator, Programmer, Musician, Main Developer",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCHIvkOUDfbMCv-BEIPGgpmA'), 
+         new Social('twitter', 'https://twitter.com/moldy_gh'),
+         new Social('soundcloud', 'https://soundcloud.com/moldygh')
+      ]),
+     
       new Person("MissingTextureMan101", CreditsType.Dev, "Secondary Developer and Programmer",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
-            new Social('twitter', 'https://twitter.com/OfficialMTM101')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
+         new Social('twitter', 'https://twitter.com/OfficialMTM101')
+      ]),
+      
       new Person("rapparep lol", CreditsType.Dev, "Main Artist",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCKfdkmcdFftv4pFWr0Bh45A'),
-            new Social('twitter', 'https://twitter.com/rappareplol')
-         ]
-      ),
-      new Person("TheBuilderXD", CreditsType.Dev, "Gamebanana Page Manager, Secondary Artist",
-         [
-            new Social('youtube', 'https://www.youtube.com/user/99percentMember'),
-            new Social('twitter', 'https://twitter.com/TheBuilderXD')
-         ]
-      ),
-      new Person("Cuzsie", CreditsType.Dev, "Programmer",
-         [
-            new Social('discord', 'https://discord.gg/s5hdfdqBp2'),
-            new Social('gamebanana', 'https://gamebanana.com/members/1833894'),
-            new Social('twitter', 'https://twitter.com/cuzsiedev')
-         ]
-      ),
-      new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist & More",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
-            new Social('twitter', 'https://twitter.com/am_erizur')
-         ]
-      ),
-      new Person("T5mpler", CreditsType.Dev, "Programmer",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
-            new Social('twitter', 'https://twitter.com/RealT5mpler'),
-            new Social('souncloud', 'https://soundcloud.com/t5mpler')
-         ]
-      ),
-       new Person("Cleary", CreditsType.Dev, "Creator of original concepts, original artist, Censored songs, Moral support",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCddoqqR4JgTsv8PChblD1aQ'),
-            new Social('twitter', 'https://twitter.com/LemonLover699')
-         ]
-      ),
-      new Person("Stats45", CreditsType.Dev, "Minor programming, Moral support",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
-         ]
-      ),
-      //contributors
-      new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, EMFNF2 help",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
-         ]
-      ),
-      new Person("CyndaquilDAC", CreditsType.Contributor, "Programmer, Menu Button Artist",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
-            new Social('twitter', 'https://twitter.com/CyndaquilDAC')
-         ]
-      ),
-      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie song, Beta tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
-            new Social('twitter', 'https://twitter.com/Zander_cooper19')
-         ]
-      ),
-      //beta testers
-      new Person("mamakotomi", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('twitter', 'https://www.twitter.com/mamakotomii')
-         ]
-      ),
-      new Person("wildy", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
-            new Social('twitter', 'https://twitter.com/wildythomas1233')
-         ]
-      ),
-      new Person("Billy Bobbo", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
-            new Social('twitter', 'https://twitter.com/BillyBobboLOL')
-         ]
-      ),
-      new Person("mantis", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('discord', 'mantis#6969')
-         ]
-      ),
-      new Person("ArturSef", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('gamebanana', 'https://gamebanana.com/members/1766076')
-         ]
-      ),
-      new Person("1irx", CreditsType.BetaTester, "Beta Tester",
-         [
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCKfdkmcdFftv4pFWr0Bh45A'),
+         new Social('twitter', 'https://twitter.com/rappareplol')
+      ]),
 
-         ]
-      ),
-      new Person("KayipKux", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCKwsYcSSdpeZOodnPldfn6Q'),
-            new Social('gamebanana', 'https://gamebanana.com/members/1726754')
-         ]
-      ),
+      new Person("TheBuilderXD", CreditsType.Dev, "Gamebanana Page Manager, Secondary Artist",
+      [
+         new Social('youtube', 'https://www.youtube.com/user/99percentMember'),
+         new Social('twitter', 'https://twitter.com/TheBuilderXD')
+      ]),
+      
+      new Person("Cuzsie", CreditsType.Dev, "Programmer",
+      [
+         new Social('discord', 'https://discord.gg/s5hdfdqBp2'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1833894'),
+         new Social('twitter', 'https://twitter.com/cuzsiedev')
+      ]),
+      
+      new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist & More",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
+         new Social('twitter', 'https://twitter.com/am_erizur')
+      ]),
+      
+      new Person("Somf", CreditsType.Dev, "Charter & Spanish Translator",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCspbOv2BXbDANpJyjguce2Q'),
+      ]),
+
+      new Person("T5mpler", CreditsType.Dev, "Programmer & Assistor",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
+         new Social('twitter', 'https://twitter.com/RealT5mpler'),
+         new Social('souncloud', 'https://soundcloud.com/t5mpler')
+      ]),
+      
+      //translators
+      new Person("Aizakku", CreditsType.Translator, "Portguese Translator",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCmSCR85PlhbHGHm-wxiA6sA'),
+         new Social('twitter', 'https://twitter.com/ItsAizakku')
+      ]),
+      
+      new Person("Soulegal", CreditsType.Translator, "Brazillian Translator",
+      [
+            new Social('youtube', 'https://www.youtube.com/channel/UC7VSf4ITAMN83hL3zQbqt3w'),
+            new Social('twitter', 'https://twitter.com/nickstwt')
+      ]),
+      
+      //contributors
+      new Person("Steph45", CreditsType.Contributor, "Minor programming, Moral support",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
+      ]),
+      new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, YAFN help",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
+      ]),
+      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie song, Beta tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
+         new Social('twitter', 'https://twitter.com/Zander_cooper19')
+      ]),
+      
+      new Person("logspa", CreditsType.Contributor, "Menu Character Design",
+      [  
+         new Social('youtube', 'https://www.youtube.com/channel/UCz_dSpnfh9USvpuShDwtP9Q'),
+         new Social('twitter', 'https://twitter.com/spa_log')
+      ]),
+
+      // Beta Testers //
+      
+      new Person("Devianator", CreditsType.BetaTester, "Beta Tester, and helping with Credits icons",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCcaYOWO98UIsJ54t_aV6JHw'),
+         new Social('twitter', 'https://twitter.com/devianator404')
+      ]),
+      
+      new Person("sk0rbias", CreditsType.BetaTester, "Credits Menu icons & Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
+         new Social('twitter', 'https://twitter.com/sk0rbias')
+      ]),
+      
+      new Person("Billy Bobbo", CreditsType.BetaTester, "Moral Support, Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
+         new Social('twitter', 'https://twitter.com/BillyBobboLOL')
+      ]),
+
+      new Person("wildy", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+      ]),
+
+      new Person("peejeada", CreditsType.BetaTester, "Beta Tester & Supporter",
+      [
+         new Social('twitter', 'https://twitter.com/tailsmaster1')
+      ]),
+      
+      new Person("Bendy", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC44WnxbLouBs6USX8loLS5g')
+      ]),
+      
+      new Person("weednose", CreditsType.BetaTester, "Beta Tester",
+      [
+         
+      ]),
+      
+      new Person("vex", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('twitter', 'https://twitter.com/vex________')
+      ]),
+      
+      new Person("Ace", CreditsType.BetaTester, "Beta Tester",
+      [
+         
+      ]),
+      
+      new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCUmuZE0RPjvUhB036T6omfQ')
+      ]),
+
+      new Person("TrustVVorthy", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC_lJmvYgeAwzcYaeYXlZ7vg')
+      ]),
+      
+      new Person("Oxygen", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
+         new Social('twitter', 'https://twitter.com/oxygenboi2000'),
+         new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
+      ]),
+      
+      new Person("Gorbini", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social("youtube", 'https://www.youtube.com/channel/UC1u46mYMoecfO04dm-9Djjg')
+      ]),
+
+      new Person("Mooncakeez", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC6lOrY3AkmXWFpaLHwlP-5A')
+      ]),
+      
+      new Person("Foxnap", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
+         new Social('twitter', 'https://twitter.com/Foxnap2')
+      ]),
+
+      new Person("A5CEN", CreditsType.BetaTester, "Beta Tester",
+      [
+
+      ]),
+      
+      new Person("nihilistt", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
+         new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
+      ]),
+
+      new Person("mantis", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('discord', 'mantis#6969')
+      ]),
+      
+      new Person("ArturSef", CreditsType.BetaTester, "Beta Tester",
+      [  
+         new Social('gamebanana', 'https://gamebanana.com/members/1766076')
+      ]),
+      
       new Person("normal", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
-            new Social('roblox', 'https://www.roblox.com/users/1368920745')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
+         new Social('roblox', 'https://www.roblox.com/users/1368920745')
+      ]),
+
       new Person("Rendurse", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('twitter', 'https://twitter.com/RendurseDev')
-         ]
-      ),
+      [
+         new Social('twitter', 'https://twitter.com/RendurseDev')
+      ]),
+
       new Person("Lordryan1999", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
-            new Social('twitter', 'https://twitter.com/lr1999_baldi')
-         ]
-      ),
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
+         new Social('twitter', 'https://twitter.com/lr1999_baldi')
+      ]),
       new Person("Vanquiler", CreditsType.BetaTester, "Beta Tester",
-         [
-            new Social('discord', 'Vanquiler#3026'),
-            new Social('twitch', 'https://www.twitch.tv/vanquiler'),
-            new Social('roblox', 'https://www.roblox.com/users/1505830747')
-         ]
-      ),
+      [
+         new Social('discord', 'Vanquiler#3026'),
+         new Social('twitch', 'https://www.twitch.tv/vanquiler'),
+         new Social('roblox', 'https://www.roblox.com/users/1505830747')
+      ])
    ];
 
 	override function create()
@@ -211,36 +289,51 @@ class CreditsMenuState extends MusicBeatState
       state = State.SelectingName;
       defaultFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
       selectedFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+      selectedFormat.borderSize = 2;
+      selectedFormat.borderQuality = 2;
       
       bg.loadGraphic(MainMenuState.randomizeBG());
-		bg.color = 0xFFFF0000;
+		bg.color = FlxColor.LIME;
       bg.scrollFactor.set();
 		add(bg);
+
+      checkeredBackground = new FlxBackdrop(Paths.image('ui/checkeredBG', "preload"), 0.2, 0.2, true, true);
+		add(checkeredBackground);
+		checkeredBackground.scrollFactor.set(0, 0.07);
+
+
+		overlay.color = FlxColor.LIME;
+      overlay.scrollFactor.set();
+		add(overlay);
       
       var developers:Array<Person> = new Array<Person>();
-      var betaTesters:Array<Person> = new Array<Person>();
+      var translators:Array<Person> = new Array<Person>();
       var contributors:Array<Person> = new Array<Person>();
+      var betaTesters:Array<Person> = new Array<Person>();
 
       for (person in peopleInCredits) 
       {
          switch (person.creditsType)
          {
             case Dev: developers.push(person);
-            case BetaTester: betaTesters.push(person);
+            case Translator: translators.push(person);
             case Contributor: contributors.push(person);
+            case BetaTester: betaTesters.push(person);
          }
       }
 
       for (i in 0...peopleInCredits.length)
       {
          var currentPerson = peopleInCredits[i];
-         if (currentPerson == developers[0] || currentPerson == contributors[0] || currentPerson == betaTesters[0])
+         if (currentPerson == developers[0] || currentPerson == contributors[0] || currentPerson == betaTesters[0] || currentPerson == translators[0])
          {
             var textString:String = '';
             switch (currentPerson.creditsType)
             {
                case Dev:
                   textString = 'Developers';
+               case Translator:
+                  textString = 'Translators';
                case Contributor:
                   textString = 'Contributors';
                case BetaTester:
@@ -253,26 +346,36 @@ class CreditsMenuState extends MusicBeatState
             titleText.screenCenter(X);
             titleText.scrollFactor.set(0, 1);
 
-            var creditsTextTitleText = new CreditsText(titleText, false);
+            var personIcon:PersonIcon = new PersonIcon(titleText);
+            personIcon.loadGraphic(Paths.image('credits/icons/titles/' + textString));
+            add(personIcon);
+
+            var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
             creditsTextGroup.push(creditsTextTitleText);
             add(titleText);
          }
 
          var textItem:FlxText = new FlxText(0, i * 50, 0, currentPerson.name, 32);
          textItem.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle, defaultFormat.borderColor);
-         textItem.borderSize = 3;
-         textItem.borderQuality = 3;
          textItem.screenCenter(X);
          textItem.scrollFactor.set(0, 1);
-         
-         var creditsTextItem:CreditsText = new CreditsText(textItem, true);
+
+
+         var personIcon:PersonIcon = new PersonIcon(textItem);
+         personIcon.loadGraphic(Paths.image('credits/icons/' + currentPerson.name));
+         add(personIcon);
+
+         var creditsTextItem:CreditsText = new CreditsText(textItem, true, personIcon);
 
          add(textItem);
          creditsTextGroup.push(creditsTextItem);
          menuItems.push(creditsTextItem);
       }
+      
       var selection = 0;
+      
       changeSelection();
+      
       for (creditsText in creditsTextGroup)
       {
          creditsText.selectionId = selection - curNameSelected;
@@ -280,7 +383,7 @@ class CreditsMenuState extends MusicBeatState
       }
       for (creditsText in creditsTextGroup)
       {
-         var scaledY = FlxMath.remapToRange(creditsText.selectionId, 0, 1, 0, 1.3);
+         var scaledY = FlxMath.remapToRange(creditsText.selectionId, 0, 1, 0, 1.5);
          creditsText.text.y = scaledY * 75 + (FlxG.height * 0.5);
       }
 
@@ -289,6 +392,9 @@ class CreditsMenuState extends MusicBeatState
    
 	override function update(elapsed:Float)
    {
+      checkeredBackground.x -= 0.45 / (100 / 60);
+		checkeredBackground.y -= 0.16 / (100 / 60);
+      
       var fadeTimer:Float = 0.08;
       var upPressed = controls.UP_P;
 		var downPressed = controls.DOWN_P;
@@ -297,7 +403,7 @@ class CreditsMenuState extends MusicBeatState
       switch (state)
       {
          case State.SelectingName:
-				if (upPressed)
+			   if (upPressed)
 				{
                changeSelection(-1);
 				}
@@ -315,6 +421,7 @@ class CreditsMenuState extends MusicBeatState
                for (creditsText in creditsTextGroup)
                {
                   FlxTween.tween(creditsText.text, {alpha: 0}, fadeTimer);
+                  FlxTween.tween(creditsText.icon, {alpha: 0}, fadeTimer);
                   if (creditsText == creditsTextGroup[creditsTextGroup.length - 1])
                   {
                      FlxTween.tween(creditsText.text, {alpha: 0}, fadeTimer, 
@@ -353,6 +460,7 @@ class CreditsMenuState extends MusicBeatState
                            for (creditsText in creditsTextGroup)
                            {
                               FlxTween.tween(creditsText.text, {alpha: 1}, fadeTimer);
+                              FlxTween.tween(creditsText.icon, {alpha: 1}, fadeTimer);
                               if (creditsText == creditsTextGroup[creditsTextGroup.length - 1])
                               {
                                  FlxTween.tween(creditsText.text, {alpha: 1}, fadeTimer, 
@@ -440,6 +548,8 @@ class CreditsMenuState extends MusicBeatState
       {
 		   currentText.setFormat(selectedFormat.font, selectedFormat.size, selectedFormat.color, selectedFormat.alignment, selectedFormat.borderStyle, 
             selectedFormat.borderColor);
+         currentText.borderSize = selectedFormat.borderSize;
+         currentText.borderQuality = selectedFormat.borderQuality;
       }
 		for (i in 0...menuItems.length)
 		{
@@ -543,8 +653,7 @@ class CreditsMenuState extends MusicBeatState
          {
             var offsetY:Float = 20;
             discordText = new FlxText(socialGraphic.x + 100, socialGraphic.y + (i * 100) + offsetY, 0, social.socialLink, 40);
-            discordText.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle,
-               defaultFormat.borderColor);
+            discordText.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle, defaultFormat.borderColor);
             discordText.alpha = 0;
             discordText.updateHitbox();
             discordText.scrollFactor.set();
@@ -619,11 +728,34 @@ class CreditsText
    public var text:FlxText;
    public var menuItem:Bool;
    public var selectionId:Int;
+   public var icon:PersonIcon;
 
-   public function new(text:FlxText, menuItem:Bool)
+   public function new(text:FlxText, menuItem:Bool, icon:PersonIcon)
    {
       this.text = text;
       this.menuItem = menuItem;
+      this.icon = icon;
+   }
+}
+class PersonIcon extends FlxSprite
+{
+   public var tracker:FlxObject;
+
+   public function new(tracker:FlxObject)
+   {
+      this.tracker = tracker;
+      super();
+   }
+   public override function update(elapsed:Float)
+   {
+      super.update(elapsed);
+      if (tracker != null) 
+      {
+         var biggerValue = Math.max(tracker.height, height);
+         var smallerValue = Math.min(tracker.height, height);
+
+         setPosition(tracker.x + tracker.width + 20, tracker.y + (smallerValue - biggerValue) / 2);
+      }
    }
 }
 class SocialButton
@@ -639,10 +771,9 @@ class SocialButton
 }
 enum CreditsType
 {
-   Dev; BetaTester; Contributor;
+   Dev; Translator; Contributor; BetaTester;
 }
 enum State
 {
    SelectingName; OnName;
 }
-)

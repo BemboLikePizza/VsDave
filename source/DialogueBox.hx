@@ -59,16 +59,10 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'senpai':
-				FlxG.sound.playMusic(Paths.music('Lunchbox'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'thorns':
-				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'house' | 'insanity' | 'splitathon' | 'old-house' | 'old-insanity' | 'old-splitathon':
+			case 'house' | 'insanity' | 'splitathon':
 				FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness':
+			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness' | 'interdimensional':
 				FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'supernovae' | 'glitch':
@@ -83,7 +77,7 @@ class DialogueBox extends FlxSpriteGroup
 					FlxG.sound.playMusic(Paths.music('dooDooFeces'), 0);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				}
-			case 'blocked' | 'corn-theft' | 'maze' | 'old-blocked' | 'old-corn-theft' | 'old-maze' | 'beta-maze':
+			case 'blocked' | 'corn-theft' | 'maze' | 'old-corn-theft':
 				randomNumber = FlxG.random.int(0, 50);
 				if(randomNumber == 50)
 				{
@@ -100,60 +94,21 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
-		add(bgFade);
+		add(bgFade);	
 
-		if(PlayState.SONG.song.toLowerCase()=='senpai' || PlayState.SONG.song.toLowerCase()=='roses' || PlayState.SONG.song.toLowerCase()=='thorns')
-		{
-			new FlxTimer().start(0.83, function(tmr:FlxTimer)
-				{
-					bgFade.alpha += (1 / 5) * 0.7;
-					if (bgFade.alpha > 0.7)
-						bgFade.alpha = 0.7;
-				}, 5);
-		}
-		else
-		{
-			FlxTween.tween(bgFade, {alpha: 0.7}, 4.15);
-		}
-		switch (PlayState.SONG.song.toLowerCase())
-		{
-			case 'senpai' | 'roses' | 'thorns':
-				box = new FlxSprite(-20, 45);
-			default:
-				box = new FlxSprite(-20, 400);
-		}
-
+		FlxTween.tween(bgFade, {alpha: 0.7}, 4.15);
+		
 		blackScreen = new FlxSprite(0, 0).makeGraphic(5000, 5000, FlxColor.BLACK);
 		blackScreen.screenCenter();
 		blackScreen.alpha = 0;
 		add(blackScreen);
 		
-		var hasDialog = false;
+		var hasDialog = false;		
+		box = new FlxSprite(-20, 400);
+		
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'senpai':
-				hasDialog = false;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
-				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
-				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
-			case 'roses':
-				hasDialog = false;
-				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
-
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-senpaiMad');
-				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
-				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
-
-			case 'thorns':
-				hasDialog = false;
-				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
-				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
-				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
-				
-				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward', 'week6'));
-				face.setGraphicSize(Std.int(face.width * 6));
-				add(face);
-			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'cheating' | 'unfairness' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'old-house' | 'old-insanity' | 'old-blocked' | 'old-corn-theft' | 'old-maze' | 'beta-maze' | 'old-splitathon':
+			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'interdimensional' | 'supernovae' | 'cheating' | 'unfairness' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'old-corn-theft': //ass hole
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('ui/speech_bubble_talking');
 				box.setGraphicSize(Std.int(box.width / textBoxSizeFix));
@@ -175,14 +130,10 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'senpai' | 'roses' | 'thorns':
-				portraitLeftCharacter = 'senpai';
-				portraitRightCharacter = 'bfPixel';
-				
-			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'old-house' | 'old-insanity':
+			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'interdimensional':
 				portraitLeftCharacter = 'dave';
 				
-			case 'blocked' | 'corn-theft' | 'maze' | 'supernovae' | 'glitch' | 'splitathon' | 'cheating' | 'unfairness' | 'old-blocked' | 'old-maze' | 'old-corn-theft' | 'beta-maze' | 'old-splitathon':
+			case 'blocked' | 'corn-theft' | 'maze' | 'supernovae' | 'glitch' | 'splitathon' | 'cheating' | 'unfairness' | 'old-corn-theft':
 				portraitLeftCharacter = 'bambi';
 		}
 
@@ -204,16 +155,6 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'senpai' | 'roses' | 'thorns':
-				portraitLeft.setPosition(-20, 70);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
-				portraitRight.antialiasing = false;
-				portraitLeft.visible = false;
-
-				portraitRight.setPosition(320, 200);
-				portraitRight.visible = true;
-				portraitLeft.antialiasing = false;
-
 			default:
 				portraitLeft.setPosition(276.95, 170);
 				portraitLeft.visible = true;
@@ -231,12 +172,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'senpai' | 'roses' | 'thorns':
-				handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
-				handSelect.setGraphicSize(Std.int(handSelect.width * 6));
-				handSelect.updateHitbox();
-				add(handSelect);
-			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness':
+			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness' | 'interdimensional':
 				dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
 				dropText.font = 'Comic Sans MS Bold';
 				dropText.color = 0xFFFFFFFF;
@@ -273,16 +209,6 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			curshader.shader.uTime.value[0] += elapsed;
 		}
-		// HARD CODING CUZ IM STUPDI
-		if (PlayState.SONG.song.toLowerCase() == 'roses')
-			portraitLeft.visible = false;
-		if (PlayState.SONG.song.toLowerCase() == 'thorns')
-		{
-			portraitLeft.color = FlxColor.BLACK;
-			swagDialogue.color = FlxColor.WHITE;
-			dropText.color = FlxColor.BLACK;
-		}
-
 		dropText.text = swagDialogue.text;
 
 		if (box.animation.curAnim != null)
@@ -306,8 +232,6 @@ class DialogueBox extends FlxSpriteGroup
 			
 			switch (PlayState.SONG.song.toLowerCase())
 			{
-				case 'senpai' | 'thorns' | 'roses':
-					FlxG.sound.play(Paths.sound('clickText'), 0.8);
 				default:
 					FlxG.sound.play(Paths.sound('textclickmodern'), 0.8);
 			}
@@ -322,23 +246,13 @@ class DialogueBox extends FlxSpriteGroup
 
 					switch (PlayState.SONG.song.toLowerCase())
 					{
-						case 'senpai' | 'thorns' | 'roses':
-							new FlxTimer().start(0.2, function(tmr:FlxTimer)
-								{
-									box.alpha -= 1 / 5;
-									bgFade.alpha -= 1 / 5 * 0.7;
-									portraitLeft.visible = false;
-									portraitRight.visible = false;
-									swagDialogue.alpha -= 1 / 5;
-									dropText.alpha = swagDialogue.alpha;
-								},5);
-							default:
-								FlxTween.tween(box, {alpha: 0}, 1.2);
-								FlxTween.tween(bgFade, {alpha: 0}, 1.2);
-								FlxTween.tween(portraitLeft, {alpha: 0}, 1.2);
-								FlxTween.tween(portraitRight, {alpha: 0}, 1.2);
-								FlxTween.tween(swagDialogue, {alpha: 0}, 1.2);
-								FlxTween.tween(dropText, {alpha: 0}, 1.2);
+						default:
+							FlxTween.tween(box, {alpha: 0}, 1.2);
+							FlxTween.tween(bgFade, {alpha: 0}, 1.2);
+							FlxTween.tween(portraitLeft, {alpha: 0}, 1.2);
+							FlxTween.tween(portraitRight, {alpha: 0}, 1.2);
+							FlxTween.tween(swagDialogue, {alpha: 0}, 1.2);
+							FlxTween.tween(dropText, {alpha: 0}, 1.2);
 					}
 
 					new FlxTimer().start(1.2, function(tmr:FlxTimer)
@@ -464,7 +378,7 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/dave_insanity';
 						portrait.portraitPrefix = 'dave insanity portrait';
 
-					case 'furiosity' | 'polygonized':
+					case 'furiosity' | 'polygonized' | 'interdimensional':
 						portrait.portraitPath = 'dialogue/dave_furiosity';
 						portrait.portraitPrefix = 'dave furiosity portrait';
 
@@ -476,7 +390,7 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/dave_splitathon';
 						portrait.portraitPrefix = 'dave splitathon portrait';
 
-					case 'old-house' | 'old-insanity' | 'old-blocked' | 'old-corn-theft' | 'old-maze' | 'old-splitathon' | 'supernovae' | 'glitch' | 'vs-dave-thanksgiving':
+					case 'old-corn-theft' | 'supernovae' | 'glitch' | 'vs-dave-thanksgiving':
 						portrait.portraitPath = 'dialogue/old_dave_portrait';
 						portrait.portraitPrefix = 'dave Portrait ';
 
@@ -487,9 +401,6 @@ class DialogueBox extends FlxSpriteGroup
 			case 'insanityEndDave':
 				switch(PlayState.SONG.song.toLowerCase())
 				{
-					case 'old-insanity':
-						portrait.portraitPath = 'dialogue/old_dave_portrait';
-						portrait.portraitPrefix = 'dave Portrait ';
 					default:
 						portrait.portraitPath = 'dialogue/dave_pre-furiosity';
 						portrait.portraitPrefix = 'dave pre-furiosity portrait';
@@ -497,13 +408,13 @@ class DialogueBox extends FlxSpriteGroup
 			case 'bambi':
 				switch (PlayState.SONG.song.toLowerCase())
 				{
-					case 'old-blocked' | 'old-corn-theft' | 'old-maze' | 'old-splitathon':
+					case 'old-corn-theft':
 						portrait.portraitPath = 'dialogue/oldFarmBambiPortrait';
 						portrait.portraitPrefix = 'bambienter';
 					case 'corn-theft':
 						portrait.portraitPath = 'dialogue/bambi_corntheft';
 						portrait.portraitPrefix = 'bambi corntheft portrait';
-					case 'maze' | 'beta-maze':
+					case 'maze':
 						portrait.portraitPath = 'dialogue/bambi_maze';
 						portrait.portraitPrefix = 'bambi maze portrait';
 					case 'supernovae' | 'glitch' | 'vs-dave-thanksgiving':
@@ -522,25 +433,17 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/bambi_blocked';
 						portrait.portraitPrefix = 'bambi blocked portrait';
 				}
-			case 'senpai':
-				portrait.portraitPath = 'weeb/senpaiPortrait';
-				portrait.portraitPrefix = 'Senpai Portrait Enter';
-				portrait.portraitLibraryPath = 'week6';
-			case 'bfPixel':
-				portrait.portraitPath = 'weeb/bfPortrait';
-				portrait.portraitPrefix = 'Boyfriend portrait enter';
-				portrait.portraitLibraryPath = 'week6';
-				portrait.left = false;
+
 			case 'bf':
 				switch (PlayState.SONG.song.toLowerCase())
 				{
-					case 'blocked' | 'maze' | 'old-blocked' | 'old-maze' | 'beta-maze':
+					case 'blocked' | 'maze':
 						portrait.portraitPath = 'dialogue/bf_blocked_maze';
 						portrait.portraitPrefix = 'bf blocked & maze portrait';
 					case 'furiosity' | 'polygonized' | 'corn-theft' | 'cheating' | 'unfairness' | 'supernovae' | 'glitch' | 'old-corn-theft' | 'vs-dave-thanksgiving':
 						portrait.portraitPath = 'dialogue/bf_furiosity_corntheft';
 						portrait.portraitPrefix = 'bf furiosity & corntheft portrait';
-					case 'insanity' | 'splitathon' | 'old-insanity' | 'old-splitathon':
+					case 'insanity' | 'splitathon':
 						portrait.portraitPath = 'dialogue/bf_insanity_splitathon';
 						portrait.portraitPrefix = 'bf insanity & splitathon portrait';
 					default:
@@ -551,13 +454,13 @@ class DialogueBox extends FlxSpriteGroup
 			case 'gf':
 				switch (PlayState.SONG.song.toLowerCase())
 				{
-					case 'blocked' | 'old-blocked':
+					case 'blocked':
 						portrait.portraitPath = 'dialogue/gf_blocked';
 						portrait.portraitPrefix = 'gf blocked portrait';
 					case 'corn-theft' | 'cheating' | 'unfairness' | 'old-corn-theft' | 'vs-dave-thanksgiving':
 						portrait.portraitPath = 'dialogue/gf_corntheft';
 						portrait.portraitPrefix = 'gf corntheft portrait';
-					case 'maze' | 'old-maze' | 'beta-maze':
+					case 'maze':
 						portrait.portraitPath = 'dialogue/gf_maze';
 						portrait.portraitPrefix = 'gf maze portrait';
 					default:

@@ -20,9 +20,6 @@ class SaveDataHandler
 		if (FlxG.save.data.freeplayCuts == null)
 			FlxG.save.data.freeplayCuts = false;
 
-		if (FlxG.save.data.accuracyDisplay == null)
-			FlxG.save.data.accuracyDisplay = true;
-
 		if (FlxG.save.data.eyesores == null)
 			FlxG.save.data.eyesores = true;
 
@@ -34,5 +31,11 @@ class SaveDataHandler
 		
 		if (FlxG.save.data.newInput == null && FlxG.save.data.lastversion == null)
 			FlxG.save.data.lastversion = "beta2";
+		if (FlxG.save.data.language == null)
+		{
+			FlxG.save.data.language = 'English';
+		}
+		if (FlxG.save.data.songPosition == null)
+			FlxG.save.data.songPosition = true;
     }
 }

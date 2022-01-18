@@ -153,7 +153,6 @@ class Note extends FlxSprite
 				}
 				flipY = (Math.round(Math.random()) == 0); //fuck you
 				flipX = (Math.round(Math.random()) == 1);
-
 			default:
 				switch (noteData)
 				{
