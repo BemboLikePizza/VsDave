@@ -410,7 +410,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			
 
-			case 'unfairness':
+			case 'unfair-bambi':
 				// BAMBI SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('bambi/unfair_bambi', 'shared');
 				frames = tex;
@@ -466,23 +466,6 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 	
 				flipX = true;
-				
-			case 'bambi-farmer-beta':
-				frames = Paths.getSparrowAtlas('bambi/bamber_farm_beta_man', 'shared');
-				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
-
-				addOffset('idle');
-				addOffset("singUP", -2, 49);
-				addOffset("singRIGHT", -66, 13);
-				addOffset("singLEFT", 2, -4);
-				addOffset("singDOWN", -14, -23);
-
-				playAnim('idle');
-
 			case 'tristan':
 				var tex = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
 				frames = tex;

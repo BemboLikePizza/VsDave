@@ -397,8 +397,9 @@ class CharacterSelectState extends MusicBeatState
 		currentSelectedCharacter = characters[current];
 		characterText.text = currentSelectedCharacter.forms[curForm].polishedName;
 		char.destroy();
-		char = new Boyfriend(FlxG.width / 2, 450, currentSelectedCharacter.forms[curForm].name);
+		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, currentSelectedCharacter.forms[curForm].name);
 		char.screenCenter();
+		char.y = 450;
 
 		switch (char.curCharacter)
 		{
@@ -419,7 +420,7 @@ class CharacterSelectState extends MusicBeatState
 			case 'bambi' | 'bambi-old':
 				char.y = 100 + 400;
 				char.y -= 75;
-			case 'bambi-new' | 'bambi-farmer-beta':
+			case 'bambi-new':
 				char.y = 100 + 450;
 				char.y -= 75;
 			case 'bambi-splitathon':

@@ -238,7 +238,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave' | 'dave-angey':
 				iconRPC = 'icon_dave';
-			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-farmer-beta' | 'bambi-3d' | 'bambi-unfair':
+			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-3d' | 'bambi-unfair':
 				iconRPC = 'icon_bambi';
 			default:
 				iconRPC = 'icon_none';
@@ -511,7 +511,7 @@ class PlayState extends MusicBeatState
 			case 'bambi' | 'bambi-old':
 				dad.y += 400;
 
-			case 'bambi-new' | 'bambi-farmer-beta':
+			case 'bambi-new':
 				dad.y += 450;
 				dad.x += 150;
 
@@ -559,7 +559,7 @@ class PlayState extends MusicBeatState
 			case 'bambi' | 'bambi-old':
 				boyfriend.y = 100 + 400;
 				boyfriendOldIcon = 'bambi-old';
-			case 'bambi-new' | 'bambi-farmer-beta' | 'bambi-splitathon' | 'bambi-angey':
+			case 'bambi-new' | 'bambi-splitathon' | 'bambi-angey':
 				boyfriend.y = 100 + 450;
 				boyfriendOldIcon = 'bambi-old';
 		}
@@ -639,7 +639,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.songPosition)
 		{
-			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 60 : strumLine.y - 20;
+			var yPos = FlxG.save.data.downscroll ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
 			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
 			songPosBG.screenCenter(X);
@@ -855,12 +855,7 @@ class PlayState extends MusicBeatState
 					bg.visible = false;
 					add(bg);
 					// below code assumes shaders are always enabled which is bad
-					var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
-					testshader.waveAmplitude = 0.1;
-					testshader.waveFrequency = 5;
-					testshader.waveSpeed = 2;
-					bg.shader = testshader.shader;
-					curbg = bg;
+					voidShader(bg);
 				}
 			case 'house-night':
 				defaultCamZoom = 0.9;
@@ -1013,13 +1008,16 @@ class PlayState extends MusicBeatState
 				add(sign);
 
 	
-			case 'red-void' | 'green-void' | 'glitchy-void' | 'exbungo-land' | 'interdimension-void':
+			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
 				defaultCamZoom = 0.7;
 				var bg:FlxSprite = new FlxSprite(-600, -200);
 				bg.active = true;
 	
 				switch (bgName.toLowerCase())
 				{
+					case 'red-void':
+						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
+						curStage = 'daveEvilHouse';
 					case 'green-void':
 						bg.loadGraphic(Paths.image('backgrounds/cheating/cheater'));
 						curStage = 'cheating';
@@ -1032,23 +1030,37 @@ class PlayState extends MusicBeatState
 						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
 						bg.setPosition(-700, -300);
 						curStage = 'interdimension';
-					case 'exbungo-land':
-						bg.loadGraphic(Paths.image('backgrounds/void/Exbongo'));
-						bg.setPosition(-850, -350);
-						curStage = 'kabunga';
+
 				}
 				
 				sprites.add(bg);
 				add(bg);
-				// below code assumes shaders are always enabled which is bad
-				// i wouldnt consider this an eyesore though
-				var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
-				testshader.waveAmplitude = 0.1;
-				testshader.waveFrequency = 5;
-				testshader.waveSpeed = 2;
-				bg.shader = testshader.shader;
-				curbg = bg;
 				
+				voidShader(bg);
+
+			case 'exbungo-land':
+				defaultCamZoom = 0.7;
+				var bg:FlxSprite = new FlxSprite(-850, 350).loadGraphic(Paths.image('backgrounds/void/exbongo/Exbongo'));
+				bg.setPosition(-850, -350);
+				sprites.add(bg);
+				add(bg);
+
+				var circle:FlxSprite = new FlxSprite(100, 300).loadGraphic(Paths.image('backgrounds/void/exbongo/Circle'));
+				circle.antialiasing = true;
+				circle.active = false;
+				sprites.add(circle);	
+				add(circle);
+
+				var place:FlxSprite = new FlxSprite(200, -200).loadGraphic(Paths.image('backgrounds/void/exbongo/Place'));
+				place.antialiasing = true;
+				place.active = false;
+				sprites.add(place);	
+				add(place);
+				
+				voidShader(bg);
+
+				curStage = 'kabunga';
+
 			case 'house-sunset':
 				defaultCamZoom = 0.9;
 				curStage = 'daveHouse_sunset';
@@ -1161,6 +1173,16 @@ class PlayState extends MusicBeatState
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
 
+	function voidShader(background:FlxSprite)
+	{
+		var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
+		testshader.waveAmplitude = 0.1;
+		testshader.waveFrequency = 5;
+		testshader.waveSpeed = 2;
+
+		background.shader = testshader.shader;
+		curbg = background;
+	}
 	function startCountdown():Void
 	{
 		inCutscene = false;
@@ -3171,9 +3193,7 @@ class PlayState extends MusicBeatState
 			case 'unfairness':
 				switch(curStep)
 				{
-					case 2560:
-						// TODO: add ui fadeout
-					
+					case 2560:					
 						dadStrums.forEach(function(spr:FlxSprite)
 						{
 							FlxTween.tween(spr, {alpha: 0}, 6);
@@ -3187,6 +3207,7 @@ class PlayState extends MusicBeatState
 					case 3072:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						dad.visible = false;
+						iconP2.visible = false;
 				}	
 			case 'furiosity':
 				switch (curStep)
