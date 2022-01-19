@@ -128,14 +128,22 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
       ]),
+                  new Person("Golden Apple Team", CreditsType.Contributor, "Made a great fanmade mod, huge motivator for 3.0",
+      [
+         new Social('gamebanana', 'https://gamebanana.com/mods/343129')
+      ]),
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, YAFN help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
       ]),
-      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie song, Beta tester",
+      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie composer, Beta tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
+      ]),
+            new Person("Top 10 Awesome", CreditsType.Contributor, "Overdrive composer, funny guy",
+      [
+         new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
       ]),
       
       new Person("Devianator", CreditsType.BetaTester, "Beta Tester, and helping with Credits icons",
