@@ -692,14 +692,14 @@ class PlayState extends MusicBeatState
 				credits = 'Original Song made by DeadShadow and PixelGH!';
 			case 'mealie':
 				credits = 'Original Song made by Alexander Cooper 19!';
+			case 'overdrive':
+				credits = 'Original Song made by Top Ten Awesome! lol';
 			case 'unfairness':
 				credits = "Ghost tapping is forced off! Screw you!";
 			case 'cheating':
 				credits = 'Screw you!';
 			case 'kabunga':
-				credits = 'នេះគឺជាការសរសេរសម្ងាត់ដែលអ្នកនឹងឃើញនៅក្នុងបទចម្រៀងនេះ។';
-			case 'vs-dave-thanksgiving':
-				credits = 'What the hell!';
+				credits = 'OH MY GOD I JUST DEFLATED';
 			default:
 				credits = '';
 		}

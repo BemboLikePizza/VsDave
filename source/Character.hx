@@ -388,13 +388,13 @@ class Character extends FlxSprite
 	
 			case 'bambi-3d':
 				// BAMBI SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('bambi/characters/bambi_angryboy', 'shared');
+				tex = Paths.getSparrowAtlas('bambi/characters/Cheating', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'DaveAngry idle dance', 24, false);
-				animation.addByPrefix('singUP', 'DaveAngry Sing Note UP', 24, false);
-				animation.addByPrefix('singRIGHT', 'DaveAngry Sing Note RIGHT', 24, false);
-				animation.addByPrefix('singDOWN', 'DaveAngry Sing Note DOWN', 24, false);
-				animation.addByPrefix('singLEFT', 'DaveAngry Sing Note LEFT', 24, false);
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByPrefix('singUP', 'Up', 24, false);
+				animation.addByPrefix('singRIGHT', 'Right', 24, false);
+				animation.addByPrefix('singDOWN', 'Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Left', 24, false);
 		
 				addOffset('idle');
 				addOffset("singUP", 20, -10);
@@ -410,7 +410,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			
 
-			case 'bambi-unfair':
+			case 'unfairness':
 				// BAMBI SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('bambi/unfair_bambi', 'shared');
 				frames = tex;
