@@ -352,6 +352,22 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
+							case 'baldi':
+				frames = Paths.getSparrowAtlas('characters/BaldiInRoof', 'shared');
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+
+				addOffset('idle');
+				addOffset("singLEFT");
+				addOffset("singUP", 23, 36);
+				addOffset("singDOWN", 22, -72);
+				addOffset("singRIGHT", -21, 0);
+
+				playAnim('idle');
+
 			case 'bambi-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Bambi', 'shared');
 				animation.addByPrefix('idle', 'Idle', 24, false);

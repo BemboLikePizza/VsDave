@@ -375,7 +375,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'interdimension-void';
 				case 'bonus-song' | 'glitch':
 					stageCheck = 'house-night';
-				case 'secret' | 'overdrive':
+				case 'secret' | 'overdrive' | 'secret-mod-leak':
 					stageCheck = 'house-sunset';
 				case 'tutorial':
 					stageCheck = 'stage';

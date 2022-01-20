@@ -16,3 +16,4 @@ bambi-unfair
 tristan
 tristan-golden
 exbungo
+baldi
