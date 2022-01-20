@@ -69,65 +69,43 @@ class Note extends FlxSprite
 		this.noteData = noteData;
 
 		var daStage:String = PlayState.curStage;
-		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1) || PlayState.characteroverride == "dave-angey") && musthit)) || ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
-		{
-				frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D');
+		var check3D:Bool = false;
+		var notePathLol:String = '';
+		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+		// god fucking damnit
+		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1) || PlayState.characteroverride == "dave-angey") && musthit)) ||  ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1))))
+			check3D = true;
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
-
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
-
-				setGraphicSize(Std.int(width * 0.7));
-				updateHitbox();
-				antialiasing = true;
-		}
+		
+		
+		if (check3D && (this.strumTime / 50) % 20 > 10)
+			notePathLol = 'notes/NOTE_assets_3D';
+		else if (noteStyle == "phone")
+			notePathLol = 'notes/NOTE_phone'
 		else
-		{
-			switch (daStage)
-			{
-				default:
-				var dumbasspath:String = 'notes/NOTE_assets';
+			notePathLol = 'notes/NOTE_assets';
+		
+		frames = Paths.getSparrowAtlas(notePathLol);
 
-				    switch(noteStyle)
-				    {
-						case 'phone':
-							dumbasspath = 'notes/NOTE_phone';
-						default:
-							dumbasspath = 'notes/NOTE_assets';
-					}
-					frames = Paths.getSparrowAtlas(dumbasspath);
+		animation.addByPrefix('greenScroll', 'green0');
+		animation.addByPrefix('redScroll', 'red0');
+		animation.addByPrefix('blueScroll', 'blue0');
+		animation.addByPrefix('purpleScroll', 'purple0');
 
-					animation.addByPrefix('greenScroll', 'green0');
-					animation.addByPrefix('redScroll', 'red0');
-					animation.addByPrefix('blueScroll', 'blue0');
-					animation.addByPrefix('purpleScroll', 'purple0');
+		animation.addByPrefix('purpleholdend', 'pruple end hold');
+		animation.addByPrefix('greenholdend', 'green hold end');
+		animation.addByPrefix('redholdend', 'red hold end');
+		animation.addByPrefix('blueholdend', 'blue hold end');
 
-					animation.addByPrefix('purpleholdend', 'pruple end hold');
-					animation.addByPrefix('greenholdend', 'green hold end');
-					animation.addByPrefix('redholdend', 'red hold end');
-					animation.addByPrefix('blueholdend', 'blue hold end');
+		animation.addByPrefix('purplehold', 'purple hold piece');
+		animation.addByPrefix('greenhold', 'green hold piece');
+		animation.addByPrefix('redhold', 'red hold piece');
+		animation.addByPrefix('bluehold', 'blue hold piece');
 
-					animation.addByPrefix('purplehold', 'purple hold piece');
-					animation.addByPrefix('greenhold', 'green hold piece');
-					animation.addByPrefix('redhold', 'red hold piece');
-					animation.addByPrefix('bluehold', 'blue hold piece');
-
-					setGraphicSize(Std.int(width * 0.7));
-					updateHitbox();
-					antialiasing = true;
-			}
-		}
+		setGraphicSize(Std.int(width * noteSize));
+		updateHitbox();
+		antialiasing = true;
 		
 		switch (PlayState.SONG.song.toLowerCase())
 		{
