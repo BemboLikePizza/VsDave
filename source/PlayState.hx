@@ -511,13 +511,8 @@ class PlayState extends MusicBeatState
 			case 'bambi' | 'bambi-old':
 				dad.y += 400;
 
-<<<<<<< Updated upstream
 			case 'bambi-new':
-				dad.y += 450;
-=======
-			case 'bambi-new' | 'bambi-farmer-beta':
 				dad.y += 370;
->>>>>>> Stashed changes
 				dad.x += 150;
 
 			case 'bambi-splitathon':
@@ -597,8 +592,8 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'farm' | 'farm-night' | 'farm-sunset':
-				remove(bgSprites[7]);
-				add(bgSprites[7]); // Sign is in front of Bambi
+				remove(backgroundSprites.members[7]);
+				add(backgroundSprites.members[7]); // Sign is in front of Bambi
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness")

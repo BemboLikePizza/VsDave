@@ -340,9 +340,14 @@ class TitleState extends MusicBeatState
 		{
 			case 2:
 				createCoolText(['Created by:']);
-				addMoreText('MoldyGH\nMissingTextureMan101\nRapparep LOL');
+
+				// hope this fixes overlap bug
+				addMoreText('MoldyGH');
+				addMoreText('MissingTextureMan101');
+				addMoreText('Rapparep LOL');
 			case 3:
-				addMoreText('TheBuilderXD\nCuzsie\nErizur\nT5mpler');
+				addMoreText('TheBuilderXD, Erizur');
+				addMoreText('T5mpler, Cuzsie');
 			case 4:
 				addMoreText('and our wonderful contributors!');
 			case 5:
