@@ -511,8 +511,13 @@ class PlayState extends MusicBeatState
 			case 'bambi' | 'bambi-old':
 				dad.y += 400;
 
+<<<<<<< Updated upstream
 			case 'bambi-new':
 				dad.y += 450;
+=======
+			case 'bambi-new' | 'bambi-farmer-beta':
+				dad.y += 370;
+>>>>>>> Stashed changes
 				dad.x += 150;
 
 			case 'bambi-splitathon':
@@ -589,10 +594,15 @@ class PlayState extends MusicBeatState
 		add(dadmirror);
 		add(boyfriend);
 
-		if(SONG.song.toLowerCase() == "unfairness")
+		switch (curStage)
 		{
-			health = 2;
+			case 'farm' | 'farm-night' | 'farm-sunset':
+				remove(bgSprites[7]);
+				add(bgSprites[7]); // Sign is in front of Bambi
 		}
+
+		if(SONG.song.toLowerCase() == "unfairness")
+			health = 2;
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
