@@ -419,14 +419,14 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, 10);
 				globaloffset[0] = 150;
 				globaloffset[1] = 450; //this is the y
-				setGraphicSize(Std.int(width / furiosityScale));
+				setGraphicSize(Std.int((width * 1.5) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
 		
 				playAnim('idle');
 			
 
-			case 'unfair-bambi':
+			case 'bambi-unfair':
 				// BAMBI SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('bambi/unfair_bambi', 'shared');
 				frames = tex;

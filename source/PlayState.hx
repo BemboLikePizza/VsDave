@@ -1319,9 +1319,10 @@ class PlayState extends MusicBeatState
 		}
 
 		#if desktop
+		var check:Bool = storyWeek == 4 || SONG.song.toLowerCase() == 'vs-dave-rap' || SONG.song.toLowerCase() == 'overdrive';
 		DiscordClient.changePresence(detailsText
 			+ " "
-			+ SONG.song
+			+ (check ? 'NO LEAKS' : SONG.song)
 			+ " ("
 			+ storyDifficultyText
 			+ ") ",

@@ -36,6 +36,8 @@ class CharacterForm
 {
 	public var name:String;
 	public var polishedName:String;
+	public var positionOffsets:Array<Float> = new Array<Float>();
+
 	public function new(name:String, polishedName:String)
 	{
 		this.name = name;
@@ -403,31 +405,36 @@ class CharacterSelectState extends MusicBeatState
 
 		switch (char.curCharacter)
 		{
-			case 'tristan' | 'tristan-golden':
-				char.y = 100 + 325;
-			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
-				char.y = 100 + 160;
-			case 'dave-old':
-				char.y = 100 + 270;
-			case 'dave-angey':
-				char.y = 100;
-			case 'bambi-3d':
-				char.y = 100 + 350;
-				char.x += 100;
-			case 'bambi-unfair':
-				char.y = 100 + 575;
-				char.x += 100;
+			case 'bf-pixel':
+				char.y -= 50;
+				char.x -= 50;
+			case 'dave' | 'dave-annoyed':
+				char.y = 260;
+			case 'dave-splitathon':
+				char.y = 260;
+				char.x -= 25;
 			case 'bambi' | 'bambi-old':
-				char.y = 100 + 400;
-				char.y -= 75;
+				char.y = 400;
 			case 'bambi-new':
-				char.y = 100 + 450;
-				char.y -= 75;
+				char.y = 400;
 			case 'bambi-splitathon':
-				char.y = 100 + 400;
+				char.y = 475;
+				char.x -= 25;
 			case 'bambi-angey':
-				char.y = 100 + 450;
-				char.y -= 75;
+				char.y = 475;
+			case 'dave-angey':
+				char.y = 150;
+				char.x -= 50;
+			case 'tristan':
+				char.y = 425;
+			case 'tristan-golden':
+				char.y -= 50;
+			case 'bambi-3d':
+				char.y = 550;
+				char.y += 150;
+			case 'bambi-unfair':
+				char.y = 700;
+				char.y += 150;
 		}
 		add(char);
 		funnyIconMan.animation.play(char.curCharacter);

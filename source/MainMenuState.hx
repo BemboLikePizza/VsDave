@@ -69,6 +69,8 @@ class MainMenuState extends MusicBeatState
 		'backgrounds/diamond man',
 		'backgrounds/kiazu',
 		'backgrounds/mamakotomi',
+		'backgrounds/morie',
+		'backgrounds/T5mpler',
 		'backgrounds/mantis',
 		'backgrounds/mepperpint',
 		'backgrounds/morie',
@@ -106,7 +108,7 @@ class MainMenuState extends MusicBeatState
 			
 			if (FlxG.save.data.unlockedcharacters == null)
 			{
-				FlxG.save.data.unlockedcharacters = [true,true,false,false,false,false];
+				CharacterSelectState.reset();
 			}
 	
 			daRealEngineVer = engineVers[FlxG.random.int(0, 2)];

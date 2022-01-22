@@ -106,7 +106,7 @@ class CreditsMenuState extends MusicBeatState
       
       //translators
       
-      new Person("Somf", CreditsType.Dev, "Spanish Translator",
+      new Person("Somf", CreditsType.Translator, "Spanish Translator",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCspbOv2BXbDANpJyjguce2Q'),
       ]),
@@ -128,10 +128,6 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
       ]),
-                  new Person("Golden Apple Team", CreditsType.Contributor, "Made a great fanmade mod, huge motivator for 3.0",
-      [
-         new Social('gamebanana', 'https://gamebanana.com/mods/343129')
-      ]),
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, YAFN help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
@@ -146,13 +142,13 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
       ]),
       
-      new Person("Devianator", CreditsType.BetaTester, "Beta Tester, and helping with Credits icons",
+      new Person("Devianator", CreditsType.Contributor, "Beta Tester, and helping with Credits icons",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCcaYOWO98UIsJ54t_aV6JHw'),
          new Social('twitter', 'https://twitter.com/devianator404')
       ]),
       
-      new Person("sk0rbias", CreditsType.BetaTester, "Credits Menu icons & Beta Tester",
+      new Person("sk0rbias", CreditsType.Contributor, "Credits Menu icons & Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
          new Social('twitter', 'https://twitter.com/sk0rbias')
@@ -278,6 +274,11 @@ class CreditsMenuState extends MusicBeatState
          new Social('discord', 'Vanquiler#3026'),
          new Social('twitch', 'https://www.twitch.tv/vanquiler'),
          new Social('roblox', 'https://www.roblox.com/users/1505830747')
+      ]),
+	  //special thanks
+	  new Person("Golden Apple Team", CreditsType.SpecialThanks, "Made a great fanmade mod, huge motivator for 3.0",
+      [
+         new Social('gamebanana', 'https://gamebanana.com/mods/343129')
       ])
    ];
 
@@ -315,6 +316,7 @@ class CreditsMenuState extends MusicBeatState
       var translators:Array<Person> = new Array<Person>();
       var contributors:Array<Person> = new Array<Person>();
       var betaTesters:Array<Person> = new Array<Person>();
+	  var specialThanks:Array<Person> = new Array<Person>();
 
       for (person in peopleInCredits) 
       {
@@ -324,13 +326,14 @@ class CreditsMenuState extends MusicBeatState
             case Translator: translators.push(person);
             case Contributor: contributors.push(person);
             case BetaTester: betaTesters.push(person);
+			case SpecialThanks: specialThanks.push(person);
          }
       }
 
       for (i in 0...peopleInCredits.length)
       {
          var currentPerson = peopleInCredits[i];
-         if (currentPerson == developers[0] || currentPerson == contributors[0] || currentPerson == betaTesters[0] || currentPerson == translators[0])
+         if (currentPerson == developers[0] || currentPerson == translators[0] || currentPerson == contributors[0] || currentPerson == betaTesters[0] || currentPerson == specialThanks[0])
          {
             var textString:String = '';
             switch (currentPerson.creditsType)
@@ -343,6 +346,8 @@ class CreditsMenuState extends MusicBeatState
                   textString = 'Contributors';
                case BetaTester:
                   textString = 'Beta Testers';
+               case SpecialThanks:
+                  textString = 'Special Thanks';
             }
             var titleText:FlxText = new FlxText(0, 0, 0, textString);
             titleText.setFormat("Comic Sans MS Bold", 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -773,7 +778,7 @@ class SocialButton
 }
 enum CreditsType
 {
-   Dev; Translator; Contributor; BetaTester;
+   Dev; Translator; Contributor; BetaTester; SpecialThanks;
 }
 enum State
 {
