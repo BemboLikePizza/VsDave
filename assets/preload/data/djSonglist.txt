@@ -8,6 +8,9 @@ internal,blocked,bambi,bad
 internal,corn-theft,bambi,bad
 internal,maze,bambi,good
 internal,splitathon,the-duo,good
+internal,shredder,bambi,good
+internal,greetings,tristan,good
+internal,interdimensional,dave-angey,good
 external,a-new-day,dave,good
 external,bambi-speak,bambi,bad
 external,good-ending,bf-old,good
