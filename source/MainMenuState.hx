@@ -64,13 +64,22 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	public static var bgPaths:Array<String> = 
 	[
-		'backgrounds/SUSSUS AMOGUS',
-		'backgrounds/SwagnotrllyTheMod',
-		'backgrounds/Olyantwo',
-		'backgrounds/morie',
-		'backgrounds/mantis',
+		'backgrounds/ArtiztGmer',
+		'backgrounds/DeltaKastel',
+		'backgrounds/diamond man',
+		'backgrounds/kiazu',
 		'backgrounds/mamakotomi',
-		'backgrounds/T5mpler'
+		'backgrounds/mantis',
+		'backgrounds/mepperpint',
+		'backgrounds/morie',
+		'backgrounds/neon',
+		'backgrounds/NotADemon',
+		'backgrounds/Onuko',
+		'backgrounds/ps',
+		'backgrounds/ricee_png',
+		'backgrounds/sk0rbias',
+		'backgrounds/SwagnotrllyTheMod',
+		'backgrounds/zombought'
 	];
 
 	var logoBl:FlxSprite;
