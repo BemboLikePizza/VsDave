@@ -136,7 +136,7 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
       ]),
-      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie composer, Beta tester",
+      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie composer & charter, Main Menu Composer, Beta tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
