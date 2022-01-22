@@ -3245,6 +3245,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	var black:FlxSprite;
 
 	override function stepHit()
 	{
@@ -3255,6 +3256,33 @@ class PlayState extends MusicBeatState
 		// Cool events n stuff
 		switch (SONG.song.toLowerCase())
 		{
+			case 'interdimensional':
+				switch(curStep)
+				{
+					case 378:
+						FlxG.camera.fade(FlxColor.WHITE, 0.3, false);
+					case 384:
+						black = new FlxSprite(0,0).makeGraphic(2560, 1440, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0.4;
+						add(black);
+						defaultCamZoom += 0.3;
+						FlxG.camera.fade(FlxColor.WHITE, 0.5, true);
+					case 512:
+						defaultCamZoom -= 0.1;
+					case 639:
+						defaultCamZoom -= 0.2; // pooop
+						FlxTween.tween(black, {alpha: 0}, 0.5, 
+						{
+							onComplete: function(tween:FlxTween)
+							{
+								remove(black);
+							}
+						});
+			
+				}
+			
+			
 			case 'unfairness':
 				switch(curStep)
 				{
