@@ -139,33 +139,32 @@ class CharacterSelectState extends MusicBeatState
 
 		FlxG.sound.playMusic(Paths.music("goodEnding"), 1, true);
 
-		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night', 'shared'));
+		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
 		bg.antialiasing = true;
-		bg.scrollFactor.set(0.9, 0.9);
+		bg.scrollFactor.set(0.75, 0.75);
 		bg.active = false;
 		add(bg);
-	
-		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/hills_night', 'shared'));
+
+		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/night/hills'));
 		stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
 		stageHills.updateHitbox();
 		stageHills.antialiasing = true;
-		stageHills.scrollFactor.set(1, 1);
+		stageHills.scrollFactor.set(0.8, 0.8);
 		stageHills.active = false;
 		add(stageHills);
-	
-		var gate:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/gate_night', 'shared'));
+
+		var gate:FlxSprite = new FlxSprite(-200, -125).loadGraphic(Paths.image('backgrounds/dave-house/night/gate'));
 		gate.setGraphicSize(Std.int(gate.width * 1.2));
 		gate.updateHitbox();
 		gate.antialiasing = true;
-		gate.scrollFactor.set(0.925, 0.925);
+		gate.scrollFactor.set(0.9, 0.9);
 		gate.active = false;
 		add(gate);
-		
-		var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/grass_night', 'shared'));
+
+		var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/night/grass'));
 		stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
 		stageFront.updateHitbox();
 		stageFront.antialiasing = true;
-		stageFront.scrollFactor.set(0.9, 0.9);
 		stageFront.active = false;
 		add(stageFront);
 
@@ -292,13 +291,13 @@ class CharacterSelectState extends MusicBeatState
 			{
 				switch (i)
 				{
-					case 1:
+					case 0:
 						char.playAnim(char.nativelyPlayable ? 'singLEFT' : 'singRIGHT', true);
-					case 2:
+					case 1:
 						char.playAnim('singDOWN', true);
-					case 3:
+					case 2:
 						char.playAnim('singUP', true);
-					case 4:
+					case 3:
 						char.playAnim(char.nativelyPlayable ? 'singRIGHT' : 'singLEFT', true);
 				}
 			}

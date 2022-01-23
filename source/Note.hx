@@ -44,7 +44,7 @@ class Note extends FlxSprite
 
 	private var InPlayState:Bool = false;
 
-	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'dave-annoyed-3d', 'dave-3d-standing-bruh-what', 'bambi-unfair'];
+	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'dave-annoyed-3d', 'dave-3d-standing-bruh-what', 'bambi-unfair', 'exbungo'];
 
 	public var rating:String = "shit";
 
@@ -79,7 +79,7 @@ class Note extends FlxSprite
 
 		
 		
-		if (check3D && (this.strumTime / 50) % 20 > 10)
+		if (check3D && (this.strumTime / 50) % 20 > 10 || CharactersWith3D.contains(PlayState.SONG.player2))
 			notePathLol = 'notes/NOTE_assets_3D';
 		else if (noteStyle == "phone")
 			notePathLol = 'notes/NOTE_phone'
