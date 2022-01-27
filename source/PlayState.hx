@@ -3553,12 +3553,12 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave-splitathon':
 				{
-					dad.y += 250;
+					dad.y += 175;
 					dad.x += 250;
 				}
 			case 'bambi-splitathon':
 				{
-					dad.x += 100;
+					dad.x += 150;
 					dad.y += 450;
 				}
 		}
@@ -3576,7 +3576,7 @@ class PlayState extends MusicBeatState
 		switch (character)
 		{
 			case 'dave':
-				splitathonCharacterExpression = new Character(-100, 350, 'dave-splitathon');
+				splitathonCharacterExpression = new Character(0, 275, 'dave-splitathon');
 			case 'bambi':
 				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}

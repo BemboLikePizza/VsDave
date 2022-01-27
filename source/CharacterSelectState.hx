@@ -86,7 +86,7 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('bambi', 'Mr. Bambi'),
 			new CharacterForm('bambi-new', 'Bambi (Farmer)'),
 			new CharacterForm('bambi-splitathon', 'Bambi (Splitathon)'),
-			new CharacterForm('bambi-angey', 'Bambi (Splitathon)'),
+			new CharacterForm('bambi-angey', 'Bambie'),
 			new CharacterForm('bambi-old', 'Bambi (Joke)')
 		]),
 		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [
@@ -122,13 +122,12 @@ class CharacterSelectState extends MusicBeatState
 		FlxG.cameras.add(camHUD);
 		FlxCamera.defaultCameras = [camGame];
 
-		currentSelectedCharacter = characters[current];
-
-		var testLock:Array<Bool> = FlxG.save.data.unlockedcharacters;
-		if (testLock != null)
+		if (FlxG.save.data.charactersUnlocked == null)
 		{
 			reset();
 		}
+		currentSelectedCharacter = characters[current];
+
 		if (isDebug)
 		{
 			for (character in characters)
@@ -376,18 +375,18 @@ class CharacterSelectState extends MusicBeatState
 	}
 	public static function unlockCharacter(character:String)
 	{
-		if (!FlxG.save.data.unlockedcharacters.push(character))
+		if (!FlxG.save.data.charactersUnlocked.contains(character))
 		{
-			FlxG.save.data.unlockedcharacters.push(character);
+			FlxG.save.data.charactersUnlocked.push(character);
 		}
 	}
 	public static function isLocked(character:String):Bool
 	{
-		return !FlxG.save.data.unlockedcharacters.contains(character);
+		return !FlxG.save.data.charactersUnlocked.contains(character);
 	}
 	public static function reset()
 	{
-		FlxG.save.data.unlockedcharacters = new Array<String>();
+		FlxG.save.data.charactersUnlocked = new Array<String>();
 		unlockCharacter('bf');
 		FlxG.save.flush();
 	}

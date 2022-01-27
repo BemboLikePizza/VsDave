@@ -44,7 +44,7 @@ class Note extends FlxSprite
 
 	private var InPlayState:Bool = false;
 
-	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'dave-annoyed-3d', 'dave-3d-standing-bruh-what', 'bambi-unfair', 'exbungo'];
+	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo'];
 
 	public var rating:String = "shit";
 
@@ -73,8 +73,7 @@ class Note extends FlxSprite
 		var notePathLol:String = '';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 		
-		if (musthit && CharactersWith3D.contains(PlayState.SONG.player2) || (CharactersWith3D.contains(PlayState.SONG.player1) 
-			|| CharactersWith3D.contains(PlayState.characteroverride) && !musthit) || (!musthit && this.strumTime / 50 % 20 > 10))
+		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1) || PlayState.characteroverride == "dave-angey") && musthit)) || ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
 			notePathLol = 'notes/NOTE_assets_3D';
 		else if (noteStyle == "phone")
 			notePathLol = 'notes/NOTE_phone'
