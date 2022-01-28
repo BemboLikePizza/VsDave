@@ -577,8 +577,22 @@ class PlayState extends MusicBeatState
 			gf.color = sunsetColor;
 			boyfriend.color = sunsetColor;
 		}
+		
+		//reponsitioning characters
 		switch (curStage)
 		{
+			case 'house' | 'house-night' | 'house-sunset':
+				switch (formoverride)
+				{
+					case 'bambi':
+						boyfriend.y -= 50;
+				}
+			case 'red-void' | 'kabunga' | 'interdimension-void':
+				switch (formoverride)
+				{
+					case 'bambi':
+						boyfriend.y -= 100;
+				}
 			case 'farm' | 'farm-night' | 'farm-sunset':
 				dad.y -= 75;
 		}

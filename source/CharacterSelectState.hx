@@ -428,11 +428,11 @@ class CharacterSelectState extends MusicBeatState
 			case 'tristan-golden':
 				char.y -= 50;
 			case 'bambi-3d':
-				char.y = 550;
-				char.y += 150;
+				char.x -= 150;
+				char.y = 600;
 			case 'bambi-unfair':
-				char.y = 700;
-				char.y += 150;
+				char.x -= 150;
+				char.y = 600;
 		}
 		add(char);
 		funnyIconMan.animation.play(char.curCharacter);
