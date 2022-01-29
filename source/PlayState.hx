@@ -89,6 +89,7 @@ class PlayState extends MusicBeatState
 
 	public var curbg:FlxSprite;
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
+	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -790,6 +791,12 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		kadeEngineWatermark.cameras = [camHUD];
+		lazychartshader.waveAmplitude = 0.1;
+		lazychartshader.waveFrequency = 6;
+		lazychartshader.waveSpeed = 1;
+
+		camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
+
 		doof.cameras = [camDialogue];
 
 		// if (SONG.song == 'South')
@@ -1823,6 +1830,7 @@ class PlayState extends MusicBeatState
 			FlxG.camera.shake(0.015, 0.015);
 		}
 		screenshader.shader.uTime.value[0] += elapsed;
+		lazychartshader.shader.uTime.value[0] += elapsed;
 		if (shakeCam && eyesoreson)
 		{
 			screenshader.shader.uampmul.value[0] = 1;
@@ -1831,6 +1839,7 @@ class PlayState extends MusicBeatState
 		{
 			screenshader.shader.uampmul.value[0] -= (elapsed / 2);
 		}
+		lazychartshader.Enabled = SONG.song.toLowerCase() == "kabunga";
 		screenshader.Enabled = shakeCam && eyesoreson;
 
 		if (FlxG.keys.justPressed.NINE)
