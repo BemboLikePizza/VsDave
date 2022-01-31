@@ -70,7 +70,6 @@ class MainMenuState extends MusicBeatState
 		'backgrounds/kiazu',
 		'backgrounds/mamakotomi',
 		'backgrounds/morie',
-		'backgrounds/T5mpler',
 		'backgrounds/mantis',
 		'backgrounds/mepperpint',
 		'backgrounds/morie',

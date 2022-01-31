@@ -36,7 +36,7 @@ class OptionsMenu extends MusicBeatState
 		#if desktop
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
+		var menuBG:FlxSprite = new FlxSprite();
 		controlsStrings = CoolUtil.coolStringFile(
 			"Change Keybinds"
 			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
@@ -47,12 +47,9 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
 			+ "\n" + 'Current Language ' + FlxG.save.data.language
 			);
-		
-
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
-		menuBG.screenCenter();
 		menuBG.antialiasing = true;
 		menuBG.loadGraphic(MainMenuState.randomizeBG());
 		add(menuBG);
@@ -70,7 +67,6 @@ class OptionsMenu extends MusicBeatState
 				grpControls.add(controlLabel);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
-
 
 		versionShit = new FlxText(5, FlxG.height - 18, 0, "Offset (Left, Right): " + FlxG.save.data.offset, 12);
 		versionShit.scrollFactor.set();
