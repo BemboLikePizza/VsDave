@@ -258,6 +258,8 @@ class Alphabet extends FlxSpriteGroup
 			}
 		}
 
+		
+
 		super.update(elapsed);
 	}
 }
