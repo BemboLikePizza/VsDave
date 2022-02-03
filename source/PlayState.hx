@@ -88,7 +88,7 @@ class PlayState extends MusicBeatState
 
 	public static var curmult:Array<Float> = [1, 1, 1, 1];
 
-	public var curbg:FlxSprite;
+	public var curbg:BGSprite;
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public var UsingNewCam:Bool = false;
@@ -882,7 +882,6 @@ class PlayState extends MusicBeatState
 				{
 					var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/void/redsky_insanity'), null, 1, 1, true, true);
 					bg.alpha = 0.75;
-					bg.active = true;
 					bg.visible = false;
 					add(bg);
 					// below code assumes shaders are always enabled which is bad
@@ -962,35 +961,27 @@ class PlayState extends MusicBeatState
 	
 			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
 				defaultCamZoom = 0.7;
-				var path:String = '';
-				var posX:Float = -600;
-				var posY:Float = -200;
-				var size:Float = 1;
 
+				var bg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, true, true);
+				
 				switch (bgName.toLowerCase())
 				{
 					case 'red-void':
-						path = Paths.image('backgrounds/void/redsky', 'shared');
+						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 						curStage = 'daveEvilHouse';
 					case 'green-void':
-						path = Paths.image('backgrounds/cheating/cheater');
+						bg.loadGraphic(Paths.image('backgrounds/cheating/cheater'));
 						curStage = 'cheating';
 					case 'glitchy-void':
-						path = Paths.image('backgrounds/void/scarybg');
-						posX = 0;
-						posY = 200;
-						size = 3;
+						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
+						bg.setPosition(0, 200);
+						bg.setGraphicSize(Std.int(bg.width * 3));
 						curStage = 'unfairness';
 					case 'interdimension-void':
-						path = Paths.image('backgrounds/void/interdimensionVoid');
-						posX = -800;
-						posY = -400;
-						size = 2;
+						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
+						bg.setPosition(-700, -300);
 						curStage = 'interdimension';
 				}
-				var bg:BGSprite = new BGSprite('void', posX, posY, path, null, 1, 1, true, true);
-				bg.setGraphicSize(Std.int(bg.width * size));
-				bg.updateHitbox();
 				sprites.add(bg);
 				add(bg);
 				
@@ -999,7 +990,7 @@ class PlayState extends MusicBeatState
 			case 'exbungo-land':
 				defaultCamZoom = 0.7;
 
-				var bg:BGSprite = new BGSprite('bg', -850, -350, Paths.image('backgrounds/void/exbongo/Exbongo'), null, 1, 1);
+				var bg:BGSprite = new BGSprite('bg', -850, -350, Paths.image('backgrounds/void/exbongo/Exbongo'), null, 1, 1, true, true);
 				sprites.add(bg);
 				add(bg);
 
@@ -1011,7 +1002,7 @@ class PlayState extends MusicBeatState
 				sprites.add(place);	
 				add(place);
 				
-				voidShader(bg);
+				//voidShader(bg);
 
 				curStage = 'kabunga';
 
@@ -1106,14 +1097,15 @@ class PlayState extends MusicBeatState
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
 
-	function voidShader(background:FlxSprite)
+	function voidShader(background:BGSprite)
 	{
 		var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 		testshader.waveAmplitude = 0.1;
 		testshader.waveFrequency = 5;
 		testshader.waveSpeed = 2;
+		
+		background.applyShader(testshader.shader);
 
-		background.shader = testshader.shader;
 		curbg = background;
 	}
 	function startCountdown():Void
@@ -1993,9 +1985,11 @@ class PlayState extends MusicBeatState
 		#if debug
 		if (FlxG.keys.justPressed.C)
 			FlxG.camera.zoom -= 0.25;
+			camHUD.zoom -= 0.25;
 		if (FlxG.keys.justPressed.Z)
 			FlxG.camera.zoom += 0.25;
-
+			camHUD.zoom += 0.25;
+			
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(dad.curCharacter));
 		if (FlxG.keys.justPressed.SIX)
@@ -2250,7 +2244,7 @@ class PlayState extends MusicBeatState
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				var strumliney = daNote.MyStrum != null ? daNote.MyStrum.y : strumLine.y;
-				if ((daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll)) || (daNote.y <= strumliney - 106 && !FlxG.save.data.downscroll))
+				if ((daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll)) || (daNote.y <= strumliney - 106 && (!FlxG.save.data.downscroll)))
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
 					{
