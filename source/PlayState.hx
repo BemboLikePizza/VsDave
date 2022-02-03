@@ -301,7 +301,7 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
-			theFunne = theFunne && SONG.song.toLowerCase() != 'unfairness';
+		theFunne = theFunne && SONG.song.toLowerCase() != 'unfairness' && SONG.song.toLowerCase() != 'exploitation';
 
 		var crazyNumber:Int;
 		crazyNumber = FlxG.random.int(0, 5);
@@ -370,6 +370,8 @@ class PlayState extends MusicBeatState
 				case 'cheating':
 					stageCheck = 'green-void';
 				case 'unfairness':
+					stageCheck = 'glitchy-void';
+				case 'exploitation':
 					stageCheck = 'glitchy-void';
 				case 'kabunga':
 					stageCheck = 'exbungo-land';
@@ -613,7 +615,7 @@ class PlayState extends MusicBeatState
 		}
 		
 
-		if(SONG.song.toLowerCase() == "unfairness")
+		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
 			health = 2;
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
@@ -1519,7 +1521,13 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 		
 					babyArrow.ID = i;
-		
+					
+					if (SONG.song.toLowerCase() == 'exploitation')
+					{
+						babyArrow.x = 0;
+						babyArrow.y = 0;
+					}
+
 					if (player == 1)
 					{
 						playerStrums.add(babyArrow);
@@ -1778,6 +1786,24 @@ class PlayState extends MusicBeatState
 			});
 		}
 
+		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
+		{
+			playerStrums.forEach(function(spr:FlxSprite)
+			{
+				spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+				spr.y += Math.sin(elapsedtime - 1) * ((spr.ID % 2) == 0 ? 1 : -1);
+				spr.y -= Math.sin(elapsedtime) * 1.1;
+				spr.x -= Math.sin(elapsedtime) * 1.5;
+			});
+			dadStrums.forEach(function(spr:FlxSprite)
+			{
+				spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+				spr.y += Math.sin(elapsedtime - 1) * ((spr.ID % 2) == 0 ? 1 : -1);
+				spr.y -= Math.sin(elapsedtime) * 1.1;
+				spr.x += Math.sin(elapsedtime) * 1.5;
+			});
+		}
+
 		var change = FlxG.save.data.downscroll ? 1 : -1;
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
@@ -1785,13 +1811,11 @@ class PlayState extends MusicBeatState
 			{
 				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * change) * 300);
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * change) * 300);
-				spr.angle = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
 			});
 			dadStrums.forEach(function(spr:FlxSprite)
 			{
 				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID )) * 2 * change) * 300);
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2 * change) * 300);
-				spr.angle = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
 			});
 		}
 
@@ -2159,7 +2183,7 @@ class PlayState extends MusicBeatState
 
 		if (unspawnNotes[0] != null)
 		{
-			var thing:Int = (SONG.song.toLowerCase() == 'unfairness' ? 15000 : 1500);
+			var thing:Int = (SONG.song.toLowerCase() == 'unfairness' || PlayState.SONG.song.toLowerCase() == 'exploitation' ? 15000 : 1500);
 
 			if (unspawnNotes[0].strumTime - Conductor.songPosition < thing)
 			{
@@ -2274,7 +2298,7 @@ class PlayState extends MusicBeatState
 				var change = FlxG.save.data.downscroll ? -1 : 1;
 				switch (SONG.song.toLowerCase())
 				{
-					case 'unfairness':
+					case 'unfairness' | 'exploitation':
 						if (daNote.MyStrum != null)
 							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 
