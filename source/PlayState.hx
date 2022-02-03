@@ -1117,7 +1117,10 @@ class PlayState extends MusicBeatState
 		sign.scrollFactor.set(1, 1);
 		sign.active = false;
 		sign.color = getBackgroundColor();
-		backgroundSprites.add(sign);
+		if (removeSign)
+		{
+			backgroundSprites.add(sign);
+		}
 		return sign;
 	}
 
