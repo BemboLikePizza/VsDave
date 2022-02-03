@@ -1722,11 +1722,13 @@ class PlayState extends MusicBeatState
 			{
 				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * change) * 300);
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * change) * 300);
+				spr.angle = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
 			});
 			dadStrums.forEach(function(spr:FlxSprite)
 			{
 				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID )) * 2 * change) * 300);
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2 * change) * 300);
+				spr.angle = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
 			});
 		}
 
@@ -1758,9 +1760,7 @@ class PlayState extends MusicBeatState
 			for (tween in tweenList)
 			{
 				if (tween.active && !tween.finished)
-				{
 					tween.percent = FlxG.sound.music.time / tweenTime;
-				}
 			}
 		}
 
@@ -1770,17 +1770,13 @@ class PlayState extends MusicBeatState
 			// var shad = cast(FlxG.camera.screen.shader,Shaders.PulseShader);
 			FlxG.camera.shake(0.015, 0.015);
 		}
+
 		screenshader.shader.uTime.value[0] += elapsed;
-		lazychartshader.shader.uTime.value[0] += elapsed;
 		if (shakeCam && eyesoreson)
-		{
 			screenshader.shader.uampmul.value[0] = 1;
-		}
+
 		else
-		{
 			screenshader.shader.uampmul.value[0] -= (elapsed / 2);
-		}
-		lazychartshader.Enabled = SONG.song.toLowerCase() == "kabunga";
 		screenshader.Enabled = shakeCam && eyesoreson;
 
 		if (FlxG.keys.justPressed.NINE)
