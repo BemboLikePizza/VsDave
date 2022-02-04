@@ -428,11 +428,11 @@ class CharacterSelectState extends MusicBeatState
 			case 'tristan-golden':
 				char.y -= 50;
 			case 'bambi-3d':
-				char.x -= 150;
+				char.x += 250;
 				char.y = 600;
 			case 'bambi-unfair':
-				char.x -= 150;
-				char.y = 600;
+				char.x += 200;
+				char.y = 750;
 		}
 		add(char);
 		funnyIconMan.animation.play(char.curCharacter);
@@ -459,7 +459,7 @@ class CharacterSelectState extends MusicBeatState
 	
 	public function endIt(e:FlxTimer = null)
 	{
-		PlayState.characteroverride = currentSelectedCharacter.forms[0].name;
+		PlayState.characteroverride = currentSelectedCharacter.name;
 		PlayState.formoverride = currentSelectedCharacter.forms[curForm].name;
 		PlayState.curmult = currentSelectedCharacter.noteMs;
 		LoadingState.loadAndSwitchState(new PlayState());
