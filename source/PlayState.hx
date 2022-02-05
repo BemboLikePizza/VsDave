@@ -854,8 +854,8 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == 'kabunga')
 		{
-			lazychartshader.waveAmplitude = 0.1;
-			lazychartshader.waveFrequency = 6;
+			lazychartshader.waveAmplitude = 0.03;
+			lazychartshader.waveFrequency = 5;
 			lazychartshader.waveSpeed = 1;
 	
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
@@ -2301,20 +2301,24 @@ class PlayState extends MusicBeatState
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				var strumliney = daNote.MyStrum != null ? daNote.MyStrum.y : strumLine.y;
-				if ((daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll)) || (daNote.y <= strumliney - 106 && (!FlxG.save.data.downscroll)))
+				if (daNote.wasGoodHit && daNote.isSustainNote && Conductor.songPosition >= (daNote.strumTime + 10))
 				{
-					if (daNote.isSustainNote && daNote.wasGoodHit)
-					{
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
-					}
-					else
-					{
-						if(daNote.mustPress && daNote.finishedGenerating && !daNote.wasGoodHit) //to compensate for lag
-							noteMiss(daNote.noteData);
-							vocals.volume = 0;
-					}
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+
+					daNote.active = false;
+					daNote.visible = false;
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+				}
+
+				if ((!daNote.wasGoodHit) && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (Conductor.crochet))
+				{
+					noteMiss(daNote.noteData);
+					vocals.volume = 0;
+
 
 					daNote.active = false;
 					daNote.visible = false;
