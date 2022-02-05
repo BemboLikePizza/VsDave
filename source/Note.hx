@@ -73,7 +73,7 @@ class Note extends FlxSprite
 		var notePathLol:String = '';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 		
-		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1) || PlayState.characteroverride == "dave-angey") && musthit)) || ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
+		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1) || CharactersWith3D.contains(PlayState.characteroverride) || CharactersWith3D.contains(PlayState.formoverride)) && musthit)) || ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
 			notePathLol = 'notes/NOTE_assets_3D';
 		else if (noteStyle == "phone")
 			notePathLol = 'notes/NOTE_phone'

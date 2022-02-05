@@ -610,7 +610,7 @@ class PlayState extends MusicBeatState
 						boyfriend.y -= 50;
 					case 'bambi-3d':
 						boyfriend.y += 50;
-					case 'bambi-3d' | 'bambi-unfair':
+					case 'bambi-unfair':
 						boyfriend.y += 50;	
 				}
 				
@@ -628,8 +628,8 @@ class PlayState extends MusicBeatState
 					case 'dave' | 'dave-insanity' | 'dave-splitathon':
 						boyfriend.y += 100;
 					case 'bambi-new':
-						boyfriend.y -= 50;
-					case 'bambi' | 'bambi-new' | 'bambi-splitathon' | 'bambi-angey':
+						boyfriend.y -= 100;
+					case 'bambi' | 'bambi-splitathon' | 'bambi-angey':
 						boyfriend.y -= 100;
 					case 'bambi-old':
 						boyfriend.y -= 150;
@@ -642,7 +642,7 @@ class PlayState extends MusicBeatState
 				switch (formoverride)
 				{
 					case 'dave-angey':
-						boyfriend.y -= 550;
+						boyfriend.y -= 50;
 					case 'bambi-new':
 						boyfriend.y -= 100;
 					case 'bambi-splitathon':
@@ -1809,30 +1809,6 @@ class PlayState extends MusicBeatState
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2 * change) * 300);
 			});
 		}
-
-		if (SONG.song.toLowerCase() == 'vs-dave-thanksgiving' && !inCutscene) // the thanksgiving
-		{
-			playerStrums.forEach(function(spr:FlxSprite)
-			{
-				spr.x = ((FlxG.width / 5) - (spr.width / 2)) + (Math.sin(elapsedtime + (spr.ID)) * 300);
-				spr.y = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (spr.ID)) * 300);
-				spr.angle = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (spr.ID)) * 300);
-				spr.width = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (spr.ID)) * 300);
-			});
-			dadStrums.forEach(function(spr:FlxSprite)
-			{
-				spr.x = ((FlxG.width / 2) - (spr.width / 5)) + (Math.sin((elapsedtime + (spr.ID )) * 2) * 300);
-				spr.y = ((FlxG.height / 2) - (spr.height / 5)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
-				spr.angle = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (spr.ID)) * 300);
-				spr.width = ((FlxG.height / 5) - (spr.height / 2)) + (Math.cos(elapsedtime + (spr.ID)) * 300);
-			});
-
-			dad.angle = ((FlxG.height / 5) - (dad.height / 2)) + (Math.cos(elapsedtime + (1)) * 300);
-			boyfriend.angle = ((FlxG.height / 5) - (boyfriend.height / 2)) + (Math.cos(elapsedtime + (1)) * 300);
-			gf.angle = ((FlxG.height / 5) - (gf.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
-			
-			healthBarBG.angle = ((FlxG.height / 5) - (healthBarBG.height / 2)) + (Math.cos(elapsedtime + (1)) * 100);
-		}
 		if (tweenList != null && tweenList.length != 0)
 		{
 			for (tween in tweenList)
@@ -2300,7 +2276,6 @@ class PlayState extends MusicBeatState
 					default:
 						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
 				}
-				// trace(daNote.y);
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
@@ -2422,7 +2397,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'dave-angey':
 					camFollow.y = boyfriend.getMidpoint().y;
-				case 'bambi-3d' | 'bambi-unfair':
+				case 'bambi-3d':
 					camFollow.x = boyfriend.getMidpoint().x - 375;
 					camFollow.y = boyfriend.getMidpoint().y - 550;
 				case 'bambi-unfair':
@@ -3551,6 +3526,13 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+			if (SONG.song.toLowerCase() == 'exploitation')
+			{
+				//NOTE ONLY WORKS ON WINDOWS
+				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
+				File.saveContent(path, "i found you");
+				Sys.command("start " + path);
+			}
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y,
 			formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
 			#if desktop
