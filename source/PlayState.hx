@@ -1,5 +1,8 @@
 package;
 
+#if desktop
+import sys.io.File;
+#end
 import flixel.system.FlxBGSprite;
 import flixel.tweens.misc.ColorTween;
 import flixel.math.FlxRandom;
@@ -859,6 +862,15 @@ class PlayState extends MusicBeatState
 			lazychartshader.waveAmplitude = 0.03;
 			lazychartshader.waveFrequency = 5;
 			lazychartshader.waveSpeed = 1;
+	
+			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
+		}
+
+		if (SONG.song.toLowerCase() == 'exploitation')
+		{
+			lazychartshader.waveAmplitude = 0.012;
+			lazychartshader.waveFrequency = 4;
+			lazychartshader.waveSpeed = 1.2;
 	
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
@@ -3526,6 +3538,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+			#if desktop
 			if (SONG.song.toLowerCase() == 'exploitation')
 			{
 				//NOTE ONLY WORKS ON WINDOWS
@@ -3533,6 +3546,7 @@ class PlayState extends MusicBeatState
 				File.saveContent(path, "i found you");
 				Sys.command("start " + path);
 			}
+			#end
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y,
 			formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
 			#if desktop
