@@ -103,7 +103,7 @@ class Note extends FlxSprite
 		
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'cheating':
+			case 'cheating' | 'exploitation':
 				switch (noteData)
 				{
 					case 0:
@@ -112,11 +112,11 @@ class Note extends FlxSprite
 						animation.play('purpleScroll');
 					case 1:
 						x += swagWidth * 1;
-						notetolookfor = 1;
+						notetolookfor = 0;
 						animation.play('blueScroll');
 					case 2:
 						x += swagWidth * 0;
-						notetolookfor = 0;
+						notetolookfor = 1;
 						animation.play('greenScroll');
 					case 3:
 						notetolookfor = 2;
@@ -148,7 +148,7 @@ class Note extends FlxSprite
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'cheating' | 'unfairness':
+			case 'cheating' | 'unfairness' | 'exploitation':
 				if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
 				{
 					var state:PlayState = cast(FlxG.state,PlayState);
@@ -177,7 +177,7 @@ class Note extends FlxSprite
 					}
 				}
 		}
-		if (PlayState.SONG.song.toLowerCase() == 'unfairness')
+		if (PlayState.SONG.song.toLowerCase() == 'unfairness' || PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			var rng:FlxRandom = new FlxRandom();
 			if (rng.int(0,120) == 1)
@@ -221,10 +221,7 @@ class Note extends FlxSprite
 			updateHitbox();
 
 			x -= width / 2;
-
-			if (PlayState.curStage.startsWith('school'))
-				x += 30;
-
+			
 			if (prevNote.isSustainNote)
 			{
 				switch (prevNote.noteData)
