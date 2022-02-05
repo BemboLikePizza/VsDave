@@ -2936,7 +2936,6 @@ class PlayState extends MusicBeatState
 				}
 			});
 
-			possibleNotes.sort((a, b) -> Std.int(a.noteData - b.noteData)); //sorting twice is necessary as far as i know
 			haxe.ds.ArraySort.sort(possibleNotes, function(a, b):Int {
 				var notetypecompare:Int = Std.int(a.noteData - b.noteData);
 
