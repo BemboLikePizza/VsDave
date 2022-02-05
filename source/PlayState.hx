@@ -776,18 +776,19 @@ class PlayState extends MusicBeatState
 			case 'overdrive':
 				credits = 'Original Song made by Top Ten Awesome! lol';
 			case 'unfairness':
-				credits = "Ghost tapping is forced off! Screw you!";
+				credits = "Ghost tapping is forced off! FUCK you!";
 			case 'cheating':
-				credits = 'Screw you!';
+				credits = 'Notes are scrambled! FUCK you!';
+			case 'exploitation':
+				credits = 'Notes are scrambled, ghost tapping is off! SUPER FUCK YOU!!!';
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			default:
 				credits = '';
 		}
 
-		var randomThingy:Int = FlxG.random.int(0, 2);
 		var engineName:String = 'stupid';
-		switch(randomThingy)
+		switch(FlxG.random.int(0, 2))
 	    {
 			case 0:
 				engineName = 'Dave ';
@@ -855,8 +856,8 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == 'kabunga')
 		{
-			lazychartshader.waveAmplitude = 0.1;
-			lazychartshader.waveFrequency = 6;
+			lazychartshader.waveAmplitude = 0.03;
+			lazychartshader.waveFrequency = 5;
 			lazychartshader.waveSpeed = 1;
 	
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
@@ -1778,17 +1779,19 @@ class PlayState extends MusicBeatState
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
-				spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y += Math.sin(elapsedtime - 1) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y -= Math.sin(elapsedtime) * 1.1;
-				spr.x -= Math.sin(elapsedtime) * 1.5;
+				spr.x = (FlxG.width / 2) + (Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1)) * (60 * (spr.ID + 1));
+				spr.x += Math.sin(elapsedtime - 1) * 40;
+				spr.y = (FlxG.height / 2) + (Math.sin(elapsedtime - 69.2) * ((spr.ID % 3) == 0 ? 1 : -1)) * (67 * (spr.ID + 1)) - 15;
+				spr.y += Math.cos(elapsedtime - 1) * 40;
+				spr.x -= 80;
 			});
 			dadStrums.forEach(function(spr:FlxSprite)
 			{
-				spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y += Math.sin(elapsedtime - 1) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y -= Math.sin(elapsedtime) * 1.1;
-				spr.x += Math.sin(elapsedtime) * 1.5;
+				spr.x = (FlxG.width / 2) + (Math.cos(elapsedtime - 1) * ((spr.ID % 2) == 0 ? -1 : 1)) * (60 * (spr.ID + 1));
+				spr.x += Math.sin(elapsedtime - 1) * 40;
+				spr.y = (FlxG.height / 2) + (Math.sin(elapsedtime - 63.4) * ((spr.ID % 3) == 0 ? -1 : 1)) * (67 * (spr.ID + 1)) - 15;
+				spr.y += Math.cos(elapsedtime - 1) * 40;
+				spr.x -= 80;
 			});
 		}
 
@@ -1969,13 +1972,16 @@ class PlayState extends MusicBeatState
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				case 'unfairness' | 'kabunga':
+				case 'unfairness':
 					shakeCam = false;
 					screenshader.Enabled = false;
 					FlxG.switchState(new YouCheatedSomeoneIsComing());
 					#if desktop
-					DiscordClient.changePresence("Chart Editor", null, null, true);
+					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
+				case 'kabunga':
+					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
+					System.exit(0);
 				default:
 					shakeCam = false;
 					screenshader.Enabled = false;
@@ -2274,20 +2280,24 @@ class PlayState extends MusicBeatState
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				var strumliney = daNote.MyStrum != null ? daNote.MyStrum.y : strumLine.y;
-				if ((daNote.y >= strumliney + 106 && (FlxG.save.data.downscroll)) || (daNote.y <= strumliney - 106 && (!FlxG.save.data.downscroll)))
+				if (daNote.wasGoodHit && daNote.isSustainNote && Conductor.songPosition >= (daNote.strumTime + 10))
 				{
-					if (daNote.isSustainNote && daNote.wasGoodHit)
-					{
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
-					}
-					else
-					{
-						if(daNote.mustPress && daNote.finishedGenerating && !daNote.wasGoodHit) //to compensate for lag
-							noteMiss(daNote.noteData);
-							vocals.volume = 0;
-					}
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+
+					daNote.active = false;
+					daNote.visible = false;
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+				}
+
+				if ((!daNote.wasGoodHit) && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (Conductor.crochet))
+				{
+					noteMiss(daNote.noteData);
+					vocals.volume = 0;
+
 
 					daNote.active = false;
 					daNote.visible = false;

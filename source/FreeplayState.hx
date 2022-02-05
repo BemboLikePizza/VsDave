@@ -27,7 +27,7 @@ class FreeplayState extends MusicBeatState
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
 
-	var bg:FlxSprite = new FlxSprite();
+	var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
@@ -42,7 +42,7 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var catagories:Array<String> = ["Dave", "Joke", "Extra"];
+	private var Catagories:Array<String> = ["Dave", "Joke", "Extra"];
 
 	private var CurrentPack:Int = 0;
 
@@ -82,28 +82,48 @@ class FreeplayState extends MusicBeatState
 
 		bg.loadGraphic(MainMenuState.randomizeBG());
 		bg.color = 0xFF4965FF;
+		bg.scrollFactor.set();
 		add(bg);
 
-		CurrentSongIcon = new FlxSprite(0,0).loadGraphic(Paths.image('weekIcons/week_icons_' + (catagories[CurrentPack].toLowerCase()), "preload"));
+		for (i in 0...Catagories.length)
+		{
+			var NameAlpha:Alphabet = new Alphabet(40,(FlxG.height / 2) - 282,Catagories[i],true,false);
+			
+			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[i].toLowerCase()), "preload"));
+			CurrentSongIcon.centerOffsets(false);
+			CurrentSongIcon.x = (1000 * i + 1);
+			CurrentSongIcon.y = (FlxG.height / 2) - 256;
+			CurrentSongIcon.antialiasing = true;
+			add(CurrentSongIcon);
+			icons.push(CurrentSongIcon);
 
-		CurrentSongIcon.centerOffsets(false);
-		CurrentSongIcon.x = (FlxG.width / 2) - 256;
-		CurrentSongIcon.y = (FlxG.height / 2) - 256;
-		CurrentSongIcon.antialiasing = true;
+			// NameAlpha.screenCenter(X);
+			Highscore.load();
+			NameAlpha.x = CurrentSongIcon.x;
+			add(NameAlpha);
+			titles.push(NameAlpha);
+		}
 
-		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282, catagories[CurrentPack],true,false);
-		NameAlpha.screenCenter(X);
-		Highscore.load();
-		add(NameAlpha);
+		camFollow = new FlxObject(0, 0, 1, 1);
+		camFollow.setPosition(icons[CurrentPack].x + 256, icons[CurrentPack].y + 256);
 
-		add(CurrentSongIcon);
+		if (prevCamFollow != null)
+		{
+			camFollow = prevCamFollow;
+			prevCamFollow = null;
+		}
+
+		add(camFollow);
+		
+		FlxG.camera.follow(camFollow, LOCKON, 0.04);
+		FlxG.camera.focusOn(camFollow.getPosition());
 
 		super.create();
 	}
 
 	public function LoadProperPack()
 	{
-		switch (catagories[CurrentPack].toLowerCase())
+		switch (Catagories[CurrentPack].toLowerCase())
 		{
 			case 'dave':
 				addWeek(['Tutorial'], 0, ['gf']);	
@@ -114,6 +134,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Shredder', 'Greetings', 'Interdimensional'], 4, ['bambi', 'tristan-festival', 'dave-angey']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
+				addWeek(['Exploitation'], 2, ['exbungo']);
 				if (FlxG.save.data.cheatingFound)
 					addWeek(['Cheating'], 2, ['bambi-3d']);
 				if(FlxG.save.data.unfairnessFound)
@@ -124,7 +145,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Overdrive'], 1, ['dave']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
-				addWeek(['Vs-Dave-Rap'], 2, ['none']);
+				addWeek(['vs-dave-rap'], 2, ['none']);
 		}
 	}
 
@@ -139,10 +160,12 @@ class FreeplayState extends MusicBeatState
 			songText.isMenuItem = true;
 			songText.itemType = 'D-Shape';
 			songText.targetY = i;
+			songText.scrollFactor.set();
 			grpSongs.add(songText);
 
 			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
 			icon.sprTracker = songText;
+			icon.scrollFactor.set();
 
 			iconArray.push(icon);
 			add(icon);
@@ -151,15 +174,18 @@ class FreeplayState extends MusicBeatState
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
 		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
 		scoreText.y = -200;
+		scoreText.scrollFactor.set();
 
 		var scoreBG:FlxSprite = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
 		scoreBG.y = -200;
+		scoreBG.scrollFactor.set();
 		add(scoreBG);
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		diffText.y = -200;
+		diffText.scrollFactor.set();
 
 		add(diffText);
 
@@ -183,18 +209,18 @@ class FreeplayState extends MusicBeatState
 	{
 		CurrentPack += change;
 		if (CurrentPack == -1)
-		{
-			CurrentPack = catagories.length - 1;
-		}
-		if (CurrentPack == catagories.length)
-		{
+			CurrentPack = Catagories.length - 1;
+		
+		if (CurrentPack == Catagories.length)
 			CurrentPack = 0;
-		}
-		NameAlpha.destroy();
-		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282, catagories[CurrentPack],true,false);
+
+		camFollow.setPosition(icons[CurrentPack].x + 256, icons[CurrentPack].y + 256);
+
+		/*NameAlpha.destroy();
+		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282,Catagories[CurrentPack],true,false);
 		NameAlpha.screenCenter(X);
 		add(NameAlpha);
-		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (catagories[CurrentPack].toLowerCase())));
+		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[CurrentPack].toLowerCase())));*/
 	}
 
 	override function beatHit()
@@ -222,7 +248,6 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-
 		if (!InMainFreeplayState) 
 		{
 			if (controls.LEFT_P)
@@ -237,12 +262,15 @@ class FreeplayState extends MusicBeatState
 			{
 				loadingPack = true;
 				LoadProperPack();
-				FlxTween.tween(CurrentSongIcon, {alpha: 0}, 0.3);
-				FlxTween.tween(NameAlpha, {alpha: 0}, 0.3);
+				
+				for (item in icons) { FlxTween.tween(item, {alpha: 0}, 0.3); }
+				for (item in titles) { FlxTween.tween(item, {alpha: 0}, 0.3); }
+
 				new FlxTimer().start(0.5, function(Dumbshit:FlxTimer)
 				{
-					CurrentSongIcon.visible = false;
-					NameAlpha.visible = false;
+					for (item in icons) { item.visible = false; }
+					for (item in titles) { item.visible = false; }
+
 					GoToActualFreeplay();
 					InMainFreeplayState = true;
 					loadingPack = false;
@@ -341,6 +369,8 @@ class FreeplayState extends MusicBeatState
 						diffText.text = 'NORMAL' + " - " + curChar.toUpperCase();
 					case 2:
 						diffText.text = "HARD" + " - " + curChar.toUpperCase();
+					case 3:
+						diffText.text = "LEGACY" + " - " + curChar.toUpperCase();
 				}
 		}
 	}
