@@ -776,9 +776,11 @@ class PlayState extends MusicBeatState
 			case 'overdrive':
 				credits = 'Original Song made by Top Ten Awesome! lol';
 			case 'unfairness':
-				credits = "Ghost tapping is forced off! Screw you!";
+				credits = "Ghost tapping is forced off! FUCK you!";
 			case 'cheating':
-				credits = 'Screw you!';
+				credits = 'Notes are scrambled! FUCK you!';
+			case 'exploitation':
+				credits = 'Notes are scrambled, ghost tapping is off! SUPER FUCK YOU!!!';
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			default:
@@ -1777,17 +1779,19 @@ class PlayState extends MusicBeatState
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
-				spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y += Math.sin(elapsedtime - 1) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y -= Math.sin(elapsedtime) * 1.1;
-				spr.x -= Math.sin(elapsedtime) * 1.5;
+				spr.x = (FlxG.width / 2) + (Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1)) * (60 * (spr.ID + 1));
+				spr.x += Math.sin(elapsedtime - 1) * 40;
+				spr.y = (FlxG.height / 2) + (Math.sin(elapsedtime - 69.2) * ((spr.ID % 3) == 0 ? 1 : -1)) * (67 * (spr.ID + 1)) - 15;
+				spr.y += Math.cos(elapsedtime - 1) * 40;
+				spr.x -= 80;
 			});
 			dadStrums.forEach(function(spr:FlxSprite)
 			{
-				spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y += Math.sin(elapsedtime - 1) * ((spr.ID % 2) == 0 ? 1 : -1);
-				spr.y -= Math.sin(elapsedtime) * 1.1;
-				spr.x += Math.sin(elapsedtime) * 1.5;
+				spr.x = (FlxG.width / 2) + (Math.cos(elapsedtime - 1) * ((spr.ID % 2) == 0 ? -1 : 1)) * (60 * (spr.ID + 1));
+				spr.x += Math.sin(elapsedtime - 1) * 40;
+				spr.y = (FlxG.height / 2) + (Math.sin(elapsedtime - 63.4) * ((spr.ID % 3) == 0 ? -1 : 1)) * (67 * (spr.ID + 1)) - 15;
+				spr.y += Math.cos(elapsedtime - 1) * 40;
+				spr.x -= 80;
 			});
 		}
 
