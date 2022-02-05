@@ -1993,13 +1993,16 @@ class PlayState extends MusicBeatState
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				case 'unfairness' | 'kabunga':
+				case 'unfairness':
 					shakeCam = false;
 					screenshader.Enabled = false;
 					FlxG.switchState(new YouCheatedSomeoneIsComing());
 					#if desktop
-					DiscordClient.changePresence("Chart Editor", null, null, true);
+					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
+				case 'kabunga':
+					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
+					System.exit(0);
 				default:
 					shakeCam = false;
 					screenshader.Enabled = false;
