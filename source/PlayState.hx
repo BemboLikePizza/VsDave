@@ -785,9 +785,8 @@ class PlayState extends MusicBeatState
 				credits = '';
 		}
 
-		var randomThingy:Int = FlxG.random.int(0, 2);
 		var engineName:String = 'stupid';
-		switch(randomThingy)
+		switch(FlxG.random.int(0, 2))
 	    {
 			case 0:
 				engineName = 'Dave ';
