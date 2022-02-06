@@ -113,6 +113,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.screenshader.Enabled = false;
 					PlayState.characteroverride = 'none';
 					PlayState.formoverride = 'none';
+					//FlxG.fullscreen = false;
 					FlxG.switchState(new MainMenuState());
 			}
 		}

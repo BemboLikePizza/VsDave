@@ -2,6 +2,7 @@ package;
 
 #if desktop
 import sys.io.File;
+import openfl.display.BitmapData;
 #end
 import flixel.system.FlxBGSprite;
 import flixel.tweens.misc.ColorTween;
@@ -149,6 +150,8 @@ class PlayState extends MusicBeatState
 	private var totalPlayed:Int = 0;
 	private var ss:Bool = false;
 
+	private var bgsprcur:BGSprite;
+
 	public static var eyesoreson = true;
 
 	private var STUPDVARIABLETHATSHOULDNTBENEEDED:FlxSprite;
@@ -194,6 +197,8 @@ class PlayState extends MusicBeatState
 	public static var daPixelZoom:Float = 6;
 
 	public static var theFunne:Bool = true;
+
+	private var already_forced_screen:Bool = false;
 
 	var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
@@ -375,7 +380,7 @@ class PlayState extends MusicBeatState
 				case 'unfairness':
 					stageCheck = 'glitchy-void';
 				case 'exploitation':
-					stageCheck = 'glitchy-void';
+					stageCheck = 'desktop';
 				case 'kabunga':
 					stageCheck = 'exbungo-land';
 				case 'interdimensional':
@@ -784,6 +789,7 @@ class PlayState extends MusicBeatState
 				credits = 'Notes are scrambled! FUCK you!';
 			case 'exploitation':
 				credits = 'Notes are scrambled, ghost tapping is off! SUPER FUCK YOU!!!';
+				
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			default:
@@ -1032,11 +1038,47 @@ class PlayState extends MusicBeatState
 				add(cornMaze);
 				add(cornMaze2);
 				add(cornBag);
+
+
+			case 'desktop':
+				defaultCamZoom = 0.5;
+				var bgg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
+				bgg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
+				bgg.setPosition(0, 200);
+				bgg.setGraphicSize(Std.int(bgg.width * 3));
+				bgg.scrollFactor.set();
+				sprites.add(bgg);
+				add(bgg);
+				
+				voidShader(bgg);
+				#if desktop
+					var path = Sys.programPath();
+					path = path.substr(0,path.length - 10);
+					var exe_path:String = "\"" + path + Paths.executable("GetThisFuckersBGYo") + "\"";
+					Sys.command(exe_path); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
+					Sys.sleep(1);
+					var foundyou = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
+					var bytes = sys.io.File.getBytes(foundyou);
+					var bg:BGSprite = new BGSprite('desktop', 0, 0, '', null, 1, 1, true, true);
+					var data:openfl.display.BitmapData = openfl.display.BitmapData.fromBytes(bytes);
+					var graphic:flixel.graphics.FlxGraphic = flixel.graphics.FlxGraphic.fromBitmapData(data);
+					bg.loadGraphic(graphic);
+					bg.setGraphicSize(1920 * 3,1080 * 3);
+					bg.updateHitbox();
+					bg.x = 400;
+					bg.y = 130;
+					bg.x += -bg.width / 2;
+					bg.y += (-bg.height / 2) - (bg.height / 4);
+					sprites.add(bg);
+					add(bg);
+					bgsprcur = bg;
+				#end
 	
 			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
 				defaultCamZoom = 0.7;
 
-				var bg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, true, true);
+				var bg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
+
 				
 				switch (bgName.toLowerCase())
 				{
@@ -1060,7 +1102,8 @@ class PlayState extends MusicBeatState
 				add(bg);
 				
 				voidShader(bg);
-
+			
+			
 			case 'exbungo-land':
 				defaultCamZoom = 0.7;
 
@@ -1207,6 +1250,14 @@ class PlayState extends MusicBeatState
 			var introAlts:Array<String> = introAssets.get('default');
 			var altSuffix:String = "";
 
+			var doing_funny:Bool = true;
+			if (SONG.song.toLowerCase() == "exploitation")
+			{
+				doing_funny = false;
+				FlxG.camera.zoom = 0.2;
+				camFollow.setPosition(bgsprcur.x + (bgsprcur.width / 2),bgsprcur.y + (bgsprcur.height / 2));
+			}
+
 			for (value in introAssets.keys())
 			{
 				if (value == curStage)
@@ -1220,8 +1271,11 @@ class PlayState extends MusicBeatState
 			{
 				case 0:
 					FlxG.sound.play(Paths.sound('intro3'), 0.6);
-					focusOnDadGlobal = false;
-					ZoomCam(false);
+					if (doing_funny)
+					{
+						focusOnDadGlobal = false;
+						ZoomCam(false);
+					}
 				case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
@@ -1237,8 +1291,11 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('intro2'), 0.6);
-					focusOnDadGlobal = true;
-					ZoomCam(true);
+					if (doing_funny)
+					{
+						focusOnDadGlobal = true;
+						ZoomCam(true);
+					}
 				case 2:
 					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					set.scrollFactor.set();
@@ -1253,8 +1310,11 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('intro1'), 0.6);
-					focusOnDadGlobal = false;
-					ZoomCam(false);
+					if (doing_funny)
+					{
+						focusOnDadGlobal = false;
+						ZoomCam(false);
+					}
 				case 3:
 					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
 					go.scrollFactor.set();
@@ -1271,8 +1331,11 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('introGo'), 0.6);
-					focusOnDadGlobal = true;
-					ZoomCam(true);
+					if (doing_funny)
+					{
+						focusOnDadGlobal = true;
+						ZoomCam(true);
+					}
 				case 4:
 			}
 
@@ -2350,6 +2413,16 @@ class PlayState extends MusicBeatState
 			{
 				BAMBICUTSCENEICONHURHURHUR.x += stupidx;
 				BAMBICUTSCENEICONHURHURHUR.y += stupidy;
+			}
+		}
+
+		if (camFollow != null && boyfriend != null && SONG.song.toLowerCase() == "exploitation")
+		{
+			camFollow.y = boyfriend.y - 230;
+			if (!already_forced_screen && false) //disable this
+			{
+				already_forced_screen = true;
+				FlxG.fullscreen = true;
 			}
 		}
 	}
