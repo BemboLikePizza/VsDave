@@ -105,6 +105,11 @@ class Paths
 		return getPath('images/$key.png', IMAGE, library);
 	}
 
+	inline static public function executable(key:String, ?library:String)
+	{
+		return getPath('executables/$key.exe', BINARY, library);
+	}
+
 	inline static public function font(key:String)
 	{
 		return 'assets/fonts/$key';
