@@ -11,7 +11,7 @@ internal,splitathon,the-duo,good
 internal,shredder,bambi,good
 internal,greetings,tristan,good
 internal,interdimensional,dave-angey,good
-internal,escape-from-california,dave-angey,good
+internal,escape-from-california,dave,good
 external,a-new-day,dave,good
 external,bambi-speak,bambi,bad
 external,good-ending,bf-old,good
