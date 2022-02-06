@@ -2419,10 +2419,10 @@ class PlayState extends MusicBeatState
 		if (camFollow != null && boyfriend != null && SONG.song.toLowerCase() == "exploitation")
 		{
 			camFollow.y = boyfriend.y - 230;
-			if (!already_forced_screen && false) //disable this
+			if (!already_forced_screen) //disable this
 			{
 				already_forced_screen = true;
-				FlxG.fullscreen = true;
+				//FlxG.fullscreen = true;
 			}
 		}
 	}
