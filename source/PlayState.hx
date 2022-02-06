@@ -669,6 +669,13 @@ class PlayState extends MusicBeatState
 			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset':
 				var sign:FlxSprite = addFarmSign(false);
 				add(sign);
+				if (SONG.song.toLowerCase() == 'maze')
+				{
+					var tween = FlxTween.color(sign, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
+						FlxTween.color(sign, tweenTime / 1000, sunsetColor, nightColor)
+						);
+					tweenList.push(tween);
+				}
 		}
 		
 
