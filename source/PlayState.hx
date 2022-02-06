@@ -879,6 +879,7 @@ class PlayState extends MusicBeatState
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
 
+		/*
 		if (SONG.song.toLowerCase() == 'exploitation')
 		{
 			lazychartshader.waveAmplitude = 0.012;
@@ -887,6 +888,7 @@ class PlayState extends MusicBeatState
 	
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
+		*/
 
 		doof.cameras = [camDialogue];
 
@@ -1861,6 +1863,12 @@ class PlayState extends MusicBeatState
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) ) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + (spr.ID)) ) * 300);
+			});
+			/*
+			playerStrums.forEach(function(spr:FlxSprite)
+			{
 				spr.x = (FlxG.width / 2) + (Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1)) * (60 * (spr.ID + 1));
 				spr.x += Math.sin(elapsedtime - 1) * 40;
 				spr.y = (FlxG.height / 2) + (Math.sin(elapsedtime - 69.2) * ((spr.ID % 3) == 0 ? 1 : -1)) * (67 * (spr.ID + 1)) - 15;
@@ -1875,6 +1883,7 @@ class PlayState extends MusicBeatState
 				spr.y += Math.cos(elapsedtime - 1) * 40;
 				spr.x -= 80;
 			});
+			*/
 		}
 
 		var change = FlxG.save.data.downscroll ? 1 : -1;
