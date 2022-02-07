@@ -45,6 +45,7 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off")
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
+			+ "\n" + (FlxG.save.data.enableStupidCamera ? "Fucking Stupid Camera" : "Normal Camera")
 			+ "\n" + 'Current Language ' + FlxG.save.data.language
 			);
 		menuBG.color = 0xFFea71fd;
@@ -130,9 +131,12 @@ class OptionsMenu extends MusicBeatState
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
 						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 6, 'Vertical');
 					case 7:
+						FlxG.save.data.enableStupidCamera = !FlxG.save.data.enableStupidCamera;
+						updateGroupControls((FlxG.save.data.enableStupidCamera ? "Fucking Stupid Camera" : "Normal Camera"), 7, 'Vertical');
+					case 8:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						FlxG.save.data.language = languages[currentLanguage];
-						updateGroupControls(languages[currentLanguage], 7, 'Vertical');
+						updateGroupControls(languages[currentLanguage], 8, 'Vertical');
 				}
 			}
 	}

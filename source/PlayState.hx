@@ -3200,7 +3200,7 @@ class PlayState extends MusicBeatState
 	function cameraMoveOnNote(note:Int, character:String)
 	{
 		var amount:Array<Float> = new Array<Float>();
-		var followAmount:Float = 15;
+		var followAmount:Float = FlxG.save.data.enableStupidCamera ? 15 : 0;
 		switch (note)
 		{
 			case 0:

@@ -14,6 +14,9 @@ class SaveDataHandler
         if (FlxG.save.data.newInput == null)
 			FlxG.save.data.newInput = true;
 
+		if (FlxG.save.data.enableStupidCamera == null)
+			FlxG.save.data.enableStupidCamera = false; //default to off.
+
 		if (FlxG.save.data.downscroll == null)
 			FlxG.save.data.downscroll = false;
 
