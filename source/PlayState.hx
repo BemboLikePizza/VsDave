@@ -383,7 +383,7 @@ class PlayState extends MusicBeatState
 				case 'unfairness':
 					stageCheck = 'glitchy-void';
 				case 'exploitation':
-					stageCheck = 'desktop';
+					stageCheck = 'glitchy-void'; // change back to 'desktop' when ben fixes it
 				case 'kabunga':
 					stageCheck = 'exbungo-land';
 				case 'interdimensional':
