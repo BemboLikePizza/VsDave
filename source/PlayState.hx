@@ -1630,7 +1630,7 @@ class PlayState extends MusicBeatState
 				babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
 				babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 				babyArrow.animation.addByPrefix('yellow', 'arrowRIGHT');
-	
+					
 				babyArrow.antialiasing = true;
 				babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 		
@@ -3200,7 +3200,7 @@ class PlayState extends MusicBeatState
 	function cameraMoveOnNote(note:Int, character:String)
 	{
 		var amount:Array<Float> = new Array<Float>();
-		var followAmount:Float = FlxG.save.data.enableStupidCamera ? 15 : 0;
+		var followAmount:Float = FlxG.save.data.noteCamera ? 15 : 0;
 		switch (note)
 		{
 			case 0:
@@ -3336,7 +3336,7 @@ class PlayState extends MusicBeatState
 				camHUD.shake(0.0045, 0.1);
 			}
 			boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
-			cameraMoveOnNote(note.noteData, 'bf');
+			cameraMoveOnNote(note.noteData, 'bf'); 
 			if (UsingNewCam)
 			{
 				focusOnDadGlobal = false;
