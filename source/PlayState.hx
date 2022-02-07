@@ -227,6 +227,9 @@ class PlayState extends MusicBeatState
 	var songPosBar:FlxBar;
 	var songPosBG:FlxSprite;
 
+	var bfNoteCamOffset:Array<Float> = new Array<Float>();
+	var dadNoteCamOffset:Array<Float> = new Array<Float>();
+
 	override public function create()
 	{
 		theFunne = FlxG.save.data.newInput;
@@ -1519,7 +1522,7 @@ class PlayState extends MusicBeatState
 
 			if (!ghMode)
 			{
-				if (funnyFloatyBoys.contains(dad.curCharacter) && player == 0 || funnyFloatyBoys.contains(boyfriend.curCharacter) && player == 1)
+					if (funnyFloatyBoys.contains(dad.curCharacter) && player == 0 || funnyFloatyBoys.contains(boyfriend.curCharacter) && player == 1)
 					{
 						babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D');
 						babyArrow.animation.addByPrefix('green', 'arrowUP');
@@ -2163,6 +2166,7 @@ class PlayState extends MusicBeatState
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
 
+
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
 
@@ -2311,6 +2315,8 @@ class PlayState extends MusicBeatState
 					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 
+					cameraMoveOnNote(daNote.noteData, 'dad');
+					
 					dadStrums.forEach(function(sprite:FlxSprite)
 					{
 						if (Math.abs(Math.round(Math.abs(daNote.noteData)) % 4) == sprite.ID)
@@ -2388,7 +2394,6 @@ class PlayState extends MusicBeatState
 				{
 					noteMiss(daNote.noteData);
 					vocals.volume = 0;
-
 
 					daNote.active = false;
 					daNote.visible = false;
@@ -2488,6 +2493,12 @@ class PlayState extends MusicBeatState
 			{
 				tweenCamIn();
 			}
+
+			bfNoteCamOffset[0] = 0;
+			bfNoteCamOffset[1] = 0;
+
+			camFollow.x += dadNoteCamOffset[0];
+			camFollow.y += dadNoteCamOffset[1];
 		}
 
 		if (!focusondad)
@@ -2505,6 +2516,11 @@ class PlayState extends MusicBeatState
 					camFollow.x = boyfriend.getMidpoint().x - 325;
 					camFollow.y = boyfriend.getMidpoint().y - 1100;
 			}
+			dadNoteCamOffset[0] = 0;
+			dadNoteCamOffset[1] = 0;
+
+			camFollow.x += bfNoteCamOffset[0];
+			camFollow.y += bfNoteCamOffset[1];
 
 			if (SONG.song.toLowerCase() == 'tutorial')
 			{
@@ -3098,6 +3114,9 @@ class PlayState extends MusicBeatState
 			if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 			{
 				boyfriend.playAnim('idle');
+				
+				bfNoteCamOffset[0] = 0;
+				bfNoteCamOffset[1] = 0;
 			}
 		}
 
@@ -3174,8 +3193,35 @@ class PlayState extends MusicBeatState
 				}
 				boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
 			}
-
 			updateAccuracy();
+		}
+	}
+
+	function cameraMoveOnNote(note:Int, character:String)
+	{
+		var amount:Array<Float> = new Array<Float>();
+		var followAmount:Float = 15;
+		switch (note)
+		{
+			case 0:
+				amount[0] = -followAmount;
+				amount[1] = 0;
+			case 1:
+				amount[0] = 0;
+				amount[1] = followAmount;
+			case 2:
+				amount[0] = 0;
+				amount[1] = -followAmount;
+			case 3:
+				amount[0] = followAmount;
+				amount[1] = 0;
+		}
+		switch (character)
+		{
+			case 'dad':
+				dadNoteCamOffset = amount;
+			case 'bf':
+				bfNoteCamOffset = amount;
 		}
 	}
 
@@ -3290,6 +3336,7 @@ class PlayState extends MusicBeatState
 				camHUD.shake(0.0045, 0.1);
 			}
 			boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
+			cameraMoveOnNote(note.noteData, 'bf');
 			if (UsingNewCam)
 			{
 				focusOnDadGlobal = false;
@@ -3496,6 +3543,9 @@ class PlayState extends MusicBeatState
 					{
 						dad.dance();
 						dadmirror.dance();
+
+						dadNoteCamOffset[0] = 0;
+						dadNoteCamOffset[1] = 0;
 					}
 			}
 		}
