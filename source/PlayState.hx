@@ -1263,12 +1263,15 @@ class PlayState extends MusicBeatState
 			var altSuffix:String = "";
 
 			var doing_funny:Bool = true;
+
+			// waaa it crashed now ix it later lolloll
+			/*
 			if (SONG.song.toLowerCase() == "exploitation")
 			{
 				doing_funny = false;
 				FlxG.camera.zoom = 0.2;
 				camFollow.setPosition(bgsprcur.x + (bgsprcur.width / 2),bgsprcur.y + (bgsprcur.height / 2));
-			}
+			}*/
 
 			for (value in introAssets.keys())
 			{
