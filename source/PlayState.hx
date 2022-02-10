@@ -824,11 +824,16 @@ class PlayState extends MusicBeatState
 		}
 
 		// Add Kade Engine watermark
-		var kadeEngineWatermark = new FlxText(4, textYPos, 0,
-		SONG.song
-		+ " "
-		+ (!curSong.toLowerCase().endsWith('splitathon') ? (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") : "Finale")
-		+ " - " + engineName + "Engine (KE 1.2)", 16);
+		var kadeEngineWatermark = new FlxText
+		(
+			4, textYPos, 0,
+			SONG.song
+
+			+ " "
+			+ (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale"), 
+			16
+		);
+
 		kadeEngineWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		kadeEngineWatermark.borderSize = 1.25;

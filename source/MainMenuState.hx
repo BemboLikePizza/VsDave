@@ -46,7 +46,7 @@ class MainMenuState extends MusicBeatState
 	public static var finishedFunnyMove:Bool = false;
 
 	public static var daRealEngineVer:String = 'Dave';
-	public static var engineVer:String = '3.0';
+	public static var engineVer:String = '3.0 Beta';
 
 	public static var engineVers:Array<String> = 
 	[
@@ -110,7 +110,7 @@ class MainMenuState extends MusicBeatState
 				CharacterSelectState.reset();
 			}
 	
-			daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
+			//daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
 			
 			var bg:FlxSprite = new FlxSprite(-80).loadGraphic(randomizeBG());
 			bg.scrollFactor.set();
@@ -166,7 +166,7 @@ class MainMenuState extends MusicBeatState
 	
 			firstStart = false;
 	
-			var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer + " FNF - " + daRealEngineVer + " Engine", 12);
+			var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer + " FNF - " + daRealEngineVer + " Engine " + engineVer, 12);
 			versionShit.scrollFactor.set();
 			versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit);
