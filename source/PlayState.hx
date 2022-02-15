@@ -383,7 +383,7 @@ class PlayState extends MusicBeatState
 				case 'unfairness':
 					stageCheck = 'glitchy-void';
 				case 'exploitation':
-					stageCheck = 'glitchy-void'; // change back to 'desktop' when ben fixes it
+					stageCheck = 'desktop'; // change back to 'desktop' when ben fixes it
 				case 'kabunga':
 					stageCheck = 'exbungo-land';
 				case 'interdimensional':
@@ -882,17 +882,6 @@ class PlayState extends MusicBeatState
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
 
-		/*
-		if (SONG.song.toLowerCase() == 'exploitation')
-		{
-			lazychartshader.waveAmplitude = 0.012;
-			lazychartshader.waveFrequency = 4;
-			lazychartshader.waveSpeed = 1.2;
-	
-			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
-		}
-		*/
-
 		doof.cameras = [camDialogue];
 
 		// if (SONG.song == 'South')
@@ -1061,7 +1050,7 @@ class PlayState extends MusicBeatState
 				bgg.scrollFactor.set();
 				sprites.add(bgg);
 				add(bgg);
-				
+
 				voidShader(bgg);
 				#if desktop
 					var path = Sys.programPath();
@@ -1090,7 +1079,6 @@ class PlayState extends MusicBeatState
 				defaultCamZoom = 0.7;
 
 				var bg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
-
 				
 				switch (bgName.toLowerCase())
 				{
@@ -1378,7 +1366,9 @@ class PlayState extends MusicBeatState
 		}
 
 		#if desktop
-		var check:Bool = storyWeek == 4 || SONG.song.toLowerCase() == 'vs-dave-rap' || SONG.song.toLowerCase() == 'overdrive';
+		var noLeaks:Array<String> = new Array<String>();
+		noLeaks = ['Vs-Dave-Rap', 'Overdrive', 'Exploitation'];
+		var check:Bool = storyWeek == 4 || noLeaks.contains(SONG.song.toLowerCase());
 		DiscordClient.changePresence(detailsText
 			+ " "
 			+ (check ? 'NO LEAKS' : SONG.song)
@@ -1864,10 +1854,11 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
 		{
+			//working on figure 8 modchart
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
 				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) ) * 300);
-				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + (spr.ID)) ) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) - (Math.cos((elapsedtime + (spr.ID)) ) * 600);
 			});
 			/*
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -2368,21 +2359,17 @@ class PlayState extends MusicBeatState
 				{
 					case 'unfairness' | 'exploitation':
 						if (daNote.MyStrum != null)
-							daNote.y = (daNote.MyStrum.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
+							daNote.y = yFromNoteStrumTime(daNote, daNote.MyStrum, FlxG.save.data.downscroll);
 
 					default:
-						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2)));
+						daNote.y = yFromNoteStrumTime(daNote, strumLine, FlxG.save.data.downscroll);
 				}
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
-
-				var strumliney = daNote.MyStrum != null ? daNote.MyStrum.y : strumLine.y;
+				var noteStrum:FlxSprite = daNote.MyStrum != null ? daNote.MyStrum : strumLine;
+				
 				if (daNote.wasGoodHit && daNote.isSustainNote && Conductor.songPosition >= (daNote.strumTime + 10))
 				{
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-
 					daNote.active = false;
 					daNote.visible = false;
 					daNote.kill();
@@ -2390,7 +2377,7 @@ class PlayState extends MusicBeatState
 					daNote.destroy();
 				}
 
-				if ((!daNote.wasGoodHit) && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (Conductor.crochet))
+				if ((!daNote.wasGoodHit) && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (10))
 				{
 					noteMiss(daNote.noteData);
 					vocals.volume = 0;
@@ -2456,6 +2443,25 @@ class PlayState extends MusicBeatState
 		stupidy = -5;
 		updatevels = true;
 		
+	}
+	function destroyNote(note:Note)
+	{
+		note.active = false;
+		note.visible = false;
+		note.kill();
+		notes.remove(note, true);
+		note.destroy();
+	}
+	function yFromNoteStrumTime(note:Note, strumLine:FlxSprite, downScroll:Bool):Float
+	{
+		var change = downScroll ? -1 : 1;
+		return strumLine.y - (Conductor.songPosition - note.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * note.LocalScrollSpeed, 2));
+	}
+	function strumTimeFromY(yPosition:Float, note:Note, strumLine:FlxSprite):Float
+	{
+		var funStrumTime:Float = (strumLine.y - (Conductor.songPosition - yPosition) * (0.45 * FlxMath.roundDecimal(SONG.speed * note.LocalScrollSpeed, 2)));
+
+		return funStrumTime;
 	}
 
 	function ZoomCam(focusondad:Bool):Void
