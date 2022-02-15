@@ -1374,9 +1374,7 @@ class PlayState extends MusicBeatState
 		}
 
 		#if desktop
-		var noLeaks:Array<String> = new Array<String>();
-		noLeaks = ['Vs-Dave-Rap', 'Overdrive', 'Exploitation'];
-		var check:Bool = storyWeek == 4 || noLeaks.contains(SONG.song.toLowerCase());
+		var check:Bool = storyWeek == 4 || SONG.song.toLowerCase() == 'exploitation' || SONG.song.toLowerCase() == 'vs-dave-rap' || SONG.song.toLowerCase() == 'overdrive';
 		DiscordClient.changePresence(detailsText
 			+ " "
 			+ (check ? 'NO LEAKS' : SONG.song)
