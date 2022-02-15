@@ -448,6 +448,29 @@ class Character extends FlxSprite
 				antialiasing = false;
 		
 				playAnim('idle');
+
+							case 'expunged':
+				// EXPUNGED SHITE ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('bambi/ExpungedFinal', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByPrefix('singUP', 'Up', 24, false);
+				animation.addByPrefix('singRIGHT', 'Right', 24, false);
+				animation.addByPrefix('singDOWN', 'Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Left', 24, false);
+		
+				addOffset('idle', 110, 70);
+				addOffset("singUP", 110, 61);
+				addOffset("singRIGHT", 0, -30);
+				addOffset("singLEFT", 210, 0);
+				addOffset("singDOWN", 190, 50);
+				globaloffset[0] = 150 * 0.8;
+				globaloffset[1] = 450 * 0.8; //this is the y
+				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
+				updateHitbox();
+				antialiasing = false;
+		
+				playAnim('idle');
 			
 			case 'bambi-old':
 				var tex = Paths.getSparrowAtlas('bambi/characters/bambi-old', 'shared');
