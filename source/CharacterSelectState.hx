@@ -100,7 +100,8 @@ class CharacterSelectState extends MusicBeatState
 		]),
 		new CharacterInSelect('bambi-3d', [0, 3, 0, 0], [
 			new CharacterForm('bambi-3d', '[EXPUNGED]'),
-			new CharacterForm('bambi-unfair', '[EXPUNGED]')
+			new CharacterForm('bambi-unfair', '[EXPUNGED]'),
+			new CharacterForm('expunged', '[EXPUNGED]')
 		]),
 
 	];

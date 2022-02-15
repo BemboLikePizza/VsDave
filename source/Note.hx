@@ -44,7 +44,7 @@ class Note extends FlxSprite
 
 	private var InPlayState:Bool = false;
 
-	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo'];
+	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged'];
 
 	public var rating:String = "shit";
 
@@ -68,8 +68,6 @@ class Note extends FlxSprite
 
 		this.noteData = noteData;
 
-		var daStage:String = PlayState.curStage;
-		var check3D:Bool = false;
 		var notePathLol:String = '';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 		

@@ -101,7 +101,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'dave-annoyed-3d', 'expunged', 'bambi-unfair', 'exbungo'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -251,7 +251,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave' | 'dave-angey':
 				iconRPC = 'icon_dave';
-			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-3d' | 'bambi-unfair':
+			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-3d' | 'bambi-unfair' | 'expunged':
 				iconRPC = 'icon_bambi';
 			default:
 				iconRPC = 'icon_none';
@@ -2385,7 +2385,7 @@ class PlayState extends MusicBeatState
 					daNote.destroy();
 				}
 
-				if ((!daNote.wasGoodHit) && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (10))
+				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + Conductor.crochet)
 				{
 					noteMiss(daNote.noteData);
 					vocals.volume = 0;
@@ -3344,7 +3344,7 @@ class PlayState extends MusicBeatState
 						fuckingDumbassBullshitFuckYou = 'LEFT';
 				}
 			}
-			if(boyfriend.curCharacter == 'bambi-unfair' || boyfriend.curCharacter == 'bambi-3d')
+			if(boyfriend.curCharacter == 'bambi-unfair' || boyfriend.curCharacter == 'bambi-3d' || boyfriend.curCharacter == 'expunged')
 			{
 				FlxG.camera.shake(0.0075, 0.1);
 				camHUD.shake(0.0045, 0.1);

@@ -449,7 +449,7 @@ class Character extends FlxSprite
 		
 				playAnim('idle');
 
-							case 'expunged':
+			case 'expunged':
 				// EXPUNGED SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('bambi/ExpungedFinal', 'shared');
 				frames = tex;

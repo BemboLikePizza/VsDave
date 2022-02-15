@@ -12,7 +12,8 @@ class HealthIcon extends FlxSprite
 		'bambi-3d',
 		'bf-pixel',
 		'gf-pixel',
-		'bambi-unfair'
+		'bambi-unfair',
+		'expunged'
 	];
 
 	public function new(char:String = 'bf', isPlayer:Bool = false)

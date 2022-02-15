@@ -62,7 +62,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'house' | 'insanity' | 'splitathon':
 				FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness' | 'interdimensional':
+			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness' | 'interdimensional' | 'exploitation':
 				FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'supernovae' | 'glitch':
@@ -77,7 +77,7 @@ class DialogueBox extends FlxSpriteGroup
 					FlxG.sound.playMusic(Paths.music('dooDooFeces'), 0);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				}
-			case 'blocked' | 'corn-theft' | 'maze' | 'old-corn-theft':
+			case 'blocked' | 'corn-theft' | 'maze':
 				randomNumber = FlxG.random.int(0, 50);
 				if(randomNumber == 50)
 				{

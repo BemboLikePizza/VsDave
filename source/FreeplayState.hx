@@ -27,7 +27,7 @@ class FreeplayState extends MusicBeatState
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
 
-	var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
+	var bg:FlxSprite = new FlxSprite();
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
@@ -134,7 +134,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Shredder', 'Greetings', 'Interdimensional'], 4, ['bambi', 'tristan-festival', 'dave-angey']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
-				addWeek(['Exploitation'], 2, ['exbungo']);
+				addWeek(['Exploitation'], 2, ['expunged']);
 				if (FlxG.save.data.cheatingFound)
 					addWeek(['Cheating'], 2, ['bambi-3d']);
 				if(FlxG.save.data.unfairnessFound)

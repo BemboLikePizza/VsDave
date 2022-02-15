@@ -128,6 +128,14 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
       ]),
+      
+      new Person("Oxygen", CreditsType.Contributor, "Beta Tester, Exploitation song",
+      [
+         new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
+         new Social('twitter', 'https://twitter.com/oxygenboi2000'),
+         new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
+      ]),
+      
 	  new Person("Cynda", CreditsType.Contributor, "Programmer, Menu Button Artist",
       [
 		 new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
@@ -212,13 +220,6 @@ class CreditsMenuState extends MusicBeatState
       new Person("TrustVVorthy", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC_lJmvYgeAwzcYaeYXlZ7vg')
-      ]),
-      
-      new Person("Oxygen", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
-         new Social('twitter', 'https://twitter.com/oxygenboi2000'),
-         new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
       ]),
       
       new Person("Gorbini", CreditsType.BetaTester, "Beta Tester",
