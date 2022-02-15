@@ -101,7 +101,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'dave-annoyed-3d', 'dave-3d-standing-bruh-what', 'bambi-unfair', 'exbungo'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'dave-annoyed-3d', 'expunged', 'bambi-unfair', 'exbungo'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -824,11 +824,16 @@ class PlayState extends MusicBeatState
 		}
 
 		// Add Kade Engine watermark
-		var kadeEngineWatermark = new FlxText(4, textYPos, 0,
-		SONG.song
-		+ " "
-		+ (!curSong.toLowerCase().endsWith('splitathon') ? (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") : "Finale")
-		+ " - " + engineName + "Engine (KE 1.2)", 16);
+		var kadeEngineWatermark = new FlxText
+		(
+			4, textYPos, 0,
+			SONG.song
+
+			+ " "
+			+ (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale"), 
+			16
+		);
+
 		kadeEngineWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		kadeEngineWatermark.borderSize = 1.25;
@@ -1251,12 +1256,15 @@ class PlayState extends MusicBeatState
 			var altSuffix:String = "";
 
 			var doing_funny:Bool = true;
+
+			// waaa it crashed now ix it later lolloll
+			/*
 			if (SONG.song.toLowerCase() == "exploitation")
 			{
 				doing_funny = false;
 				FlxG.camera.zoom = 0.2;
 				camFollow.setPosition(bgsprcur.x + (bgsprcur.width / 2),bgsprcur.y + (bgsprcur.height / 2));
-			}
+			}*/
 
 			for (value in introAssets.keys())
 			{

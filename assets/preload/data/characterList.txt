@@ -16,4 +16,5 @@ bambi-unfair
 tristan
 tristan-golden
 exbungo
+expunged
 baldi
