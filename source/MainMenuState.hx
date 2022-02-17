@@ -93,6 +93,7 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			}
+
 	
 			persistentUpdate = persistentDraw = true;
 			
@@ -193,6 +194,11 @@ class MainMenuState extends MusicBeatState
 			if (FlxG.sound.music.volume < 0.8)
 			{
 				FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
+			}
+
+			if (FlxG.keys.justPressed.SEVEN)
+			{
+				FlxG.switchState(new TerminalState());
 			}
 	
 			if (!selectedSomethin)

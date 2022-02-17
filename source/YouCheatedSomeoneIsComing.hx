@@ -10,7 +10,7 @@ import flixel.util.FlxTimer;
 /**
  * scary!!!
  */
-class YouCheatedSomeoneIsComing extends MusicBeatState
+class YouCheatedSomeoneIsComing extends FlxState //why did this extend music beat state?
 {
 	
 	public function new() 
