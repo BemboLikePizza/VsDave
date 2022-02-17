@@ -274,7 +274,10 @@ class CharacterSelectState extends MusicBeatState
 		}
 	}
 	override public function update(elapsed:Float):Void 
-	{	
+	{
+	
+		Conductor.songPosition = FlxG.sound.music.time;
+		
 		var controlSet:Array<Bool> = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
 
 		super.update(elapsed);

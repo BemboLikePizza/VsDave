@@ -383,7 +383,7 @@ class PlayState extends MusicBeatState
 				case 'unfairness':
 					stageCheck = 'glitchy-void';
 				case 'exploitation':
-					stageCheck = 'desktop'; // change back to 'desktop' when ben fixes it
+					stageCheck = 'desktop'; 
 				case 'kabunga':
 					stageCheck = 'exbungo-land';
 				case 'interdimensional':
@@ -830,7 +830,7 @@ class PlayState extends MusicBeatState
 			SONG.song
 
 			+ " "
-			+ (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale"), 
+			+ (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale") + ' | Dave Engine 3.0 (KE 1.2)', 
 			16
 		);
 
@@ -1257,14 +1257,12 @@ class PlayState extends MusicBeatState
 
 			var doing_funny:Bool = true;
 
-			// waaa it crashed now ix it later lolloll
-			/*
 			if (SONG.song.toLowerCase() == "exploitation")
 			{
 				doing_funny = false;
 				FlxG.camera.zoom = 0.2;
 				camFollow.setPosition(bgsprcur.x + (bgsprcur.width / 2),bgsprcur.y + (bgsprcur.height / 2));
-			}*/
+			}
 
 			for (value in introAssets.keys())
 			{
@@ -1374,10 +1372,9 @@ class PlayState extends MusicBeatState
 		}
 
 		#if desktop
-		var check:Bool = storyWeek == 4 || SONG.song.toLowerCase() == 'exploitation' || SONG.song.toLowerCase() == 'vs-dave-rap' || SONG.song.toLowerCase() == 'overdrive';
 		DiscordClient.changePresence(detailsText
 			+ " "
-			+ (check ? 'NO LEAKS' : SONG.song)
+			+ SONG.song
 			+ " ("
 			+ storyDifficultyText
 			+ ") ",
@@ -1858,13 +1855,13 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
+		if (curStage == 'stage' && !inCutscene) // fuck you
 		{
 			//working on figure 8 modchart
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
-				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) ) * 300);
-				spr.y = ((FlxG.height / 2) - (spr.height / 2)) - (Math.cos((elapsedtime + (spr.ID)) ) * 600);
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * 3) * (FlxG.height * 0.2));
 			});
 			/*
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -1886,18 +1883,17 @@ class PlayState extends MusicBeatState
 			*/
 		}
 
-		var change = FlxG.save.data.downscroll ? 1 : -1;
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
-				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * change) * 300);
-				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * change) * 300);
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID))) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID))) * 300);
 			});
 			dadStrums.forEach(function(spr:FlxSprite)
 			{
-				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID )) * 2 * change) * 300);
-				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2 * change) * 300);
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * 2) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 			});
 		}
 		if (tweenList != null && tweenList.length != 0)
@@ -2056,13 +2052,6 @@ class PlayState extends MusicBeatState
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				case 'glitch':
-					PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
-					FlxG.save.data.exbungoFound = true;
-					shakeCam = false;
-					screenshader.Enabled = false;
-					FlxG.switchState(new PlayState());
-					return;
 				case 'unfairness':
 					shakeCam = false;
 					screenshader.Enabled = false;
@@ -2070,6 +2059,14 @@ class PlayState extends MusicBeatState
 					#if desktop
 					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
+				case 'glitch':
+					PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
+					FlxG.save.data.exbungoFound = true;
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
+					return;
+				
 				case 'kabunga':
 					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
 					System.exit(0);
@@ -2382,8 +2379,9 @@ class PlayState extends MusicBeatState
 					notes.remove(daNote, true);
 					daNote.destroy();
 				}
+				//daNote.strumTime + strumTimeFromY(noteStrum.y - (106 * change), FlxG.save.data.downscroll)
 
-				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + Conductor.crochet)
+				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + 10)
 				{
 					noteMiss(daNote.noteData);
 					vocals.volume = 0;
@@ -2463,11 +2461,10 @@ class PlayState extends MusicBeatState
 		var change = downScroll ? -1 : 1;
 		return strumLine.y - (Conductor.songPosition - note.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * note.LocalScrollSpeed, 2));
 	}
-	function strumTimeFromY(yPosition:Float, note:Note, strumLine:FlxSprite):Float
+	function strumTimeFromY(yPosition:Float, downScroll:Bool):Float
 	{
-		var funStrumTime:Float = (strumLine.y - (Conductor.songPosition - yPosition) * (0.45 * FlxMath.roundDecimal(SONG.speed * note.LocalScrollSpeed, 2)));
-
-		return funStrumTime;
+		var change = downScroll ? -1 : 1;
+		return FlxMath.remapToRange(yPosition, change * FlxG.height, change * -FlxG.height, 0, 16 * Conductor.stepCrochet);
 	}
 
 	function ZoomCam(focusondad:Bool):Void
