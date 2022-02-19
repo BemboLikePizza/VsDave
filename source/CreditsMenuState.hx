@@ -96,16 +96,18 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/am_erizur')
       ]),
       
-
       new Person("T5mpler", CreditsType.Dev, "Programmer & Assistor",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
          new Social('twitter', 'https://twitter.com/RealT5mpler'),
          new Social('souncloud', 'https://soundcloud.com/t5mpler')
       ]),
-      
+      new Person("pointy", CreditsType.Dev, "Artist & Charter",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCRKMTB-VvZlXig4gChk5jtg'),
+         new Social('twitter', 'https://twitter.com/PointyyESM')
+      ]),
       //translators
-      
       new Person("Somf", CreditsType.Translator, "Spanish Translator",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCspbOv2BXbDANpJyjguce2Q'),
