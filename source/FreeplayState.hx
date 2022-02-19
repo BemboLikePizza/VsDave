@@ -54,8 +54,9 @@ class FreeplayState extends MusicBeatState
     	0xFFca1f6f, // GF
 		0xFF4965FF, // DAVE
 		0xFF00B515, // MISTER BAMBI RETARD
-		0xFF00FFFF, //SPLIT THE THONNNNN
-		0xFF800080  //FESTIVAL
+		0xFF00FFFF, // SPLIT THE THONNNNN
+		0xFF800080, // FESTIVAL
+		0xFFFF0000  // UNFAIRNESS
     ];
 
 	private var camFollow:FlxObject;
@@ -134,11 +135,11 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Shredder', 'Greetings', 'Interdimensional'], 4, ['bambi', 'tristan-festival', 'dave-angey']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
-				addWeek(['Exploitation'], 2, ['expunged']);
 				if (FlxG.save.data.cheatingFound)
 					addWeek(['Cheating'], 2, ['bambi-3d']);
 				if(FlxG.save.data.unfairnessFound)
-					addWeek(['Unfairness'], 2, ['bambi-unfair']);
+					addWeek(['Unfairness'], 5, ['bambi-unfair']);
+				addWeek(['Exploitation'], 2, ['expunged']);
 				if(FlxG.save.data.exbungoFound)
 					addWeek(['Kabunga'], 2, ['exbungo']);
 			case 'extra':

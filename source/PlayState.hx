@@ -1,5 +1,9 @@
 package;
 
+import hscript.Printer;
+import openfl.desktop.Clipboard;
+import flixel.system.debug.Window;
+import sys.FileSystem;
 #if desktop
 import sys.io.File;
 import openfl.display.BitmapData;
@@ -149,8 +153,6 @@ class PlayState extends MusicBeatState
 	private var totalNotesHit:Float = 0;
 	private var totalPlayed:Int = 0;
 	private var ss:Bool = false;
-
-	private var bgsprcur:BGSprite;
 
 	public static var eyesoreson = true;
 
@@ -1047,37 +1049,40 @@ class PlayState extends MusicBeatState
 
 
 			case 'desktop':
-				defaultCamZoom = 0.5;
-				var bgg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
-				bgg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
-				bgg.setPosition(0, 200);
-				bgg.setGraphicSize(Std.int(bgg.width * 3));
-				bgg.scrollFactor.set();
-				sprites.add(bgg);
-				add(bgg);
+				defaultCamZoom = 0.7;
+				var expungedBG:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
+				expungedBG.loadGraphic(Paths.image('backgrounds/void/creepyRoom'));
+				expungedBG.setPosition(0, 200);
+				expungedBG.setGraphicSize(Std.int(expungedBG.width * 3));
+				expungedBG.scrollFactor.set();
+				sprites.add(expungedBG);
+				add(expungedBG);
 
-				voidShader(bgg);
+				voidShader(expungedBG);
+
 				#if desktop
 					var path = Sys.programPath();
 					path = path.substr(0,path.length - 10);
 					var exe_path:String = "\"" + path + Paths.executable("GetThisFuckersBGYo") + "\"";
 					Sys.command(exe_path); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
 					Sys.sleep(1);
-					var foundyou = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
-					var bytes = sys.io.File.getBytes(foundyou);
+					var desktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
+					if (desktopPath != null)
+					{
+						FileSystem.deleteFile(desktopPath);
+						desktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
+					}
+					var bytes = sys.io.File.getBytes(desktopPath);
 					var bg:BGSprite = new BGSprite('desktop', 0, 0, '', null, 1, 1, true, true);
+
 					var data:openfl.display.BitmapData = openfl.display.BitmapData.fromBytes(bytes);
 					var graphic:flixel.graphics.FlxGraphic = flixel.graphics.FlxGraphic.fromBitmapData(data);
+					
 					bg.loadGraphic(graphic);
 					bg.setGraphicSize(1920 * 3,1080 * 3);
 					bg.updateHitbox();
-					bg.x = 400;
-					bg.y = 130;
-					bg.x += -bg.width / 2;
-					bg.y += (-bg.height / 2) - (bg.height / 4);
 					sprites.add(bg);
 					add(bg);
-					bgsprcur = bg;
 				#end
 	
 			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
@@ -1256,13 +1261,6 @@ class PlayState extends MusicBeatState
 			var altSuffix:String = "";
 
 			var doing_funny:Bool = true;
-
-			if (SONG.song.toLowerCase() == "exploitation")
-			{
-				doing_funny = false;
-				FlxG.camera.zoom = 0.2;
-				camFollow.setPosition(bgsprcur.x + (bgsprcur.width / 2),bgsprcur.y + (bgsprcur.height / 2));
-			}
 
 			for (value in introAssets.keys())
 			{
@@ -1590,13 +1588,27 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 		
 					babyArrow.ID = i;
-					
+					/*
 					if (SONG.song.toLowerCase() == 'exploitation')
 					{
-						babyArrow.x = 0;
-						babyArrow.y = 0;
+						switch (babyArrow.ID)
+						{
+							case 0:
+								babyArrow.x = ((FlxG.width / 2) - (babyArrow.width / 2)) - FlxG.width * 0.3;
+								babyArrow.screenCenter(Y);
+							case 1:
+								babyArrow.y = ((FlxG.height / 2) - (babyArrow.height / 2)) + FlxG.height * 0.3;
+								babyArrow.screenCenter(X);
+							case 2:
+								babyArrow.y = ((FlxG.height / 2) - (babyArrow.height / 2)) - FlxG.height * 0.3;
+								babyArrow.screenCenter(X);
+							case 3:
+								babyArrow.x = ((FlxG.width / 2) - (babyArrow.width / 2)) + FlxG.width * 0.3;
+								babyArrow.screenCenter(Y);
+							
+						}
 					}
-
+					*/
 					if (player == 1)
 					{
 						playerStrums.add(babyArrow);
@@ -1648,7 +1660,6 @@ class PlayState extends MusicBeatState
 						babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
 				}
 			}
-			
 		}
 	}
 
@@ -1855,7 +1866,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (curStage == 'stage' && !inCutscene) // fuck you
+		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
 		{
 			//working on figure 8 modchart
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -3689,9 +3700,18 @@ class PlayState extends MusicBeatState
 			#if desktop
 			if (SONG.song.toLowerCase() == 'exploitation')
 			{
-				//NOTE ONLY WORKS ON WINDOWS
+				var expungedLines:Array<String> = 
+				['i found you', 
+				"you'll never beat me", 
+				'HAHAHHAHAHA', 
+				"punishment day is here, this one is removing you",
+				"I'M UNSTOPPABLE",
+				"YOU LIAR...YOU LIAR!"];
+
 				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
-				File.saveContent(path, "i found you");
+
+				var randomLine = new FlxRandom().int(0, expungedLines.length);
+				File.saveContent(path, expungedLines[randomLine]);
 				Sys.command("start " + path);
 			}
 			#end

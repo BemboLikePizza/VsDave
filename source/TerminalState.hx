@@ -10,13 +10,13 @@ import flash.system.System;
 class TerminalState extends FlxState
 {
     public var curCommand:String = "";
-    public var DisplayText:FlxText;
+    public var displayText:FlxText;
 
 
     override public function create():Void 
     {
-        DisplayText = new FlxText(0, 0, FlxG.width, ">", 32);
-        add(DisplayText);
+        displayText = new FlxText(0, 0, FlxG.width, ">", 32);
+        add(displayText);
     }
 
     override public function update(elapsed:Float):Void
@@ -34,9 +34,9 @@ class TerminalState extends FlxState
             }
             else
             {
-                curCommand = curCommand + keyJustPressed.toString();
+                curCommand += keyJustPressed.toString();
             }
-            DisplayText.text = curCommand;
+            displayText.text = curCommand;
         }
     
 
