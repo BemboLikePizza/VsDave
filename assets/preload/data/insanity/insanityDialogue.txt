@@ -1,5 +1,5 @@
 :dave:Wow! You're really good at this..
 :bf: skdoo bep
-:dave:Hmph. Let's go again, don't you think?
-:bf:Beep
-:dave:Alrighty then!
+:dave,annoyed:Hmph. Let's go again, don't you think?
+:bf,ready:Beep
+:dave,annoyed:Alrighty then!

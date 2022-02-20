@@ -409,7 +409,7 @@ class DialogueBox extends FlxSpriteGroup
 					case '3d-scared':
 						portrait.portraitPath = 'dialogue/dave_furiosity';
 						portrait.portraitPrefix = 'dave furiosity portrait';
-					case 'splitathon-ready':
+					case 'splitathon':
 						portrait.portraitPath = 'dialogue/dave_splitathon';
 						portrait.portraitPrefix = 'dave splitathon portrait';
 					default:
@@ -419,7 +419,6 @@ class DialogueBox extends FlxSpriteGroup
 			case 'bambi':
 				switch (expression)
 				{
-					case 'normal':
 					case 'annoyed':
 						portrait.portraitPath = 'dialogue/bambi_blocked';
 						portrait.portraitPrefix = 'bambi blocked portrait';
@@ -445,7 +444,6 @@ class DialogueBox extends FlxSpriteGroup
 			case 'bf':
 				switch (expression)
 				{
-					case 'normal':
 					case 'ready':
 						portrait.portraitPath = 'dialogue/bf_insanity_splitathon';
 						portrait.portraitPrefix = 'bf insanity & splitathon portrait';
