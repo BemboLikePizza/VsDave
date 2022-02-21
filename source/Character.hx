@@ -259,11 +259,11 @@ class Character extends FlxSprite
 				addOffset("scared", 0, -2);
 	
 				playAnim('idle');
-							case 'dave-cool':
+			case 'dave-cool':
 				// DAVE SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('dave/characters/thecoolerdave', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'id', 24, false);
+				animation.addByPrefix('idle', 'Id', 24, false);
 				animation.addByPrefix('singUP', 'the up', 24, false);
 				animation.addByPrefix('singRIGHT', 'righ', 24, false);
 				animation.addByPrefix('singDOWN', 'dow', 24, false);
@@ -733,7 +733,7 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-christmas' | 'gf-pixel':
+				case 'gf' | 'gf-pixel':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
