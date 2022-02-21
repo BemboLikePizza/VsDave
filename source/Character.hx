@@ -625,29 +625,6 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 				flipX = true;
 				playAnim('idle');
-				
-			case 'marcello-dave':
-				var tex = Paths.getSparrowAtlas('dave/secret/Marcello_Dave_Assets', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'totally dave idle dance', 24, false);
-				animation.addByPrefix('singUP', 'totally dave NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'totally dave NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'totally dave NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'totally dave NOTE DOWN0', 24, false);
-
-				addOffset('idle');
-				addOffset("singUP");
-				addOffset("singRIGHT");
-				addOffset("singLEFT");
-				addOffset("singDOWN");
-
-				playAnim('idle');
-
-				nativelyPlayable = true;
-
-				flipX = true;
-
-				antialiasing = false;
 			case 'exbungo':
 				var tex = Paths.getSparrowAtlas('bambi/exbungo', 'shared');
 				frames = tex;
