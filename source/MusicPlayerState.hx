@@ -47,6 +47,7 @@ class MusicPlayerState extends MusicBeatState
   
     override function create()
     {
+        FlxG.autoPause = false;
         var initSonglist = CoolUtil.coolTextFile(Paths.txt('djSonglist')); //ah yeah dj song list
         for (i in 0...initSonglist.length)
         {
@@ -244,6 +245,7 @@ class MusicPlayerState extends MusicBeatState
             }
             else
             {
+                FlxG.autoPause = true;
                 FlxG.switchState(new ExtrasMenuState());
             }
         }
