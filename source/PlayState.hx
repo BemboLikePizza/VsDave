@@ -510,7 +510,7 @@ class PlayState extends MusicBeatState
 				dad.y += 325;
 				dad.x += 100;
 
-			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
+			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
 				dad.y += 160;
 				dad.x += 250;
 
@@ -563,7 +563,7 @@ class PlayState extends MusicBeatState
 			case "tristan" | 'tristan-golden':
 				boyfriend.y = 100 + 325;
 				boyfriendOldIcon = 'tristan';
-			case 'dave' | 'dave-annoyed' | 'dave-splitathon':
+			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
 				boyfriend.y = 100 + 160;
 				boyfriendOldIcon = 'dave';
 			case 'dave-angey':
@@ -640,7 +640,7 @@ class PlayState extends MusicBeatState
 			case 'unfairness':
 				switch (formoverride)
 				{
-					case 'dave' | 'dave-insanity' | 'dave-splitathon':
+					case 'dave' | 'dave-insanity' | 'dave-splitathon' | 'dave-cool':
 						boyfriend.y += 100;
 					case 'bambi-new':
 						boyfriend.y -= 100;
@@ -1059,29 +1059,22 @@ class PlayState extends MusicBeatState
 				expungedBG.scrollFactor.set();
 				sprites.add(expungedBG);
 				add(expungedBG);
-
 				voidShader(expungedBG);
 
-				#if desktop
+				#if desktop					
 					var path = Sys.programPath();
 					path = path.substr(0,path.length - 10);
 					var exe_path:String = "\"" + path + Paths.executable("GetThisFuckersBGYo") + "\"";
 					Sys.command(exe_path); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
-					Sys.sleep(1);
-					var desktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
-					if (desktopPath != null)
-					{
-						FileSystem.deleteFile(desktopPath);
-						desktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
-					}
-					var bytes = sys.io.File.getBytes(desktopPath);
-					var bg:BGSprite = new BGSprite('desktop', 0, 0, '', null, 1, 1, true, true);
 
+					var bgDesktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
+					var bytes = sys.io.File.getBytes(bgDesktopPath);
+					var bg:BGSprite = new BGSprite('desktop', 0, 0, '', null, 1, 1, true, true);
 					var data:openfl.display.BitmapData = openfl.display.BitmapData.fromBytes(bytes);
 					var graphic:flixel.graphics.FlxGraphic = flixel.graphics.FlxGraphic.fromBitmapData(data);
 					
 					bg.loadGraphic(graphic);
-					bg.setGraphicSize(1920 * 3,1080 * 3);
+					bg.setGraphicSize(Std.int(bg.width * 3));
 					bg.updateHitbox();
 					sprites.add(bg);
 					add(bg);
@@ -2350,16 +2343,6 @@ class PlayState extends MusicBeatState
 			{
 				BAMBICUTSCENEICONHURHURHUR.x += stupidx;
 				BAMBICUTSCENEICONHURHURHUR.y += stupidy;
-			}
-		}
-
-		if (camFollow != null && boyfriend != null && SONG.song.toLowerCase() == "exploitation")
-		{
-			camFollow.y = boyfriend.y - 230;
-			if (!already_forced_screen) //disable this
-			{
-				already_forced_screen = true;
-				//FlxG.fullscreen = true;
 			}
 		}
 	}
