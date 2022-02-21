@@ -6,6 +6,7 @@ gf-christmas
 dave
 dave-angey
 dave-annoyed
+dave-cool
 dave-splitathon
 bambi
 bambi-new
