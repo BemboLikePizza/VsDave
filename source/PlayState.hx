@@ -919,6 +919,12 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		trace(Conductor.crochet);
+		trace(Conductor.bpm);
+		trace(Conductor.stepCrochet);
+		trace(Conductor.safeZoneOffset);
+		trace(Conductor.safeFrames);
+
 		super.create();
 	}
 

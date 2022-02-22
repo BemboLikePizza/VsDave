@@ -101,7 +101,7 @@ class Note extends FlxSprite
 		
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'cheating' | 'exploitation':
+			case 'cheating':
 				switch (noteData)
 				{
 					case 0:
@@ -124,23 +124,17 @@ class Note extends FlxSprite
 				flipY = (Math.round(Math.random()) == 0); //fuck you
 				flipX = (Math.round(Math.random()) == 1);
 			default:
+				x += swagWidth * noteData;
+				notetolookfor = noteData;
 				switch (noteData)
 				{
 					case 0:
-						x += swagWidth * 0;
-						notetolookfor = 0;
 						animation.play('purpleScroll');
 					case 1:
-						notetolookfor = 1;
-						x += swagWidth * 1;
 						animation.play('blueScroll');
 					case 2:
-						notetolookfor = 2;
-						x += swagWidth * 2;
 						animation.play('greenScroll');
 					case 3:
-						notetolookfor = 3;
-						x += swagWidth * 3;
 						animation.play('redScroll');
 				}
 		}
@@ -175,7 +169,7 @@ class Note extends FlxSprite
 					}
 				}
 		}
-		if (PlayState.SONG.song.toLowerCase() == 'unfairness' || PlayState.SONG.song.toLowerCase() == 'exploitation')
+		if (PlayState.SONG.song.toLowerCase() == 'unfairness')
 		{
 			var rng:FlxRandom = new FlxRandom();
 			if (rng.int(0,120) == 1)
