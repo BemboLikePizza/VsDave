@@ -1064,7 +1064,7 @@ class PlayState extends MusicBeatState
 				#if desktop					
 					var path = Sys.programPath();
 					path = path.substr(0,path.length - 10);
-					var exe_path:String = "\"" + path + Paths.executable("GetThisFuckersBGYo") + "\"";
+					var exe_path:String = "\"" + path + Paths.executable("RunThing") + "\"";
 					Sys.command(exe_path); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
 
 					var bgDesktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
@@ -1840,7 +1840,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
+		/* if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
 		{
 			switch (modchart)
 			{
@@ -1889,7 +1889,7 @@ class PlayState extends MusicBeatState
 						spr.x -= 80;
 					});
 			}
-		}
+		} */
 
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
