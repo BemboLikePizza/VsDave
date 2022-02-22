@@ -13,9 +13,11 @@ bambi-new
 bambi-3d
 bambi-splitathon
 bambi-angey
-bambi-unfair
 tristan
 tristan-golden
-exbungo
+tristan-festival
+bambi-3d
+bambi-unfair
 expunged
+exbungo
 baldi

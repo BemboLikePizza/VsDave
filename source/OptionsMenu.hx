@@ -109,7 +109,7 @@ class OptionsMenu extends MusicBeatState
 					case 0:
 						new FlxTimer().start(0.01, function(timer:FlxTimer)
 						{
-							openSubState(new ChangeKeybinds());
+							FlxG.switchState(new ChangeKeybinds());
 						});
 						updateGroupControls("Change Keybinds", 0, 'Vertical');
 					case 1:

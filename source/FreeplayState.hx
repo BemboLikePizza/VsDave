@@ -56,7 +56,8 @@ class FreeplayState extends MusicBeatState
 		0xFF00B515, // MISTER BAMBI RETARD
 		0xFF00FFFF, // SPLIT THE THONNNNN
 		0xFF800080, // FESTIVAL
-		0xFFFF0000  // UNFAIRNESS
+		0xFFFF0000,  // UNFAIRNESS
+		0xFFFF0000  // EXPLOITATION
     ];
 
 	private var camFollow:FlxObject;
@@ -139,7 +140,7 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Cheating'], 2, ['bambi-3d']);
 				if(FlxG.save.data.unfairnessFound)
 					addWeek(['Unfairness'], 5, ['bambi-unfair']);
-				addWeek(['Exploitation'], 2, ['expunged']);
+				addWeek(['Exploitation'], 6, ['expunged']);
 				if(FlxG.save.data.exbungoFound)
 					addWeek(['Kabunga'], 2, ['exbungo']);
 			case 'extra':
@@ -147,7 +148,9 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Escape-From-California'], 5, ['none']);
 				addWeek(['Overdrive'], 1, ['dave']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
-				addWeek(['vs-dave-rap'], 2, ['none']);
+				addWeek(['Vs-Dave-Rap'], 2, ['dave-cool']);
+				addWeek(['Five-Nights'], 2, ['dave']);
+				addWeek(['Roots'], 2, ['dave']);
 		}
 	}
 

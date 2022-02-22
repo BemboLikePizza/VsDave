@@ -38,7 +38,7 @@ i have to put this here just in case you think of doing so
 */
 class CreditsMenuState extends MusicBeatState
 {
-	var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
+	var bg:FlxSprite = new FlxSprite();
    var overlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/CoolOverlay'));
    var selectedFormat:FlxText;
    var defaultFormat:FlxText;
