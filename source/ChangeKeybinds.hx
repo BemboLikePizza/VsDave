@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.display.FlxShaderMaskCamera;
 import flixel.input.actions.FlxActionInputDigital.FlxActionInputDigitalMouseWheel;
 import haxe.macro.Context;
 import haxe.Json;
@@ -30,12 +31,17 @@ ello again!! another reminder to not use my coding without my permission/without
 class ChangeKeybinds extends MusicBeatState
 {
 	var bg:FlxSprite = new FlxSprite();
+	var camFollow:FlxObject;
+
 
 	var curControlSelected:Int = 0;
 	var controlItems:Array<FlxText> = new Array<FlxText>();
 	var curControl:FlxText;
 	
 	var state:KeybindState = KeybindState.SelectControl;
+	var bottomBorder:FlxObject; 
+	var upBorder:FlxObject;
+
 
 	public override function create()
 	{
@@ -43,6 +49,8 @@ class ChangeKeybinds extends MusicBeatState
 		bg.loadGraphic(MainMenuState.randomizeBG());
       bg.scrollFactor.set();
 		add(bg);
+
+		
 		
 		var tutorial:FlxText = new FlxText(0, 50, FlxG.width / 2, "Select a control & then a keybind", 32);
 		tutorial.screenCenter(X);
@@ -89,7 +97,27 @@ class ChangeKeybinds extends MusicBeatState
 
 			controlItems.push(keybind);
 		}
+		//for masking stuff
+		bottomBorder = new FlxObject(0, choosePreset.y - 50);
+		upBorder = new FlxObject(0, tutorial.y + 50);
+
+		camFollow = new FlxObject(controlItems[curControlSelected].x, controlItems[curControlSelected].y);
+		FlxG.camera.follow(camFollow, 0.1);
+
 		changeSelection();
+
+		trace(controls.digitalActions);
+
+		for (action in controls.digitalActions)
+		{
+			trace(action.name + " has inputs: " + action.inputs);
+			for (input in action.inputs)
+			{
+				var inputKey:FlxKey = cast(input.inputID, FlxKey);
+				trace(inputKey);
+			}
+		}
+		
 
 		super.create();
 	}
@@ -120,6 +148,11 @@ class ChangeKeybinds extends MusicBeatState
 		{
 			FlxG.switchState(new OptionsMenu());
 		}
+		//mask shittt t rht hb  thht th 
+		for (item in controlItems)
+		{
+
+		}
 	}
 	function changeSelection(amount:Int = 0)
 	{
@@ -133,7 +166,7 @@ class ChangeKeybinds extends MusicBeatState
 			curControlSelected = controlItems.length - 1;
 		}
 		curControl = controlItems[curControlSelected];
-		FlxG.camera.follow(curControl, 0.1);
+		camFollow.setPosition(curControl.x, curControl.y);
 
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		for (item in controlItems)
