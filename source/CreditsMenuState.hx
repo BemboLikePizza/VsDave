@@ -107,6 +107,12 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCRKMTB-VvZlXig4gChk5jtg'),
          new Social('twitter', 'https://twitter.com/PointyyESM')
       ]),
+      new Person("Billy Bobbo", CreditsType.Dev, "Moral Support & Idea Suggesting",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
+         new Social('twitter', 'https://twitter.com/BillyBobboLOL')
+      ]),
+
       //translators
       new Person("Somf", CreditsType.Translator, "Spanish Translator",
       [
@@ -125,7 +131,7 @@ class CreditsMenuState extends MusicBeatState
             new Social('twitter', 'https://twitter.com/nickstwt')
       ]),
       
-      //contributors
+      // Contributors //
       new Person("Steph45", CreditsType.Contributor, "Minor programming, Moral support",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
@@ -176,13 +182,10 @@ class CreditsMenuState extends MusicBeatState
       ]),
 
       // Beta Testers //
-      
-      new Person("Billy Bobbo", CreditsType.BetaTester, "Moral Support, Beta Tester",
+      new Person("letsy", CreditsType.BetaTester, "Beta Tester",
       [
-         new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
-         new Social('twitter', 'https://twitter.com/BillyBobboLOL')
-      ]),
 
+      ]),
       new Person("wildy", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
@@ -283,7 +286,8 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitch', 'https://www.twitch.tv/vanquiler'),
          new Social('roblox', 'https://www.roblox.com/users/1505830747')
       ]),
-	  //special thanks
+      
+	  // Special Thanks // 
 	  new Person("Golden Apple Team", CreditsType.SpecialThanks, "Made a great fanmade mod, huge motivator for 3.0",
       [
          new Social('gamebanana', 'https://gamebanana.com/mods/343129')

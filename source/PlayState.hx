@@ -392,7 +392,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'exbungo-land';
 				case 'interdimensional':
 					stageCheck = 'interdimension-void';
-				case 'bonus-song' | 'glitch':
+				case 'bonus-song' | 'glitch' | 'memory':
 					stageCheck = 'house-night';
 				case 'secret' | 'overdrive' | 'secret-mod-leak':
 					stageCheck = 'house-sunset';
@@ -793,7 +793,7 @@ class PlayState extends MusicBeatState
 				credits = 'Original Song made by ArchWk!';
 			case 'glitch':
 				credits = 'Original Song made by DeadShadow and PixelGH!';
-			case 'mealie':
+			case 'mealie' | 'memory':
 				credits = 'Original Song made by Alexander Cooper 19!';
 			case 'overdrive':
 				credits = 'Original Song made by Top Ten Awesome! lol';
@@ -834,7 +834,7 @@ class PlayState extends MusicBeatState
 			SONG.song
 
 			+ " "
-			+ (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale") + ' | Dave Engine 3.0 (KE 1.2)', 
+			+ (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale") + ' - Dave Engine 3.0 (KE 1.2)', 
 			16
 		);
 
@@ -3479,6 +3479,7 @@ class PlayState extends MusicBeatState
 						remove(dad);
 						dad = new Character(position.x, position.y, 'bambi-angey', false);
 						dad.color = nightColor;
+						iconP2.animation.play('bambi-angey', true);
 						add(dad);
 				}
 		}
@@ -3603,6 +3604,18 @@ class PlayState extends MusicBeatState
 						FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
+				}
+			case 'memory':
+				switch (curBeat)
+				{
+					case 416:
+						FlxG.camera.flash(FlxColor.WHITE, 0.25);
+						var dadPosition = dad.getPosition();
+						remove(dad);
+						dad = new Character(dadPosition.x, dadPosition.y, 'dave-annoyed');
+						dad.color = nightColor;
+						iconP2.animation.play('dave-annoyed', true);
+						add(dad);
 				}
 		}
 		if (shakeCam)

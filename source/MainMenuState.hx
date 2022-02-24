@@ -174,7 +174,7 @@ class MainMenuState extends MusicBeatState
 	
 			// NG.core.calls.event.logEvent('swag').send();
 
-			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
+			controls.setKeyboardScheme(KeyboardScheme.Solo, true);
 			changeItem();
 	
 			super.create();
