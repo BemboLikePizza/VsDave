@@ -1,4 +1,4 @@
-package;
+ package;
 
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
@@ -132,7 +132,7 @@ class OptionsMenu extends MusicBeatState
 						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 6, 'Vertical');
 					case 7:
 						FlxG.save.data.enableStupidCamera = !FlxG.save.data.enableStupidCamera;
-						updateGroupControls((FlxG.save.data.enableStupidCamera ? "Fucking Stupid Camera" : "Normal Camera"), 7, 'Vertical');
+						updateGroupControls((FlxG.save.data.enableStupidCamera ? "Camera Movement On Note" : "Normal Camera"), 7, 'Vertical');
 					case 8:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						FlxG.save.data.language = languages[currentLanguage];

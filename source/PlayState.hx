@@ -447,10 +447,6 @@ class PlayState extends MusicBeatState
 		{
 			gf.visible = false;
 		}
-		else if (FlxG.save.data.tristanProgress == "pending play" && isStoryMode)
-		{
-			gf.visible = false;
-		}
 
 		dad = new Character(100, 100, SONG.player2);
 		switch (SONG.song.toLowerCase())
@@ -1364,10 +1360,6 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 			vocals.play();
-		}
-		if (FlxG.save.data.tristanProgress == "pending play" && isStoryMode && storyWeek != 10)
-		{
-			FlxG.sound.music.volume = 0;
 		}
 
 		#if desktop
@@ -2297,24 +2289,14 @@ class PlayState extends MusicBeatState
 				
 				if (daNote.wasGoodHit && daNote.isSustainNote && Conductor.songPosition >= (daNote.strumTime + 10))
 				{
-					daNote.active = false;
-					daNote.visible = false;
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-				}
-				//daNote.strumTime + strumTimeFromY(noteStrum.y - (106 * change), FlxG.save.data.downscroll)
-
-				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + Conductor.crochet)
+					destroyNote(daNote);
+				}				
+				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + strumTimeFromY(106, daNote))
 				{
 					noteMiss(daNote.noteData);
 					vocals.volume = 0;
 
-					daNote.active = false;
-					daNote.visible = false;
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
+					destroyNote(daNote);
 				}
 			});
 		}
@@ -2375,10 +2357,9 @@ class PlayState extends MusicBeatState
 		var change = downScroll ? -1 : 1;
 		return strumLine.y - (Conductor.songPosition - note.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * note.LocalScrollSpeed, 2));
 	}
-	function strumTimeFromY(yPosition:Float, downScroll:Bool):Float
+	function strumTimeFromY(yPosition:Float, note:Note):Float
 	{
-		var change = downScroll ? -1 : 1;
-		return FlxMath.remapToRange(yPosition, change * FlxG.height, change * -FlxG.height, 0, 16 * Conductor.stepCrochet);
+		return yPosition * (yPosition / Conductor.stepCrochet) / (0.45 * FlxMath.roundDecimal(SONG.speed * note.LocalScrollSpeed, 2));
 	}
 
 	function ZoomCam(focusondad:Bool):Void
@@ -2517,7 +2498,6 @@ class PlayState extends MusicBeatState
 				switch (curSong.toLowerCase())
 				{
 					case 'polygonized':
-						FlxG.save.data.tristanProgress = "unlocked";
 						CharacterSelectState.unlockCharacter('tristan');
 						if (health >= 0.1)
 						{
