@@ -221,12 +221,6 @@ class FreeplayState extends MusicBeatState
 			CurrentPack = 0;
 
 		camFollow.setPosition(icons[CurrentPack].x + 256, icons[CurrentPack].y + 256);
-
-		/*NameAlpha.destroy();
-		NameAlpha = new Alphabet(40,(FlxG.height / 2) - 282,Catagories[CurrentPack],true,false);
-		NameAlpha.screenCenter(X);
-		add(NameAlpha);
-		CurrentSongIcon.loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[CurrentPack].toLowerCase())));*/
 	}
 
 	override function beatHit()

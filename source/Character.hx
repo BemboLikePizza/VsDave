@@ -617,10 +617,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
 				addOffset('idle');
-				addOffset('singLEFT');
-				addOffset('singDOWN');
-				addOffset('singUP');
-				addOffset('singRIGHT');
+				addOffset('singLEFT', 0, -13);
+				addOffset('singDOWN', 74, -19);
+				addOffset('singUP', 57, 23);
+				addOffset('singRIGHT', 61, -4);
 				
 				nativelyPlayable = true;
 				flipX = true;

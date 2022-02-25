@@ -380,7 +380,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
-				case 'splitathon' | 'mealie' | 'shredder':
+				case 'splitathon' | 'mealie' | 'shredder' | 'greetings':
 					stageCheck = 'farm-night';
 				case 'cheating':
 					stageCheck = 'green-void';
@@ -502,9 +502,9 @@ class PlayState extends MusicBeatState
 					camPos.x += 600;
 					tweenCamIn();
 				}
-			case "tristan" | 'tristan-golden':
-				dad.y += 325;
-				dad.x += 100;
+			case "tristan" | 'tristan-golden' | 'tristan-festival':
+				dad.y += 350;
+				dad.x += 175;
 
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
 				dad.y += 160;
@@ -556,7 +556,7 @@ class PlayState extends MusicBeatState
 
 		switch (boyfriend.curCharacter)
 		{
-			case "tristan" | 'tristan-golden':
+			case "tristan" | 'tristan-golden' | 'tristan-festival':
 				boyfriend.y = 100 + 325;
 				boyfriendOldIcon = 'tristan';
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
@@ -662,7 +662,7 @@ class PlayState extends MusicBeatState
 						boyfriend.y -= 100;
 					case 'bambi-old':
 						boyfriend.y -= 150;
-					case 'tristan' | 'tristan-golden':
+					case 'tristan' | 'tristan-golden' | 'tristan-festival':
 						boyfriend.y -= 100;
 					case 'bambi-unfair':
 						boyfriend.y -= 50;
@@ -792,14 +792,13 @@ class PlayState extends MusicBeatState
 			case 'mealie' | 'memory':
 				credits = 'Original Song made by Alexander Cooper 19!';
 			case 'overdrive':
-				credits = 'Original Song made by Top Ten Awesome! lol';
+				credits = 'Original Song made by Top 10 Awesome! lol';
 			case 'unfairness':
 				credits = "Ghost tapping is forced off! FUCK you!";
 			case 'cheating':
 				credits = 'Notes are scrambled! FUCK you!';
 			case 'exploitation':
-				credits = 'Notes are scrambled, ghost tapping is off! SUPER FUCK YOU!!!';
-				
+				credits = "You won't survive " + CoolSystemStuff.getUsername() + "! SUPER FUCK you!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			default:
@@ -1689,6 +1688,7 @@ class PlayState extends MusicBeatState
 			remove(BAMBICUTSCENEICONHURHURHUR);
 		}
 		BAMBICUTSCENEICONHURHURHUR = new HealthIcon(guyWhoComesIn, false);
+		BAMBICUTSCENEICONHURHURHUR.changeState(iconP2.getState());
 		BAMBICUTSCENEICONHURHURHUR.y = healthBar.y - (BAMBICUTSCENEICONHURHURHUR.height / 2);
 		add(BAMBICUTSCENEICONHURHURHUR);
 		BAMBICUTSCENEICONHURHURHUR.cameras = [camHUD];
@@ -1935,11 +1935,11 @@ class PlayState extends MusicBeatState
 			if (iconP1.animation.curAnim.name == boyfriendOldIcon)
 			{
 				var isBF:Bool = formoverride == 'bf' || formoverride == 'none';
-				iconP1.animation.play(isBF ? SONG.player1 : formoverride);
+				iconP1.changeIcon(isBF ? SONG.player1 : formoverride);
 			}
 			else
 			{
-				iconP1.animation.play(boyfriendOldIcon);
+				iconP1.changeIcon(boyfriendOldIcon);
 			}
 		}
 
@@ -2028,14 +2028,14 @@ class PlayState extends MusicBeatState
 			health = 2;
 
 		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
+			iconP1.changeState('losing');
 		else
-			iconP1.animation.curAnim.curFrame = 0;
+			iconP1.changeState('normal');
 
 		if (healthBar.percent > 80)
-			iconP2.animation.curAnim.curFrame = 1;
+			iconP2.changeState('losing');
 		else
-			iconP2.animation.curAnim.curFrame = 0;
+			iconP2.changeState('normal');
 
 		#if debug
 		if (FlxG.keys.justPressed.C)
@@ -2311,18 +2311,6 @@ class PlayState extends MusicBeatState
 			endSong();
 		#end
 
-		#if debug
-		if (FlxG.keys.justPressed.TWO)
-		{
-			BAMBICUTSCENEICONHURHURHUR = new HealthIcon("bambi", false);
-			BAMBICUTSCENEICONHURHURHUR.y = healthBar.y - (BAMBICUTSCENEICONHURHURHUR.height / 2);
-			add(BAMBICUTSCENEICONHURHURHUR);
-			BAMBICUTSCENEICONHURHURHUR.cameras = [camHUD];
-			BAMBICUTSCENEICONHURHURHUR.x = -100;
-			FlxTween.linearMotion(BAMBICUTSCENEICONHURHURHUR, -100, BAMBICUTSCENEICONHURHURHUR.y, iconP2.x, BAMBICUTSCENEICONHURHURHUR.y, 0.3, true, {ease: FlxEase.expoInOut});
-			new FlxTimer().start(0.3, FlingCharacterIconToOblivionAndBeyond);
-		}
-		#end
 		if (updatevels)
 		{
 			stupidx *= 0.98;
@@ -2337,12 +2325,13 @@ class PlayState extends MusicBeatState
 
 	function FlingCharacterIconToOblivionAndBeyond(e:FlxTimer = null):Void
 	{
-		iconP2.animation.play(AUGHHHH, true);
-		BAMBICUTSCENEICONHURHURHUR.animation.play(AHHHHH, true, false, 1);
+		iconP2.changeIcon(AUGHHHH);
+		
+		BAMBICUTSCENEICONHURHURHUR.changeIcon(AHHHHH);
+		BAMBICUTSCENEICONHURHURHUR.changeState(iconP2.getState());
 		stupidx = -5;
 		stupidy = -5;
 		updatevels = true;
-		
 	}
 	function destroyNote(note:Note)
 	{
@@ -3288,7 +3277,7 @@ class PlayState extends MusicBeatState
 						addSplitathonChar("bambi-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
-							throwThatBitchInThere('bambi', 'dave');
+							throwThatBitchInThere('bambi-splitathon', 'dave-splitathon');
 						}
 					case 5824:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
@@ -3296,7 +3285,7 @@ class PlayState extends MusicBeatState
 						addSplitathonChar("dave-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
-							throwThatBitchInThere('dave', 'bambi');
+							throwThatBitchInThere('dave-splitathon', 'bambi-splitathon');
 						}
 					case 6080:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
@@ -3304,7 +3293,7 @@ class PlayState extends MusicBeatState
 						addSplitathonChar("bambi-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
-							throwThatBitchInThere('bambi', 'dave');
+							throwThatBitchInThere('bambi-splitathon', 'dave-splitathon');
 						}
 					case 8384:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
@@ -3312,7 +3301,7 @@ class PlayState extends MusicBeatState
 						addSplitathonChar("dave-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
-							throwThatBitchInThere('dave', 'bambi');
+							throwThatBitchInThere('dave-splitathon', 'bambi-splitathon');
 						}
 					case 4799 | 5823 | 6079 | 8383:
 						hasTriggeredDumbshit = false;
@@ -3327,12 +3316,12 @@ class PlayState extends MusicBeatState
 						dad.visible = false;
 						dadmirror.visible = true;
 						curbg.visible = true;
-						iconP2.animation.play(dadmirror.curCharacter);
+						iconP2.changeIcon(dadmirror.curCharacter);
 					case 664 | 684:
 						dad.visible = true;
 						dadmirror.visible = false;
 						curbg.visible = false;
-						iconP2.animation.play(dad.curCharacter);
+						iconP2.changeIcon(dad.curCharacter);
 					case 1176:
 						FlxG.sound.play(Paths.sound('static'), 0.1);
 						dad.visible = false;
@@ -3340,11 +3329,11 @@ class PlayState extends MusicBeatState
 						curbg.loadGraphic(Paths.image('dave/redsky'));
 						curbg.alpha = 1;
 						curbg.visible = true;
-						iconP2.animation.play(dadmirror.curCharacter);
+						iconP2.changeIcon(dadmirror.curCharacter);
 					case 1180:
 						dad.visible = true;
 						dadmirror.visible = false;
-						iconP2.animation.play(dad.curCharacter);
+						iconP2.changeIcon(dad.curCharacter);
 						dad.canDance = false;
 						dad.animation.play('scared', true);
 				}
@@ -3459,7 +3448,7 @@ class PlayState extends MusicBeatState
 						remove(dad);
 						dad = new Character(position.x, position.y, 'bambi-angey', false);
 						dad.color = nightColor;
-						iconP2.animation.play('bambi-angey', true);
+						iconP2.changeIcon('bambi-angey');
 						add(dad);
 				}
 		}
@@ -3594,7 +3583,7 @@ class PlayState extends MusicBeatState
 						remove(dad);
 						dad = new Character(dadPosition.x, dadPosition.y, 'dave-annoyed');
 						dad.color = nightColor;
-						iconP2.animation.play('dave-annoyed', true);
+						iconP2.changeIcon('dave-annoyed');
 						add(dad);
 				}
 		}
@@ -3740,7 +3729,12 @@ class PlayState extends MusicBeatState
 					dad.y += 450;
 				}
 		}
+
+		var sign = addFarmSign(true);
+		add(sign);
+
 		boyfriend.stunned = false;
+		
 	}
 
 	public function splitathonExpression(character:String, expression:String):Void

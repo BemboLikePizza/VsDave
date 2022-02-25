@@ -211,16 +211,17 @@ class CharacterSelectState extends MusicBeatState
 		add(resetText);
 
 		funnyIconMan = new HealthIcon('bf', true);
-		funnyIconMan.sprTracker = characterText;
 		funnyIconMan.cameras = [camHUD];
 		funnyIconMan.visible = false;
+		updateIconPosition();
 		add(funnyIconMan);
 
 		var tutorialThing:FlxSprite = new FlxSprite(-150, -50).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
-		add(tutorialThing);		
+		add(tutorialThing);
+		
 	}
 
 	private function generateStaticArrows():Void
@@ -439,15 +440,16 @@ class CharacterSelectState extends MusicBeatState
 				char.y = 750;
 		}
 		add(char);
-		funnyIconMan.animation.play(char.curCharacter);
+		funnyIconMan.changeIcon(char.curCharacter);
+		
 		if (isLocked(characters[current].name))
 		{
 			char.color = FlxColor.BLACK;
 			funnyIconMan.color = FlxColor.BLACK;
-			funnyIconMan.animation.curAnim.curFrame = 1;
 			characterText.text = '???';
 		}
 		characterText.screenCenter(X);
+		updateIconPosition();
 		notemodtext.text = FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[0]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[3]) + "x        " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[2]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[1]) + "x";
 	}
 
@@ -459,6 +461,14 @@ class CharacterSelectState extends MusicBeatState
 			char.playAnim('idle', true);
 		}
 	}
+	function updateIconPosition()
+	{
+		//var xValues = CoolUtil.getMinAndMax(funnyIconMan.width, characterText.width);
+		var yValues = CoolUtil.getMinAndMax(funnyIconMan.height, characterText.height);
+		
+		funnyIconMan.x = characterText.x + characterText.width / 2;
+		funnyIconMan.y = characterText.y + ((yValues[0] - yValues[1]) / 2);
+	}
 	
 	
 	public function endIt(e:FlxTimer = null)
@@ -468,5 +478,4 @@ class CharacterSelectState extends MusicBeatState
 		PlayState.curmult = currentSelectedCharacter.noteMs;
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
-	
 }
