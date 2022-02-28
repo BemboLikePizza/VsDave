@@ -1,4 +1,5 @@
 package;
+import io.newgrounds.objects.events.Result.GetCurrentVersionResult;
 import Controls.Control;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tweens.FlxEase;
@@ -36,12 +37,13 @@ class CharacterForm
 {
 	public var name:String;
 	public var polishedName:String;
-	public var positionOffsets:Array<Float> = new Array<Float>();
+	public var noteType:String;
 
-	public function new(name:String, polishedName:String)
+	public function new(name:String, polishedName:String, noteType:String = 'normal')
 	{
 		this.name = name;
 		this.polishedName = polishedName;
+		this.noteType = noteType;
 	}
 }
 class CharacterSelectState extends MusicBeatState
@@ -51,6 +53,7 @@ class CharacterSelectState extends MusicBeatState
 	public var curForm:Int = 0;
 	public var notemodtext:FlxText;
 	public var characterText:FlxText;
+	
 
 	public var funnyIconMan:HealthIcon;
 
@@ -90,7 +93,7 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('bambi-old', 'Bambi (Joke)')
 		]),
 		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [
-			new CharacterForm('dave-angey', '3D Dave')
+			new CharacterForm('dave-angey', '3D Dave', '3D')
 		]),
 		new CharacterInSelect('tristan', [2, 0.5, 0.5, 0.5], [
 			new CharacterForm('tristan', 'Tristan')
@@ -99,9 +102,9 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('tristan-golden', 'Golden Tristan')
 		]),
 		new CharacterInSelect('bambi-3d', [0, 3, 0, 0], [
-			new CharacterForm('bambi-3d', '[EXPUNGED]'),
-			new CharacterForm('bambi-unfair', '[EXPUNGED]'),
-			new CharacterForm('expunged', '[EXPUNGED]')
+			new CharacterForm('bambi-3d', '[EXPUNGED]', '3D'),
+			new CharacterForm('bambi-unfair', '[EXPUNGED]', '3D'),
+			new CharacterForm('expunged', '[EXPUNGED]', '3D')
 		]),
 
 	];
@@ -180,7 +183,7 @@ class CharacterSelectState extends MusicBeatState
 		strummies.cameras = [camHUD];
 		add(strummies);
 	
-		generateStaticArrows();
+		generateStaticArrows(false);
 		
 		notemodtext = new FlxText((FlxG.width / 3.5) + 80, 40, 0, "1.00x       1.00x        1.00x       1.00x", 30);
 		notemodtext.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
@@ -224,14 +227,32 @@ class CharacterSelectState extends MusicBeatState
 		
 	}
 
-	private function generateStaticArrows():Void
+	private function generateStaticArrows(noteType:String = 'normal', regenerated:Bool):Void
 	{
+		if (regenerated)
+		{
+			if (strummies.length > 0)
+			{
+				strummies.forEach(function(babyArrow:FlxSprite)
+				{
+					remove(babyArrow);
+					strummies.remove(babyArrow);
+				});
+			}
+		}
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, 0);
 
-			babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets');
+			var noteAsset:String = 'notes/NOTE_assets';
+			switch (noteType)
+			{
+				case '3D':
+					noteAsset = 'notes/NOTE_assets_3D';
+			}
+
+			babyArrow.frames = Paths.getSparrowAtlas(noteAsset);
 			babyArrow.animation.addByPrefix('green', 'arrowUP');
 			babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 			babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -269,14 +290,15 @@ class CharacterSelectState extends MusicBeatState
 			babyArrow.x += ((FlxG.width / 3.5));
 			babyArrow.y -= 10;
 			babyArrow.alpha = 0;
-			FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
+
+			var baseDelay:Float = regenerated ? 0 : 0.5;
+			FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: baseDelay + (0.2 * i)});
 			babyArrow.cameras = [camHUD];
 			strummies.add(babyArrow);
 		}
 	}
 	override public function update(elapsed:Float):Void 
 	{
-	
 		Conductor.songPosition = FlxG.sound.music.time;
 		
 		var controlSet:Array<Bool> = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
@@ -398,8 +420,13 @@ class CharacterSelectState extends MusicBeatState
 
 	public function UpdateBF()
 	{
-		funnyIconMan.color = FlxColor.WHITE;
-		currentSelectedCharacter = characters[current];
+		var newSelectedCharacter = characters[current];
+		if (currentSelectedCharacter.forms[curForm].noteType != newSelectedCharacter.forms[curForm].noteType)
+		{
+			generateStaticArrows(newSelectedCharacter.forms[curForm].noteType, true);
+		}
+		
+		currentSelectedCharacter = newSelectedCharacter;
 		characterText.text = currentSelectedCharacter.forms[curForm].polishedName;
 		char.destroy();
 		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, currentSelectedCharacter.forms[curForm].name);
@@ -441,7 +468,7 @@ class CharacterSelectState extends MusicBeatState
 		}
 		add(char);
 		funnyIconMan.changeIcon(char.curCharacter);
-		
+		funnyIconMan.color = FlxColor.WHITE;
 		if (isLocked(characters[current].name))
 		{
 			char.color = FlxColor.BLACK;

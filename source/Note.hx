@@ -48,6 +48,8 @@ class Note extends FlxSprite
 
 	public var rating:String = "shit";
 
+	public var noteStyle:String = 'normal';
+
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal") //had to add a new variable to this because FNF dumb
 	{
 		super();
@@ -57,6 +59,8 @@ class Note extends FlxSprite
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
+		
+		this.noteStyle = noteStyle;
 
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -72,12 +76,18 @@ class Note extends FlxSprite
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 		
 		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1) || CharactersWith3D.contains(PlayState.characteroverride) || CharactersWith3D.contains(PlayState.formoverride)) && musthit)) || ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
+		{
+			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
+		}
 		else if (noteStyle == "phone")
-			notePathLol = 'notes/NOTE_phone'
+		{
+			notePathLol = 'notes/NOTE_phone';
+		}
 		else
+		{
 			notePathLol = 'notes/NOTE_assets';
-		
+		}
 		frames = Paths.getSparrowAtlas(notePathLol);
 
 		animation.addByPrefix('greenScroll', 'green0');

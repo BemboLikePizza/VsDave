@@ -369,8 +369,6 @@ class FreeplayState extends MusicBeatState
 						diffText.text = 'NORMAL' + " - " + curChar.toUpperCase();
 					case 2:
 						diffText.text = "HARD" + " - " + curChar.toUpperCase();
-					case 3:
-						diffText.text = "LEGACY" + " - " + curChar.toUpperCase();
 				}
 		}
 	}
@@ -378,21 +376,23 @@ class FreeplayState extends MusicBeatState
 	function changeSelection(change:Int = 0)
 	{
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-		curSelected += change;
+		if (songs[curSelected].week != 3)
+		{
+			curSelected += change;
 
-		if (curSelected < 0)
-			curSelected = songs.length - 1;
-
-		if (curSelected >= songs.length)
-			curSelected = 0;
-
-		if (curDifficulty < 0)
-			curDifficulty = 2;
-
-		if (curDifficulty > 2)
-			curDifficulty = 0;
-
-		if (songs[curSelected].week == 3)
+			if (curSelected < 0)
+				curSelected = songs.length - 1;
+	
+			if (curSelected >= songs.length)
+				curSelected = 0;
+	
+			if (curDifficulty < 0)
+				curDifficulty = 2;
+	
+			if (curDifficulty > 2)
+				curDifficulty = 0;
+		}
+		else
 		{
 			curDifficulty = 1;
 		}

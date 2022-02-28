@@ -443,7 +443,7 @@ class PlayState extends MusicBeatState
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		if (!(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel") && SONG.song != "Tutorial")
+		if (!(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel") && SONG.song != "Tutorial" || SONG.song.toLowerCase() == 'memory')
 		{
 			gf.visible = false;
 		}
@@ -913,13 +913,6 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 		}
-
-		trace(Conductor.crochet);
-		trace(Conductor.bpm);
-		trace(Conductor.stepCrochet);
-		trace(Conductor.safeZoneOffset);
-		trace(Conductor.safeFrames);
-
 		super.create();
 	}
 
@@ -2515,6 +2508,7 @@ class PlayState extends MusicBeatState
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
+							FlxG.sound.playMusic(Paths.music('freakyMenu'));
 							FlxG.switchState(new StoryMenuState());
 						};
 						doof.cameras = [camDialogue];
@@ -2529,11 +2523,13 @@ class PlayState extends MusicBeatState
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
+							FlxG.sound.playMusic(Paths.music('freakyMenu'));
 							FlxG.switchState(new CreditsMenuState());
 						};
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
 					default:
+						FlxG.sound.playMusic(Paths.music('freakyMenu'));
 						FlxG.switchState(new StoryMenuState());
 				}
 				transIn = FlxTransitionableState.defaultTransIn;
@@ -2709,7 +2705,7 @@ class PlayState extends MusicBeatState
 				LoadingState.loadAndSwitchState(new PlayState());
 		}
 	}
-	private function popUpScore(strumtime:Float, notedata:Int):Void
+	private function popUpScore(strumtime:Float, note:Note):Void
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
 		// boyfriend.playAnim('hey');
@@ -2764,7 +2760,14 @@ class PlayState extends MusicBeatState
 			totalNotesHit += 1;
 			sicks++;
 		}
-		score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[notedata], 0), Int);
+		score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[note.noteData], 0), Int);
+
+		var assetPath:String = '';
+		switch (note.noteStyle)
+		{
+			case '3D':
+			  assetPath = '3D/';
+		}
 
 		if (daRating != 'shit' || daRating != 'bad')
 		{
@@ -2778,7 +2781,7 @@ class PlayState extends MusicBeatState
 					daRating = 'bad';
 			 */
 
-			rating.loadGraphic(Paths.image("ui/" + daRating));
+			rating.loadGraphic(Paths.image("ui/" + assetPath + daRating));
 			rating.screenCenter();
 			rating.x = coolText.x - 40;
 			rating.y -= 60;
@@ -2786,7 +2789,7 @@ class PlayState extends MusicBeatState
 			rating.velocity.y -= FlxG.random.int(140, 175);
 			rating.velocity.x -= FlxG.random.int(0, 10);
 
-			var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/combo"));
+			var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/" + assetPath + "combo"));
 			comboSpr.screenCenter();
 			comboSpr.x = coolText.x;
 			comboSpr.acceleration.y = 600;
@@ -2819,7 +2822,7 @@ class PlayState extends MusicBeatState
 			var daLoop:Int = 0;
 			for (i in seperatedScore)
 			{
-				var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/num" + Std.int(i)));
+				var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image("ui/" + assetPath + "num" + Std.int(i)));
 				numScore.screenCenter();
 				numScore.x = coolText.x + (43 * daLoop) - 90;
 				numScore.y += 80;
@@ -3174,7 +3177,7 @@ class PlayState extends MusicBeatState
 		{
 			if (!note.isSustainNote)
 			{
-				popUpScore(note.strumTime, note.noteData);
+				popUpScore(note.strumTime, note);
 				if (FlxG.save.data.donoteclick)
 				{
 					FlxG.sound.play(Paths.sound('note_click'));
@@ -3528,7 +3531,7 @@ class PlayState extends MusicBeatState
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
 
-		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0 || (SONG.song.toLowerCase() == 'memory' && curBeat >= 416 && curBeat <= 672))
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
