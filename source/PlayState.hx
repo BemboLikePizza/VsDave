@@ -913,6 +913,10 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 		}
+		if (SONG.song.toLowerCase() == 'exploitation')
+		{
+			modchart = ExploitationModchartType.Figure8;
+		}
 		super.create();
 	}
 
@@ -1831,7 +1835,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		/* if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
+		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
 		{
 			switch (modchart)
 			{
@@ -1880,7 +1884,7 @@ class PlayState extends MusicBeatState
 						spr.x -= 80;
 					});
 			}
-		} */
+		}
 
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
