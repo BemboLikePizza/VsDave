@@ -822,16 +822,12 @@ class PlayState extends MusicBeatState
 			textYPos = healthBarBG.y + 30;
 		}
 
-		// Add Kade Engine watermark
-		var kadeEngineWatermark = new FlxText
-		(
-			4, textYPos, 0,
-			SONG.song
+		var funkyText:String = SONG.song + " " + (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale") + ' - Dave Engine 3.0 (KE 1.2)';
 
-			+ " "
-			+ (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale") + ' - Dave Engine 3.0 (KE 1.2)', 
-			16
-		);
+		if (SONG.song.toLowerCase() == "overdrive")
+			funkyText = '';
+
+		var kadeEngineWatermark = new FlxText(4, textYPos, 0, funkyText, 16);
 
 		kadeEngineWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
@@ -855,9 +851,15 @@ class PlayState extends MusicBeatState
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, 0, "", 20);
 		//scoreTxt.x = healthBarBG.x + healthBarBG.width / 2;
-		scoreTxt.setFormat(Paths.font("comic.ttf"), 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("opensans.ttf") : Paths.font("comic.ttf"), 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
+
+		if (SONG.song.toLowerCase() == "overdrive")
+		{
+			scoreTxt.x = healthBarBG.x + healthBarBG.width / 1.3;
+			scoreTxt.y -= 25;
+		}
 		add(scoreTxt);
 
 		iconP1 = new HealthIcon((formoverride == "none" || formoverride == "bf") ? SONG.player1 : formoverride, true);
@@ -1538,7 +1540,11 @@ class PlayState extends MusicBeatState
 						switch (curStage)
 						{
 							default:
-								babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets');
+								if (SONG.song.toLowerCase() == "overdrive")
+									babyArrow.frames = Paths.getSparrowAtlas('notes/OMGtop10awesomehi');
+								else
+									babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets');
+
 								babyArrow.animation.addByPrefix('green', 'arrowUP');
 								babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 								babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -1942,7 +1948,10 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + Std.string(songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
+		if (SONG.song.toLowerCase() == "overdrive")
+			scoreTxt.text = "score: " + Std.string(songScore);
+		else
+			scoreTxt.text = "Score:" + Std.string(songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
 		
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
