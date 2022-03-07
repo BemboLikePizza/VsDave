@@ -21,3 +21,4 @@ bambi-unfair
 expunged
 exbungo
 baldi
+cockey
