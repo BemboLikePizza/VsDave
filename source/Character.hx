@@ -650,6 +650,84 @@ class Character extends FlxSprite
 				updateHitbox();
 	
 				antialiasing = false;
+
+
+			// Bananacore shit
+			// You can basically ignore everything beyond this point
+			// Most of these are just one-time characters that appear for a few seconds
+
+			case 'cockey':
+				tex = Paths.getSparrowAtlas('bananacore/characters/Cockey', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByPrefix('singUP', 'Up', 24, false);
+				animation.addByPrefix('singRIGHT', 'Right', 24, false);
+				animation.addByPrefix('singDOWN', 'Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Left', 24, false);
+		
+				addOffset('idle', 110, 70);
+				addOffset("singUP", 110, 61);
+				addOffset("singRIGHT", 0, -30);
+				addOffset("singLEFT", 210, 0);
+				addOffset("singDOWN", 190, 50);
+				setGraphicSize(Std.int(width * 2));
+				updateHitbox();
+				antialiasing = false;
+		
+				playAnim('idle');
+			
+			case 'bartholemew':
+				tex = Paths.getSparrowAtlas('bananacore/characters/Bartholemew', "shared");
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+
+				playAnim('idle');
+
+			case 'bananacore-kapi':
+				tex = Paths.getSparrowAtlas('bananacore/characters/Kapi', "shared");
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+	
+				playAnim('idle');
+
+			case 'ayo-the-pizza-here':
+				tex = Paths.getSparrowAtlas('bananacore/characters/Kapi', "shared");
+				frames = tex;
+				animation.addByPrefix('idle', 'Idle', 24);
+				animation.addByPrefix('singUP', 'Up', 24);
+				animation.addByPrefix('singRIGHT', 'Right', 24);
+				animation.addByPrefix('singDOWN', 'Down', 24);
+				animation.addByPrefix('singLEFT', 'Left', 24);
+				animation.addByPrefix('pizza', 'PizzasHere', 24);
+	
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+				addOffset('pizza');
+		
+				playAnim('idle');
 		}
 		dance();
 

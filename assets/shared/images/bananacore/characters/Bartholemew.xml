@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="DADDY_DEAREST.png">
+	<SubTexture name="Dad Sing Note DOWN0000" x="5" y="5" width="470" height="730" frameX="0" frameY="-5" frameWidth="470" frameHeight="735"/>
+	<SubTexture name="Dad Sing Note LEFT0000" x="948" y="5" width="371" height="777" frameX="0" frameY="0" frameWidth="383" frameHeight="777"/>
+	<SubTexture name="Dad Sing Note RIGHT0000" x="2100" y="5" width="465" height="792" frameX="0" frameY="-1" frameWidth="465" frameHeight="793"/>
+	<SubTexture name="Dad Sing Note UP0000" x="3484" y="5" width="408" height="818" frameX="-1" frameY="0" frameWidth="409" frameHeight="818"/>
+	<SubTexture name="Dad idle dance0000" x="831" y="828" width="419" height="767" frameX="-6" frameY="0" frameWidth="429" frameHeight="767"/>
+</TextureAtlas>

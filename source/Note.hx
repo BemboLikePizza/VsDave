@@ -80,14 +80,10 @@ class Note extends FlxSprite
 			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
 		}
-		else if (noteStyle == "phone")
-		{
-			notePathLol = 'notes/NOTE_phone';
-		}
-		else
-		{
-			notePathLol = 'notes/NOTE_assets';
-		}
+		else if (noteStyle == "phone") notePathLol = 'notes/NOTE_phone';
+		else if (PlayState.SONG.song.toLowerCase() == "overdrive") notePathLol = 'notes/OMGtop10awesomehi';
+		else notePathLol = 'notes/NOTE_assets';
+
 		frames = Paths.getSparrowAtlas(notePathLol);
 
 		animation.addByPrefix('greenScroll', 'green0');
