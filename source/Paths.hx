@@ -114,6 +114,10 @@ class Paths
 	{
 		return 'assets/fonts/$key';
 	}
+	static public function langaugeFile():String
+	{
+		return getPath('locale/languages.txt', TEXT, 'preload');
+	}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String)
 	{

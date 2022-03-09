@@ -29,7 +29,7 @@ class OptionsMenu extends MusicBeatState
 	private var grpControls:FlxTypedGroup<Alphabet>;
 	var versionShit:FlxText;
 
-	var languages:Array<String> = ['English', 'Spanish', 'Portuguese', 'Brazillian'];
+	var languages:Array<String> = new Array<String>();
 	var currentLanguage:Int = 0;
 	override function create()
 	{
@@ -54,6 +54,8 @@ class OptionsMenu extends MusicBeatState
 		menuBG.antialiasing = true;
 		menuBG.loadGraphic(MainMenuState.randomizeBG());
 		add(menuBG);
+
+		languages = LanguageManager.getLanguages();
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);

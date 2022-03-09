@@ -86,6 +86,8 @@ enum KeyboardScheme
 	Duo(first:Bool);
 	None;
 	Custom;
+	Askl;
+	ZxCommaDot;
 }
 
 /**
@@ -525,6 +527,24 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.RESET, [BACKSPACE]);
 			case None: // nothing
 			case Custom: // nothing
+			case Askl:
+				inline bindKeys(Control.UP, [K, FlxKey.UP]);
+				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
+				inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
+				inline bindKeys(Control.RIGHT, [L, FlxKey.RIGHT]);
+				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
+				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
+				inline bindKeys(Control.RESET, [R]);
+			case ZxCommaDot:
+				inline bindKeys(Control.UP, [FlxKey.COMMA, FlxKey.UP]);
+				inline bindKeys(Control.DOWN, [X, FlxKey.DOWN]);
+				inline bindKeys(Control.LEFT, [Z, FlxKey.LEFT]);
+				inline bindKeys(Control.RIGHT, [FlxKey.PERIOD, FlxKey.RIGHT]);
+				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
+				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
+				inline bindKeys(Control.RESET, [R]);
 		}
 		#else
 		switch (scheme)
