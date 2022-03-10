@@ -27,7 +27,7 @@ class ExtrasMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
-	var optionShit:Array<String> = ['ost', 'discord'];
+	var optionShit:Array<String> = ['ost', 'discord', 'bambicorngame'];
 
 	var newGaming:FlxText;
 	var newGaming2:FlxText;
@@ -211,6 +211,8 @@ class ExtrasMenuState extends MusicBeatState
                                         FlxG.switchState(new MusicPlayerState());
                                     case 'credits':
                                         FlxG.switchState(new CreditsMenuState());
+									case 'bambicorngame':
+										FlxG.switchState(new BambisCornGame());
                                 }
                             });
                         }
