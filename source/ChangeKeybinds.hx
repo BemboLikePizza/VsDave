@@ -24,6 +24,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.math.FlxMath;
+import StringTools;
 
 /*
 ello again!! another reminder to not use my coding without my permission/without checking in with me :))
@@ -311,10 +312,12 @@ class ChangeKeybinds extends MusicBeatState
 		{
 			for (i in 0...controls.digitalActions.length)
 			{
+				var currentActionKeys:Array<FlxKey> = loadedKeys[i];
 				var action = controls.digitalActions[i];
-
 				controls.unbindKeys(controls.stringControlToControl(action.name), actionToFlxKeys(action));
-				controls.bindKeys(controls.stringControlToControl(action.name), loadedKeys[i]);
+				trace(action.name);
+				trace(controls.stringControlToControl(action.name));
+				controls.bindKeys(controls.stringControlToControl(action.name), currentActionKeys);
 			}
 		}
 	}
