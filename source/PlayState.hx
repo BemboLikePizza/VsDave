@@ -2093,13 +2093,6 @@ class PlayState extends MusicBeatState
 			iconP2.changeState('normal');
 
 		#if debug
-		if (FlxG.keys.justPressed.C)
-			FlxG.camera.zoom -= 0.25;
-			camHUD.zoom -= 0.25;
-		if (FlxG.keys.justPressed.Z)
-			FlxG.camera.zoom += 0.25;
-			camHUD.zoom += 0.25;
-			
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(dad.curCharacter));
 		if (FlxG.keys.justPressed.SIX)
@@ -2144,7 +2137,6 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
-
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);

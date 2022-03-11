@@ -55,7 +55,7 @@ class OptionsMenu extends MusicBeatState
 		menuBG.loadGraphic(MainMenuState.randomizeBG());
 		add(menuBG);
 
-		languages = LanguageManager.getLanguages();
+		languages = LanguageManager.getLanguages(false);
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
@@ -138,7 +138,7 @@ class OptionsMenu extends MusicBeatState
 					case 8:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						FlxG.save.data.language = languages[currentLanguage];
-						updateGroupControls(languages[currentLanguage], 8, 'Vertical');
+						updateGroupControls("Current Language " + languages[currentLanguage], 8, 'Vertical');
 				}
 			}
 	}
