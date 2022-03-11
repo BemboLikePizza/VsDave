@@ -12,6 +12,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import lime.app.Application;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -114,6 +115,8 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.characteroverride = 'none';
 					PlayState.formoverride = 'none';
 					//FlxG.fullscreen = false;
+
+					Application.current.window.title = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
 					FlxG.switchState(new MainMenuState());
 			}
 		}

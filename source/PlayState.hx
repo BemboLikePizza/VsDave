@@ -60,6 +60,7 @@ import Discord.DiscordClient;
 #if windows
 import sys.io.File;
 import sys.io.Process;
+import lime.app.Application;
 #end
 
 using StringTools;
@@ -237,6 +238,9 @@ class PlayState extends MusicBeatState
 	var weirdBG:FlxSprite;
 
 	var cuzsieKapiBananacore:Array<FlxSprite> = [];
+
+
+	public static var originalWindowTitle:String;
 
 	override public function create()
 	{
@@ -1391,6 +1395,9 @@ class PlayState extends MusicBeatState
 
 	function startSong():Void
 	{
+		if (SONG.song.toLowerCase() == "exploitation")
+			Application.current.window.title = "EXPUNGED'S REIGN IS HERE, FUCK YOU";
+
 		startingSong = false;
 
 		previousFrameTime = FlxG.game.ticks;
@@ -2487,10 +2494,42 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
-		if (curSong.toLowerCase() == 'bonus-song')
+		// Song Character Unlocks (Story Mode)
+		if (isStoryMode)
 		{
-			CharacterSelectState.unlockCharacter('dave');
+			switch (curSong.toLowerCase())
+			{
+				case "splitathon":
+					CharacterSelectState.unlockCharacter('dave-splitathon');
+					CharacterSelectState.unlockCharacter('bambi-splitathon');
+					CharacterSelectState.unlockCharacter('tristan');
+				case "insanity":
+					CharacterSelectState.unlockCharacter('dave-annoyed');
+				case "polygonized":
+					CharacterSelectState.unlockCharacter('dave-angey');
+			}
 		}
+		// Song Character Unlocks (Freeplay)
+		else
+		{
+			switch (curSong.toLowerCase())
+			{
+				case "bonus-song":
+					CharacterSelectState.unlockCharacter('dave');
+				case "mealie":
+					CharacterSelectState.unlockCharacter('bambi-angey');
+				case "supernovae":
+					CharacterSelectState.unlockCharacter('bambi');
+				case "cheating":
+					CharacterSelectState.unlockCharacter('bambi-3d');
+				case "unfairness":
+					CharacterSelectState.unlockCharacter('bambi-unfair');
+				case "exploitation":
+					CharacterSelectState.unlockCharacter('expunged');
+			}
+		}
+	
+	
 
 		if (isStoryMode)
 		{
@@ -2555,6 +2594,7 @@ class PlayState extends MusicBeatState
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
+							CharacterSelectState.unlockCharacter('bambi-new');
 							FlxG.sound.playMusic(Paths.music('freakyMenu'));
 							FlxG.switchState(new StoryMenuState());
 						};
