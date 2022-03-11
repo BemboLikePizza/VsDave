@@ -22,6 +22,13 @@ class BambisCornGame extends MusicBeatState
     private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
+    var corns:Array<BambiCorn> = [];
+    
+    var maxCorn:Int = 10;
+    var cornCount:Int;
+    
+    var scoreTxt:FlxText;
+
     // iNTROOO
     var introText:FlxText;
     var curText:Int = 0;
@@ -30,7 +37,7 @@ class BambisCornGame extends MusicBeatState
     [
         "Welcome to Bambis' Corn Game!",
         "Your objective is to get all the corn before bambi catches you!",
-        "If you get all the corn before he finds you, you win!",
+        "If you get all the cosrn before he finds you, you win!",
         "Good luck!"
     ];
 
@@ -55,6 +62,13 @@ class BambisCornGame extends MusicBeatState
 		bg.screenCenter();
 		add(bg);
 
+        for (i in 0...maxCorn)
+        {
+            var corn:BambiCorn = new BambiCorn(FlxG.random.int(50, camGame.width - 50), FlxG.random.int(50, camGame.height - 50));
+            add(corn);
+            corns.push(corn);
+        }
+
         super.create();
         
         intro();
@@ -74,13 +88,33 @@ class BambisCornGame extends MusicBeatState
 
     override function update(elapsed:Float)
     {
-        if (bambi != null)
+        if (bambi != null && player != null)
+        {
             bambi.playerPosition = player.getGraphicMidpoint();
 
-        FlxG.overlap(player, bambi, function(player, bambi) 
+            FlxG.overlap(player, bambi, function(player, bambi) 
+            {
+                trace("Insert working death code here");
+            }); 
+        }
+        
+
+        if (FlxG.keys.justPressed.SPACE)
         {
-            trace("dead as hell");
-        });
+            for (corn in corns)
+            {
+                FlxG.overlap(player, corn, function(player, corn) 
+                {
+                    trace("CORNNNN");
+                    remove(corn);
+                    cornCount++;
+
+                    if (cornCount == maxCorn)
+                        trace("WIN!");
+                });
+            }
+        }
+        
 
         if (FlxG.keys.justPressed.H)
             showHitboxes = !showHitboxes;
@@ -99,7 +133,8 @@ class BambisCornGame extends MusicBeatState
 
         if (FlxG.keys.justPressed.ENTER && inIntro)
         {
-            if (curText == texts.length)
+            // Once the intro is complete
+            if (curText == texts.length - 1)
             {
                 FlxG.sound.music.stop();
                 trace("Closing");
@@ -114,6 +149,22 @@ class BambisCornGame extends MusicBeatState
                 add(bambi);    
 
                 remove(introText);
+
+                var tipText:FlxText = new FlxText(0, FlxG.height * 0.9, 0, "Space - Collect Corn", 50);
+                tipText.setFormat(Paths.font("pixel.otf"), FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                tipText.scrollFactor.set();
+                tipText.screenCenter(X);
+                tipText.borderSize = 1;
+                tipText.cameras = [camHUD];
+                add(tipText);
+
+                scoreTxt = new FlxText(0, 50, 0, "", 50);
+                scoreTxt.setFormat(Paths.font("pixel.otf"), FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                scoreTxt.scrollFactor.set();
+                scoreTxt.screenCenter(X);
+                scoreTxt.cameras = [camHUD];
+                scoreTxt.borderSize = 1;
+                add(scoreTxt);
                     
                 inIntro = false;
             }
@@ -123,6 +174,9 @@ class BambisCornGame extends MusicBeatState
                 introText.text = texts[curText] + "\n\n\n\n\nCONTINUE - ENTER";
             }
         }   
+
+        if (scoreTxt != null)
+            scoreTxt.text = '${cornCount}/${maxCorn}';
 
         super.update(elapsed);
     }

@@ -44,14 +44,14 @@ class OutdatedSubState extends MusicBeatState
 			leftState = true;
 			FlxG.switchState(new MainMenuState());
 		}
-		if (FlxG.keys.justPressed.Y && FlxG.save.data.begin_thing != true)
+		if (FlxG.keys.justPressed.Y && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER && FlxG.save.data.begin_thing != true)
 		{
 			FlxG.save.data.begin_thing = true;
 			FlxG.save.data.eyesores = true;
 			leftState = true;
 			FlxG.switchState(new MainMenuState());
 		}
-		if (FlxG.keys.justPressed.N && FlxG.save.data.begin_thing != true)
+		if (FlxG.keys.justPressed.N && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER && FlxG.save.data.begin_thing != true)
 		{
 			FlxG.save.data.begin_thing = true;
 			FlxG.save.data.eyesores = false;
