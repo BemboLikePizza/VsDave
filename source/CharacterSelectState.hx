@@ -38,12 +38,14 @@ class CharacterForm
 	public var name:String;
 	public var polishedName:String;
 	public var noteType:String;
+	public var noteMs:Array<Float>;
 
-	public function new(name:String, polishedName:String, noteType:String = 'normal')
+	public function new(name:String, polishedName:String, noteMs:Array<Float>, noteType:String = 'normal')
 	{
 		this.name = name;
 		this.polishedName = polishedName;
 		this.noteType = noteType;
+		this.noteMs = noteMs;
 	}
 }
 class CharacterSelectState extends MusicBeatState
@@ -77,36 +79,32 @@ class CharacterSelectState extends MusicBeatState
 	public var characters:Array<CharacterInSelect> = 
 	[
 		new CharacterInSelect('bf', [1, 1, 1, 1], [
-			new CharacterForm('bf', 'Boyfriend'),
-			new CharacterForm('bf-pixel', 'Pixel Boyfriend')
+			new CharacterForm('bf', 'Boyfriend', [1,1,1,1]),
+			new CharacterForm('bf-pixel', 'Pixel Boyfriend', [1,1,1,1])
 		]),
 		new CharacterInSelect('dave', [0.25, 0.25, 2, 2], [
-			new CharacterForm('dave', 'Dave'),
-			new CharacterForm('dave-annoyed', 'Dave (Insanity)'),
-			new CharacterForm('dave-splitathon', 'Dave (Splitathon)')
+			new CharacterForm('dave', 'Dave', [0.25, 0.25, 2, 2]),
+			new CharacterForm('dave-annoyed', 'Dave (Insanity)', [0.25, 0.25, 2, 2]),
+			new CharacterForm('dave-splitathon', 'Dave (Splitathon)', [0.25, 0.25, 2, 2])
 		]),
 		new CharacterInSelect('bambi', [0, 0, 3, 0], [
-			new CharacterForm('bambi', 'Mr. Bambi'),
-			new CharacterForm('bambi-new', 'Bambi (Farmer)'),
-			new CharacterForm('bambi-splitathon', 'Bambi (Splitathon)'),
-			new CharacterForm('bambi-angey', 'Bambie'),
-			new CharacterForm('bambi-old', 'Bambi (Joke)')
-		]),
-		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [
-			new CharacterForm('dave-angey', '3D Dave', '3D')
+			new CharacterForm('bambi-new', 'Bambi', [0, 0, 3, 0]),
+			new CharacterForm('bambi-splitathon', 'Bambi (Splitathon)', [0, 0, 3, 0]),
+			new CharacterForm('bambi-angey', 'Bambie', [0, 0, 3, 0]),
+			new CharacterForm('bambi', 'Mr. Bambi', [0, 0, 3, 0])
 		]),
 		new CharacterInSelect('tristan', [2, 0.5, 0.5, 0.5], [
-			new CharacterForm('tristan', 'Tristan')
+			new CharacterForm('tristan', 'Tristan', [2, 0.5, 0.5, 0.5]),
+			new CharacterForm('tristan-golden', 'Golden Tristan', [0.25, 0.25, 0.25, 2])
 		]),
-		new CharacterInSelect('tristan-golden', [0.25, 0.25, 0.25, 2], [
-			new CharacterForm('tristan-golden', 'Golden Tristan')
+		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [
+			new CharacterForm('dave-angey', '3D Dave', [2, 2, 0.25, 0.25], '3D')
 		]),
 		new CharacterInSelect('bambi-3d', [0, 3, 0, 0], [
-			new CharacterForm('bambi-3d', '[EXPUNGED]', '3D'),
-			new CharacterForm('bambi-unfair', '[EXPUNGED]', '3D'),
-			new CharacterForm('expunged', '[EXPUNGED]', '3D')
-		]),
-
+			new CharacterForm('bambi-3d', '[EXPUNGED] (Bambi)', [0, 3, 0, 0], '3D'),
+			new CharacterForm('bambi-unfair', '[EXPUNGED] (Unfair)', [0, 3, 0, 0], '3D'),
+			new CharacterForm('expunged', '[EXPUNGED]', [0, 3, 0, 0], '3D')
+		])
 	];
 	public function new() 
 	{
@@ -330,7 +328,7 @@ class CharacterSelectState extends MusicBeatState
 		}
 		if (controls.ACCEPT)
 		{
-			if (isLocked(characters[current].name))
+			if (isLocked(characters[current].forms[curForm].name))
 			{
 				FlxG.camera.shake(0.05, 0.1);
 				FlxG.sound.play(Paths.sound('badnoise1'), 0.9);
@@ -469,7 +467,7 @@ class CharacterSelectState extends MusicBeatState
 		add(char);
 		funnyIconMan.changeIcon(char.curCharacter);
 		funnyIconMan.color = FlxColor.WHITE;
-		if (isLocked(characters[current].name))
+		if (isLocked(characters[current].forms[curForm].name))
 		{
 			char.color = FlxColor.BLACK;
 			funnyIconMan.color = FlxColor.BLACK;
@@ -477,7 +475,7 @@ class CharacterSelectState extends MusicBeatState
 		}
 		characterText.screenCenter(X);
 		updateIconPosition();
-		notemodtext.text = FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[0]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[3]) + "x        " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[2]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.noteMs[1]) + "x";
+		notemodtext.text = FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[0]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[3]) + "x        " + FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[2]) + "x       " + FlxStringUtil.formatMoney(currentSelectedCharacter.forms[curForm].noteMs[1]) + "x";
 	}
 
 	override function beatHit()
@@ -502,7 +500,7 @@ class CharacterSelectState extends MusicBeatState
 	{
 		PlayState.characteroverride = currentSelectedCharacter.name;
 		PlayState.formoverride = currentSelectedCharacter.forms[curForm].name;
-		PlayState.curmult = currentSelectedCharacter.noteMs;
+		PlayState.curmult = currentSelectedCharacter.forms[curForm].noteMs;
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
 }
