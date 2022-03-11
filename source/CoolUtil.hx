@@ -84,4 +84,9 @@ class CoolUtil
 		
 		return minAndMaxs;
 	}
+
+	public static function getNegitiveValue(val:Int)
+	{
+		return val - val - val;
+	}
 }

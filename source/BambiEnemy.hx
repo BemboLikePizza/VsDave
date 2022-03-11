@@ -38,7 +38,7 @@ class BambiEnemy extends FlxSprite
 		offset.x = 4;
 		offset.y = 2;
 
-		brain = new FSM(idle);
+		brain = new FSM(chase);
 		idleTimer = 0;
 		seesPlayer = false;
 		playerPosition = FlxPoint.get();

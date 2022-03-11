@@ -659,18 +659,18 @@ class Character extends FlxSprite
 			case 'cockey':
 				tex = Paths.getSparrowAtlas('bananacore/characters/Cockey', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'Idle', 24, false);
-				animation.addByPrefix('singUP', 'Up', 24, false);
-				animation.addByPrefix('singRIGHT', 'Right', 24, false);
-				animation.addByPrefix('singDOWN', 'Down', 24, false);
-				animation.addByPrefix('singLEFT', 'Left', 24, false);
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
 		
-				addOffset('idle', 110, 70);
-				addOffset("singUP", 110, 61);
-				addOffset("singRIGHT", 0, -30);
-				addOffset("singLEFT", 210, 0);
-				addOffset("singDOWN", 190, 50);
-				setGraphicSize(Std.int(width * 2));
+				addOffset('idle', 110, 440);
+				addOffset("singUP", 150, 321);
+				addOffset("singRIGHT", 220, 500);
+				addOffset("singLEFT", 356, 520);
+				addOffset("singDOWN", 80, 330);
+				setGraphicSize(Std.int(width * 0.5));
 				updateHitbox();
 				antialiasing = false;
 		
