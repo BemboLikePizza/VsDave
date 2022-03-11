@@ -60,6 +60,6 @@ class OutdatedSubState extends MusicBeatState
 	function leaveState()
 	{
 		leftState = true;
-		FlxG.switchState(new SelectLanguageState());
+		FlxG.switchState(new MainMenuState());
 	}
 }

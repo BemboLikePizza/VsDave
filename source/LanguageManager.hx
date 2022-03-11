@@ -2,6 +2,8 @@ package;
 
 class LanguageManager
 {
+   var currentLocaleList:String;
+
    public static function getLanguages(localeList:Bool):Array<String>
    {
       var langauges:Array<String> = new Array<String>();
