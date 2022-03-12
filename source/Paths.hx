@@ -118,6 +118,10 @@ class Paths
 	{
 		return getPath('locale/languages.txt', TEXT, 'preload');
 	}
+	static public function offsetFile(character:String):String
+	{
+		return getPath('offsets/' + character + '.txt', TEXT, 'preload');
+	}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String)
 	{

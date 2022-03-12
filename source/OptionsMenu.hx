@@ -46,7 +46,7 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off")
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
 			+ "\n" + (FlxG.save.data.noteCamera ? "Camera Movement On Note" : "Normal Camera")
-			+ "\n" + 'Current Language ' + FlxG.save.data.language
+			+ "\n" + 'Current Language ' + LanguageManager.languageNameFromPathName(FlxG.save.data.language)
 			);
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));

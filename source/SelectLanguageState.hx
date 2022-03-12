@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -29,14 +30,26 @@ class SelectLanguageState extends MusicBeatState
       {
          var currentLangauge = langaugeList[i];
 
-         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 250) + i * 50, 0, currentLangauge, 30);
+         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, 0, currentLangauge, 25);
          langaugeText.screenCenter(X);
-         langaugeText.setFormat("Comic Sans MS Bold", 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+         langaugeText.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
          langaugeText.borderSize = 2;
+
+         var flag:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('languages/' + currentLangauge));
+         flag.x = langaugeText.x + langaugeText.width + flag.width / 2;
+         
+         var yValues = CoolUtil.getMinAndMax(flag.height, langaugeText.height);
+         flag.y = langaugeText.y + ((yValues[0] - yValues[1]) / 2);
+         add(flag);
 
          langaugeText.y -= 10;
          langaugeText.alpha = 0;
+
+         flag.y -= 10;
+         flag.alpha = 0;
+
          FlxTween.tween(langaugeText, {y: langaugeText.y + 10, alpha: 1}, 0.07, {startDelay: i * 0.1});
+         FlxTween.tween(flag, {y: flag.y + 10, alpha: 1}, 0.07, {startDelay: i * 0.1});
 
          textItems.push(langaugeText);
          add(langaugeText);
@@ -46,27 +59,31 @@ class SelectLanguageState extends MusicBeatState
    }
    public override function update(elapsed:Float)
    {
-      if (controls.ACCEPT)
+      if (!accepted)
       {
-         if (!accepted)
-         {
-            accepted = true;
+			if (controls.ACCEPT)
+			{
+				accepted = true;
 
-            var localeList = LanguageManager.getLanguages(true);
-            FlxG.save.data.language = localeList[curLanguageSelected];
+				FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
+
+				var localeList = LanguageManager.getLanguages(true);
+				FlxG.save.data.language = localeList[curLanguageSelected];
+            LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + FlxG.save.data.language + '/textList.txt', TEXT, 'preload'));
+
             FlxFlicker.flicker(currentLanguage, 1.1, 0.07, true, true, function(flick:FlxFlicker)
-            {
-               FlxG.switchState(new MainMenuState());
-            });
-         }
-      }
-      if (controls.UP_P)
-      {
-         changeSelection(-1);
-      }
-      if (controls.DOWN_P)
-      {
-         changeSelection(1);
+				{
+					FlxG.switchState(new MainMenuState());
+				});
+			}
+			if (controls.UP_P)
+			{
+				changeSelection(-1);
+			}
+			if (controls.DOWN_P)
+			{
+				changeSelection(1);
+			}
       }
    }
    function changeSelection(amount:Int = 0)
@@ -83,6 +100,7 @@ class SelectLanguageState extends MusicBeatState
       {
          curLanguageSelected = langaugeList.length - 1;
       }
+      currentLanguage = textItems[curLanguageSelected];
       for (menuItem in textItems)
       {
          updateText(menuItem, menuItem == textItems[curLanguageSelected]);
@@ -92,7 +110,7 @@ class SelectLanguageState extends MusicBeatState
    {
       if (selected)
       {
-         text.setFormat("Comic Sans MS Bold", 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+         text.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       }
       else
       {

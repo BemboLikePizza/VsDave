@@ -442,6 +442,7 @@ class CharacterSelectState extends MusicBeatState
 	{
 		FlxG.save.data.charactersUnlocked = new Array<String>();
 		unlockCharacter('bf');
+		unlockCharacter('bf-pixel');
 		FlxG.save.flush();
 	}
 

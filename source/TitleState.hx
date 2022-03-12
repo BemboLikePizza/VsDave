@@ -264,6 +264,7 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
+				FlxG.save.data.language = null;
 				if (FlxG.save.data.language == null)
 				{
 					FlxG.switchState(new SelectLanguageState());
