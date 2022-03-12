@@ -180,7 +180,6 @@ class MainMenuState extends MusicBeatState
 			}
 			else
 			{
-				trace('had to load dfjk keys from main menu');
 				controls.setKeyboardScheme(KeyboardScheme.Solo, true);
 				ChangeKeybinds.saveControls(controls);
 			}

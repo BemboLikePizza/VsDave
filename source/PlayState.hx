@@ -1,5 +1,6 @@
 package;
 
+import flixel.effects.particles.FlxParticle;
 import hscript.Printer;
 import openfl.desktop.Clipboard;
 import flixel.system.debug.Window;
@@ -3982,7 +3983,7 @@ class PlayState extends MusicBeatState
 		//stupid bullshit cuz i dont wanna bother with removing thing erighkjrehjgt
 		if(splitathonCharacterExpression != null)
 		{
-			remove(splitathonCharacterExpression);	
+			remove(splitathonCharacterExpression);
 		}
 		switch (character)
 		{
