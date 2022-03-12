@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="Bg.png"><SubTexture name="Bg idle0000" x="0" y="0" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0001" x="2004" y="0" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0002" x="4008" y="0" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0003" x="0" y="1084" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0004" x="2004" y="1084" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0005" x="4008" y="1084" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0006" x="0" y="2168" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0007" x="2004" y="2168" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0008" x="4008" y="2168" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0009" x="0" y="3252" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0010" x="2004" y="3252" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0011" x="4008" y="3252" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0012" x="0" y="4336" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+<SubTexture name="Bg idle0013" x="2004" y="4336" width="2004" height="1084" frameX="0" frameY="0" frameWidth="2004" frameHeight="1084" />
+</TextureAtlas>
