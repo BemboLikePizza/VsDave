@@ -403,6 +403,7 @@ class CharacterSelectState extends MusicBeatState
 		if (!FlxG.save.data.charactersUnlocked.contains(character))
 		{
 			FlxG.save.data.charactersUnlocked.push(character);
+			trace('unlocked ' + character);
 		}
 	}
 	public static function isLocked(character:String):Bool
