@@ -384,6 +384,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathConfirm', "MARCELLO dead0", 24, false);
 	
 				loadOffsetFile(curCharacter);
+				
 
 				playAnim('idle');
 
@@ -411,7 +412,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 	
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 	
 				playAnim('idle');
 
@@ -440,7 +441,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 	
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				playAnim('idle');
 
@@ -456,7 +457,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				nativelyPlayable = true;
 				flipX = true;

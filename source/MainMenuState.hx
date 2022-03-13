@@ -96,20 +96,10 @@ class MainMenuState extends MusicBeatState
 
 	
 			persistentUpdate = persistentDraw = true;
-			
-			if (FlxG.save.data.eyesores == null)
-			{
-				FlxG.save.data.eyesores = true;
-			}
 	
 			#if desktop
 			DiscordClient.changePresence("In the Menus", null);
 			#end
-			
-			if (FlxG.save.data.unlockedcharacters == null)
-			{
-				CharacterSelectState.reset();
-			}
 	
 			//daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
 			

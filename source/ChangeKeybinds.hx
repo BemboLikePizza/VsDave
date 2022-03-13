@@ -315,8 +315,6 @@ class ChangeKeybinds extends MusicBeatState
 				var currentActionKeys:Array<FlxKey> = loadedKeys[i];
 				var action = controls.digitalActions[i];
 				controls.unbindKeys(controls.stringControlToControl(action.name), actionToFlxKeys(action));
-				trace(action.name);
-				trace(controls.stringControlToControl(action.name));
 				controls.bindKeys(controls.stringControlToControl(action.name), currentActionKeys);
 			}
 		}

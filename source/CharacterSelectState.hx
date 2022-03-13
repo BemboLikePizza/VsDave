@@ -75,12 +75,6 @@ class CharacterSelectState extends MusicBeatState
 	var currentSelectedCharacter:CharacterInSelect;
 
 	var noteMsTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
-
-	var devUnlock:Array<String> = 
-	[
-		"tristan",
-		"tristan-golden"
-	];
 	
 	public var characters:Array<CharacterInSelect> = 
 	[
@@ -322,17 +316,7 @@ class CharacterSelectState extends MusicBeatState
 		var controlSet:Array<Bool> = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
 
 		super.update(elapsed);
-		//FlxG.camera.focusOn(FlxG.ce);
 
-		#if debug
-		if (FlxG.keys.justPressed.P)
-		{
-			for (unlock in devUnlock)
-			{
-				unlockCharacter(unlock);
-			}
-		}
-		#end
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			LoadingState.loadAndSwitchState(new FreeplayState());
@@ -444,6 +428,7 @@ class CharacterSelectState extends MusicBeatState
 		FlxG.save.data.charactersUnlocked = new Array<String>();
 		unlockCharacter('bf');
 		unlockCharacter('bf-pixel');
+		trace('this function got called');
 		FlxG.save.flush();
 	}
 

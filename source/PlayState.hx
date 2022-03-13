@@ -585,13 +585,13 @@ class PlayState extends MusicBeatState
 
 		dadmirror.visible = false;
 
-		if (formoverride == "none" || formoverride == "bf")
+		if (formoverride == "none" || formoverride == "bf" || formoverride == SONG.player1)
 		{
 			boyfriend = new Boyfriend(770, 450, SONG.player1);
 		}
 		else
 		{
-			boyfriend = new Boyfriend(770, 450, SONG.player1);
+			boyfriend = new Boyfriend(770, 450, formoverride);
 		}
 
 		switch (boyfriend.curCharacter)
