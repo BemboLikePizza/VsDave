@@ -562,7 +562,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			boyfriend = new Boyfriend(770, 450, formoverride);
+			boyfriend = new Boyfriend(770, 450, SONG.player1);
 		}
 
 		switch (boyfriend.curCharacter)
