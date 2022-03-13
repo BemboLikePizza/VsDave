@@ -19,6 +19,7 @@
 		var framerate:Int = 144; // How many frames per second the game should run at.
 		var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 		var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+		static var fps:FpsDisplay;
 
 		// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -46,6 +47,11 @@
 			}
 
 			setupGame();
+		}	
+
+		public static function toggleFuckedFPS(toggle:Bool)
+		{
+			fps.fuckFps = toggle;
 		}
 
 		private function setupGame():Void
@@ -90,7 +96,8 @@
 		#end
 
 			#if !mobile
-			addChild(new FPS(10, 3, 0xFFFFFF));
+			fps = new FpsDisplay(10, 3, 0xFFFFFF);
+			addChild(fps);
 			#end
 		}
 	}

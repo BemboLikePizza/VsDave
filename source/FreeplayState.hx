@@ -147,13 +147,13 @@ class FreeplayState extends MusicBeatState
 				addWeek(['bananacore'], 2, ['cockey']);
 			case 'extra':
 				addWeek(['Mealie'], 2, ['bambi-loser']);
-				addWeek(['Memory'], 1, ['dave']);
 				addWeek(['Escape-From-California'], 5, ['none']);
+				addWeek(['Memory'], 1, ['dave']);
 				addWeek(['Overdrive'], 1, ['dave']);
-				addWeek(['Furiosity'], 1, ['dave-angey']);
-				addWeek(['Vs-Dave-Rap'], 2, ['dave-cool']);
 				addWeek(['Five-Nights'], 2, ['dave']);
 				addWeek(['Roots'], 2, ['dave']);
+				addWeek(['Furiosity'], 1, ['dave-angey']);
+				addWeek(['Vs-Dave-Rap'], 2, ['dave-cool']);
 		}
 	}
 

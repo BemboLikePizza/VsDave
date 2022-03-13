@@ -18,7 +18,7 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Exit to menu'];
 
 	var curSelected:Int = 0;
 
@@ -109,6 +109,9 @@ class PauseSubState extends MusicBeatSubstate
 					close();
 				case "Restart Song":
 					FlxG.resetState();
+				case "Developer No Miss":
+					trace("MY PENIS BURNS :BANGBANG:");
+					PlayState.devBotplay = !PlayState.devBotplay;
 				case "Exit to menu":
 					PlayState.screenshader.shader.uampmul.value[0] = 0;
 					PlayState.screenshader.Enabled = false;
@@ -117,6 +120,12 @@ class PauseSubState extends MusicBeatSubstate
 					//FlxG.fullscreen = false;
 
 					Application.current.window.title = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
+
+					if (PlayState.SONG.song.toLowerCase() == "exploitation")
+					{
+						Main.toggleFuckedFPS(false);
+					}
+
 					FlxG.switchState(new MainMenuState());
 			}
 		}

@@ -69,6 +69,11 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.sound.music.stop();
 			Application.current.window.title = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
 
+			if (PlayState.SONG.song.toLowerCase() == "exploitation")
+			{
+				Main.toggleFuckedFPS(false);
+			}
+
 			if (PlayState.isStoryMode)
 				FlxG.switchState(new StoryMenuState());
 			else

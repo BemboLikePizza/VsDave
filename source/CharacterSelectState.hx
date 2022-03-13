@@ -75,6 +75,12 @@ class CharacterSelectState extends MusicBeatState
 	var currentSelectedCharacter:CharacterInSelect;
 
 	var noteMsTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
+
+	var devUnlock:Array<String> = 
+	[
+		"tristan",
+		"tristan-golden"
+	];
 	
 	public var characters:Array<CharacterInSelect> = 
 	[
@@ -138,12 +144,26 @@ class CharacterSelectState extends MusicBeatState
 			}
 		}
 
-		FlxG.sound.playMusic(Paths.music("goodEnding"), 1, true);
+		if (PlayState.SONG.song.toLowerCase() == "exploitation")
+			FlxG.sound.playMusic(Paths.music("badEnding"), 1, true);
+		else
+			FlxG.sound.playMusic(Paths.music("goodEnding"), 1, true);
 
 		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
 		bg.antialiasing = true;
 		bg.scrollFactor.set(0.75, 0.75);
 		bg.active = false;
+		if (PlayState.SONG.song.toLowerCase() == "exploitation")
+		{
+			bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
+			
+			var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
+			testshader.waveAmplitude = 0.1;
+			testshader.waveFrequency = 5;
+			testshader.waveSpeed = 2;
+			
+			bg.shader = testshader.shader;
+		}
 		add(bg);
 
 		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/night/hills'));
@@ -304,6 +324,15 @@ class CharacterSelectState extends MusicBeatState
 		super.update(elapsed);
 		//FlxG.camera.focusOn(FlxG.ce);
 
+		#if debug
+		if (FlxG.keys.justPressed.P)
+		{
+			for (unlock in devUnlock)
+			{
+				unlockCharacter(unlock);
+			}
+		}
+		#end
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			LoadingState.loadAndSwitchState(new FreeplayState());

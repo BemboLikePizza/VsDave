@@ -243,8 +243,31 @@ class PlayState extends MusicBeatState
 
 	public static var originalWindowTitle:String;
 
+
+	var mcStarted:Bool = false;
+
+	public static var devBotplay:Bool = false;
+
 	override public function create()
 	{
+		if (SONG.song.toLowerCase() == "greetings" && characteroverride.toLowerCase() == "tristan")
+		{
+			var poop:String = Highscore.formatSong("confronting-yourself", 1);
+
+			trace(poop);
+
+			SONG = Song.loadFromJson(poop, "confronting-yourself");
+			isStoryMode = false;
+			storyDifficulty = 1;
+
+			storyWeek = 4;
+		}
+
+		if (SONG.song.toLowerCase() == "exploitation")
+		{
+			Main.toggleFuckedFPS(true);
+		}
+
 		theFunne = FlxG.save.data.newInput;
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
@@ -389,7 +412,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
-				case 'splitathon' | 'mealie' | 'shredder' | 'greetings':
+				case 'splitathon' | 'mealie' | 'shredder' | 'greetings' | 'confronting-yourself':
 					stageCheck = 'farm-night';
 				case 'cheating':
 					stageCheck = 'green-void';
@@ -414,6 +437,12 @@ class PlayState extends MusicBeatState
 		else
 		{
 			stageCheck = SONG.stage;
+		}
+
+		if (stageCheck == "desktop")
+		{
+			dad.x -= 130;
+			dad.y -= 100;
 		}
 
 		backgroundSprites = createBackgroundSprites(stageCheck);
@@ -781,6 +810,8 @@ class PlayState extends MusicBeatState
 		}
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
+		if (SONG.song.toLowerCase() == "exploitation")
+			healthBarBG.loadGraphic(Paths.image('ui/HELLthBar'));
 		if (FlxG.save.data.downscroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
@@ -834,8 +865,16 @@ class PlayState extends MusicBeatState
 		{
 			textYPos = healthBarBG.y + 30;
 		}
+		
+		var funkyText:String;
 
-		var funkyText:String = SONG.song + " " + (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale") + ' - Dave Engine 3.0 (KE 1.2)';
+		switch(SONG.song.toLowerCase())
+		{
+			default:
+				funkyText = SONG.song + " " + (!curSong.toLowerCase().endsWith('splitathon') ? CoolUtil.difficultyString() : "Finale") + ' - Dave Engine 3.0 (KE 1.2)';
+			case "exploitation":
+				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine 3.0 (???)";
+		}
 
 		if (SONG.song.toLowerCase() == "overdrive")
 			funkyText = '';
@@ -1297,7 +1336,11 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('idle', true);
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
+
+			if (SONG.song.toLowerCase() == "exploitation")
+				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
+			else
+				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
 
 			var introAlts:Array<String> = introAssets.get('default');
 			var altSuffix:String = "";
@@ -1369,14 +1412,26 @@ class PlayState extends MusicBeatState
 
 					go.screenCenter();
 					add(go);
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+
+					var sex:Float = 1000;
+
+					if (SONG.song.toLowerCase() == "exploitation")
+					{
+						sex = 300;
+					}
+
+					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / sex, {
 						ease: FlxEase.cubeInOut,
 						onComplete: function(twn:FlxTween)
 						{
 							go.destroy();
 						}
 					});
-					FlxG.sound.play(Paths.sound('introGo'), 0.6);
+					if (SONG.song.toLowerCase() == "exploitation")
+						FlxG.sound.play(Paths.sound('introGo_weird'), 0.6);
+					else
+						FlxG.sound.play(Paths.sound('introGo'), 0.6);
+
 					if (doing_funny)
 					{
 						focusOnDadGlobal = true;
@@ -1891,7 +1946,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene) // fuck you
+		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene && mcStarted) // fuck you
 		{
 			switch (modchart)
 			{
@@ -2000,12 +2055,14 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == "overdrive")
 			scoreTxt.text = "score: " + Std.string(songScore);
+		else if (SONG.song.toLowerCase() == "exploitation")
+			scoreTxt.text = "Scor3: " + (songScore * FlxG.random.int(5,9)) + " | M1ss3s: " + (misses * FlxG.random.int(5,9)) + " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
 		else
 			scoreTxt.text = "Score:" + Std.string(songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
 		
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
-			persistentUpdate = false;
+			persistentUpdate = false;	
 			persistentDraw = true;
 			paused = true;
 
@@ -2341,7 +2398,9 @@ class PlayState extends MusicBeatState
 				}				
 				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + strumTimeFromY(106, daNote))
 				{
-					noteMiss(daNote.noteData);
+					if (!devBotplay)
+						noteMiss(daNote.noteData);
+
 					vocals.volume = 0;
 
 					destroyNote(daNote);
@@ -3216,7 +3275,8 @@ class PlayState extends MusicBeatState
 		{
 			if(note.mustPress && note.finishedGenerating)
 			{
-				noteMiss(note.noteData);
+				if (!devBotplay)
+					noteMiss(note.noteData);
 			}
 			return;
 		}
@@ -3231,7 +3291,8 @@ class PlayState extends MusicBeatState
 		{
 			if (controlArray[i])
 			{
-				noteMiss(i);
+				if (!devBotplay)
+					noteMiss(i);
 			}	
 		}
 		updateAccuracy();
@@ -3689,6 +3750,50 @@ class PlayState extends MusicBeatState
 							remove(sadBamb);
 						}});
 					}
+				}
+
+			case "exploitation":
+				switch(curStep)
+				{
+					case 64 | 1024:
+						FlxTween.tween(camHUD, {alpha: 0}, 3);
+						FlxTween.tween(boyfriend, {alpha: 0}, 3);
+						FlxTween.tween(gf, {alpha: 0}, 3);
+						defaultCamZoom = FlxG.camera.zoom + 0.3;
+						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 4);
+
+						for (spr in backgroundSprites)
+						{
+							FlxTween.tween(spr, {alpha: 0}, 3);
+						}
+					case 256 | 1152:
+						FlxTween.tween(camHUD, {alpha: 1}, 0.2);
+						defaultCamZoom = FlxG.camera.zoom - 0.3;
+						FlxTween.tween(boyfriend, {alpha: 1}, 0.2);
+						FlxTween.tween(gf, {alpha: 1}, 0.2);
+						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom - 0.3}, 0.2);
+						for (spr in backgroundSprites)
+						{
+							FlxTween.tween(spr, {alpha: 1}, 0.2);
+						}
+						mcStarted = true;
+
+					case 368 | 1648:
+						FlxTween.tween(FlxG.camera, {angle: 10}, 0.1);
+					case 376 | 1656:
+						FlxTween.tween(FlxG.camera, {angle: -10}, 0.1);
+					case 384:
+						FlxTween.tween(FlxG.camera, {angle: 0}, 0.2);
+				}
+
+			case "confronting-yourself":
+				switch(curStep)
+				{
+					case 69 /*nice*/:
+						for (spr in backgroundSprites)
+						{
+							FlxTween.tween(spr, {alpha: 0}, 2);
+						}
 				}
 				
 		}
