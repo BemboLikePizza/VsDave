@@ -56,7 +56,6 @@ class CharacterSelectState extends MusicBeatState
 	public var notemodtext:FlxText;
 	public var characterText:FlxText;
 	
-
 	public var funnyIconMan:HealthIcon;
 
 	var strummies:FlxTypedGroup<FlxSprite>;
@@ -95,6 +94,7 @@ class CharacterSelectState extends MusicBeatState
 		]),
 		new CharacterInSelect('tristan', [2, 0.5, 0.5, 0.5], [
 			new CharacterForm('tristan', 'Tristan', [2, 0.5, 0.5, 0.5]),
+			new CharacterForm('tristan-festival', 'Tristan (Festival)', [2, 0.5, 0.5, 0.5]),
 			new CharacterForm('tristan-golden', 'Golden Tristan', [0.25, 0.25, 0.25, 2])
 		]),
 		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [

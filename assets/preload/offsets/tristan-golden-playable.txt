@@ -4,7 +4,7 @@ singRIGHT -61 -28
 singLEFT -9 -24
 singDOWN 6 -37
 singUPmiss -65 54
-singRIGHTmiss --58 -28
+singRIGHTmiss -58 -28
 singLEFTmiss -10 -24
 singDOWNmiss -41 -40
 hey -2 1

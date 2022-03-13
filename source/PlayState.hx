@@ -2567,6 +2567,8 @@ class PlayState extends MusicBeatState
 					CharacterSelectState.unlockCharacter('dave-annoyed');
 				case "polygonized":
 					CharacterSelectState.unlockCharacter('dave-angey');
+				case 'greetings':
+					CharacterSelectState.unlockCharacter('tristan-festival');
 			}
 		}
 		// Song Character Unlocks (Freeplay)
