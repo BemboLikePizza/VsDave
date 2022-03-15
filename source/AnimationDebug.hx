@@ -120,11 +120,6 @@ class AnimationDebug extends MusicBeatState
 			FlxG.switchState(new MainMenuState());
 		}
 
-		if(FlxG.keys.justPressed.F)
-		{
-			char.flipX = !char.flipX;
-		}
-
 		if (FlxG.keys.justPressed.E)
 			FlxG.camera.zoom += 0.25;
 		if (FlxG.keys.justPressed.Q)
@@ -174,6 +169,7 @@ class AnimationDebug extends MusicBeatState
 			updateTexts();
 			genBoyOffsets(false);
 		}
+		
 		var upP = FlxG.keys.anyJustPressed([UP]);
 		var rightP = FlxG.keys.anyJustPressed([RIGHT]);
 		var downP = FlxG.keys.anyJustPressed([DOWN]);

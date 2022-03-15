@@ -5,12 +5,12 @@ using StringTools;
 
 class BGSprite extends FlxSprite
 {
-	public var name:String;
-	public function new(name:String, posX:Float, posY:Float, path:String = '', animations:Array<Animation>, scrollX:Float = 1, scrollY:Float = 1, antialiasing:Bool = true, active:Bool = false)
+	public var spriteName:String;
+	public function new(spriteName:String, posX:Float, posY:Float, path:String = '', animations:Array<Animation>, scrollX:Float = 1, scrollY:Float = 1, antialiasing:Bool = true, active:Bool = false)
 	{
 		super(posX, posY);
 		
-		this.name = name;
+		this.spriteName = spriteName;
 		var hasAnimations:Bool = !(animations == null);
 
 		if (path != '')

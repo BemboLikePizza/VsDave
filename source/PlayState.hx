@@ -1258,7 +1258,7 @@ class PlayState extends MusicBeatState
 		{
 			for (bgSprite in backgroundSprites)
 			{
-				if (bgSprite.name == 'sign')
+				if (bgSprite.spriteName == 'sign')
 				{
 					remove(bgSprite);
 					backgroundSprites.members.remove(bgSprite);
@@ -1956,6 +1956,11 @@ class PlayState extends MusicBeatState
 						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * 3) * (FlxG.height * 0.2));
 					});
+					dadStrums.forEach(function(spr:FlxSprite)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * 3) * (FlxG.height * 0.2));
+					});
 
 				case ExploitationModchartType.RotatingCircle:
 					playerStrums.forEach(function(spr:FlxSprite)
@@ -2198,7 +2203,6 @@ class PlayState extends MusicBeatState
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
-
 
 		if (health <= 0)
 		{
@@ -4077,7 +4081,7 @@ class PlayState extends MusicBeatState
 				}
 		}
 
-		var sign = addFarmSign(true);
+		var sign:FlxSprite = addFarmSign(true);
 		add(sign);
 
 		boyfriend.stunned = false;
@@ -4101,7 +4105,7 @@ class PlayState extends MusicBeatState
 		}
 		add(splitathonCharacterExpression);
 
-		var sign = addFarmSign(true);
+		var sign:FlxSprite = addFarmSign(true);
 		add(sign);
 		
 		splitathonCharacterExpression.color = nightColor;
