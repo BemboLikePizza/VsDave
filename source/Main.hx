@@ -21,6 +21,8 @@
 		var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 		static var fps:FpsDisplay;
 
+		public static var applicationName:String = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
+
 		// You can pretty much ignore everything from here on - your code should go in your states.
 
 		public static function main():Void

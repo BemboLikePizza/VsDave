@@ -29,6 +29,11 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			char = "bf-pixel-dead";
 		}
+		switch (PlayState.SONG.song.toLowerCase())
+		{
+			case 'exploitation':
+				stageSuffix = '-ohno';
+		}
 
 		super();
 
@@ -67,7 +72,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (controls.BACK)
 		{
 			FlxG.sound.music.stop();
-			Application.current.window.title = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
+			Application.current.window.title = Main.applicationName;
 
 			if (PlayState.SONG.song.toLowerCase() == "exploitation")
 			{
@@ -98,9 +103,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	override function beatHit()
 	{
-		super.beatHit();
-
-		FlxG.log.add('beat');
+		
 	}
 
 	var isEnding:Bool = false;
