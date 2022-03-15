@@ -1958,8 +1958,8 @@ class PlayState extends MusicBeatState
 					});
 					dadStrums.forEach(function(spr:FlxSprite)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * 3) * (FlxG.height * 0.2));
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) - (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) - (Math.sin((elapsedtime + spr.ID) * 3) * (FlxG.height * 0.2));
 					});
 
 				case ExploitationModchartType.RotatingCircle:
