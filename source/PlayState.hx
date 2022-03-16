@@ -54,6 +54,9 @@ import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import flash.system.System;
 import flixel.util.FlxSpriteUtil;
+import flixel.effects.particles.FlxEmitter;
+import flixel.effects.particles.FlxParticle;
+import flixel.addons.effects.chainable.IFlxEffect;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -235,18 +238,14 @@ class PlayState extends MusicBeatState
 	var dadNoteCamOffset:Array<Float> = new Array<Float>();
 
 	public var modchart:ExploitationModchartType;
-
 	var weirdBG:FlxSprite;
-
 	var cuzsieKapiBananacore:Array<FlxSprite> = [];
-
-
 	public static var originalWindowTitle:String;
-
-
 	var mcStarted:Bool = false;
-
 	public static var devBotplay:Bool = false;
+
+	// FUCKING UHH particles
+	var _emitter:FlxEmitter;
 
 	override public function create()
 	{
@@ -437,12 +436,6 @@ class PlayState extends MusicBeatState
 		else
 		{
 			stageCheck = SONG.stage;
-		}
-
-		if (stageCheck == "desktop")
-		{
-			dad.x -= 130;
-			dad.y -= 100;
 		}
 
 		backgroundSprites = createBackgroundSprites(stageCheck);
@@ -714,6 +707,13 @@ class PlayState extends MusicBeatState
 		add(dad);
 		add(dadmirror);
 		add(boyfriend);
+
+		if (stageCheck == "desktop")
+		{
+			dad.x -= 500;
+			dad.y -= 100;
+		}
+	
 
 		switch (curStage)
 		{
@@ -1114,17 +1114,18 @@ class PlayState extends MusicBeatState
 
 
 			case 'desktop':
-				defaultCamZoom = 0.7;
+				defaultCamZoom = 0.5;
+
 				var expungedBG:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
-				expungedBG.loadGraphic(Paths.image('backgrounds/void/creepyRoom'));
+				expungedBG.loadGraphic(Paths.image('backgrounds/void/creepyRoom', 'shared'));
 				expungedBG.setPosition(0, 200);
-				expungedBG.setGraphicSize(Std.int(expungedBG.width * 3));
+				expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
 				expungedBG.scrollFactor.set();
 				sprites.add(expungedBG);
 				add(expungedBG);
 				voidShader(expungedBG);
 
-				#if desktop					
+				/*#if desktop					
 					var path = Sys.programPath();
 					path = path.substr(0,path.length - 10);
 					var exe_path:String = "\"" + path + Paths.executable("RunThing") + "\"";
@@ -1141,7 +1142,7 @@ class PlayState extends MusicBeatState
 					bg.updateHitbox();
 					sprites.add(bg);
 					add(bg);
-				#end
+				#end*/
 	
 			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void' | "banana-hell":
 				defaultCamZoom = 0.7;
@@ -1900,6 +1901,7 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		elapsedtime += elapsed;
+
 		if (paused && FlxG.sound.music != null && vocals != null && vocals.playing)
 		{
 			FlxG.sound.music.pause();
@@ -1914,10 +1916,24 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		
+		var toy = -100 + -Math.sin((curStep / 9.5) * 2) * 30 * 5;
+		var tox = -330 -Math.cos((curStep / 9.5)) * 100;
+
 		//welcome to 3d sinning avenue
 		if(funnyFloatyBoys.contains(dad.curCharacter.toLowerCase()) && canFloat)
 		{
-			dad.y += (Math.sin(elapsedtime) * 0.4);
+			if (dad.curCharacter.toLowerCase() == "expunged")
+			{
+				// mentally insane movement
+				dad.x += (tox - dad.x) / 12;
+				dad.y += (toy - dad.y) / 12;
+			}
+			else
+			{
+				dad.y += (Math.sin(elapsedtime) * 0.4);
+			}
+			
 		}
 		if(funnyFloatyBoys.contains(boyfriend.curCharacter.toLowerCase()) && canFloat)
 		{
@@ -1927,6 +1943,7 @@ class PlayState extends MusicBeatState
 		{
 			dadmirror.y += (Math.sin(elapsedtime) * 0.6);
 		}*/
+
 		if(funnyFloatyBoys.contains(gf.curCharacter.toLowerCase()) && canFloat)
 		{
 			gf.y += (Math.sin(elapsedtime) * 0.4);
@@ -3454,7 +3471,7 @@ class PlayState extends MusicBeatState
 						}
 					case 6080:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
-						splitathonExpression('dave', 'happy');
+						splitathonExpression('dave', 'happy'); 
 						addSplitathonChar("bambi-splitathon");
 						if (!hasTriggeredDumbshit)
 						{
@@ -3778,7 +3795,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = FlxG.camera.zoom - 0.3;
 						FlxTween.tween(boyfriend, {alpha: 1}, 0.2);
 						FlxTween.tween(gf, {alpha: 1}, 0.2);
-						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom - 0.3}, 0.2);
+						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom - 0.3}, 0.05);
 						for (spr in backgroundSprites)
 						{
 							FlxTween.tween(spr, {alpha: 1}, 0.2);
