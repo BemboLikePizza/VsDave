@@ -269,16 +269,7 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				FlxG.save.data.language = null;
-				if (FlxG.save.data.language == null)
-				{
-					FlxG.switchState(new SelectLanguageState());
-				}
-				else
-				{
-					FlxG.switchState(OutdatedSubState.leftState ? new MainMenuState() : new OutdatedSubState());
-				}				
-
+				FlxG.switchState(OutdatedSubState.leftState ? new MainMenuState() : new OutdatedSubState());
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}

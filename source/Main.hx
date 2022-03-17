@@ -14,7 +14,7 @@
 	{
 		var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 		var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-		var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
+		var initialState:Class<FlxState> = StartStateSelector; // The FlxState the game starts with.
 		var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 		var framerate:Int = 144; // How many frames per second the game should run at.
 		var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -70,10 +70,7 @@
 				gameHeight = Math.ceil(stageHeight / zoom);
 			}
 
-			#if !debug
-			initialState = TitleState;
-			#end
-
+			initialState = StartStateSelector;
 			addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 			var ourSource:String = "assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm";

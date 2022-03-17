@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.display.FlxBackdrop;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
@@ -9,6 +10,8 @@ import flixel.effects.FlxFlicker;
 
 class SelectLanguageState extends MusicBeatState
 {
+
+   var bg:FlxBackdrop;
    var selectLanguage:FlxText;
    var textItems:Array<FlxText> = new Array<FlxText>();
    var curLanguageSelected:Int;
@@ -18,6 +21,13 @@ class SelectLanguageState extends MusicBeatState
 
    public override function create()
    {
+      PlayerSettings.init();
+
+      bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), 1, 1, true, true, 1, 1);
+      bg.antialiasing = true;
+      
+      add(bg);
+
       selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, 0, "Please Select A Language", 45);
       selectLanguage.screenCenter(X);
       selectLanguage.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -59,6 +69,10 @@ class SelectLanguageState extends MusicBeatState
    }
    public override function update(elapsed:Float)
    {
+      var scrollSpeed:Float = 30;
+      bg.x -= scrollSpeed * elapsed;
+      bg.y -= scrollSpeed * elapsed;
+
       if (!accepted)
       {
 			if (controls.ACCEPT)
@@ -73,7 +87,7 @@ class SelectLanguageState extends MusicBeatState
 
             FlxFlicker.flicker(currentLanguage, 1.1, 0.07, true, true, function(flick:FlxFlicker)
 				{
-					FlxG.switchState(new MainMenuState());
+					FlxG.switchState(new TitleState());
 				});
 			}
 			if (controls.UP_P)
