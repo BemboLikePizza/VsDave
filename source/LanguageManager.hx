@@ -1,23 +1,23 @@
 package;
 
+import flixel.util.FlxColor;
+
 class LanguageManager
 {
    public static var currentLocaleList:Array<String>;
 
-   public static function languageNameFromPathName(pathName:String):String
+   public static function languageFromPathName(pathName:String):Language
    {
-      var langaugeText:Array<String> = CoolUtil.coolTextFile(Paths.langaugeFile());
+      var langauges:Array<Language> = getLanguages();
 
-      for (langauge in langaugeText)
+      for (langauge in langauges)
       {
-         var splitInfo = langauge.split(':');
-         
-         if (pathName == splitInfo[1])
+         if (langauge.pathName == pathName)
          {
-            return splitInfo[0];
+            return langauge;
          }
       }
-	  return '';
+	  return null;
    }
    public static function getTextString(stringName:String):String
    {
@@ -36,16 +36,17 @@ class LanguageManager
       }
       return '';
    }
-   public static function getLanguages(pathNameList:Bool):Array<String>
+   public static function getLanguages():Array<Language>
    {
-      var langauges:Array<String> = new Array<String>();
-      var langaugeText:Array<String> = CoolUtil.coolTextFile(Paths.langaugeFile());
+      var languages:Array<Language> = new Array<Language>();
+      var languagesText:Array<String> = CoolUtil.coolTextFile(Paths.langaugeFile());
 
-      for (langauge in langaugeText)
+      for (language in languagesText)
       {
-         var splitInfo = langauge.split(':');
-         langauges.push(splitInfo[pathNameList ? 1 : 0]);
+         var splitInfo = language.split(':');
+         var languageClass:Language = new Language(splitInfo[0], splitInfo[1], FlxColor.fromString(splitInfo[2]));
+         languages.push(languageClass);
       }
-      return langauges;
+      return languages;
    }
 }

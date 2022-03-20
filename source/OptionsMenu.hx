@@ -29,7 +29,7 @@ class OptionsMenu extends MusicBeatState
 	private var grpControls:FlxTypedGroup<Alphabet>;
 	var versionShit:FlxText;
 
-	var languages:Array<String> = new Array<String>();
+	var languages:Array<Language> = new Array<Language>();
 	var currentLanguage:Int = 0;
 	override function create()
 	{
@@ -46,7 +46,7 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off")
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
 			+ "\n" + (FlxG.save.data.noteCamera ? "Camera Movement On Note" : "Normal Camera")
-			+ "\n" + 'Current Language ' + LanguageManager.languageNameFromPathName(FlxG.save.data.language)
+			+ "\n" + 'Current Language ' + LanguageManager.languageFromPathName(FlxG.save.data.language).langaugeName
 			);
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -55,7 +55,7 @@ class OptionsMenu extends MusicBeatState
 		menuBG.loadGraphic(MainMenuState.randomizeBG());
 		add(menuBG);
 
-		languages = LanguageManager.getLanguages(false);
+		languages = LanguageManager.getLanguages();
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
@@ -137,8 +137,8 @@ class OptionsMenu extends MusicBeatState
 						updateGroupControls((FlxG.save.data.enableStupidCamera ? "Camera Movement On Note" : "Normal Camera"), 7, 'Vertical');
 					case 8:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
-						FlxG.save.data.language = languages[currentLanguage];
-						updateGroupControls("Current Language " + languages[currentLanguage], 8, 'Vertical');
+						FlxG.save.data.language = languages[currentLanguage].pathName;
+						updateGroupControls("Current Language " + languages[currentLanguage].langaugeName, 8, 'Vertical');
 				}
 			}
 	}

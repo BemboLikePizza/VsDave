@@ -1,5 +1,6 @@
 package;
 
+import flixel.tweens.misc.ColorTween;
 import flixel.addons.display.FlxBackdrop;
 import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
@@ -10,13 +11,12 @@ import flixel.effects.FlxFlicker;
 
 class SelectLanguageState extends MusicBeatState
 {
-
    var bg:FlxBackdrop;
    var selectLanguage:FlxText;
    var textItems:Array<FlxText> = new Array<FlxText>();
    var curLanguageSelected:Int;
-   var currentLanguage:FlxText;
-   var langaugeList:Array<String> = new Array<String>();
+   var currentLanguageText:FlxText;
+   var langaugeList:Array<Language> = new Array<Language>();
    var accepted:Bool;
 
    public override function create()
@@ -25,7 +25,7 @@ class SelectLanguageState extends MusicBeatState
 
       bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), 1, 1, true, true, 1, 1);
       bg.antialiasing = true;
-      
+      bg.color = langaugeList[curLanguageSelected].langaugeColor; 
       add(bg);
 
       selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, 0, "Please Select A Language", 45);
@@ -34,18 +34,18 @@ class SelectLanguageState extends MusicBeatState
       selectLanguage.borderSize = 2;
       add(selectLanguage);
 
-      langaugeList = LanguageManager.getLanguages(false);
+      langaugeList = LanguageManager.getLanguages();
 
       for (i in 0...langaugeList.length)
       {
          var currentLangauge = langaugeList[i];
 
-         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, 0, currentLangauge, 25);
+         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, 0, currentLangauge.langaugeName, 25);
          langaugeText.screenCenter(X);
          langaugeText.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
          langaugeText.borderSize = 2;
 
-         var flag:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('languages/' + currentLangauge));
+         var flag:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('languages/' + currentLangauge.langaugeName));
          flag.x = langaugeText.x + langaugeText.width + flag.width / 2;
          
          var yValues = CoolUtil.getMinAndMax(flag.height, langaugeText.height);
@@ -69,7 +69,7 @@ class SelectLanguageState extends MusicBeatState
    }
    public override function update(elapsed:Float)
    {
-      var scrollSpeed:Float = 30;
+      var scrollSpeed:Float = 50;
       bg.x -= scrollSpeed * elapsed;
       bg.y -= scrollSpeed * elapsed;
 
@@ -81,11 +81,10 @@ class SelectLanguageState extends MusicBeatState
 
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
 
-				var localeList = LanguageManager.getLanguages(true);
-				FlxG.save.data.language = localeList[curLanguageSelected];
+				FlxG.save.data.language = langaugeList[curLanguageSelected].pathName;
             LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + FlxG.save.data.language + '/textList.txt', TEXT, 'preload'));
 
-            FlxFlicker.flicker(currentLanguage, 1.1, 0.07, true, true, function(flick:FlxFlicker)
+            FlxFlicker.flicker(currentLanguageText, 1.1, 0.07, true, true, function(flick:FlxFlicker)
 				{
 					FlxG.switchState(new TitleState());
 				});
@@ -114,11 +113,12 @@ class SelectLanguageState extends MusicBeatState
       {
          curLanguageSelected = langaugeList.length - 1;
       }
-      currentLanguage = textItems[curLanguageSelected];
+      currentLanguageText = textItems[curLanguageSelected];
       for (menuItem in textItems)
       {
          updateText(menuItem, menuItem == textItems[curLanguageSelected]);
       }
+      FlxTween.color(bg, 0.4, bg.color, langaugeList[curLanguageSelected].langaugeColor);
    }
    function updateText(text:FlxText, selected:Bool)
    {
