@@ -23,6 +23,8 @@ class SelectLanguageState extends MusicBeatState
    {
       PlayerSettings.init();
 
+      langaugeList = LanguageManager.getLanguages();
+      
       bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), 1, 1, true, true, 1, 1);
       bg.antialiasing = true;
       bg.color = langaugeList[curLanguageSelected].langaugeColor; 
@@ -34,7 +36,6 @@ class SelectLanguageState extends MusicBeatState
       selectLanguage.borderSize = 2;
       add(selectLanguage);
 
-      langaugeList = LanguageManager.getLanguages();
 
       for (i in 0...langaugeList.length)
       {
