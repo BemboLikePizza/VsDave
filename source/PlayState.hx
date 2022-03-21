@@ -1453,7 +1453,11 @@ class PlayState extends MusicBeatState
 	function startSong():Void
 	{
 		if (SONG.song.toLowerCase() == "exploitation")
+		{
 			Application.current.window.title = "EXPUNGED'S REIGN IS HERE, FUCK YOU";
+			Application.current.window.setIcon(lime.graphics.Image.fromFile("art/iconAAAA.png"));
+		}
+			
 
 		startingSong = false;
 
@@ -4041,6 +4045,7 @@ class PlayState extends MusicBeatState
 				"YOU LIAR...YOU LIAR!"];
 
 				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
+				trace(path);
 
 				var randomLine = new FlxRandom().int(0, expungedLines.length);
 				File.saveContent(path, expungedLines[randomLine]);

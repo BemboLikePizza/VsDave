@@ -243,12 +243,7 @@ class TitleState extends MusicBeatState
 				pressedEnter = true;
 			#end
 		}
-
-		#if debug
-		if (FlxG.keys.justPressed.SEVEN)
-			FlxG.switchState(new ExpungedCrasherState());
-		#end
-
+		
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			#if !switch
