@@ -3806,6 +3806,11 @@ class PlayState extends MusicBeatState
 						}
 						mcStarted = true;
 
+						if (curStep == 1152)
+						{
+							modchart = ExploitationModchartType.ScrambledNotes;
+						}
+
 					case 368 | 1648:
 						FlxTween.tween(FlxG.camera, {angle: 10}, 0.1);
 					case 376 | 1656:
