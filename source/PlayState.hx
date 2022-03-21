@@ -4047,8 +4047,16 @@ class PlayState extends MusicBeatState
 				Sys.command("start " + path);
 			}
 			#end
-			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y,
-			formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
+
+			if (FlxG.random.int(0, 100) == 10)
+			{
+				FlxG.switchState(new ExpungedCrasherState());
+			}
+			else
+			{
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
+			}
+			
 			#if desktop
 				DiscordClient.changePresence("GAME OVER -- "
 				+ SONG.song
