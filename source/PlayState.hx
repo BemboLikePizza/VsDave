@@ -1453,7 +1453,11 @@ class PlayState extends MusicBeatState
 	function startSong():Void
 	{
 		if (SONG.song.toLowerCase() == "exploitation")
+		{
 			Application.current.window.title = "EXPUNGED'S REIGN IS HERE, FUCK YOU";
+			Application.current.window.setIcon(lime.graphics.Image.fromFile("art/iconAAAA.png"));
+		}
+			
 
 		startingSong = false;
 
@@ -3802,6 +3806,11 @@ class PlayState extends MusicBeatState
 						}
 						mcStarted = true;
 
+						if (curStep == 1152)
+						{
+							modchart = ExploitationModchartType.ScrambledNotes;
+						}
+
 					case 368 | 1648:
 						FlxTween.tween(FlxG.camera, {angle: 10}, 0.1);
 					case 376 | 1656:
@@ -4041,14 +4050,23 @@ class PlayState extends MusicBeatState
 				"YOU LIAR...YOU LIAR!"];
 
 				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
+				trace(path);
 
 				var randomLine = new FlxRandom().int(0, expungedLines.length);
 				File.saveContent(path, expungedLines[randomLine]);
 				Sys.command("start " + path);
 			}
 			#end
-			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y,
-			formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
+
+			if (FlxG.random.int(0, 100) == 10)
+			{
+				FlxG.switchState(new ExpungedCrasherState());
+			}
+			else
+			{
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
+			}
+			
 			#if desktop
 				DiscordClient.changePresence("GAME OVER -- "
 				+ SONG.song

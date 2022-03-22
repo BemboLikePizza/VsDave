@@ -16,6 +16,7 @@ import flixel.util.FlxColor;
 import io.newgrounds.NG;
 import lime.app.Application;
 import flixel.addons.display.FlxBackdrop;
+import flixel.input.keyboard.FlxKey;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -86,6 +87,27 @@ class MainMenuState extends MusicBeatState
 	var logoBl:FlxSprite;
 
 	var lilMenuGuy:FlxSprite;
+
+	var easterEggKeyCombination:Array<FlxKey> = 
+	[
+		FlxKey.I, 
+		FlxKey.L, 
+		FlxKey.O, 
+		FlxKey.V, 
+		FlxKey.E, 
+		FlxKey.G, 
+		FlxKey.O, 
+		FlxKey.L, 
+		FlxKey.D, 
+		FlxKey.E, 
+		FlxKey.N, 
+		FlxKey.A, 
+		FlxKey.P, 
+		FlxKey.P, 
+		FlxKey.L, 
+		FlxKey.E
+	];
+	var lastKeysPressed:Array<FlxKey> = [];
 
 	override function create()
 		{
@@ -185,6 +207,45 @@ class MainMenuState extends MusicBeatState
 			if (FlxG.sound.music.volume < 0.8)
 			{
 				FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
+			}
+
+			var finalKey:FlxKey = FlxG.keys.firstJustPressed();
+
+			if(finalKey != FlxKey.NONE)
+			{
+				lastKeysPressed.push(finalKey);
+
+				if(lastKeysPressed.length > easterEggKeyCombination.length)
+					lastKeysPressed.shift();
+					
+				if(lastKeysPressed.length == easterEggKeyCombination.length)
+				{
+					var isDifferent:Bool = false;
+
+					for (i in 0...lastKeysPressed.length) 
+					{
+						if(lastKeysPressed[i] != easterEggKeyCombination[i]) 
+						{
+							isDifferent = true;
+							break;
+						}
+					}
+					
+					if(!isDifferent) 
+					{
+						var poop:String = Highscore.formatSong("bananacore", 1);
+
+						PlayState.SONG = Song.loadFromJson(poop, "bananacore");
+						PlayState.isStoryMode = false;
+						PlayState.storyDifficulty = 1;
+
+						PlayState.storyWeek = 69;
+						
+						FlxG.save.data.bananacoreUnlocked = true;
+						LoadingState.loadAndSwitchState(new PlayState());
+					}
+
+				}
 			}
 
 			if (FlxG.keys.justPressed.SEVEN)

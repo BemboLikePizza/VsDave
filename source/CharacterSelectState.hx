@@ -13,6 +13,10 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.math.FlxMath;
 import flixel.util.FlxStringUtil;
+#if windows
+import lime.app.Application;
+#end
+
  /**
 	hey you fun commiting people, 
 	i don't know about the rest of the mod but since this is basically 99% my code 
@@ -517,6 +521,10 @@ class CharacterSelectState extends MusicBeatState
 		PlayState.characteroverride = currentSelectedCharacter.name;
 		PlayState.formoverride = currentSelectedCharacter.forms[curForm].name;
 		PlayState.curmult = currentSelectedCharacter.forms[curForm].noteMs;
+
+		if (PlayState.SONG.song.toLowerCase() == "exploitation")
+			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details", "Vs Dave");
+
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
 }

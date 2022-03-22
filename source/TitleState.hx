@@ -189,6 +189,14 @@ class TitleState extends MusicBeatState
 			initialized = true;
 
 		// credGroup.add(credTextShit);
+
+
+		createCoolText(['Created by:']);
+
+		// hope this fixes overlap bug
+		addMoreText('MoldyGH');
+		addMoreText('MissingTextureMan101');
+		addMoreText('Rapparep LOL');
 	}
 
 	function getIntroTextShit():Array<Array<String>>
@@ -243,12 +251,7 @@ class TitleState extends MusicBeatState
 				pressedEnter = true;
 			#end
 		}
-
-		#if debug
-		if (FlxG.keys.justPressed.SEVEN)
-			FlxG.switchState(new WindowShitTesting());
-		#end
-
+		
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			#if !switch
@@ -336,13 +339,13 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-			case 2:
+			/*case 2:
 				createCoolText(['Created by:']);
 
 				// hope this fixes overlap bug
 				addMoreText('MoldyGH');
 				addMoreText('MissingTextureMan101');
-				addMoreText('Rapparep LOL');
+				addMoreText('Rapparep LOL');*/
 			case 3:
 				addMoreText('TheBuilderXD, Erizur');
 				addMoreText('T5mpler, Cuzsie');
