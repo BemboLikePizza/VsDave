@@ -82,7 +82,7 @@ class MainMenuState extends MusicBeatState
 		'backgrounds/sk0rbias',
 		'backgrounds/SwagnotrllyTheMod',
 		'backgrounds/zombought',
-		'backgrounds/Lancey'
+		'backgrounds/Lancey',
 		'backgrounds/Aadsta'
 	];
 
