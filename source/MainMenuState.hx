@@ -83,6 +83,7 @@ class MainMenuState extends MusicBeatState
 		'backgrounds/SwagnotrllyTheMod',
 		'backgrounds/zombought',
 		'backgrounds/Lancey'
+		'backgrounds/Aadsta'
 	];
 
 	var logoBl:FlxSprite;
