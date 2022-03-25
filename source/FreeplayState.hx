@@ -347,7 +347,7 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty > 2)
 			curDifficulty = 0;
 
-		if (songs[curSelected].week == 3)
+		if (songs[curSelected].week == 3 || songs[curSelected].week == 6)
 		{
 			curDifficulty = 1;
 		}
@@ -365,6 +365,8 @@ class FreeplayState extends MusicBeatState
 		{
 			case 3:
 				diffText.text = 'FINALE' + " - " + curChar.toUpperCase();
+			case 6:
+				diffText.text = 'YOU'RE SCREWED' + " - " + curChar.toUpperCase();
 			default:
 				switch (curDifficulty)
 				{
@@ -381,19 +383,19 @@ class FreeplayState extends MusicBeatState
 	function changeSelection(change:Int = 0)
 	{
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-		if (songs[curSelected].week != 3)
-		{
 			curSelected += change;
 
-			if (curSelected < 0)
-				curSelected = songs.length - 1;
+		if (curSelected < 0)
+			curSelected = songs.length - 1;
 	
-			if (curSelected >= songs.length)
-				curSelected = 0;
+		if (curSelected >= songs.length)
+			curSelected = 0;
 	
+		if (songs[curSelected].week != 3 && songs[curSelected].week != 6)
+		{
 			if (curDifficulty < 0)
 				curDifficulty = 2;
-	
+				
 			if (curDifficulty > 2)
 				curDifficulty = 0;
 		}
