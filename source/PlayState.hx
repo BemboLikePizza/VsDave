@@ -2080,13 +2080,16 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (SONG.song.toLowerCase() == "overdrive")
-			scoreTxt.text = "score: " + Std.string(songScore);
-		else if (SONG.song.toLowerCase() == "exploitation")
-			scoreTxt.text = "Scor3: " + (songScore * FlxG.random.int(5,9)) + " | M1ss3s: " + (misses * FlxG.random.int(5,9)) + " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
-		else
-			scoreTxt.text = "Score:" + Std.string(songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
-		
+		switch (SONG.song.toLowerCase())
+		{
+			case 'overdrive':
+				scoreTxt.text = "score: " + Std.string(songScore);
+			case 'exploitation':
+				scoreTxt.text = "Scor3: " + (songScore * FlxG.random.int(5,9)) + " | M1ss3s: " + (misses * FlxG.random.int(5,9)) + " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
+			default:
+				scoreTxt.text = "Score:" + Std.string(songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
+		}
+
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;	

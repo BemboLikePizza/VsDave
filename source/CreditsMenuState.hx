@@ -50,6 +50,7 @@ class CreditsMenuState extends MusicBeatState
    var selectPersonCam:FlxCamera = new FlxCamera();
    var mainCam:FlxCamera = new FlxCamera();
    var transitioning:Bool = false;
+   var creditsTypeString:String = '';
 
    var curSocialMediaSelected:Int = 0;
    var socialButtons:Array<SocialButton> = new Array<SocialButton>();
@@ -113,19 +114,20 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/BillyBobboLOL')
       ]),
 
-      //translators
+      // Translators //
+      
       new Person("Somf", CreditsType.Translator, "Spanish Translator",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCspbOv2BXbDANpJyjguce2Q'),
       ]),
       
-      new Person("Aizakku", CreditsType.Translator, "Portguese Translator",
+      new Person("Aizakku", CreditsType.Translator, "Portguese-Brazillian Translator",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCmSCR85PlhbHGHm-wxiA6sA'),
          new Social('twitter', 'https://twitter.com/ItsAizakku')
       ]),
       
-      new Person("Soulegal", CreditsType.Translator, "Brazillian Translator",
+      new Person("Soulegal", CreditsType.Translator, "Portguese-Brazillian Translator",
       [
             new Social('youtube', 'https://www.youtube.com/channel/UC7VSf4ITAMN83hL3zQbqt3w'),
             new Social('twitter', 'https://twitter.com/nickstwt')
@@ -158,9 +160,13 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
       ]),
-            new Person("Top 10 Awesome", CreditsType.Contributor, "Overdrive composer, funny guy",
+      new Person("Top 10 Awesome", CreditsType.Contributor, "Overdrive composer, funny guy",
       [
          new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
+      ]),
+      new Person("BombasticHype", CreditsType.Contributor, "Menu Character Design",
+      [  
+         new Social ('youtube', 'https://www.youtube.com/c/BombasticHype')
       ]),
       
       new Person("Devianator", CreditsType.Contributor, "Beta Tester, and helping with Credits icons",
@@ -184,7 +190,9 @@ class CreditsMenuState extends MusicBeatState
       // Beta Testers //
       new Person("letsy", CreditsType.BetaTester, "Beta Tester",
       [
-
+         new Social('youtube', 'https://www.youtube.com/channel/UCPsNWR6RYLRvpDZinADtJ8w'),
+         new Social('twitter', 'https://twitter.com/Iesty19'),
+         new Social('discord', 'ietsy#5140')
       ]),
       new Person("wildy", CreditsType.BetaTester, "Beta Tester",
       [
@@ -195,6 +203,10 @@ class CreditsMenuState extends MusicBeatState
       new Person("peejeada", CreditsType.BetaTester, "Beta Tester & Supporter",
       [
          new Social('twitter', 'https://twitter.com/tailsmaster1')
+      ]),
+      new Person("Aadsta", CreditsType.BetaTester, "Beta Tester & Supporter",
+      [
+         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
       ]),
       
       new Person("Bendy", CreditsType.BetaTester, "Beta Tester",
@@ -212,14 +224,19 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/vex________')
       ]),
       
-      new Person("Ace", CreditsType.BetaTester, "Beta Tester",
-      [
-         
-      ]),
-      
       new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCUmuZE0RPjvUhB036T6omfQ')
+      ]),
+      new Person("ashtonyes", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCQkB-JEx7OGdOUxPzcgUkkQ')
+      ]),
+      new Person("Silver Escape", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCP9McVE9T5K3pzum48-m6Tg'),
+         new Social('roblox', 'https://www.roblox.com/users/2546405173/profile'),
+         new Social('discord', 'Silver Escaper#8220')
       ]),
 
       new Person("TrustVVorthy", CreditsType.BetaTester, "Beta Tester",
@@ -232,6 +249,12 @@ class CreditsMenuState extends MusicBeatState
          new Social("youtube", 'https://www.youtube.com/channel/UC1u46mYMoecfO04dm-9Djjg')
       ]),
 
+      new Person("Log Man", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('twitter', 'https://twitter.com/LogManLoggy'),
+         new Social('youtube', 'https://www.youtube.com/channel/UCnGg-cLnXuQNfSzIq6xF8hw'),
+      ]),
+
       new Person("Mooncakeez", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC6lOrY3AkmXWFpaLHwlP-5A')
@@ -242,12 +265,6 @@ class CreditsMenuState extends MusicBeatState
          new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
          new Social('twitter', 'https://twitter.com/Foxnap2')
       ]),
-
-      new Person("A5CEN", CreditsType.BetaTester, "Beta Tester",
-      [
-
-      ]),
-      
       new Person("nihilistt", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
@@ -285,6 +302,30 @@ class CreditsMenuState extends MusicBeatState
          new Social('discord', 'Vanquiler#3026'),
          new Social('twitch', 'https://www.twitch.tv/vanquiler'),
          new Social('roblox', 'https://www.roblox.com/users/1505830747')
+      ]),
+      new Person("Villezen", CreditsType.BetaTester, "Beta Tester & Supporter",
+      [
+         new Social('youtube', 'https://www.youtube.com/c/Villezen')
+      ]),
+      new Person("Jukebox", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('twitter', 'https://twitter.com/Juk3b0x_'),
+         new Social('youtube', 'https://www.youtube.com/channel/UCwA3jnG5cu3toaVCOhc-Tqw'),
+      ]),
+      new Person("emiko", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC3mIybwSekVs5VEJSe2yjog')
+      ]),
+      new Person("Cotiles", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('twitter', 'https://twitter.com/Ctiles1'),
+         new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
+         
+      ]),
+      new Person("Ace", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC7L37WBIhcFUl60VMNvm0Jg'),
+         new Social('twitter', 'https://twitter.com/Thanos2411'),
       ]),
       
 	  // Special Thanks // 
@@ -347,21 +388,20 @@ class CreditsMenuState extends MusicBeatState
          var currentPerson = peopleInCredits[i];
          if (currentPerson == developers[0] || currentPerson == translators[0] || currentPerson == contributors[0] || currentPerson == betaTesters[0] || currentPerson == specialThanks[0])
          {
-            var textString:String = '';
             switch (currentPerson.creditsType)
             {
                case Dev:
-                  textString = 'Developers';
+                  creditsTypeString = 'Developers';
                case Translator:
-                  textString = 'Translators';
+                  creditsTypeString = 'Translators';
                case Contributor:
-                  textString = 'Contributors';
+                  creditsTypeString = 'Contributors';
                case BetaTester:
-                  textString = 'Beta Testers';
+                  creditsTypeString = 'Beta Testers';
                case SpecialThanks:
-                  textString = 'Special Thanks';
+                  creditsTypeString = 'Special Thanks';
             }
-            var titleText:FlxText = new FlxText(0, 0, 0, textString);
+            var titleText:FlxText = new FlxText(0, 0, 0, creditsTypeString);
             titleText.setFormat("Comic Sans MS Bold", 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
             titleText.borderSize = 3;
             titleText.borderQuality = 3;
@@ -369,7 +409,7 @@ class CreditsMenuState extends MusicBeatState
             titleText.scrollFactor.set(0, 1);
 
             var personIcon:PersonIcon = new PersonIcon(titleText);
-            personIcon.loadGraphic(Paths.image('credits/icons/titles/' + textString));
+            personIcon.loadGraphic(Paths.image('credits/titles/' + creditsTypeString));
             add(personIcon);
 
             var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
@@ -384,7 +424,7 @@ class CreditsMenuState extends MusicBeatState
 
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
-         personIcon.loadGraphic(Paths.image('credits/icons/' + currentPerson.name));
+         personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
          add(personIcon);
 
          var creditsTextItem:CreditsText = new CreditsText(textItem, true, personIcon);
