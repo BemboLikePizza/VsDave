@@ -235,9 +235,9 @@ class MainMenuState extends MusicBeatState
 					
 					if(!isDifferent) 
 					{
-						var poop:String = Highscore.formatSong("bananacore", 1);
+						var poop:String = Highscore.formatSong("eletric-cockadoodledoo", 1);
 
-						PlayState.SONG = Song.loadFromJson(poop, "bananacore");
+						PlayState.SONG = Song.loadFromJson(poop, "eletric-cockadoodledoo");
 						PlayState.isStoryMode = false;
 						PlayState.storyDifficulty = 1;
 
