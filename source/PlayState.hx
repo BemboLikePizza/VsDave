@@ -1019,6 +1019,11 @@ class PlayState extends MusicBeatState
 			modchart = ExploitationModchartType.Figure8;
 		}
 		super.create();
+
+		if (SONG.song.toLowerCase() == "bananacore")
+		{
+			dad.alpha = 0;
+		}
 	}
 
 	public function createBackgroundSprites(bgName:String):FlxTypedGroup<BGSprite>
@@ -3476,7 +3481,7 @@ class PlayState extends MusicBeatState
 	var black:FlxSprite;
 
 
-	var vineBoomTriggers:Array<Int> = [524, 540, 588, 604, 666, 720, 736, 752, 1088, 1092, 1096, 1100, 1152, 1168, 1172, 1174, 1176, 1180, 2113, 2144, 2176];
+	var vineBoomTriggers:Array<Int> = [524, 588, 666, 720, 736, 752, 1088, 1092, 1096, 1100, 1152, 1168, 1172, 1174, 1176, 1180, 2113, 2144, 2176];
 	var shag:FlxSprite;
 	var indihome:FlxSprite;
 	var hideStuff:FlxSprite;
@@ -3679,6 +3684,8 @@ class PlayState extends MusicBeatState
 			case 'bananacore':
 				switch (curStep)
 				{
+					case 147:
+						FlxTween.tween(dad, {alpha: 1}, 0.5);
 					case 480:
 						remove(dad);
 						dad = new Character(dad.x, dad.y, 'bartholemew', false);

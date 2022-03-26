@@ -169,7 +169,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
-			songText.itemType = 'D-Shape';
+			songText.itemType = 'Classic';
 			songText.targetY = i;
 			songText.scrollFactor.set();
 			grpSongs.add(songText);
@@ -366,7 +366,7 @@ class FreeplayState extends MusicBeatState
 			case 3:
 				diffText.text = 'FINALE' + " - " + curChar.toUpperCase();
 			case 6:
-				diffText.text = 'YOU'RE SCREWED' + " - " + curChar.toUpperCase();
+				diffText.text = "YOU'RE SCREWED" + " - " + curChar.toUpperCase();
 			default:
 				switch (curDifficulty)
 				{
