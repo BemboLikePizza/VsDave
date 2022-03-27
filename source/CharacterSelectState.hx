@@ -1,4 +1,5 @@
 package;
+import haxe.Exception;
 import io.newgrounds.objects.events.Result.GetCurrentVersionResult;
 import Controls.Control;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -515,7 +516,6 @@ class CharacterSelectState extends MusicBeatState
 		funnyIconMan.y = characterText.y + ((yValues[0] - yValues[1]) / 2);
 	}
 	
-	
 	public function endIt(e:FlxTimer = null)
 	{
 		PlayState.characteroverride = currentSelectedCharacter.name;
@@ -523,7 +523,10 @@ class CharacterSelectState extends MusicBeatState
 		PlayState.curmult = currentSelectedCharacter.forms[curForm].noteMs;
 
 		if (PlayState.SONG.song.toLowerCase() == "exploitation")
+		{
+			FlxG.sound.play(Paths.sound('error'), 0.9);
 			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details", "Vs Dave");
+		}
 
 		LoadingState.loadAndSwitchState(new PlayState());
 	}

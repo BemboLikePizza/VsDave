@@ -443,6 +443,8 @@ class PlayState extends MusicBeatState
 			case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' 
 			| 'interdimensional' |'cheating' | 'escape-from-california' | 'five-nights' | 'furiosity' | 'kabunga' | 'roots' | 'secret' | 'secret-mod-leak' | 'unfairness':
 				songCreator = 'MoldyGH';
+			case 'exploitation':
+				songCreator = 'Oxygen';
 			case 'memory' | 'mealie':
 				songCreator = 'Alexander Cooper 19';
 			case 'confronting-yourself' | 'bananacore':
@@ -456,21 +458,20 @@ class PlayState extends MusicBeatState
 			case 'vs-dave-rap':
 				songCreator = 'Your mom';
 		}
+		trace(songCreator);
 
 		if (songCreator != '')
 		{
 			var songText:AttachedText = new AttachedText(0, 0, 0, "Song By" + songCreator, 32);
 			songText.antialiasing = true;
-			songText.setFormat('Comic Sans MS Bold', 32, FlxColor.BLACK, FlxTextAlign.LEFT);
-			songText.screenCenter();
+			songText.setFormat('Comic Sans MS Bold', 100, FlxColor.BLACK, FlxTextAlign.LEFT);
 			add(songText);
 
 			var dotLol:FlxSprite = new FlxSprite(0, 0, Paths.image('SongByDot', 'shared'));
 			dotLol.antialiasing = false;
-			dotLol.setGraphicSize(songText.width + 20, songText.height + 20);
+			dotLol.setGraphicSize(Std.int(songText.width + 20), Std.int(songText.height + 20));
 			dotLol.screenCenter();
 			add(dotLol);
-
 			songText.sprTracker = dotLol;
 		}
 
@@ -844,10 +845,10 @@ class PlayState extends MusicBeatState
 			songPosBar.cameras = [camHUD];
 			songName.cameras = [camHUD];
 		}
+		
+		var healthBarPath = SONG.song.toLowerCase() == 'exploitation' ? Paths.image('ui/HELLthBar') : Paths.image('ui/healthBar');
 
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
-		if (SONG.song.toLowerCase() == "exploitation")
-			healthBarBG.loadGraphic(Paths.image('ui/HELLthBar'));
+		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(healthBarPath);
 		if (FlxG.save.data.downscroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
@@ -4096,7 +4097,6 @@ class PlayState extends MusicBeatState
 				"YOU LIAR...YOU LIAR!"];
 
 				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
-				trace(path);
 
 				var randomLine = new FlxRandom().int(0, expungedLines.length);
 				File.saveContent(path, expungedLines[randomLine]);
