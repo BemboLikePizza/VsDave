@@ -215,7 +215,7 @@ class FreeplayState extends MusicBeatState
 			grpSongs.members[song].unlockY = true;
 
 			// item.targetY = bullShit - curSelected;
-			FlxTween.tween(grpSongs[song], {y: song, alpha: 1}, 0.5, {ease: FlxEase.expoInOut, onComplete: function(twn:FlxTween)
+			FlxTween.tween(grpSongs.members[song], {y: song, alpha: 1}, 0.5, {ease: FlxEase.expoInOut, onComplete: function(twn:FlxTween)
 			{
 				grpSongs[song].unlockY = false;
 			}});
