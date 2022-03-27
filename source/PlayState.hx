@@ -458,23 +458,6 @@ class PlayState extends MusicBeatState
 			case 'vs-dave-rap':
 				songCreator = 'Your mom';
 		}
-		trace(songCreator);
-
-		if (songCreator != '')
-		{
-			var songText:AttachedText = new AttachedText(0, 0, 0, "Song By" + songCreator, 32);
-			songText.antialiasing = true;
-			songText.setFormat('Comic Sans MS Bold', 100, FlxColor.BLACK, FlxTextAlign.LEFT);
-			add(songText);
-
-			var dotLol:FlxSprite = new FlxSprite(0, 0, Paths.image('SongByDot', 'shared'));
-			dotLol.antialiasing = false;
-			dotLol.setGraphicSize(Std.int(songText.width + 20), Std.int(songText.height + 20));
-			dotLol.screenCenter();
-			add(dotLol);
-			songText.sprTracker = dotLol;
-		}
-
 		backgroundSprites = createBackgroundSprites(stageCheck);
 		switch (SONG.song.toLowerCase())
 		{

@@ -17,7 +17,7 @@ class LanguageManager
             return langauge;
          }
       }
-	  return null;
+      return null;
    }
    public static function getTextString(stringName:String):String
    {

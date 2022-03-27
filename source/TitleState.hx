@@ -97,7 +97,7 @@ class TitleState extends MusicBeatState
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			startIntro();
-		});
+		});		
 		#end
 	}
 
@@ -325,57 +325,60 @@ class TitleState extends MusicBeatState
 
 	override function beatHit()
 	{
-		super.beatHit();
-
-		logoBl.animation.play('bump');
-		danceLeft = !danceLeft;
-
-		if (danceLeft)
-			gfDance.animation.play('danceRight');
-		else
-			gfDance.animation.play('danceLeft');
-
-		FlxG.log.add(curBeat);
-
-		switch (curBeat)
+		if (logoBl != null && gfDance != null)
 		{
-			/*case 2:
-				createCoolText(['Created by:']);
+			super.beatHit();
 
-				// hope this fixes overlap bug
-				addMoreText('MoldyGH');
-				addMoreText('MissingTextureMan101');
-				addMoreText('Rapparep LOL');*/
-			case 3:
-				addMoreText('TheBuilderXD, Erizur');
-				addMoreText('T5mpler, Cuzsie');
-			case 4:
-				addMoreText('and our wonderful contributors!');
-			case 5:
-				deleteCoolText();
-			case 6:
-				createCoolText(['Supernovae by ArchWk']);
-			case 7:
-				addMoreText('Glitch by The Boneyard');
-			case 8:
-				deleteCoolText();
-				ngSpr.visible = false;
-			case 9:
-				createCoolText([curWacky[0]]);
-			case 10:
-				addMoreText(curWacky[1]);
-			case 11:
-				deleteCoolText();
-			case 12:
-				addMoreText("Friday Night Funkin'");
-			case 13:
-				addMoreText('VS. Dave and Bambi');
-			case 14:
-				addMoreText('Mod');
-			case 15:
-				deleteCoolText();
-			case 16:
-				skipIntro();
+			logoBl.animation.play('bump');
+			danceLeft = !danceLeft;
+	
+			if (danceLeft)
+				gfDance.animation.play('danceRight');
+			else
+				gfDance.animation.play('danceLeft');
+	
+			FlxG.log.add(curBeat);
+	
+			switch (curBeat)
+			{
+				/*case 2:
+					createCoolText(['Created by:']);
+	
+					// hope this fixes overlap bug
+					addMoreText('MoldyGH');
+					addMoreText('MissingTextureMan101');
+					addMoreText('Rapparep LOL');*/
+				case 3:
+					addMoreText('TheBuilderXD, Erizur');
+					addMoreText('T5mpler, Cuzsie');
+				case 4:
+					addMoreText('and our wonderful contributors!');
+				case 5:
+					deleteCoolText();
+				case 6:
+					createCoolText(['Supernovae by ArchWk']);
+				case 7:
+					addMoreText('Glitch by The Boneyard');
+				case 8:
+					deleteCoolText();
+					ngSpr.visible = false;
+				case 9:
+					createCoolText([curWacky[0]]);
+				case 10:
+					addMoreText(curWacky[1]);
+				case 11:
+					deleteCoolText();
+				case 12:
+					addMoreText("Friday Night Funkin'");
+				case 13:
+					addMoreText('VS. Dave and Bambi');
+				case 14:
+					addMoreText('Mod');
+				case 15:
+					deleteCoolText();
+				case 16:
+					skipIntro();
+			}
 		}
 	}
 

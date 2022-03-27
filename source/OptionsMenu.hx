@@ -37,6 +37,9 @@ class OptionsMenu extends MusicBeatState
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
+		
+		languages = LanguageManager.getLanguages();
+
 		controlsStrings = CoolUtil.coolStringFile(
 			"Change Keybinds"
 			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
@@ -54,8 +57,6 @@ class OptionsMenu extends MusicBeatState
 		menuBG.antialiasing = true;
 		menuBG.loadGraphic(MainMenuState.randomizeBG());
 		add(menuBG);
-
-		languages = LanguageManager.getLanguages();
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
