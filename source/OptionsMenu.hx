@@ -42,10 +42,13 @@ class OptionsMenu extends MusicBeatState
 		{
 			curLanguage = "en-US";
 		}
+		
+		languages = LanguageManager.getLanguages();
+
 		controlsStrings = CoolUtil.coolStringFile(
 			"Change Keybinds"
 			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
-			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') 
+			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll')
 			+ "\n" + (FlxG.save.data.songPosition ? 'Song Position On' : 'Song Position Off')
 			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off")
@@ -59,8 +62,6 @@ class OptionsMenu extends MusicBeatState
 		menuBG.antialiasing = true;
 		menuBG.loadGraphic(MainMenuState.randomizeBG());
 		add(menuBG);
-
-		languages = LanguageManager.getLanguages();
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);

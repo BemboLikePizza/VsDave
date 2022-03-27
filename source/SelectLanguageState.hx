@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxMath;
 import flixel.tweens.misc.ColorTween;
 import flixel.addons.display.FlxBackdrop;
 import flixel.FlxSprite;
@@ -21,7 +22,6 @@ class SelectLanguageState extends MusicBeatState
 
    public override function create()
    {
-
       FlxG.sound.playMusic(Paths.music('selectLanguageMenu'), 0.7);
       
       PlayerSettings.init();
@@ -38,7 +38,6 @@ class SelectLanguageState extends MusicBeatState
       selectLanguage.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       selectLanguage.borderSize = 2;
       add(selectLanguage);
-
 
       for (i in 0...langaugeList.length)
       {
@@ -76,6 +75,9 @@ class SelectLanguageState extends MusicBeatState
       var scrollSpeed:Float = 50;
       bg.x -= scrollSpeed * elapsed;
       bg.y -= scrollSpeed * elapsed;
+      
+      if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
 
       if (!accepted)
       {
@@ -102,13 +104,13 @@ class SelectLanguageState extends MusicBeatState
 				changeSelection(1);
 			}
       }
+      FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 0.9);
    }
    function changeSelection(amount:Int = 0)
    {
       if (amount != 0) FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
       curLanguageSelected += amount;
-
       if (curLanguageSelected > langaugeList.length - 1)
       {
          curLanguageSelected = 0;
@@ -133,6 +135,13 @@ class SelectLanguageState extends MusicBeatState
       else
       {
          text.setFormat("Comic Sans MS Bold", 25);
+      }
+   }
+   override function beatHit()
+   {
+      if (curBeat % 4 == 0 && FlxG.camera.zoom < 1.35 && !accepted)
+      {
+         FlxG.camera.zoom += 0.015;
       }
    }
 }

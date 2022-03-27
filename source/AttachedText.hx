@@ -20,7 +20,6 @@ class AttachedText extends FlxText
 
 		if (sprTracker != null) {
 			setPosition(sprTracker.x + xAdd, sprTracker.y + yAdd);
-			trace('waa');
 			scrollFactor.set(sprTracker.scrollFactor.x, sprTracker.scrollFactor.y);
 			if(copyAlpha)
 			{
