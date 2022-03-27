@@ -239,7 +239,7 @@ class PlayState extends MusicBeatState
 
 	public var modchart:ExploitationModchartType;
 	var weirdBG:FlxSprite;
-	var cuzsieKapiBananacore:Array<FlxSprite> = [];
+	var cuzsieKapiEletricCockadoodledoo:Array<FlxSprite> = [];
 	public static var originalWindowTitle:String;
 	var mcStarted:Bool = false;
 	public static var devBotplay:Bool = false;
@@ -427,7 +427,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'house-night';
 				case 'secret' | 'overdrive' | 'secret-mod-leak':
 					stageCheck = 'house-sunset';
-				case 'bananacore':
+				case 'eletric-cockadoodledoo':
 					stageCheck = 'banana-hell';
 				case 'tutorial':
 					stageCheck = 'stage';
@@ -880,7 +880,7 @@ class PlayState extends MusicBeatState
 				credits = "You won't survive " + CoolSystemStuff.getUsername() + "! SUPER FUCK you!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
-			case 'bananacore':
+			case 'eletric-cockadoodledoo':
 				credits = "Song by Cuzsie! (Original song from Golden Apple!)\n(THIS SONG IS NOT CANON)";
 			default:
 				credits = '';
@@ -936,17 +936,17 @@ class PlayState extends MusicBeatState
 			case 'insanity':
 				preload('backgrounds/void/redsky');
 				preload('backgrounds/void/redsky_insanity');
-			case 'bananacore':
-				preload('bananacore/characters/Bartholemew');
-				preload('bananacore/characters/Cockey');
-				preload('bananacore/characters/Kapi');
-				preload('bananacore/characters/PizzaMan');
-				preload('bananacore/indihome');
-				preload('bananacore/kapicuzsie_back');
-				preload('bananacore/kapicuzsie_front');
-				preload('bananacore/muffin');
-				preload('bananacore/sad_bambi');
-				preload('bananacore/shaggy from fnf 1');
+			case 'eletric-cockadoodledoo':
+				preload('eletric-cockadoodledoo/characters/Bartholemew');
+				preload('eletric-cockadoodledoo/characters/Cockey');
+				preload('eletric-cockadoodledoo/characters/Kapi');
+				preload('eletric-cockadoodledoo/characters/PizzaMan');
+				preload('eletric-cockadoodledoo/indihome');
+				preload('eletric-cockadoodledoo/kapicuzsie_back');
+				preload('eletric-cockadoodledoo/kapicuzsie_front');
+				preload('eletric-cockadoodledoo/muffin');
+				preload('eletric-cockadoodledoo/sad_bambi');
+				preload('eletric-cockadoodledoo/shaggy from fnf 1');
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, 0, "", 20);
@@ -1021,7 +1021,7 @@ class PlayState extends MusicBeatState
 		}
 		super.create();
 
-		if (SONG.song.toLowerCase() == "bananacore")
+		if (SONG.song.toLowerCase() == "eletric-cockadoodledoo")
 		{
 			dad.alpha = 0;
 		}
@@ -1261,18 +1261,18 @@ class PlayState extends MusicBeatState
 		}
 
 
-		// that one cuzsie and kapi part of bananacore
-		if (SONG.song.toLowerCase() == "bananacore")
+		// that one cuzsie and kapi part of eletric cockadoodledoo
+		if (SONG.song.toLowerCase() == "eletric-cockadoodledoo")
 		{
-			var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('bananacore/kapicuzsie_back'), null, 0.9, 0.9);
-			cuzsieKapiBananacore.push(bg);
+			var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('eletric-cockadoodledoo/kapicuzsie_back'), null, 0.9, 0.9);
+			cuzsieKapiEletricCockadoodledoo.push(bg);
 			add(bg);
 			bg.visible = false;
 	
-			var stageFront:BGSprite = new BGSprite('stageFront', -650, 600, Paths.image('bananacore/kapicuzsie_front'), null, 0.9, 0.9);
+			var stageFront:BGSprite = new BGSprite('stageFront', -650, 600, Paths.image('eletric-cockadoodledoo/kapicuzsie_front'), null, 0.9, 0.9);
 			stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 			stageFront.updateHitbox();
-			cuzsieKapiBananacore.push(stageFront);
+			cuzsieKapiEletricCockadoodledoo.push(stageFront);
 			add(stageFront);
 			stageFront.visible = false;
 		}
@@ -3682,7 +3682,7 @@ class PlayState extends MusicBeatState
 						iconP2.changeIcon('bambi-angey');
 						add(dad);
 				}
-			case 'bananacore':
+			case 'eletric-cockadoodledoo':
 				switch (curStep)
 				{
 					case 147:
@@ -3701,7 +3701,7 @@ class PlayState extends MusicBeatState
 						weirdBG.loadGraphic(Paths.image('backgrounds/void/bananaVoid2'));
 						trace("Phase 2");
 					case 1530:
-						shag = new FlxSprite().loadGraphic(Paths.image("bananacore/shaggy from fnf 1", 'shared'));
+						shag = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/shaggy from fnf 1", 'shared'));
 						shag.screenCenter();
 						shag.alpha = 0;
 						add(shag);
@@ -3710,17 +3710,17 @@ class PlayState extends MusicBeatState
 					case 1550:
 						remove(shag);
 					case 1642:
-						for (sprite in cuzsieKapiBananacore)
+						for (sprite in cuzsieKapiEletricCockadoodledoo)
 						{
 							sprite.visible = true;
 						}
 						remove(dad);
-						dad = new Character(dad.x, dad.y, "bananacore-kapi", false);
+						dad = new Character(dad.x, dad.y, "eletric-cockadoodledoo-kapi", false);
 						add(dad);
 
 						trace("Kapi BG");
 					case 1664:
-						for (sprite in cuzsieKapiBananacore)
+						for (sprite in cuzsieKapiEletricCockadoodledoo)
 						{
 							sprite.visible = false;
 						}
@@ -3740,7 +3740,7 @@ class PlayState extends MusicBeatState
 						weirdBG.loadGraphic(Paths.image('backgrounds/void/bananaVoid3'));
 						trace("Phase 3");
 					case 2624:
-						indihome = new FlxSprite().loadGraphic(Paths.image("bananacore/indihome", 'shared'));
+						indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/indihome", 'shared'));
 						indihome.screenCenter();
 						indihome.cameras = [camHUD];
 						add(indihome);
@@ -3773,7 +3773,7 @@ class PlayState extends MusicBeatState
 						add(dad);
 					case 3200:
 						// re-using indihome bc im lazy as fuck
-						indihome = new FlxSprite().loadGraphic(Paths.image("bananacore/muffin", 'shared'));
+						indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/muffin", 'shared'));
 						indihome.screenCenter();
 						indihome.cameras = [camHUD];
 						add(indihome);
@@ -3815,7 +3815,7 @@ class PlayState extends MusicBeatState
 					if (curStep == trigger)
 					{
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						var sadBamb:FlxSprite = new FlxSprite().loadGraphic(Paths.image("bananacore/sad_bambi", 'shared'));
+						var sadBamb:FlxSprite = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/sad_bambi", 'shared'));
 						sadBamb.screenCenter();
 						sadBamb.cameras = [camHUD];
 						add(sadBamb);

@@ -70,6 +70,8 @@ class FreeplayState extends MusicBeatState
 
 	var doneCoolTrans:Bool = false;
 
+	var defColor:FlxColor;
+
 	override function create()
 	{
 		#if desktop
@@ -84,6 +86,7 @@ class FreeplayState extends MusicBeatState
 
 		bg.loadGraphic(MainMenuState.randomizeBG());
 		bg.color = 0xFF4965FF;
+		defColor = bg.color;
 		bg.scrollFactor.set();
 		add(bg);
 
@@ -144,9 +147,8 @@ class FreeplayState extends MusicBeatState
 				
 				addWeek(['Exploitation'], 6, ['expunged']);
 
-				
 				if (FlxG.save.data.bananacoreUnlocked)
-					addWeek(['bananacore'], 2, ['cockey']);
+					addWeek(['eletric-cockadoodledoo'], 2, ['cockey']);
 			case 'extra':
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Escape-From-California'], 5, ['none']);
@@ -172,6 +174,8 @@ class FreeplayState extends MusicBeatState
 			songText.itemType = 'Classic';
 			songText.targetY = i;
 			songText.scrollFactor.set();
+			songText.alpha = 0;
+			songText.y += 1000;
 			grpSongs.add(songText);
 
 			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
@@ -205,6 +209,18 @@ class FreeplayState extends MusicBeatState
 		FlxTween.tween(scoreBG,{y: 0},0.5,{ease: FlxEase.expoInOut});
 		FlxTween.tween(scoreText,{y: 5},0.5,{ease: FlxEase.expoInOut});
 		FlxTween.tween(diffText,{y: 40},0.5,{ease: FlxEase.expoInOut});
+
+		for (song in 0...grpSongs.length)
+		{
+			grpSongs.members[song].unlockY = true;
+
+			// item.targetY = bullShit - curSelected;
+			FlxTween.tween(grpSongs.members[song], {y: song, alpha: 1}, 0.5, {ease: FlxEase.expoInOut, onComplete: function(twn:FlxTween)
+			{
+				grpSongs.members[song].unlockY = false;
+			}});
+		}
+		
 
 		changeSelection();
 		changeDiff();
@@ -253,6 +269,7 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		// Selector Menu Functions
 		if (!InMainFreeplayState) 
 		{
 			if (controls.LEFT_P)
@@ -265,20 +282,25 @@ class FreeplayState extends MusicBeatState
 			}
 			if (controls.ACCEPT && !loadingPack)
 			{
-				loadingPack = true;
-				LoadProperPack();
-				
-				for (item in icons) { FlxTween.tween(item, {alpha: 0}, 0.3); }
-				for (item in titles) { FlxTween.tween(item, {alpha: 0}, 0.3); }
+				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
-				new FlxTimer().start(0.5, function(Dumbshit:FlxTimer)
+				new FlxTimer().start(0.2, function(Dumbshit:FlxTimer)
 				{
-					for (item in icons) { item.visible = false; }
-					for (item in titles) { item.visible = false; }
+					loadingPack = true;
+					LoadProperPack();
+					
+					for (item in icons) { FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut}); }
+					for (item in titles) { FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut}); }
 
-					GoToActualFreeplay();
-					InMainFreeplayState = true;
-					loadingPack = false;
+					new FlxTimer().start(0.2, function(Dumbshit:FlxTimer)
+					{
+						for (item in icons) { item.visible = false; }
+						for (item in titles) { item.visible = false; }
+
+						GoToActualFreeplay();
+						InMainFreeplayState = true;
+						loadingPack = false;
+					});	
 				});
 			}
 			if (controls.BACK)
@@ -287,6 +309,65 @@ class FreeplayState extends MusicBeatState
 			}	
 		
 			return;
+		}
+
+		// Freeplay Functions
+		else
+		{
+			var upP = controls.UP_P;
+			var downP = controls.DOWN_P;
+			var accepted = controls.ACCEPT;
+	
+			if (upP)
+			{
+				changeSelection(-1);
+			}
+			if (downP)
+			{
+				changeSelection(1);
+			}
+			if (controls.LEFT_P)
+				changeDiff(-1);
+			if (controls.RIGHT_P)
+				changeDiff(1);
+	
+			if (controls.BACK)
+			{
+				for (i in grpSongs)
+				{
+					i.unlockY = true;
+	
+					FlxTween.tween(i, {y: 5000, alpha: 0}, 0.3, {onComplete: function(twn:FlxTween)
+					{
+						i.unlockY = false;
+
+						for (item in icons) { item.visible = true; FlxTween.tween(item, {alpha: 1, y: item.y + 200}, 0.2, {ease: FlxEase.cubeInOut}); }
+						for (item in titles) { item.visible = true; FlxTween.tween(item, {alpha: 1, y: item.y + 200}, 0.2, {ease: FlxEase.cubeInOut}); }
+	
+						InMainFreeplayState = false;
+						loadingPack = true;
+
+						for (i in grpSongs){remove(i);}
+						for (i in iconArray){remove(i);}
+
+						FlxTween.color(bg, 0.25, bg.color, defColor);
+					}});
+				}
+			}
+	
+			if (accepted)
+			{
+				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
+	
+				trace(poop);
+	
+				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+				PlayState.isStoryMode = false;
+				PlayState.storyDifficulty = curDifficulty;
+	
+				PlayState.storyWeek = songs[curSelected].week;
+				LoadingState.loadAndSwitchState(new CharacterSelectState());
+			}
 		}
 
 		if (FlxG.sound.music.volume < 0.7)
@@ -300,42 +381,6 @@ class FreeplayState extends MusicBeatState
 			lerpScore = intendedScore;
 
 		scoreText.text = "PERSONAL BEST:" + lerpScore;
-
-		var upP = controls.UP_P;
-		var downP = controls.DOWN_P;
-		var accepted = controls.ACCEPT;
-
-		if (upP)
-		{
-			changeSelection(-1);
-		}
-		if (downP)
-		{
-			changeSelection(1);
-		}
-		if (controls.LEFT_P)
-			changeDiff(-1);
-		if (controls.RIGHT_P)
-			changeDiff(1);
-
-		if (controls.BACK)
-		{
-			FlxG.switchState(new FreeplayState());
-		}
-
-		if (accepted)
-		{
-			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-
-			trace(poop);
-
-			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
-			PlayState.isStoryMode = false;
-			PlayState.storyDifficulty = curDifficulty;
-
-			PlayState.storyWeek = songs[curSelected].week;
-			LoadingState.loadAndSwitchState(new CharacterSelectState());
-		}
 	}
 
 	function changeDiff(change:Int = 0)
