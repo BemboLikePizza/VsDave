@@ -37,19 +37,24 @@ class OptionsMenu extends MusicBeatState
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
+		var curLanguage:String = FlxG.save.data.language;
+		if(curLanguage == '')
+		{
+			curLanguage = "en-US";
+		}
 		
 		languages = LanguageManager.getLanguages();
 
 		controlsStrings = CoolUtil.coolStringFile(
 			"Change Keybinds"
 			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
-			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll') 
+			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll')
 			+ "\n" + (FlxG.save.data.songPosition ? 'Song Position On' : 'Song Position Off')
 			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
 			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off")
 			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
 			+ "\n" + (FlxG.save.data.noteCamera ? "Camera Movement On Note" : "Normal Camera")
-			+ "\n" + 'Current Language ' + LanguageManager.languageFromPathName(FlxG.save.data.language).langaugeName
+			+ "\n" + 'Current Language ' + LanguageManager.languageFromPathName(curLanguage).langaugeName
 			);
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
