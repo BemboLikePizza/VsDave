@@ -42,6 +42,7 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		Conductor.songPosition = 0;
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end

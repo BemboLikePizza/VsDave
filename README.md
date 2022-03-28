@@ -9,3 +9,5 @@ this is dave
 say hi to dave
 
 please say hi to him
+
+Also SMALL LITTLE NOTE BUT IT'S VERY IMPORTANT: Make sure your HaxeFlixel version is 4.11 or higher, you won't be able to compile properly if it isn't.

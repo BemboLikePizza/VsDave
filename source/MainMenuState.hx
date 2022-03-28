@@ -193,7 +193,7 @@ class MainMenuState extends MusicBeatState
 		controls.setKeyboardScheme(KeyboardScheme.Solo, true);
 
 
-		/*if (FlxG.save.data.keybinds != null)
+		if (FlxG.save.data.keybinds != null)
 		{
 			ChangeKeybinds.loadControls(controls);
 		}
@@ -201,7 +201,7 @@ class MainMenuState extends MusicBeatState
 		{
 			
 			ChangeKeybinds.saveControls(controls);
-		}*/
+		}
 		changeItem();
 
 		super.create();

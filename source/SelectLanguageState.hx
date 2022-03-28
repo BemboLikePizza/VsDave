@@ -22,15 +22,15 @@ class SelectLanguageState extends MusicBeatState
 
    public override function create()
    {
-      FlxG.sound.playMusic(Paths.music('selectLanguageMenu'), 0.7);
-      
+      FlxG.save.bind('funkin', 'ninjamuffin99');
       PlayerSettings.init();
-
+      
+      FlxG.sound.playMusic(Paths.music('selectLanguageMenu'), 0.7);
       langaugeList = LanguageManager.getLanguages();
       
       bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), 1, 1, true, true, 1, 1);
       bg.antialiasing = true;
-      bg.color = langaugeList[curLanguageSelected].langaugeColor; 
+      bg.color = langaugeList[curLanguageSelected].langaugeColor;
       add(bg);
 
       selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, 0, "Please Select A Language", 45);
@@ -75,9 +75,6 @@ class SelectLanguageState extends MusicBeatState
       var scrollSpeed:Float = 50;
       bg.x -= scrollSpeed * elapsed;
       bg.y -= scrollSpeed * elapsed;
-      
-      if (FlxG.sound.music != null)
-			Conductor.songPosition = FlxG.sound.music.time;
 
       if (!accepted)
       {
@@ -92,6 +89,7 @@ class SelectLanguageState extends MusicBeatState
 
             FlxFlicker.flicker(currentLanguageText, 1.1, 0.07, true, true, function(flick:FlxFlicker)
 				{
+               trace(FlxG.save.data.language);
 					FlxG.switchState(new TitleState());
 				});
 			}
@@ -135,13 +133,6 @@ class SelectLanguageState extends MusicBeatState
       else
       {
          text.setFormat("Comic Sans MS Bold", 25);
-      }
-   }
-   override function beatHit()
-   {
-      if (curBeat % 4 == 0 && FlxG.camera.zoom < 1.35 && !accepted)
-      {
-         FlxG.camera.zoom += 0.015;
       }
    }
 }
