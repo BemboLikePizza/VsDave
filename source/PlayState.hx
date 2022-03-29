@@ -4306,7 +4306,7 @@ class PlayState extends MusicBeatState
 
 	function sectionStartTime(section:Int):Float
 	{
-		var daBPM:Int = SONG.bpm;
+		var daBPM:Float = SONG.bpm;
 		var daPos:Float = 0;
 		for (i in 0...section)
 		{
