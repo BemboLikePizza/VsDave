@@ -490,7 +490,7 @@ class Character extends FlxSprite
 			// Most of these are just one-time characters that appear for a few seconds
 
 			case 'cockey':
-				tex = Paths.getSparrowAtlas('bananacore/characters/Cockey', 'shared');
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Cockey', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idle', 24, false);
 				animation.addByPrefix('singUP', 'up', 24, false);
@@ -506,8 +506,26 @@ class Character extends FlxSprite
 		
 				playAnim('idle');
 			
+
+			case 'pissey':
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Pissey', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+		
+				loadOffsetFile(curCharacter);
+
+				setGraphicSize(Std.int(width * 0.5));
+				updateHitbox();
+				antialiasing = false;
+		
+				playAnim('idle');
+
 			case 'bartholemew':
-				tex = Paths.getSparrowAtlas('bananacore/characters/Bartholemew', "shared");
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Bartholemew', "shared");
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
@@ -520,7 +538,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'bananacore-kapi':
-				tex = Paths.getSparrowAtlas('bananacore/characters/Kapi', "shared");
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Kapi', "shared");
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
@@ -533,7 +551,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'ayo-the-pizza-here':
-				tex = Paths.getSparrowAtlas('bananacore/characters/Kapi', "shared");
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Kapi', "shared");
 				frames = tex;
 				animation.addByPrefix('idle', 'Idle', 24);
 				animation.addByPrefix('singUP', 'Up', 24);
