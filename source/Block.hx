@@ -6,7 +6,7 @@ import flixel.util.FlxColor;
 
 using StringTools;
 
-class Block extends FlxExtendedSprite
+class Block extends FlxSprite
 {
     var blockReg:Array<Dynamic> =
     [
@@ -24,7 +24,5 @@ class Block extends FlxExtendedSprite
         makeGraphic(25, 14, targetColor);
         this.x = x;
         this.y = y;
-
-        enableMouseSnap(25, 14, false, false);
 	}
 }
