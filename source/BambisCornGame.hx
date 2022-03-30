@@ -10,7 +10,13 @@ import flixel.util.FlxColor;
 import Discord.DiscordClient;
 #end
 
-// i was bored ok?
+/*
+    Hey, i know your coming here because you want to use the system for your own mod.
+    I honestly could care less, just credit me for it.
+
+    - Cuzsie
+*/
+
 class BambisCornGame extends MusicBeatState
 {
     public static var player:MinigamePlayer;
@@ -39,6 +45,18 @@ class BambisCornGame extends MusicBeatState
         "Your objective is to get all the corn before bambi catches you!",
         "If you get all the cosrn before he finds you, you win!",
         "Good luck!"
+    ];
+
+    // W 25.6
+    // H 14.4
+
+    // 0 Air
+    // 1 Cornstalk
+    // 2 Tree
+
+    var mapGrid:Array<Array<Int>> = 
+    [
+       
     ];
 
     override function create()
@@ -71,7 +89,35 @@ class BambisCornGame extends MusicBeatState
 
         super.create();
         
+        createMap();
         intro();
+    }
+
+    function createMap()
+    {
+        // Start the target at 0,0 (Top Left Corner)
+        var targY:Float = 0;
+        var targX:Float = 0;
+
+        for (l in 0...mapGrid.length)
+        {
+            // Up the target Y
+            if (l != 0)
+                targY + 72;
+            
+            for (s in 0...mapGrid[l].length)
+            {
+                // Create our new block
+                var block:Block = new Block(targX, targY, mapGrid[l][s]);
+                add(block);
+
+                // Add to the target Y
+                targX + 128;
+            }
+
+            // Make sure to reset the target X at the end of the statement.
+            targX = 0;
+        }
     }
 
     function intro()
@@ -96,6 +142,11 @@ class BambisCornGame extends MusicBeatState
             {
                 trace("Insert working death code here");
             }); 
+        }
+
+        if (FlxG.keys.justPressed.SEVEN)
+        {
+            FlxG.switchState(new BambiGameEditor());
         }
         
 
@@ -138,7 +189,7 @@ class BambisCornGame extends MusicBeatState
             {
                 FlxG.sound.music.stop();
                 trace("Closing");
-                FlxG.sound.playMusic(Paths.inst('roots'));
+                FlxG.sound.playMusic(Paths.music("cornGame", "shared"));
                     
                 player = new MinigamePlayer(20, 20);
                 player.screenCenter();

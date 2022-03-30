@@ -733,6 +733,10 @@ class PlayState extends MusicBeatState
 			dad.x -= 500;
 			dad.y -= 100;
 		}
+		if (stageCheck == "banana-hell")
+		{
+			dad.x -= 600;
+		}
 	
 
 		switch (curStage)
@@ -864,7 +868,7 @@ class PlayState extends MusicBeatState
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			case 'eletric-cockadoodledoo':
-				credits = "Song by Cuzsie! (Original song from Golden Apple!)\n(THIS SONG IS NOT CANON)";
+				credits = "Song by Cuzsie! (THIS SONG IS NOT CANON)";
 			default:
 				credits = '';
 		}
@@ -1194,6 +1198,8 @@ class PlayState extends MusicBeatState
 					case 'banana-hell': // this is a Cockey moment
 						bg.loadGraphic(Paths.image('backgrounds/void/bananaVoid1'));
 						bg.setPosition(-700, -300);
+						bg.setGraphicSize(Std.int(bg.width * 2), Std.int(bg.height * 2));
+						defaultCamZoom = 0.5;
 						weirdBG = bg;
 						curStage = 'banana-land';
 				}
@@ -1613,24 +1619,7 @@ class PlayState extends MusicBeatState
 
 	private function generateStaticArrows(player:Int, regenerate:Bool = false, ghMode:Bool = false):Void
 	{
-		var daKey:Int = switch(ghMode){ case true: 5; case false: 4;}
-
-		if (regenerate)
-		{
-			switch(player)
-			{
-				case 0:
-					dadStrums.forEach(function(spr:FlxSprite)
-					{
-						remove(spr);
-					});
-				case 1:
-					playerStrums.forEach(function(spr:FlxSprite)
-					{
-						remove(spr);
-					});
-			}
-		}
+		var daKey:Int = 4;
 
 		for (i in 0...4)
 		{
@@ -1732,42 +1721,6 @@ class PlayState extends MusicBeatState
 					babyArrow.x += ((FlxG.width / 2) * player);
 		
 					strumLineNotes.add(babyArrow);
-			}
-			else
-			{
-				// it IS gh mode
-				trace("gutrar helreo");
-				
-				babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets');
-				babyArrow.animation.addByPrefix('green', 'arrowUP');
-				babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
-				babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
-				babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
-				babyArrow.animation.addByPrefix('yellow', 'arrowRIGHT');
-					
-				babyArrow.antialiasing = true;
-				babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
-		
-				babyArrow.x += Note.swagWidth * Math.abs(i);
-				switch (Math.abs(i))
-				{
-					case 0:
-						babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-						babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
-						babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-					case 1:
-						babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-						babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
-						babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-					case 2:
-						babyArrow.animation.addByPrefix('static', 'arrowUP');
-						babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-						babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-					case 3:
-						babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-						babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-						babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-				}
 			}
 		}
 	}
@@ -3469,6 +3422,8 @@ class PlayState extends MusicBeatState
 	var shag:FlxSprite;
 	var indihome:FlxSprite;
 	var hideStuff:FlxSprite;
+	var sexDad:Character;
+	var curECCCharacter:String = "cockey";
 
 	override function stepHit()
 	{
@@ -3677,22 +3632,32 @@ class PlayState extends MusicBeatState
 						trace("Bartholemew");
 					case 512:
 						remove(dad);
-						dad = new Character(dad.x, dad.y, SONG.player2, false);
+						dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						add(dad);
-					case 768:
+					case 832:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						weirdBG.loadGraphic(Paths.image('backgrounds/void/bananaVoid2'));
 						trace("Phase 2");
+						sexDad = new Character(dad.x - 1000, dad.y, "cockey");
+						add(sexDad);
+						dad.alpha = 0;
+					case 842:
+						remove(dad);
+						dad = new Character(dad.x, dad.y, "pissey", false);
+						add(dad);
+						dad.alpha = 0;
+						curECCCharacter = "pissey";
+						FlxTween.tween(dad, {alpha: 1}, 5);
 					case 1530:
 						shag = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/shaggy from fnf 1", 'shared'));
 						shag.screenCenter();
 						shag.alpha = 0;
 						add(shag);
 						trace("Shaggy Fade In");
-						FlxTween.tween(shag, {alpha: 1}, 5);
+						FlxTween.tween(shag, {alpha: 1}, 3);
 					case 1550:
 						remove(shag);
-					case 1642:
+					case 1655:
 						for (sprite in cuzsieKapiEletricCockadoodledoo)
 						{
 							sprite.visible = true;
@@ -3702,26 +3667,42 @@ class PlayState extends MusicBeatState
 						add(dad);
 
 						trace("Kapi BG");
-					case 1664:
+
+						defaultCamZoom += 0.2;
+					case 1728:
 						for (sprite in cuzsieKapiEletricCockadoodledoo)
 						{
 							sprite.visible = false;
 						}
 						remove(dad);
-						dad = new Character(dad.x, dad.y, SONG.player2, false);
+						dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						add(dad);
 
 						trace("Reset Kapi BG");
-					case 1808:
+
+						defaultCamZoom -= 0.2;
+					case 1984:
 						FlxG.camera.zoom += 1;
 					case 1856:
 						trace("BF Float");
-						FlxTween.tween(boyfriend, {y: boyfriend.y - 700}, 5);
+						FlxTween.tween(boyfriend, {y: boyfriend.y - 700}, 8);
 					case 1983:
 						boyfriend.y = boyfriend.y + 700;
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						weirdBG.loadGraphic(Paths.image('backgrounds/void/bananaVoid3'));
 						trace("Phase 3");
+
+						curECCCharacter = "pooper";
+
+					case 2054:
+						dad.flipX = !dad.flipX;
+					case 2180:
+						sexDad.flipX = !sexDad.flipX;
+					case 2208:
+						FlxG.camera.flash(FlxColor.WHITE, 0.25);
+						dad.visible = false;
+						sexDad.visible = false;
+						
 					case 2624:
 						indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/indihome", 'shared'));
 						indihome.screenCenter();
@@ -3736,7 +3717,7 @@ class PlayState extends MusicBeatState
 						add(dad);
 					case 2848 | 2972:
 						remove(dad);
-						dad = new Character(dad.x, dad.y, SONG.player2, false);
+						dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						add(dad);
 					case 2912:
 						remove(dad);
@@ -3752,7 +3733,7 @@ class PlayState extends MusicBeatState
 						trace("Ayo the pizza here");
 					case 3008:
 						remove(dad);
-						dad = new Character(dad.x, dad.y, SONG.player2, false);
+						dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						add(dad);
 					case 3200:
 						// re-using indihome bc im lazy as fuck
@@ -3857,6 +3838,135 @@ class PlayState extends MusicBeatState
 						{
 							FlxTween.tween(spr, {alpha: 0}, 2);
 						}
+				}
+
+			case "shredder":
+				switch (curStep)
+				{
+					case 1024:
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+
+						black = new FlxSprite(0,0).makeGraphic(2560, 1440, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0.4;
+						add(black);
+						defaultCamZoom += 0.2;
+
+						dadStrums.forEach(function(spr:FlxSprite)
+						{
+							spr.visible = false;
+							remove(spr);
+						});
+						dadStrums.clear();
+
+						for (i in 0...5)
+						{
+							var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
+							babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_gh');
+
+							babyArrow.animation.addByPrefix('green', 'arrowUP');
+							babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+							babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+							babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+	
+							babyArrow.antialiasing = true;
+							babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+	
+							babyArrow.x += Note.swagWidth * Math.abs(i);
+							switch (Math.abs(i))
+							{
+								case 0:
+									babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+									babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+									babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+								case 1:
+									babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+									babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+									babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+								case 2:
+									babyArrow.animation.addByPrefix('static', 'arrowUP');
+									babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+									babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+								case 3:
+									babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+									babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+									babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+								case 4:
+									babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+									babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+									babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+							}
+
+							babyArrow.updateHitbox();
+							babyArrow.scrollFactor.set();
+							babyArrow.ID = i;
+							dadStrums.add(babyArrow);
+				
+							babyArrow.animation.play('static');
+							babyArrow.x += 50;
+							babyArrow.x += ((FlxG.width / 2) * 0);
+				
+							strumLineNotes.add(babyArrow);
+						}
+
+					case 1536:
+						remove(black);
+						defaultCamZoom -= 0.2;
+
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						dadStrums.forEach(function(spr:FlxSprite)
+							{
+								spr.visible = false;
+								remove(spr);
+							});
+							dadStrums.clear();
+	
+							for (i in 0...4)
+							{
+								var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
+								babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets');
+	
+								babyArrow.animation.addByPrefix('green', 'arrowUP');
+								babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
+								babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
+								babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+		
+								babyArrow.antialiasing = true;
+								babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+		
+								babyArrow.x += Note.swagWidth * Math.abs(i);
+								switch (Math.abs(i))
+								{
+									case 0:
+										babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+										babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+										babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+									case 1:
+										babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+										babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+										babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+									case 2:
+										babyArrow.animation.addByPrefix('static', 'arrowUP');
+										babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+										babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+									case 3:
+										babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+										babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+										babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+								}
+	
+								babyArrow.updateHitbox();
+								babyArrow.scrollFactor.set();
+								babyArrow.ID = i;
+								dadStrums.add(babyArrow);
+					
+								babyArrow.animation.play('static');
+								babyArrow.x += 50;
+								babyArrow.x += ((FlxG.width / 2) * 0);
+					
+								strumLineNotes.add(babyArrow);
+							}
+
 				}
 				
 		}
@@ -4196,7 +4306,7 @@ class PlayState extends MusicBeatState
 
 	function sectionStartTime(section:Int):Float
 	{
-		var daBPM:Int = SONG.bpm;
+		var daBPM:Float = SONG.bpm;
 		var daPos:Float = 0;
 		for (i in 0...section)
 		{

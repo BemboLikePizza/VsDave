@@ -11,7 +11,10 @@ class BambiCorn extends FlxSprite
     {
         super(x, y);
 
-        makeGraphic(16, 16, FlxColor.YELLOW);
+        loadGraphic(Paths.image("bambiCornGame/corn", "shared"));
+        setGraphicSize(16,16);
+        this.x = x;
+        this.y = y;
     }
 
     override function update(elapsed:Float)
