@@ -2402,7 +2402,7 @@ class PlayState extends MusicBeatState
 				if (daNote.wasGoodHit && daNote.isSustainNote && Conductor.songPosition >= (daNote.strumTime + 10))
 				{
 					destroyNote(daNote);
-				}				
+				}
 				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + strumTimeFromY(106, daNote))
 				{
 					if (!devBotplay)

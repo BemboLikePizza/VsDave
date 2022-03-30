@@ -1,5 +1,6 @@
 package;
 
+import openfl.display.TriangleCulling;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -17,6 +18,7 @@ class AnimationDebug extends MusicBeatState
 	var bf:Boyfriend;
 	var dad:Character;
 	var char:Character;
+	var animationGhost:Character;
 	var textAnim:FlxText;
 	var dumbTexts:FlxTypedGroup<FlxText>;
 	var animList:Array<String> = [];
@@ -53,6 +55,8 @@ class AnimationDebug extends MusicBeatState
 			add(dad);
 
 			char = dad;
+			animationGhost = dad;
+			animationGhost = new Character(dad.x, dad.y, dad.curCharacter, false);
 			dad.flipX = false;
 		}
 		else
@@ -63,8 +67,11 @@ class AnimationDebug extends MusicBeatState
 			add(bf);
 
 			char = bf;
+			animationGhost = new Character(bf.x, bf.y, bf.curCharacter, true);
 			bf.flipX = false;
 		}
+		add(animationGhost);
+		add(char);
 
 		dumbTexts = new FlxTypedGroup<FlxText>();
 		add(dumbTexts);
@@ -83,6 +90,8 @@ class AnimationDebug extends MusicBeatState
 		FlxG.camera.follow(camFollow);
 
 		super.create();
+
+		animationGhost.alpha = 0.3; 
 	}
 
 	function genBoyOffsets(pushList:Bool = true):Void
@@ -154,6 +163,16 @@ class AnimationDebug extends MusicBeatState
 		if (FlxG.keys.justPressed.S)
 		{
 			curAnim += 1;
+		}
+		if (FlxG.keys.justPressed.F)
+		{
+			char.flipX = false;
+			animationGhost.flipX = false;
+		}
+		if (FlxG.keys.justPressed.G)
+		{
+			char.flipX = true;
+			animationGhost.flipX = true;
 		}
 
 		if (curAnim < 0)

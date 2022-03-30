@@ -171,7 +171,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
-			songText.itemType = 'Classic';
+			songText.itemType = 'D-Shape';
 			songText.targetY = i;
 			songText.scrollFactor.set();
 			songText.alpha = 0;
@@ -333,6 +333,7 @@ class FreeplayState extends MusicBeatState
 	
 			if (controls.BACK)
 			{
+				loadingPack = true;
 				for (i in grpSongs)
 				{
 					i.unlockY = true;
@@ -345,7 +346,7 @@ class FreeplayState extends MusicBeatState
 						for (item in titles) { item.visible = true; FlxTween.tween(item, {alpha: 1, y: item.y + 200}, 0.2, {ease: FlxEase.cubeInOut}); }
 	
 						InMainFreeplayState = false;
-						loadingPack = true;
+						loadingPack = false;
 
 						for (i in grpSongs){remove(i);}
 						for (i in iconArray){remove(i);}

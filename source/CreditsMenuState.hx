@@ -699,7 +699,7 @@ class CreditsMenuState extends MusicBeatState
       for (i in 0...selectedPerson.socialMedia.length)
       {
          var social:Social = selectedPerson.socialMedia[i];
-         var socialGraphic:FlxSprite = new FlxSprite(0, credits.y + 100 + (i * 100)).loadGraphic(Paths.image('credits/' + social.socialMediaName));
+         var socialGraphic:FlxSprite = new FlxSprite(0, credits.y + 100 + (i * 100)).loadGraphic(Paths.image('credits/socialMedia/' + social.socialMediaName));
          var discordText:FlxText = null;
          socialGraphic.updateHitbox();
          socialGraphic.screenCenter(X);
