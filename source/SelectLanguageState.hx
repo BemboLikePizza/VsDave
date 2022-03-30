@@ -9,6 +9,7 @@ import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.effects.FlxFlicker;
+import flixel.util.FlxSave;
 
 class SelectLanguageState extends MusicBeatState
 {
@@ -22,10 +23,13 @@ class SelectLanguageState extends MusicBeatState
 
    public override function create()
    {
-      FlxG.save.bind('funkin', 'ninjamuffin99');
+      LanguageManager.initSave();
       PlayerSettings.init();
       
       FlxG.sound.playMusic(Paths.music('selectLanguageMenu'), 0.7);
+      
+      FlxG.sound.music.fadeIn(2, 0, 0.7);
+
       langaugeList = LanguageManager.getLanguages();
       
       bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), 1, 1, true, true, 1, 1);
@@ -84,12 +88,12 @@ class SelectLanguageState extends MusicBeatState
 
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
 
-				FlxG.save.data.language = langaugeList[curLanguageSelected].pathName;
-            LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + FlxG.save.data.language + '/textList.txt', TEXT, 'preload'));
+				LanguageManager.save.data.language = langaugeList[curLanguageSelected].pathName;
+            LanguageManager.save.flush();
+            LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + LanguageManager.save.data.language + '/textList.txt', TEXT, 'preload'));
 
             FlxFlicker.flicker(currentLanguageText, 1.1, 0.07, true, true, function(flick:FlxFlicker)
 				{
-               trace(FlxG.save.data.language);
 					FlxG.switchState(new TitleState());
 				});
 			}

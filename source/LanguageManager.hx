@@ -1,10 +1,18 @@
 package;
 
 import flixel.util.FlxColor;
+import flixel.util.FlxSave;
 
 class LanguageManager
 {
    public static var currentLocaleList:Array<String>;
+   public static var save:FlxSave;
+
+   public static function initSave()
+   {
+      save = new FlxSave();
+      save.bind('language', 'ninjamuffin99');
+   }
 
    public static function languageFromPathName(pathName:String):Language
    {

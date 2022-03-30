@@ -7,8 +7,9 @@ class StartStateSelector extends FlxState
 {
    public override function create()
    {
-      FlxG.save.data.language = null;
-      if (FlxG.save.data.language == null)
+      LanguageManager.initSave();
+      LanguageManager.save.data.language = null;
+      if (LanguageManager.save.data.language == null)
       {
          FlxG.switchState(new SelectLanguageState());
       }

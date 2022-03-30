@@ -37,7 +37,7 @@ class OptionsMenu extends MusicBeatState
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
-		var curLanguage:String = FlxG.save.data.language;
+		var curLanguage:String = LanguageManager.save.data.language;
 		if(curLanguage == '')
 		{
 			curLanguage = "en-US";
@@ -143,7 +143,7 @@ class OptionsMenu extends MusicBeatState
 						updateGroupControls((FlxG.save.data.enableStupidCamera ? "Camera Movement On Note" : "Normal Camera"), 7, 'Vertical');
 					case 8:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
-						FlxG.save.data.language = languages[currentLanguage].pathName;
+						LanguageManager.save.data.language = languages[currentLanguage].pathName;
 						updateGroupControls("Current Language " + languages[currentLanguage].langaugeName, 8, 'Vertical');
 				}
 			}

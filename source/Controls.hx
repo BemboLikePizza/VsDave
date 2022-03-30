@@ -496,7 +496,6 @@ class Controls extends FlxActionSet
 
 		keyboardScheme = scheme;
 		
-		#if (haxe >= "4.0.0")
 		switch (scheme)
 		{
 			case Solo:
@@ -504,82 +503,49 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.DOWN, [F, FlxKey.DOWN]);
 				inline bindKeys(Control.LEFT, [D, FlxKey.LEFT]);
 				inline bindKeys(Control.RIGHT, [K, FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+				inline bindKeys(Control.ACCEPT, [SPACE, ENTER]);
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				inline bindKeys(Control.RESET, [R]);
+				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
+				inline bindKeys(Control.RESET, [R, DELETE]);
+			case Duo(false):
 			case Duo(true):
 				inline bindKeys(Control.UP, [W, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
 				inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
 				inline bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [G, Z, SPACE, ENTER]);
+				inline bindKeys(Control.ACCEPT, [SPACE, ENTER]);
+				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				inline bindKeys(Control.RESET, [R]);
-			case Duo(false):
-				inline bindKeys(Control.UP, [FlxKey.UP]);
-				inline bindKeys(Control.DOWN, [FlxKey.DOWN]);
-				inline bindKeys(Control.LEFT, [FlxKey.LEFT]);
-				inline bindKeys(Control.RIGHT, [FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [O]);
-				inline bindKeys(Control.BACK, [P]);
-				inline bindKeys(Control.PAUSE, [ENTER]);
-				inline bindKeys(Control.RESET, [BACKSPACE]);
+				inline bindKeys(Control.RESET, [R, DELETE]);
 			case None: // nothing
-			case Custom: // nothing
+			case Custom:
+				inline bindKeys(Control.UP, KeybindPrefs.keybinds.get('up'));
+				inline bindKeys(Control.DOWN, KeybindPrefs.keybinds.get('down'));
+				inline bindKeys(Control.LEFT, KeybindPrefs.keybinds.get('left'));
+				inline bindKeys(Control.RIGHT, KeybindPrefs.keybinds.get('right'));
+				inline bindKeys(Control.ACCEPT, KeybindPrefs.keybinds.get('accept'));
+				inline bindKeys(Control.BACK, KeybindPrefs.keybinds.get('back'));
+				inline bindKeys(Control.PAUSE, KeybindPrefs.keybinds.get('pause'));
+				inline bindKeys(Control.RESET, KeybindPrefs.keybinds.get('reset'));
 			case Askl:
 				inline bindKeys(Control.UP, [K, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
 				inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
 				inline bindKeys(Control.RIGHT, [L, FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+				inline bindKeys(Control.ACCEPT, [SPACE, ENTER]);
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				inline bindKeys(Control.RESET, [R]);
+				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
+				inline bindKeys(Control.RESET, [R, DELETE]);
 			case ZxCommaDot:
 				inline bindKeys(Control.UP, [FlxKey.COMMA, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [X, FlxKey.DOWN]);
 				inline bindKeys(Control.LEFT, [Z, FlxKey.LEFT]);
 				inline bindKeys(Control.RIGHT, [FlxKey.PERIOD, FlxKey.RIGHT]);
-				inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+				inline bindKeys(Control.ACCEPT, [SPACE, ENTER]);
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				inline bindKeys(Control.RESET, [R]);
+				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
+				inline bindKeys(Control.RESET, [R, DELETE]);
 		}
-		#else
-		switch (scheme)
-		{
-			case Solo:
-				bindKeys(Control.UP, [W, FlxKey.UP]);
-				bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
-				bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
-				bindKeys(Control.RIGHT, [D, FlxKey.RIGHT]);
-				bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
-				bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-				bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
-				bindKeys(Control.RESET, [R]);
-			case Duo(true):
-				bindKeys(Control.UP, [W]);
-				bindKeys(Control.DOWN, [S]);
-				bindKeys(Control.LEFT, [A]);
-				bindKeys(Control.RIGHT, [D]);
-				bindKeys(Control.ACCEPT, [G, Z]);
-				bindKeys(Control.BACK, [H, X]);
-				bindKeys(Control.PAUSE, [ONE]);
-				bindKeys(Control.RESET, [R]);
-			case Duo(false):
-				bindKeys(Control.UP, [FlxKey.UP]);
-				bindKeys(Control.DOWN, [FlxKey.DOWN]);
-				bindKeys(Control.LEFT, [FlxKey.LEFT]);
-				bindKeys(Control.RIGHT, [FlxKey.RIGHT]);
-				bindKeys(Control.ACCEPT, [O]);
-				bindKeys(Control.BACK, [P]);
-				bindKeys(Control.PAUSE, [ENTER]);
-				bindKeys(Control.RESET, [BACKSPACE]);
-			case None: // nothing
-			case Custom: // nothing
-		}
-		#end
 	}
 	public function stringControlToControl(control:String):Control
 	{

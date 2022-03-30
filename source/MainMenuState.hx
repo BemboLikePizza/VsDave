@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxSave;
 import flixel.math.FlxRandom;
 import flixel.math.FlxPoint;
 import Controls.KeyboardScheme;
@@ -123,6 +124,9 @@ class MainMenuState extends MusicBeatState
 		#if desktop
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+		
+		LanguageManager.initSave();
+		KeybindPrefs.loadControls();
 
 		// daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
 
@@ -189,20 +193,6 @@ class MainMenuState extends MusicBeatState
 		add(versionShit);
 
 		// NG.core.calls.event.logEvent('swag').send();
-
-		controls.setKeyboardScheme(KeyboardScheme.Solo, true);
-
-
-		if (FlxG.save.data.keybinds != null)
-		{
-			ChangeKeybinds.loadControls(controls);
-		}
-		else
-		{
-			
-			ChangeKeybinds.saveControls(controls);
-		}
-		changeItem();
 
 		super.create();
 	}
