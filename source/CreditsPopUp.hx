@@ -19,8 +19,6 @@ class CreditsPopUp extends FlxSpriteGroup
         bg = new FlxSprite().makeGraphic(400, 50, FlxColor.GREEN);
         bg.alpha = 0.6;
         add(bg);
-        var funnyText:FlxText = new FlxText(1, 0, 650, 'Placeholder', 16);
-        funnyText.setFormat('VCR OSD Mono', 45, FlxColor.BLACK, LEFT);
         var songCreator:String = '';
         switch (PlayState.SONG.song.toLowerCase())
         {
@@ -42,7 +40,10 @@ class CreditsPopUp extends FlxSpriteGroup
            case 'vs-dave-rap':
               songCreator = 'Your mom';
         }
+        var funnyText:FlxText = new FlxText(1, 0, 650, 'Placeholder', 16);
+        funnyText.setFormat('VCR OSD Mono', 45, FlxColor.BLACK, LEFT);
         funnyText.text = "Song by " + songCreator;
+        funnyText.updateHitbox();
         bg.setGraphicSize(Std.int(funnyText.width + 20), Std.int(funnyText.height + 20));
         bg.updateHitbox();
         add(funnyText);

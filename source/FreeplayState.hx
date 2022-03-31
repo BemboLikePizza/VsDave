@@ -51,13 +51,14 @@ class FreeplayState extends MusicBeatState
 	var loadingPack:Bool = false;
 
 	var songColors:Array<FlxColor> = [
-    	0xFFca1f6f, // GF
-		0xFF4965FF, // DAVE
-		0xFF00B515, // MISTER BAMBI RETARD
-		0xFF00FFFF, // SPLIT THE THONNNNN
-		0xFF800080, // FESTIVAL
-		0xFFFF0000,  // UNFAIRNESS
-		0xFFFF0000  // EXPLOITATION
+    	0xFFca1f6f,    // GF
+		0xFF4965FF,    // DAVE
+		0xFF00B515,    // MISTER BAMBI RETARD
+		0xFF00FFFF,    // SPLIT THE THONNNNN
+		0xFF800080,    // FESTIVAL
+		0xFFFF0000,    // UNFAIRNESS
+		0xFFFF0000,    // EXPLOITATION
+		0xFFFFC0CB  // ELECTRIC COCKADOODLEDOO
     ];
 
 	private var camFollow:FlxObject;
@@ -148,7 +149,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Exploitation'], 6, ['expunged']);
 
 				if (FlxG.save.data.bananacoreUnlocked)
-					addWeek(['eletric-cockadoodledoo'], 2, ['cockey']);
+					addWeek(['Eletric-Cockadoodledoo'], 7, ['cockey']);
 			case 'extra':
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Escape-From-California'], 5, ['none']);
@@ -413,6 +414,8 @@ class FreeplayState extends MusicBeatState
 				diffText.text = 'FINALE' + " - " + curChar.toUpperCase();
 			case 6:
 				diffText.text = "YOU'RE SCREWED" + " - " + curChar.toUpperCase();
+			case 7:
+				diffText.text = 'LMAO' + " - " + curChar.toUpperCase();
 			default:
 				switch (curDifficulty)
 				{

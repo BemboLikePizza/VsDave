@@ -133,15 +133,18 @@ class OptionsMenu extends MusicBeatState
 						FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
 						updateGroupControls((FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), 4, 'Vertical');	
 					case 5:
+						FlxG.save.data.selfAwareness = !FlxG.save.data.selfAwareness;
+						updateGroupControls((FlxG.save.data.selfAwareness ? 'Self Awareness Enabled' : 'Self Awareness Disabled'), 4, 'Vertical');
+					case 6:
 						FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
 						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 5, 'Vertical');	
-					case 6:
+					case 7:
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
 						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 6, 'Vertical');
-					case 7:
+					case 8:
 						FlxG.save.data.enableStupidCamera = !FlxG.save.data.enableStupidCamera;
 						updateGroupControls((FlxG.save.data.enableStupidCamera ? "Camera Movement On Note" : "Normal Camera"), 7, 'Vertical');
-					case 8:
+					case 9:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						LanguageManager.save.data.language = languages[currentLanguage].pathName;
 						updateGroupControls("Current Language " + languages[currentLanguage].langaugeName, 8, 'Vertical');

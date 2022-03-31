@@ -843,7 +843,7 @@ class PlayState extends MusicBeatState
 			case 'cheating':
 				credits = 'Notes are scrambled! FUCK you!';
 			case 'exploitation':
-				credits = "You won't survive " + CoolSystemStuff.getUsername() + "! SUPER FUCK you!";
+				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : '') + "! SUPER FUCK you!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			case 'eletric-cockadoodledoo':
@@ -3810,7 +3810,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(FlxG.camera, {angle: 10}, 0.1);
 					case 376 | 1656:
 						FlxTween.tween(FlxG.camera, {angle: -10}, 0.1);
-					case 384:
+					case 384 | 1664:
 						FlxTween.tween(FlxG.camera, {angle: 0}, 0.2);
 				}
 
@@ -4148,7 +4148,7 @@ class PlayState extends MusicBeatState
 	function gameOver()
 	{
 		var chance = FlxG.random.int(0, 99);
-		if (chance <= 4 && eyesoreson)
+		if (chance <= 2 && eyesoreson)
 		{
 			openSubState(new TheFunnySubState(formoverride == "bf" || formoverride == "none" ? SONG.player1 : formoverride));
 			#if desktop

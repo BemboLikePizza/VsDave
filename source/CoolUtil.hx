@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxRandom;
 import flixel.math.FlxMath;
 import lime.utils.Assets;
 
@@ -8,6 +9,7 @@ using StringTools;
 class CoolUtil
 {
 	public static var difficultyArray:Array<String> = ['EASY', "NORMAL", "HARD"];
+	public static var exploitationDifficulties:Array<String> = ["YOU'RE FUCKED", 'HAHAHAHHAHA', "YOU CAN'T ESCAPE FROM THE FUN ALREADY"];
 
 	public static function difficultyString():String
 	{
@@ -15,8 +17,11 @@ class CoolUtil
 		{
 			case 3:
 				return 'FINALE';
+			case 6:
+				return exploitationDifficulties[new FlxRandom().int(0, exploitationDifficulties.length - 1)];
 			default:
 				return difficultyArray[PlayState.storyDifficulty];
+
 		}
 	}
 

@@ -37,5 +37,10 @@ class SaveDataHandler
 		
 		if (FlxG.save.data.noteCamera == null)
 			FlxG.save.data.noteCamera = true;
+		
+		if (FlxG.save.data.offset == null)
+			FlxG.save.data.offset = 0;
+		if (FlxG.save.data.selfAwareness == null)
+			FlxG.save.data.selfAwareness = false;
     }
 }

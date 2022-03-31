@@ -74,6 +74,12 @@ class Note extends FlxSprite
 
 		this.noteData = noteData;
 
+        if (!Type.getClassName(Type.getClass(FlxG.state)).contains("ChartingState"))
+        {
+            this.strumTime += FlxG.save.data.offset;
+        }
+        
+
         var notePathLol:String = '';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 

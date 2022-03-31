@@ -77,7 +77,14 @@ class PauseSubState extends MusicBeatSubstate
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
-		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
+		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5,
+		onComplete: function(tween:FlxTween)
+		{
+			if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+			{
+				doALittleTrolling(levelDifficulty);
+			}
+		}});
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
@@ -173,6 +180,31 @@ class PauseSubState extends MusicBeatSubstate
 
 		super.destroy();
 	}
+	function doALittleTrolling(levelDifficulty:FlxText)
+	{
+		var difficultyHeight = levelDifficulty.height;
+		var amountOfDifficulties = Math.ceil(FlxG.height / difficultyHeight);
+
+		for (i in 0...amountOfDifficulties)
+		{
+			var difficulty:FlxText = new FlxText(20, (15 + 32) * (i + 2), 0, "", 32);
+			difficulty.text += levelDifficulty.text;
+			difficulty.scrollFactor.set();
+			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
+			difficulty.updateHitbox();
+			add(difficulty);
+		}
+	}
+}
+
+	
+			difficulty.alpha = 0;
+	
+			difficulty.x = FlxG.width - (difficulty.width + 20);
+
+			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.1 * i});
+		}
+	}
 
 	function changeSelection(change:Int = 0):Void
 	{
@@ -198,6 +230,3 @@ class PauseSubState extends MusicBeatSubstate
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
 			}
-		}
-	}
-}
