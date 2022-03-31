@@ -58,7 +58,8 @@ class FreeplayState extends MusicBeatState
 		0xFF800080,    // FESTIVAL
 		0xFFFF0000,    // UNFAIRNESS
 		0xFFFF0000,    // EXPLOITATION
-		0xFFFFC0CB  // ELECTRIC COCKADOODLEDOO
+		0xFFFFC0CB,    // ELECTRIC COCKADOODLEDOO
+		0xFFFF0000     // TRISTAN
     ];
 
 	private var camFollow:FlxObject;
@@ -151,14 +152,15 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.bananacoreUnlocked)
 					addWeek(['Eletric-Cockadoodledoo'], 7, ['cockey']);
 			case 'extra':
-				addWeek(['Mealie'], 2, ['bambi-loser']);
-				addWeek(['Escape-From-California'], 5, ['none']);
 				addWeek(['Bonus-Song'], 1, ['dave']);
-				addWeek(['Memory'], 1, ['dave']);
-				addWeek(['Overdrive'], 1, ['dave']);
-				addWeek(['Five-Nights'], 2, ['dave']);
-				addWeek(['Roots'], 2, ['dave']);
+				addWeek(['Adventure'], 8, ['tristan']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
+				addWeek(['Escape-From-California'], 5, ['none']);
+				addWeek(['Five-Nights'], 2, ['dave']);
+				addWeek(['Overdrive'], 1, ['dave']);
+				addWeek(['Roots'], 2, ['dave']);
+				addWeek(['Mealie'], 2, ['bambi-loser']);
+				addWeek(['Memory'], 1, ['dave']);
 				addWeek(['Vs-Dave-Rap'], 2, ['dave-cool']);
 		}
 	}

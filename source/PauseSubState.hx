@@ -193,11 +193,7 @@ class PauseSubState extends MusicBeatSubstate
 			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
 			difficulty.updateHitbox();
 			add(difficulty);
-		}
-	}
-}
-
-	
+			
 			difficulty.alpha = 0;
 	
 			difficulty.x = FlxG.width - (difficulty.width + 20);
@@ -205,7 +201,6 @@ class PauseSubState extends MusicBeatSubstate
 			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.1 * i});
 		}
 	}
-
 	function changeSelection(change:Int = 0):Void
 	{
 		curSelected += change;
@@ -230,3 +225,6 @@ class PauseSubState extends MusicBeatSubstate
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
 			}
+		}
+	}
+}
