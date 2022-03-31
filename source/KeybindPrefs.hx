@@ -29,7 +29,7 @@ class KeybindPrefs
 	{
 		var controlsSave:FlxSave = new FlxSave();
 		controlsSave.bind('controls', 'ninjamuffin99');
-		if (controlsSave != null && controlsSave.data.keybinds)
+		if (controlsSave != null && controlsSave.data.keybinds != null)
 		{
 			var funnyKeybinds:Map<String, Array<FlxKey>> = controlsSave.data.keybinds;
 			setKeybinds(funnyKeybinds);

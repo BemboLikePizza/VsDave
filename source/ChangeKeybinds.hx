@@ -260,7 +260,7 @@ class ChangeKeybinds extends MusicBeatState
 		keybindPresetGroup.add(choosePreset);
 		add(choosePreset);
 
-		preset = new FlxText(0, choosePreset.y + 75, FlxG.width / 2, "DFJK", 32);
+		preset = new FlxText(0, choosePreset.y + 75, FlxG.width / 2, keybindPresets[curSelectedPreset], 32);
 		preset.screenCenter(X);
 		preset.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		preset.borderSize = 2;
@@ -282,6 +282,8 @@ class ChangeKeybinds extends MusicBeatState
 		
 		var presetGroup:TextGroup = new TextGroup('presetGroup', keybindPresetGroup);
 		controlKeybindGroup.push(presetGroup);
+
+		changePresetSelection();
 	}
 	function updateUI()
 	{
@@ -358,7 +360,7 @@ class ChangeKeybinds extends MusicBeatState
 			}
 		}
 	}
-	function changePresetSelection(amount:Int)
+	function changePresetSelection(amount:Int = 0)
 	{
 		curSelectedPreset += amount;
 

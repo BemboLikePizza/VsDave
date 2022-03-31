@@ -110,6 +110,10 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('bambi-3d', '[EXPUNGED] (Bambi)', [0, 3, 0, 0], '3D'),
 			new CharacterForm('bambi-unfair', '[EXPUNGED] (Unfair)', [0, 3, 0, 0], '3D'),
 			new CharacterForm('expunged', '[EXPUNGED]', [0, 3, 0, 0], '3D')
+		]),
+		new CharacterInSelect('the-shart-fellars', [0, 3, 0, 0], [
+			new CharacterForm('cockey', 'Cockey', [1, 1, 1, 1]),
+			new CharacterForm('pissey', 'Pissey', [1, 1, 1, 1]),
 		])
 	];
 	public function new() 
