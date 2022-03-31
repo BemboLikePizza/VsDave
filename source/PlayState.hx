@@ -843,7 +843,7 @@ class PlayState extends MusicBeatState
 			case 'cheating':
 				credits = 'Notes are scrambled! FUCK you!';
 			case 'exploitation':
-				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : '') + "! SUPER FUCK you!";
+				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "! SUPER FUCK you!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			case 'eletric-cockadoodledoo':
