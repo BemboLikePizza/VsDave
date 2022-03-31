@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxRandom;
 import Controls.Control;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -18,11 +19,17 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
+	#if debug
 	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Exit to menu'];
-
+	#else
+	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	#end
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
+	var expungedSelectWaitTime:Float = 0;
+	var timeElapsed:Float = 0;
+	var patienceTime:Float = 0;
 
 	public function new(x:Float, y:Float)
 	{
@@ -33,7 +40,9 @@ class PauseSubState extends MusicBeatSubstate
 			default:
 				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);	
 			case "exploitation":
-				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast_EXPUNGED'), true, true);	
+				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast-ohno'), true, true);
+				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
+				patienceTime = new FlxRandom().float(15, 30);
 		}
 		
 		pauseMusic.volume = 0;
@@ -88,6 +97,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
+		timeElapsed += elapsed;
 		if (pauseMusic.volume < 0.75)
 			pauseMusic.volume += 0.01 * elapsed;
 
@@ -105,42 +115,55 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			changeSelection(1);
 		}
-
-		if (accepted)
+		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
-			var daSelected:String = menuItems[curSelected];
-
-			switch (daSelected)
+			if (expungedSelectWaitTime >= 0)
 			{
-				case "Resume":
-					close();
-				case "Restart Song":
-					FlxG.resetState();
-				case "Developer No Miss":
-					trace("MY PENIS BURNS :BANGBANG:");
-					PlayState.devBotplay = !PlayState.devBotplay;
-				case "Exit to menu":
-					PlayState.screenshader.shader.uampmul.value[0] = 0;
-					PlayState.screenshader.Enabled = false;
-					PlayState.characteroverride = 'none';
-					PlayState.formoverride = 'none';
-					//FlxG.fullscreen = false;
-
-					Application.current.window.title = "Friday Night Funkin' | VS. Dave and Bambi 3.0";
-
-					if (PlayState.SONG.song.toLowerCase() == "exploitation")
-					{
-						Main.toggleFuckedFPS(false);
-					}
-
-					FlxG.switchState(new MainMenuState());
+				expungedSelectWaitTime -= elapsed;
+			}
+			else
+			{
+				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
+				changeSelection(new FlxRandom().int((menuItems.length - 1) * -1, menuItems.length - 1));
+			}
+			if (timeElapsed > patienceTime)
+			{
+				selectOption();
 			}
 		}
 
-		if (FlxG.keys.justPressed.J)
+		if (accepted)
 		{
-			// for reference later!
-			// PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxKey.J, null);
+			selectOption();
+		}
+	}
+	function selectOption()
+	{
+		var daSelected:String = menuItems[curSelected];
+
+		switch (daSelected)
+		{
+			case "Resume":
+				close();
+			case "Restart Song":
+				FlxG.resetState();
+			case "Developer No Miss":
+				PlayState.devBotplay = !PlayState.devBotplay;
+			case "Exit to menu":
+				PlayState.screenshader.shader.uampmul.value[0] = 0;
+				PlayState.screenshader.Enabled = false;
+				PlayState.characteroverride = 'none';
+				PlayState.formoverride = 'none';
+				//FlxG.fullscreen = false;
+
+				Application.current.window.title = Main.applicationName;
+
+				if (PlayState.SONG.song.toLowerCase() == "exploitation")
+				{
+					Main.toggleFuckedFPS(false);
+				}
+
+				FlxG.switchState(new MainMenuState());
 		}
 	}
 

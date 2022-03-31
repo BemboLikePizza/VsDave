@@ -60,6 +60,7 @@ class CharacterSelectState extends MusicBeatState
 	public var curForm:Int = 0;
 	public var notemodtext:FlxText;
 	public var characterText:FlxText;
+	public var wasInFullscreen:Bool;
 	
 	public var funnyIconMan:HealthIcon;
 
@@ -119,6 +120,15 @@ class CharacterSelectState extends MusicBeatState
 	override public function create():Void 
 	{
 		super.create();
+
+		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+		{
+			if (FlxG.fullscreen)
+			{
+				FlxG.fullscreen = false;
+				wasInFullscreen = true;
+			}
+		}
 
 		Conductor.changeBPM(110);
 
@@ -324,6 +334,10 @@ class CharacterSelectState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
+			if (wasInFullscreen)
+			{
+				FlxG.fullscreen = true;
+			}
 			LoadingState.loadAndSwitchState(new FreeplayState());
 		}
 		
@@ -524,6 +538,7 @@ class CharacterSelectState extends MusicBeatState
 
 		if (PlayState.SONG.song.toLowerCase() == "exploitation")
 		{
+			FlxG.fullscreen = false;
 			FlxG.sound.play(Paths.sound('error'), 0.9);
 			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details", "Vs Dave");
 		}

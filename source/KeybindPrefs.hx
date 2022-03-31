@@ -40,9 +40,9 @@ class KeybindPrefs
 			saveControls();
 		}
 	}
-	public static function setKeybinds(keybinds:Map<String, Array<FlxKey>>)
+	public static function setKeybinds(customControls:Map<String, Array<FlxKey>>)
 	{
-		for (controlName => key in keybinds)
+		for (controlName => key in customControls)
 		{
 			keybinds.set(controlName, key);
 		}

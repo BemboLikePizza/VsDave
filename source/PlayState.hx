@@ -437,27 +437,6 @@ class PlayState extends MusicBeatState
 		{
 			stageCheck = SONG.stage;
 		}
-		var songCreator:String = '';
-		switch (SONG.song.toLowerCase())
-		{
-			case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' 
-			| 'interdimensional' |'cheating' | 'escape-from-california' | 'five-nights' | 'furiosity' | 'kabunga' | 'roots' | 'secret' | 'secret-mod-leak' | 'unfairness':
-				songCreator = 'MoldyGH';
-			case 'exploitation':
-				songCreator = 'Oxygen';
-			case 'memory' | 'mealie':
-				songCreator = 'Alexander Cooper 19';
-			case 'confronting-yourself' | 'bananacore':
-				songCreator = 'Cuzsie';
-			case 'glitch':
-				songCreator = 'DeadShadow & PixelGH';
-			case 'overdrive':
-				songCreator = 'Top 10 Awesome';
-			case 'supernovae':
-				songCreator = 'ArchWk';
-			case 'vs-dave-rap':
-				songCreator = 'Your mom';
-		}
 		backgroundSprites = createBackgroundSprites(stageCheck);
 		switch (SONG.song.toLowerCase())
 		{
@@ -1193,7 +1172,8 @@ class PlayState extends MusicBeatState
 						curStage = 'unfairness';
 					case 'interdimension-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
-						bg.setPosition(-700, -300);
+						bg.setPosition(-700, -200);
+						bg.setGraphicSize(Std.int(bg.width * 2));
 						curStage = 'interdimension';
 					case 'banana-hell': // this is a Cockey moment
 						bg.loadGraphic(Paths.image('backgrounds/void/bananaVoid1'));
@@ -2597,7 +2577,11 @@ class PlayState extends MusicBeatState
 					CharacterSelectState.unlockCharacter('expunged');
 			}
 		}
-	
+		if (SONG.song.toLowerCase() == 'exploitation')
+		{
+			Application.current.window.title = Main.applicationName;
+			Main.toggleFuckedFPS(false);
+		}
 	
 
 		if (isStoryMode)
