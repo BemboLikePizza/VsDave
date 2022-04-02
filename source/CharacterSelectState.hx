@@ -233,6 +233,7 @@ class CharacterSelectState extends MusicBeatState
 		characterText.borderSize = 7;
 		characterText.screenCenter(X);
 		characterText.cameras = [camHUD];
+		characterText.antialiasing = true;
 		add(characterText);
 		
 		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, "Press R To Reset");
@@ -242,11 +243,13 @@ class CharacterSelectState extends MusicBeatState
 		resetText.fieldWidth = FlxG.height;
 		resetText.borderSize = 5;
 		resetText.cameras = [camHUD];
+		resetText.antialiasing = true;
 		add(resetText);
 
 		funnyIconMan = new HealthIcon('bf', true);
 		funnyIconMan.cameras = [camHUD];
 		funnyIconMan.visible = false;
+		funnyIconMan.antialiasing = true;
 		updateIconPosition();
 		add(funnyIconMan);
 

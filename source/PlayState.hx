@@ -798,6 +798,7 @@ class PlayState extends MusicBeatState
 			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5;
+			songName.antialiasing = true;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
 			var yValues = CoolUtil.getMinAndMax(songName.height, songPosBG.height);
@@ -887,6 +888,7 @@ class PlayState extends MusicBeatState
 		kadeEngineWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		kadeEngineWatermark.borderSize = 1.25;
+		kadeEngineWatermark.antialiasing = true;
 		add(kadeEngineWatermark);
 		if (creditsText)
 		{
@@ -894,6 +896,7 @@ class PlayState extends MusicBeatState
 			creditsWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			creditsWatermark.scrollFactor.set();
 			creditsWatermark.borderSize = 1.25;
+			creditsWatermark.antialiasing = true;
 			add(creditsWatermark);
 			creditsWatermark.cameras = [camHUD];
 		}
@@ -920,6 +923,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("opensans.ttf") : Paths.font("comic.ttf"), 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
+		scoreTxt.antialiasing = true;
 
 		if (SONG.song.toLowerCase() == "overdrive")
 		{
