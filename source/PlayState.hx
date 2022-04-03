@@ -2575,9 +2575,10 @@ class PlayState extends MusicBeatState
 					CharacterSelectState.unlockCharacter('bambi-unfair');
 				case "exploitation":
 					CharacterSelectState.unlockCharacter('expunged');
-				case "electric-cockadoodledoo":
+				case "eletric-cockadoodledoo":
 					CharacterSelectState.unlockCharacter('cockey');
 					CharacterSelectState.unlockCharacter('pissey');
+					CharacterSelectState.unlockCharacter('pooper');
 			}
 		}
 		if (SONG.song.toLowerCase() == 'exploitation')

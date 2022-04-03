@@ -1,5 +1,7 @@
 package;
 
+import flixel.ui.FlxButton;
+import openfl.net.FileReference;
 import openfl.display.TriangleCulling;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -9,7 +11,10 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-
+import openfl.events.Event;
+import openfl.events.IOErrorEvent;
+import openfl.events.IOErrorEvent;
+import openfl.events.IOErrorEvent;
 /**
 	*DEBUG MODE
  */
@@ -26,6 +31,7 @@ class AnimationDebug extends MusicBeatState
 	var isDad:Bool = true;
 	var daAnim:String = 'spooky';
 	var camFollow:FlxObject;
+	var _file:FileReference;
 
 	public function new(daAnim:String = 'spooky')
 	{
@@ -90,6 +96,11 @@ class AnimationDebug extends MusicBeatState
 		FlxG.camera.follow(camFollow);
 
 		super.create();
+
+		var saveButton:FlxButton = new FlxButton(FlxG.height - 100, FlxG.width - 100, "Shift", function()
+		{
+			saveOffset();
+		});
 
 		animationGhost.alpha = 0.3; 
 	}
@@ -218,5 +229,58 @@ class AnimationDebug extends MusicBeatState
 		}
 
 		super.update(elapsed);
+	}
+	
+	private function saveOffset()
+	{
+		var i = 0;
+		var offsetString = '';
+		for (anim => offsets in char.animOffsets)
+		{
+			var animationOffsets = offsets;
+			
+			for (offsetNumber in animationOffsets)
+			{
+				offsetString += anim + " " + offsetNumber + (i != 0 ? "\n" : '');
+			}
+			i++;
+		}
+		_file = new FileReference();
+		_file.addEventListener(Event.COMPLETE, onSaveComplete);
+		_file.addEventListener(Event.CANCEL, onSaveCancel);
+		_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
+		_file.save(offsetString, char.curCharacter + ".txt");
+	}
+
+	function onSaveComplete(_):Void
+	{
+		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
+		_file.removeEventListener(Event.CANCEL, onSaveCancel);
+		_file.removeEventListener(IOErrorEvent.IO_ERROR, onSaveError);
+		_file = null;
+		FlxG.log.notice("Successfully saved LEVEL DATA.");
+	}
+
+	/**
+	 * Called when the save file dialog is cancelled.
+	 */
+	function onSaveCancel(_):Void
+	{
+		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
+		_file.removeEventListener(Event.CANCEL, onSaveCancel);
+		_file.removeEventListener(IOErrorEvent.IO_ERROR, onSaveError);
+		_file = null;
+	}
+
+	/**
+	 * Called if there is an error while saving the gameplay recording.
+	 */
+	function onSaveError(_):Void
+	{
+		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
+		_file.removeEventListener(Event.CANCEL, onSaveCancel);
+		_file.removeEventListener(IOErrorEvent.IO_ERROR, onSaveError);
+		_file = null;
+		FlxG.log.error("Problem saving Level data");
 	}
 }

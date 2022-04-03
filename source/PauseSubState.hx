@@ -198,7 +198,7 @@ class PauseSubState extends MusicBeatSubstate
 	
 			difficulty.x = FlxG.width - (difficulty.width + 20);
 
-			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.1 * i});
+			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
 		}
 	}
 	function changeSelection(change:Int = 0):Void
