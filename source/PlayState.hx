@@ -798,6 +798,7 @@ class PlayState extends MusicBeatState
 			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5;
+			songName.antialiasing = true;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
 			var yValues = CoolUtil.getMinAndMax(songName.height, songPosBG.height);
@@ -887,6 +888,7 @@ class PlayState extends MusicBeatState
 		kadeEngineWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		kadeEngineWatermark.borderSize = 1.25;
+		kadeEngineWatermark.antialiasing = true;
 		add(kadeEngineWatermark);
 		if (creditsText)
 		{
@@ -894,6 +896,7 @@ class PlayState extends MusicBeatState
 			creditsWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			creditsWatermark.scrollFactor.set();
 			creditsWatermark.borderSize = 1.25;
+			creditsWatermark.antialiasing = true;
 			add(creditsWatermark);
 			creditsWatermark.cameras = [camHUD];
 		}
@@ -905,6 +908,7 @@ class PlayState extends MusicBeatState
 			case 'eletric-cockadoodledoo':
 				preload('eletric-cockadoodledoo/characters/Bartholemew');
 				preload('eletric-cockadoodledoo/characters/Cockey');
+				preload('eletric-cockadoodledoo/characters/Pooper');
 				preload('eletric-cockadoodledoo/characters/Kapi');
 				preload('eletric-cockadoodledoo/characters/PizzaMan');
 				preload('eletric-cockadoodledoo/indihome');
@@ -920,6 +924,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("opensans.ttf") : Paths.font("comic.ttf"), 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
+		scoreTxt.antialiasing = true;
 
 		if (SONG.song.toLowerCase() == "overdrive")
 		{
@@ -1056,7 +1061,7 @@ class PlayState extends MusicBeatState
 				stageFront.color = variantColor;
 
 			case 'farm' | 'farm-night' | 'farm-sunset':
-				defaultCamZoom = 0.9;
+				defaultCamZoom = 0.8;
 
 				switch (bgName.toLowerCase())
 				{
@@ -1070,37 +1075,46 @@ class PlayState extends MusicBeatState
 	
 				var skyType:String = curStage == 'bambiFarmNight' ? 'sky_night' : curStage == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 				
-				var bg:BGSprite = new BGSprite('bg', -400, 0, Paths.image('backgrounds/shared/' + skyType), null, 0.9, 0.9);
+				var bg:BGSprite = new BGSprite('bg', -400, 0, Paths.image('backgrounds/shared/' + skyType), null, 1.4, 1.4);
+				bg.setGraphicSize(Std.int(bg.width * 1.4));
 				sprites.add(bg);
 
 				if (SONG.song.toLowerCase() == 'maze')
 				{
-					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -700, 0, Paths.image('backgrounds/shared/sky_sunset'), null, 0.9, 0.9);
+					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -700, 0, Paths.image('backgrounds/shared/sky_sunset'), null, 1.4, 1.4);
+					sunsetBG.setGraphicSize(Std.int(sunsetBG.width * 1.4));
 					sunsetBG.alpha = 0;
 					add(sunsetBG);
 					sprites.add(sunsetBG);
 
-					var nightBG:BGSprite = new BGSprite('nightBG', -700, 0, Paths.image('backgrounds/shared/sky_night'), null, 0.9, 0.9);
+					var nightBG:BGSprite = new BGSprite('nightBG', -700, 0, Paths.image('backgrounds/shared/sky_night'), null, 1.4, 1.4);
+					nightBG.setGraphicSize(Std.int(nightBG.width * 1.4));
 					nightBG.alpha = 0;
 					add(nightBG);
 					sprites.add(nightBG);
 				}
-				var flatGrass:BGSprite = new BGSprite('flatGrass', 500, 200, Paths.image('backgrounds/farm/gm_flatgrass'), null, 0.9, 0.9);
+				var flatGrass:BGSprite = new BGSprite('flatGrass', 500, 100, Paths.image('backgrounds/farm/gm_flatgrass'), null, 1.35, 1.35);
+				flatGrass.setGraphicSize(Std.int(flatGrass.width * 1.2));
 				sprites.add(flatGrass);
 				
-				var farmHouse:BGSprite = new BGSprite('farmHouse', -700, 50, Paths.image('backgrounds/farm/farmhouse'), null, 0.9, 1);
+				var farmHouse:BGSprite = new BGSprite('farmHouse', -650, -50, Paths.image('backgrounds/farm/farmhouse'), null, 1.25, 1.1);
+				farmHouse.setGraphicSize(Std.int(farmHouse.width * 1));
 				sprites.add(farmHouse);
 				
-				var path:BGSprite = new BGSprite('path', -700, 500, Paths.image('backgrounds/farm/path'), null);
+				var path:BGSprite = new BGSprite('path', -700, 500, Paths.image('backgrounds/farm/path'), null, 1, 1);
+				path.setGraphicSize(Std.int(path.width * 1.3));
 				sprites.add(path);
 				
-				var cornMaze:BGSprite = new BGSprite('cornMaze', -300, 200, Paths.image('backgrounds/farm/cornmaze'), null);
+				var cornMaze:BGSprite = new BGSprite('cornMaze', -550, 150, Paths.image('backgrounds/farm/cornmaze'), null, 1.05, 1);
+				cornMaze.setGraphicSize(Std.int(cornMaze.width * 1.4));
 				sprites.add(cornMaze);
 				
-				var cornMaze2:BGSprite = new BGSprite('cornMaze2', 1000, 150, Paths.image('backgrounds/farm/cornmaze2'), null);
+				var cornMaze2:BGSprite = new BGSprite('cornMaze2', 1350, 100, Paths.image('backgrounds/farm/cornmaze2'), null, 1.05, 1);
+				cornMaze2.setGraphicSize(Std.int(cornMaze2.width * 1.4));
 				sprites.add(cornMaze2);
 				
-				var cornBag:BGSprite = new BGSprite('cornBag', 1150, 500, Paths.image('backgrounds/farm/cornbag'), null);
+				var cornBag:BGSprite = new BGSprite('cornBag', 1500, 500, Paths.image('backgrounds/farm/cornbag'), null, 1.05, 1);
+				cornBag.setGraphicSize(Std.int(cornBag.width * 1.4));
 				sprites.add(cornBag);
 				
 				var variantColor:FlxColor = getBackgroundColor();
@@ -1278,6 +1292,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		var sign:BGSprite = new BGSprite('sign', -50, 600, Paths.image('backgrounds/farm/sign'), null);
+		sign.setGraphicSize(Std.int(sign.width * 1.4));
 		sign.color = getBackgroundColor();
 		backgroundSprites.add(sign);
 		return sign;
@@ -3690,7 +3705,13 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						dad.visible = false;
 						sexDad.visible = false;
-						
+                    case 2239:	
+						remove(dad);
+						dad = new Character(dad.x, dad.y, "pooper", false);
+						add(dad);
+						dad.alpha = 0;
+						curECCCharacter = "pooper";
+						FlxTween.tween(dad, {alpha: 1}, 0.5);
 					case 2624:
 						indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/indihome", 'shared'));
 						indihome.screenCenter();
@@ -3759,6 +3780,8 @@ class PlayState extends MusicBeatState
 						});
 
 						FlxTween.tween(camHUD, {alpha: 1}, 3);
+					case 3568:
+						FlxTween.tween(dad, {alpha: 0}, 6);	
 				}
 
 				// Vinebooms

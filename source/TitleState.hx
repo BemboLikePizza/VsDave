@@ -41,12 +41,7 @@ class TitleState extends MusicBeatState
 	var fun:Int;
 
 	override public function create():Void
-	{
-		Conductor.songPosition = 0;
-		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
-		#end
-		
+	{		
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)
 		{

@@ -524,6 +524,23 @@ class Character extends FlxSprite
 		
 				playAnim('idle');
 
+			case 'pooper':
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Pooper', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+			
+				loadOffsetFile(curCharacter);
+	
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+				antialiasing = false;
+			
+				playAnim('idle');	
+
 			case 'bartholemew':
 				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Bartholemew', "shared");
 				frames = tex;
