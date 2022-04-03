@@ -1,5 +1,6 @@
 package;
 
+import ChangeKeybinds.KeybindState;
 import flixel.FlxG;
 import flixel.input.FlxInput;
 import flixel.input.actions.FlxAction;
@@ -507,6 +508,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, [R, DELETE]);
+
 			case Duo(false):
 			case Duo(true):
 				inline bindKeys(Control.UP, [W, FlxKey.UP]);
@@ -547,7 +549,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.RESET, [R, DELETE]);
 		}
 	}
-	public function stringControlToControl(control:String):Control
+	public static function stringControlToControl(control:String):Control
 	{
 		switch (control)
 		{
