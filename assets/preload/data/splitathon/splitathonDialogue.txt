@@ -1,11 +1,10 @@
-:dave,splitathon:You know, I like chilling out.
-:dave,splitathon:But we haven't settled which is the better rapper.
-:dave,splitathon:So I think, we have a 10 minute showdown.
-:dave,splitathon:Whoever wins will be proven the master rapper.
+:generic:We continue with the group sitting outside and socializing.
+:dave,splitathon:Hey Boyfriend, we haven't settled who is the better rapper,
+:dave,splitathon:So here's a deal, we both have 10 minutes to sing,
+:dave,splitathon:Whoever outlasts the other will be proven the better rapper
 :bambi,splitathon:What about me?
-:dave,splitathon:Bambi
-:dave,splitathon:Please stay out of this, this is only between me and boyfriend.
+:dave,splitathon:Bambi, this doesn't involve you, just sit over there and eat corn.
 :bambi,splitathon:...
+:generic:Bambi looks angered but sits down and spectates.
 :dave,splitathon:Alright, let's settle this!
-:gf,cheer:I'm rooting for you boyfriend!
 :bf,ready:Beep bo bop
