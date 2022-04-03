@@ -3,6 +3,8 @@ package;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 
+using StringTools;
+
 class LanguageManager
 {
    public static var currentLocaleList:Array<String>;
@@ -12,6 +14,10 @@ class LanguageManager
    {
       save = new FlxSave();
       save.bind('language', 'ninjamuffin99');
+   }
+   public static function init()
+   {
+      LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + LanguageManager.save.data.language + '/textList.txt', TEXT, 'preload'));
    }
 
    public static function languageFromPathName(pathName:String):Language
@@ -29,20 +35,29 @@ class LanguageManager
    }
    public static function getTextString(stringName:String):String
    {
-      for (value in currentLocaleList)
+      var returnedString:String = '';
+      for (i in 0...currentLocaleList.length)
       {
-         var splitValue = value.split("==");
-
-         if (splitValue[0] != stringName)
+         var currentValue = currentLocaleList[i].trim().split('==');
+         if (currentValue[0] != stringName)
          {
-            return '';
+            continue;
          }
          else
          {
-            return splitValue[1];
+            returnedString = currentValue[1];
          }
       }
-      return '';
+      if (returnedString == '')
+      {
+         trace(stringName);
+         return stringName;
+      }
+      else
+      {
+         trace(returnedString);
+         return returnedString;
+      }
    }
    public static function getLanguages():Array<Language>
    {

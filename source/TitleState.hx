@@ -68,6 +68,7 @@ class TitleState extends MusicBeatState
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		SaveDataHandler.initSave();
+		LanguageManager.init();
 
 		Highscore.load();
 

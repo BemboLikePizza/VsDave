@@ -17,6 +17,7 @@ class KeybindPrefs
 		'pause'		=> [ENTER, ESCAPE],
 		'reset'		=> [R, DELETE]
 	];
+	public static var controlNames:Array<String> = ['left', 'down', 'up', 'right', 'accept', 'back', 'pause', 'reset'];
 
 	public static function saveControls()
 	{
@@ -51,5 +52,11 @@ class KeybindPrefs
 	public static function setKeybindPreset(scheme:KeyboardScheme)
 	{
 		PlayerSettings.player1.controls.setKeyboardScheme(scheme);
+
+		var controls:Controls = PlayerSettings.player1.controls;
+		for (control in controlNames)
+		{
+			keybinds.set(control, controls.getInputsFor(Controls.stringControlToControl(control), Controls.Device.Keys));
+		}
 	}
 }

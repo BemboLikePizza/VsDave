@@ -91,7 +91,7 @@ class SelectLanguageState extends MusicBeatState
 				LanguageManager.save.data.language = langaugeList[curLanguageSelected].pathName;
             LanguageManager.save.flush();
             LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + LanguageManager.save.data.language + '/textList.txt', TEXT, 'preload'));
-
+                        
             FlxFlicker.flicker(currentLanguageText, 1.1, 0.07, true, true, function(flick:FlxFlicker)
 				{
 					FlxG.switchState(new TitleState());
@@ -106,7 +106,6 @@ class SelectLanguageState extends MusicBeatState
 				changeSelection(1);
 			}
       }
-      FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 0.9);
    }
    function changeSelection(amount:Int = 0)
    {
