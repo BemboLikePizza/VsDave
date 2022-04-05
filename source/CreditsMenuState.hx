@@ -116,9 +116,10 @@ class CreditsMenuState extends MusicBeatState
 
       // Translators //
       
-      new Person("Somf", CreditsType.Translator, "Spanish Translator",
+      new Person("dani", CreditsType.Translator, "Spanish Translator",
       [
-         new Social('youtube', 'https://www.youtube.com/channel/UCspbOv2BXbDANpJyjguce2Q'),
+         new Social('youtube', 'https://youtube.com/channel/UCzCcYbUwbtSJcAQH0IZl-pA'),
+         new Social('twitter', 'https://twitter.com/danicheese99')
       ]),
       
       new Person("Aizakku", CreditsType.Translator, "Portguese-Brazillian Translator",
@@ -164,9 +165,19 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
       ]),
-      new Person("BombasticHype", CreditsType.Contributor, "Menu Character Design",
+      new Person("BombasticHype", CreditsType.Contributor, "Did cutscenes",
       [  
          new Social ('youtube', 'https://www.youtube.com/c/BombasticHype')
+      ]),
+      new Person("Ruby", CreditsType.Contributor, "Adventure Song",
+      [  
+         new Social ('youtube', 'https://youtube.com/c/RubysArt_'),
+         new Social ('twitter', 'https://twitter.com/RubysArt_')
+      ]),
+      new Person("Lancey", CreditsType.Contributor, "OST art for the OST videos",
+      [  
+         new Social('youtube', 'https://youtube.com/c/Lancey170'),
+         new Social('twitter', 'https://twitter.com/Lancey170')
       ]),
       
       new Person("Devianator", CreditsType.Contributor, "Beta Tester, and helping with Credits icons",
@@ -198,6 +209,7 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
          new Social('twitter', 'https://twitter.com/wildythomas1233')
+         
       ]),
 
       new Person("peejeada", CreditsType.BetaTester, "Beta Tester & Supporter",
@@ -232,7 +244,7 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCQkB-JEx7OGdOUxPzcgUkkQ')
       ]),
-      new Person("Silver Escape", CreditsType.BetaTester, "Beta Tester",
+      new Person("Silver Escaper", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCP9McVE9T5K3pzum48-m6Tg'),
          new Social('roblox', 'https://www.roblox.com/users/2546405173/profile'),
@@ -269,6 +281,12 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
          new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
+      ]),
+      new Person("Magical", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCvKxIVXxdfCWpOoeqCDQPGw'),
+         new Social('twitter', 'https://twitter.com/EvilMoldyGH'),
+         new Social('roblox', 'https://www.roblox.com/users/55575817/profile')
       ]),
 
       new Person("mantis", CreditsType.BetaTester, "Beta Tester",

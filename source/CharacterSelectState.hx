@@ -114,6 +114,7 @@ class CharacterSelectState extends MusicBeatState
 		new CharacterInSelect('the-shart-fellars', [0, 3, 0, 0], [
 			new CharacterForm('cockey', 'Cockey', [1, 1, 1, 1]),
 			new CharacterForm('pissey', 'Pissey', [1, 1, 1, 1]),
+			new CharacterForm('pooper', 'Pooper', [1, 1, 1, 1])
 		])
 	];
 	public function new() 

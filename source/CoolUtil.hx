@@ -9,7 +9,8 @@ using StringTools;
 class CoolUtil
 {
 	public static var difficultyArray:Array<String> = ['EASY', "NORMAL", "HARD"];
-	public static var exploitationDifficulties:Array<String> = ["YOU'RE FUCKED", 'HAHAHAHHAHA', "YOU CAN'T ESCAPE FROM THE FUN ALREADY"];
+	public static var exploitationDifficulties:Array<String> = ["YOU'RE FUCKED", 'HAHAHAHHAHA', "YOU CAN'T ESCAPE FROM THE FUN ALREADY", 
+	"EXPUNGED'S REIGN IS HERE, AND THERE'S NOTHING YOU CAN DO ABOUT IT", "YOU HAVE REACHED THE END OF THE RABBIT HOLE"];
 
 	public static function difficultyString():String
 	{

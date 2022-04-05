@@ -125,7 +125,6 @@ class MainMenuState extends MusicBeatState
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 		
-		LanguageManager.initSave();
 		KeybindPrefs.loadControls();
 
 		// daRealEngineVer = engineVers[FlxG.random.int(0, 2)];

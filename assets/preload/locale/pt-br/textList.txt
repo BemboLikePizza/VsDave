@@ -1,0 +1,3 @@
+// OUTDATED STATE \\
+introWarningFirstPlay==Olá! Esse mod utiliza shaders que podem ser prejudiciais para alguns. Se você quiser desativar eles, desligue a opção Efeitos no menu de opções. Supernovae e Glitch são músicas que não devem ser levadas a sério e não são produzidas por mim. Supernovae foi feito por ArchWk, e Glitch foi feito por The Boneyard. Pressione Enter para continuar.
+introWarningSeen==Olá! Esse mod utiliza shaders que podem ser prejudiciais para alguns. Se você quiser desativar eles, pressione N, se não quiser, pressione Y. Você pode mudar isso nas opções. Supernovae e Glitch são músicas que não devem ser levadas a sério e não são produzidas por mim. Supernovae foi feito por ArchWk, e Glitch foi feito por The Boneyard. 
