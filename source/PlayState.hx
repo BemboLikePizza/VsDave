@@ -1465,6 +1465,18 @@ class PlayState extends MusicBeatState
 						ZoomCam(true);
 					}
 				case 4:
+					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, FlxG.height / 2);
+					creditsPopup.scrollFactor.set();
+					creditsPopup.x = -FlxG.width + creditsPopup.width;
+					add(creditsPopup);
+					var xChange = 300;
+					FlxTween.tween(creditsPopup, {x: creditsPopup.x + xChange}, 0.5, {ease: FlxEase.cubeIn, onComplete: function(tweeen:FlxTween)
+					{
+						FlxTween.tween(creditsPopup, {x: creditsPopup.x - xChange} , 1, {ease: FlxEase.circOut, onComplete: function(tween:FlxTween)
+						{
+							creditsPopup.destroy();
+						}, startDelay: 3});
+					}});
 			}
 
 			swagCounter += 1;

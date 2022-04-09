@@ -140,6 +140,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional'], 4, ['bambi', 'tristan-festival', 'dave-angey']);
+				addWeek(['Rano'], 1, ['dave']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
 				if (FlxG.save.data.cheatingFound)
@@ -155,18 +156,15 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Eletric-Cockadoodledoo'], 7, ['cockey']);
 			case 'extra':
 				addWeek(['Bonus-Song'], 1, ['dave']);
-				addWeek(['Roots'], 2, ['dave']);
-				addWeek(['Memory'], 1, ['dave']);
+				addWeek(['Adventure'], 8, ['tristan']);
+				addWeek(['Furiosity'], 1, ['dave-angey']);
+				addWeek(['Escape-From-California'], 5, ['none']);
 				addWeek(['Five-Nights'], 2, ['dave']);
 				addWeek(['Overdrive'], 1, ['dave']);
-				addWeek(['Furiosity'], 1, ['dave-angey']);
-				addWeek(['Vs-Dave-Rap'], 2, ['dave-cool']);
-
-				addWeek(['Escape-From-California'], 5, ['none']);
-
-				addWeek(['Adventure'], 8, ['tristan']);
-				
+				addWeek(['Roots'], 2, ['dave']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
+				addWeek(['Memory'], 1, ['dave']);
+				addWeek(['Vs-Dave-Rap'], 2, ['dave-cool']);
 		}
 	}	
 
@@ -181,7 +179,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
-			//songText.itemType = 'D-Shape';
+			songText.itemType = 'D-Shape';
 			songText.targetY = i;
 			songText.scrollFactor.set();
 			songText.alpha = 0;

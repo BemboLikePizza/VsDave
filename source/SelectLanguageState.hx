@@ -23,7 +23,6 @@ class SelectLanguageState extends MusicBeatState
 
    public override function create()
    {
-      LanguageManager.initSave();
       PlayerSettings.init();
       
       FlxG.sound.playMusic(Paths.music('selectLanguageMenu'), 0.7);

@@ -118,7 +118,6 @@ class TerminalState extends FlxState
             }
             displayText.text = ">" + curCommand + "|";
         }
-
         
         else if (keyJustPressed == FlxKey.ENTER)
         {
@@ -131,7 +130,6 @@ class TerminalState extends FlxState
                 displayText.text += "\nThat process was not found. Please provide a valid process and try again.\n";
             }
         }
-        
 
         else if (FlxG.keys.pressed.BACKSPACE)
         {   
@@ -141,9 +139,5 @@ class TerminalState extends FlxState
                 FlxG.sound.play(Paths.sound("terminal_bkspc", "preload"));
             }
         }
-
-        
-
-
     }
 }

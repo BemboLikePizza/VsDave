@@ -13,17 +13,17 @@ class CreditsPopUp extends FlxSpriteGroup
 
     public var bg:FlxSprite;
 
-    public function new(x:Float, y:Float, songy:String)
+    public function new(x:Float, y:Float)
     {
         super(x, y);
         bg = new FlxSprite().makeGraphic(400, 50, FlxColor.GREEN);
-        bg.alpha = 0.6;
+        bg.alpha = 0.7;
         add(bg);
         var songCreator:String = '';
         switch (PlayState.SONG.song.toLowerCase())
         {
            case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' 
-           | 'interdimensional' |'cheating' | 'escape-from-california' | 'five-nights' | 'furiosity' | 'kabunga' | 'roots' | 'secret' | 'secret-mod-leak' | 'unfairness':
+           | 'interdimensional' |'cheating' | 'escape-from-california' | 'five-nights' | 'furiosity' | 'kabunga' | 'roots' | 'secret' | 'secret-mod-leak' | 'unfairness' | 'rano':
               songCreator = 'MoldyGH';
            case 'exploitation':
               songCreator = 'Oxygen';
@@ -39,10 +39,12 @@ class CreditsPopUp extends FlxSpriteGroup
               songCreator = 'ArchWk';
            case 'vs-dave-rap':
               songCreator = 'Your mom';
+           case 'adventure':
+              songCreator = 'Ruby';
         }
-        var funnyText:FlxText = new FlxText(1, 0, 650, 'Placeholder', 16);
-        funnyText.setFormat('VCR OSD Mono', 45, FlxColor.BLACK, LEFT);
-        funnyText.text = "Song by " + songCreator;
+        var funnyText:FlxText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
+        funnyText.setFormat('Comic Sans MS Bold', 35, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        funnyText.borderSize = 4;
         funnyText.updateHitbox();
         bg.setGraphicSize(Std.int(funnyText.width + 20), Std.int(funnyText.height + 20));
         bg.updateHitbox();
