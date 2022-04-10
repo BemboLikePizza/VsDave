@@ -41,6 +41,8 @@ class CreditsPopUp extends FlxSpriteGroup
               songCreator = 'Your mom';
            case 'adventure':
               songCreator = 'Ruby';
+           case 'bonkers':
+              songCreator = 'Cynda';
         }
         var funnyText:FlxText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
         funnyText.setFormat('Comic Sans MS Bold', 35, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);

@@ -255,14 +255,8 @@ class Alphabet extends FlxSpriteGroup
 					y = FlxMath.lerp(y, (scaledY * 90) + (FlxG.height * 0.45), 0.16 / (openfl.Lib.application.window.frameRate / 60));
 
 					x = FlxMath.lerp(x, Math.exp(Math.abs(scaledY * 0.8)) * -70 + (FlxG.width * 0.35), 0.16 / (openfl.Lib.application.window.frameRate / 60));
-
-					if (x < -900)
-						x = -900;
 			}
 		}
-
-		
-
 		super.update(elapsed);
 	}
 }

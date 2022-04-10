@@ -988,7 +988,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'exploitation')
 		{
-			modchart = ExploitationModchartType.Figure8;
+			modchart = ExploitationModchartType.None;
 		}
 		super.create();
 
@@ -1956,38 +1956,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (modchart)
 			{
-				case ExploitationModchartType.Figure8:
-					playerStrums.forEach(function(spr:FlxSprite)
-					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * 3) * (FlxG.height * 0.2));
-					});
-					dadStrums.forEach(function(spr:FlxSprite)
-					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * -3) * (FlxG.height * 0.2));
-					});
-					
-
-				case ExploitationModchartType.RotatingCircle:
-					playerStrums.forEach(function(spr:FlxSprite)
-					{
-						switch (spr.ID)
-						{
-							case 0:
-								spr.x = ((FlxG.width / 2) - (spr.width / 2)) - FlxG.width * 0.3;
-								spr.screenCenter(Y);
-							case 1:
-								spr.y = ((FlxG.height / 2) - (spr.height / 2)) + FlxG.height * 0.3;
-								spr.screenCenter(X);
-							case 2:
-								spr.y = ((FlxG.height / 2) - (spr.height / 2)) - FlxG.height * 0.3;
-								spr.screenCenter(X);
-							case 3:
-								spr.x = ((FlxG.width / 2) - (spr.width / 2)) + FlxG.width * 0.3;
-								spr.screenCenter(Y);
-						}
-					});
+				case ExploitationModchartType.None:
 					
 				case ExploitationModchartType.ScrambledNotes:
 					playerStrums.forEach(function(spr:FlxSprite)
@@ -4340,5 +4309,5 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	Figure8; RotatingCircle; ScrambledNotes;
+	None; ScrambledNotes;
 }
