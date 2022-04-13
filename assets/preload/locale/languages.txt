@@ -1,3 +1,4 @@
 English:en-US:RED
 Spanish:es-US:GREEN
 Portuguese-Brazillian:pt-br:YELLOW
+Russian:ru-RU:BLUE

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="glitch.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="glitch00.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch01.gif" x="965" y="0" width="960" height="540"/>
+	<SubTexture name="glitch02.gif" x="1930" y="0" width="960" height="540"/>
+	<SubTexture name="glitch03.gif" x="2895" y="0" width="960" height="540"/>
+	<SubTexture name="glitch04.gif" x="0" y="545" width="960" height="540"/>
+	<SubTexture name="glitch05.gif" x="965" y="545" width="960" height="540"/>
+	<SubTexture name="glitch06.gif" x="1930" y="545" width="960" height="540"/>
+	<SubTexture name="glitch07.gif" x="2895" y="545" width="960" height="540"/>
+	<SubTexture name="glitch08.gif" x="0" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch09.gif" x="965" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch10.gif" x="1930" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch11.gif" x="2895" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch12.gif" x="0" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch13.gif" x="965" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch14.gif" x="1930" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch15.gif" x="2895" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch16.gif" x="0" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch17.gif" x="965" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch18.gif" x="1930" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch19.gif" x="2895" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch20.gif" x="0" y="2725" width="960" height="540"/>
+	<SubTexture name="glitch21.gif" x="965" y="2725" width="960" height="540"/>
+	<SubTexture name="glitch22.gif" x="1930" y="2725" width="960" height="540"/>
+	<SubTexture name="glitch23.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch24.gif" x="2895" y="2725" width="960" height="540"/>
+	<SubTexture name="glitch25.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch26.gif" x="0" y="3270" width="960" height="540"/>
+	<SubTexture name="glitch27.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch28.gif" x="0" y="0" width="960" height="540"/>
+</TextureAtlas>

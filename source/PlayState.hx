@@ -1465,14 +1465,15 @@ class PlayState extends MusicBeatState
 						ZoomCam(true);
 					}
 				case 4:
-					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, FlxG.height / 2);
+					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
+					creditsPopup.camera = camHUD;
 					creditsPopup.scrollFactor.set();
-					creditsPopup.x = -FlxG.width + creditsPopup.width;
+					creditsPopup.x = creditsPopup.width * -1;
 					add(creditsPopup);
-					var xChange = 300;
-					FlxTween.tween(creditsPopup, {x: creditsPopup.x + xChange}, 0.5, {ease: FlxEase.cubeIn, onComplete: function(tweeen:FlxTween)
+
+					FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
 					{
-						FlxTween.tween(creditsPopup, {x: creditsPopup.x - xChange} , 1, {ease: FlxEase.circOut, onComplete: function(tween:FlxTween)
+						FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
 						{
 							creditsPopup.destroy();
 						}, startDelay: 3});

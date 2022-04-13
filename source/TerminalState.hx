@@ -1,3 +1,4 @@
+import flixel.math.FlxRandom;
 import haxe.ds.Map;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
@@ -59,6 +60,7 @@ class TerminalState extends FlxState
     var badKeys:Array<FlxKey> = [FlxKey.ESCAPE, FlxKey.ALT, FlxKey.CONTROL, FlxKey.SHIFT, FlxKey.ENTER, FlxKey.PLUS, FlxKey.MINUS];
 
     var bkspcDelay:Float = 0;
+    var expungedActivated:Bool;
 
     override public function create():Void 
     {
@@ -73,6 +75,10 @@ class TerminalState extends FlxState
         if(bkspcDelay > 0)
             bkspcDelay - 0.01;
 
+        if (FlxG.keys.justPressed.ESCAPE && !expungedActivated)
+        {
+            FlxG.switchState(new MainMenuState());
+        }
 
         var keyJustPressed:FlxKey = cast(FlxG.keys.firstJustPressed(), FlxKey);
         var keyToShow:String;
@@ -124,6 +130,12 @@ class TerminalState extends FlxState
             if (curCommand == "administrator grant expunged.exe")
             {
                 displayText.text += "\nLoading...";
+                expungedActivated = true;
+                CoolUtil.cacheImage(Paths.image('glitch'));
+				new FlxTimer().start(3, function(timer:FlxTimer)
+				{   
+                    expungedReignStarts();
+				});
             }
             else if (StringTools.startsWith(curCommand, "administrator grant"))
             {
@@ -139,5 +151,28 @@ class TerminalState extends FlxState
                 FlxG.sound.play(Paths.sound("terminal_bkspc", "preload"));
             }
         }
+    }
+    function expungedReignStarts()
+    {
+        var amountofText:Int = Std.int(FlxG.height / displayText.height) + 20;
+
+        for (i in 0...amountofText)
+        {
+            new FlxTimer().start(0.8, function(timer:FlxTimer)
+            {
+                var expungedLines:Array<String> = ['TAKING OVER...................', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START"];
+                var fakeDisplay:FlxText = new FlxText(0, i * (displayText.height), FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
+                add(fakeDisplay);
+                FlxG.camera.follow(fakeDisplay, 1);
+            });
+        }
+        var glitch:FlxSprite = new FlxSprite();
+        glitch.frames = Paths.getSparrowAtlas('glitch', 'shared');
+        glitch.animation.addByPrefix('glitchScreen', 'glitch', 15);
+        glitch.setGraphicSize(Std.int(glitch.width * 1.5));
+        glitch.updateHitbox();
+		glitch.screenCenter();
+        glitch.animation.play('glitchScreen');
+        add(glitch);
     }
 }

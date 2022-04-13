@@ -1,5 +1,7 @@
 package;
 
+import flixel.FlxG;
+import openfl.utils.AssetCache;
 import flixel.math.FlxRandom;
 import flixel.math.FlxMath;
 import lime.utils.Assets;
@@ -94,5 +96,9 @@ class CoolUtil
 	public static function getNegitiveValue(val:Int)
 	{
 		return val - val - val;
+	}
+	public static function cacheImage(image:String)
+	{
+		Assets.cache.image.set(image, lime.graphics.Image.fromFile(image));
 	}
 }

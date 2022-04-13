@@ -142,8 +142,8 @@ class OptionsMenu extends MusicBeatState
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
 						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 7, 'Vertical');
 					case 8:
-						FlxG.save.data.enableStupidCamera = !FlxG.save.data.enableStupidCamera;
-						updateGroupControls((FlxG.save.data.enableStupidCamera ? "Camera Movement On Note" : "Normal Camera"), 8, 'Vertical');
+						FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
+						updateGroupControls((FlxG.save.data.noteCamera ? "Camera Movement On Note" : "Normal Camera"), 8, 'Vertical');
 					case 9:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						LanguageManager.save.data.language = languages[currentLanguage].pathName;
