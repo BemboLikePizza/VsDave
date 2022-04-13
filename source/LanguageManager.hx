@@ -14,7 +14,6 @@ class LanguageManager
    {
       save = new FlxSave();
       save.bind('language', 'ninjamuffin99');
-      trace('initted the save file');
    }
    public static function init()
    {
