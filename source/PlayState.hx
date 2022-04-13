@@ -1491,6 +1491,7 @@ class PlayState extends MusicBeatState
 	function playCutscene(name:String)
 		{
 			inCutscene = true;
+			FlxG.sound.music.stop();
 	
 			video = new MP4Handler();
 			video.finishCallback = function()
