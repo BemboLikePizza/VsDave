@@ -237,6 +237,7 @@ class PlayState extends MusicBeatState
 	var bfNoteCamOffset:Array<Float> = new Array<Float>();
 	var dadNoteCamOffset:Array<Float> = new Array<Float>();
 
+	var video:MP4Handler;
 	public var modchart:ExploitationModchartType;
 	var weirdBG:FlxSprite;
 	var cuzsieKapiEletricCockadoodledoo:Array<FlxSprite> = [];
@@ -972,7 +973,9 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'cheating' | 'interdimensional':
+				case 'house':
+					playCutscene('daveCutscene');
+				case 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'cheating' | 'interdimensional':
 					schoolIntro(doof);
 				default:
 					startCountdown();
@@ -1484,6 +1487,42 @@ class PlayState extends MusicBeatState
 			// generateSong('fresh');
 		}, 5);
 	}
+
+	function playCutscene(name:String)
+		{
+			inCutscene = true;
+	
+			video = new MP4Handler();
+			video.finishCallback = function()
+			{
+				switch(curSong.toLowerCase()){
+					case 'house':
+						var doof:DialogueBox = new DialogueBox(false, dialogue);
+						// doof.x += 70;
+						// doof.y = FlxG.height * 0.5;
+						doof.scrollFactor.set();
+						doof.finishThing = startCountdown;
+						schoolIntro(doof);
+					default:
+						startCountdown();
+				}
+	
+			}
+			video.playVideo(Paths.video(name));
+		}
+	
+		function playEndCutscene(name:String)
+		{
+			inCutscene = true;
+
+			video = new MP4Handler();
+			video.finishCallback = function()
+			{
+				SONG = Song.loadFromJson(storyPlaylist[0].toLowerCase());
+				LoadingState.loadAndSwitchState(new PlayState());
+			}
+			video.playVideo(Paths.video(name));
+		}
 
 	var previousFrameTime:Int = 0;
 	var lastReportedPlayheadPosition:Int = 0;
@@ -2835,16 +2874,14 @@ class PlayState extends MusicBeatState
 		FlxTransitionableState.skipNextTransOut = true;
 		prevCamFollow = camFollow;
 
-		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
-		FlxG.sound.music.stop();
-		
 		switch (curSong.toLowerCase())
 		{
 			case 'corn-theft':
-				LoadingState.loadAndSwitchState(new VideoState('assets/videos/mazeecutscenee.webm', new PlayState()), false);
-			default:
-				LoadingState.loadAndSwitchState(new PlayState());
+				playEndCutscene('mazeCutscene');
 		}
+
+		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
+		FlxG.sound.music.stop();
 	}
 	private function popUpScore(strumtime:Float, note:Note):Void
 	{
