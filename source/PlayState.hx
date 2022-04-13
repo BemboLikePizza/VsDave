@@ -1519,7 +1519,6 @@ class PlayState extends MusicBeatState
 			video = new MP4Handler();
 			video.finishCallback = function()
 			{
-				SONG = Song.loadFromJson(storyPlaylist[0].toLowerCase());
 				LoadingState.loadAndSwitchState(new PlayState());
 			}
 			video.playVideo(Paths.video(name));
@@ -2875,14 +2874,16 @@ class PlayState extends MusicBeatState
 		FlxTransitionableState.skipNextTransOut = true;
 		prevCamFollow = camFollow;
 
+		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
+		FlxG.sound.music.stop();
+
 		switch (curSong.toLowerCase())
 		{
 			case 'corn-theft':
 				playEndCutscene('mazeCutscene');
+			default:
+				LoadingState.loadAndSwitchState(new PlayState());
 		}
-
-		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
-		FlxG.sound.music.stop();
 	}
 	private function popUpScore(strumtime:Float, note:Note):Void
 	{
