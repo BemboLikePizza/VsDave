@@ -327,6 +327,7 @@ class StoryMenuState extends MusicBeatState
 				PlayState.curmult = [1, 1, 1, 1];
 				switch (PlayState.storyWeek)
 				{
+					case 1:
 					default:
 						LoadingState.loadAndSwitchState(new PlayState(), true);
 				}

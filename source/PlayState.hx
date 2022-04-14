@@ -1366,11 +1366,19 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('idle', true);
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+			var introSoundAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 
 			if (SONG.song.toLowerCase() == "exploitation")
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
 			else
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
+
+			switch (SONG.song.toLowerCase())
+			{
+				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
+				'memory' | 'overdrive' | 'roots' | 'vs-dave-rap':
+						
+			}
 
 			var introAlts:Array<String> = introAssets.get('default');
 			var altSuffix:String = "";
