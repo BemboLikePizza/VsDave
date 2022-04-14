@@ -1365,17 +1365,31 @@ class PlayState extends MusicBeatState
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			var introSoundAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+			var soundAssetsAlt:Array<String> = new Array<String>();
 
 			if (SONG.song.toLowerCase() == "exploitation")
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
 			else
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
 
+			introSoundAssets.set('default', ['default/intro3', 'default/intro2', 'default/intro1', 'default/introGo']);
+			introSoundAssets.set('pixel', ['pixel/intro3-pixel', 'pixel/intro2-pixel', 'pixel/intro1-pixel', 'pixel/introGo-pixel']);
+			introSoundAssets.set('dave', ['dave/intro3_dave', 'dave/intro2_dave', 'dave/intro1_dave', 'dave/introGo_dave']);
+			introSoundAssets.set('bambi', ['bambi/intro3_bambi', 'bambi/intro2_bambi', 'bambi/intro1_bambi', 'bambi/introGo_bambi']);
+			introSoundAssets.set('ex', ['default/intro3', 'default/intro2', 'default/intro1', 'ex/introGo_weird']);
+
 			switch (SONG.song.toLowerCase())
 			{
 				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
 				'memory' | 'overdrive' | 'roots' | 'vs-dave-rap':
-						
+					soundAssetsAlt = introSoundAssets.get('dave');
+				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 'secret-mod-leak' | 
+				'shredder' | 'supernovae' | 'unfairness':
+					soundAssetsAlt = introSoundAssets.get('bambi');
+				case 'exploitation':
+					soundAssetsAlt = introSoundAssets.get('ex');
+				default:
+					soundAssetsAlt = introSoundAssets.get('default');
 			}
 
 			var introAlts:Array<String> = introAssets.get('default');
@@ -1395,7 +1409,7 @@ class PlayState extends MusicBeatState
 			switch (swagCounter)
 			{
 				case 0:
-					FlxG.sound.play(Paths.sound('intro3'), 0.6);
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[0]), 0.6);
 					if (doing_funny)
 					{
 						focusOnDadGlobal = false;
@@ -1415,7 +1429,7 @@ class PlayState extends MusicBeatState
 							ready.destroy();
 						}
 					});
-					FlxG.sound.play(Paths.sound('intro2'), 0.6);
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[1]), 0.6);
 					if (doing_funny)
 					{
 						focusOnDadGlobal = true;
@@ -1434,7 +1448,7 @@ class PlayState extends MusicBeatState
 							set.destroy();
 						}
 					});
-					FlxG.sound.play(Paths.sound('intro1'), 0.6);
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[2]), 0.6);
 					if (doing_funny)
 					{
 						focusOnDadGlobal = false;
@@ -1463,10 +1477,7 @@ class PlayState extends MusicBeatState
 							go.destroy();
 						}
 					});
-					if (SONG.song.toLowerCase() == "exploitation")
-						FlxG.sound.play(Paths.sound('introGo_weird'), 0.6);
-					else
-						FlxG.sound.play(Paths.sound('introGo'), 0.6);
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[3]), 0.6);
 
 					if (doing_funny)
 					{
@@ -1513,7 +1524,6 @@ class PlayState extends MusicBeatState
 					default:
 						startCountdown();
 				}
-	
 			}
 			video.playVideo(Paths.video(name));
 		}
