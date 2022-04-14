@@ -419,7 +419,7 @@ class PlayState extends MusicBeatState
 				case 'unfairness':
 					stageCheck = 'glitchy-void';
 				case 'exploitation':
-					stageCheck = 'desktop'; 
+					stageCheck = 'desktop';
 				case 'kabunga':
 					stageCheck = 'exbungo-land';
 				case 'interdimensional':
@@ -973,9 +973,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-				case 'house':
-					playCutscene('daveCutscene');
-				case 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'cheating' | 'interdimensional':
+				case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'cheating' | 'interdimensional':
 					schoolIntro(doof);
 				default:
 					startCountdown();
@@ -1150,15 +1148,15 @@ class PlayState extends MusicBeatState
 				add(expungedBG);
 				voidShader(expungedBG);
 
-				/*#if desktop					
+				/*#if desktop
 					var path = Sys.programPath();
 					path = path.substr(0,path.length - 10);
-					var exe_path:String = "\"" + path + Paths.executable("RunThing") + "\"";
-					Sys.command(exe_path); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
+					var exe_path:String = path + Paths.executable("RunThing");
+					Sys.command(exe_path, [exe_path]); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
 
 					var bgDesktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
 					var bytes = sys.io.File.getBytes(bgDesktopPath);
-					var bg:BGSprite = new BGSprite('desktop', 0, 0, '', null, 1, 1, true, true);
+					var bg:BGSprite = new BGSprite('desktop', -600, -200, '', null, 1, 1, true, true);
 					var data:openfl.display.BitmapData = openfl.display.BitmapData.fromBytes(bytes);
 					var graphic:flixel.graphics.FlxGraphic = flixel.graphics.FlxGraphic.fromBitmapData(data);
 					
