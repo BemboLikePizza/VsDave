@@ -49,15 +49,15 @@ class CreditsPopUp extends FlxSpriteGroup
 		funnyText.borderSize = 3;
 		funnyText.antialiasing = true;
 		funnyText.updateHitbox();
+		add(funnyText);
 
 		var funnyIcon:FlxSprite = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
 
 		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
 		funnyIcon.updateHitbox();
-      
-		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 
+		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		funnyIcon.x = funnyText.x + funnyText.width + 20;
 		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
 
@@ -65,6 +65,5 @@ class CreditsPopUp extends FlxSpriteGroup
 
 		bg.setGraphicSize(Std.int((funnyText.width + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
 		bg.updateHitbox();
-		add(funnyText);
 	}
 }

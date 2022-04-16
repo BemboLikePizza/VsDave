@@ -218,7 +218,7 @@ class PlayState extends MusicBeatState
 	public var crazyBatch:String = "shutdown /r /t 0";
 
 	public var backgroundSprites:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
-	var normalDaveBG:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
+	var revertedBG:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
 	var canFloat:Bool = true;
 
 	var nightColor:FlxColor = 0xFF878787;
@@ -244,6 +244,9 @@ class PlayState extends MusicBeatState
 	public static var originalWindowTitle:String;
 	var mcStarted:Bool = false;
 	public static var devBotplay:Bool = false;
+
+	var interdimensionBG:BGSprite;
+	var currentInterdimensionBG:String;
 
 	// FUCKING UHH particles
 	var _emitter:FlxEmitter;
@@ -438,7 +441,7 @@ class PlayState extends MusicBeatState
 		{
 			stageCheck = SONG.stage;
 		}
-		backgroundSprites = createBackgroundSprites(stageCheck);
+		backgroundSprites = createBackgroundSprites(stageCheck, false);
 		switch (SONG.song.toLowerCase())
 		{
 			case 'supernovae' | 'glitch' | 'secret':
@@ -446,10 +449,12 @@ class PlayState extends MusicBeatState
 		}
 		switch (SONG.song.toLowerCase())
 		{
-			case 'polygonized' | 'furiosity':
-				normalDaveBG = createBackgroundSprites('house-night');
-				for (bgSprite in normalDaveBG)
+			case 'polygonized' | 'furiosity' | 'interdimensional':
+				var stage = SONG.song.toLowerCase() != 'interdimensional' ? 'house-night' : 'farm-night';
+				revertedBG = createBackgroundSprites(stage, true);
+				for (bgSprite in revertedBG)
 				{
+					bgSprite.color = getBackgroundColor(SONG.song.toLowerCase() != 'interdimensional' ? 'daveHouse_night' : 'bambiFarmNight');
 					bgSprite.alpha = 0;
 				}
 		}
@@ -721,15 +726,19 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset':
-				var sign:FlxSprite = addFarmSign(false);
+			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset' | 'interdimension':
+				var sign:BGSprite = addFarmSign(false);
 				add(sign);
-				if (SONG.song.toLowerCase() == 'maze')
+				switch (SONG.song.toLowerCase())
 				{
-					var tween = FlxTween.color(sign, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
-						FlxTween.color(sign, tweenTime / 1000, sunsetColor, nightColor)
-						);
-					tweenList.push(tween);
+					case 'maze':
+						var tween = FlxTween.color(sign, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
+							FlxTween.color(sign, tweenTime / 1000, sunsetColor, nightColor)
+							);
+						tweenList.push(tween);
+					case 'interdimensional':
+						sign.alpha = 0;
+						revertedBG.add(sign);
 				}
 		}
 		
@@ -918,6 +927,12 @@ class PlayState extends MusicBeatState
 				preload('eletric-cockadoodledoo/muffin');
 				preload('eletric-cockadoodledoo/sad_bambi');
 				preload('eletric-cockadoodledoo/shaggy from fnf 1');
+			case 'interdimensional':
+				preload('backgrounds/void/interdimensions/interdimensionVoid');
+				preload('backgrounds/void/interdimensions/spike');
+				preload('backgrounds/void/interdimensions/darkSpace');
+				preload('backgrounds/void/interdimensions/nimbi');
+				preload('backgrounds/void/interdimensions/hexagon');
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, 0, "", 20);
@@ -999,27 +1014,29 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function createBackgroundSprites(bgName:String):FlxTypedGroup<BGSprite>
+	public function createBackgroundSprites(bgName:String, revertedBG:Bool):FlxTypedGroup<BGSprite>
 	{
 		var sprites:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
+		var bgZoom:Float = 0.7;
+		var stageName:String = '';
 		switch (bgName)
 		{
 			case 'house' | 'house-night' | 'house-sunset':
-				defaultCamZoom = 0.9;
+				bgZoom = 0.9;
 				
 				var skyType:String = '';
 				var assetType:String = '';
 				switch (bgName)
 				{
 					case 'house':
-						curStage = 'daveHouse';
+						stageName = 'daveHouse';
 						skyType = 'sky';
 					case 'house-night':
-						curStage = 'daveHouse_night';
+						stageName = 'daveHouse_night';
 						skyType = 'sky_night';
 						assetType = 'night/';
 					case 'house-sunset':
-						curStage = 'daveHouse_sunset';
+						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
 				}
 								
@@ -1055,41 +1072,38 @@ class PlayState extends MusicBeatState
 					voidShader(bg);
 				}
 
-				var variantColor = getBackgroundColor();
+				var variantColor = getBackgroundColor(stageName);
 				
 				stageHills.color = variantColor;
 				gate.color = variantColor;
 				stageFront.color = variantColor;
 
 			case 'farm' | 'farm-night' | 'farm-sunset':
-				defaultCamZoom = 0.8;
+				bgZoom = 0.8;
 
 				switch (bgName.toLowerCase())
 				{
 					case 'farm-night':
-						curStage = 'bambiFarmNight';
+						stageName = 'bambiFarmNight';
 					case 'farm-sunset':
-						curStage = 'bambiFarmSunset';
+						stageName = 'bambiFarmSunset';
 					default:
-						curStage = 'bambiFarm';
+						stageName = 'bambiFarm';
 				}
 	
 				var skyType:String = curStage == 'bambiFarmNight' ? 'sky_night' : curStage == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 				
 				var bg:BGSprite = new BGSprite('bg', -400, 0, Paths.image('backgrounds/shared/' + skyType), null, 1.4, 1.4);
-				bg.setGraphicSize(Std.int(bg.width * 1.4));
 				sprites.add(bg);
 
 				if (SONG.song.toLowerCase() == 'maze')
 				{
 					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -700, 0, Paths.image('backgrounds/shared/sky_sunset'), null, 1.4, 1.4);
-					sunsetBG.setGraphicSize(Std.int(sunsetBG.width * 1.4));
 					sunsetBG.alpha = 0;
 					add(sunsetBG);
 					sprites.add(sunsetBG);
 
 					var nightBG:BGSprite = new BGSprite('nightBG', -700, 0, Paths.image('backgrounds/shared/sky_night'), null, 1.4, 1.4);
-					nightBG.setGraphicSize(Std.int(nightBG.width * 1.4));
 					nightBG.alpha = 0;
 					add(nightBG);
 					sprites.add(nightBG);
@@ -1118,7 +1132,7 @@ class PlayState extends MusicBeatState
 				cornBag.setGraphicSize(Std.int(cornBag.width * 1.4));
 				sprites.add(cornBag);
 				
-				var variantColor:FlxColor = getBackgroundColor();
+				var variantColor:FlxColor = getBackgroundColor(stageName);
 				
 				flatGrass.color = variantColor;
 				farmHouse.color = variantColor;
@@ -1137,7 +1151,8 @@ class PlayState extends MusicBeatState
 
 
 			case 'desktop':
-				defaultCamZoom = 0.5;
+				bgZoom = 0.5;
+				stageName = 'desktop';
 
 				var expungedBG:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
 				expungedBG.loadGraphic(Paths.image('backgrounds/void/creepyRoom', 'shared'));
@@ -1168,7 +1183,7 @@ class PlayState extends MusicBeatState
 				#end*/
 	
 			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void' | "banana-hell":
-				defaultCamZoom = 0.7;
+				bgZoom = 0.7;
 
 				var bg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
 				
@@ -1176,27 +1191,28 @@ class PlayState extends MusicBeatState
 				{
 					case 'red-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
-						curStage = 'daveEvilHouse';
+						stageName = 'daveEvilHouse';
 					case 'green-void':
 						bg.loadGraphic(Paths.image('backgrounds/cheating/cheater'));
-						curStage = 'cheating';
+						stageName = 'cheating';
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
 						bg.setPosition(0, 200);
 						bg.setGraphicSize(Std.int(bg.width * 3));
-						curStage = 'unfairness';
+						stageName = 'unfairness';
 					case 'interdimension-void':
-						bg.loadGraphic(Paths.image('backgrounds/void/interdimensionVoid'));
+						bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 						bg.setPosition(-700, -200);
-						bg.setGraphicSize(Std.int(bg.width * 2));
-						curStage = 'interdimension';
+						bg.setGraphicSize(Std.int(bg.width * 1.5));
+						interdimensionBG = bg;
+						stageName = 'interdimension';
 					case 'banana-hell': // this is a Cockey moment
 						bg.loadGraphic(Paths.image('backgrounds/void/bananaVoid1'));
 						bg.setPosition(-700, -300);
 						bg.setGraphicSize(Std.int(bg.width * 2), Std.int(bg.height * 2));
-						defaultCamZoom = 0.5;
+						bgZoom = 0.5;
 						weirdBG = bg;
-						curStage = 'banana-land';
+						stageName = 'banana-land';
 				}
 				sprites.add(bg);
 				add(bg);
@@ -1205,7 +1221,7 @@ class PlayState extends MusicBeatState
 			
 			
 			case 'exbungo-land':
-				defaultCamZoom = 0.7;
+				bgZoom = 0.7;
 
 				var bg:BGSprite = new BGSprite('bg', -850, -350, Paths.image('backgrounds/void/exbongo/Exbongo'), null, 1, 1, true, true);
 				sprites.add(bg);
@@ -1219,13 +1235,13 @@ class PlayState extends MusicBeatState
 				sprites.add(place);	
 				add(place);
 				
-					voidShader(bg);
+				voidShader(bg);
 
-				curStage = 'kabunga';
+				stageName = 'kabunga';
 
 			default:
-				defaultCamZoom = 0.9;
-				curStage = 'stage';
+				bgZoom = 0.9;
+				stageName = 'stage';
 
 				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/stage/stageback'), null, 0.9, 0.9);
 				sprites.add(bg);
@@ -1260,19 +1276,22 @@ class PlayState extends MusicBeatState
 			add(stageFront);
 			stageFront.visible = false;
 		}
+		if (!revertedBG)
+		{
+			defaultCamZoom = bgZoom;
+			curStage = stageName;
+		}
 
 		return sprites;
 	}
-	public function getBackgroundColor():FlxColor
+	public function getBackgroundColor(stage:String):FlxColor
 	{
 		var variantColor:FlxColor = FlxColor.WHITE;
-		switch (curStage)
+		switch (stage)
 		{
-			case 'bambiFarmNight':
+			case 'bambiFarmNight' | 'daveHouse_night':
 				variantColor = nightColor;
-			case 'bambiFarmSunset':
-				variantColor = sunsetColor;
-			case 'daveHouse_sunset':
+			case 'bambiFarmSunset' | 'daveHouse_sunset':
 				variantColor = sunsetColor;
 			default:
 				variantColor = FlxColor.WHITE;
@@ -1294,7 +1313,7 @@ class PlayState extends MusicBeatState
 		}
 		var sign:BGSprite = new BGSprite('sign', -50, 600, Paths.image('backgrounds/farm/sign'), null);
 		sign.setGraphicSize(Std.int(sign.width * 1.4));
-		sign.color = getBackgroundColor();
+		sign.color = getBackgroundColor(curStage);
 		backgroundSprites.add(sign);
 		return sign;
 	}
@@ -1342,6 +1361,37 @@ class PlayState extends MusicBeatState
 		
 		background.shader = testshader.shader;
 		curbg = background;
+	}
+	function changeInterdimensionBg(type:String)
+	{
+		remove(interdimensionBG);
+		interdimensionBG = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
+		switch (type)
+		{
+			case 'interdimension-void':
+				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
+				interdimensionBG.setPosition(-700, -200);
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+			case 'spike-void':
+				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/spike'));
+				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+			case 'darkSpace':
+				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/darkSpace'));
+				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+			case 'hexagon-void':
+				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/hexagon'));
+				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+			case 'nimbi-void':
+				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi'));
+				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+		}
+		voidShader(interdimensionBG);
+		currentInterdimensionBG = type;
+		add(interdimensionBG);
 	}
 	function startCountdown():Void
 	{
@@ -3571,6 +3621,45 @@ class PlayState extends MusicBeatState
 								remove(black);
 							}
 						});
+						changeInterdimensionBg('spike-void');
+					case 1152:
+						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
+						changeInterdimensionBg('darkSpace');
+					case 1408:
+						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
+						changeInterdimensionBg('hexagon-void');
+					case 1792:
+						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
+						changeInterdimensionBg('nimbi-void');
+					case 2176:
+						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
+						changeInterdimensionBg('interdimension-void');
+					case 2876:
+						defaultCamZoom = 0.8;
+						for (bgSprite in backgroundSprites)
+						{
+							FlxTween.tween(bgSprite, {alpha: 0}, 1);
+						}
+						for (bgSprite in revertedBG)
+						{
+							FlxTween.tween(bgSprite, {alpha: 1}, 1);
+						}
+
+						canFloat = false;
+						var position = dad.getPosition();
+						FlxG.camera.flash(FlxColor.WHITE, 0.25);
+						remove(dad);
+						dad = new Character(position.x, position.y, 'dave', false);
+						add(dad);
+						FlxTween.color(dad, 0.6, dad.color, nightColor);
+						FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
+						FlxTween.color(gf, 0.6, gf.color, nightColor);
+						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
+						
+						boyfriend.canDance = false;
+						gf.canDance = false;
+						boyfriend.playAnim('hey', true);
+						gf.playAnim('cheer', true);
 				}
 
 			case 'unfairness':
@@ -3608,7 +3697,7 @@ class PlayState extends MusicBeatState
 						{
 							FlxTween.tween(bgSprite, {alpha: 0}, 1);
 						}
-						for (bgSprite in normalDaveBG)
+						for (bgSprite in revertedBG)
 						{
 							FlxTween.tween(bgSprite, {alpha: 1}, 1);
 						}
@@ -4125,7 +4214,7 @@ class PlayState extends MusicBeatState
 						{
 							FlxTween.tween(bgSprite, {alpha: 0}, 1);
 						}
-						for (bgSprite in normalDaveBG)
+						for (bgSprite in revertedBG)
 						{
 							FlxTween.tween(bgSprite, {alpha: 1}, 1);
 						}
@@ -4304,7 +4393,7 @@ class PlayState extends MusicBeatState
 				}
 		}
 
-		var sign:FlxSprite = addFarmSign(true);
+		var sign:BGSprite = addFarmSign(true);
 		add(sign);
 
 		boyfriend.stunned = false;
@@ -4328,7 +4417,7 @@ class PlayState extends MusicBeatState
 		}
 		add(splitathonCharacterExpression);
 
-		var sign:FlxSprite = addFarmSign(true);
+		var sign:BGSprite = addFarmSign(true);
 		add(sign);
 		
 		splitathonCharacterExpression.color = nightColor;

@@ -12,6 +12,7 @@ class GlitchEffect
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
+    public var Enabled(default, set):Bool = true;
 
 	public function new():Void
 	{
@@ -28,6 +29,12 @@ class GlitchEffect
     {
         waveSpeed = v;
         shader.uSpeed.value = [waveSpeed];
+        return v;
+    }
+    function set_Enabled(v:Bool):Bool
+    {
+        Enabled = v;
+        shader.uEnabled.value = [Enabled];
         return v;
     }
     
@@ -167,6 +174,8 @@ class GlitchShader extends FlxShader
      * Number of waves over time
      */
     uniform float uFrequency;
+
+    uniform bool uEnabled;
     
     /**
      * How much the pixels are going to stretch over the waves
