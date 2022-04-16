@@ -554,7 +554,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
-			case 'bananacore-kapi':
+			case 'kapi':
 				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Kapi', "shared");
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
@@ -567,8 +567,21 @@ class Character extends FlxSprite
 	
 				playAnim('idle');
 
+			case 'cuzsiee':
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/cuzsiee', "shared");
+				frames = tex;
+				animation.addByPrefix('idle', 'cuzsiee idle', 24);
+				animation.addByPrefix('singUP', 'cuzsiee up', 24);
+				animation.addByPrefix('singRIGHT', 'cuzsiee right', 24);
+				animation.addByPrefix('singDOWN', 'cuzsiee down', 24);
+				animation.addByPrefix('singLEFT', 'cuzsiee left', 24);
+	
+				loadOffsetFile(curCharacter);
+		
+				playAnim('idle');	
+
 			case 'ayo-the-pizza-here':
-				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Kapi', "shared");
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/PizzaMan', "shared");
 				frames = tex;
 				animation.addByPrefix('idle', 'Idle', 24);
 				animation.addByPrefix('singUP', 'Up', 24);

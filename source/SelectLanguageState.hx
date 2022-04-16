@@ -39,6 +39,7 @@ class SelectLanguageState extends MusicBeatState
       selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, 0, "Please Select A Language", 45);
       selectLanguage.screenCenter(X);
       selectLanguage.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+      selectLanguage.antialiasing = true;
       selectLanguage.borderSize = 2;
       add(selectLanguage);
 
@@ -49,6 +50,7 @@ class SelectLanguageState extends MusicBeatState
          var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, 0, currentLangauge.langaugeName, 25);
          langaugeText.screenCenter(X);
          langaugeText.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+         langaugeText.antialiasing = true;
          langaugeText.borderSize = 2;
 
          var flag:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('languages/' + currentLangauge.langaugeName));
