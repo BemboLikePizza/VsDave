@@ -50,6 +50,18 @@ class TitleState extends MusicBeatState
 
 		PlayerSettings.init();
 
+		trace(FlxG.save.data.expungedIsReal);
+
+		if (FlxG.save.data.expungedIsReal) {
+			trace('stuff will happen in the menu do not worry');
+			PlayState.SONG = Song.loadFromJson("exploitation", "exploitation"); // you dun fucked up again
+			FlxG.save.data.expungedFound = true;
+			FlxG.save.data.expungedIsReal = !FlxG.save.data.expungedIsReal;
+			PlayState.shakeCam = false;
+			PlayState.screenshader.Enabled = false;
+			FlxG.switchState(new PlayState());
+		}
+
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
@@ -162,6 +174,7 @@ class TitleState extends MusicBeatState
 		credGroup.add(blackScreen);
 
 		credTextShit = new Alphabet(0, 0, "MoldyGH\nMissingTextureMan101\nRapparep\nKrisspo\nTheBuilder\nCyndaquilDAC\nT5mpler\nErizur", true);
+		credTextShit.antialiasing = true;
 		credTextShit.screenCenter();
 
 		// credTextShit.alignment = CENTER;
@@ -288,6 +301,7 @@ class TitleState extends MusicBeatState
 		{
 			var money:FlxText = new FlxText(0, 0, FlxG.width, textArray[i], 48);
 			money.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER);
+			money.antialiasing = true;
 			money.screenCenter(X);
 			money.y += (i * 60) + 200;
 			credGroup.add(money);
@@ -300,6 +314,7 @@ class TitleState extends MusicBeatState
 		var coolText:FlxText = new FlxText(0, 0, FlxG.width, text, 48);
 		coolText.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER);
 		coolText.screenCenter(X);
+		coolText.antialiasing = true;
 		coolText.y += (textGroup.length * 60) + 200;
 		credGroup.add(coolText);
 		textGroup.add(coolText);
@@ -370,9 +385,9 @@ class TitleState extends MusicBeatState
 				case 13:
 					addMoreText('VS. Dave and Bambi');
 				case 14:
-					addMoreText('Mod');
+					addMoreText('The Full Mod');
 				case 15:
-					deleteCoolText();
+					addMoreText('lmao');
 				case 16:
 					skipIntro();
 			}

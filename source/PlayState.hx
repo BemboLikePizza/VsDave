@@ -167,7 +167,7 @@ class PlayState extends MusicBeatState
 	private var healthBar:FlxBar;
 
 	private var generatedMusic:Bool = false;
-	private var shakeCam:Bool = false;
+	public static var shakeCam:Bool = false;
 	private var startingSong:Bool = false;
 
 	public var TwentySixKey:Bool = false;
@@ -845,7 +845,7 @@ class PlayState extends MusicBeatState
 			case 'cheating':
 				credits = 'Notes are scrambled! FUCK you!';
 			case 'exploitation':
-				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "! SUPER FUCK you!";
+				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "! GO FUCK YOURSELF!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			case 'eletric-cockadoodledoo':
@@ -911,7 +911,10 @@ class PlayState extends MusicBeatState
 				preload('eletric-cockadoodledoo/characters/Cockey');
 				preload('eletric-cockadoodledoo/characters/Pooper');
 				preload('eletric-cockadoodledoo/characters/Kapi');
+				preload('eletric-cockadoodledoo/characters/cuzsiee');
 				preload('eletric-cockadoodledoo/characters/PizzaMan');
+				preload('bambi/ExpungedFinal');
+				preload('bambi/bambiRemake');
 				preload('eletric-cockadoodledoo/indihome');
 				preload('eletric-cockadoodledoo/kapicuzsie_back');
 				preload('eletric-cockadoodledoo/kapicuzsie_front');
@@ -2138,7 +2141,7 @@ class PlayState extends MusicBeatState
 				case 'unfairness':
 					shakeCam = false;
 					screenshader.Enabled = false;
-					FlxG.switchState(new YouCheatedSomeoneIsComing());
+					FlxG.switchState(new TerminalState());
 					#if desktop
 					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
@@ -3687,6 +3690,7 @@ class PlayState extends MusicBeatState
 						add(dad);
 						dad.alpha = 0;
 						curECCCharacter = "pissey";
+						iconP2.changeIcon(curECCCharacter);
 						FlxTween.tween(dad, {alpha: 1}, 5);
 					case 1530:
 						shag = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/shaggy from fnf 1", 'shared'));
@@ -3703,8 +3707,9 @@ class PlayState extends MusicBeatState
 							sprite.visible = true;
 						}
 						remove(dad);
-						dad = new Character(dad.x, dad.y, "eletric-cockadoodledoo-kapi", false);
+						dad = new Character(dad.x, dad.y, "cuzsiee", false);
 						add(dad);
+						iconP2.changeIcon(curECCCharacter);
 
 						trace("Kapi BG");
 
@@ -3717,6 +3722,7 @@ class PlayState extends MusicBeatState
 						remove(dad);
 						dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						add(dad);
+						iconP2.changeIcon(curECCCharacter);
 
 						trace("Reset Kapi BG");
 
@@ -3748,6 +3754,7 @@ class PlayState extends MusicBeatState
 						add(dad);
 						dad.alpha = 0;
 						curECCCharacter = "pooper";
+						iconP2.changeIcon(curECCCharacter);
 						FlxTween.tween(dad, {alpha: 1}, 0.5);
 					case 2624:
 						indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/indihome", 'shared'));
@@ -3761,18 +3768,22 @@ class PlayState extends MusicBeatState
 						remove(dad);
 						dad = new Character(dad.x, dad.y, "bambi-new", false);
 						add(dad);
+						iconP2.changeIcon(curECCCharacter);
 					case 2848 | 2972:
 						remove(dad);
 						dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						add(dad);
+						iconP2.changeIcon(curECCCharacter);
 					case 2912:
 						remove(dad);
 						dad = new Character(dad.x, dad.y, "expunged", false);
 						add(dad);
+						iconP2.changeIcon(curECCCharacter);
 					case 2989:
 						remove(dad);
 						dad = new Character(dad.x, dad.y, "ayo-the-pizza-here", false);
 						add(dad);
+						iconP2.changeIcon(curECCCharacter);
 
 						dad.playAnim('pizza');
 
@@ -3781,6 +3792,7 @@ class PlayState extends MusicBeatState
 						remove(dad);
 						dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						add(dad);
+						iconP2.changeIcon(curECCCharacter);
 					case 3200:
 						// re-using indihome bc im lazy as fuck
 						indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/muffin", 'shared'));
@@ -3793,6 +3805,7 @@ class PlayState extends MusicBeatState
 						remove(indihome);
 						camHUD.visible = false;
 						boyfriend.playAnim("firstDeath");
+						boyfriend.canDance = false;
 
 						trace("Death Animation");
 					case 3360:
@@ -3802,6 +3815,7 @@ class PlayState extends MusicBeatState
 					case 3392:
 						camHUD.visible = true;
 						boyfriend.playAnim("idle");
+						boyfriend.canDance = true;
 					case 3696:
 						hideStuff = new FlxSprite().makeGraphic(2560, 1440, FlxColor.BLACK);
 						hideStuff.screenCenter();

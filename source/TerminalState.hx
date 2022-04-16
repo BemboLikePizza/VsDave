@@ -174,5 +174,13 @@ class TerminalState extends FlxState
 		glitch.screenCenter();
         glitch.animation.play('glitchScreen');
         add(glitch);
+
+        FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"));
+
+        new FlxTimer().start(10, function(timer:FlxTimer)
+        {
+            System.exit(0);
+            FlxG.save.data.expungedIsReal = FlxG.save.data.expungedIsReal;
+        });
     }
 }
