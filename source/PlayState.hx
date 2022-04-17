@@ -110,7 +110,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'cockey', 'pissey', 'pooper'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -253,7 +253,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-		if (SONG.song.toLowerCase() == "greetings" && characteroverride.toLowerCase() == "tristan")
+		if (SONG.song.toLowerCase() == "greetings" || SONG.song.toLowerCase() == "adventure" && characteroverride.toLowerCase() == "tristan")
 		{
 			var poop:String = Highscore.formatSong("confronting-yourself", 1);
 
