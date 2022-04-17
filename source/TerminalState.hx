@@ -180,24 +180,22 @@ class TerminalState extends FlxState
 
         FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"), false, null, false, function()
         {
-            FlxTween.tween(glitch, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
-            {
-                FlxG.sound.play(Paths.sound('evilLaugh'), 1, false, null, true, function()
-                {
-					new FlxTimer().start(1, function(timer:FlxTimer)
-					{
-						FlxG.save.data.exploitationState = 'awaiting';
-						FlxG.save.data.exploitationFound = true;
-						FlxG.save.data.flush();
+            FlxTween.tween(glitch, {alpha: 0}, 1);
+			FlxG.sound.play(Paths.sound('evilLaugh'), 1, false, null, true, function()
+			{
+				new FlxTimer().start(1, function(timer:FlxTimer)
+				{
+					FlxG.save.data.exploitationState = 'awaiting';
+					FlxG.save.data.exploitationFound = true;
+					FlxG.save.data.flush();
 
-						var programPath = Sys.programPath();
-						var textPath = programPath.substr(0, programPath.length - 10) + "/help me.txt";
+					var programPath = Sys.programPath();
+					var textPath = programPath.substr(0, programPath.length - 10) + "/help me.txt";
 
-						File.saveContent(textPath, "you don't know what you're getting yourself into\n don't open the application for your own risk");
-						System.exit(0);
-					});
-                });
-            }});
+					File.saveContent(textPath, "you don't know what you're getting yourself into\n don't open the application for your own risk");
+					System.exit(0);
+				});
+			});
         });
     }
 }

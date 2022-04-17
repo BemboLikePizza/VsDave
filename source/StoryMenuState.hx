@@ -73,13 +73,13 @@ class StoryMenuState extends MusicBeatState
 	var rightArrow:FlxSprite;
 
 	var songColors:Array<FlxColor> = [
-        0xFFca1f6f, // GF
+      0xFFca1f6f, // GF
 		0xFF4965FF, // DAVE
 		0xFF00B515, // MISTER BAMBI RETARD
 		0xFF00FFFF, //SPLIT THE THONNNNN
 		0xFF800080, //FESTEVAL
-		0xFF800080 // TRIS
-    ];
+	
+	];
 
 	override function create()
 	{

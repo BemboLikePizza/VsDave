@@ -944,6 +944,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
 		scoreTxt.antialiasing = true;
+		scoreTxt.screenCenter(X);
 
 		if (SONG.song.toLowerCase() == "overdrive")
 		{
@@ -1374,36 +1375,36 @@ class PlayState extends MusicBeatState
 		}
 		interdimensionBG = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
 		backgroundSprites.add(interdimensionBG);
+		add(interdimensionBG);
 		switch (type)
 		{
 			case 'interdimension-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 				interdimensionBG.setPosition(-700, -200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 1.5));
 			case 'spike-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/spike'));
-				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setPosition(200, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'darkSpace':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/darkSpace'));
-				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setPosition(200, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'hexagon-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/hexagon'));
-				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setPosition(200, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'nimbi-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi'));
-				interdimensionBG.setPosition(100, 100);
+				interdimensionBG.setPosition(200, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 				
-				var land:BGSprite = new BGSprite('nimbiLand', 100, 100, Paths.image('backgrounds/void/interdimensions/nimbi_land'), null, 1, 1, false, true);
+				var land:BGSprite = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi_land'), null, 1, 1, false, true);
 				backgroundSprites.add(land);
 				add(land);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
-		add(interdimensionBG);
 	}
 	function startCountdown():Void
 	{
@@ -3637,9 +3638,15 @@ class PlayState extends MusicBeatState
 					case 1152:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('darkSpace');
+						FlxTween.tween(dad, {color: FlxColor.BLUE}, 1);
+						FlxTween.tween(boyfriend, {color: FlxColor.BLUE}, 1);
+						FlxTween.tween(gf, {color: FlxColor.BLUE}, 1);
 					case 1408:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('hexagon-void');
+						FlxTween.tween(dad, {color: FlxColor.WHITE}, 1);
+						FlxTween.tween(boyfriend, {color: FlxColor.WHITE}, 1);
+						FlxTween.tween(gf, {color: FlxColor.WHITE}, 1);
 					case 1792:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('nimbi-void');

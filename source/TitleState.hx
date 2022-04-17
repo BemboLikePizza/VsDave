@@ -50,8 +50,7 @@ class TitleState extends MusicBeatState
 
 		PlayerSettings.init();
 
-		trace(FlxG.save.data.expungedIsReal);
-
+		
 		if (FlxG.save.data.expungedIsReal) {
 			trace('stuff will happen in the menu do not worry');
 			PlayState.SONG = Song.loadFromJson("exploitation", "exploitation"); // you dun fucked up again
@@ -131,8 +130,14 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
 
-			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-
+			switch (FlxG.save.data.exploitationFound)
+			{
+				case 'awaiting':
+					FlxG.sound.playMusic(Paths.music('freakyMenu_ex'), 0);
+				default:
+					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+			}
+			
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
 

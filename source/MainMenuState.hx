@@ -161,16 +161,22 @@ class MainMenuState extends MusicBeatState
 		camFollow.setPosition(640, 150.5);
 		for (i in 0...optionShit.length)
 		{
+			var currentOptionShit = optionShit[i];
 			var menuItem:FlxSprite = new FlxSprite(0, FlxG.height * 1.6);
 			menuItem.frames = tex;
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+			menuItem.animation.addByPrefix('idle', currentOptionShit + " basic", 24);
+			menuItem.animation.addByPrefix('selected', currentOptionShit + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set(0, 1);
 			menuItem.antialiasing = true;
+			if (currentOptionShit == 'story mode')
+			{
+				var rightArrow:FlxText = new FlxText(menuItem.x -= 200, menuItem.y, 0, ">>>", 50);
+				var leftArrow:FlxText = new FlxText(menuItem.x += 200, menuItem.y, 0, "<<<", 50);
+			}
 			if (firstStart)
 				FlxTween.tween(menuItem, {y: 60 + (i * 160)}, 1 + (i * 0.25), {
 					ease: FlxEase.expoInOut,
