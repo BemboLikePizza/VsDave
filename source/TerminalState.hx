@@ -1,3 +1,6 @@
+import sys.io.File;
+import lime.app.Application;
+import flixel.tweens.FlxTween;
 import flixel.math.FlxRandom;
 import haxe.ds.Map;
 import flixel.input.keyboard.FlxKey;
@@ -154,11 +157,11 @@ class TerminalState extends FlxState
     }
     function expungedReignStarts()
     {
-        var amountofText:Int = Std.int(FlxG.height / displayText.height) + 20;
+        var amountofText:Int = Std.int(FlxG.height / displayText.height) + 100;
 
         for (i in 0...amountofText)
         {
-            new FlxTimer().start(0.8, function(timer:FlxTimer)
+            new FlxTimer().start(1, function(timer:FlxTimer)
             {
                 var expungedLines:Array<String> = ['TAKING OVER...................', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START"];
                 var fakeDisplay:FlxText = new FlxText(0, i * (displayText.height), FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
@@ -175,12 +178,26 @@ class TerminalState extends FlxState
         glitch.animation.play('glitchScreen');
         add(glitch);
 
-        FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"));
-
-        new FlxTimer().start(10, function(timer:FlxTimer)
+        FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"), false, null, false, function()
         {
-            System.exit(0);
-            FlxG.save.data.expungedIsReal = FlxG.save.data.expungedIsReal;
+            FlxTween.tween(glitch, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
+            {
+                FlxG.sound.play(Paths.sound('evilLaugh'), 1, false, null, true, function()
+                {
+					new FlxTimer().start(1, function(timer:FlxTimer)
+					{
+						FlxG.save.data.exploitationState = 'awaiting';
+						FlxG.save.data.exploitationFound = true;
+						FlxG.save.data.flush();
+
+						var programPath = Sys.programPath();
+						var textPath = programPath.substr(0, programPath.length - 10) + "/help me.txt";
+
+						File.saveContent(textPath, "you don't know what you're getting yourself into\n don't open the application for your own risk");
+						System.exit(0);
+					});
+                });
+            }});
         });
     }
 }

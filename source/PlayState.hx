@@ -1367,8 +1367,13 @@ class PlayState extends MusicBeatState
 	}
 	function changeInterdimensionBg(type:String)
 	{
-		remove(interdimensionBG);
+		for (sprite in backgroundSprites)
+		{
+			backgroundSprites.remove(sprite);
+			remove(sprite);
+		}
 		interdimensionBG = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
+		backgroundSprites.add(interdimensionBG);
 		switch (type)
 		{
 			case 'interdimension-void':
@@ -1391,6 +1396,10 @@ class PlayState extends MusicBeatState
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi'));
 				interdimensionBG.setPosition(100, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+				
+				var land:BGSprite = new BGSprite('nimbiLand', 100, 100, Paths.image('backgrounds/void/interdimensions/nimbi_land'), null, 1, 1, false, true);
+				backgroundSprites.add(land);
+				add(land);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
