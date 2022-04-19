@@ -546,6 +546,7 @@ class CharacterSelectState extends MusicBeatState
 
 		if (PlayState.SONG.song.toLowerCase() == "exploitation")
 		{
+			FlxG.save.data.exploitationState = 'in';
 			FlxG.fullscreen = false;
 			FlxG.sound.play(Paths.sound('error'), 0.9);
 			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details", "Vs Dave");

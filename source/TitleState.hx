@@ -39,9 +39,10 @@ class TitleState extends MusicBeatState
 	var wackyImage:FlxSprite;
 
 	var fun:Int;
+	var awaitingExploitation:Bool;
 
 	override public function create():Void
-	{		
+	{	
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)
 		{
@@ -49,17 +50,6 @@ class TitleState extends MusicBeatState
 		}
 
 		PlayerSettings.init();
-
-		
-		if (FlxG.save.data.expungedIsReal) {
-			trace('stuff will happen in the menu do not worry');
-			PlayState.SONG = Song.loadFromJson("exploitation", "exploitation"); // you dun fucked up again
-			FlxG.save.data.expungedFound = true;
-			FlxG.save.data.expungedIsReal = !FlxG.save.data.expungedIsReal;
-			PlayState.shakeCam = false;
-			PlayState.screenshader.Enabled = false;
-			FlxG.switchState(new PlayState());
-		}
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
@@ -70,7 +60,7 @@ class TitleState extends MusicBeatState
 		#end
 
 		super.create();
-
+		
 		#if ng
 		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
 		trace('NEWGROUNDS LOL');
@@ -96,6 +86,8 @@ class TitleState extends MusicBeatState
 			if (!StoryMenuState.weekUnlocked[0])
 				StoryMenuState.weekUnlocked[0] = true;
 		}
+
+		awaitingExploitation = FlxG.save.data.exploitationState == 'awaiting';
 
 		#if FREEPLAY
 		FlxG.switchState(new FreeplayState());
@@ -130,14 +122,7 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
 
-			switch (FlxG.save.data.exploitationFound)
-			{
-				case 'awaiting':
-					FlxG.sound.playMusic(Paths.music('freakyMenu_ex'), 0);
-				default:
-					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-			}
-			
+			FlxG.sound.playMusic(Paths.music(awaitingExploitation ? 'freakyMenu_ex' : 'freakyMenu'), 0);			
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
 
@@ -388,11 +373,17 @@ class TitleState extends MusicBeatState
 				case 12:
 					addMoreText("Friday Night Funkin'");
 				case 13:
-					addMoreText('VS. Dave and Bambi');
+					addMoreText(awaitingExploitation ? 'Vs. Expunged' : 'VS. Dave and Bambi');
 				case 14:
 					addMoreText('The Full Mod');
 				case 15:
-					addMoreText('lmao');
+					var text:String = awaitingExploitation ? 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA'
+					: 'lmao';
+					if (awaitingExploitation)
+					{
+						FlxG.sound.play(Paths.sound('evilLaugh', 'shared'), 0.7);
+					}
+					addMoreText(text);
 				case 16:
 					skipIntro();
 			}

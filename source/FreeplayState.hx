@@ -504,7 +504,7 @@ class FreeplayState extends MusicBeatState
 			case 3:
 				diffText.text = 'FINALE' + " - " + curChar.toUpperCase();
 			case 9:
-				diffText.text = "YOU'RE SCREWED" + " - " + curChar.toUpperCase();
+				diffText.text = "YOU'RE FUCKED" + " - " + curChar.toUpperCase();
 			case 10:
 				diffText.text = 'LMAO' + " - " + curChar.toUpperCase();
 			default:

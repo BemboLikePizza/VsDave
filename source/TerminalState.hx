@@ -169,29 +169,31 @@ class TerminalState extends FlxState
                 FlxG.camera.follow(fakeDisplay, 1);
             });
         }
-        var glitch:FlxSprite = new FlxSprite();
+        var glitch:FlxSprite = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
         glitch.frames = Paths.getSparrowAtlas('glitch', 'shared');
         glitch.animation.addByPrefix('glitchScreen', 'glitch', 15);
         glitch.setGraphicSize(Std.int(glitch.width * 1.5));
         glitch.updateHitbox();
-		glitch.screenCenter();
         glitch.animation.play('glitchScreen');
         add(glitch);
 
-        FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"), false, null, false, function()
+        trace("glitch anim pause state is: " + glitch.animation.paused + ", glitch anim's position is" + glitch.getPosition());
+        
+        FlxG.sound.music.stop();
+        FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"), function()
         {
             FlxTween.tween(glitch, {alpha: 0}, 1);
-			FlxG.sound.play(Paths.sound('evilLaugh'), 1, false, null, true, function()
+			FlxG.sound.play(Paths.sound('iTrollYou', 'shared'), function()
 			{
 				new FlxTimer().start(1, function(timer:FlxTimer)
 				{
 					FlxG.save.data.exploitationState = 'awaiting';
 					FlxG.save.data.exploitationFound = true;
-					FlxG.save.data.flush();
+					FlxG.save.flush();
 
-					var programPath = Sys.programPath();
-					var textPath = programPath.substr(0, programPath.length - 10) + "/help me.txt";
-
+					var programPath:String = Sys.programPath();
+					var textPath = programPath.substr(0, programPath.length - CoolSystemStuff.executableFileName().length) + "help me.txt";
+                    
 					File.saveContent(textPath, "you don't know what you're getting yourself into\n don't open the application for your own risk");
 					System.exit(0);
 				});

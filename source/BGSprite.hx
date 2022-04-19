@@ -18,9 +18,13 @@ class BGSprite extends FlxSprite
 			if (hasAnimations)
 			{
 				frames = Paths.getSparrowAtlas(path);
-				for (anim in animations)
+				for (i in 0...animations.length)
 				{
-					animation.addByPrefix(anim.name, anim.prefixName, anim.frames, anim.looped, anim.flip[0], anim.flip[1]);
+					var curAnim = animations[i];
+					if (curAnim != null)
+					{
+						animation.addByPrefix(curAnim.name, curAnim.prefixName, curAnim.frames, curAnim.looped, curAnim.flip[0], curAnim.flip[1]);
+					}
 				}
 			}
 			else

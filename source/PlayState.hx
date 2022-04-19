@@ -1,5 +1,6 @@
 package;
 
+import lime.tools.ApplicationData;
 import flixel.effects.particles.FlxParticle;
 import hscript.Printer;
 import openfl.desktop.Clipboard;
@@ -247,6 +248,8 @@ class PlayState extends MusicBeatState
 
 	var interdimensionBG:BGSprite;
 	var currentInterdimensionBG:String;
+	var nimbiLand:BGSprite;
+	var nimbi:BGSprite;
 
 	// FUCKING UHH particles
 	var _emitter:FlxEmitter;
@@ -854,7 +857,7 @@ class PlayState extends MusicBeatState
 			case 'cheating':
 				credits = 'Notes are scrambled! FUCK you!';
 			case 'exploitation':
-				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "! GO FUCK YOURSELF!";
+				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
 			case 'eletric-cockadoodledoo':
@@ -934,8 +937,10 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/interdimensionVoid');
 				preload('backgrounds/void/interdimensions/spike');
 				preload('backgrounds/void/interdimensions/darkSpace');
-				preload('backgrounds/void/interdimensions/nimbi');
 				preload('backgrounds/void/interdimensions/hexagon');
+				preload('backgrounds/void/interdimensions/nimbi/nimbi');
+				preload('backgrounds/void/interdimensions/nimbi/nimbi_land');
+				preload('backgrounds/void/interdimensions/nimbi/wtf_nimbi');
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, 0, "", 20);
@@ -1169,7 +1174,7 @@ class PlayState extends MusicBeatState
 
 				/*#if desktop
 					var path = Sys.programPath();
-					path = path.substr(0,path.length - 10);
+					path = path.substr(0, CoolSystemStuff.executableFileName().length)
 					var exe_path:String = path + Paths.executable("RunThing");
 					Sys.command(exe_path, [exe_path]); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
 
@@ -1206,7 +1211,7 @@ class PlayState extends MusicBeatState
 						stageName = 'unfairness';
 					case 'interdimension-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
-						bg.setPosition(-700, -200);
+						bg.setPosition(-700, -350);
 						bg.setGraphicSize(Std.int(bg.width * 1.5));
 						interdimensionBG = bg;
 						stageName = 'interdimension';
@@ -1380,28 +1385,36 @@ class PlayState extends MusicBeatState
 		{
 			case 'interdimension-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
-				interdimensionBG.setPosition(-700, -200);
+				interdimensionBG.setPosition(-700, -350);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 1.5));
 			case 'spike-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/spike'));
-				interdimensionBG.setPosition(200, 100);
+				interdimensionBG.setPosition(0, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'darkSpace':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/darkSpace'));
-				interdimensionBG.setPosition(200, 100);
+				interdimensionBG.setPosition(0, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'hexagon-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/hexagon'));
-				interdimensionBG.setPosition(200, 100);
+				interdimensionBG.setPosition(0, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'nimbi-void':
-				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi'));
+				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi/nimbi'));
 				interdimensionBG.setPosition(200, 100);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
-				
-				var land:BGSprite = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi_land'), null, 1, 1, false, true);
-				backgroundSprites.add(land);
-				add(land);
+
+				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
+				backgroundSprites.add(nimbiLand);
+				add(nimbiLand);
+
+				nimbi = new BGSprite('nimbi', 800, 200, 'backgrounds/void/interdimensions/nimbi/wtf_nimbi', 
+				[
+					new Animation('idle', 'holy shit is that dave and boyfriend from fnf funk game this is such a odd situation i was put into', 24, true, [false, false])
+				], 1, 1, false, true);
+				nimbi.animation.play('idle');
+				backgroundSprites.add(nimbi);
+				add(nimbi);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
@@ -1554,13 +1567,15 @@ class PlayState extends MusicBeatState
 					creditsPopup.x = creditsPopup.width * -1;
 					add(creditsPopup);
 
-					FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
+					var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
 					{
 						FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
 						{
 							creditsPopup.destroy();
 						}, startDelay: 3});
 					}});
+
+					tweenList.push(outTween);
 			}
 
 			swagCounter += 1;
@@ -3056,6 +3071,10 @@ class PlayState extends MusicBeatState
 
 			comboSpr.velocity.x += FlxG.random.int(1, 10);
 			add(rating);
+			if (combo >= 10)
+			{
+				add(comboSpr);
+			}
 
 			rating.setGraphicSize(Std.int(rating.width * 0.7));
 			rating.antialiasing = true;
@@ -3638,15 +3657,17 @@ class PlayState extends MusicBeatState
 					case 1152:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('darkSpace');
-						FlxTween.tween(dad, {color: FlxColor.BLUE}, 1);
-						FlxTween.tween(boyfriend, {color: FlxColor.BLUE}, 1);
-						FlxTween.tween(gf, {color: FlxColor.BLUE}, 1);
+						
+						tweenList.push(FlxTween.color(gf, 1, dad.color, FlxColor.BLUE));
+						tweenList.push(FlxTween.color(dad, 1, dad.color, FlxColor.BLUE));
+						bfTween = FlxTween.color(boyfriend, 1, dad.color, FlxColor.BLUE);
 					case 1408:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('hexagon-void');
-						FlxTween.tween(dad, {color: FlxColor.WHITE}, 1);
-						FlxTween.tween(boyfriend, {color: FlxColor.WHITE}, 1);
-						FlxTween.tween(gf, {color: FlxColor.WHITE}, 1);
+
+						tweenList.push(FlxTween.color(dad, 1, dad.color, FlxColor.WHITE));
+						bfTween = FlxTween.color(boyfriend, 1, dad.color, FlxColor.WHITE);
+						tweenList.push(FlxTween.color(gf, 1, dad.color, FlxColor.WHITE));
 					case 1792:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('nimbi-void');

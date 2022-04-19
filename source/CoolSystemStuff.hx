@@ -26,5 +26,10 @@ class CoolSystemStuff
 		// gets appdata temp folder lol
 		return Sys.getEnv("TEMP");
 	}
+	public static function executableFileName()
+	{
+		var programPath = Sys.programPath().split("\\");
+		return programPath[programPath.length - 1];
+	}
 }
 #end

@@ -111,9 +111,13 @@ class MainMenuState extends MusicBeatState
 		FlxKey.E
 	];
 	var lastKeysPressed:Array<FlxKey> = [];
+	var awaitingExploitation:Bool;
+	var rightArrow:FlxText;
+	var leftArrow:FlxText;
 
 	override function create()
 	{
+		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
 		{
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
@@ -159,6 +163,7 @@ class MainMenuState extends MusicBeatState
 		FlxG.camera.follow(camFollow, null, 0.06);
 
 		camFollow.setPosition(640, 150.5);
+
 		for (i in 0...optionShit.length)
 		{
 			var currentOptionShit = optionShit[i];
@@ -172,11 +177,6 @@ class MainMenuState extends MusicBeatState
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set(0, 1);
 			menuItem.antialiasing = true;
-			if (currentOptionShit == 'story mode')
-			{
-				var rightArrow:FlxText = new FlxText(menuItem.x -= 200, menuItem.y, 0, ">>>", 50);
-				var leftArrow:FlxText = new FlxText(menuItem.x += 200, menuItem.y, 0, "<<<", 50);
-			}
 			if (firstStart)
 				FlxTween.tween(menuItem, {y: 60 + (i * 160)}, 1 + (i * 0.25), {
 					ease: FlxEase.expoInOut,
@@ -194,8 +194,46 @@ class MainMenuState extends MusicBeatState
 
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer + " FNF - " + daRealEngineVer + " Engine " + engineVer, 12);
 		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionShit.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
+
+		if (awaitingExploitation)
+		{
+			var goToFreeplay = new FlxText(0, 150, 0, "Go To Freeplay", 50);
+			goToFreeplay.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			goToFreeplay.borderSize = 3;
+			goToFreeplay.antialiasing = true;
+			goToFreeplay.screenCenter(X);
+			goToFreeplay.alpha = 0;
+			goToFreeplay.scrollFactor.set();
+	
+	
+			var blackBorder:FlxSprite = new FlxSprite(goToFreeplay.x, goToFreeplay.y).makeGraphic(Std.int(goToFreeplay.width + 20), Std.int(goToFreeplay.height + 10), FlxColor.BLACK);
+			blackBorder.alpha = 0;
+			blackBorder.scrollFactor.set();
+	
+			add(blackBorder);
+			add(goToFreeplay);
+
+			rightArrow = new FlxText(menuItems.members[1].x - 200, menuItems.members[1].y, 0, ">>>", 50);
+			rightArrow.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER);
+			rightArrow.antialiasing = true;
+			rightArrow.scrollFactor.set(1, 1);
+
+			leftArrow = new FlxText(menuItems.members[1].x + 200, menuItems.members[1].y, 0, "<<<", 50);
+			leftArrow.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER);
+			leftArrow.antialiasing = true;
+			rightArrow.scrollFactor.set(1, 1);
+
+			add(rightArrow);
+			add(leftArrow);
+
+			FlxTween.tween(rightArrow, {alpha: 1}, 1);
+			FlxTween.tween(leftArrow, {alpha: 1}, 1);
+
+			FlxTween.tween(blackBorder, {alpha: 0.7}, 1);
+			FlxTween.tween(goToFreeplay, {alpha: 1}, 1);
+		}
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -206,6 +244,7 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
