@@ -80,9 +80,12 @@ class PauseSubState extends MusicBeatSubstate
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5,
 		onComplete: function(tween:FlxTween)
 		{
-			if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+			switch (PlayState.SONG.song.toLowerCase())
 			{
-				doALittleTrolling(levelDifficulty);
+				case 'exploitation':
+					doALittleTrolling(levelDifficulty);
+				case 'eletric-cockadoodledoo':
+					cockadoodledooTrolling(levelDifficulty);
 			}
 		}});
 
@@ -199,6 +202,28 @@ class PauseSubState extends MusicBeatSubstate
 			difficulty.x = FlxG.width - (difficulty.width + 20);
 
 			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
+		}
+	}
+	function cockadoodledooTrolling(levelDifficulty:FlxText)
+	{
+		var difficultyHeight = levelDifficulty.height;
+		var difficultyWidth = levelDifficulty.width;
+		var amountOfDifficulties = Math.ceil(FlxG.height / difficultyHeight) + Math.ceil(FlxG.width / difficultyWidth);
+
+		for (i in 0...amountOfDifficulties)
+		{
+			var difficulty:FlxText = new FlxText(new FlxRandom().float(levelDifficulty.width, FlxG.width - levelDifficulty.width), 
+			new FlxRandom().float(levelDifficulty.height, FlxG.width - levelDifficulty.height), 0, levelDifficulty.text, 32);
+			difficulty.scrollFactor.set();
+			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
+			difficulty.updateHitbox();
+			add(difficulty);
+
+			difficulty.angle = new FlxRandom().float(0, 180);
+			
+			difficulty.alpha = 0;
+	
+			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.01 * i});
 		}
 	}
 	function changeSelection(change:Int = 0):Void
