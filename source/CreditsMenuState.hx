@@ -51,6 +51,7 @@ class CreditsMenuState extends MusicBeatState
    var mainCam:FlxCamera = new FlxCamera();
    var transitioning:Bool = false;
    var creditsTypeString:String = '';
+   var translatedCreditsType:String = '';
 
    var curSocialMediaSelected:Int = 0;
    var socialButtons:Array<SocialButton> = new Array<SocialButton>();
@@ -410,16 +411,21 @@ class CreditsMenuState extends MusicBeatState
             {
                case Dev:
                   creditsTypeString = 'Developers';
+				  translatedCreditsType = LanguageManager.getTextString('credits_dev');
                case Translator:
                   creditsTypeString = 'Translators';
+				  translatedCreditsType = LanguageManager.getTextString('credits_translator');
                case Contributor:
                   creditsTypeString = 'Contributors';
+				  translatedCreditsType = LanguageManager.getTextString('credits_contributor');
                case BetaTester:
                   creditsTypeString = 'Beta Testers';
+				  translatedCreditsType = LanguageManager.getTextString('credits_betaTester');
                case SpecialThanks:
                   creditsTypeString = 'Special Thanks';
+				  translatedCreditsType = LanguageManager.getTextString('credits_specialThanks');
             }
-            var titleText:FlxText = new FlxText(0, 0, 0, creditsTypeString);
+            var titleText:FlxText = new FlxText(0, 0, 0, translatedCreditsType);
             titleText.setFormat("Comic Sans MS Bold", 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
             titleText.borderSize = 3;
             titleText.borderQuality = 3;

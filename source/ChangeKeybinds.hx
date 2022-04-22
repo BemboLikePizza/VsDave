@@ -77,7 +77,7 @@ class ChangeKeybinds extends MusicBeatState
       bg.scrollFactor.set();
 		add(bg);
 		
-		var tutorial:FlxText = new FlxText(0, 50, FlxG.width / 2, "Select a control & then a keybind", 32);
+		var tutorial:FlxText = new FlxText(0, 50, FlxG.width / 2, LanguageManager.getTextString('keybind_tutorial'), 32);
 		tutorial.screenCenter(X);
 		tutorial.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		tutorial.borderSize = 3;
@@ -253,7 +253,7 @@ class ChangeKeybinds extends MusicBeatState
 		var arrowOffset:Float = 100;
 		var keybindPresetGroup:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 		
-		choosePreset = new FlxText(0, 125, FlxG.width / 2, "Keybind Presets:", 32);
+		choosePreset = new FlxText(0, 125, FlxG.width / 2, LanguageManager.getTextString('keybind_preset'), 32);
 		choosePreset.screenCenter(X);
 		choosePreset.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		choosePreset.borderSize = 2;

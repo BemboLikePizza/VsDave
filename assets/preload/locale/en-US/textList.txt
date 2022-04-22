@@ -1,3 +1,97 @@
+//ANYTHING IN () IS STUFF THAT STILL NEEDS TO BE TRANSLATED!!
+
+// TITLE STATE
+
 // OUTDATED SUBSTATE //
 introWarningFirstPlay==Hello! This mod utilizes shaders that may be of disturbance to some. If you wish to disable these, press N, otherwise press Y. You can change this in options. Also, Supernovae and Glitch are not meant to be taken seriously and are not composed by me. Supernovae is by ArchWk, and Glitch is by The Boneyard.
 introWarningSeen==Hello! This mod utilizes shaders that may be of disturbance to some. If you wish to disable these, turn off the Eyesores option in the options menu. Also, Supernovae and Glitch are not meant to be taken seriously and are not composed by me. Supernovae is by ArchWk, and Glitch is by The Boneyard. Press Enter to continue.
+
+// Main Menu State //
+Story Mode
+Freeplay
+Credits
+Extras
+Options
+
+// Extras Menu State //
+OST
+Discord
+
+// Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
+freeplay_dave==Dave
+freeplay_joke==Joke
+freeplay_extra==Extra
+
+freeplay_personalBest==PERSONAL BEST:
+freeplay_hard==HARD
+freeplay_normal==NORMAL
+freeplay_easy==EASY
+freeplay_finale==FINALE
+freeplay_fucked==YOU'RE FUCKED
+freeplay_lmao==LMAO
+
+// Credits State //
+credits_dev==Developers
+credits_translator==Translators
+credits_contributor==Contributors
+credits_betaTester==Beta Testers
+credits_specialThanks==Special Thanks
+
+// Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
+option_change_keybinds==Change Keybinds
+
+option_ghostTapping_on==Ghost Tapping
+option_ghostTapping_off==No Ghost Tapping
+
+option_downscroll==Downscroll
+option_upscroll==Upscroll
+
+option_songPosition_on==Song Position ON
+option_songPosition_off==Song Position OFF
+
+option_eyesores_enabled==Eyesores Enabled
+option_eyesores_disabled==Eyesores Disabled
+
+option_selfAwareness_on==Self Awareness Enabled
+option_selfAwareness_off==Self Awareness Disabled
+
+option_hitsound_on==Hitsounds On
+option_hitsound_off==Hitsounds Off
+
+option_freeplay_cutscenes_off==Freeplay Cutscenes Off
+option_freeplay_cutscenes_on==Freeplay Cutscenes On
+
+option_noteCamera_on==Camera Movement On Note
+option_noteCamera_off==Normal Camera
+
+cur_language==Current Language
+en-US==English
+es-US==Spanish
+pt-br==Brazilian-Portuguese
+ru-RU==Russian
+
+// Keybind State //
+keybind_tutorial==Select a control and then select a keybind
+keybind_preset==Keybind Presets:
+
+// Story Mode State //
+story_track==Tracks
+story_weekScore==WEEK SCORE:
+story_tutorial==Tutorial
+story_daveWeek==Dave’s Fun Rapping Battle!
+story_bambiWeek==Mr. Bambi’s Fun Corn Maze!
+story_finale==The Finale
+story_festivalWeek==Bambi’s Corn Festival!
+
+// CHARACTER SELECT STATE //
+character_reset==Press R To Reset
+
+// Cool Util / Diffs //
+play_hard==HARD
+play_normal==NORMAL
+play_easy==EASY
+
+// Play State //
+play_score==Score:
+play_miss==Misses:
+play_accuracy==Accuracy:

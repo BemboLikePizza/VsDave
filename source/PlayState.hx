@@ -2171,11 +2171,12 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'overdrive':
-				scoreTxt.text = "score: " + Std.string(songScore);
+				scoreTxt.text = "Score: " + Std.string(songScore);
 			case 'exploitation':
 				scoreTxt.text = "Scor3: " + (songScore * FlxG.random.int(5,9)) + " | M1ss3s: " + (misses * FlxG.random.int(5,9)) + " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
 			default:
-				scoreTxt.text = "Score:" + Std.string(songScore) + " | Misses:" + misses + " | Accuracy:" + truncateFloat(accuracy, 2) + "% ";
+				scoreTxt.text = LanguageManager.getTextString('play_score') + Std.string(songScore) + " | " + LanguageManager.getTextString('play_miss') + 
+				misses + " | " + LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "% ";
 		}
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)

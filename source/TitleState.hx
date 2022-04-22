@@ -72,6 +72,8 @@ class TitleState extends MusicBeatState
 		LanguageManager.init();
 
 		Highscore.load();
+		
+		CoolUtil.init();
 
 		if (FlxG.save.data.weekUnlocked != null)
 		{

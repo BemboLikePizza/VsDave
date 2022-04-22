@@ -46,11 +46,11 @@ class StoryMenuState extends MusicBeatState
 	];
 
 	var weekNames:Array<String> = [
-		"Tutorial",
-		"Dave's Fun Rapping Battle!",
-		"Mr. Bambi's Fun Corn Maze!",
-		"The Finale",
-		"Bambi's Corn Festival!",
+		LanguageManager.getTextString('story_tutorial'), // tutorial
+		LanguageManager.getTextString('story_daveWeek'), //dave week name
+		LanguageManager.getTextString('story_bambiWeek'), // bambi week name
+		LanguageManager.getTextString('story_finale'), // finale week name
+		LanguageManager.getTextString('story_festivalWeek'), // festival week name
 	];
 
 	var txtWeekTitle:FlxText;
@@ -207,7 +207,7 @@ class StoryMenuState extends MusicBeatState
 		add(yellowBG);
 		add(grpWeekCharacters);
 
-		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
+		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, LanguageManager.getTextString('story_track'), 32);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
@@ -227,7 +227,7 @@ class StoryMenuState extends MusicBeatState
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
-		scoreText.text = "WEEK SCORE:" + lerpScore;
+		scoreText.text = LanguageManager.getTextString('story_weekScore') + lerpScore;
 		txtWeekTitle.text = weekNames[curWeek].toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
 

@@ -237,7 +237,7 @@ class CharacterSelectState extends MusicBeatState
 		characterText.antialiasing = true;
 		add(characterText);
 		
-		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, "Press R To Reset");
+		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, LanguageManager.getTextString('character_reset'));
 		resetText.font = 'Comic Sans MS Bold';
 		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		resetText.autoSize = false;

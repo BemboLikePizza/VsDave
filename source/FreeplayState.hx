@@ -43,7 +43,8 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var Catagories:Array<String> = ["Dave", "Joke", "Extra"];
+	private var Catagories:Array<String> = ['Dave', 'Joke', 'Extra'];
+	var translatedCategory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra')];
 
 	private var CurrentPack:Int = 0;
 
@@ -98,7 +99,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...Catagories.length)
 		{
-			var NameAlpha:Alphabet = new Alphabet(40,(FlxG.height / 2) - 282,Catagories[i],true,false);
+			var NameAlpha:Alphabet = new Alphabet(40,(FlxG.height / 2) - 282, translatedCategory[i],true,false);
 			
 			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[i].toLowerCase()), "preload"));
 			CurrentSongIcon.centerOffsets(false);
@@ -141,8 +142,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['House', 'Insanity', 'Polygonized'], 1, ['dave', 'dave', 'dave-angey']);
 				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
-				addWeek(['Shredder', 'Greetings', 'Interdimensional'], 4, ['bambi', 'tristan-festival', 'dave-angey']);
-				addWeek(['Rano'], 1, ['dave']);
+				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi', 'tristan-festival', 'dave-angey', 'dave']]);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
 				if (FlxG.save.data.cheatingFound)
@@ -472,7 +472,7 @@ class FreeplayState extends MusicBeatState
 			lerpScore = intendedScore;
 
 		if (scoreText != null)
-			scoreText.text = "PERSONAL BEST:" + lerpScore;
+			scoreText.text = LanguageManager.getTextString('freeplay_personalBest') + lerpScore;
 	}
 
 	function changeDiff(change:Int = 0)
@@ -502,20 +502,20 @@ class FreeplayState extends MusicBeatState
 		switch (songs[curSelected].week)
 		{
 			case 3:
-				diffText.text = 'FINALE' + " - " + curChar.toUpperCase();
+				diffText.text = LanguageManager.getTextString('freeplay_finale') + " - " + curChar.toUpperCase();
 			case 9:
-				diffText.text = "YOU'RE FUCKED" + " - " + curChar.toUpperCase();
+				diffText.text = LanguageManager.getTextString('freeplay_fucked') + " - " + curChar.toUpperCase();
 			case 10:
-				diffText.text = 'LMAO' + " - " + curChar.toUpperCase();
+				diffText.text = LanguageManager.getTextString('freeplay_lmao') + " - " + curChar.toUpperCase();
 			default:
 				switch (curDifficulty)
 				{
 					case 0:
-						diffText.text = "EASY" + " - " + curChar.toUpperCase();
+						diffText.text = LanguageManager.getTextString('freeplay_easy') + " - " + curChar.toUpperCase();
 					case 1:
-						diffText.text = 'NORMAL' + " - " + curChar.toUpperCase();
+						diffText.text = LanguageManager.getTextString('freeplay_normal') + " - " + curChar.toUpperCase();
 					case 2:
-						diffText.text = "HARD" + " - " + curChar.toUpperCase();
+						diffText.text = LanguageManager.getTextString('freeplay_hard') + " - " + curChar.toUpperCase();
 				}
 		}
 	}

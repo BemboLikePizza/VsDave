@@ -50,12 +50,10 @@ class LanguageManager
       }
       if (returnedString == '')
       {
-         trace(stringName);
          return stringName;
       }
       else
       {
-         trace(returnedString);
          return returnedString;
       }
    }

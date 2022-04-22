@@ -38,23 +38,21 @@ class OptionsMenu extends MusicBeatState
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
 		var curLanguage:String = LanguageManager.save.data.language;
-		if(curLanguage == '')
-		{
-			curLanguage = "en-US";
-		}
 		
 		languages = LanguageManager.getLanguages();
 
-		controlsStrings = CoolUtil.coolStringFile(
-			"Change Keybinds"
-			+ "\n" + (FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping") 
-			+ "\n" + (FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll')
-			+ "\n" + (FlxG.save.data.songPosition ? 'Song Position On' : 'Song Position Off')
-			+ "\n" + (FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled') 
-			+ "\n" + (FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off")
-			+ "\n" + (FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off")
-			+ "\n" + (FlxG.save.data.noteCamera ? "Camera Movement On Note" : "Normal Camera")
-			+ "\n" + 'Current Language ' + LanguageManager.languageFromPathName(curLanguage).langaugeName
+		controlsStrings = CoolUtil.coolStringFile( 
+			LanguageManager.getTextString('change_keybind')
+			+ "\n" + (FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')) 
+			+ "\n" + (FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll'))
+			+ "\n" + (FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off'))
+			+ "\n" + (FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')) 
+			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
+			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
+			+ "\n" + (FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
+			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
+			
+			+ "\n" + LanguageManager.getTextString('cur_language') + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName)
 			);
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -119,35 +117,37 @@ class OptionsMenu extends MusicBeatState
 						{
 							FlxG.switchState(new ChangeKeybinds());
 						});
-						updateGroupControls("Change Keybinds", 0, 'Vertical');
+						updateGroupControls(LanguageManager.getTextString('change_keybind'), 0, 'Vertical');
 					case 1:
 						FlxG.save.data.newInput = !FlxG.save.data.newInput;
-						updateGroupControls((FlxG.save.data.newInput ? "Ghost Tapping" : "No Ghost Tapping"), 1, 'Vertical');	
+						updateGroupControls((FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')), 1, 'Vertical');	
 					case 2:
 						FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
-						updateGroupControls((FlxG.save.data.downscroll ? 'Downscroll' : 'Upscroll'), 2, 'Vertical');
+						updateGroupControls((FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll')), 2, 'Vertical');
 					case 3:
 						FlxG.save.data.songPosition = !FlxG.save.data.songPosition;
-						updateGroupControls((FlxG.save.data.songPosition ? 'Song Position On' : 'Song Position Off'), 3, 'Vertical');	
+						updateGroupControls((FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off')), 3, 'Vertical');	
 					case 4:
 						FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
-						updateGroupControls((FlxG.save.data.eyesores ? 'Eyesores Enabled' : 'Eyesores Disabled'), 4, 'Vertical');	
+						updateGroupControls((FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')), 4, 'Vertical');
 					case 5:
 						FlxG.save.data.selfAwareness = !FlxG.save.data.selfAwareness;
-						updateGroupControls((FlxG.save.data.selfAwareness ? 'Self Awareness Enabled' : 'Self Awareness Disabled'), 5, 'Vertical');
+						updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')), 5, 'Vertical');
 					case 6:
 						FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
-						updateGroupControls((FlxG.save.data.donoteclick ? "Hitsounds On" : "Hitsounds Off"), 6, 'Vertical');	
+						updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');	
 					case 7:
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-						updateGroupControls((FlxG.save.data.freeplayCuts ? "Freeplay Cutscenes On" : "Freeplay Cutscenes Off"), 7, 'Vertical');
+						updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
 					case 8:
 						FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
-						updateGroupControls((FlxG.save.data.noteCamera ? "Camera Movement On Note" : "Normal Camera"), 8, 'Vertical');
+						updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
 					case 9:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						LanguageManager.save.data.language = languages[currentLanguage].pathName;
-						updateGroupControls("Current Language " + languages[currentLanguage].langaugeName, 9, 'Vertical');
+						LanguageManager.save.flush();
+						LanguageManager.init();
+						updateLangaugeTexts();
 				}
 			}
 	}
@@ -202,5 +202,18 @@ class OptionsMenu extends MusicBeatState
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+	}
+	function updateLangaugeTexts()
+	{
+		updateGroupControls(LanguageManager.getTextString('change_keybind'), 0, 'Vertical');
+		updateGroupControls((FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')), 1, 'Vertical');
+		updateGroupControls((FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll')), 2, 'Vertical');
+		updateGroupControls((FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off')), 3, 'Vertical');
+		updateGroupControls((FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')), 4, 'Vertical');
+		updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')), 5, 'Vertical');
+		updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
+		updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
+		updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
+		updateGroupControls(LanguageManager.getTextString('cur_language') + LanguageManager.getTextString(LanguageManager.languageFromPathName(LanguageManager.save.data.language).pathName), 9, 'Vertical');		
 	}
 }

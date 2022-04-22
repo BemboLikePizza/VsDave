@@ -1,3 +1,96 @@
+// TITLE STATE //
+Pressione Enter para Começar
+
 // OUTDATED STATE \\
 introWarningFirstPlay==Olá! Esse mod utiliza shaders que podem ser prejudiciais para alguns. Se você quiser desativar eles, desligue a opção Efeitos no menu de opções. Supernovae e Glitch são músicas que não devem ser levadas a sério e não são produzidas por mim. Supernovae foi feito por ArchWk, e Glitch foi feito por The Boneyard. Pressione Enter para continuar.
 introWarningSeen==Olá! Esse mod utiliza shaders que podem ser prejudiciais para alguns. Se você quiser desativar eles, pressione N, se não quiser, pressione Y. Você pode mudar isso nas opções. Supernovae e Glitch são músicas que não devem ser levadas a sério e não são produzidas por mim. Supernovae foi feito por ArchWk, e Glitch foi feito por The Boneyard. 
+
+// Main Menu State //
+Modo História
+Modo Livre
+Créditos
+Extras
+Opções
+
+// Extras Menu State //
+OST
+Discord
+
+// Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
+freeplay_dave==Dave
+freeplay_joke==Piadas
+freeplay_extra==Extra
+
+freeplay_personalBest==Rec. Pessoal:
+freeplay_hard==Difícil
+freeplay_normal==Normal
+freeplay_easy==Fácil
+freeplay_finale==FINALE
+freeplay_fucked==YOU'RE FUCKED
+freeplay_lmao==LMAO
+
+// Credits State //
+credits_dev==Desenvolvedores
+credits_translator==Tradutores
+credits_contributor==Contribuidores
+credits_betaTester==Beta Testers
+credits_specialThanks==Agradecimentos Especiais
+
+// Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
+option_change_keybinds==Mudar Teclas
+
+option_ghostTapping_on==Ghost Tapping
+option_ghostTapping_off==Sem Ghost Tapping
+
+option_downscroll==Downscroll
+option_upscroll==Upscroll
+
+option_songPosition_on==Posição da Música On
+option_songPosition_off==Posição da Música Off
+
+option_eyesores_enabled==Efeitos Ativados
+option_eyesores_disabled==Efeitos Desativados
+
+option_selfAwareness_on==Self Awareness Enabled
+option_selfAwareness_off==Self Awareness Disabled
+
+option_hitsound_on==Hitsounds Ativos
+option_hitsound_off==Hitsounds Desativados
+
+option_freeplay_cutscenes_off==Freeplay Cutscenes Off
+option_freeplay_cutscenes_on==Freeplay Cutscenes On
+
+option_noteCamera_on==Camera Movement On Note
+option_noteCamera_off==Normal Camera
+
+cur_language==Idioma Atual
+en-US==Inglês
+es-US==Espanhol
+pt-br==Português Brasileiro
+ru-RU==Russian
+
+// Keybind State //
+keybind_tutorial==Selecione um controle e então uma tecla
+keybind_preset==Presets de Teclas:
+
+// Story Mode State // 
+story_track==Faixas
+story_weekScore==Pontuação da Semana:
+story_tutorial==Tutorial
+story_daveWeek==A Divertida Batalha de Rap Contra Dave!
+story_bambiWeek==O Divertido Labirinto de Milho do Sr. Bambi!
+story_finale==O Final
+story_festivalWeek==O Festival de Milho do Bambi!
+
+// CHARACTER SELECT STATE //
+character_reset==Pressione R para Reiniciar
+
+// Cool Util / Diffs //
+play_hard==Difícil
+play_normal==Normal
+play_easy==Fácil
+
+// Play State //
+play_score==Pontuação:
+play_miss==Erros:
+play_accuracy==Precisão:
