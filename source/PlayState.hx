@@ -838,7 +838,7 @@ class PlayState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		add(healthBar);
 
 		var credits:String;
@@ -1389,26 +1389,26 @@ class PlayState extends MusicBeatState
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 1.5));
 			case 'spike-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/spike'));
-				interdimensionBG.setPosition(0, 100);
+				interdimensionBG.setPosition(-200, 200);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'darkSpace':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/darkSpace'));
-				interdimensionBG.setPosition(0, 100);
+				interdimensionBG.setPosition(-200, 200);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'hexagon-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/hexagon'));
-				interdimensionBG.setPosition(0, 100);
+				interdimensionBG.setPosition(-200, 200);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 			case 'nimbi-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi/nimbi'));
-				interdimensionBG.setPosition(200, 100);
+				interdimensionBG.setPosition(-200, 200);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
 
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
 				backgroundSprites.add(nimbiLand);
 				add(nimbiLand);
 
-				nimbi = new BGSprite('nimbi', 800, 200, 'backgrounds/void/interdimensions/nimbi/wtf_nimbi', 
+				nimbi = new BGSprite('nimbi', 1000, 200, 'backgrounds/void/interdimensions/nimbi/wtf_nimbi', 
 				[
 					new Animation('idle', 'holy shit is that dave and boyfriend from fnf funk game this is such a odd situation i was put into', 24, true, [false, false])
 				], 1, 1, false, true);

@@ -142,7 +142,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['House', 'Insanity', 'Polygonized'], 1, ['dave', 'dave', 'dave-angey']);
 				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
-				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi', 'tristan-festival', 'dave-angey', 'dave']]);
+				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi', 'tristan-festival', 'dave-angey', 'dave']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
 				if (FlxG.save.data.cheatingFound)
@@ -159,7 +159,7 @@ class FreeplayState extends MusicBeatState
 			case 'extra':
 				addWeek(['Bonus-Song'], 1, ['dave']);
 				addWeek(['Adventure'], 5, ['tristan']);
-				addWeek(['Bonkers'], 6, ['none']);
+				addWeek(['Bonkers'], 6, ['garrett']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
 				addWeek(['Escape-From-California'], 5, ['none']);
 				addWeek(['Five-Nights'], 2, ['dave']);
@@ -197,29 +197,26 @@ class FreeplayState extends MusicBeatState
 			add(icon);
 		}
 
-		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
-		scoreText.y = -200;
+		scoreText = new FlxText(FlxG.width * 0.7, 0, 0, "", 32);
+		scoreText.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, LEFT);
+		scoreText.y = -225;
 		scoreText.scrollFactor.set();
 
-		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
+		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
-		scoreBG.y = -200;
 		scoreBG.scrollFactor.set();
 		add(scoreBG);
 
-		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
+		diffText = new FlxText(scoreText.x, scoreText.y + 15, 0, "", 24);
 		diffText.font = scoreText.font;
-		diffText.y = -200;
 		diffText.scrollFactor.set();
 
 		add(diffText);
-
 		add(scoreText);
 
 		FlxTween.tween(scoreBG,{y: 0},0.5,{ease: FlxEase.expoInOut});
-		FlxTween.tween(scoreText,{y: 5},0.5,{ease: FlxEase.expoInOut});
-		FlxTween.tween(diffText,{y: 40},0.5,{ease: FlxEase.expoInOut});
+		FlxTween.tween(scoreText,{y: -5},0.5,{ease: FlxEase.expoInOut});
+		FlxTween.tween(diffText,{y: 30},0.5,{ease: FlxEase.expoInOut});
 
 		for (song in 0...grpSongs.length)
 		{
@@ -233,7 +230,6 @@ class FreeplayState extends MusicBeatState
 				canInteract = true;
 			}});
 		}
-		
 
 		changeSelection();
 		changeDiff();
@@ -473,6 +469,17 @@ class FreeplayState extends MusicBeatState
 
 		if (scoreText != null)
 			scoreText.text = LanguageManager.getTextString('freeplay_personalBest') + lerpScore;
+			positionHighscore();
+
+	}
+	function positionHighscore()
+	{
+		scoreText.x = FlxG.width - scoreText.width - 6;
+
+		scoreBG.scale.x = FlxG.width - scoreText.x + 6;
+		scoreBG.x = FlxG.width - (scoreBG.scale.x / 2);
+		diffText.x = Std.int(scoreBG.x + (scoreBG.width / 2));
+		diffText.x -= diffText.width / 2;
 	}
 
 	function changeDiff(change:Int = 0)
