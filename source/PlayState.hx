@@ -88,7 +88,7 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	public var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness'];
+	public var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'garretland i think'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
 	var howManyPlayerNotes:Int = 0;
@@ -439,6 +439,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'house-sunset';
 				case 'eletric-cockadoodledoo':
 					stageCheck = 'banana-hell';
+				case 'bonkers':
+					stageCheck = 'garretland i think';	
 				case 'tutorial':
 					stageCheck = 'stage';
 			}
@@ -1261,6 +1263,29 @@ class PlayState extends MusicBeatState
 
 				stageName = 'kabunga';
 
+
+			case 'garretland i think':
+				bgZoom = 0.6;
+				
+				var bg:BGSprite = new BGSprite('bg', 350, 50, Paths.image('backgrounds/field/nightSky', 'shared'), null, 1.4, 1.4, true, true);
+				bg.setGraphicSize(Std.int(bg.width * 2));
+				sprites.add(bg);
+				add(bg);
+
+				var backGrass:BGSprite = new BGSprite('backGrass', 250, 50, Paths.image('backgrounds/field/grass', 'shared'), null, 1.25, 1.1, true, true);
+				backGrass.setGraphicSize(Std.int(backGrass.width * 1.5));
+				sprites.add(backGrass);
+				add(backGrass);
+
+				var gate:BGSprite = new BGSprite('gate', 100, 200, Paths.image('backgrounds/field/gates', 'shared'), null, 1.05, 1, true, true);
+				gate.setGraphicSize(Std.int(gate.width * 1.5));
+				sprites.add(gate);
+				add(gate);
+
+				var floor:BGSprite = new BGSprite('floor', 100, 200, Paths.image('backgrounds/field/floor', 'shared'), null, 1, 1, true, true);
+				floor.setGraphicSize(Std.int(floor.width * 1.5));
+				sprites.add(floor);
+				add(floor);
 			default:
 				bgZoom = 0.9;
 				stageName = 'stage';
@@ -1311,7 +1336,7 @@ class PlayState extends MusicBeatState
 		var variantColor:FlxColor = FlxColor.WHITE;
 		switch (stage)
 		{
-			case 'bambiFarmNight' | 'daveHouse_night':
+			case 'bambiFarmNight' | 'daveHouse_night' | 'garretland i think':
 				variantColor = nightColor;
 			case 'bambiFarmSunset' | 'daveHouse_sunset':
 				variantColor = sunsetColor;
