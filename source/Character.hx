@@ -654,7 +654,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Down', 24);
 				animation.addByPrefix('singLEFT', 'Left', 24);
 				animation.addByPrefix('pizza', 'PizzasHere', 24);
-	
 				loadOffsetFile(curCharacter);
 		
 				playAnim('idle');
@@ -668,7 +667,6 @@ class Character extends FlxSprite
 	}
 	function loadOffsetFile(character:String)
 	{
-		trace('loading offsetfile of ' + character);
 		var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character));
 		
 		for (offsetText in offsetStuffs)

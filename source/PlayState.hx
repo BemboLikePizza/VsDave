@@ -1,5 +1,7 @@
 package;
 
+import openfl.display.Graphics;
+import flixel.group.FlxSpriteGroup;
 import lime.tools.ApplicationData;
 import flixel.effects.particles.FlxParticle;
 import hscript.Printer;
@@ -144,6 +146,7 @@ class PlayState extends MusicBeatState
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
 
 	public var playerStrums:FlxTypedGroup<FlxSprite>;
+	public var fakePlayerStrums:FlxSpriteGroup;
 	public var dadStrums:FlxTypedGroup<FlxSprite>;
 
 	private var camZooming:Bool = false;
@@ -729,7 +732,7 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset' | 'interdimension':
+			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset' | 'interdimension-void':
 				var sign:BGSprite = addFarmSign(false);
 				add(sign);
 				switch (SONG.song.toLowerCase())
@@ -1014,6 +1017,16 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'exploitation')
 		{
 			modchart = ExploitationModchartType.None;
+			fakePlayerStrums = new FlxSpriteGroup();
+			fakePlayerStrums.screenCenter();
+			playerStrums.forEach(function(spr:FlxSprite)
+			{
+				fakePlayerStrums.add(spr);
+				if (spr.ID == 2)
+				{
+					spr.origin.set(0, -spr.height);
+				}
+			});
 		}
 		super.create();
 
@@ -1390,19 +1403,19 @@ class PlayState extends MusicBeatState
 			case 'spike-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/spike'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
 			case 'darkSpace':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/darkSpace'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
 			case 'hexagon-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/hexagon'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
 			case 'nimbi-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi/nimbi'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
 
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
 				backgroundSprites.add(nimbiLand);
@@ -2085,7 +2098,7 @@ class PlayState extends MusicBeatState
 				spr.x += Math.sin(elapsedtime) * 1.5;
 			});
 		}
-
+		/*
 		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene && mcStarted) // fuck you
 		{
 			switch (modchart)
@@ -2111,7 +2124,7 @@ class PlayState extends MusicBeatState
 					});
 			}
 		}
-
+		*/
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -2124,6 +2137,29 @@ class PlayState extends MusicBeatState
 				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * 2) * 300);
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 			});
+		}
+		if (SONG.song.toLowerCase() == 'exploitation')
+		{
+			var offsetValue = 200;
+			fakePlayerStrums.forEach(function(spr:FlxSprite)
+			{
+				switch (spr.ID)
+				{
+					case 0:
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) - offsetValue;
+						spr.y = ((FlxG.height / 2) - (spr.height / 2));
+					case 1:
+						spr.x = ((FlxG.width / 2) - (spr.width / 2));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + offsetValue;
+					case 2:
+						spr.x = ((FlxG.width / 2) - (spr.width / 2));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) - offsetValue;
+					case 3:
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + offsetValue;
+						spr.y = ((FlxG.height / 2) - (spr.height / 2));
+				}
+				spr.angle += elapsed * 200;
+			}); 
 		}
 		if (tweenList != null && tweenList.length != 0)
 		{
@@ -2274,9 +2310,50 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new AnimationDebug(dad.curCharacter));
 		if (FlxG.keys.justPressed.SIX)
 			FlxG.switchState(new AnimationDebug(boyfriend.curCharacter));
+		if (FlxG.keys.justPressed.TWO) //Go 10 seconds into the future :O
+		{
+			FlxG.sound.music.pause();
+			vocals.pause();
+			boyfriend.stunned = true;
+			Conductor.songPosition += 10000;
+			notes.forEachAlive(function(daNote:Note)
+			{
+				if (daNote.strumTime + 800 < Conductor.songPosition) {
+					daNote.active = false;
+					daNote.visible = false;
+
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+				}
+			});
+			for (i in 0...unspawnNotes.length) 
+			{
+				var daNote:Note = unspawnNotes[0];
+				if (daNote.strumTime + 800 >= Conductor.songPosition) 
+				{
+					break;
+				}
+
+				daNote.active = false;
+				daNote.visible = false;
+
+				daNote.kill();
+				unspawnNotes.splice(unspawnNotes.indexOf(daNote), 1);
+				daNote.destroy();
+			}
+
+			FlxG.sound.music.time = Conductor.songPosition;
+			FlxG.sound.music.play();
+
+			vocals.time = Conductor.songPosition;
+			vocals.play();
+			boyfriend.stunned = false;
+		}
 		if (FlxG.keys.justPressed.THREE)
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
 		#end
+
 		if (startingSong)
 		{
 			if (startedCountdown)
@@ -4467,11 +4544,12 @@ class PlayState extends MusicBeatState
 			case 'bambi':
 				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}
-		add(splitathonCharacterExpression);
 
 		var sign:BGSprite = addFarmSign(true);
 		add(sign);
 		
+		add(splitathonCharacterExpression);
+
 		splitathonCharacterExpression.color = nightColor;
 		splitathonCharacterExpression.canDance = false;
 		splitathonCharacterExpression.playAnim(expression, true);
