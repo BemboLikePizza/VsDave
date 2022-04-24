@@ -254,6 +254,10 @@ class PlayState extends MusicBeatState
 	var nimbiLand:BGSprite;
 	var nimbi:BGSprite;
 
+	var place:BGSprite;
+
+	var stageCheck:String = 'stage';
+
 	// FUCKING UHH particles
 	var _emitter:FlxEmitter;
 
@@ -408,8 +412,6 @@ class PlayState extends MusicBeatState
 			case 'interdimensional':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('interdimensional/interDialogue'));
 		}
-
-		var stageCheck:String = 'stage';
 
 		if(SONG.stage == null)
 		{
@@ -1225,15 +1227,16 @@ class PlayState extends MusicBeatState
 						bg.setGraphicSize(Std.int(bg.width * 3));
 						stageName = 'unfairness';
 					case 'interdimension-void':
-						bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
+						bgZoom = 0.5;
+					    bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 						bg.setPosition(-700, -350);
-						bg.setGraphicSize(Std.int(bg.width * 1.5));
+						bg.setGraphicSize(Std.int(bg.width * 1.75));
 						interdimensionBG = bg;
 						stageName = 'interdimension';
 					case 'banana-hell': // this is a Cockey moment
 						bg.loadGraphic(Paths.image('backgrounds/void/bananaVoid1'));
 						bg.setPosition(-700, -300);
-						bg.setGraphicSize(Std.int(bg.width * 2), Std.int(bg.height * 2));
+						bg.setGraphicSize(Std.int(bg.width * 2.55), Std.int(bg.height * 2));
 						bgZoom = 0.5;
 						weirdBG = bg;
 						stageName = 'banana-land';
@@ -1255,7 +1258,7 @@ class PlayState extends MusicBeatState
 				sprites.add(circle);	
 				add(circle);
 
-				var place:BGSprite = new BGSprite('place', 200, -200, Paths.image('backgrounds/void/exbongo/Place'), null);
+				place = new BGSprite('place', 200, -200, Paths.image('backgrounds/void/exbongo/Place'), null);
 				sprites.add(place);	
 				add(place);
 				
@@ -1424,25 +1427,26 @@ class PlayState extends MusicBeatState
 			case 'interdimension-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 				interdimensionBG.setPosition(-700, -350);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 1.5));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 1.75));
 			case 'spike-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/spike'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 			case 'darkSpace':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/darkSpace'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 			case 'hexagon-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/hexagon'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 			case 'nimbi-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi/nimbi'));
 				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.5));
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
+				nimbiLand.setGraphicSize(Std.int(nimbiLand.width * 2.5));
 				backgroundSprites.add(nimbiLand);
 				add(nimbiLand);
 
@@ -2082,6 +2086,10 @@ class PlayState extends MusicBeatState
 		var tox = -330 -Math.cos((curStep / 9.5)) * 100;
 
 		//welcome to 3d sinning avenue
+        if(stageCheck == 'exbungo-land') {
+			place.y -= (Math.sin(elapsedtime) * 0.4);
+		}
+
 		if(funnyFloatyBoys.contains(dad.curCharacter.toLowerCase()) && canFloat)
 		{
 			if (dad.curCharacter.toLowerCase() == "expunged")
@@ -2194,6 +2202,7 @@ class PlayState extends MusicBeatState
 					tween.percent = FlxG.sound.music.time / tweenTime;
 			}
 		}
+        // no more 3d sinning avenue
 
 		FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
 		if (shakeCam && eyesoreson)
@@ -3794,6 +3803,7 @@ class PlayState extends MusicBeatState
 						remove(dad);
 						dad = new Character(position.x, position.y, 'dave', false);
 						add(dad);
+						iconP2.changeIcon(dad.curCharacter);
 						FlxTween.color(dad, 0.6, dad.color, nightColor);
 						FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
