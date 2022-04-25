@@ -88,7 +88,7 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	public var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'garretland i think'];
+	public var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'johnland i think'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
 	var howManyPlayerNotes:Int = 0;
@@ -442,7 +442,7 @@ class PlayState extends MusicBeatState
 				case 'eletric-cockadoodledoo':
 					stageCheck = 'banana-hell';
 				case 'bonkers':
-					stageCheck = 'garretland i think';	
+					stageCheck = 'johnland i think';	
 				case 'tutorial':
 					stageCheck = 'stage';
 			}
@@ -867,6 +867,8 @@ class PlayState extends MusicBeatState
 				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
+			case 'bonkers':
+				credits = "It's Long Nose John!";
 			case 'eletric-cockadoodledoo':
 				credits = "Song by Cuzsie! (THIS SONG IS NOT CANON)";
 			default:
@@ -1267,7 +1269,7 @@ class PlayState extends MusicBeatState
 				stageName = 'kabunga';
 
 
-			case 'garretland i think':
+			case 'johnland i think':
 				bgZoom = 0.6;
 				
 				var bg:BGSprite = new BGSprite('bg', 350, 50, Paths.image('backgrounds/field/nightSky', 'shared'), null, 1.4, 1.4, true, true);
@@ -1339,7 +1341,7 @@ class PlayState extends MusicBeatState
 		var variantColor:FlxColor = FlxColor.WHITE;
 		switch (stage)
 		{
-			case 'bambiFarmNight' | 'daveHouse_night' | 'garretland i think':
+			case 'bambiFarmNight' | 'daveHouse_night' | 'johnland i think':
 				variantColor = nightColor;
 			case 'bambiFarmSunset' | 'daveHouse_sunset':
 				variantColor = sunsetColor;
