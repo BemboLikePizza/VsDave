@@ -1,0 +1,7 @@
+setfont_normal:dave,3d-scared:ЩО ВІДБУВАЄТЬСЯ
+:dave,3d-scared:ይህ የሆነው ለምንድነው
+distort:dave,3d-scared:โลกยังคงเป็นสามมิติ
+undistort:dave,3d-scared:ستموت
+:dave,3d-scared:ВЕРНУТЬ МЕНЯ К ОБЫЧНОЙ ФОРМЕ
+:dave,3d-scared:나를 다시 데려오려면 그보다 더 많은 일을 해야 할 것입니다
+:bf,confused:Boop bap

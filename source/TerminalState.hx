@@ -170,14 +170,12 @@ class TerminalState extends FlxState
             });
         }
         var glitch:FlxSprite = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-        glitch.frames = Paths.getSparrowAtlas('glitch', 'shared');
-        glitch.animation.addByPrefix('glitchScreen', 'glitch', 15);
+        glitch.frames = Paths.getSparrowAtlas('glitch3', 'shared');
+        glitch.animation.addByPrefix('glitchScreen', 'glitch 3', 15);
         glitch.setGraphicSize(Std.int(glitch.width * 1.5));
         glitch.updateHitbox();
         glitch.animation.play('glitchScreen');
         add(glitch);
-
-        trace("glitch anim pause state is: " + glitch.animation.paused + ", glitch anim's position is" + glitch.getPosition());
         
         FlxG.sound.music.stop();
         FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"), function()

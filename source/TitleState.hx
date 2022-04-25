@@ -70,6 +70,7 @@ class TitleState extends MusicBeatState
 
 		SaveDataHandler.initSave();
 		LanguageManager.init();
+		Paths.init();
 
 		Highscore.load();
 		

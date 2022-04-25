@@ -11,6 +11,14 @@ class Paths
 
 	static var currentLevel:String;
 
+	public static var isLocale:Bool;
+
+
+	static public function init()
+	{
+		isLocale = LanguageManager.save.data.language != 'en-US';
+	}
+
 	static public function setCurrentLevel(name:String)
 	{
 		currentLevel = name.toLowerCase();
@@ -57,7 +65,14 @@ class Paths
 
 	inline static public function txt(key:String, ?library:String)
 	{
-		return getPath('data/$key.txt', TEXT, library);
+		if (!isLocale)
+		{
+			return getPath('data/$key.txt', TEXT, library);
+		}
+		else
+		{
+			return getPath('locale/' + LanguageManager.save.data.language + '/data/$key.txt', TEXT, library);
+		}
 	}
 
 	inline static public function xml(key:String, ?library:String)

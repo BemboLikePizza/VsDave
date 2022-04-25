@@ -1,0 +1,19 @@
+:generic: CHAMADA RECEBIDA DE: DAVE
+:bambi:Hã? Alô?
+:dave,confused: Ei Bambi, eles não estão invadindo.
+:bambi,confused: Que?
+:dave,confused: Eu convidei eles pra cá como uma desculpa por quase transformar o mundo em 3D.
+:bambi: Ok? Como assim?
+:dave,confused: Bambi, escuta-
+:bambi,annoyed: Eu não sei o que você quer dizer, TCHAU!
+:generic: CHAMADA ENCERRADA
+:bambi: Uhhh...
+:bambi: Vocês dois tão usando convite do Dave como desculpa pra roubar milho!?
+:gf,what: Como é?
+:gf,what: Isso não é o que a gente tá querendo fazer de jeito algum!
+:bf,confused: Bee buuhh bi beeen boo bi bayb
+:bambi: Ok, quer saber-
+:bambi: Não vence dessa vez... se não... se não...
+:bambi: Eu vou quebrar meu celular!
+:bambi: É, eu vou quebrar meu celular e você vai ficar de castigo!
+:bf,confused: Bop..

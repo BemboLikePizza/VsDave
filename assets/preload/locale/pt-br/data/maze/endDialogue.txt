@@ -1,0 +1,28 @@
+:bambi,upset:Certo... você venceu..
+:bf:Beep.
+:bambi:Hã?
+:bf,confused:Beephoo bah bee boski ba ska bee bo boop
+:bambi,upset:Ah... me desculpa você aqui pelo Dave mesmo?
+:bambi,upset:Mas o Dave não tá aqui... Como assim?
+:gf,confused:Bem lembrado, o Dave não tá nem aqui!
+:generic:Dave sai do milharal.
+:dave:Opa, cheguei. Foi mal por ter me atrasado.
+:dave:Tristan foi uma dor de levar junto comigo.
+:dave:Ele tava dizendo "Mas Dave, é Sábado, eu não preciso estudar!"
+:tristan:NÃO FALE DE MIM COMO SE EU NÃO ESTIVESSE AQUI!
+:dave,confused:Com todo o respeito do mundo, filho, fica quieto.
+:tristan:MAUZÃO!!!
+:dave:Enfim, ele tá estudando em casa então eu faço as regras.
+:bambi:Oh. Ohhh, ohhhhhh!
+:bambi,annoyed:Então EU QUEBREI MEU CELULAR POR MOTIVO NENHUM!
+:gf,what:Pois é, e eu não faço ideia por quê você achou que isso era uma boa ideia.
+:bambi,upset:EU SOU TÃO BURRO!
+:dave:Relaxa Bambi.. todo mundo comete erros de vez em quando.
+:gf:Enfim, vamos logo começar esse piquenique!
+:gf:Eu até trouxe N&Ns!
+:dave:Eu trouxe Cupcakes de Chocolate com Menta.
+:bambi:Eu trouxe NICE_POP.
+:bf,confused:(O que que são essas comidas?)
+:generic:Todos eventualmente se sentam e fazem um piquenique.
+:generic:Bambi também começa uma guerra de comida do nada, mas isso não tem muito a ver.
+to_black:generic:Continua...

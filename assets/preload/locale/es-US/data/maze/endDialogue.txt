@@ -1,0 +1,28 @@
+:bambi,upset:Como quieras... tu ganas..
+:bf:Beep.
+:bambi:Huh?
+:bf,confused:Beephoo bah bee boski ba ska bee bo boop
+:bambi,upset:Oh... disculpa, tu estas aqui por Dave?
+:bambi,upset:Pero Dave siquiera esta aqui... que dices?
+:gf,confused:Si, Dave no esta aqui!
+:generic:Dave sale del maiz.
+:dave:Hey, ya estoy aqui. Lamento llegar tarde.
+:dave:Tristan fue un dolor de tratar.
+:dave:El decia "Pero Dave, es sabado, no tenemos escuela!"
+:tristan:NO HABLES DE MI COMO SI NO ESTUVIESE AQUI!
+:dave,confused:Con todo el respeto, hijo, silencio.
+:tristan:Eso fue rudo!
+:dave:De todos modos, el es educado en casa, asi que yo hago las reglas.
+:bambi:Oh. Ohhh, ohhhhhh!
+:bambi,annoyed:Asi que, ROMPI MI TELEFONO SIN RAZON!
+:gf,what:Si, no tengo idea de porque pensaste que eso seria buena idea.
+:bambi,upset:SOY TAN ESTUPIDO!
+:dave:Esta bien Bambi.. todos cometemos errores de vez en cuando.
+:gf:Como sea, empezemos este picnic!
+:gf:Miren, incluso traje N&Ns!
+:dave:Yo traje Cupcakes con Chispas de Chocolate y Menta.
+:bambi:Yo traje NICE_POP.
+:bf,confused:(Que demonios son esas comidas?)
+:generic:Todo el mundo se sienta y tienen un picnic.
+:generic:Bambi también comienza una pelea de comida de la nada, pero ese no es el punto.
+to_black:generic:Continuara...

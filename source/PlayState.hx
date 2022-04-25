@@ -88,7 +88,7 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	public var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'garretland i think'];
+	public var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'garrett-land'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
 	var howManyPlayerNotes:Int = 0;
@@ -146,7 +146,6 @@ class PlayState extends MusicBeatState
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
 
 	public var playerStrums:FlxTypedGroup<FlxSprite>;
-	public var fakePlayerStrums:FlxSpriteGroup;
 	public var dadStrums:FlxTypedGroup<FlxSprite>;
 
 	private var camZooming:Bool = false;
@@ -440,7 +439,7 @@ class PlayState extends MusicBeatState
 				case 'eletric-cockadoodledoo':
 					stageCheck = 'banana-hell';
 				case 'bonkers':
-					stageCheck = 'garretland i think';	
+					stageCheck = 'garrett-land';	
 				case 'tutorial':
 					stageCheck = 'stage';
 			}
@@ -1016,19 +1015,9 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 		}
-		if (SONG.song.toLowerCase() == 'exploitation')
+		if (SONG.song.toLowerCase() == 'house')
 		{
 			modchart = ExploitationModchartType.None;
-			fakePlayerStrums = new FlxSpriteGroup();
-			fakePlayerStrums.screenCenter();
-			playerStrums.forEach(function(spr:FlxSprite)
-			{
-				fakePlayerStrums.add(spr);
-				if (spr.ID == 2)
-				{
-					spr.origin.set(0, -spr.height);
-				}
-			});
 		}
 		super.create();
 
@@ -1115,7 +1104,7 @@ class PlayState extends MusicBeatState
 						stageName = 'bambiFarm';
 				}
 	
-				var skyType:String = curStage == 'bambiFarmNight' ? 'sky_night' : curStage == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
+				var skyType:String = stageName == 'bambiFarmNight' ? 'sky_night' : stageName == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 				
 				var bg:BGSprite = new BGSprite('bg', -400, 0, Paths.image('backgrounds/shared/' + skyType), null, 1.4, 1.4);
 				sprites.add(bg);
@@ -1264,8 +1253,9 @@ class PlayState extends MusicBeatState
 				stageName = 'kabunga';
 
 
-			case 'garretland i think':
+			case 'garrett-land':
 				bgZoom = 0.6;
+				stageName = 'garrettLand';
 				
 				var bg:BGSprite = new BGSprite('bg', 350, 50, Paths.image('backgrounds/field/nightSky', 'shared'), null, 1.4, 1.4, true, true);
 				bg.setGraphicSize(Std.int(bg.width * 2));
@@ -1336,7 +1326,7 @@ class PlayState extends MusicBeatState
 		var variantColor:FlxColor = FlxColor.WHITE;
 		switch (stage)
 		{
-			case 'bambiFarmNight' | 'daveHouse_night' | 'garretland i think':
+			case 'bambiFarmNight' | 'daveHouse_night' | 'garrett-land':
 				variantColor = nightColor;
 			case 'bambiFarmSunset' | 'daveHouse_sunset':
 				variantColor = sunsetColor;
@@ -1444,7 +1434,7 @@ class PlayState extends MusicBeatState
 
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
 				backgroundSprites.add(nimbiLand);
-				add(nimbiLand);
+				insert(members.indexOf(dad), nimbiLand);
 
 				nimbi = new BGSprite('nimbi', 1000, 200, 'backgrounds/void/interdimensions/nimbi/wtf_nimbi', 
 				[
@@ -1452,7 +1442,7 @@ class PlayState extends MusicBeatState
 				], 1, 1, false, true);
 				nimbi.animation.play('idle');
 				backgroundSprites.add(nimbi);
-				add(nimbi);
+				insert(members.indexOf(dad), nimbi);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
@@ -2163,10 +2153,10 @@ class PlayState extends MusicBeatState
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 			});
 		}
-		if (SONG.song.toLowerCase() == 'exploitation')
+		if (SONG.song.toLowerCase() == 'house')
 		{
 			var offsetValue = 200;
-			fakePlayerStrums.forEach(function(spr:FlxSprite)
+			playerStrums.forEach(function(spr:FlxSprite)
 			{
 				switch (spr.ID)
 				{

@@ -1,0 +1,24 @@
+:dave,splitathon:Uau! Mandou bem! Mas que tal mais uma-
+:tristan:PAPAI!!! Eu terminei de jogar o joguinho no celular do Bambi! Dá pra gente ir pra casa agora? Tô com sono.
+:dave,confused:Como é QUE É?!
+:bambi,annoyed:EU NUNCA TE DEI PERMISSÃO PRA MEXER NO MEU CELULAR!
+:tristan:MAS É TÃO DIVERTIDO!!!
+:tristan:Você tem esses botões com números, e você pode tocar neles em ordens diferentes pra ouvir coisas diferentes!
+:tristan:O meu favorito de digitar é 190-
+:dave,confused:FILHO! VOCÊ TÁ DE CASTIGO!
+:generic:Tristan começa a chorar.
+:tristan:Por que, papai? É divertido!
+:dave,confused:ESSAS SÃO PESSOAS DE VERDADE!!! Isso também significa que eu vou ficar com o SEU celular. Me dê ele.
+:tristan:Mas pai-
+:dave,confused:Nada de mais. Mê. Dê. Ele.
+:generic:Tristan dá o celular para Dave.
+:dave:Obrigado.
+:dave:Enfim, eu acho que isso é um adeus, Boyfriend. Te vejo por aí!
+:bf:Bap!
+:dave:Maravilhoso! Tristan tem que ir dormir agora, então por hoje é só. Bambi, você precisa dormir no nosso sofá de novo?
+:bambi:Eu posso dormir no celeiro!
+:dave:Uhhhhh... tá bom! Tchauzinho!
+:bambi:Adeus!
+:bf:Bee bee!
+:gf:Até mais!
+to_black:generic:Fim.

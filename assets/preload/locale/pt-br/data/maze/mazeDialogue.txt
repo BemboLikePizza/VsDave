@@ -1,0 +1,31 @@
+:bambi,upset:Meu celular...
+:bambi,upset:Olha o que vocês fizeram!
+:bambi,annoyed:Vocês não sabem o tamanho da encrenca que vocês me meteram!!
+:bambi,annoyed:Vocês dois vão morrer!
+:gf,what:Huh?
+:generic: CHAMADA RECEBIDA DE: DAVE
+:dave,confused: Bambi! Eu te comprei esse celular três horas atrás!
+:bambi,annoyed: EU QUEBREI CELULAR!
+:bambi,annoyed: PORQUE ELES TÃO TENTANDO ROUBAR MILHO!
+:dave,confused: Como é?
+:bf,confused: Beep.
+:dave,confused: Eu só mandei eles pra cá como desculpas por quase destruir o mundo, não é nada desse papo de invasão.
+:bambi: Que?
+:dave,confused: Dá só pra você deixar eles em paz?
+:bambi,upset: Cê mentindo? Seu mentiroso!
+:dave,confused: Não, eu te juro que não tô mentindo Bambi.
+:bambi,annoyed: NÃO VOCÊ MENTIROSO!!
+:generic: CHAMADA ENCERRADA
+:bambi,annoyed: Já chega, já chega!
+:bf: Beep boop bap skdoop
+:bambi,annoyed: vocês dois vão morrer!
+:bambi,annoyed: Eu não ligo se tô cansado, eu não ligo se tô entediado.
+:bambi,annoyed: Eu vou ficar aqui o dia todo e eu vou acabar com você sua vida!
+:bambi,upset: Mais uma música... Se você vencer, E-eu, uhh..
+:bf,confused: Beep?
+:bambi,upset: Eu acho que fica empatado.
+:bambi: Cê tá pronto?
+:bf,ready: Bess
+:bambi: ENTÃO VAMO LÁ SEU IDIOTA!
+:gf,what: -suspiro-
+:gf,what: Vou ter que adicionar essa pra lista de terceiras músicas difíceis que eu fiz...

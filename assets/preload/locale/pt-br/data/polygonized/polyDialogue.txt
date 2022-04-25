@@ -1,0 +1,7 @@
+setfont_code:dave,3d-scared:O QUE
+:dave,3d-scared:O QUE TÁ ACONTECENDO
+distort:dave,3d-scared:O MUNDO ESTÁ VIRANDO TRIDIMENSIONAL
+undistort:dave,3d-scared:O LABORATÓRIO DE NOVO NÃO
+:dave,3d-scared:POR FAVOR ME AJUDE A VIRAR 2D
+:dave,3d-scared:PEGUE O MICROFONE E ME RESTAURE AO FORMATO DESSA REALIDADE
+setfont_normal:bf,confused:B-beep..?

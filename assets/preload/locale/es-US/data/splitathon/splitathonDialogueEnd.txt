@@ -1,0 +1,24 @@
+:dave,splitathon:Wow! Que buen rap! que tal otr-
+:tristan:PAPI!!! He terminado de jugar el juego que esta en el teléfono de Bambi! ¿Podemos irnos a casa ahora? Estoy cansado.
+:dave,confused:Que estabas haciendo QUE?!
+:bambi,annoyed:NUNCA TE DIJE QUE TE PERMITIA USAR MI CELULAR!
+:tristan:PERO ES MUY DIVERTIDO!!!
+:tristan:Tienes estos botones en forma de numericos, y puedes ordernalos en diferentes maneras para escuchar diferentes cosas!
+:tristan:Mi favorito es el 911-
+:dave,confused:HIJO! ESTAS CASTIGADO!
+:generic:Tristan empieza a llorar
+:tristan:Porque, papi? es divertido!
+:dave,confused:¡SON PERSONAS REALES!!! Esto también significa que te quitaré el teléfono. Entrégamelo.
+:tristan:Pero pa-
+:dave,confused:Sin peros. Entregamelo.
+:generic:Tristan le entrega el telefono a Dave.
+:dave:Gracias.
+:dave:Como sea, supongo que esto es el final, Boyfriend. Te veo despues!
+:bf:Bap!
+:dave:¡Perfecto! Tristan tiene que irse a la cama ahora, así que nos iremos. Bambi, ¿necesitas dormir en nuestro sofá esta noche?
+:bambi:No te preocupes, puedo dormir en el granero!
+:dave:Errrrr... ok? Bye bye!
+:bambi:Bye bye!
+:bf:Bee bee!
+:gf:Nos vemos!
+to_black:generic:El Fin.

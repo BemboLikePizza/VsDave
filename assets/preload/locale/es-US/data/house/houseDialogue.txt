@@ -1,0 +1,6 @@
+setfont_normal:generic:Aquí tenemos a Dave, centrandose en sus asuntos...
+:bf: beb 
+:dave: Espera, quienes son ustedes dos?
+:dave: Oh, dame un segundo! los vi hace un par de dias!
+:bf: beep bop
+:dave: Oh, quieres cantar? bueno, vamos entonces!

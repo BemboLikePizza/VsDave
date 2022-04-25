@@ -1,0 +1,6 @@
+setfont_normal:generic:Aqui temos o Dave, que está de boa, só na sua...
+:bf: beb 
+:dave: Espera, quem são vocês dois?
+:dave: Ah sim! Eu vi vocês alguns dias atrás!
+:bf: beep bop
+:dave: Oh, você quer cantar? Beleza, vamos lá então!

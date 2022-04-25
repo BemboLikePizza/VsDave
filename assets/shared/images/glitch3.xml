@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="glitch3.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="glitch 300.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 301.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 302.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 303.gif" x="965" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 304.gif" x="1930" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 305.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 306.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 307.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 308.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 309.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 310.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 311.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 312.gif" x="2895" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 313.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 314.gif" x="3860" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 315.gif" x="4825" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 316.gif" x="5790" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 317.gif" x="6755" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 318.gif" x="0" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 319.gif" x="965" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 320.gif" x="1930" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 321.gif" x="2895" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 322.gif" x="3860" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 323.gif" x="4825" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 324.gif" x="5790" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 325.gif" x="6755" y="545" width="960" height="540"/>
+	<SubTexture name="glitch 326.gif" x="0" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 327.gif" x="965" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 328.gif" x="1930" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 329.gif" x="2895" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 330.gif" x="3860" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 331.gif" x="4825" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 332.gif" x="5790" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 333.gif" x="6755" y="1090" width="960" height="540"/>
+	<SubTexture name="glitch 334.gif" x="0" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 335.gif" x="965" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 336.gif" x="1930" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 337.gif" x="2895" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 338.gif" x="3860" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 339.gif" x="4825" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 340.gif" x="5790" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 341.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 342.gif" x="6755" y="1635" width="960" height="540"/>
+	<SubTexture name="glitch 343.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 344.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 345.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 346.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 347.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 348.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 349.gif" x="0" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch 350.gif" x="965" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch 351.gif" x="1930" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch 352.gif" x="2895" y="2180" width="960" height="540"/>
+	<SubTexture name="glitch 353.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 354.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 355.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 356.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 357.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 358.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 359.gif" x="0" y="0" width="960" height="540"/>
+	<SubTexture name="glitch 360.gif" x="0" y="0" width="960" height="540"/>
+</TextureAtlas>
