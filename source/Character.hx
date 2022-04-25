@@ -531,14 +531,14 @@ class Character extends FlxSprite
 	
 				antialiasing = false;
 
-			case 'garrett':
-				frames = Paths.getSparrowAtlas('characters/Garrett', 'shared');
+			case 'longnosejohn':
+				frames = Paths.getSparrowAtlas('characters/longnosejohn', 'shared');
 
-				animation.addByPrefix('idle', 'Garrett idle', 24, false);
-				animation.addByPrefix('singLEFT', 'Garrett left', 24, false);
-				animation.addByPrefix('singUP', 'Garrett up', 24, false);
-				animation.addByPrefix('singDOWN', 'Garrett down', 24, false);
-				animation.addByPrefix('singRIGHT', 'Garrett right', 24, false);
+				animation.addByPrefix('idle', 'longnosejohn idle', 24, false);
+				animation.addByPrefix('singLEFT', 'longnosejohn left', 24, false);
+				animation.addByPrefix('singUP', 'longnosejohn up', 24, false);
+				animation.addByPrefix('singDOWN', 'longnosejohn down', 24, false);
+				animation.addByPrefix('singRIGHT', 'longnosejohn right', 24, false);
 
 				playAnim('idle');
 

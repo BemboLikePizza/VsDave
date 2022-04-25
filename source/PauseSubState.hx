@@ -208,7 +208,7 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		var difficultyHeight = levelDifficulty.height;
 		var difficultyWidth = levelDifficulty.width;
-		var amountOfDifficulties = Math.ceil(FlxG.height / difficultyHeight) + Math.ceil(FlxG.width / difficultyWidth);
+		var amountOfDifficulties = 247;
 
 		for (i in 0...amountOfDifficulties)
 		{
