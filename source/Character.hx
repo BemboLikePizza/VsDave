@@ -113,7 +113,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "RETRY CONFIRM", 24, false);
 				animation.play('firstDeath');
-
 				loadOffsetFile(curCharacter);
 
 				playAnim('firstDeath');

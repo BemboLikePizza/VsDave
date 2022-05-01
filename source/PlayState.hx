@@ -951,13 +951,11 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/nimbi/wtf_nimbi');
 		}
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, 0, "", 20);
-		//scoreTxt.x = healthBarBG.x + healthBarBG.width / 2;
-		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("opensans.ttf") : Paths.font("comic.ttf"), 20, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt = new FlxText(FlxG.width / 2, healthBarBG.y + 40, 0, "", 20);
+		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("opensans.ttf") : Paths.font("comic.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
 		scoreTxt.antialiasing = true;
-		scoreTxt.screenCenter(X);
 
 		if (SONG.song.toLowerCase() == "overdrive")
 		{
@@ -1618,39 +1616,40 @@ class PlayState extends MusicBeatState
 	}
 
 	function playCutscene(name:String)
-		{
-			inCutscene = true;
-			FlxG.sound.music.stop();
-	
-			video = new MP4Handler();
-			video.finishCallback = function()
-			{
-				switch(curSong.toLowerCase()){
-					case 'house':
-						var doof:DialogueBox = new DialogueBox(false, dialogue);
-						// doof.x += 70;
-						// doof.y = FlxG.height * 0.5;
-						doof.scrollFactor.set();
-						doof.finishThing = startCountdown;
-						schoolIntro(doof);
-					default:
-						startCountdown();
-				}
-			}
-			video.playVideo(Paths.video(name));
-		}
-	
-		function playEndCutscene(name:String)
-		{
-			inCutscene = true;
+	{
+		inCutscene = true;
+		FlxG.sound.music.stop();
 
-			video = new MP4Handler();
-			video.finishCallback = function()
+		video = new MP4Handler();
+		video.finishCallback = function()
+		{
+			switch (curSong.toLowerCase())
 			{
-				LoadingState.loadAndSwitchState(new PlayState());
+				case 'house':
+					var doof:DialogueBox = new DialogueBox(false, dialogue);
+					// doof.x += 70;
+					// doof.y = FlxG.height * 0.5;
+					doof.scrollFactor.set();
+					doof.finishThing = startCountdown;
+					schoolIntro(doof);
+				default:
+					startCountdown();
 			}
-			video.playVideo(Paths.video(name));
 		}
+		video.playVideo(Paths.video(name));
+	}
+
+	function playEndCutscene(name:String)
+	{
+		inCutscene = true;
+
+		video = new MP4Handler();
+		video.finishCallback = function()
+		{
+			LoadingState.loadAndSwitchState(new PlayState());
+		}
+		video.playVideo(Paths.video(name));
+	}
 
 	var previousFrameTime:Int = 0;
 	var lastReportedPlayheadPosition:Int = 0;
@@ -1892,7 +1891,7 @@ class PlayState extends MusicBeatState
 					}
 		
 					babyArrow.animation.play('static');
-					babyArrow.x += 50;
+					babyArrow.x += 78;
 					babyArrow.x += ((FlxG.width / 2) * player);
 		
 					strumLineNotes.add(babyArrow);
