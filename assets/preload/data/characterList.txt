@@ -15,6 +15,7 @@ bambi-splitathon
 bambi-angey
 tristan
 tristan-golden
+tristan-golden-glowing
 tristan-festival
 bambi-3d
 bambi-unfair

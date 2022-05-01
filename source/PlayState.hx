@@ -88,7 +88,7 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	public var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'johnland i think'];
+	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'johnland i think'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
 	var howManyPlayerNotes:Int = 0;
@@ -630,7 +630,14 @@ class PlayState extends MusicBeatState
 		{
 			dad.color = nightColor;
 			gf.color = nightColor;
-			boyfriend.color = nightColor;
+			if (formoverride != 'tristan-golden') {
+			    boyfriend.color = nightColor;
+			}
+		}
+
+		if (darkLevels.contains(curStage) && formoverride == 'tristan-golden') {
+			formoverride == 'tristan-golden-glowing';
+			trace('oh my omg he glowing');
 		}
 
 		if (sunsetLevels.contains(curStage))
@@ -3575,7 +3582,7 @@ class PlayState extends MusicBeatState
 			health += 0.023;
 			
 			
-			if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
+			if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" && formoverride != 'tristan-golden-glowing')
 			{
 				boyfriend.color = nightColor;
 			}
