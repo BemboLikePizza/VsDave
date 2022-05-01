@@ -11,12 +11,15 @@ class Paths
 
 	static var currentLevel:String;
 
-	public static var isLocale:Bool;
+	public static var isLocale:Bool = false;
 
 
 	static public function init()
 	{
-		isLocale = LanguageManager.save.data.language != 'en-US';
+		if (LanguageManager.save.data.language != 'en-US')
+		{
+			isLocale = true;
+		}
 	}
 
 	static public function setCurrentLevel(name:String)
