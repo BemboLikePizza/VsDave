@@ -11,15 +11,13 @@ class Paths
 
 	static var currentLevel:String;
 
-	public static var isLocale:Bool = false;
-
-
-	static public function init()
+	static public function isLocale():Bool
 	{
 		if (LanguageManager.save.data.language != 'en-US')
 		{
-			isLocale = true;
+			return true;
 		}
+		return false;
 	}
 
 	static public function setCurrentLevel(name:String)
@@ -68,7 +66,7 @@ class Paths
 
 	inline static public function txt(key:String, ?library:String)
 	{
-		if (!isLocale)
+		if (!isLocale())
 		{
 			return getPath('data/$key.txt', TEXT, library);
 		}

@@ -1,4 +1,5 @@
 package;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxSprite;
 
 using StringTools;
@@ -35,5 +36,17 @@ class BGSprite extends FlxSprite
 		this.antialiasing = antialiasing;
 		scrollFactor.set(scrollX, scrollY);
 		this.active = active;
+	}
+	public static function getBGSprite(spriteGroup:FlxTypedGroup<BGSprite>, spriteName:String):BGSprite
+	{
+		
+		for (bgSprite in spriteGroup.members)
+		{
+			if (bgSprite.spriteName == spriteName)
+			{
+				return bgSprite;
+			}
+		}
+		return null;
 	}
 }

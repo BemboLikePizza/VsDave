@@ -598,12 +598,15 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+			if (darkLevels.contains(curStage) && formoverride == 'tristan-golden')
+			{
+				formoverride = 'tristan-golden-glowing';
+			}
 			boyfriend = new Boyfriend(770, 450, formoverride);
 		}
-
 		switch (boyfriend.curCharacter)
 		{
-			case "tristan" | 'tristan-golden' | 'tristan-festival':
+			case "tristan" | 'tristan-golden' | 'tristan-festival' | 'tristan-golden-glowing':
 				boyfriend.y = 100 + 325;
 				boyfriendOldIcon = 'tristan';
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
@@ -625,19 +628,13 @@ class PlayState extends MusicBeatState
 				boyfriend.y = 100 + 450;
 				boyfriendOldIcon = 'bambi-old';
 		}
-
 		if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
 		{
 			dad.color = nightColor;
 			gf.color = nightColor;
-			if (formoverride.toLowerCase() != 'tristan-golden') {
+			if (!formoverride.startsWith('tristan-golden')) {
 			    boyfriend.color = nightColor;
 			}
-		}
-
-		if (darkLevels.contains(curStage) && formoverride.toLowerCase() == 'tristan-golden') {
-			formoverride == 'tristan-golden-glowing';
-			trace('oh my omg he glowing');
 		}
 
 		if (sunsetLevels.contains(curStage))
@@ -716,7 +713,7 @@ class PlayState extends MusicBeatState
 						boyfriend.y -= 100;
 					case 'bambi-old':
 						boyfriend.y -= 150;
-					case 'tristan' | 'tristan-golden' | 'tristan-festival':
+					case 'tristan' | 'tristan-golden' | 'tristan-festival' | 'tristan-golden-glowing':
 						boyfriend.y -= 100;
 					case 'bambi-unfair':
 						boyfriend.y -= 50;
@@ -739,7 +736,6 @@ class PlayState extends MusicBeatState
 			dad.x -= 600;
 		}
 	
-
 		switch (curStage)
 		{
 			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset' | 'interdimension-void':
@@ -757,7 +753,6 @@ class PlayState extends MusicBeatState
 						revertedBG.add(sign);
 				}
 		}
-		
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
 			health = 2;
@@ -3803,7 +3798,10 @@ class PlayState extends MusicBeatState
 						add(dad);
 						iconP2.changeIcon(dad.curCharacter);
 						FlxTween.color(dad, 0.6, dad.color, nightColor);
-						FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
+						if (formoverride != 'tristan-golden-glowing')
+						{
+							FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
+						}
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
 						
@@ -4387,7 +4385,10 @@ class PlayState extends MusicBeatState
 						dad = new Character(position.x, position.y, 'dave', false);
 						add(dad);
 						FlxTween.color(dad, 0.6, dad.color, nightColor);
-						FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
+						if (formoverride != 'tristan-golden-glowing')
+						{
+							FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
+						}
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
 				}
@@ -4538,8 +4539,9 @@ class PlayState extends MusicBeatState
 	{
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
 		remove(dad);
+		
 		dad = new Character(100, 100, char);
-		add(dad);
+		insert(members.indexOf(BGSprite.getBGSprite(backgroundSprites, 'sign')), dad);
 		dad.color = nightColor;
 		switch (dad.curCharacter)
 		{
@@ -4554,10 +4556,6 @@ class PlayState extends MusicBeatState
 					dad.y += 450;
 				}
 		}
-
-		var sign:BGSprite = addFarmSign(true);
-		add(sign);
-
 		boyfriend.stunned = false;
 		
 	}
@@ -4577,11 +4575,7 @@ class PlayState extends MusicBeatState
 			case 'bambi':
 				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}
-
-		var sign:BGSprite = addFarmSign(true);
-		add(sign);
-		
-		add(splitathonCharacterExpression);
+		insert(members.indexOf(BGSprite.getBGSprite(backgroundSprites, 'sign')), splitathonCharacterExpression);
 
 		splitathonCharacterExpression.color = nightColor;
 		splitathonCharacterExpression.canDance = false;
