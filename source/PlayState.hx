@@ -262,7 +262,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-		if (SONG.song.toLowerCase() == "greetings" || SONG.song.toLowerCase() == "adventure" && characteroverride.toLowerCase() == "tristan")
+		if (SONG.song.toLowerCase() == "greetings" && characteroverride.toLowerCase() == "tristan" || SONG.song.toLowerCase() == "adventure" && characteroverride.toLowerCase() == "tristan")
 		{
 			var poop:String = Highscore.formatSong("confronting-yourself", 1);
 
@@ -630,12 +630,12 @@ class PlayState extends MusicBeatState
 		{
 			dad.color = nightColor;
 			gf.color = nightColor;
-			if (formoverride != 'tristan-golden') {
+			if (formoverride.toLowerCase() != 'tristan-golden') {
 			    boyfriend.color = nightColor;
 			}
 		}
 
-		if (darkLevels.contains(curStage) && formoverride == 'tristan-golden') {
+		if (darkLevels.contains(curStage) && formoverride.toLowerCase() == 'tristan-golden') {
 			formoverride == 'tristan-golden-glowing';
 			trace('oh my omg he glowing');
 		}
