@@ -66,7 +66,6 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/' + file, type, library);
-			trace("trying to get locale file, here's path: " + langaugeReturnPath);
 			if (FileSystem.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
@@ -88,7 +87,6 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/data/$key.txt', TEXT, library);
-			trace("trying to get locale text, here's path: " + langaugeReturnPath);
 			if (FileSystem.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
@@ -150,7 +148,6 @@ class Paths
 		if (isLocale())
 		{
 			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/images/$key.png', IMAGE, library);
-			trace("trying to get locale image, here's path: " + langaugeReturnPath);
 			if (FileSystem.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;
