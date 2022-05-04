@@ -31,13 +31,14 @@ class OptionsMenu extends MusicBeatState
 
 	var languages:Array<Language> = new Array<Language>();
 	var currentLanguage:Int = 0;
+	var curLanguage:String = LanguageManager.save.data.language;
 	override function create()
 	{
 		#if desktop
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
-		var curLanguage:String = LanguageManager.save.data.language;
+		
 		
 		languages = LanguageManager.getLanguages();
 
@@ -51,7 +52,6 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
 			+ "\n" + (FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
 			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
-			
 			+ "\n" + LanguageManager.getTextString('cur_language') + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName)
 			);
 		menuBG.color = 0xFFea71fd;
@@ -145,9 +145,9 @@ class OptionsMenu extends MusicBeatState
 					case 9:
 						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
 						LanguageManager.save.data.language = languages[currentLanguage].pathName;
+						updateGroupControls(LanguageManager.getTextString('cur_language') + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName), 8, 'Vertical');
 						LanguageManager.save.flush();
 						LanguageManager.init();
-						updateLangaugeTexts();
 				}
 			}
 	}
@@ -202,18 +202,5 @@ class OptionsMenu extends MusicBeatState
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
-	}
-	function updateLangaugeTexts()
-	{
-		updateGroupControls(LanguageManager.getTextString('change_keybind'), 0, 'Vertical');
-		updateGroupControls((FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')), 1, 'Vertical');
-		updateGroupControls((FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll')), 2, 'Vertical');
-		updateGroupControls((FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off')), 3, 'Vertical');
-		updateGroupControls((FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')), 4, 'Vertical');
-		updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')), 5, 'Vertical');
-		updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
-		updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
-		updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
-		updateGroupControls(LanguageManager.getTextString('cur_language') + LanguageManager.getTextString(LanguageManager.languageFromPathName(LanguageManager.save.data.language).pathName), 9, 'Vertical');		
 	}
 }

@@ -262,13 +262,11 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-		if (SONG.song.toLowerCase() == "greetings" && characteroverride.toLowerCase() == "tristan" || SONG.song.toLowerCase() == "adventure" && characteroverride.toLowerCase() == "tristan")
+		if ((SONG.song.toLowerCase() == "greetings" || SONG.song.toLowerCase() == "adventure") && characteroverride.toLowerCase() == "tristan")
 		{
-			var poop:String = Highscore.formatSong("confronting-yourself", 1);
+			var poop:String = Highscore.formatSong("Confronting-Yourself", 1);
 
-			trace(poop);
-
-			SONG = Song.loadFromJson(poop, "confronting-yourself");
+			SONG = Song.loadFromJson(poop, "Confronting-Yourself");
 			isStoryMode = false;
 			storyDifficulty = 1;
 
@@ -422,7 +420,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
 					stageCheck = 'farm';
-				case 'splitathon' | 'mealie' | 'shredder' | 'greetings' | 'confronting-yourself':
+				case 'splitathon' | 'mealie' | 'shredder' | 'greetings' | 'confronting-yourself' | 'rano':
 					stageCheck = 'farm-night';
 				case 'cheating':
 					stageCheck = 'green-void';
@@ -574,8 +572,8 @@ class PlayState extends MusicBeatState
 				dad.y += 400;
 
 			case 'bambi-new':
-				dad.y += 370;
-				dad.x += 150;
+				dad.y += 450;
+				dad.x += 200;
 
 			case 'bambi-splitathon':
 				dad.x += 175;

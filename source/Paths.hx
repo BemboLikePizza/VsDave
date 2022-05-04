@@ -1,5 +1,6 @@
 package;
 
+import sys.FileSystem;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.AssetType;
@@ -61,18 +62,45 @@ class Paths
 
 	inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
 	{
-		return getPath(file, type, library);
+		var defaultReturnPath = getPath(file, type, library);
+		if (isLocale())
+		{
+			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/' + file, type, library);
+			trace("trying to get locale file, here's path: " + langaugeReturnPath);
+			if (FileSystem.exists(langaugeReturnPath))
+			{
+				return langaugeReturnPath;
+			}
+			else
+			{
+				return defaultReturnPath;
+			}
+		}
+		else
+		{
+			return defaultReturnPath;
+		}
 	}
 
 	inline static public function txt(key:String, ?library:String)
 	{
-		if (!isLocale())
+		var defaultReturnPath = getPath('data/$key.txt', TEXT, library);
+		if (isLocale())
 		{
-			return getPath('data/$key.txt', TEXT, library);
+			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/data/$key.txt', TEXT, library);
+			trace("trying to get locale text, here's path: " + langaugeReturnPath);
+			if (FileSystem.exists(langaugeReturnPath))
+			{
+				return langaugeReturnPath;
+			}
+			else
+			{
+				return defaultReturnPath;
+			}
 		}
 		else
 		{
-			return getPath('locale/' + LanguageManager.save.data.language + '/data/$key.txt', TEXT, library);
+			return defaultReturnPath;
 		}
 	}
 
@@ -118,7 +146,24 @@ class Paths
 
 	inline static public function image(key:String, ?library:String)
 	{
-		return getPath('images/$key.png', IMAGE, library);
+		var defaultReturnPath = getPath('images/$key.png', IMAGE, library);
+		if (isLocale())
+		{
+			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/images/$key.png', IMAGE, library);
+			trace("trying to get locale image, here's path: " + langaugeReturnPath);
+			if (FileSystem.exists(langaugeReturnPath))
+			{
+				return langaugeReturnPath;
+			}
+			else
+			{
+				return defaultReturnPath;
+			}
+		}
+		else
+		{
+			return defaultReturnPath;
+		}
 	}
 
 	inline static public function executable(key:String, ?library:String)

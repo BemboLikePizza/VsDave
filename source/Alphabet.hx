@@ -327,7 +327,7 @@ class AlphaCharacter extends FlxSprite
 			case "~":
 				animation.addByPrefix(letter, '~ bold', 24);
 			default:
-				animation.addByPrefix(letter, 'bold ' + letter, 24);
+				
 		}
 		animation.play(letter);
 		updateHitbox();
@@ -357,7 +357,7 @@ class AlphaCharacter extends FlxSprite
 		animation.play(letter);
 		if (invert)
 		{
-		this.shader = new InvertShader();
+			this.shader = new InvertShader();
 		}
 
 		updateHitbox();

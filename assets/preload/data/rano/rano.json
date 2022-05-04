@@ -2,6 +2,18 @@
 	"song": {
 		"sectionLengths": [],
 		"player1": "bf",
+		"events": [
+			[
+				55384.6153846154,
+				[
+					[
+						"Replace stage layer",
+						"backyardnight",
+						"backyard"
+					]
+				]
+			]
+		],
 		"gfVersion": "gf",
 		"player2": "dave",
 		"notes": [
@@ -6616,9 +6628,9 @@
 		"song": "Rano",
 		"sections": 1,
 		"needsVoices": true,
-		"stage": "house-night",
+		"stage": "farm-night",
 		"validScore": true,
 		"bpm": 104,
-		"speed": 3.2
+		"speed": 3.1
 	}
 }
