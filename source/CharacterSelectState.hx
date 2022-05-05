@@ -80,6 +80,8 @@ class CharacterSelectState extends MusicBeatState
 	var currentSelectedCharacter:CharacterInSelect;
 
 	var noteMsTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
+
+	var arrows:Array<FlxSprite> = [];
 	
 	public var characters:Array<CharacterInSelect> = 
 	[
@@ -150,14 +152,6 @@ class CharacterSelectState extends MusicBeatState
 		}
 		currentSelectedCharacter = characters[current];
 
-		if (isDebug)
-		{
-			for (character in characters)
-			{
-				unlockCharacter(character.name); //unlock everyone
-			}
-		}
-
 		if (PlayState.SONG.song.toLowerCase() == "exploitation")
 			FlxG.sound.playMusic(Paths.music("badEnding"), 1, true);
 		else
@@ -213,8 +207,8 @@ class CharacterSelectState extends MusicBeatState
 
 		strummies = new FlxTypedGroup<FlxSprite>();
 		strummies.cameras = [camHUD];
+		
 		add(strummies);
-	
 		generateStaticArrows(false);
 		
 		notemodtext = new FlxText((FlxG.width / 3.5) + 80, 40, 0, "1.00x       1.00x        1.00x       1.00x", 30);
@@ -259,6 +253,19 @@ class CharacterSelectState extends MusicBeatState
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
 		add(tutorialThing);
+
+		var arrowLeft:FlxSprite = new FlxSprite(5,0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
+		arrowLeft.screenCenter(Y);
+		arrowLeft.scrollFactor.set();
+		arrows[0] = arrowLeft;
+		add(arrowLeft);
+
+		var arrowRight:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
+		arrowRight.screenCenter(Y);
+		arrowRight.x = 1280 - arrowRight.width - 5;
+		arrowRight.scrollFactor.set();
+		arrows[1] = arrowRight;
+		add(arrowRight);
 		
 	}
 
@@ -348,6 +355,14 @@ class CharacterSelectState extends MusicBeatState
 			}
 			LoadingState.loadAndSwitchState(new FreeplayState());
 		}
+
+		if (FlxG.keys.justPressed.SEVEN)
+			{
+				for (character in characters)
+				{
+					unlockCharacter(character.name); //unlock everyone
+				}
+			}
 		
 		for (i in 0...controlSet.length)
 		{
@@ -399,6 +414,7 @@ class CharacterSelectState extends MusicBeatState
 			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+			arrows[0].loadGraphic(Paths.image("ui/ArrowLeft_Pressed", "preload"));
 		}
 
 		if (FlxG.keys.justPressed.RIGHT && !selectedCharacter)
@@ -411,7 +427,14 @@ class CharacterSelectState extends MusicBeatState
 			}
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+			arrows[1].loadGraphic(Paths.image("ui/ArrowRight_Pressed", "preload"));
 		}
+		
+		if (FlxG.keys.justReleased.LEFT)
+			arrows[0].loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
+		if (FlxG.keys.justReleased.RIGHT)
+			arrows[1].loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
+
 		if (FlxG.keys.justPressed.DOWN && !selectedCharacter)
 		{
 			curForm--;
