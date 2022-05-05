@@ -1324,53 +1324,53 @@ class ChartingState extends MusicBeatState
 			return sec;
 		}
 
-	function shiftNotes(measure:Int=0,step:Int=0,ms:Int = 0):Void
+	function shiftNotes(measure:Int = 0, step:Int = 0, ms:Int = 0):Void
+	{
+		var newSong = [];
+
+		var millisecadd = (((measure * 4) + step / 4) * (60000 / _song.bpm)) + ms;
+		var totaladdsection = Std.int((millisecadd / (60000 / _song.bpm) / 4));
+		trace(millisecadd, totaladdsection);
+		if (millisecadd > 0)
 		{
-			var newSong = [];
-			
-			var millisecadd = (((measure*4)+step/4)*(60000/_song.bpm))+ms;
-			var totaladdsection = Std.int((millisecadd/(60000/_song.bpm)/4));
-			trace(millisecadd,totaladdsection);
-			if(millisecadd > 0)
-				{
-					for(i in 0...totaladdsection)
-						{
-							newSong.unshift(newSection());
-						}
-				}
-			for (daSection1 in 0..._song.notes.length)
-				{
-					newSong.push(newSection(16,_song.notes[daSection1].mustHitSection,_song.notes[daSection1].altAnim));
-				}
-	
-			for (daSection in 0...(_song.notes.length))
+			for (i in 0...totaladdsection)
 			{
-				var aimtosetsection = daSection+Std.int((totaladdsection));
-				if(aimtosetsection<0) aimtosetsection = 0;
-				newSong[aimtosetsection].mustHitSection = _song.notes[daSection].mustHitSection;
-				newSong[aimtosetsection].altAnim = _song.notes[daSection].altAnim;
-				//trace("section "+daSection);
-				for(daNote in 0...(_song.notes[daSection].sectionNotes.length))
-					{	
-						var newtiming = _song.notes[daSection].sectionNotes[daNote][0]+millisecadd;
-						if(newtiming<0)
-						{
-							newtiming = 0;
-						}
-						var futureSection = Math.floor(newtiming/4/(60000/_song.bpm));
-						_song.notes[daSection].sectionNotes[daNote][0] = newtiming;
-						newSong[futureSection].sectionNotes.push(_song.notes[daSection].sectionNotes[daNote]);
-	
-						//newSong.notes[daSection].sectionNotes.remove(_song.notes[daSection].sectionNotes[daNote]);
-					}
-	
+				newSong.unshift(newSection());
 			}
-			//trace("DONE BITCH");
-			_song.notes = newSong;
-			updateGrid();
-			updateSectionUI();
-			updateNoteUI();
 		}
+		for (daSection1 in 0..._song.notes.length)
+		{
+			newSong.push(newSection(16, _song.notes[daSection1].mustHitSection, _song.notes[daSection1].altAnim));
+		}
+
+		for (daSection in 0...(_song.notes.length))
+		{
+			var aimtosetsection = daSection + Std.int((totaladdsection));
+			if (aimtosetsection < 0)
+				aimtosetsection = 0;
+			newSong[aimtosetsection].mustHitSection = _song.notes[daSection].mustHitSection;
+			newSong[aimtosetsection].altAnim = _song.notes[daSection].altAnim;
+			// trace("section "+daSection);
+			for (daNote in 0...(_song.notes[daSection].sectionNotes.length))
+			{
+				var newtiming = _song.notes[daSection].sectionNotes[daNote][0] + millisecadd;
+				if (newtiming < 0)
+				{
+					newtiming = 0;
+				}
+				var futureSection = Math.floor(newtiming / 4 / (60000 / _song.bpm));
+				_song.notes[daSection].sectionNotes[daNote][0] = newtiming;
+				newSong[futureSection].sectionNotes.push(_song.notes[daSection].sectionNotes[daNote]);
+
+				// newSong.notes[daSection].sectionNotes.remove(_song.notes[daSection].sectionNotes[daNote]);
+			}
+		}
+		// trace("DONE BITCH");
+		_song.notes = newSong;
+		updateGrid();
+		updateSectionUI();
+		updateNoteUI();
+	}
 	private function addNote(?n:Note):Void
 	{
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
@@ -1389,7 +1389,7 @@ class ChartingState extends MusicBeatState
 		updateGrid();
 		updateNoteUI();
 
-		autosaveSong();
+		autosaveSong();	
 	}
 
 	function getStrumTime(yPos:Float):Float
@@ -1400,7 +1400,7 @@ class ChartingState extends MusicBeatState
 	function getYfromStrum(strumTime:Float):Float
 	{
 		return FlxMath.remapToRange(strumTime, 0, 16 * Conductor.stepCrochet, gridBG.y, gridBG.y + gridBG.height);
-	}
+	}	
 
 	/*
 		function calculateSectionLengths(?sec:SwagSection):Int
@@ -1445,10 +1445,22 @@ class ChartingState extends MusicBeatState
 	}
 
 	function loadJson(song:String):Void
-	{
-		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
-		LoadingState.loadAndSwitchState(new ChartingState());
-	}
+		{
+			switch (song.toLowerCase())
+			{
+				case 'supernovae' | 'glitch':
+					var video = new MP4Handler();
+					video.playVideo(Paths.video('fortniteballs')); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
+				case 'cheating':
+					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
+				case 'unfairness':
+					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
+				case 'exploitation':
+					Sys.exit(0);
+			}
+			PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
+			FlxG.resetState();
+		}
 
 	function loadAutosave():Void
 	{

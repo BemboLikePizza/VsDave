@@ -438,8 +438,6 @@ class PlayState extends MusicBeatState
 					stageCheck = 'house-sunset';
 				case 'eletric-cockadoodledoo':
 					stageCheck = 'banana-hell';
-				case 'bonkers':
-					stageCheck = 'johnland i think';	
 				case 'tutorial':
 					stageCheck = 'stage';
 			}
@@ -866,8 +864,6 @@ class PlayState extends MusicBeatState
 				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!";
 			case 'kabunga':
 				credits = 'OH MY GOD I JUST DEFLATED';
-			case 'bonkers':
-				credits = "It's Long Nose John!";
 			case 'eletric-cockadoodledoo':
 				credits = "Song by Cuzsie! (THIS SONG IS NOT CANON)";
 			default:
@@ -1016,10 +1012,6 @@ class PlayState extends MusicBeatState
 				default:
 					startCountdown();
 			}
-		}
-		if (SONG.song.toLowerCase() == 'house')
-		{
-			modchart = ExploitationModchartType.None;
 		}
 		super.create();
 
@@ -1596,6 +1588,7 @@ class PlayState extends MusicBeatState
 					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
 					creditsPopup.camera = camHUD;
 					creditsPopup.scrollFactor.set();
+					creditsPopup.
 					creditsPopup.x = creditsPopup.width * -1;
 					add(creditsPopup);
 
@@ -2122,7 +2115,6 @@ class PlayState extends MusicBeatState
 				spr.x += Math.sin(elapsedtime) * 1.5;
 			});
 		}
-		/*
 		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene && mcStarted) // fuck you
 		{
 			switch (modchart)
@@ -2148,7 +2140,6 @@ class PlayState extends MusicBeatState
 					});
 			}
 		}
-		*/
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -2162,11 +2153,13 @@ class PlayState extends MusicBeatState
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 			});
 		}
+		#if debug
 		if (SONG.song.toLowerCase() == 'house')
 		{
 			var offsetValue = 200;
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
+				spr.origin.set(0, spr.height / 2);
 				switch (spr.ID)
 				{
 					case 0:
@@ -2185,6 +2178,7 @@ class PlayState extends MusicBeatState
 				spr.angle += elapsed * 200;
 			}); 
 		}
+		#end
 		if (tweenList != null && tweenList.length != 0)
 		{
 			for (tween in tweenList)
@@ -3858,6 +3852,14 @@ class PlayState extends MusicBeatState
 						FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
+						iconP2.changeIcon('dave');
+
+						dadStrums.forEach(function(spr:FlxSprite)
+						{
+							dadStrums.remove(spr);
+							remove(spr);
+						});
+						generateStaticArrows(0);
 				}
 			case 'polygonized':
 				switch(curStep)
@@ -3873,6 +3875,7 @@ class PlayState extends MusicBeatState
 						gf.canDance = false;
 						boyfriend.playAnim('hey', true);
 						gf.playAnim('cheer', true);
+						iconP2.changeIcon('dave');
 				}
 			case 'glitch':
 				switch (curStep)
@@ -4389,6 +4392,15 @@ class PlayState extends MusicBeatState
 						}
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
+
+						iconP2.changeIcon('dave');
+
+						dadStrums.forEach(function(spr:FlxSprite)
+						{
+							dadStrums.remove(spr);
+							remove(spr);
+						});
+						generateStaticArrows(0);
 				}
 			case 'memory':
 				switch (curBeat)
