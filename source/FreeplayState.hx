@@ -59,7 +59,6 @@ class FreeplayState extends MusicBeatState
 		0xFF00FFFF,    // SPLIT THE THONNNNN
 		0xFF800080,    // FESTIVAL
 		0xFFFF0000,    // TRISTAN
-		0xFFFF0000,    // GARRETT
 		0xFFFF0000,    // UNFAIRNESS
 		0xFFFF0000,    // KABUNGA
 		0xFFFF0000,    // EXPLOITATION
@@ -148,18 +147,17 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.cheatingFound)
 					addWeek(['Cheating'], 2, ['bambi-3d']);
 				if(FlxG.save.data.unfairnessFound)
-					addWeek(['Unfairness'], 7, ['bambi-unfair']);
+					addWeek(['Unfairness'], 6, ['bambi-unfair']);
 				if(FlxG.save.data.exbungoFound)
-					addWeek(['Kabunga'], 8, ['exbungo']);
+					addWeek(['Kabunga'], 7, ['exbungo']);
 				if (FlxG.save.data.exploitationFound)
-				addWeek(['Exploitation'], 9, ['expunged']);
+				addWeek(['Exploitation'], 8, ['expunged']);
 
 				if (FlxG.save.data.bananacoreUnlocked)
-					addWeek(['Eletric-Cockadoodledoo'], 10, ['cockey']);
+					addWeek(['Eletric-Cockadoodledoo'], 9, ['cockey']);
 			case 'extra':
 				addWeek(['Bonus-Song'], 1, ['dave']);
 				addWeek(['Adventure'], 5, ['tristan']);
-				addWeek(['Bonkers'], 6, ['longnosejohn']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
 				addWeek(['Escape-From-California'], 5, ['none']);
 				addWeek(['Five-Nights'], 2, ['dave']);
@@ -491,7 +489,8 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty > 2)
 			curDifficulty = 0;
 
-		if (songs[curSelected].week == 3 || songs[curSelected].week == 6)
+		var oneDiffWeeks = [3, 6, 8];
+		if (oneDiffWeeks.contains(songs[curSelected].week))
 		{
 			curDifficulty = 1;
 		}

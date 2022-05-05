@@ -560,19 +560,6 @@ class Character extends FlxSprite
 	
 				antialiasing = false;
 
-			case 'longnosejohn':
-				frames = Paths.getSparrowAtlas('characters/longnosejohn', 'shared');
-
-				animation.addByPrefix('idle', 'longnosejohn idle', 24, false);
-				animation.addByPrefix('singLEFT', 'longnosejohn left', 24, false);
-				animation.addByPrefix('singUP', 'longnosejohn up', 24, false);
-				animation.addByPrefix('singDOWN', 'longnosejohn down', 24, false);
-				animation.addByPrefix('singRIGHT', 'longnosejohn right', 24, false);
-
-				playAnim('idle');
-
-				barColor = FlxColor.fromRGB(0, 127, 14);
-
 			// Bananacore shit
 			// You can basically ignore everything beyond this point
 			// Most of these are just one-time characters that appear for a few seconds

@@ -12,6 +12,9 @@ class CreditsPopUp extends FlxSpriteGroup
 {
 	public var bg:FlxSprite;
 
+	public var funnyText:FlxText;
+	var funnyIcon:FlxSprite;
+
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
@@ -41,16 +44,14 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'Your mom';
 			case 'adventure':
 				songCreator = 'Ruby';
-			case 'bonkers':
-				songCreator = 'Cynda';
 		}
-		var funnyText:FlxText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
+		funnyText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
 		funnyText.setFormat('Comic Sans MS Bold', 45, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		funnyText.borderSize = 3;
 		funnyText.antialiasing = true;
 		funnyText.updateHitbox();
 
-		var funnyIcon:FlxSprite = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
+		funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
 
 		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
