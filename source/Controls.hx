@@ -525,9 +525,9 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.DOWN, KeybindPrefs.keybinds.get('down'));
 				inline bindKeys(Control.LEFT, KeybindPrefs.keybinds.get('left'));
 				inline bindKeys(Control.RIGHT, KeybindPrefs.keybinds.get('right'));
-				inline bindKeys(Control.ACCEPT, KeybindPrefs.keybinds.get('accept'));
-				inline bindKeys(Control.BACK, KeybindPrefs.keybinds.get('back'));
-				inline bindKeys(Control.PAUSE, KeybindPrefs.keybinds.get('pause'));
+				inline bindKeys(Control.ACCEPT, [SPACE, ENTER]);
+				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
+				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, KeybindPrefs.keybinds.get('reset'));
 			case Askl:
 				inline bindKeys(Control.UP, [K, FlxKey.UP]);

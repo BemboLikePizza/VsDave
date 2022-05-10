@@ -1438,7 +1438,7 @@ class PlayState extends MusicBeatState
 				], 1, 1, false, true);
 				nimbi.animation.play('idle');
 				backgroundSprites.add(nimbi);
-				insert(members.indexOf(dad), nimbi);
+				insert(members.indexOf(gf), nimbi);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
@@ -1588,7 +1588,6 @@ class PlayState extends MusicBeatState
 					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
 					creditsPopup.camera = camHUD;
 					creditsPopup.scrollFactor.set();
-					creditsPopup.
 					creditsPopup.x = creditsPopup.width * -1;
 					add(creditsPopup);
 
@@ -1599,8 +1598,6 @@ class PlayState extends MusicBeatState
 							creditsPopup.destroy();
 						}, startDelay: 3});
 					}});
-
-					tweenList.push(outTween);
 			}
 
 			swagCounter += 1;
@@ -1683,7 +1680,11 @@ class PlayState extends MusicBeatState
 			+ misses, iconRPC);
 		#end
 		FlxG.sound.music.onComplete = endSong;
-		songPosBar.setRange(0, FlxG.sound.music.length);
+		if (songPosBar != null)
+		{
+			songPosBar.setRange(0, FlxG.sound.music.length);
+		}
+		
 	}
 
 	var debugNum:Int = 0;
@@ -2153,32 +2154,6 @@ class PlayState extends MusicBeatState
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 			});
 		}
-		#if debug
-		if (SONG.song.toLowerCase() == 'house')
-		{
-			var offsetValue = 200;
-			playerStrums.forEach(function(spr:FlxSprite)
-			{
-				spr.origin.set(0, spr.height / 2);
-				switch (spr.ID)
-				{
-					case 0:
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) - offsetValue;
-						spr.y = ((FlxG.height / 2) - (spr.height / 2));
-					case 1:
-						spr.x = ((FlxG.width / 2) - (spr.width / 2));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + offsetValue;
-					case 2:
-						spr.x = ((FlxG.width / 2) - (spr.width / 2));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) - offsetValue;
-					case 3:
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + offsetValue;
-						spr.y = ((FlxG.height / 2) - (spr.height / 2));
-				}
-				spr.angle += elapsed * 200;
-			}); 
-		}
-		#end
 		if (tweenList != null && tweenList.length != 0)
 		{
 			for (tween in tweenList)
@@ -2813,8 +2788,6 @@ class PlayState extends MusicBeatState
 			Application.current.window.title = Main.applicationName;
 			Main.toggleFuckedFPS(false);
 		}
-	
-
 		if (isStoryMode)
 		{
 			campaignScore += songScore;
@@ -3801,6 +3774,7 @@ class PlayState extends MusicBeatState
 						gf.canDance = false;
 						boyfriend.playAnim('hey', true);
 						gf.playAnim('cheer', true);
+						iconP2.changeIcon('dave');
 				}
 
 			case 'unfairness':
@@ -3857,7 +3831,7 @@ class PlayState extends MusicBeatState
 						dadStrums.forEach(function(spr:FlxSprite)
 						{
 							dadStrums.remove(spr);
-							remove(spr);
+							spr.destroy();
 						});
 						generateStaticArrows(0);
 				}
@@ -4201,7 +4175,7 @@ class PlayState extends MusicBeatState
 							dadStrums.add(babyArrow);
 				
 							babyArrow.animation.play('static');
-							babyArrow.x += 50;
+							babyArrow.x += 78;
 							babyArrow.x += ((FlxG.width / 2) * 0);
 				
 							strumLineNotes.add(babyArrow);
@@ -4259,7 +4233,7 @@ class PlayState extends MusicBeatState
 								dadStrums.add(babyArrow);
 					
 								babyArrow.animation.play('static');
-								babyArrow.x += 50;
+								babyArrow.x += 78;
 								babyArrow.x += ((FlxG.width / 2) * 0);
 					
 								strumLineNotes.add(babyArrow);
@@ -4442,7 +4416,7 @@ class PlayState extends MusicBeatState
 			if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance)
 			{
 				boyfriend.playAnim('idle', true);
-				if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
+				if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" && formoverride != 'tristan-golden-glowing')
 				{
 					boyfriend.color = nightColor;
 				}

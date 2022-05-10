@@ -68,4 +68,19 @@ class CreditsPopUp extends FlxSpriteGroup
 		bg.updateHitbox();
 		add(funnyText);
 	}
+	public function updateHitboxes()
+	{
+		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		
+		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
+		funnyIcon.updateHitbox();
+
+		funnyIcon.x = funnyText.x + funnyText.width + 20;
+		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
+
+
+		bg.setGraphicSize(Std.int((funnyText.width + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
+		bg.updateHitbox();
+	}
 }
