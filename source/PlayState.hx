@@ -1588,7 +1588,6 @@ class PlayState extends MusicBeatState
 					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
 					creditsPopup.camera = camHUD;
 					creditsPopup.scrollFactor.set();
-					creditsPopup.
 					creditsPopup.x = creditsPopup.width * -1;
 					add(creditsPopup);
 
