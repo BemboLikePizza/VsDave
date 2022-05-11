@@ -1,5 +1,6 @@
 package;
 
+import sys.FileSystem;
 import flixel.util.FlxSave;
 import flixel.math.FlxRandom;
 import flixel.math.FlxPoint;
@@ -64,28 +65,7 @@ class MainMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
-	public static var bgPaths:Array<String> = 
-	[
-		'backgrounds/ArtiztGmer',
-		'backgrounds/DeltaKastel',
-		'backgrounds/diamond man',
-		'backgrounds/kiazu',
-		'backgrounds/mamakotomi',
-		'backgrounds/morie',
-		'backgrounds/mantis',
-		'backgrounds/mepperpint',
-		'backgrounds/morie',
-		'backgrounds/neon',
-		'backgrounds/NotADemon',
-		'backgrounds/Onuko',
-		'backgrounds/ps',
-		'backgrounds/ricee_png',
-		'backgrounds/sk0rbias',
-		'backgrounds/SwagnotrllyTheMod',
-		'backgrounds/zombought',
-		'backgrounds/Lancey',
-		'backgrounds/Aadsta'
-	];
+	public static var bgPaths:Array<String> = new Array<String>();
 
 	var logoBl:FlxSprite;
 
@@ -117,6 +97,8 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		bgPaths = FileSystem.readDirectory(Paths.getDirectory('backgrounds'));
+
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
 		{
@@ -416,6 +398,6 @@ class MainMenuState extends MusicBeatState
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
 	{
 		var chance:Int = FlxG.random.int(0, bgPaths.length - 1);
-		return Paths.image(bgPaths[chance]);
+		return bgPaths[chance];
 	}
 }

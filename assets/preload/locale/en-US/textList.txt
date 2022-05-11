@@ -58,6 +58,8 @@ option_selfAwareness_off==Self Awareness Disabled
 option_hitsound_on==Hitsounds On
 option_hitsound_off==Hitsounds Off
 
+option_fpsCap==FPS Cap:
+
 option_freeplay_cutscenes_off==Freeplay Cutscenes Off
 option_freeplay_cutscenes_on==Freeplay Cutscenes On
 

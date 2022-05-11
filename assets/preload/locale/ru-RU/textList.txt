@@ -58,6 +58,8 @@ option_selfAwareness_off==Self Awareness Disabled
 option_hitsound_on==Звук при ударе Вкл.
 option_hitsound_off==Звук при ударе Выкл.
 
+option_fpsCap==idk
+
 option_freeplay_cutscenes_off==Катсцены в свободной игре Выкл.
 option_freeplay_cutscenes_on==Катсцены в свободной игре Вкл.
 

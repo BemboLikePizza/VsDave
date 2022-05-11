@@ -1,5 +1,6 @@
 package;
 
+import openfl.display.ShaderParameter;
 import openfl.display.Graphics;
 import flixel.group.FlxSpriteGroup;
 import lime.tools.ApplicationData;
@@ -252,6 +253,8 @@ class PlayState extends MusicBeatState
 	var currentInterdimensionBG:String;
 	var nimbiLand:BGSprite;
 	var nimbi:BGSprite;
+
+	var vcr:VCRDistortionShader;
 
 	var place:BGSprite;
 
@@ -947,11 +950,13 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/nimbi/wtf_nimbi');
 		}
 
-		scoreTxt = new FlxText(FlxG.width / 2, healthBarBG.y + 40, 0, "", 20);
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, FlxG.width, "", 20);
 		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("opensans.ttf") : Paths.font("comic.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
 		scoreTxt.antialiasing = true;
+		scoreTxt.screenCenter(X);
+		add(scoreTxt);
 
 		if (SONG.song.toLowerCase() == "overdrive")
 		{
@@ -1209,7 +1214,7 @@ class PlayState extends MusicBeatState
 						stageName = 'unfairness';
 					case 'interdimension-void':
 						bgZoom = 0.5;
-					    bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
+					   bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 						bg.setPosition(-700, -350);
 						bg.setGraphicSize(Std.int(bg.width * 1.75));
 						interdimensionBG = bg;
@@ -1439,6 +1444,8 @@ class PlayState extends MusicBeatState
 				nimbi.animation.play('idle');
 				backgroundSprites.add(nimbi);
 				insert(members.indexOf(gf), nimbi);
+				
+				
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;

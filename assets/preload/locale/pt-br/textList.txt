@@ -57,6 +57,8 @@ option_selfAwareness_off==Self Awareness Disabled
 option_hitsound_on==Hitsounds Ativos
 option_hitsound_off==Hitsounds Desativados
 
+option_fpsCap==idk
+
 option_freeplay_cutscenes_off==Freeplay Cutscenes Off
 option_freeplay_cutscenes_on==Freeplay Cutscenes On
 
