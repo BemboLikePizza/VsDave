@@ -40,7 +40,11 @@ class SaveDataHandler
 		
 		if (FlxG.save.data.offset == null)
 			FlxG.save.data.offset = 0;
+
 		if (FlxG.save.data.selfAwareness == null)
 			FlxG.save.data.selfAwareness = false;
+		
+		if (FlxG.save.data.fpsCap == null)
+			FlxG.save.data.fpsCap = 150;
     }
 }

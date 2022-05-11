@@ -50,9 +50,10 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')) 
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
+			+ "\n" + (LanguageManager.getTextString('option_fpsCap') + " " + FlxG.save.data.fpsCap)
 			+ "\n" + (FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
 			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
-			+ "\n" + LanguageManager.getTextString('cur_language') + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName)
+			+ "\n" + LanguageManager.getTextString('cur_language') + " " + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName)
 			);
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -94,6 +95,25 @@ class OptionsMenu extends MusicBeatState
 			if (controls.DOWN_P)
 				changeSelection(1);
 			
+		if (curSelected == 7)
+		{
+			if (controls.RIGHT_P)
+			{
+				var newValue = FlxG.save.data.fpsCap + 10;
+				FlxG.save.data.fpsCap = FlxMath.bound(newValue, 60, 300);
+				openfl.Lib.current.stage.frameRate = FlxG.save.data.fpsCap;
+				onFPSValueChanged();
+			}
+			if (controls.LEFT_P)
+			{
+				var newValue = FlxG.save.data.fpsCap - 10;
+				FlxG.save.data.fpsCap = FlxMath.bound(newValue, 60, 300);
+				openfl.Lib.current.stage.frameRate = FlxG.save.data.fpsCap;
+				onFPSValueChanged();
+			}
+		}
+		else
+		{
 			if (controls.RIGHT_R)
 			{
 				FlxG.save.data.offset++;
@@ -101,10 +121,11 @@ class OptionsMenu extends MusicBeatState
 			}
 
 			if (controls.LEFT_R)
-				{
-					FlxG.save.data.offset--;
-					versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset;
-				}
+			{
+				FlxG.save.data.offset--;
+				versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset;
+			}
+		}
 	
 
 			if (controls.ACCEPT)
@@ -135,17 +156,21 @@ class OptionsMenu extends MusicBeatState
 						updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')), 5, 'Vertical');
 					case 6:
 						FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
-						updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');	
-					case 7:
+						updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
+					case 8:
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
 						updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
-					case 8:
+					case 9:
 						FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
 						updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
-					case 9:
-						currentLanguage = currentLanguage + 1 == languages.length ? 0 : currentLanguage + 1;
+					case 10:
+						currentLanguage++;
+						if (currentLanguage > languages.length)
+						{
+							currentLanguage = 0;
+						}
 						LanguageManager.save.data.language = languages[currentLanguage].pathName;
-						updateGroupControls(LanguageManager.getTextString('cur_language') + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName), 8, 'Vertical');
+						updateGroupControls(LanguageManager.getTextString('cur_language') + " " + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName), 8, 'Vertical');
 						LanguageManager.save.flush();
 						LanguageManager.init();
 				}
@@ -202,5 +227,10 @@ class OptionsMenu extends MusicBeatState
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+	}
+	function onFPSValueChanged()
+	{
+		grpControls.remove(grpControls.members[curSelected]);
+		updateGroupControls(LanguageManager.getTextString('option_fpsCap') + " " + FlxG.save.data.fpsCap, 7, 'Vertical');
 	}
 }

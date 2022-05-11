@@ -47,9 +47,6 @@ class ChangeKeybinds extends MusicBeatState
 		new ControlUI('Up', 'up'),
 		new ControlUI('Right', 'right'),
 		new ControlUI('Reset', 'reset'),
-		new ControlUI('Accept', 'accept'),
-		new ControlUI('Back', 'back'),
-		new ControlUI('Pause', 'pause'),
 	];
 	var currentUIControl:ControlUI;
 
@@ -171,6 +168,7 @@ class ChangeKeybinds extends MusicBeatState
 				if (accept)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+
 					state = KeybindState.ChangeKeybind;
 				}
 			case ChangeKeybind:
@@ -178,22 +176,41 @@ class ChangeKeybinds extends MusicBeatState
 
 				var keyID = FlxG.keys.firstJustPressed();
 
+				var keyBlacklist:Array<FlxKey> = [FlxKey.ENTER, FlxKey.SPACE, FlxKey.BACKSPACE, FlxKey.ESCAPE];
 				if (keyID > -1)
 				{
-					var keyJustPressed = cast(keyID, FlxKey);
+					if (keyBlacklist.contains(keyID))
+					{
+						FlxG.camera.shake(0.05, 0.1);
+						FlxG.sound.play(Paths.sound('missnote'), 0.9);
+					}
+					else
+					{
+						var keyJustPressed = cast(keyID, FlxKey);
 					
-					var controlKeybinds = KeybindPrefs.keybinds.get(currentUIControl.controlName);
-
-					controlKeybinds[curKeybindSelected] = keyJustPressed;
-					KeybindPrefs.keybinds.set(currentUIControl.controlName, controlKeybinds);
-					PlayerSettings.player1.controls.setKeyboardScheme(Custom);
-
-					FlxG.sound.play(Paths.sound('confirmMenu'));
-
-					currentKeybind.text = keyJustPressed.toString();
-					updateText(currentKeybind, false);
-
-					state = KeybindState.SelectControl;
+						var controlKeybinds = KeybindPrefs.keybinds.get(currentUIControl.controlName);
+	
+						controlKeybinds[curKeybindSelected] = keyJustPressed;
+						
+						var otherKeybind = curKeybindSelected == 1 ? 0 : 1;
+						var otherKeybindText = currentKeybindGroup.texts.members[otherKeybind];
+						if (controlKeybinds[otherKeybind] == keyJustPressed)
+						{
+							controlKeybinds[otherKeybind] = FlxKey.NONE;
+						}
+						KeybindPrefs.keybinds.set(currentUIControl.controlName, controlKeybinds);
+						PlayerSettings.player1.controls.setKeyboardScheme(Custom);
+	
+						FlxG.sound.play(Paths.sound('confirmMenu'));
+	
+						currentKeybind.text = keyJustPressed.toString();
+						otherKeybindText.text = controlKeybinds[otherKeybind].toString();
+						
+						updateText(currentKeybind, false);
+						updateText(otherKeybindText, false);
+	
+						state = KeybindState.SelectControl; 
+					}
 				}
 		}
 		if (back)
@@ -207,7 +224,6 @@ class ChangeKeybinds extends MusicBeatState
 					updateText(currentKeybind, false);
 					state = SelectControl;
 				case KeybindState.ChangeKeybind:
-
 			}
 		}
 	}

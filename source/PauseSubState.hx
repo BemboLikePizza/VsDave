@@ -156,6 +156,8 @@ class PauseSubState extends MusicBeatSubstate
 			case "Resume":
 				close();
 			case "Restart Song":
+				PlayState.screenshader.shader.uampmul.value[0] = 0;
+				PlayState.screenshader.Enabled = false;
 				FlxG.resetState();
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;

@@ -44,12 +44,16 @@ class Paths
 
 		return getPreloadPath(file);
 	}
+	inline static public function getDirectory(directoryName:String, ?library:String)
+	{
+		return getPath('images/$directoryName', IMAGE, library);
+	}
 
 	static public function getLibraryPath(file:String, library = "preload")
 	{
 		return if (library == "preload" || library == "default") getPreloadPath(file); else getLibraryPathForce(file, library);
 	}
-
+ 
 	inline static function getLibraryPathForce(file:String, library:String)
 	{
 		return '$library:assets/$library/$file';

@@ -137,8 +137,8 @@ class FreeplayState extends MusicBeatState
 		switch (Catagories[CurrentPack].toLowerCase())
 		{
 			case 'dave':
-				addWeek(['Tutorial'], 0, ['gf']);	
-				addWeek(['House', 'Insanity', 'Polygonized'], 1, ['dave', 'dave', 'dave-angey']);
+				addWeek(['Tutorial'], 0, ['gf']);
+				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave', 'dave-angey', 'dave']);
 				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi', 'tristan-festival', 'dave-angey', 'dave']);
@@ -156,7 +156,6 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.bananacoreUnlocked)
 					addWeek(['Eletric-Cockadoodledoo'], 9, ['cockey']);
 			case 'extra':
-				addWeek(['Bonus-Song'], 1, ['dave']);
 				addWeek(['Adventure'], 5, ['tristan']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
 				addWeek(['Escape-From-California'], 5, ['none']);
@@ -509,9 +508,9 @@ class FreeplayState extends MusicBeatState
 		{
 			case 3:
 				diffText.text = LanguageManager.getTextString('freeplay_finale') + " - " + curChar.toUpperCase();
-			case 9:
+			case 8:
 				diffText.text = LanguageManager.getTextString('freeplay_fucked') + " - " + curChar.toUpperCase();
-			case 10:
+			case 9:
 				diffText.text = LanguageManager.getTextString('freeplay_lmao') + " - " + curChar.toUpperCase();
 			default:
 				switch (curDifficulty)

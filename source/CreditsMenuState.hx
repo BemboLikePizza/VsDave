@@ -341,12 +341,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
          
       ]),
-      new Person("Ace", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UC7L37WBIhcFUl60VMNvm0Jg'),
-         new Social('twitter', 'https://twitter.com/Thanos2411'),
-      ]),
-      
 	  // Special Thanks // 
 	  new Person("Golden Apple Team", CreditsType.SpecialThanks, "Made a great fanmade mod, huge motivator for 3.0",
       [
