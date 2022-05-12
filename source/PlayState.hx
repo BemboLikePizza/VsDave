@@ -1258,7 +1258,7 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.9;
 				stageName = 'rapLand';
 
-				var bg:BGSprite = new BGSprite('rapBG', -100, 100, Paths.image('backgrounds/rapBattle'), null);
+				var bg:BGSprite = new BGSprite('rapBG', -100, -100, Paths.image('backgrounds/rapBattle'), null);
 				sprites.add(bg);
 				add(bg);
 			default:

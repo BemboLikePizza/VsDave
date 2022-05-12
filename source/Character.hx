@@ -283,6 +283,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'bambi up', 24, false);
 				animation.addByPrefix('singLEFT', 'bambi left', 24, false);
 				animation.addByPrefix('singRIGHT', 'bambi right', 24, false);
+				animation.addByPrefix('smash', 'bambi phone', 24, false);
 
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
@@ -306,11 +307,11 @@ class Character extends FlxSprite
 
 			case 'bambi-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Bambi', 'shared');
-				animation.addByPrefix('idle', 'Idle', 24, false);
-				animation.addByPrefix('singDOWN', 'Down', 24, false);
-				animation.addByPrefix('singUP', 'Up', 24, false);
-				animation.addByPrefix('singLEFT', 'Left', 24, false);
-				animation.addByPrefix('singRIGHT', 'Right', 24, false);
+				animation.addByPrefix('idle', 'splitathon idle', 24, false);
+				animation.addByPrefix('singDOWN', 'splitathon down', 24, false);
+				animation.addByPrefix('singUP', 'splitathon up', 24, false);
+				animation.addByPrefix('singLEFT', 'splitathon left', 24, false);
+				animation.addByPrefix('singRIGHT', 'splitathon right', 24, false);
 				animation.addByPrefix('yummyCornLol', 'cool', 24, true);
 				animation.addByPrefix('umWhatIsHappening', 'what', 24, true);
 							
