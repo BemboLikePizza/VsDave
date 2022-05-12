@@ -169,11 +169,12 @@ class Character extends FlxSprite
 				// DAVE SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('dave/characters/dave_sheet', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'idleDance', 24, false);
-				animation.addByPrefix('singUP', 'Up', 24, false);
-				animation.addByPrefix('singRIGHT', 'Right', 24, false);
-				animation.addByPrefix('singDOWN', 'Down', 24, false);
-				animation.addByPrefix('singLEFT', 'Left', 24, false);
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('hey', 'hey', 24, false);
 	
 				loadOffsetFile(curCharacter);
 				

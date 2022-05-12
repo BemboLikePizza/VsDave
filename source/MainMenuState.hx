@@ -98,7 +98,7 @@ class MainMenuState extends MusicBeatState
 	override function create()
 	{
 		bgPaths = FileSystem.readDirectory(Paths.getDirectory('backgrounds'));
-
+		trace(bgPaths);
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
 		{
@@ -387,6 +387,7 @@ class MainMenuState extends MusicBeatState
 
 			if (spr.ID == curSelected && finishedFunnyMove)
 			{
+		
 				spr.animation.play('selected');
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}
@@ -398,6 +399,6 @@ class MainMenuState extends MusicBeatState
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
 	{
 		var chance:Int = FlxG.random.int(0, bgPaths.length - 1);
-		return bgPaths[chance];
+		return Paths.getDirectory('backgrounds') + "/" + bgPaths[chance];
 	}
 }
