@@ -1,4 +1,4 @@
- package;
+package;
 
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
@@ -165,7 +165,7 @@ class OptionsMenu extends MusicBeatState
 						updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
 					case 10:
 						currentLanguage++;
-						if (currentLanguage > languages.length)
+						if (currentLanguage > languages.length - 1)
 						{
 							currentLanguage = 0;
 						}

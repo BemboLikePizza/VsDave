@@ -3,3 +3,5 @@ singUP -20 42
 singRIGHT -90 3
 singLEFT 42 -7
 singDOWN -37 -19
+yummyCornLol -29 7
+umWhatIsHappening -32 1

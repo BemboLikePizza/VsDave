@@ -312,8 +312,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'splitathon up', 24, false);
 				animation.addByPrefix('singLEFT', 'splitathon left', 24, false);
 				animation.addByPrefix('singRIGHT', 'splitathon right', 24, false);
-				animation.addByPrefix('yummyCornLol', 'cool', 24, true);
-				animation.addByPrefix('umWhatIsHappening', 'what', 24, true);
+				animation.addByPrefix('yummyCornLol', 'splitathon corn', 24, true);
+				animation.addByPrefix('umWhatIsHappening', 'confused Idle', 24, true);
 							
 				loadOffsetFile(curCharacter);
 				

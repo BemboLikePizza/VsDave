@@ -98,7 +98,7 @@ class MainMenuState extends MusicBeatState
 	override function create()
 	{
 		bgPaths = FileSystem.readDirectory(Paths.getDirectory('backgrounds'));
-		trace(bgPaths);
+
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
 		{
