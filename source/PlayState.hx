@@ -1020,6 +1020,10 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 		}
+		if (SONG.song.toLowerCase() == 'exploitation')
+		{
+			modchart = ExploitationModchartType.None;
+		}
 		super.create();
 
 		if (SONG.song.toLowerCase() == "eletric-cockadoodledoo")
