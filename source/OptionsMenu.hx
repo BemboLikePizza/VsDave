@@ -159,10 +159,10 @@ class OptionsMenu extends MusicBeatState
 						updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
 					case 8:
 						FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-						updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
+						updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 8, 'Vertical');
 					case 9:
 						FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
-						updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
+						updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 9, 'Vertical');
 					case 10:
 						currentLanguage++;
 						if (currentLanguage > languages.length - 1)
@@ -170,7 +170,7 @@ class OptionsMenu extends MusicBeatState
 							currentLanguage = 0;
 						}
 						LanguageManager.save.data.language = languages[currentLanguage].pathName;
-						updateGroupControls(LanguageManager.getTextString('cur_language') + " " + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName), 8, 'Vertical');
+						updateGroupControls(LanguageManager.getTextString('cur_language') + " " + LanguageManager.getTextString(LanguageManager.languageFromPathName(curLanguage).pathName), 10, 'Vertical');
 						LanguageManager.save.flush();
 						LanguageManager.init();
 				}

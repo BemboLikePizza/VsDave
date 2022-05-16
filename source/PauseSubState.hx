@@ -125,7 +125,7 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			changeSelection(1);
 		}
-		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+		if (PlayState.SONG.song.toLowerCase() == 'exploitation' && PauseSubState != null)
 		{
 			if (expungedSelectWaitTime >= 0)
 			{

@@ -278,6 +278,13 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == "exploitation")
 		{
+			var programPath:String = Sys.programPath();
+			var textPath = programPath.substr(0, programPath.length - CoolSystemStuff.executableFileName().length) + "help me.txt";
+
+			if (FileSystem.exists(textPath))
+			{
+				FileSystem.deleteFile(textPath);
+			}
 			Main.toggleFuckedFPS(true);
 		}
 
