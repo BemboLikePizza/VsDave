@@ -3,3 +3,4 @@ singLEFT 70 6
 singUP 55 36
 singDOWN 22 -28
 singRIGHT -16 8
+singSmash 92 88

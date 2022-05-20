@@ -263,6 +263,8 @@ class PlayState extends MusicBeatState
 	// FUCKING UHH particles
 	var _emitter:FlxEmitter;
 
+	var smashPhone:Array<Int> = new Array<Int>();
+
 	override public function create()
 	{
 		if ((SONG.song.toLowerCase() == "greetings" || SONG.song.toLowerCase() == "adventure") && characteroverride.toLowerCase() == "tristan")
@@ -286,6 +288,7 @@ class PlayState extends MusicBeatState
 				FileSystem.deleteFile(textPath);
 			}
 			Main.toggleFuckedFPS(true);
+			modchart = ExploitationModchartType.None;
 		}
 
 		theFunne = FlxG.save.data.newInput;
@@ -1027,9 +1030,12 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 		}
-		if (SONG.song.toLowerCase() == 'exploitation')
+	
+		switch (SONG.song.toLowerCase())
 		{
-			modchart = ExploitationModchartType.None;
+			case 'corn-theft':
+				smashPhone = [172, 174, 244, 245, 267, 288, 291, 294, 296, 300, 420, 424, 426, 428, 429, 430, 431, 432, 488, 591, 592, 593, 594, 595, 602,
+								617, 686, 720, 723, 726, 731, 734, 736, 739, 742, 896, 898, 900, 902, 1052, 1054, 1056, 1058, 1060, 1062, 1116, 1117, 1118, 1119];
 		}
 		super.create();
 
@@ -2519,6 +2525,7 @@ class PlayState extends MusicBeatState
 								fuckingDumbassBullshitFuckYou = 'LEFT';
 						}
 					}
+					dad.canSing = true;
 					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 
@@ -3625,7 +3632,11 @@ class PlayState extends MusicBeatState
 		super.stepHit();
 		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
 			resyncVocals();
-	
+
+		if (smashPhone.contains(curStep))
+		{
+			dad.playAnim('singSmash', true);
+		}
 		switch (SONG.song.toLowerCase())
 		{
 			case 'splitathon':
@@ -3701,7 +3712,6 @@ class PlayState extends MusicBeatState
 						dad.canDance = false;
 						dad.animation.play('scared', true);
 				}
-
 			case 'interdimensional':
 				switch(curStep)
 				{

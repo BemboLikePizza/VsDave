@@ -26,6 +26,8 @@ class Character extends FlxSprite
 	public var globaloffset:Array<Float> = [0,0];
 	
 	public var barColor:FlxColor;
+	
+	public var canSing:Bool = true;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -283,7 +285,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'bambi up', 24, false);
 				animation.addByPrefix('singLEFT', 'bambi left', 24, false);
 				animation.addByPrefix('singRIGHT', 'bambi right', 24, false);
-				animation.addByPrefix('smash', 'bambi phone', 24, false);
+				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
 
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
@@ -772,6 +774,12 @@ class Character extends FlxSprite
 		{
 			return;
 		}
+		
+		if(AnimName.toLowerCase().startsWith('sing') && !canSing)
+		{
+			return;
+		}
+		
 		animation.play(AnimName, Force, Reversed, Frame);
 	
 		var daOffset = animOffsets.get(AnimName);
@@ -800,6 +808,7 @@ class Character extends FlxSprite
 				}
 			}
 		}
+		
 		else
 			offset.set(0, 0);
 	
