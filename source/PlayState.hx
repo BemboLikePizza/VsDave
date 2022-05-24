@@ -2595,7 +2595,7 @@ class PlayState extends MusicBeatState
 				{
 					destroyNote(daNote);
 				}
-				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + strumTimeFromY(106, daNote))
+				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (Conductor.crochet / 2))
 				{
 					if (!devBotplay)
 						noteMiss(daNote.noteData);
