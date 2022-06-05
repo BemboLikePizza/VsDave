@@ -13,13 +13,14 @@ class CreditsPopUp extends FlxSpriteGroup
 	public var bg:FlxSprite;
 
 	public var funnyText:FlxText;
-	var funnyIcon:FlxSprite;
+	public var funnyIcon:FlxSprite;
 
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
-		bg = new FlxSprite().makeGraphic(400, 50, FlxColor.GREEN);
-		bg.alpha = 0.7;
+		bg = new FlxSprite().makeGraphic(400, 50);
+		bg.color = FlxColor.GREEN;
+		bg.alpha = 0.8;
 		add(bg);
 		var songCreator:String = '';
 		switch (PlayState.SONG.song.toLowerCase())
@@ -42,6 +43,9 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'ArchWk';
 			case 'vs-dave-rap':
 				songCreator = 'Your mom';
+			case 'recursed':
+				bg.color = FlxColor.fromRGB(44, 44, 44);
+				songCreator = 'Aadsta';
 			case 'adventure':
 				songCreator = 'Ruby';
 		}

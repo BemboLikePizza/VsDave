@@ -208,8 +208,6 @@ class PauseSubState extends MusicBeatSubstate
 	}
 	function cockadoodledooTrolling(levelDifficulty:FlxText)
 	{
-		var difficultyHeight = levelDifficulty.height;
-		var difficultyWidth = levelDifficulty.width;
 		var amountOfDifficulties = 247;
 
 		for (i in 0...amountOfDifficulties)

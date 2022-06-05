@@ -40,10 +40,6 @@ class MainMenuState extends MusicBeatState
 		'options'
 	];
 
-	var newGaming:FlxText;
-	var newGaming2:FlxText;
-	var newInput:Bool;
-
 	public static var firstStart:Bool = true;
 
 	public static var finishedFunnyMove:Bool = false;
@@ -61,8 +57,6 @@ class MainMenuState extends MusicBeatState
 	public static var kadeEngineVer:String = "DAVE";
 	public static var gameVer:String = "0.2.7.1";
 	
-	var checkeredBackground:FlxBackdrop;
-
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	public static var bgPaths:Array<String> = new Array<String>();

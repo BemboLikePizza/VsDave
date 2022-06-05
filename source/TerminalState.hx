@@ -174,6 +174,7 @@ class TerminalState extends FlxState
         glitch.animation.addByPrefix('glitchScreen', 'glitch 3', 15);
         glitch.setGraphicSize(Std.int(glitch.width * 1.5));
         glitch.updateHitbox();
+        glitch.screenCenter();
         glitch.animation.play('glitchScreen');
         add(glitch);
         

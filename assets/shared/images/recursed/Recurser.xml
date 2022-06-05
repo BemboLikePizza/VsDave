@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="recursed_Assets.png">
+	<!-- aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1UdXlWUmZYX0NWcw== -->
+	<SubTexture name="recursedDown0000" x="0" y="0" width="1130" height="904" pivotX="554.15" pivotY="455.8"/>
+	<SubTexture name="recursedDown0001" x="1130" y="0" width="1130" height="904"/>
+	<SubTexture name="recursedDown0002" x="2260" y="0" width="1130" height="904"/>
+	<SubTexture name="recursedDown0003" x="3390" y="0" width="1130" height="904"/>
+	<SubTexture name="recursedDown0004" x="4520" y="0" width="1130" height="904"/>
+	<SubTexture name="recursedDown0005" x="4520" y="0" width="1130" height="904"/>
+	<SubTexture name="recursedDown0006" x="5650" y="0" width="1130" height="904"/>
+	<SubTexture name="recursedDown0007" x="5650" y="0" width="1130" height="904"/>
+	
+	<SubTexture name="recursedIdle0000" x="6780" y="0" width="1130" height="903" pivotX="554.15" pivotY="455.8"/>
+	<SubTexture name="recursedIdle0001" x="0" y="904" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0002" x="1130" y="904" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0003" x="2260" y="904" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0004" x="3390" y="904" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0005" x="4520" y="904" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0006" x="5650" y="904" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0007" x="6780" y="904" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0008" x="0" y="1807" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0009" x="0" y="1807" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0010" x="1130" y="1807" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0011" x="1130" y="1807" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0012" x="2260" y="1807" width="1130" height="903"/>
+	<SubTexture name="recursedIdle0013" x="2260" y="1807" width="1130" height="903"/>
+	
+	<SubTexture name="recursedLeft0000" x="3390" y="1807" width="1130" height="902" pivotX="554.15" pivotY="455.8"/>
+	<SubTexture name="recursedLeft0001" x="4520" y="1807" width="1130" height="902"/>
+	<SubTexture name="recursedLeft0002" x="5650" y="1807" width="1130" height="902"/>
+	<SubTexture name="recursedLeft0003" x="6780" y="1807" width="1130" height="902"/>
+	<SubTexture name="recursedLeft0004" x="0" y="2710" width="1130" height="902"/>
+	<SubTexture name="recursedLeft0005" x="0" y="2710" width="1130" height="902"/>
+	<SubTexture name="recursedLeft0006" x="1130" y="2710" width="1130" height="902"/>
+	<SubTexture name="recursedLeft0007" x="1130" y="2710" width="1130" height="902"/>
+	
+	<SubTexture name="recursedRight0000" x="2260" y="2710" width="1130" height="903" pivotX="554.15" pivotY="455.8"/>
+	<SubTexture name="recursedRight0001" x="3390" y="2710" width="1130" height="903"/>
+	<SubTexture name="recursedRight0002" x="4520" y="2710" width="1130" height="903"/>
+	<SubTexture name="recursedRight0003" x="5650" y="2710" width="1130" height="903"/>
+	<SubTexture name="recursedRight0004" x="6780" y="2710" width="1130" height="903"/>
+	<SubTexture name="recursedRight0005" x="6780" y="2710" width="1130" height="903"/>
+	<SubTexture name="recursedRight0006" x="0" y="3613" width="1130" height="903"/>
+	<SubTexture name="recursedRight0007" x="0" y="3613" width="1130" height="903"/>
+	
+	<SubTexture name="recursedUp0000" x="1130" y="3613" width="1130" height="903" pivotX="554.15" pivotY="455.8"/>
+	<SubTexture name="recursedUp0001" x="2260" y="3613" width="1130" height="903"/>
+	<SubTexture name="recursedUp0002" x="3390" y="3613" width="1130" height="903"/>
+	<SubTexture name="recursedUp0003" x="4520" y="3613" width="1130" height="903"/>
+	<SubTexture name="recursedUp0004" x="5650" y="3613" width="1130" height="903"/>
+	<SubTexture name="recursedUp0005" x="5650" y="3613" width="1130" height="903"/>
+	<SubTexture name="recursedUp0006" x="6780" y="3613" width="1130" height="903"/>
+	<SubTexture name="recursedUp0007" x="6780" y="3613" width="1130" height="903"/>
+</TextureAtlas>

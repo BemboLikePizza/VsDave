@@ -46,6 +46,7 @@ class Alphabet extends FlxSpriteGroup
 	var lastSprite:AlphaCharacter;
 	var xPosResetted:Bool = false;
 	var lastWasSpace:Bool = false;
+	public var characters:Array<AlphaCharacter> = new Array<AlphaCharacter>();
 
 	var splitWords:Array<String> = [];
 
@@ -112,6 +113,7 @@ class Alphabet extends FlxSpriteGroup
 					letter.createLetter(character);
 				}
 
+				characters.push(letter);
 				add(letter);
 
 				lastSprite = letter;
@@ -230,6 +232,7 @@ class Alphabet extends FlxSpriteGroup
 					FlxG.sound.play(Paths.soundRandom(daSound, 1, 4));
 				}
 
+				characters.push(letter);
 				add(letter);
 
 				lastSprite = letter;

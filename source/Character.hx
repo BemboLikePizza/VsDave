@@ -579,7 +579,7 @@ class Character extends FlxSprite
 		
 				loadOffsetFile(curCharacter);
 
-				barColor = FlxColor.fromRGB(228, 85, 81);				
+				barColor = FlxColor.fromRGB(228, 85, 81);
 
 				setGraphicSize(Std.int(width * 0.5));
 				updateHitbox();
@@ -676,6 +676,47 @@ class Character extends FlxSprite
 				animation.addByPrefix('pizza', 'PizzasHere', 24);
 				loadOffsetFile(curCharacter);
 		
+				playAnim('idle');
+			case 'recurser':
+				frames = Paths.getSparrowAtlas('recursed/Recurser', "shared");
+
+				animation.addByPrefix('idle', 'recursedIdle', 24);
+				animation.addByPrefix('singLEFT', 'recursedLeft', 24);
+				animation.addByPrefix('singDOWN', 'recursedDown', 24);
+				animation.addByPrefix('singUP', 'recursedUp', 24);
+				animation.addByPrefix('singRIGHT', 'recursedRight', 24);
+
+				barColor = FlxColor.fromRGB(44, 44, 44);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+			case 'bf-recursed':
+				frames = Paths.getSparrowAtlas('recursed/Recursed_BF', 'shared');
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+
+				animation.addByPrefix('firstDeath', 'BF dies', 24, false);
+				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
+				animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
+				animation.addByPrefix('scared', 'BF idle shaking', 24, false);
+
+				flipX = true;
+				barColor = FlxColor.WHITE;
+				
+				loadOffsetFile(curCharacter);
+				
+				nativelyPlayable = true;
+
 				playAnim('idle');
 		}
 		dance();

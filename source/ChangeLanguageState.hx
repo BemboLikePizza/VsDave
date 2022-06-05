@@ -131,6 +131,7 @@ class ChangeLanguageState extends MusicBeatState
       LanguageManager.save.data.language = languages[currentLanguage].pathName;
       LanguageManager.save.flush();
       LanguageManager.init();
+      CoolUtil.init();
 
       var curText = languageTextGroup.members[currentLanguage];
       FlxTween.tween(FlxG.camera, {zoom: 3}, 2);

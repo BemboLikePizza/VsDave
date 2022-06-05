@@ -16,6 +16,10 @@ class CoolUtil
 	
 	public static function init()
 	{
+		for (difficulty in difficultyArray)
+		{
+			difficultyArray.remove(difficulty);
+		}
 		difficultyArray.push(LanguageManager.getTextString('play_easy'));
 		difficultyArray.push(LanguageManager.getTextString('play_normal'));
 		difficultyArray.push(LanguageManager.getTextString('play_hard'));
@@ -43,7 +47,6 @@ class CoolUtil
 		{
 			daList[i] = daList[i].trim();
 		}
-
 		return daList;
 	}
 	
@@ -100,12 +103,26 @@ class CoolUtil
 		return minAndMaxs;
 	}
 
-	public static function getNegitiveValue(val:Int)
-	{
-		return val - val - val;
-	}
 	public static function cacheImage(image:String)
 	{
 		Assets.cache.image.set(image, lime.graphics.Image.fromFile(image));
+	}
+	public static function isArrayEqualTo(array1:Array<Dynamic>, array2:Array<Dynamic>)
+	{
+		if (array1.length != array2.length)
+		{
+			return false;
+		}
+		else
+		{
+			for (i in 0...array2.length)
+			{
+				if (array1[i] != array2[i])
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

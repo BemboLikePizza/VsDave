@@ -147,12 +147,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/oxygenboi2000'),
          new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
       ]),
-      
-	  new Person("Cynda", CreditsType.Contributor, "Programmer, Menu Button Artist",
-      [
-		 new Social('youtube', 'https://www.youtube.com/channel/UCTaq4jni33NoaI1TfMXCRcA'),
-         new Social('twitter', 'https://twitter.com/CyndaReal')
-      ]),
       new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, YAFN help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')

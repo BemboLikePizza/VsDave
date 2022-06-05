@@ -466,7 +466,6 @@ class CharacterSelectState extends MusicBeatState
 		if (!FlxG.save.data.charactersUnlocked.contains(character))
 		{
 			FlxG.save.data.charactersUnlocked.push(character);
-			trace('unlocked ' + character);
 		}
 	}
 	public static function isLocked(character:String):Bool
@@ -478,7 +477,6 @@ class CharacterSelectState extends MusicBeatState
 		FlxG.save.data.charactersUnlocked = new Array<String>();
 		unlockCharacter('bf');
 		unlockCharacter('bf-pixel');
-		trace('this function got called');
 		FlxG.save.flush();
 	}
 

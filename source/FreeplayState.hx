@@ -1,5 +1,9 @@
 package;
 
+import flixel.system.FlxSound;
+import Controls.Device;
+import Controls.Control;
+import flixel.math.FlxRandom;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flash.text.TextField;
@@ -63,6 +67,7 @@ class FreeplayState extends MusicBeatState
 		0xFFFF0000,    // KABUNGA
 		0xFFFF0000,    // EXPLOITATION
 		0xFFFFC0CB,    // ELECTRIC COCKADOODLEDOO
+		FlxColor.fromRGB(44, 44, 44),    // RECURSER
     ];
 
 	private var camFollow:FlxObject;
@@ -77,6 +82,17 @@ class FreeplayState extends MusicBeatState
 
 	var defColor:FlxColor;
 	var canInteract:Bool = true;
+
+	//recursed
+	var timeSincePress:Float;
+	var lastTimeSincePress:Float;
+
+	var pressSpeed:Float;
+	var pressSpeeds:Array<Float> = new Array<Float>();
+	var pressUnlockNumber:Int;
+	var requiredKey:Array<Int>;
+	var stringKey:String;
+
 
 	override function create()
 	{
@@ -156,15 +172,17 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.bananacoreUnlocked)
 					addWeek(['Eletric-Cockadoodledoo'], 9, ['cockey']);
 			case 'extra':
+				if(FlxG.save.data.recursedUnlocked)
+					addWeek(['Recursed'], 10, ['recurser']);
 				addWeek(['Adventure'], 5, ['tristan']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
 				addWeek(['Escape-From-California'], 5, ['none']);
-				addWeek(['Five-Nights'], 2, ['dave']);
+				addWeek(['Five-Nights'], 1, ['dave']);
 				addWeek(['Overdrive'], 1, ['dave']);
-				addWeek(['Roots'], 2, ['dave']);
+				addWeek(['Roots'], 1, ['dave']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Memory'], 1, ['dave']);
-				addWeek(['Vs-Dave-Rap'], 2, ['dave-cool']);
+				addWeek(['Vs-Dave-Rap'], 1, ['dave-cool']);
 		}
 	}	
 
@@ -280,6 +298,44 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		if (InMainFreeplayState)
+		{
+			timeSincePress += elapsed;
+			if (timeSincePress > 2 && pressSpeeds.length > 0)
+			{
+				resetPresses();
+			}
+			if (pressSpeeds.length >= pressUnlockNumber)
+			{
+				var canPass:Bool = true;
+				for (i in 0...pressSpeeds.length)
+				{
+					var pressSpeed = pressSpeeds[i];
+					if (pressSpeed >= 0.5)
+					{
+						canPass = false;
+					}
+				}
+				if (canPass)
+				{
+					recursedUnlock();
+				}
+				else
+				{
+					resetPresses();
+				}
+			}
+			if (FlxG.keys.justPressed.R)
+			{
+				recursedUnlock();
+			}
+		}
+		else
+		{
+			timeSincePress = 0;
+		}
+		
+
 		if (easterEggLoop != null && !easterEggLoop.started)
 			easterEggLoop.start();
 
@@ -345,6 +401,7 @@ class FreeplayState extends MusicBeatState
 						for (item in titles) { item.visible = false; }
 
 						GoToActualFreeplay();
+						resetPresses();
 						InMainFreeplayState = true;
 						loadingPack = false;
 					});	
@@ -367,10 +424,12 @@ class FreeplayState extends MusicBeatState
 	
 			if (upP && canInteract)
 			{
+				stringKey = 'up';
 				changeSelection(-1);
 			}
 			if (downP && canInteract)
 			{
+				stringKey = 'down';
 				changeSelection(1);
 			}
 			if (controls.LEFT_P && canInteract)
@@ -488,7 +547,7 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty > 2)
 			curDifficulty = 0;
 
-		var oneDiffWeeks = [3, 6, 8];
+		var oneDiffWeeks = [3, 8, 9, 10];
 		if (oneDiffWeeks.contains(songs[curSelected].week))
 		{
 			curDifficulty = 1;
@@ -512,6 +571,8 @@ class FreeplayState extends MusicBeatState
 				diffText.text = LanguageManager.getTextString('freeplay_fucked') + " - " + curChar.toUpperCase();
 			case 9:
 				diffText.text = LanguageManager.getTextString('freeplay_lmao') + " - " + curChar.toUpperCase();
+			case 10:
+				diffText.text = "RECURSED" + " - " + curChar.toUpperCase();
 			default:
 				switch (curDifficulty)
 				{
@@ -528,15 +589,43 @@ class FreeplayState extends MusicBeatState
 	function changeSelection(change:Int = 0)
 	{
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-			curSelected += change;
+
+		if (change != 0)
+		{
+			pressSpeed = timeSincePress - lastTimeSincePress;
+
+			lastTimeSincePress = timeSincePress;
+
+			timeSincePress = 0;
+			pressSpeeds.push(Math.abs(pressSpeed));
+			
+			var inputKeys = controls.getInputsFor(Controls.stringControlToControl(stringKey), Device.Keys);
+			if (pressSpeeds.length == 1)
+			{
+				requiredKey = inputKeys;
+			}
+			if (!CoolUtil.isArrayEqualTo(requiredKey, inputKeys))
+			{
+				resetPresses();
+			}
+			var shakeCheck = pressSpeeds.length % 5;
+			if (shakeCheck == 0 && pressSpeeds.length > 0)
+			{
+				FlxG.camera.shake(0.003 * (pressSpeeds.length / 5), 0.1);
+				FlxG.sound.play(Paths.sound('recursed/thud', 'shared'), 1, false, null, true);
+			}
+		}
+		
+		curSelected += change;
 
 		if (curSelected < 0)
 			curSelected = songs.length - 1;
 	
 		if (curSelected >= songs.length)
 			curSelected = 0;
-	
-		if (songs[curSelected].week != 3 && songs[curSelected].week != 6)
+		
+		var songsWithOneDifficulty = [3, 8, 9, 10];
+		if (!songsWithOneDifficulty.contains(songs[curSelected].week))
 		{
 			if (curDifficulty < 0)
 				curDifficulty = 2;
@@ -584,6 +673,90 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 		FlxTween.color(bg, 0.25, bg.color, songColors[songs[curSelected].week]);
+	}
+	function resetPresses()
+	{
+		pressSpeeds = new Array<Float>();
+		pressUnlockNumber = new FlxRandom().int(20, 40);
+	}
+	function recursedUnlock()
+	{
+		canInteract = false;
+
+		FlxG.sound.music.stop();
+		FlxG.sound.playMusic(Paths.sound('recursed/rumble', 'shared'), 0.8, false, null);
+		var boom = new FlxSound().loadEmbedded(Paths.sound('recursed/boom', 'shared'), false, false);
+
+		FlxG.camera.shake(0.015, 3, function()
+		{
+			FlxG.camera.flash();
+			var objects:Array<FlxSprite> = new Array<FlxSprite>();
+			for (icon in iconArray)
+			{
+				icon.screenCenter();
+				icon.sprTracker = null;
+				objects.push(icon);
+
+				icon.velocity.set(new FlxRandom().float(-300, 400), new FlxRandom().float(-200, 400));
+				icon.angularVelocity = 60;
+			}
+			for (song in grpSongs)
+			{
+				song.unlockY = true;
+				song.screenCenter();
+				for (character in song.characters)
+				{
+					character.velocity.set(new FlxRandom().float(-100, 250), new FlxRandom().float(-100, 250));
+					character.angularVelocity = 80;
+					objects.push(character);
+				}
+			}
+			boom.play();
+			FlxG.sound.music.stop();
+			FlxG.sound.playMusic(Paths.sound('recursed/ambience', 'shared'), 1, false, null);
+
+			bg.color = FlxColor.fromRGB(44, 44, 44);
+			new FlxTimer().start(4, function(timer:FlxTimer)
+			{
+				for (object in objects)
+				{
+					object.angularVelocity = 0;
+					object.velocity.set();
+					FlxTween.tween(object, {x: (FlxG.width / 2) - (object.width), y: (FlxG.height / 2) - (object.height)}, 1, {ease: FlxEase.backOut});
+				}
+				FlxG.camera.shake(0.05, 3);
+				
+				FlxG.sound.music.stop();
+				FlxG.sound.playMusic(Paths.sound('recursed/rumble', 'shared'), 0.8, false, null);
+				FlxG.sound.play(Paths.sound('recursed/piecedTogether', 'shared'), 1, false, null, true);
+
+				FlxG.camera.fade(FlxColor.WHITE, 3, false, function() 
+				{
+					FlxG.camera.shake(0.1, 0.5);
+					FlxG.camera.fade(FlxColor.BLACK, 0);
+
+					FlxG.sound.play(Paths.sound('recursed/recurser_laugh', 'shared'), function()
+					{
+						new FlxTimer().start(1, function(timer:FlxTimer)
+						{
+							var poop:String = Highscore.formatSong("Recursed", 1);
+
+							PlayState.SONG = Song.loadFromJson(poop, "Recursed");
+							PlayState.storyDifficulty = 1;
+
+							PlayState.storyWeek = 10;
+
+							PlayState.formoverride = 'none';
+
+							FlxG.save.data.recursedUnlocked = true;
+							FlxG.save.flush();
+
+							LoadingState.loadAndSwitchState(new PlayState());
+						});
+					});
+				});
+			});
+		});
 	}
 }
 
