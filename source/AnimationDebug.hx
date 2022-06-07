@@ -97,11 +97,6 @@ class AnimationDebug extends MusicBeatState
 
 		super.create();
 
-		var saveButton:FlxButton = new FlxButton(FlxG.height - 100, FlxG.width - 100, "Shift", function()
-		{
-			saveOffset();
-		});
-
 		animationGhost.alpha = 0.3; 
 	}
 
@@ -135,11 +130,14 @@ class AnimationDebug extends MusicBeatState
 	{
 		textAnim.text = char.animation.curAnim.name;
 
+		if (FlxG.keys.justPressed.Z)
+		{
+			saveOffset();
+		}
 		if(FlxG.keys.justPressed.ESCAPE)
 		{
 			FlxG.switchState(new MainMenuState());
 		}
-
 		if (FlxG.keys.justPressed.E)
 			FlxG.camera.zoom += 0.25;
 		if (FlxG.keys.justPressed.Q)
@@ -233,17 +231,12 @@ class AnimationDebug extends MusicBeatState
 	
 	private function saveOffset()
 	{
-		var i = 0;
 		var offsetString = '';
 		for (anim => offsets in char.animOffsets)
 		{
 			var animationOffsets = offsets;
 			
-			for (offsetNumber in animationOffsets)
-			{
-				offsetString += anim + " " + offsetNumber + (i != 0 ? "\n" : '');
-			}
-			i++;
+			offsetString += anim + " " + animationOffsets[0] + ' ' + animationOffsets[1] + '\n';
 		}
 		_file = new FileReference();
 		_file.addEventListener(Event.COMPLETE, onSaveComplete);

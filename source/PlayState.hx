@@ -4953,18 +4953,13 @@ class PlayState extends MusicBeatState
 		switch (dad.curCharacter)
 		{
 			case 'dave-splitathon':
-				{
 					dad.y += 175;
 					dad.x += 250;
-				}
 			case 'bambi-splitathon':
-				{
 					dad.x += 200;
 					dad.y += 450;
-				}
 		}
 		boyfriend.stunned = false;
-		
 	}
 
 	public function splitathonExpression(character:String, expression:String):Void

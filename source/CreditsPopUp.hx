@@ -11,6 +11,7 @@ import flixel.math.FlxMath;
 class CreditsPopUp extends FlxSpriteGroup
 {
 	public var bg:FlxSprite;
+	public var bgHeading:FlxSprite;
 
 	public var funnyText:FlxText;
 	public var funnyIcon:FlxSprite;
@@ -19,10 +20,9 @@ class CreditsPopUp extends FlxSpriteGroup
 	{
 		super(x, y);
 		bg = new FlxSprite().makeGraphic(400, 50);
-		bg.color = FlxColor.GREEN;
-		bg.alpha = 0.8;
 		add(bg);
 		var songCreator:String = '';
+		var headingPath:String = '';
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
@@ -49,9 +49,22 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 'adventure':
 				songCreator = 'Ruby';
 		}
+		switch (PlayState.storyWeek)
+		{
+			case 1:
+				headingPath = Paths.image('songHeadings/daveHeading');
+				bg.antialiasing = false;
+			case 2:
+				headingPath = Paths.image('songHeadings/bambiHeading');
+		}
+		if (headingPath != '')
+		{
+			bg.loadGraphic(headingPath);
+		}
 		funnyText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
-		funnyText.setFormat('Comic Sans MS Bold', 45, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		funnyText.borderSize = 3;
+		funnyText.setFormat('Comic Sans MS Bold', 45, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		funnyText.borderSize = 2.5;
+		funnyText.borderQuality = 1;
 		funnyText.antialiasing = true;
 		funnyText.updateHitbox();
 
@@ -63,7 +76,7 @@ class CreditsPopUp extends FlxSpriteGroup
       
 		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 
-		funnyIcon.x = funnyText.x + funnyText.width + 20;
+		funnyIcon.x = funnyText.x + funnyText.fieldWidth + 20;
 		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
 
 		add(funnyIcon);
