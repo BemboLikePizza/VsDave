@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="glitchHeading.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="glitchHeading0000" x="0" y="0" width="400" height="50"/>
+	<SubTexture name="glitchHeading0001" x="0" y="55" width="400" height="50"/>
+	<SubTexture name="glitchHeading0002" x="0" y="110" width="400" height="50"/>
+	<SubTexture name="glitchHeading0003" x="0" y="165" width="400" height="50"/>
+</TextureAtlas>

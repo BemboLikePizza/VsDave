@@ -42,7 +42,9 @@ class TitleState extends MusicBeatState
 	var awaitingExploitation:Bool;
 
 	override public function create():Void
-	{	
+	{
+		trace(Sys.environment());
+		
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)
 		{
