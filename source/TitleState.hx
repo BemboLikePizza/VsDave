@@ -47,8 +47,9 @@ class TitleState extends MusicBeatState
 	var awaitingExploitation:Bool;
 
 	override public function create():Void
-	{	
+	{
 		PlayState.recursedIntro = false;
+		trace(Sys.environment());
 		
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)

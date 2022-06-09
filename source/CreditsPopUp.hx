@@ -78,7 +78,7 @@ class CreditsPopUp extends FlxSpriteGroup
       
 		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 
-		funnyIcon.x = funnyText.x + funnyText.fieldWidth + 20;
+		funnyIcon.x = funnyText.x + funnyText.width + 20;
 		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
 
 		add(funnyIcon);
@@ -90,10 +90,11 @@ class CreditsPopUp extends FlxSpriteGroup
 	public function updateHitboxes()
 	{
 		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		
 		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
 		funnyIcon.updateHitbox();
+
+		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 
 		funnyIcon.x = funnyText.x + funnyText.width + 20;
 		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);

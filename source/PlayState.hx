@@ -254,6 +254,8 @@ class PlayState extends MusicBeatState
 	public static var originalWindowTitle:String;
 	var mcStarted:Bool = false;
 	public static var devBotplay:Bool = false;
+	public var creditsPopup:CreditsPopUp;
+	public var blackScreen:FlxSprite;
 
 	var interdimensionBG:BGSprite;
 	var currentInterdimensionBG:String;
@@ -1737,6 +1739,9 @@ class PlayState extends MusicBeatState
 	{
 		if (SONG.song.toLowerCase() == "exploitation")
 		{
+			blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+			add(blackScreen);
+				
 			Application.current.window.title = "EXPUNGED'S REIGN IS HERE, FUCK YOU";
 			Application.current.window.setIcon(lime.graphics.Image.fromFile("art/iconAAAA.png"));
 		}
@@ -4483,6 +4488,39 @@ class PlayState extends MusicBeatState
 			case "exploitation":
 				switch(curStep)
 				{
+					case 24, 36, 46:
+						blackScreen.alpha = 1;
+						FlxTween.tween(blackScreen, {alpha: 0}, Conductor.crochet / 1000);
+						FlxG.sound.play(Paths.sound('static'), 0.4);
+						creditsPopup.funnyIcon.visible = false;
+						creditsPopup.funnyText.visible = false;
+						
+						creditsPopup.bg.frames = Paths.getSparrowAtlas('songHeadings/glitchHeading');
+						creditsPopup.bg.animation.addByPrefix('glitch', 'glitchHeading', 24, true);
+						creditsPopup.bg.animation.play('glitch');
+					case 40:
+						creditsPopup.funnyIcon.visible = true;
+						creditsPopup.funnyText.visible = true;
+
+						creditsPopup.bg.animation.stop();
+						creditsPopup.bg.animation.remove('glitch');
+
+						creditsPopup.bg = new FlxSprite().makeGraphic(400, 50);
+						creditsPopup.bg.color = FlxColor.RED;
+
+						creditsPopup.funnyIcon.loadGraphic(Paths.image('songCreators/Oxygen'));
+						creditsPopup.funnyText.text = 'Song by Oxygen';
+						creditsPopup.updateHitboxes();
+					case 28, 48:
+						creditsPopup.funnyIcon.visible = true;
+						creditsPopup.funnyText.visible = true;
+
+						creditsPopup.bg = new FlxSprite().makeGraphic(400, 50);
+						creditsPopup.bg.color = FlxColor.RED;
+
+						creditsPopup.funnyIcon.loadGraphic(Paths.image('songCreators/whoAreYou'));
+						creditsPopup.funnyText.text = 'Song by EXPUNGED';
+						creditsPopup.updateHitboxes();
 					case 64 | 1024:
 						FlxTween.tween(camHUD, {alpha: 0}, 3);
 						FlxTween.tween(boyfriend, {alpha: 0}, 3);
