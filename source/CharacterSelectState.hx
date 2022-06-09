@@ -1,6 +1,6 @@
 package;
+import lime.app.Application;
 import haxe.Exception;
-import io.newgrounds.objects.events.Result.GetCurrentVersionResult;
 import Controls.Control;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tweens.FlxEase;
@@ -570,7 +570,10 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.save.data.exploitationState = 'in';
 			FlxG.fullscreen = false;
 			FlxG.sound.play(Paths.sound('error'), 0.9);
+
+			#if windows
 			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details", "Vs Dave");
+			#end
 		}
 
 		LoadingState.loadAndSwitchState(new PlayState());

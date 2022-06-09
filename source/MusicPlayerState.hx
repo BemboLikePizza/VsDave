@@ -97,7 +97,7 @@ class MusicPlayerState extends MusicBeatState
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this, 'playdist', 0, 1);
 		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+		healthBar.createFilledBar(FlxColor.WHITE, FlxColor.BLACK);
 		add(healthBar);
 
         iconP1 = new HealthIcon("bf", true);
@@ -108,9 +108,11 @@ class MusicPlayerState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
-        barText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 50, 0, "", 20);
-		barText.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+        barText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + healthBarBG.height + 5, 0, "", 20);
+		barText.setFormat(Paths.font("comic.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		barText.scrollFactor.set();
+        barText.borderSize = 1.5;
+        barText.screenCenter(X);
 		add(barText);
 
         HideBar();
@@ -118,9 +120,17 @@ class MusicPlayerState extends MusicBeatState
         super.create();
     }
 
+    var lastText:String = "";
+
     override function update(elapsed:Float)
     {
         super.update(elapsed);
+
+        if (barText != null && barText.text != lastText)
+        {
+            barText.screenCenter(X);
+            lastText = barText.text;
+        }
 
         var upP = controls.UP_P;
 		var downP = controls.DOWN_P;

@@ -79,6 +79,8 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
+	public static var instance:PlayState;
+
 	public static var curStage:String = '';
 	public static var characteroverride:String = "none";
 	public static var formoverride:String = "none";
@@ -267,6 +269,8 @@ class PlayState extends MusicBeatState
 	// FUCKING UHH particles
 	var _emitter:FlxEmitter;
 	var smashPhone:Array<Int> = new Array<Int>();
+	
+	public var hasDialogue:Bool = true;
 
 	//recursed
 	var darkSky:BGSprite;
@@ -301,9 +305,13 @@ class PlayState extends MusicBeatState
 	var camRotateAngle:Float = 0;
 
 	var rotatingCamTween:FlxTween;
+
+	public static var recursedIntro:Bool = false;
 	
 	override public function create()
 	{
+		instance = this;
+
 		if ((SONG.song.toLowerCase() == "greetings" || SONG.song.toLowerCase() == "adventure") && characteroverride.toLowerCase() == "tristan")
 		{
 			var poop:String = Highscore.formatSong("Confronting-Yourself", 1);
@@ -434,34 +442,16 @@ class PlayState extends MusicBeatState
 				trace('lmao secret message hahahaha you cant get me hahahahah secret message bambi phone do you want do you want phone phone phone phone');
 		}
 
-		switch (SONG.song.toLowerCase())
+		// DIALOGUE STUFF
+		// Hi guys i know yall are gonna try to add more dialogue here, but with this new system, all you have to do is add a dialogue file with the name of the song in the assets/data/dialogue folder,
+		// and it will automatically get the dialogue in this function
+		if (FileSystem.exists(Paths.txt('dialogue/${SONG.song.toLowerCase()}')))
 		{
-			case 'tutorial':
-				dialogue = [":gf:Hey, you're pretty cute.", ':bambi:ok now FUCKING sing or break phone.. '];
-			case 'house':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('house/houseDialogue'));
-			case 'insanity':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('insanity/insanityDialogue'));
-			case 'furiosity':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('furiosity/furiosityDialogue'));
-			case 'polygonized':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('polygonized/polyDialogue'));
-			case 'supernovae':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('supernovae/supernovaeDialogue'));
-			case 'glitch':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('glitch/glitchDialogue'));
-			case 'blocked':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('blocked/retardedDialogue'));
-			case 'corn-theft' | 'old-corn-theft':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('corn-theft/cornDialogue'));
-			case 'maze':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('maze/mazeDialogue'));
-			case 'splitathon':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogue'));
-			case 'vs-dave-thanksgiving':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('vs-dave-thanksgiving/lmaoDialogue'));
-			case 'interdimensional':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('interdimensional/interDialogue'));
+			dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/${SONG.song.toLowerCase()}'));
+		}
+		else
+		{
+			hasDialogue = false;
 		}
 
 		if(SONG.stage == null)
@@ -1087,7 +1077,7 @@ class PlayState extends MusicBeatState
 		}
 		super.create();
 	}
-
+	
 	public function createBackgroundSprites(bgName:String, revertedBG:Bool):FlxTypedGroup<BGSprite>
 	{
 		var sprites:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
@@ -1542,154 +1532,165 @@ class PlayState extends MusicBeatState
 		Conductor.songPosition = 0;
 		Conductor.songPosition -= Conductor.crochet * 5;
 
+		dad.dance();
+		gf.dance();
+		boyfriend.playAnim('idle', true);
+
 		var swagCounter:Int = 0;
 
-		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
+		if (!recursedIntro)
 		{
-			dad.dance();
-			gf.dance();
-			boyfriend.playAnim('idle', true);
-
-			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			var introSoundAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			var soundAssetsAlt:Array<String> = new Array<String>();
-
-			if (SONG.song.toLowerCase() == "exploitation")
-				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
-			else
-				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
-
-			introSoundAssets.set('default', ['default/intro3', 'default/intro2', 'default/intro1', 'default/introGo']);
-			introSoundAssets.set('pixel', ['pixel/intro3-pixel', 'pixel/intro2-pixel', 'pixel/intro1-pixel', 'pixel/introGo-pixel']);
-			introSoundAssets.set('dave', ['dave/intro3_dave', 'dave/intro2_dave', 'dave/intro1_dave', 'dave/introGo_dave']);
-			introSoundAssets.set('bambi', ['bambi/intro3_bambi', 'bambi/intro2_bambi', 'bambi/intro1_bambi', 'bambi/introGo_bambi']);
-			introSoundAssets.set('ex', ['default/intro3', 'default/intro2', 'default/intro1', 'ex/introGo_weird']);
-
-			switch (SONG.song.toLowerCase())
-			{
-				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
-				'memory' | 'overdrive' | 'roots' | 'vs-dave-rap':
-					soundAssetsAlt = introSoundAssets.get('dave');
-				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 'secret-mod-leak' | 
-				'shredder' | 'supernovae' | 'unfairness':
-					soundAssetsAlt = introSoundAssets.get('bambi');
-				case 'exploitation':
-					soundAssetsAlt = introSoundAssets.get('ex');
-				default:
-					soundAssetsAlt = introSoundAssets.get('default');
-			}
-
-			var introAlts:Array<String> = introAssets.get('default');
-			var altSuffix:String = "";
-
-			var doing_funny:Bool = true;
-
-			for (value in introAssets.keys())
-			{
-				if (value == curStage)
+			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 				{
-					introAlts = introAssets.get(value);
-					altSuffix = '-pixel';
-				}
-			}
-
-			switch (swagCounter)
-			{
-				case 0:
-					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[0]), 0.6);
-					if (doing_funny)
-					{
-						focusOnDadGlobal = false;
-						ZoomCam(false);
-					}
-				case 1:
-					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
-					ready.scrollFactor.set();
-					ready.updateHitbox();
-
-					ready.screenCenter();
-					add(ready);
-					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							ready.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[1]), 0.6);
-					if (doing_funny)
-					{
-						focusOnDadGlobal = true;
-						ZoomCam(true);
-					}
-				case 2:
-					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
-					set.scrollFactor.set();
-			
-					set.screenCenter();
-					add(set);
-					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							set.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[2]), 0.6);
-					if (doing_funny)
-					{
-						focusOnDadGlobal = false;
-						ZoomCam(false);
-					}
-				case 3:
-					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-					go.scrollFactor.set();
-
-					go.updateHitbox();
-
-					go.screenCenter();
-					add(go);
-
-					var sex:Float = 1000;
-
+		
+					var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+					var introSoundAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+					var soundAssetsAlt:Array<String> = new Array<String>();
+		
 					if (SONG.song.toLowerCase() == "exploitation")
+						introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
+					else
+						introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
+		
+					introSoundAssets.set('default', ['default/intro3', 'default/intro2', 'default/intro1', 'default/introGo']);
+					introSoundAssets.set('pixel', ['pixel/intro3-pixel', 'pixel/intro2-pixel', 'pixel/intro1-pixel', 'pixel/introGo-pixel']);
+					introSoundAssets.set('dave', ['dave/intro3_dave', 'dave/intro2_dave', 'dave/intro1_dave', 'dave/introGo_dave']);
+					introSoundAssets.set('bambi', ['bambi/intro3_bambi', 'bambi/intro2_bambi', 'bambi/intro1_bambi', 'bambi/introGo_bambi']);
+					introSoundAssets.set('ex', ['default/intro3', 'default/intro2', 'default/intro1', 'ex/introGo_weird']);
+		
+					switch (SONG.song.toLowerCase())
 					{
-						sex = 300;
+						case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
+						'memory' | 'overdrive' | 'roots' | 'vs-dave-rap':
+							soundAssetsAlt = introSoundAssets.get('dave');
+						case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 'secret-mod-leak' | 
+						'shredder' | 'supernovae' | 'unfairness':
+							soundAssetsAlt = introSoundAssets.get('bambi');
+						case 'exploitation':
+							soundAssetsAlt = introSoundAssets.get('ex');
+						default:
+							soundAssetsAlt = introSoundAssets.get('default');
 					}
-
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / sex, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
+		
+					var introAlts:Array<String> = introAssets.get('default');
+					var altSuffix:String = "";
+		
+					var doing_funny:Bool = true;
+		
+					for (value in introAssets.keys())
+					{
+						if (value == curStage)
 						{
-							go.destroy();
+							introAlts = introAssets.get(value);
+							altSuffix = '-pixel';
 						}
-					});
-					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[3]), 0.6);
-
-					if (doing_funny)
-					{
-						focusOnDadGlobal = true;
-						ZoomCam(true);
 					}
-				case 4:
-					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
-					creditsPopup.camera = camHUD;
-					creditsPopup.scrollFactor.set();
-					creditsPopup.x = creditsPopup.width * -1;
-					add(creditsPopup);
-
-					var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
+		
+					switch (swagCounter)
 					{
-						FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
-						{
-							creditsPopup.destroy();
-						}, startDelay: 3});
-					}});
-			}
-
-			swagCounter += 1;
-			// generateSong('fresh');
-		}, 5);
+						case 0:
+							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[0]), 0.6);
+							if (doing_funny)
+							{
+								focusOnDadGlobal = false;
+								ZoomCam(false);
+							}
+						case 1:
+							var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
+							ready.scrollFactor.set();
+							ready.updateHitbox();
+		
+							ready.screenCenter();
+							add(ready);
+							FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+								ease: FlxEase.cubeInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									ready.destroy();
+								}
+							});
+							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[1]), 0.6);
+							if (doing_funny)
+							{
+								focusOnDadGlobal = true;
+								ZoomCam(true);
+							}
+						case 2:
+							var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
+							set.scrollFactor.set();
+					
+							set.screenCenter();
+							add(set);
+							FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+								ease: FlxEase.cubeInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									set.destroy();
+								}
+							});
+							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[2]), 0.6);
+							if (doing_funny)
+							{
+								focusOnDadGlobal = false;
+								ZoomCam(false);
+							}
+						case 3:
+							var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
+							go.scrollFactor.set();
+		
+							go.updateHitbox();
+		
+							go.screenCenter();
+							add(go);
+		
+							var sex:Float = 1000;
+		
+							if (SONG.song.toLowerCase() == "exploitation")
+							{
+								sex = 300;
+							}
+		
+							FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / sex, {
+								ease: FlxEase.cubeInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									go.destroy();
+								}
+							});
+							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[3]), 0.6);
+		
+							if (doing_funny)
+							{
+								focusOnDadGlobal = true;
+								ZoomCam(true);
+							}
+						case 4:
+							var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
+							creditsPopup.camera = camHUD;
+							creditsPopup.scrollFactor.set();
+							creditsPopup.x = creditsPopup.width * -1;
+							add(creditsPopup);
+		
+							var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
+							{
+								FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
+								{
+									creditsPopup.destroy();
+								}, startDelay: 3});
+							}});
+					}
+		
+					swagCounter += 1;
+					// generateSong('fresh');
+				}, 5);
+		}
+		else 
+		{
+			startTimer = new FlxTimer();
+			
+			FlxG.camera.alpha = 0;
+			camHUD.alpha = 0;
+		}
 	}
 
 	function playCutscene(name:String)
@@ -1870,7 +1871,7 @@ class PlayState extends MusicBeatState
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1.strumTime, Obj2.strumTime);
 	}
 
-	private function generateStaticArrows(player:Int, regenerate:Bool = false, ghMode:Bool = false):Void
+	private function generateStaticArrows(player:Int, regenerate:Bool = false):Void
 	{
 		var daKey:Int = 4;
 
@@ -1878,10 +1879,7 @@ class PlayState extends MusicBeatState
 		{
 			// FlxG.log.add(i);
 			var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
-
-			if (!ghMode)
-			{
-					if (funnyFloatyBoys.contains(dad.curCharacter) && player == 0 || funnyFloatyBoys.contains(boyfriend.curCharacter) && player == 1)
+	if (funnyFloatyBoys.contains(dad.curCharacter) && player == 0 || funnyFloatyBoys.contains(boyfriend.curCharacter) && player == 1)
 					{
 						babyArrow.frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D');
 						babyArrow.animation.addByPrefix('green', 'arrowUP');
@@ -1955,9 +1953,9 @@ class PlayState extends MusicBeatState
 					babyArrow.updateHitbox();
 					babyArrow.scrollFactor.set();
 		
-					babyArrow.y -= 10;
+					babyArrow.y -= 50;
 					babyArrow.alpha = 0;
-					FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
+					FlxTween.tween(babyArrow, {y: babyArrow.y + 50, alpha: 1}, 1.3, {ease: FlxEase.circOut, startDelay: 0.7 + (i / 5.5) + (player / 1.8)});
 		
 					babyArrow.ID = i;
 					if (player == 1)
@@ -1975,7 +1973,6 @@ class PlayState extends MusicBeatState
 		
 					strumLineNotes.add(babyArrow);
 			}
-		}
 	}
 
 	function tweenCamIn():Void
@@ -2342,6 +2339,8 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
+		
+
 		switch (SONG.song.toLowerCase())
 		{
 			case 'overdrive':
@@ -2420,9 +2419,9 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
 		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.8)),Std.int(FlxMath.lerp(150, iconP1.height, 0.8)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.8)),Std.int(FlxMath.lerp(150, iconP2.height, 0.8)));
-
 		iconP1.updateHitbox();
+
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.8)),Std.int(FlxMath.lerp(150, iconP2.height, 0.8)));
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
@@ -2498,7 +2497,18 @@ class PlayState extends MusicBeatState
 			{
 				Conductor.songPosition += FlxG.elapsed * 1000;
 				if (Conductor.songPosition >= 0)
+				{
 					startSong();
+
+					if (recursedIntro)
+					{
+						var speed:Float = 7;
+
+						FlxTween.tween(FlxG.camera, {alpha: 1}, speed);
+						FlxTween.tween(camHUD, {alpha: 1}, speed);
+					}
+				}
+					
 			}
 		}
 		else
@@ -2987,7 +2997,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('maze/endDialogue')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/maze-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
@@ -3003,7 +3013,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
@@ -3024,7 +3034,6 @@ class PlayState extends MusicBeatState
 
 				if (SONG.validScore)
 				{
-					NGio.unlockMedal(60961);
 					Highscore.saveWeekScore(storyWeek, campaignScore,
 						storyDifficulty, characteroverride == "none" || characteroverride == "bf" ? "bf" : characteroverride);
 				}
@@ -3042,7 +3051,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('insanity/endDialogue')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/insanity-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = nextSong;
 						doof.cameras = [camDialogue];
@@ -3053,7 +3062,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
 						doof.scrollFactor.set();
 						doof.finishThing = nextSong;
 						doof.cameras = [camDialogue];
@@ -3110,7 +3119,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('insanity/endDialogue')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/insanity-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
@@ -3124,7 +3133,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('maze/endDialogue')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/maze-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
@@ -3138,7 +3147,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('splitathon/splitathonDialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
@@ -4889,12 +4898,14 @@ class PlayState extends MusicBeatState
 			if (SONG.song.toLowerCase() == 'exploitation')
 			{
 				var expungedLines:Array<String> = 
-				['i found you', 
-				"you'll never beat me", 
-				'HAHAHHAHAHA', 
-				"punishment day is here, this one is removing you",
-				"I'M UNSTOPPABLE",
-				"YOU LIAR...YOU LIAR!"];
+				[
+					'i found you', 
+					"you'll never beat me", 
+					'HAHAHHAHAHA', 
+					"punishment day is here, this one is removing you",
+					"I'M UNSTOPPABLE",
+					"YOU LIAR...YOU LIAR!"
+				];
 
 				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
 

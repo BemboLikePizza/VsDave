@@ -22,6 +22,12 @@ import openfl.Assets;
 import Discord.DiscordClient;
 #end
 
+// only load this reference if its debug because its only needed for debug??? idk it might help with the file size or something 
+#if debug
+import openfl.net.FileReference;
+import haxe.Json;
+#end
+
 using StringTools;
 
 class TitleState extends MusicBeatState
@@ -32,7 +38,6 @@ class TitleState extends MusicBeatState
 	var credGroup:FlxGroup;
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
-	var ngSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
 
@@ -43,6 +48,8 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{	
+		PlayState.recursedIntro = false;
+		
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)
 		{
@@ -60,12 +67,7 @@ class TitleState extends MusicBeatState
 		#end
 
 		super.create();
-		
-		#if ng
-		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		trace('NEWGROUNDS LOL');
-		#end
-			
+
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		SaveDataHandler.initSave();
@@ -173,14 +175,6 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('ui/newgrounds_logo'));
-		add(ngSpr);
-		ngSpr.visible = false;
-		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
-		ngSpr.updateHitbox();
-		ngSpr.screenCenter(X);
-		ngSpr.antialiasing = true;
-
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		FlxG.mouse.visible = false;
@@ -192,10 +186,8 @@ class TitleState extends MusicBeatState
 
 		// credGroup.add(credTextShit);
 
-
+		// Init the first line of text on the intro start to prevent the intro text bug
 		createCoolText(['Created by:']);
-
-		// hope this fixes overlap bug
 		addMoreText('MoldyGH');
 		addMoreText('MissingTextureMan101');
 		addMoreText('Rapparep LOL');
@@ -256,27 +248,17 @@ class TitleState extends MusicBeatState
 		
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
-			#if !switch
-			NGio.unlockMedal(60960);
-
-			// If it's Friday according to da clock
-			if (Date.now().getDay() == 5)
-				NGio.unlockMedal(61034);
-			#end
-
 			titleText.animation.play('press');
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 			transitioning = true;
-			// FlxG.sound.music.stop();
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
 				FlxG.switchState(OutdatedSubState.leftState ? new MainMenuState() : new OutdatedSubState());
 			});
-			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
 
 		if (pressedEnter && !skippedIntro)
@@ -286,6 +268,72 @@ class TitleState extends MusicBeatState
 
 		super.update(elapsed);
 	}
+
+	var skippedIntro:Bool = false;
+
+	function skipIntro():Void
+	{
+		if (!skippedIntro)
+		{
+			remove(credGroup);
+			skippedIntro = true;
+	
+			FlxG.camera.fade(FlxColor.WHITE, 2.5, true);
+		}
+	}
+
+
+	override function beatHit()
+	{
+		if (logoBl != null && gfDance != null)
+		{
+			super.beatHit();
+
+			danceLeft = !danceLeft;
+
+			logoBl.animation.play('bump');
+	
+			if (danceLeft) gfDance.animation.play('danceRight');
+			else gfDance.animation.play('danceLeft');
+	
+			switch (curBeat)
+			{
+				case 3:
+					addMoreText('TheBuilderXD, Erizur');
+					addMoreText('T5mpler, Cuzsie');
+				case 4:
+					addMoreText('and our wonderful contributors!');
+				case 5:
+					deleteCoolText();
+				case 6:
+					createCoolText(['Supernovae by ArchWk']);
+				case 7:
+					addMoreText('Glitch by The Boneyard');
+				case 8:
+					deleteCoolText();
+				case 9:
+					createCoolText([curWacky[0]]);
+				case 10:
+					addMoreText(curWacky[1]);
+				case 11:
+					deleteCoolText();
+				case 12:
+					addMoreText("Friday Night Funkin'");
+				case 13:
+					addMoreText(awaitingExploitation ? 'Vs. Expunged' : 'VS. Dave');
+				case 14:
+					addMoreText('The Full Mod');
+				case 15:
+					var text:String = awaitingExploitation ? 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA' : 'and Bambi';
+					if (awaitingExploitation) FlxG.sound.play(Paths.sound('evilLaugh', 'shared'), 0.7);
+					addMoreText(text);
+				case 16:
+					skipIntro();
+			}
+		}
+	}
+
+	// INTRO TEXT MANIPULATION SHIT
 
 	function createCoolText(textArray:Array<String>)
 	{
@@ -311,7 +359,7 @@ class TitleState extends MusicBeatState
 		credGroup.add(coolText);
 		textGroup.add(coolText);
 	}
-
+	
 	function deleteCoolText()
 	{
 		while (textGroup.members.length > 0)
@@ -320,89 +368,10 @@ class TitleState extends MusicBeatState
 			textGroup.remove(textGroup.members[0], true);
 		}
 	}
-
+	
 	function deleteOneCoolText()
 	{
 		credGroup.remove(textGroup.members[0], true);
 		textGroup.remove(textGroup.members[0], true);
-	}
-
-	override function beatHit()
-	{
-		if (logoBl != null && gfDance != null)
-		{
-			super.beatHit();
-
-			logoBl.animation.play('bump');
-			danceLeft = !danceLeft;
-	
-			if (danceLeft)
-				gfDance.animation.play('danceRight');
-			else
-				gfDance.animation.play('danceLeft');
-	
-			FlxG.log.add(curBeat);
-	
-			switch (curBeat)
-			{
-				/*case 2:
-					createCoolText(['Created by:']);
-	
-					// hope this fixes overlap bug
-					addMoreText('MoldyGH');
-					addMoreText('MissingTextureMan101');
-					addMoreText('Rapparep LOL');*/
-				case 3:
-					addMoreText('TheBuilderXD, Erizur');
-					addMoreText('T5mpler, Cuzsie');
-				case 4:
-					addMoreText('and our wonderful contributors!');
-				case 5:
-					deleteCoolText();
-				case 6:
-					createCoolText(['Supernovae by ArchWk']);
-				case 7:
-					addMoreText('Glitch by The Boneyard');
-				case 8:
-					deleteCoolText();
-					ngSpr.visible = false;
-				case 9:
-					createCoolText([curWacky[0]]);
-				case 10:
-					addMoreText(curWacky[1]);
-				case 11:
-					deleteCoolText();
-				case 12:
-					addMoreText("Friday Night Funkin'");
-				case 13:
-					addMoreText(awaitingExploitation ? 'Vs. Expunged' : 'VS. Dave and Bambi');
-				case 14:
-					addMoreText('The Full Mod');
-				case 15:
-					var text:String = awaitingExploitation ? 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA'
-					: 'lmao';
-					if (awaitingExploitation)
-					{
-						FlxG.sound.play(Paths.sound('evilLaugh', 'shared'), 0.7);
-					}
-					addMoreText(text);
-				case 16:
-					skipIntro();
-			}
-		}
-	}
-
-	var skippedIntro:Bool = false;
-
-	function skipIntro():Void
-	{
-		if (!skippedIntro)
-		{
-			remove(ngSpr);
-			remove(credGroup);
-			skippedIntro = true;
-
-			FlxG.camera.fade(FlxColor.WHITE, 2.5, true);
-		}
 	}
 }

@@ -5,6 +5,10 @@ import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;
 
+#if windows
+import lime.app.Application;
+#end
+
 using StringTools;
 
 typedef SwagSong =
@@ -45,29 +49,27 @@ class Song
 
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
 	{
-		var rawJson = Assets.getText(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+		var rawJson = "";
+		try
+		{
+			rawJson = Assets.getText(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+			trace(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase()).trim());
+		}
+		catch(ex)
+		{
+			var exep:String = "A fatal song error occured.\nThis may have happened because the song / pack you tried to load didnt exist.\nTry checking the file at " + Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase()).trim();
+			#if windows
+			Application.current.window.alert(exep, "Vs Dave");
+			#else
+			trace(exep);
+			#end
+		}
+		
 
 		while (!rawJson.endsWith("}"))
 		{
 			rawJson = rawJson.substr(0, rawJson.length - 1);
-			// LOL GOING THROUGH THE BULLSHIT TO CLEAN IDK WHATS STRANGE
 		}
-
-		// FIX THE CASTING ON WINDOWS/NATIVE
-		// Windows???
-		// trace(songData);
-
-		// trace('LOADED FROM JSON: ' + songData.notes);
-		/* 
-			for (i in 0...songData.notes.length)
-			{
-				trace('LOADED FROM JSON: ' + songData.notes[i].sectionNotes);
-				// songData.notes[i].sectionNotes = songData.notes[i].sectionNotes
-			}
-
-				daNotes = songData.notes;
-				daSong = songData.song;
-				daBpm = songData.bpm; */
 
 		return parseJSONshit(rawJson);
 	}

@@ -1,10 +1,10 @@
 package;
 
-import sys.FileSystem;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
+#if sys import sys.FileSystem; #end
 
 class Paths
 {
@@ -114,6 +114,17 @@ class Paths
 	inline static public function json(key:String, ?library:String)
 	{
 		return getPath('data/$key.json', TEXT, library);
+	}
+
+	inline static public function data(key:String, ?library:String)
+	{
+		return getPath('data/$key', TEXT, library);
+	}
+	
+
+	inline static public function chart(key:String)
+	{
+		return 'songs:assets/songs/$key.json';
 	}
 
 	static public function sound(key:String, ?library:String)

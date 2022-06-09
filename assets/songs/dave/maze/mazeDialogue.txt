@@ -1,0 +1,31 @@
+:bambi,upset:My phone...
+:bambi,upset:Look what you two did!
+:bambi,annoyed:You don't know what you guys just got me into!!
+:bambi,annoyed:You both are gonna die!
+:gf,what:Huh?
+:generic: INCOMING CALL FROM: DAVE
+:dave,confused: Bambi! I bought you that phone 3 hours ago!
+:bambi,annoyed: I BREAK MY PHONE!
+:bambi,annoyed: BECAUSE THEY ARE TRYING TO STEAL CORN!
+:dave,confused: What?
+:bf,confused: Beep.
+:dave,confused: I only sent them here as an apology for almost destroying the world, they aren't at all trying to trespass.
+:bambi: What?
+:dave,confused: Can you please just stop getting on to them?
+:bambi,upset: You lying? You liar!
+:dave,confused: No, I promise you I'm not lying Bambi.
+:bambi,annoyed: NO YOU LYING!!
+:generic: HANG UP
+:bambi,annoyed: That's it, that's it!
+:bf: Beep boop bap skdoop
+:bambi,annoyed: You two are going to die!
+:bambi,annoyed: I don't care if I'm tired, I don't care if I'm bored.
+:bambi,annoyed: I will be here all day and I will end you you are life!
+:bambi,upset: One more song... If you win, I-I, uhh..
+:bf,confused: Beep?
+:bambi,upset: I guess we call it a draw.
+:bambi: You ready?
+:bf,ready: Bess
+:bambi: THEN LETS GO YOU IDIOT!
+:gf,what: sigh
+:gf,what: Guess I gotta add this one to the list of hard last songs I made...

@@ -17,11 +17,6 @@ class Highscore
 	{
 		var daSong:String = formatSong(song, diff);
 
-		#if !switch
-		NGio.postScore(score, song);
-		#end
-
-
 		if (songScores.exists(daSong))
 			{
 				if (songScores.get(daSong) < score)
@@ -36,34 +31,25 @@ class Highscore
 	}
 
 	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0, ?char:String = "bf"):Void
+	{
+		var daWeek:String = formatSong('week' + week, diff);
+	
+		if (songScores.exists(daWeek))
 		{
-	
-			#if !switch
-			NGio.postScore(score, "Week " + week);
-			#end
-	
-	
-			var daWeek:String = formatSong('week' + week, diff);
-	
-			if (songScores.exists(daWeek))
-			{
-				if (songScores.get(daWeek) < score)
-				{
-					setScore(daWeek, score,char);
-				}
-			}
-			else
+			if (songScores.get(daWeek) < score)
 			{
 				setScore(daWeek, score,char);
 			}
 		}
+		else
+		{
+			setScore(daWeek, score,char);
+		}
+	}
 
-	/**
-	 * YOU SHOULD FORMAT SONG WITH formatSong() BEFORE TOSSING IN SONG VARIABLE
-	 */
+
 	public static function setScore(song:String, score:Int, char:String):Void
 	{
-		// Reminder that I don't need to format this song, it should come formatted!
 		songScores.set(song, score);
 		songChars.set(song,char);
 		FlxG.save.data.songScores = songScores;

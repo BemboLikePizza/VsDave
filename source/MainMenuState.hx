@@ -15,7 +15,6 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import io.newgrounds.NG;
 import lime.app.Application;
 import flixel.addons.display.FlxBackdrop;
 import flixel.input.keyboard.FlxKey;
@@ -91,6 +90,8 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		PlayState.recursedIntro = false;
+		
 		bgPaths = FileSystem.readDirectory(Paths.getDirectory('backgrounds'));
 
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
@@ -168,7 +169,7 @@ class MainMenuState extends MusicBeatState
 
 		firstStart = false;
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer + " FNF - " + daRealEngineVer + " Engine " + engineVer, 12);
+		var versionShit:FlxText = new FlxText(1, FlxG.height - 44, 0, '${daRealEngineVer} Engine v${engineVer}\nFNF v${gameVer}', 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

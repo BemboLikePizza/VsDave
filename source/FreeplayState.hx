@@ -19,9 +19,10 @@ import flixel.util.FlxStringUtil;
 import lime.utils.Assets;
 import flixel.FlxObject;
 import flixel.addons.util.FlxAsyncLoop;
-#if desktop
-import Discord.DiscordClient;
-#end
+#if sys import sys.FileSystem; #end
+import SongPack.SongPackData;
+#if desktop import Discord.DiscordClient; #end
+
 using StringTools;
 
 class FreeplayState extends MusicBeatState
@@ -47,7 +48,7 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var Catagories:Array<String> = ['Dave', 'Joke', 'Extra'];
+	private var Catagories:Array<String> = [];
 	var translatedCategory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra')];
 
 	private var CurrentPack:Int = 0;
@@ -56,7 +57,8 @@ class FreeplayState extends MusicBeatState
 
 	var loadingPack:Bool = false;
 
-	var songColors:Array<FlxColor> = [
+	var songColors:Array<FlxColor> = 
+	[
     	0xFFca1f6f,    // GF
 		0xFF4965FF,    // DAVE
 		0xFF00B515,    // MISTER BAMBI RETARD
@@ -96,15 +98,11 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-		#if desktop
-		DiscordClient.changePresence("In the Freeplay Menu", null);
-		#end
-		
-		var isDebug:Bool = false;
+		#if desktop DiscordClient.changePresence("In the Freeplay Menu", null); #end
 
-		#if debug
-		isDebug = true;
-		#end
+		PlayState.recursedIntro = false;
+		
+		Catagories = Assets.getText(Paths.data("packs/PackList.txt")).split(":");
 
 		bg.loadGraphic(MainMenuState.randomizeBG());
 		bg.color = 0xFF4965FF;
@@ -114,20 +112,20 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...Catagories.length)
 		{
-			var NameAlpha:Alphabet = new Alphabet(40,(FlxG.height / 2) - 282, translatedCategory[i],true,false);
-			
-			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('weekIcons/week_icons_' + (Catagories[i].toLowerCase()), "preload"));
+			Highscore.load();
+
+			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.data('packs/' + (Catagories[i].toLowerCase()) + "/pack.png", "preload"));
 			CurrentSongIcon.centerOffsets(false);
 			CurrentSongIcon.x = (1000 * i + 1);
 			CurrentSongIcon.y = (FlxG.height / 2) - 256;
 			CurrentSongIcon.antialiasing = true;
-			add(CurrentSongIcon);
-			icons.push(CurrentSongIcon);
 
-			// NameAlpha.screenCenter(X);
-			Highscore.load();
+			var NameAlpha:Alphabet = new Alphabet(40, (FlxG.height / 2) - 282, translatedCategory[i], true, false);
 			NameAlpha.x = CurrentSongIcon.x;
+
+			add(CurrentSongIcon);
 			add(NameAlpha);
+			icons.push(CurrentSongIcon);
 			titles.push(NameAlpha);
 		}
 
@@ -150,39 +148,15 @@ class FreeplayState extends MusicBeatState
 
 	public function LoadProperPack()
 	{
-		switch (Catagories[CurrentPack].toLowerCase())
-		{
-			case 'dave':
-				addWeek(['Tutorial'], 0, ['gf']);
-				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave', 'dave-angey', 'dave']);
-				addWeek(['Blocked','Corn-Theft','Maze',], 2, ['bambi']);
-				addWeek(['Splitathon'], 3, ['the-duo']);
-				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi', 'tristan-festival', 'dave-angey', 'dave']);
-			case 'joke':
-				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
-				if (FlxG.save.data.cheatingFound)
-					addWeek(['Cheating'], 2, ['bambi-3d']);
-				if(FlxG.save.data.unfairnessFound)
-					addWeek(['Unfairness'], 6, ['bambi-unfair']);
-				if(FlxG.save.data.exbungoFound)
-					addWeek(['Kabunga'], 7, ['exbungo']);
-				if (FlxG.save.data.exploitationFound)
-				addWeek(['Exploitation'], 8, ['expunged']);
+		var packData:SongPackData = SongPack.loadFromJson(Catagories[CurrentPack].toLowerCase());
 
-				if (FlxG.save.data.bananacoreUnlocked)
-					addWeek(['Eletric-Cockadoodledoo'], 9, ['cockey']);
-			case 'extra':
-				if(FlxG.save.data.recursedUnlocked)
-					addWeek(['Recursed'], 10, ['recurser']);
-				addWeek(['Adventure'], 5, ['tristan']);
-				addWeek(['Furiosity'], 1, ['dave-angey']);
-				addWeek(['Escape-From-California'], 5, ['none']);
-				addWeek(['Five-Nights'], 1, ['dave']);
-				addWeek(['Overdrive'], 1, ['dave']);
-				addWeek(['Roots'], 1, ['dave']);
-				addWeek(['Mealie'], 2, ['bambi-loser']);
-				addWeek(['Memory'], 1, ['dave']);
-				addWeek(['Vs-Dave-Rap'], 1, ['dave-cool']);
+		for (song in packData.packSongs)
+		{
+			// Song, Character Icon, Week
+			trace(song);
+			var args:Array<String> = song.split(":");
+				
+			addWeek([args[0]], Std.parseInt(args[2]), [args[1]]);
 		}
 	}	
 
@@ -279,20 +253,30 @@ class FreeplayState extends MusicBeatState
 			songCharacters = ['bf'];
 
 		var num:Int = 0;
+
+		var unlockSave:Bool = true;
+
 		for (song in songs)
 		{
-			addSong(song, weekNum, songCharacters[num]);
+			// Song unlock stuff
+			unlockSave = switch (song.toLowerCase())
+			{
+				case "cheating": FlxG.save.data.cheatingFound;
+				case "unfairness": FlxG.save.data.unfairnessFound;
+				case "kabunga": FlxG.save.data.exbungoFound;
+				case "exploitation": FlxG.save.data.exploitationFound;
+				case "eletric-cockadoodledoo": FlxG.save.data.bananacoreUnlocked;
+				case "recursed": FlxG.save.data.recursedUnlocked;
+				default: true;
+			}
+
+			if (unlockSave)
+				addSong(song, weekNum, songCharacters[num]);
 
 			if (songCharacters.length != 1)
 				num++;
 		}
 	}
-
-	var easterEggToggled:Bool = false;
-	var crazy:Int = 1;
-	var bigAssNumbah:Int = 999999;
-	var easterEggLoop:FlxAsyncLoop;
-
 	
 	override function update(elapsed:Float)
 	{
@@ -301,70 +285,40 @@ class FreeplayState extends MusicBeatState
 		if (InMainFreeplayState)
 		{
 			timeSincePress += elapsed;
+
 			if (timeSincePress > 2 && pressSpeeds.length > 0)
 			{
 				resetPresses();
 			}
-			if (pressSpeeds.length >= pressUnlockNumber)
-			{
-				var canPass:Bool = true;
-				for (i in 0...pressSpeeds.length)
+				if (pressSpeeds.length >= pressUnlockNumber)
 				{
-					var pressSpeed = pressSpeeds[i];
-					if (pressSpeed >= 0.5)
+					var canPass:Bool = true;
+					for (i in 0...pressSpeeds.length)
 					{
-						canPass = false;
+						var pressSpeed = pressSpeeds[i];
+						if (pressSpeed >= 0.5)
+						{
+							canPass = false;
+						}
+					}
+					if (canPass)
+					{
+						recursedUnlock();
+					}
+					else
+					{
+						resetPresses();
 					}
 				}
-				if (canPass)
+				if (FlxG.keys.justPressed.R)
 				{
 					recursedUnlock();
 				}
-				else
-				{
-					resetPresses();
-				}
 			}
-			if (FlxG.keys.justPressed.R)
+			else
 			{
-				recursedUnlock();
+				timeSincePress = 0;
 			}
-		}
-		else
-		{
-			timeSincePress = 0;
-		}
-		
-
-		if (easterEggLoop != null && !easterEggLoop.started)
-			easterEggLoop.start();
-
-		if (FlxG.keys.justPressed.SEVEN && !easterEggToggled)
-		{
-			easterEggToggled = true;
-
-			FlxG.sound.music.stop();
-			
-			new FlxTimer().start(3, function(fuckingSussy:FlxTimer)
-			{
-				FlxG.sound.play(Paths.sound('ohno', 'shared'));
-
-				var easterEggLoop = new FlxAsyncLoop(bigAssNumbah, function()
-				{
-					var songText:Alphabet = new Alphabet(0, (70 * bigAssNumbah) + 30, "Lol", true, false);
-					songText.scrollFactor.set();
-					songText.screenCenter(Y);
-					songText.y = FlxG.random.int(0, 720);
-					songText.x = FlxG.random.int(0, 1280);
-					add(songText);
-
-					new FlxTimer().start(0.5);
-				}, 100);
-
-				add(easterEggLoop);
-				easterEggLoop.start();
-			});
-		}
 
 		// Selector Menu Functions
 		if (!InMainFreeplayState) 
@@ -500,6 +454,8 @@ class FreeplayState extends MusicBeatState
 	
 			if (accepted && canInteract)
 			{
+				Main.currentPackGlobal = Catagories[CurrentPack].toLowerCase();
+
 				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
 	
 				trace(poop);
@@ -739,6 +695,7 @@ class FreeplayState extends MusicBeatState
 					{
 						new FlxTimer().start(1, function(timer:FlxTimer)
 						{
+							PlayState.recursedIntro = true;
 							var poop:String = Highscore.formatSong("Recursed", 1);
 
 							PlayState.SONG = Song.loadFromJson(poop, "Recursed");

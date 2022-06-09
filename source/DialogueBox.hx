@@ -104,25 +104,23 @@ class DialogueBox extends FlxSpriteGroup
 		blackScreen.alpha = 0;
 		add(blackScreen);
 		
-		var hasDialog = false;		
 		box = new FlxSprite(-20, 400);
 		
-		switch (PlayState.SONG.song.toLowerCase())
+		if (PlayState.instance.hasDialogue)
 		{
-			case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'interdimensional' | 'supernovae' | 'cheating' | 'unfairness' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'old-corn-theft': //ass hole
-				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('ui/speech_bubble_talking');
-				box.setGraphicSize(Std.int(box.width / textBoxSizeFix));
-				box.updateHitbox();
-				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-				box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
-				box.antialiasing = true;
+			box.frames = Paths.getSparrowAtlas('ui/speech_bubble_talking');
+			box.setGraphicSize(Std.int(box.width / textBoxSizeFix));
+			box.updateHitbox();
+			box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+			box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
+			box.antialiasing = true;
 		}
 
 		this.dialogueList = dialogueList;
 		
-		if (!hasDialog)
+		if (!PlayState.instance.hasDialogue)
 			return;
+		
 		var portraitLeftCharacter:Array<String> = new Array<String>();
 		var portraitRightCharacter:Array<String> = new Array<String>();
 
