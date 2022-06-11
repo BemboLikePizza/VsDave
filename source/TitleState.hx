@@ -48,7 +48,6 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		PlayState.recursedIntro = false;
 		trace(Sys.environment());
 		
 		fun = FlxG.random.int(0, 999);

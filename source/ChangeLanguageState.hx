@@ -40,7 +40,7 @@ class ChangeLanguageState extends MusicBeatState
       add(menuBG);
 		
 	   var helper:FlxText = new FlxText(0, 150, 0, "Select a language", 40);
-      helper.setFormat("Comic Sans MS Bold", 60, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE);
+      helper.setFormat("Comic Sans MS Bold", 60, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       helper.antialiasing = true;
       helper.borderSize = 3;
 	   helper.screenCenter(X);
@@ -144,6 +144,6 @@ class ChangeLanguageState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-		FlxTween.tween(FlxG.camera, {zoom: 1.02}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
+		FlxTween.tween(FlxG.camera, {zoom: 1.01}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 	}
 }

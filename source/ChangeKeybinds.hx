@@ -90,7 +90,7 @@ class ChangeKeybinds extends MusicBeatState
 		currentKeybindGroup = controlKeybindGroup[curControlSelected];
 
 		camFollow = new FlxObject(FlxG.width / 2, controlItems[curControlSelected].y);
-		FlxG.camera.follow(camFollow, 0.2);
+		FlxG.camera.follow(camFollow, 0.3);
 		changeSelection();
 
 		super.create();
@@ -317,12 +317,13 @@ class ChangeKeybinds extends MusicBeatState
 			}
 			controlKeybindGroup.remove(keybindText);
 		}
+		/*
 		createPresetUI();
 		for (i in 0...uiControls.length)
 		{
 			var uiControl:ControlUI = uiControls[i];
 			addControlText(uiControl, i);
-		}
+		}*/
 	}
 	function changeSelection(amount:Int = 0)
 	{
@@ -410,7 +411,7 @@ class ChangeKeybinds extends MusicBeatState
 			case 'ZX,.':
 				KeybindPrefs.setKeybindPreset(KeyboardScheme.ZxCommaDot);
 		}
-		//updateUI();
+		updateUI();
 		KeybindPrefs.saveControls();
 		FlxFlicker.flicker(preset, 1.1, 0.07, true);
 		FlxG.sound.play(Paths.sound('confirmMenu'));

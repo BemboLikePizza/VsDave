@@ -1,7 +1,0 @@
-setfont_code:dave,3d-scared:ЧТО 
-:dave,3d-scared:ЧТО ПРОИСХОДИТ
-distort:dave,3d-scared:МИР СТАНОВИТСЯ ТРЕХМЕРНЫМ
-undistort:dave,3d-scared:ТОЛЬКО НЕ СНОВА ТА ЛАБАРАТОРИЯ
-:dave,3d-scared:ПОЖАЛУЙСТА ПОМОГИ МНЕ СТАТЬ 2Д
-:dave,3d-scared:БЕРИ МИКРОФОН И ВОССТАНОВИ МЕНЯ ОБРАТНО В ФОРМУ ЭТОЙ РЕАЛЬНОСТИ
-setfont_normal:bf,confused:Б-Бип?...

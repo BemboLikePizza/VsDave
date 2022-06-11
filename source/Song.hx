@@ -53,7 +53,6 @@ class Song
 		try
 		{
 			rawJson = Assets.getText(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
-			trace(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase()).trim());
 		}
 		catch(ex)
 		{

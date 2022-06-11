@@ -1529,170 +1529,198 @@ class PlayState extends MusicBeatState
 		generateStaticArrows(0);
 		generateStaticArrows(1);
 
-		talking = false;
-		startedCountdown = true;
-		Conductor.songPosition = 0;
-		Conductor.songPosition -= Conductor.crochet * 5;
-
 		dad.dance();
 		gf.dance();
 		boyfriend.playAnim('idle', true);
 
+		if (recursedIntro)
+		{
+			canPause = false;
+			camHUD.alpha = 0;
+			camGame.alpha = 0;
+
+			FlxTween.tween(camHUD, {alpha: 1}, 3);
+			FlxTween.tween(camGame, {alpha: 1}, 3, {onComplete: function(tween:FlxTween)
+			{
+				new FlxTimer().start(1, function(timer:FlxTimer)
+				{
+					countdownTimer();
+				});
+			}});
+		}
+		else
+		{
+			countdownTimer();
+		}
+	}
+	function countdownTimer()
+	{
+		canPause = true;
 		var swagCounter:Int = 0;
 
-		if (!recursedIntro)
+		talking = false;
+		startedCountdown = true;
+		Conductor.songPosition = 0 - (Conductor.crochet * 5);
+
+		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
-			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
+			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+			var introSoundAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+			var soundAssetsAlt:Array<String> = new Array<String>();
+
+			if (SONG.song.toLowerCase() == "exploitation")
+				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
+			else
+				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
+
+			introSoundAssets.set('default', ['default/intro3', 'default/intro2', 'default/intro1', 'default/introGo']);
+			introSoundAssets.set('pixel', [
+				'pixel/intro3-pixel',
+				'pixel/intro2-pixel',
+				'pixel/intro1-pixel',
+				'pixel/introGo-pixel'
+			]);
+			introSoundAssets.set('dave', ['dave/intro3_dave', 'dave/intro2_dave', 'dave/intro1_dave', 'dave/introGo_dave']);
+			introSoundAssets.set('bambi', [
+				'bambi/intro3_bambi',
+				'bambi/intro2_bambi',
+				'bambi/intro1_bambi',
+				'bambi/introGo_bambi'
+			]);
+			introSoundAssets.set('ex', ['default/intro3', 'default/intro2', 'default/intro1', 'ex/introGo_weird']);
+
+			switch (SONG.song.toLowerCase())
+			{
+				case 'house', 'insanity', 'polygonized', 'bonus-song', 'interdimensional', 'five-nights', 'furiosity', 'memory', 'overdrive',
+					'roots', 'vs-dave-rap', 'rano':
+					soundAssetsAlt = introSoundAssets.get('dave');
+				case 'blocked', 'cheating', 'corn-theft', 'glitch', 'maze', 'mealie', 'secret', 'secret-mod-leak', 'shredder', 'supernovae',
+					'unfairness':
+					soundAssetsAlt = introSoundAssets.get('bambi');
+				case 'exploitation':
+					soundAssetsAlt = introSoundAssets.get('ex');
+				default:
+					soundAssetsAlt = introSoundAssets.get('default');
+			}
+
+			var introAlts:Array<String> = introAssets.get('default');
+			var altSuffix:String = "";
+
+			var doing_funny:Bool = true;
+
+			for (value in introAssets.keys())
+			{
+				if (value == curStage)
 				{
-		
-					var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-					var introSoundAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-					var soundAssetsAlt:Array<String> = new Array<String>();
-		
-					if (SONG.song.toLowerCase() == "exploitation")
-						introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
-					else
-						introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
-		
-					introSoundAssets.set('default', ['default/intro3', 'default/intro2', 'default/intro1', 'default/introGo']);
-					introSoundAssets.set('pixel', ['pixel/intro3-pixel', 'pixel/intro2-pixel', 'pixel/intro1-pixel', 'pixel/introGo-pixel']);
-					introSoundAssets.set('dave', ['dave/intro3_dave', 'dave/intro2_dave', 'dave/intro1_dave', 'dave/introGo_dave']);
-					introSoundAssets.set('bambi', ['bambi/intro3_bambi', 'bambi/intro2_bambi', 'bambi/intro1_bambi', 'bambi/introGo_bambi']);
-					introSoundAssets.set('ex', ['default/intro3', 'default/intro2', 'default/intro1', 'ex/introGo_weird']);
-		
-					switch (SONG.song.toLowerCase())
+					introAlts = introAssets.get(value);
+					altSuffix = '-pixel';
+				}
+			}
+
+			switch (swagCounter)
+			{
+				case 0:
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[0]), 0.6);
+					if (doing_funny)
 					{
-						case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
-						'memory' | 'overdrive' | 'roots' | 'vs-dave-rap':
-							soundAssetsAlt = introSoundAssets.get('dave');
-						case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 'secret-mod-leak' | 
-						'shredder' | 'supernovae' | 'unfairness':
-							soundAssetsAlt = introSoundAssets.get('bambi');
-						case 'exploitation':
-							soundAssetsAlt = introSoundAssets.get('ex');
-						default:
-							soundAssetsAlt = introSoundAssets.get('default');
+						focusOnDadGlobal = false;
+						ZoomCam(false);
 					}
-		
-					var introAlts:Array<String> = introAssets.get('default');
-					var altSuffix:String = "";
-		
-					var doing_funny:Bool = true;
-		
-					for (value in introAssets.keys())
-					{
-						if (value == curStage)
+				case 1:
+					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
+					ready.scrollFactor.set();
+					ready.updateHitbox();
+
+					ready.screenCenter();
+					add(ready);
+					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+						ease: FlxEase.cubeInOut,
+						onComplete: function(twn:FlxTween)
 						{
-							introAlts = introAssets.get(value);
-							altSuffix = '-pixel';
+							ready.destroy();
 						}
-					}
-		
-					switch (swagCounter)
+					});
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[1]), 0.6);
+					if (doing_funny)
 					{
-						case 0:
-							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[0]), 0.6);
-							if (doing_funny)
-							{
-								focusOnDadGlobal = false;
-								ZoomCam(false);
-							}
-						case 1:
-							var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
-							ready.scrollFactor.set();
-							ready.updateHitbox();
-		
-							ready.screenCenter();
-							add(ready);
-							FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-								ease: FlxEase.cubeInOut,
-								onComplete: function(twn:FlxTween)
-								{
-									ready.destroy();
-								}
-							});
-							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[1]), 0.6);
-							if (doing_funny)
-							{
-								focusOnDadGlobal = true;
-								ZoomCam(true);
-							}
-						case 2:
-							var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
-							set.scrollFactor.set();
-					
-							set.screenCenter();
-							add(set);
-							FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-								ease: FlxEase.cubeInOut,
-								onComplete: function(twn:FlxTween)
-								{
-									set.destroy();
-								}
-							});
-							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[2]), 0.6);
-							if (doing_funny)
-							{
-								focusOnDadGlobal = false;
-								ZoomCam(false);
-							}
-						case 3:
-							var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-							go.scrollFactor.set();
-		
-							go.updateHitbox();
-		
-							go.screenCenter();
-							add(go);
-		
-							var sex:Float = 1000;
-		
-							if (SONG.song.toLowerCase() == "exploitation")
-							{
-								sex = 300;
-							}
-		
-							FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / sex, {
-								ease: FlxEase.cubeInOut,
-								onComplete: function(twn:FlxTween)
-								{
-									go.destroy();
-								}
-							});
-							FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[3]), 0.6);
-		
-							if (doing_funny)
-							{
-								focusOnDadGlobal = true;
-								ZoomCam(true);
-							}
-						case 4:
-							var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
-							creditsPopup.camera = camHUD;
-							creditsPopup.scrollFactor.set();
-							creditsPopup.x = creditsPopup.width * -1;
-							add(creditsPopup);
-		
-							var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
-							{
-								FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
+						focusOnDadGlobal = true;
+						ZoomCam(true);
+					}
+				case 2:
+					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
+					set.scrollFactor.set();
+
+					set.screenCenter();
+					add(set);
+					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+						ease: FlxEase.cubeInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							set.destroy();
+						}
+					});
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[2]), 0.6);
+					if (doing_funny)
+					{
+						focusOnDadGlobal = false;
+						ZoomCam(false);
+					}
+				case 3:
+					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
+					go.scrollFactor.set();
+
+					go.updateHitbox();
+
+					go.screenCenter();
+					add(go);
+
+					var sex:Float = 1000;
+
+					if (SONG.song.toLowerCase() == "exploitation")
+					{
+						sex = 300;
+					}
+
+					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / sex, {
+						ease: FlxEase.cubeInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							go.destroy();
+						}
+					});
+					FlxG.sound.play(Paths.sound('introSounds/' + soundAssetsAlt[3]), 0.6);
+
+					if (doing_funny)
+					{
+						focusOnDadGlobal = true;
+						ZoomCam(true);
+					}
+				case 4:
+					var creditsPopup:CreditsPopUp = new CreditsPopUp(FlxG.width, 200);
+					creditsPopup.camera = camHUD;
+					creditsPopup.scrollFactor.set();
+					creditsPopup.x = creditsPopup.width * -1;
+					add(creditsPopup);
+
+					var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {
+						ease: FlxEase.backOut,
+						onComplete: function(tweeen:FlxTween)
+						{
+							FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1}, 1, {
+								ease: FlxEase.backIn,
+								onComplete: function(tween:FlxTween)
 								{
 									creditsPopup.destroy();
-								}, startDelay: 3});
-							}});
-					}
-		
-					swagCounter += 1;
-					// generateSong('fresh');
-				}, 5);
-		}
-		else 
-		{
-			startTimer = new FlxTimer();
-			
-			FlxG.camera.alpha = 0;
-			camHUD.alpha = 0;
-		}
+								},
+								startDelay: 3
+							});
+						}
+					});
+			}
+
+			swagCounter += 1;
+			// generateSong('fresh');
+		}, 5);
 	}
 
 	function playCutscene(name:String)
@@ -2504,16 +2532,7 @@ class PlayState extends MusicBeatState
 				if (Conductor.songPosition >= 0)
 				{
 					startSong();
-
-					if (recursedIntro)
-					{
-						var speed:Float = 7;
-
-						FlxTween.tween(FlxG.camera, {alpha: 1}, speed);
-						FlxTween.tween(camHUD, {alpha: 1}, speed);
-					}
 				}
-					
 			}
 		}
 		else
