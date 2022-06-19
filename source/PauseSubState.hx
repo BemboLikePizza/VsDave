@@ -166,7 +166,6 @@ class PauseSubState extends MusicBeatSubstate
 				PlayState.screenshader.Enabled = false;
 				PlayState.characteroverride = 'none';
 				PlayState.formoverride = 'none';
-				//FlxG.fullscreen = false;
 
 				Application.current.window.title = Main.applicationName;
 
@@ -197,10 +196,11 @@ class PauseSubState extends MusicBeatSubstate
 			difficulty.scrollFactor.set();
 			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
 			difficulty.updateHitbox();
-			add(difficulty);
-			
+			if (this != null)
+				add(difficulty);
+
 			difficulty.alpha = 0;
-	
+
 			difficulty.x = FlxG.width - (difficulty.width + 20);
 
 			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
@@ -212,17 +212,18 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...amountOfDifficulties)
 		{
-			var difficulty:FlxText = new FlxText(new FlxRandom().float(levelDifficulty.width, FlxG.width - levelDifficulty.width), 
-			new FlxRandom().float(levelDifficulty.height, FlxG.width - levelDifficulty.height), 0, levelDifficulty.text, 32);
+			var difficulty:FlxText = new FlxText(new FlxRandom().float(levelDifficulty.width, FlxG.width - levelDifficulty.width),
+				new FlxRandom().float(levelDifficulty.height, FlxG.width - levelDifficulty.height), 0, levelDifficulty.text, 32);
 			difficulty.scrollFactor.set();
 			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
 			difficulty.updateHitbox();
-			add(difficulty);
+			if (this != null)
+				add(difficulty);
 
 			difficulty.angle = new FlxRandom().float(0, 180);
-			
+
 			difficulty.alpha = 0;
-	
+
 			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.01 * i});
 		}
 	}

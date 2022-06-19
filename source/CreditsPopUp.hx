@@ -20,8 +20,7 @@ class CreditsPopUp extends FlxSpriteGroup
 	{
 		super(x, y);
 		bg = new FlxSprite().makeGraphic(400, 50);
-		bg.color = FlxColor.BLACK;
-		bg.alpha = 0.8;
+		bg.color = FlxColor.WHITE;
 		add(bg);
 		var songCreator:String = '';
 		var headingPath:String = '';

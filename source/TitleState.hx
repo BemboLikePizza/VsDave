@@ -47,9 +47,7 @@ class TitleState extends MusicBeatState
 	var awaitingExploitation:Bool;
 
 	override public function create():Void
-	{
-		trace(Sys.environment());
-		
+	{		
 		fun = FlxG.random.int(0, 999);
 		if(fun == 1)
 		{
@@ -324,7 +322,7 @@ class TitleState extends MusicBeatState
 				case 14:
 					addMoreText('The Full Mod');
 				case 15:
-					var text:String = awaitingExploitation ? 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA' : 'and Bambi';
+					var text:String = !awaitingExploitation  ? 'and Bambi' : 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA';
 					if (awaitingExploitation) FlxG.sound.play(Paths.sound('evilLaugh', 'shared'), 0.7);
 					addMoreText(text);
 				case 16:

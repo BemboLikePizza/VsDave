@@ -153,7 +153,6 @@ class FreeplayState extends MusicBeatState
 		for (song in packData.packSongs)
 		{
 			// Song, Character Icon, Week
-			trace(song);
 			var args:Array<String> = song.split(":");
 				
 			addWeek([args[0]], Std.parseInt(args[2]), [args[1]]);
@@ -267,6 +266,7 @@ class FreeplayState extends MusicBeatState
 				case "exploitation": FlxG.save.data.exploitationFound;
 				case "eletric-cockadoodledoo": FlxG.save.data.bananacoreUnlocked;
 				case "recursed": FlxG.save.data.recursedUnlocked;
+				case 'secret-mod-leak': FlxG.save.data.secretModLeakUnlocked;
 				default: true;
 			}
 
@@ -457,9 +457,7 @@ class FreeplayState extends MusicBeatState
 				Main.currentPackGlobal = Catagories[CurrentPack].toLowerCase();
 
 				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-	
-				trace(poop);
-	
+		
 				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = curDifficulty;

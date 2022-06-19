@@ -269,6 +269,10 @@ class MainMenuState extends MusicBeatState
 		{
 			FlxG.switchState(new TerminalState());
 		}
+		if (FlxG.keys.justPressed.EIGHT)
+		{
+			FlxG.switchState(new ChartingState());
+		}
 
 		if (!selectedSomethin)
 		{

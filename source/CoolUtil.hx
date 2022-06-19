@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxGroup;
 import flixel.FlxG;
 import openfl.utils.AssetCache;
 import flixel.math.FlxRandom;
@@ -16,10 +17,7 @@ class CoolUtil
 	
 	public static function init()
 	{
-		for (difficulty in difficultyArray)
-		{
-			difficultyArray.remove(difficulty);
-		}
+		difficultyArray = new Array<String>();
 		difficultyArray.push(LanguageManager.getTextString('play_easy'));
 		difficultyArray.push(LanguageManager.getTextString('play_normal'));
 		difficultyArray.push(LanguageManager.getTextString('play_hard'));

@@ -163,25 +163,26 @@ class TerminalState extends FlxState
         {
             new FlxTimer().start(1, function(timer:FlxTimer)
             {
-                var expungedLines:Array<String> = ['TAKING OVER...................', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START"];
+                var expungedLines:Array<String> = ['TAKING OVER....', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START"];
                 var fakeDisplay:FlxText = new FlxText(0, i * (displayText.height), FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
                 add(fakeDisplay);
                 FlxG.camera.follow(fakeDisplay, 1);
             });
         }
-        var glitch:FlxSprite = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
-        glitch.frames = Paths.getSparrowAtlas('glitch3', 'shared');
-        glitch.animation.addByPrefix('glitchScreen', 'glitch 3', 15);
-        glitch.setGraphicSize(Std.int(glitch.width * 1.5));
+
+        var glitch = new BGSprite('glitch', 0, 0, Paths.image('glitch3', 'shared'), [
+            new Animation('glitchScreen', 'glitch 3', 15, true, [false, false])
+        ], 0, 0, true);
+        glitch.setGraphicSize(FlxG.width, FlxG.height);
         glitch.updateHitbox();
-        glitch.screenCenter();
-        glitch.animation.play('glitchScreen');
-        add(glitch);
+		glitch.screenCenter();
+		glitch.animation.play('glitchScreen');
+		add(glitch);
         
         FlxG.sound.music.stop();
         FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"), function()
         {
-            FlxTween.tween(glitch, {alpha: 0}, 1);
+            FlxTween.tween(glitch, {alpha: 0}, 5);
 			FlxG.sound.play(Paths.sound('iTrollYou', 'shared'), function()
 			{
 				new FlxTimer().start(1, function(timer:FlxTimer)

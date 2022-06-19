@@ -376,7 +376,7 @@ class CreditsMenuState extends MusicBeatState
       var translators:Array<Person> = new Array<Person>();
       var contributors:Array<Person> = new Array<Person>();
       var betaTesters:Array<Person> = new Array<Person>();
-	  var specialThanks:Array<Person> = new Array<Person>();
+      var specialThanks:Array<Person> = new Array<Person>();
 
       for (person in peopleInCredits) 
       {
@@ -386,7 +386,7 @@ class CreditsMenuState extends MusicBeatState
             case Translator: translators.push(person);
             case Contributor: contributors.push(person);
             case BetaTester: betaTesters.push(person);
-			case SpecialThanks: specialThanks.push(person);
+            case SpecialThanks: specialThanks.push(person);
          }
       }
 
@@ -399,29 +399,31 @@ class CreditsMenuState extends MusicBeatState
             {
                case Dev:
                   creditsTypeString = 'Developers';
-				  translatedCreditsType = LanguageManager.getTextString('credits_dev');
+                  translatedCreditsType = LanguageManager.getTextString('credits_dev');
                case Translator:
                   creditsTypeString = 'Translators';
-				  translatedCreditsType = LanguageManager.getTextString('credits_translator');
+                  translatedCreditsType = LanguageManager.getTextString('credits_translator');
                case Contributor:
                   creditsTypeString = 'Contributors';
 				  translatedCreditsType = LanguageManager.getTextString('credits_contributor');
                case BetaTester:
                   creditsTypeString = 'Beta Testers';
-				  translatedCreditsType = LanguageManager.getTextString('credits_betaTester');
+                  translatedCreditsType = LanguageManager.getTextString('credits_betaTester');
                case SpecialThanks:
                   creditsTypeString = 'Special Thanks';
-				  translatedCreditsType = LanguageManager.getTextString('credits_specialThanks');
+                  translatedCreditsType = LanguageManager.getTextString('credits_specialThanks');
             }
             var titleText:FlxText = new FlxText(0, 0, 0, translatedCreditsType);
             titleText.setFormat("Comic Sans MS Bold", 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
             titleText.borderSize = 3;
             titleText.borderQuality = 3;
+            titleText.antialiasing = true;
             titleText.screenCenter(X);
             titleText.scrollFactor.set(0, 1);
 
             var personIcon:PersonIcon = new PersonIcon(titleText);
             personIcon.loadGraphic(Paths.image('credits/titles/' + creditsTypeString));
+            personIcon.antialiasing = true;
             add(personIcon);
 
             var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
@@ -432,6 +434,7 @@ class CreditsMenuState extends MusicBeatState
          var textItem:FlxText = new FlxText(0, i * 50, 0, currentPerson.name, 32);
          textItem.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle, defaultFormat.borderColor);
          textItem.screenCenter(X);
+         textItem.antialiasing = true;
          textItem.scrollFactor.set(0, 1);
 
 
@@ -460,7 +463,6 @@ class CreditsMenuState extends MusicBeatState
          var scaledY = FlxMath.remapToRange(creditsText.selectionId, 0, 1, 0, 1.5);
          creditsText.text.y = scaledY * 75 + (FlxG.height * 0.5);
       }
-
 		super.create();
 	}
    
@@ -676,6 +678,7 @@ class CreditsMenuState extends MusicBeatState
       personName.screenCenter(X);
       personName.updateHitbox();
       personName.scrollFactor.set();
+      personName.antialiasing = true;
       personName.active = false;
       
       var credits:FlxText = new FlxText(0, personName.y + 50, FlxG.width / 1.25, selectedPerson.credits, 25);
@@ -683,6 +686,7 @@ class CreditsMenuState extends MusicBeatState
       credits.screenCenter(X);
       credits.updateHitbox();
       credits.scrollFactor.set();
+      credits.antialiasing = true;
       credits.active = false;
 
       blackBg.alpha = 0;
@@ -717,6 +721,7 @@ class CreditsMenuState extends MusicBeatState
          socialGraphic.screenCenter(X);
          socialGraphic.scrollFactor.set();
          socialGraphic.active = false;
+         socialGraphic.antialiasing = true;
          socialGraphic.alpha = 0;
          add(socialGraphic);
 
@@ -729,6 +734,7 @@ class CreditsMenuState extends MusicBeatState
             discordText.updateHitbox();
             discordText.scrollFactor.set();
             discordText.active = false;
+            discordText.antialiasing = true;
             add(discordText);
             FlxTween.tween(discordText, { alpha: 1 }, fadeTime);
             selectedPersonGroup.add(discordText);

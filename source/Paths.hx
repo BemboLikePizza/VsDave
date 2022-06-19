@@ -157,12 +157,12 @@ class Paths
 		return 'songs:assets/songs/extern/${song.toLowerCase()}.$SOUND_EXT';
 	}
 
-	inline static public function image(key:String, ?library:String)
+	inline static public function image(key:String, ?library:String, ?ext:String = 'png')
 	{
-		var defaultReturnPath = getPath('images/$key.png', IMAGE, library);
+		var defaultReturnPath = getPath('images/$key.$ext', IMAGE, library);
 		if (isLocale())
 		{
-			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/images/$key.png', IMAGE, library);
+			var langaugeReturnPath = getPath('locale/${LanguageManager.save.data.language}/images/$key.$ext', IMAGE, library);
 			if (FileSystem.exists(langaugeReturnPath))
 			{
 				return langaugeReturnPath;

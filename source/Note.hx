@@ -113,7 +113,7 @@ class Note extends FlxSprite
 
 		if (this.noteStyle != 'text')
 		{
-			frames = Paths.getSparrowAtlas(notePathLol);
+			frames = Paths.getSparrowAtlas(notePathLol, 'shared');
 
 			animation.addByPrefix('greenScroll', 'green0');
 			animation.addByPrefix('redScroll', 'red0');
@@ -247,7 +247,7 @@ class Note extends FlxSprite
 		// we make sure its downscroll and its a SUSTAIN NOTE (aka a trail, not a note)
 		// and flip it so it doesn't look weird.
 		// THIS DOESN'T FUCKING FLIP THE NOTE, CONTRIBUTERS DON'T JUST COMMENT THIS OUT JESUS
-		if (FlxG.save.data.downscroll && sustainNote)
+		if (PlayState.scrollType == 'downscroll' && sustainNote)
 			flipY = true;
 
 		if (isSustainNote && prevNote != null)
@@ -286,7 +286,7 @@ class Note extends FlxSprite
 						prevNote.animation.play('redhold');
 				}
 
-				prevNote.scale.y *= (Conductor.stepCrochet / 100) * 1.5 * PlayState.SONG.speed;
+				prevNote.scale.y *= (Conductor.stepCrochet / 100) * 1.49 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
