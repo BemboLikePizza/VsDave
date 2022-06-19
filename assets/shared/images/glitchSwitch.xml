@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="glitchSwitch.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="glitchScreen0000" x="0" y="0" width="400" height="400"/>
+	<SubTexture name="glitchScreen0001" x="405" y="0" width="400" height="400"/>
+	<SubTexture name="glitchScreen0002" x="0" y="405" width="400" height="400"/>
+	<SubTexture name="glitchScreen0003" x="405" y="405" width="400" height="400"/>
+</TextureAtlas>

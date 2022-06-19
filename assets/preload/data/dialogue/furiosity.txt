@@ -1,0 +1,7 @@
+setfont_code:dave,3d-scared:WHAT
+:dave,3d-scared:WHAT IS HAPPENING
+distort:dave,3d-scared:THE WORLD IS BECOMING THREE DIMENSIONAL
+undistort:dave,3d-scared:NOT THE LAB AGAIN
+:dave,3d-scared:PLEASE HELP ME BECOME 2D
+:dave,3d-scared:TAKE THE MICROPHONE AND RESTORE ME BACK TO THIS REALITY'S FORM
+setfont_normal:bf,confused:B-beep..?
