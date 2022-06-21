@@ -318,8 +318,6 @@ class PlayState extends MusicBeatState
 	var switchSide:Bool;
 
 	public var subtitleManager:SubtitleManager;
-
-	public static var recursedIntro:Bool = false;
 	
 	override public function create()
 	{
@@ -1073,13 +1071,12 @@ class PlayState extends MusicBeatState
 
 		if (isStoryMode || FlxG.save.data.freeplayCuts)
 		{
-			if (hasDialogue)
+			switch (curSong.toLowerCase())
 			{
-				schoolIntro(doof);
-			}
-			else
-			{
-				startCountdown();
+				case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'interdimensional':
+					schoolIntro(doof);
+				default:
+					startCountdown();
 			}
 		}
 		else
@@ -1554,34 +1551,12 @@ class PlayState extends MusicBeatState
 		generateStaticArrows(0);
 		generateStaticArrows(1);
 
-		if (recursedIntro)
-		{
-			canPause = false;
-			camHUD.alpha = 0;
-			camGame.alpha = 0;
-
-			FlxTween.tween(camHUD, {alpha: 1}, 3);
-			FlxTween.tween(camGame, {alpha: 1}, 3, {onComplete: function(tween:FlxTween)
-			{
-				new FlxTimer().start(1, function(timer:FlxTimer)
-				{
-					countdownTimer();
-				});
-			}});
-		}
-		else
-		{
-			countdownTimer();
-		}
-	}
-	function countdownTimer()
-	{
-		canPause = true;
-		var swagCounter:Int = 0;
-
 		talking = false;
 		startedCountdown = true;
-		Conductor.songPosition = 0 - (Conductor.crochet * 5);
+		Conductor.songPosition = 0;
+		Conductor.songPosition -= Conductor.crochet * 5;
+
+		var swagCounter:Int = 0;
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
@@ -1599,28 +1574,18 @@ class PlayState extends MusicBeatState
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
 
 			introSoundAssets.set('default', ['default/intro3', 'default/intro2', 'default/intro1', 'default/introGo']);
-			introSoundAssets.set('pixel', [
-				'pixel/intro3-pixel',
-				'pixel/intro2-pixel',
-				'pixel/intro1-pixel',
-				'pixel/introGo-pixel'
-			]);
+			introSoundAssets.set('pixel', ['pixel/intro3-pixel', 'pixel/intro2-pixel', 'pixel/intro1-pixel', 'pixel/introGo-pixel']);
 			introSoundAssets.set('dave', ['dave/intro3_dave', 'dave/intro2_dave', 'dave/intro1_dave', 'dave/introGo_dave']);
-			introSoundAssets.set('bambi', [
-				'bambi/intro3_bambi',
-				'bambi/intro2_bambi',
-				'bambi/intro1_bambi',
-				'bambi/introGo_bambi'
-			]);
+			introSoundAssets.set('bambi', ['bambi/intro3_bambi', 'bambi/intro2_bambi', 'bambi/intro1_bambi', 'bambi/introGo_bambi']);
 			introSoundAssets.set('ex', ['default/intro3', 'default/intro2', 'default/intro1', 'ex/introGo_weird']);
 
 			switch (SONG.song.toLowerCase())
 			{
-				case 'house', 'insanity', 'polygonized', 'bonus-song', 'interdimensional', 'five-nights', 'furiosity', 'memory', 'overdrive',
-					'roots', 'vs-dave-rap', 'rano':
+				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
+				'memory' | 'overdrive' | 'roots' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
-				case 'blocked', 'cheating', 'corn-theft', 'glitch', 'maze', 'mealie', 'secret', 'secret-mod-leak', 'shredder', 'supernovae',
-					'unfairness':
+				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 'secret-mod-leak' | 
+				'shredder' | 'supernovae' | 'unfairness':
 					soundAssetsAlt = introSoundAssets.get('bambi');
 				case 'exploitation':
 					soundAssetsAlt = introSoundAssets.get('ex');
@@ -1674,7 +1639,7 @@ class PlayState extends MusicBeatState
 				case 2:
 					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					set.scrollFactor.set();
-
+			
 					set.screenCenter();
 					add(set);
 					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
@@ -1727,20 +1692,13 @@ class PlayState extends MusicBeatState
 					creditsPopup.x = creditsPopup.width * -1;
 					add(creditsPopup);
 
-					var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {
-						ease: FlxEase.backOut,
-						onComplete: function(tweeen:FlxTween)
+					var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
+					{
+						FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
 						{
-							FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1}, 1, {
-								ease: FlxEase.backIn,
-								onComplete: function(tween:FlxTween)
-								{
-									creditsPopup.destroy();
-								},
-								startDelay: 3
-							});
-						}
-					});
+							creditsPopup.destroy();
+						}, startDelay: 3});
+					}});
 			}
 
 			swagCounter += 1;
@@ -2014,10 +1972,13 @@ class PlayState extends MusicBeatState
 			babyArrow.updateHitbox();
 			babyArrow.scrollFactor.set();
 
-			babyArrow.y -= 50;
-			babyArrow.alpha = 0;
-			FlxTween.tween(babyArrow, {y: babyArrow.y + 50, alpha: 1}, 1.3, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 + i)});
-
+			if (!isStoryMode)
+			{
+				babyArrow.y -= 10;
+				babyArrow.alpha = 0;
+				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 + i)});
+			}
+			
 			babyArrow.ID = i;
 			if (player == 1)
 			{
@@ -2029,7 +1990,7 @@ class PlayState extends MusicBeatState
 			}
 
 			babyArrow.animation.play('static');
-			babyArrow.x += (babyArrow.frameWidth / 2);
+			babyArrow.x += 78;
 			babyArrow.x += ((FlxG.width / 2) * player);
 
 			strumLineNotes.add(babyArrow);
@@ -2074,9 +2035,8 @@ class PlayState extends MusicBeatState
 				+ " | Misses: "
 				+ misses, iconRPC);
 			#end
-			if (startTimer != null && !startTimer.finished)
+			if (!startTimer.finished)
 				startTimer.active = false;
-		
 		}
 
 		super.openSubState(SubState);
@@ -2110,7 +2070,7 @@ class PlayState extends MusicBeatState
 				resyncVocals();
 			}
 
-			if (startTimer != null && !startTimer.finished)
+			if (!startTimer.finished)
 				startTimer.active = true;
 
 			if (tweenList != null && tweenList.length != 0)
@@ -2125,7 +2085,7 @@ class PlayState extends MusicBeatState
 			}
 			paused = false;
 
-			if (startTimer != null && startTimer.finished)
+			if (startTimer.finished)
 			{
 				#if desktop
 				DiscordClient.changePresence(detailsText

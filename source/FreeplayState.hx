@@ -99,8 +99,6 @@ class FreeplayState extends MusicBeatState
 	override function create()
 	{
 		#if desktop DiscordClient.changePresence("In the Freeplay Menu", null); #end
-
-		PlayState.recursedIntro = false;
 		
 		Catagories = Assets.getText(Paths.data("packs/PackList.txt")).split(":");
 
@@ -693,7 +691,6 @@ class FreeplayState extends MusicBeatState
 					{
 						new FlxTimer().start(1, function(timer:FlxTimer)
 						{
-							PlayState.recursedIntro = true;
 							var poop:String = Highscore.formatSong("Recursed", 1);
 
 							PlayState.SONG = Song.loadFromJson(poop, "Recursed");

@@ -89,9 +89,7 @@ class MainMenuState extends MusicBeatState
 	var leftArrow:FlxText;
 
 	override function create()
-	{
-		PlayState.recursedIntro = false;
-		
+	{		
 		bgPaths = FileSystem.readDirectory(Paths.getDirectory('backgrounds'));
 
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
