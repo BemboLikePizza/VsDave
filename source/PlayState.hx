@@ -120,7 +120,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'cockey', 'pissey', 'pooper'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'cockey', 'pissey', 'pooper', 'shartey'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -2762,6 +2762,9 @@ class PlayState extends MusicBeatState
 						case 'unfairness':
 							health -= (healthtolower / 5);
 					}
+					if(dad.curCharacter == 'pooper') {
+						health -= (healthtolower);
+					}
 					// boyfriend.playAnim('hit',true);
 					dad.holdTimer = 0;
 
@@ -4427,34 +4430,36 @@ class PlayState extends MusicBeatState
 
 						defaultCamZoom -= 0.2;
 						FlxG.camera.zoom += 1; 	
-					//all of this stuff is for pooper's section, i will fix it later	
-					//case 1856:
-						//trace("BF Float");
-						//FlxTween.tween(boyfriend, {y: boyfriend.y - 700}, 8);
-					//case 1983:
-						//boyfriend.y = boyfriend.y + 700;
-						//FlxG.camera.flash(FlxColor.WHITE, 1);
-						//weirdBG.loadGraphic(Paths.image('backgrounds/void/bananaVoid3'));
-						//trace("Phase 3");
+					case 3744:
+						curECCCharacter = "pissey";
+						remove(dad);
+						dad = new Character(dad.x, dad.y, curECCCharacter, false);
+						add(dad);
+						iconP2.changeIcon(curECCCharacter);
+					case 3840:
+						trace("BF Float");
+						FlxTween.tween(boyfriend, {y: boyfriend.y - 700}, 8);
+					//all of this stuff is for pooper's section	
+					case 3968:
+						boyfriend.y = boyfriend.y + 700;
+						FlxG.camera.flash(FlxColor.WHITE, 1);
+						weirdBG.loadGraphic(Paths.image('backgrounds/void/bananaVoid3'));
+						trace("Phase 3");
 
-						//curECCCharacter = "pooper";
-
-					//case 2054:
-						//dad.flipX = !dad.flipX;
-					//case 2180:
-						//sexDad.flipX = !sexDad.flipX;
-					//case 2208:
-						//FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						//dad.visible = false;
-						//sexDad.visible = false;
-                    //case 2239:	
-						//remove(dad);
-						//dad = new Character(dad.x, dad.y, "pooper", false);
-						//add(dad);
-						//dad.alpha = 0;
-						//curECCCharacter = "pooper";
-						//iconP2.changeIcon(curECCCharacter);
-						//FlxTween.tween(dad, {alpha: 1}, 0.5);
+					case 3988:
+						dad.flipX = !dad.flipX;
+					case 4155:
+						FlxG.camera.flash(FlxColor.WHITE, 0.25);
+						dad.visible = false;
+						sexDad.visible = false;
+                    case 4183:	
+						curECCCharacter = "pooper";
+					    remove(dad);
+						dad = new Character(dad.x, dad.y, curECCCharacter, false);
+						add(dad);
+						dad.alpha = 0;
+						iconP2.changeIcon(curECCCharacter);
+						FlxTween.tween(dad, {alpha: 1}, 0.5);
 					//case 2624:
 						//indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/indihome", 'shared'));
 						//indihome.screenCenter();
@@ -4492,34 +4497,32 @@ class PlayState extends MusicBeatState
 						//dad = new Character(dad.x, dad.y, curECCCharacter, false);
 						//add(dad);
 						//iconP2.changeIcon(curECCCharacter);
-					//case 3200:
+					case 4993:
 						// re-using indihome bc im lazy as fuck
-						//indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/muffin", 'shared'));
-						//indihome.screenCenter();
-						//indihome.cameras = [camHUD];
-						//add(indihome);
+						indihome = new FlxSprite().loadGraphic(Paths.image("eletric-cockadoodledoo/muffin", 'shared'));
+						indihome.screenCenter();
+						indihome.cameras = [camHUD];
+						add(indihome);
 
-						//trace("EGG McMuffin");
-					//case 3328:
-						//remove(indihome);
-						//camHUD.visible = false;
-						//boyfriend.playAnim("firstDeath");
-						//boyfriend.canDance = false;
+						trace("EGG McMuffin");
+					case 5102:
+						remove(indihome);
+						hideStuff = new FlxSprite().makeGraphic(2560, 1440, FlxColor.BLACK);
+						hideStuff.screenCenter();
+						add(hideStuff);
+						camHUD.visible = false;
+						boyfriend.playAnim("firstDeath");
+						boyfriend.canDance = false;
 
-						//trace("Death Animation");
-					//case 3360:
-						//boyfriend.playAnim("deathLoop");
+						trace("Death Animation");
+					case 5139:
+						boyfriend.playAnim("deathLoop");
 
-						//trace("Death Loop");
-					//case 3392:
-						//camHUD.visible = true;
-						//boyfriend.playAnim("idle");
-						//boyfriend.canDance = true;
-					//case 3696:
-						//hideStuff = new FlxSprite().makeGraphic(2560, 1440, FlxColor.BLACK);
-						//hideStuff.screenCenter();
-						//add(hideStuff);
-						//camHUD.visible = false;
+						trace("Death Loop");
+					case 5155:
+						camHUD.visible = true;
+						boyfriend.playAnim("idle");
+						boyfriend.canDance = true;
 					//case 3728:
 						//camHUD.visible = true;
 						//camHUD.alpha = 0;
@@ -4530,8 +4533,8 @@ class PlayState extends MusicBeatState
 						//});
 
 						//FlxTween.tween(camHUD, {alpha: 1}, 3);
-					//case 3568:
-						//FlxTween.tween(dad, {alpha: 0}, 6);	
+					case 6449:
+						FlxTween.tween(dad, {alpha: 0}, 6);	
 				}
 
 				// Vinebooms

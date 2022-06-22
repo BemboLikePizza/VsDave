@@ -617,13 +617,13 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'Shartey right', 24, false);
 				animation.addByPrefix('singDOWN', 'Shartey down', 24, false);
 				animation.addByPrefix('singLEFT', 'Shartey left', 24, false);
-				animation.addByPrefix('singDOWN-alt', 'Shartey alt-down', 24, true);
+				animation.addByPrefix('singDOWN-alt', 'Shartey alt-down', 24, false);
 			
 				loadOffsetFile(curCharacter);
 					
 				barColor = FlxColor.fromRGB(104, 191, 202);
 	
-				setGraphicSize(Std.int(width * 1.85));
+				setGraphicSize(Std.int(width * 1.65));
 				updateHitbox();
 				antialiasing = false;
 			
@@ -642,7 +642,7 @@ class Character extends FlxSprite
 				
 				barColor = FlxColor.fromRGB(136, 104, 107);
 
-				setGraphicSize(Std.int(width * 6));
+				setGraphicSize(Std.int(width * 4.75));
 				updateHitbox();
 				antialiasing = false;
 			
