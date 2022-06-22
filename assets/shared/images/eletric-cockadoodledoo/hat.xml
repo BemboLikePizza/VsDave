@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="hat.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="hat0000" x="0" y="0" width="307" height="140" frameX="-9" frameY="-13" frameWidth="339" frameHeight="153"/>
+	<SubTexture name="hat0001" x="0" y="0" width="307" height="140" frameX="-9" frameY="-13" frameWidth="339" frameHeight="153"/>
+	<SubTexture name="hat0002" x="312" y="0" width="290" height="135" frameX="-19" frameY="-12" frameWidth="339" frameHeight="153"/>
+	<SubTexture name="hat0003" x="312" y="0" width="290" height="135" frameX="-19" frameY="-12" frameWidth="339" frameHeight="153"/>
+	<SubTexture name="hat0004" x="607" y="0" width="299" height="132" frameX="-16" frameY="0" frameWidth="339" frameHeight="153"/>
+	<SubTexture name="hat0005" x="607" y="0" width="299" height="132" frameX="-16" frameY="0" frameWidth="339" frameHeight="153"/>
+	<SubTexture name="hat0006" x="0" y="145" width="339" height="138" frameX="0" frameY="-9" frameWidth="339" frameHeight="153"/>
+	<SubTexture name="hat0007" x="0" y="145" width="339" height="138" frameX="0" frameY="-9" frameWidth="339" frameHeight="153"/>
+</TextureAtlas>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Expunged heading.png">
+	<!-- Created with Adobe Animate version 19.2.0.405 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Expunged0000" x="15" y="15" width="403" height="126"/>
+	<SubTexture name="Expunged0001" x="15" y="156" width="403" height="126"/>
+	<SubTexture name="Expunged0002" x="15" y="297" width="403" height="118" frameX="0" frameY="-4" frameWidth="403" frameHeight="126"/>
+	<SubTexture name="Expunged0003" x="15" y="430" width="403" height="118" frameX="0" frameY="-4" frameWidth="403" frameHeight="126"/>
+	<SubTexture name="Expunged0004" x="15" y="563" width="403" height="115" frameX="0" frameY="-6" frameWidth="403" frameHeight="126"/>
+	<SubTexture name="Expunged0005" x="15" y="693" width="403" height="115" frameX="0" frameY="-6" frameWidth="403" frameHeight="126"/>
+</TextureAtlas>
