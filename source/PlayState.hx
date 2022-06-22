@@ -251,7 +251,8 @@ class PlayState extends MusicBeatState
 	public var modchart:ExploitationModchartType;
 	var weirdBG:FlxSprite;
 	var cuzsieKapiEletricCockadoodledoo:Array<FlxSprite> = [];
-	public static var originalWindowTitle:String;
+	var cockeyHat:BGSprite;
+
 	var mcStarted:Bool = false;
 	public static var devBotplay:Bool = false;
 	public var creditsPopup:CreditsPopUp;
@@ -321,8 +322,7 @@ class PlayState extends MusicBeatState
 	
 	override public function create()
 	{
-		instance = this;
-		
+		instance = this;	
 
 		if ((SONG.song.toLowerCase() == "greetings" || SONG.song.toLowerCase() == "adventure") && characteroverride.toLowerCase() == "tristan")
 		{
@@ -989,7 +989,6 @@ class PlayState extends MusicBeatState
 		switch (curSong.toLowerCase())
 		{
 			case 'insanity':
-				preload('backgrounds/void/redsky');
 				preload('backgrounds/void/redsky_insanity');
 			case 'eletric-cockadoodledoo':
 				preload('eletric-cockadoodledoo/characters/Bartholemew');
@@ -1011,9 +1010,9 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/spike');
 				preload('backgrounds/void/interdimensions/darkSpace');
 				preload('backgrounds/void/interdimensions/hexagon');
-				preload('backgrounds/void/interdimensions/nimbi/nimbi');
+				preload('backgrounds/void/interdimensions/nimbi/nimbiVoid');
 				preload('backgrounds/void/interdimensions/nimbi/nimbi_land');
-				preload('backgrounds/void/interdimensions/nimbi/wtf_nimbi');
+				preload('backgrounds/void/interdimensions/nimbi/nimbi');
 			case 'recursed':
 				preload('recursed/Recursed_BF');
 			case 'exploitation':
@@ -1068,7 +1067,10 @@ class PlayState extends MusicBeatState
 
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
-
+		if (startTimer != null && !startTimer.active)
+		{
+			startTimer.active = true;
+		}
 		if (isStoryMode || FlxG.save.data.freeplayCuts)
 		{
 			switch (curSong.toLowerCase())
@@ -1493,6 +1495,13 @@ class PlayState extends MusicBeatState
 		background.shader = testshader.shader;
 		curbg = background;
 	}
+	function destroyCockeyHat()
+	{
+		backgroundSprites.remove(cockeyHat);
+		cockeyHat.destroy();
+		remove(cockeyHat);
+		cockeyHat = null;
+	}
 	function changeInterdimensionBg(type:String)
 	{
 		for (sprite in backgroundSprites)
@@ -1522,24 +1531,32 @@ class PlayState extends MusicBeatState
 				interdimensionBG.setPosition(-200, 200);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 			case 'nimbi-void':
-				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi/nimbi'));
+				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi/nimbiVoid'));
 				interdimensionBG.setPosition(-200, 200);
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
-				nimbiLand.setGraphicSize(Std.int(nimbiLand.width * 2.5));
 				backgroundSprites.add(nimbiLand);
-				insert(members.indexOf(dad), nimbiLand);
+				nimbiLand.setGraphicSize(Std.int(nimbiLand.width * 1.5));
+				insert(members.indexOf(gf), nimbiLand);
 
-				nimbi = new BGSprite('nimbi', 1000, 200, 'backgrounds/void/interdimensions/nimbi/wtf_nimbi', 
+				nimbi = new BGSprite('nimbi', 1100, 200, 'backgrounds/void/interdimensions/nimbi/nimbi', 
 				[
-					new Animation('idle', 'holy shit is that dave and boyfriend from fnf funk game this is such a odd situation i was put into', 24, true, [false, false])
+					new Animation('idle', 'lol hi dave and boyfriend fnf what a peculiar coincidence that we are here at this exact time', 24, true, [false, false])
 				], 1, 1, false, true);
 				nimbi.animation.play('idle');
 				backgroundSprites.add(nimbi);
 				insert(members.indexOf(gf), nimbi);
-				
-				
+
+				if (!FlxG.save.data.eccdPuzzles.contains('cockey-hat'))
+				{
+					cockeyHat = new BGSprite('cockeyHat', -FlxG.width, new FlxRandom().float(-FlxG.height, FlxG.height), 'eletric-cockadoodledoo/hat', [
+						new Animation('idle', 'hat', 24, true, [false, false])
+					], 1, 1, false, true);
+					cockeyHat.animation.play('idle');
+					backgroundSprites.add(cockeyHat);
+					insert(members.indexOf(gf), cockeyHat);
+				}
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
@@ -1692,7 +1709,7 @@ class PlayState extends MusicBeatState
 					creditsPopup.x = creditsPopup.width * -1;
 					add(creditsPopup);
 
-					var outTween = FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
+					FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
 					{
 						FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
 						{
@@ -2155,6 +2172,9 @@ class PlayState extends MusicBeatState
 	{
 		elapsedtime += elapsed;
 
+		if (startingSong && startTimer != null && !startTimer.active)
+			startTimer.active = true;
+			
 		if (paused && FlxG.sound.music != null && vocals != null && vocals.playing)
 		{
 			FlxG.sound.music.pause();
@@ -2217,6 +2237,26 @@ class PlayState extends MusicBeatState
 				if (timeLeft <= 0)
 				{
 					cancelRecursedCamTween();
+				}
+			}
+		}
+		if (SONG.song.toLowerCase() == 'interdimensional')
+		{
+			if (cockeyHat != null)
+			{
+				trace(cockeyHat.getScreenPosition());
+				
+				cockeyHat.angle += 40 * elapsed;
+				cockeyHat.x += 300 * elapsed;
+				cockeyHat.y += (Math.sin(elapsedtime) * 200) * elapsed;
+				
+				if (cockeyHat.x > (FlxG.width + cockeyHat.width) + 200)
+				{
+					destroyCockeyHat();
+				}
+				if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(cockeyHat))
+				{
+					destroyCockeyHat();
 				}
 			}
 		}
@@ -2750,7 +2790,7 @@ class PlayState extends MusicBeatState
 				{
 					destroyNote(daNote);
 				}
-				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (350 / (0.45 * FlxMath.roundDecimal(SONG.speed * daNote.LocalScrollSpeed, 2))))
+				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (350 / (0.45 * FlxMath.roundDecimal(SONG.speed * (daNote.LocalScrollSpeed == 0 ? 1 : daNote.LocalScrollSpeed), 2))))
 				{
 					if (!devBotplay)
 						noteMiss(daNote.noteData, daNote);
@@ -4516,25 +4556,17 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(blackScreen, {alpha: 0}, Conductor.crochet / 1000);
 						FlxG.sound.play(Paths.sound('static'), 0.5);
 
-						creditsPopup.bg.frames = Paths.getSparrowAtlas('songHeadings/glitchHeading');
-						creditsPopup.bg.animation.addByPrefix('glitch', 'glitchHeading', 24, true);
-						creditsPopup.bg.animation.play('glitch');
+						creditsPopup.switchHeading({path: Paths.image('songHeadings/glitchHeading'), antiAliasing: false, animation: 
+						new Animation('glitch', 'glitchHeading', 24, true, [false, false])});
+						
+						creditsPopup.changeText('', '');
 					case 40:
-						creditsPopup.remove(creditsPopup.bg);
-						creditsPopup.bg = new FlxSprite().makeGraphic(400, 50);
-						creditsPopup.add(creditsPopup.bg);
+						creditsPopup.switchHeading({path: Paths.image('songHeadings/expungedHeading'), antiAliasing: true,
+						animation: new Animation('expunged', 'Expunged', 24, true, [false, false])});
 
-						creditsPopup.funnyIcon.loadGraphic(Paths.image('songCreators/Oxygen'));
-						creditsPopup.funnyText.text = 'Song by Oxygen';
-						creditsPopup.updateHitboxes();
+						creditsPopup.changeText('Song by Oxygen', 'Oxygen');
 					case 28, 48:
-						creditsPopup.remove(creditsPopup.bg);
-						creditsPopup.bg = new FlxSprite().makeGraphic(400, 50);
-						creditsPopup.add(creditsPopup.bg);
-
-						creditsPopup.funnyIcon.loadGraphic(Paths.image('songCreators/whoAreYou'));
-						creditsPopup.funnyText.text = 'Song by EXPUNGED';
-						creditsPopup.updateHitboxes();
+						creditsPopup.changeText('Song by EXPUNGED', 'whoAreYou');
 					case 64 | 1024:
 						FlxTween.tween(camHUD, {alpha: 0}, 3);
 						FlxTween.tween(boyfriend, {alpha: 0}, 3);

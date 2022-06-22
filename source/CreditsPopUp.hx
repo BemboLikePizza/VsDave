@@ -1,5 +1,6 @@
 package;
 
+import sys.FileSystem;
 import flixel.group.FlxSpriteGroup;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.FlxObject;
@@ -8,6 +9,11 @@ import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
 
+typedef SongHeading = {
+	var path:String;
+	var antiAliasing:Bool;
+	var ?animation:Animation;
+}
 class CreditsPopUp extends FlxSpriteGroup
 {
 	public var bg:FlxSprite;
@@ -23,7 +29,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		bg.color = FlxColor.WHITE;
 		add(bg);
 		var songCreator:String = '';
-		var headingPath:String = '';
+		var headingPath:SongHeading = null;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
@@ -53,14 +59,27 @@ class CreditsPopUp extends FlxSpriteGroup
 		switch (PlayState.storyWeek)
 		{
 			case 1:
-				headingPath = Paths.image('songHeadings/daveHeading');
-				bg.antialiasing = false;
+				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false};
 			case 2:
-				headingPath = Paths.image('songHeadings/bambiHeading');
+				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true};
+			case 9:
+				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
+				animation: new Animation('expunged', 'Expunged', 24, true, [false, false])};
 		}
-		if (headingPath != '')
+		if (headingPath != null)
 		{
-			bg.loadGraphic(headingPath);
+			if (headingPath.animation == null)
+			{
+				bg.loadGraphic(Paths.image(headingPath.path));
+			}
+			else
+			{
+				var info = headingPath.animation;
+				bg.frames = Paths.getSparrowAtlas(headingPath.path);
+				bg.animation.addByPrefix(info.name, info.prefixName, info.frames, info.looped, info.flip[0], info.flip[1]);
+				bg.animation.play(info.name);
+			}
+			bg.antialiasing = headingPath.antiAliasing;
 		}
 		funnyText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
 		funnyText.setFormat('Comic Sans MS Bold', 45, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -101,5 +120,40 @@ class CreditsPopUp extends FlxSpriteGroup
 
 		bg.setGraphicSize(Std.int((funnyText.width + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
 		bg.updateHitbox();
+	}
+	public function switchHeading(newHeading:SongHeading)
+	{
+		remove(bg);
+		bg = new FlxSprite().makeGraphic(400, 50);
+		bg.color = FlxColor.WHITE;
+		add(bg);
+		
+		if (newHeading.animation == null)
+		{
+			bg.loadGraphic(newHeading.path);
+		}
+		else
+		{
+			var info = newHeading.animation;
+			bg.frames = Paths.getSparrowAtlas(newHeading.path);
+			bg.animation.addByPrefix(info.name, info.prefixName, info.frames, info.looped, info.flip[0], info.flip[1]);
+			bg.animation.play(info.name);
+		}
+		bg.antialiasing = newHeading.antiAliasing;
+		updateHitboxes();
+	}
+	public function changeText(newText:String, newIcon:String)
+	{
+		funnyText.text = newText;
+		if (!FileSystem.exists(Paths.image('songCreators/' + newIcon)))
+		{
+			funnyIcon.visible = false;
+		}
+		else
+		{
+			funnyIcon.visible = true;
+			funnyIcon.loadGraphic(Paths.image('songCreators/' + newIcon));
+		}
+		updateHitboxes();
 	}
 }

@@ -46,5 +46,7 @@ class SaveDataHandler
 		
 		if (FlxG.save.data.fpsCap == null)
 			FlxG.save.data.fpsCap = 150;
+		if (FlxG.save.data.eccdPuzzles == null)
+			FlxG.save.data.eccdPuzzles = [];
     }
 }

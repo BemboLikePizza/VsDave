@@ -328,7 +328,7 @@ class CharacterSelectState extends MusicBeatState
 			babyArrow.ID = i;
 	
 			babyArrow.animation.play('static');
-			babyArrow.x += 50;
+			babyArrow.x += 78;
 			babyArrow.x += ((FlxG.width / 3.5));
 			babyArrow.y -= 10;
 			babyArrow.alpha = 0;
