@@ -309,7 +309,7 @@ class Character extends FlxSprite
 
 			case 'bambi-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Bambi', 'shared');
-				animation.addByPrefix('idle', 'splitathon idle', 24, false);
+				animation.addByPrefix('idle', 'splitathon idle', 24, true);
 				animation.addByPrefix('singDOWN', 'splitathon down', 24, false);
 				animation.addByPrefix('singUP', 'splitathon up', 24, false);
 				animation.addByPrefix('singLEFT', 'splitathon left', 24, false);
@@ -571,17 +571,17 @@ class Character extends FlxSprite
 			case 'cockey':
 				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Cockey', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('idle', 'Cockey idle', 24, false);
+				animation.addByPrefix('singUP', 'Cockey up', 24, false);
+				animation.addByPrefix('singRIGHT', 'Cockey right', 24, false);
+				animation.addByPrefix('singDOWN', 'Cockey down', 24, false);
+				animation.addByPrefix('singLEFT', 'Cockey left', 24, false);
 		
 				loadOffsetFile(curCharacter);
 
 				barColor = FlxColor.fromRGB(228, 85, 81);
 
-				setGraphicSize(Std.int(width * 0.5));
+				setGraphicSize(Std.int(width * 2));
 				updateHitbox();
 				antialiasing = false;
 		
@@ -596,15 +596,37 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'right', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('phoneOFF', 'turning his phone off', 24, true);
+				animation.addByPrefix('phoneAWAY', 'putting his phone away', 24, false);
 		
 				loadOffsetFile(curCharacter);
 				
 				barColor = FlxColor.fromRGB(255, 206, 11);
 
-				setGraphicSize(Std.int(width * 0.5));
+				setGraphicSize(Std.int(width * 1.85));
 				updateHitbox();
 				antialiasing = false;
 		
+				playAnim('idle');
+
+			case 'shartey':
+				tex = Paths.getSparrowAtlas('eletric-cockadoodledoo/characters/Shartey', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Shartey idle', 24, false);
+				animation.addByPrefix('singUP', 'Shartey up', 24, false);
+				animation.addByPrefix('singRIGHT', 'Shartey right', 24, false);
+				animation.addByPrefix('singDOWN', 'Shartey down', 24, false);
+				animation.addByPrefix('singLEFT', 'Shartey left', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'Shartey alt-down', 24, true);
+			
+				loadOffsetFile(curCharacter);
+					
+				barColor = FlxColor.fromRGB(104, 191, 202);
+	
+				setGraphicSize(Std.int(width * 1.85));
+				updateHitbox();
+				antialiasing = false;
+			
 				playAnim('idle');
 
 			case 'pooper':

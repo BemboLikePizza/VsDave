@@ -1,5 +1,7 @@
-idle 110 440
-singUP 18 381
-singRIGHT -2 390
-singLEFT 35 386
-singDOWN 3 405
+idle -200 -150
+singUP -173 -93
+singRIGHT -176 -52
+singLEFT -44 -133
+singDOWN -191 -150
+phoneOFF -195 -185
+phoneAWAY -137 -111
