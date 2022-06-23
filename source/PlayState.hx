@@ -2765,7 +2765,7 @@ class PlayState extends MusicBeatState
 							health -= (healthtolower / 5);
 					}
 					if(dad.curCharacter == 'pooper') {
-						health -= (healthtolower);
+						health -= (healthtolower / 3);
 					}
 					// boyfriend.playAnim('hit',true);
 					dad.holdTimer = 0;
