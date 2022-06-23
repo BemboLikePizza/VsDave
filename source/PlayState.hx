@@ -1550,10 +1550,12 @@ class PlayState extends MusicBeatState
 
 				if (!FlxG.save.data.eccdPuzzles.contains('cockey-hat'))
 				{
-					cockeyHat = new BGSprite('cockeyHat', -FlxG.width, new FlxRandom().float(-FlxG.height, FlxG.height), 'eletric-cockadoodledoo/hat', [
+					cockeyHat = new BGSprite('cockeyHat', -FlxG.width, FlxG.height / 2, 'eletric-cockadoodledoo/hat', [
 						new Animation('idle', 'hat', 24, true, [false, false])
 					], 1, 1, false, true);
 					cockeyHat.animation.play('idle');
+					cockeyHat.setGraphicSize(Std.int(cockeyHat.width / 2));
+					cockeyHat.updateHitbox();
 					backgroundSprites.add(cockeyHat);
 					insert(members.indexOf(gf), cockeyHat);
 				}
