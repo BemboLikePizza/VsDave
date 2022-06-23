@@ -4509,12 +4509,12 @@ class PlayState extends MusicBeatState
 						trace("EGG McMuffin");
 					case 5102:
 						remove(indihome);
-						hideStuff = new FlxSprite().makeGraphic(2560, 1440, FlxColor.BLACK);
-						hideStuff.screenCenter();
-						add(hideStuff);
 						camHUD.visible = false;
 						boyfriend.playAnim("firstDeath");
 						boyfriend.canDance = false;
+						hideStuff = new FlxSprite().makeGraphic(2560, 1440, FlxColor.BLACK);
+						hideStuff.screenCenter();
+						add(hideStuff);
 
 						trace("Death Animation");
 					case 5139:
@@ -4525,6 +4525,7 @@ class PlayState extends MusicBeatState
 						camHUD.visible = true;
 						boyfriend.playAnim("idle");
 						boyfriend.canDance = true;
+						remove(hideStuff);
 					//case 3728:
 						//camHUD.visible = true;
 						//camHUD.alpha = 0;
