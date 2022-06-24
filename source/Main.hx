@@ -1,5 +1,6 @@
 package;
 
+import openfl.text.TextFormat;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;
@@ -76,6 +77,8 @@ class Main extends Sprite
 
 		#if !mobile
 		fps = new FpsDisplay(10, 3, 0xFFFFFF);
+		var fpsFormat = new TextFormat("Comic Sans MS Bold", 15, 0xFFFFFF, true);
+		fps.defaultTextFormat = fpsFormat;
 		addChild(fps);
 		#end
 	}

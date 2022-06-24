@@ -27,7 +27,6 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;
-
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	var optionShit:Array<String> = 
@@ -56,6 +55,7 @@ class MainMenuState extends MusicBeatState
 	public static var kadeEngineVer:String = "DAVE";
 	public static var gameVer:String = "0.2.7.1";
 	
+	var bg:FlxSprite;
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	public static var bgPaths:Array<String> = new Array<String>();
@@ -88,6 +88,8 @@ class MainMenuState extends MusicBeatState
 	var rightArrow:FlxText;
 	var leftArrow:FlxText;
 
+	var voidShader:Shaders.GlitchEffect;
+
 	override function create()
 	{		
 		bgPaths = FileSystem.readDirectory(Paths.getDirectory('backgrounds'));
@@ -97,7 +99,6 @@ class MainMenuState extends MusicBeatState
 		{
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 		}
-
 		persistentUpdate = persistentDraw = true;
 
 		#if desktop
@@ -108,24 +109,52 @@ class MainMenuState extends MusicBeatState
 
 		// daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
 
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(randomizeBG());
-		bg.scrollFactor.set();
-		bg.setGraphicSize(Std.int(bg.width * 1.1));
-		bg.updateHitbox();
-		bg.screenCenter();
-		bg.antialiasing = true;
-		bg.color = 0xFFFDE871;
-		add(bg);
+		if (awaitingExploitation)
+		{
+			bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
+			bg.scrollFactor.set(0, 0.2);
+			bg.antialiasing = false;
+			bg.color = FlxColor.multiply(bg.color, FlxColor.fromRGB(50, 50, 50));
+			add(bg);
+			
+			voidShader = new Shaders.GlitchEffect();
+			voidShader.waveAmplitude = 0.1;
+			voidShader.waveFrequency = 5;
+			voidShader.waveSpeed = 2;
+			
+			bg.shader = voidShader.shader;
 
-		magenta = new FlxSprite(-80).loadGraphic(bg.graphic);
-		magenta.scrollFactor.set();
-		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.antialiasing = true;
-		magenta.color = 0xFFfd719b;
-		add(magenta);
+			magenta = new FlxSprite(-600, -200).loadGraphic(bg.graphic);
+			magenta.scrollFactor.set();
+			magenta.antialiasing = false;
+			magenta.visible = false;
+			magenta.color = FlxColor.multiply(0xFFfd719b, FlxColor.fromRGB(50, 50, 50));
+			add(magenta);
+
+			magenta.shader = voidShader.shader;
+		}
+		else
+		{
+			bg = new FlxSprite(-80).loadGraphic(randomizeBG());
+			bg.scrollFactor.set();
+			bg.setGraphicSize(Std.int(bg.width * 1.1));
+			bg.updateHitbox();
+			bg.screenCenter();
+			bg.antialiasing = true;
+			bg.color = 0xFFFDE871;
+			add(bg);
+	
+			magenta = new FlxSprite(-80).loadGraphic(bg.graphic);
+			magenta.scrollFactor.set();
+			magenta.setGraphicSize(Std.int(magenta.width * 1.1));
+			magenta.updateHitbox();
+			magenta.screenCenter();
+			magenta.visible = false;
+			magenta.antialiasing = true;
+			magenta.color = 0xFFfd719b;
+			add(magenta);
+		}
+		
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -219,7 +248,11 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		
+		if (voidShader != null)
+		{
+			voidShader.shader.uTime.value[0] += elapsed;
+		}
+
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;

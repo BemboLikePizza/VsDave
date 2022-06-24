@@ -1,5 +1,6 @@
 package;
 
+import haxe.Http;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;

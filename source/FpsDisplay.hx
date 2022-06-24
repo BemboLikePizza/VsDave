@@ -1,5 +1,7 @@
 package;
 
+import openfl.system.System;
+import flixel.math.FlxMath;
 import haxe.Timer;
 import openfl.events.Event;
 import openfl.text.TextField;
@@ -82,7 +84,19 @@ class FpsDisplay extends TextField
 			    text = "FPS: -" + (currentFPS * 10000) +  " RVhQVU5HRUQgV0lMTCBUQUtFIE9WRVI= " + (currentFPS * 10000);
             else
                 text = "FPS: " + currentFPS;
-
+				#if openfl
+				var memoryMegas:Float = 0;
+				memoryMegas = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 1));
+				if (memoryMegas > 1000)
+				{
+					var memoryGB = (memoryMegas / 1000);
+					text += "\nMemory: " + FlxMath.roundDecimal(memoryGB, 2) + " GB";
+				}
+				else
+				{
+					text += "\nMemory: " + memoryMegas + " MB";
+				}
+				#end
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))
 			text += "\ntotalDC: " + Context3DStats.totalDrawCalls();
 			text += "\nstageDC: " + Context3DStats.contextDrawCalls(DrawCallContext.STAGE);

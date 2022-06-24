@@ -1,5 +1,7 @@
 package;
 
+import haxe.Json;
+import haxe.Http;
 import flixel.math.FlxRandom;
 import Controls.Control;
 import flixel.FlxG;

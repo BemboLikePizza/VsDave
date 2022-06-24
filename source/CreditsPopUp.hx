@@ -25,8 +25,7 @@ class CreditsPopUp extends FlxSpriteGroup
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
-		bg = new FlxSprite().makeGraphic(400, 50);
-		bg.color = FlxColor.WHITE;
+		bg = new FlxSprite().makeGraphic(400, 50, FlxColor.WHITE);
 		add(bg);
 		var songCreator:String = '';
 		var headingPath:SongHeading = null;
@@ -62,7 +61,7 @@ class CreditsPopUp extends FlxSpriteGroup
 				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false};
 			case 2:
 				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true};
-			case 9:
+			case 8:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false])};
 		}
@@ -82,9 +81,8 @@ class CreditsPopUp extends FlxSpriteGroup
 			bg.antialiasing = headingPath.antiAliasing;
 		}
 		funnyText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
-		funnyText.setFormat('Comic Sans MS Bold', 45, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		funnyText.borderSize = 2.5;
-		funnyText.borderQuality = 1;
+		funnyText.setFormat('Comic Sans MS Bold', 35, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		funnyText.borderSize = 1.5;
 		funnyText.antialiasing = true;
 		funnyText.updateHitbox();
 
@@ -96,12 +94,12 @@ class CreditsPopUp extends FlxSpriteGroup
       
 		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 
-		funnyIcon.x = funnyText.x + funnyText.width + 20;
+		funnyIcon.x = funnyText.x + funnyText.frameWidth + 20;
 		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
 
 		add(funnyIcon);
 
-		bg.setGraphicSize(Std.int((funnyText.width + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
+		bg.setGraphicSize(Std.int((funnyText.frameWidth + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
 		bg.updateHitbox();
 		add(funnyText);
 	}
@@ -114,23 +112,20 @@ class CreditsPopUp extends FlxSpriteGroup
 
 		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 
-		funnyIcon.x = funnyText.x + funnyText.width + 20;
+		funnyIcon.x = funnyText.x + funnyText.frameWidth + 20;
 		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
 
 
-		bg.setGraphicSize(Std.int((funnyText.width + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
+		bg.setGraphicSize(Std.int((funnyText.frameWidth + funnyIcon.width) + 20), Std.int(funnyText.height) + 40);
 		bg.updateHitbox();
 	}
 	public function switchHeading(newHeading:SongHeading)
 	{
 		remove(bg);
-		bg = new FlxSprite().makeGraphic(400, 50);
-		bg.color = FlxColor.WHITE;
-		add(bg);
-		
+		bg = new FlxSprite().makeGraphic(400, 50, FlxColor.WHITE);
 		if (newHeading.animation == null)
 		{
-			bg.loadGraphic(newHeading.path);
+			bg.loadGraphic(Paths.image(newHeading.path));
 		}
 		else
 		{
@@ -139,20 +134,20 @@ class CreditsPopUp extends FlxSpriteGroup
 			bg.animation.addByPrefix(info.name, info.prefixName, info.frames, info.looped, info.flip[0], info.flip[1]);
 			bg.animation.play(info.name);
 		}
+		add(bg);
 		bg.antialiasing = newHeading.antiAliasing;
 		updateHitboxes();
 	}
 	public function changeText(newText:String, newIcon:String)
 	{
 		funnyText.text = newText;
-		if (!FileSystem.exists(Paths.image('songCreators/' + newIcon)))
+		if (!FileSystem.exists(Paths.image('songCreators/$newIcon', 'shared')))
 		{
-			funnyIcon.visible = false;
+			funnyIcon.loadGraphic(Paths.image('songCreators/none', 'shared'));
 		}
 		else
 		{
-			funnyIcon.visible = true;
-			funnyIcon.loadGraphic(Paths.image('songCreators/' + newIcon));
+			funnyIcon.loadGraphic(Paths.image('songCreators/$newIcon', 'shared'));
 		}
 		updateHitboxes();
 	}

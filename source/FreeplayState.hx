@@ -95,6 +95,8 @@ class FreeplayState extends MusicBeatState
 	var requiredKey:Array<Int>;
 	var stringKey:String;
 
+	var bgShader:Shaders.GlitchEffect;
+	var awaitingExploitation:Bool;
 
 	override function create()
 	{
@@ -102,11 +104,33 @@ class FreeplayState extends MusicBeatState
 		
 		Catagories = Assets.getText(Paths.data("packs/PackList.txt")).split(":");
 
-		bg.loadGraphic(MainMenuState.randomizeBG());
-		bg.color = 0xFF4965FF;
-		defColor = bg.color;
-		bg.scrollFactor.set();
-		add(bg);
+		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
+
+		if (awaitingExploitation)
+		{
+			bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
+			bg.scrollFactor.set();
+			bg.antialiasing = false;
+			bg.color = FlxColor.multiply(bg.color, FlxColor.fromRGB(50, 50, 50));
+			add(bg);
+			
+			bgShader = new Shaders.GlitchEffect();
+			bgShader.waveAmplitude = 0.1;
+			bgShader.waveFrequency = 5;
+			bgShader.waveSpeed = 2;
+			
+			defColor = bg.color;
+			bg.shader = bgShader.shader;
+		}
+		else
+		{
+			bg.loadGraphic(MainMenuState.randomizeBG());
+			bg.color = 0xFF4965FF;
+			defColor = bg.color;
+			bg.scrollFactor.set();
+			add(bg);
+		}
+		
 
 		for (i in 0...Catagories.length)
 		{
@@ -280,6 +304,11 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		if (bgShader != null)
+		{
+			bgShader.shader.uTime.value[0] += elapsed;
+		}
+
 		if (InMainFreeplayState)
 		{
 			timeSincePress += elapsed;
@@ -307,10 +336,6 @@ class FreeplayState extends MusicBeatState
 					{
 						resetPresses();
 					}
-				}
-				if (FlxG.keys.justPressed.R)
-				{
-					recursedUnlock();
 				}
 			}
 			else

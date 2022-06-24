@@ -12,8 +12,8 @@ using StringTools;
 class CoolUtil
 {
 	public static var difficultyArray:Array<String> = new Array<String>();
-	public static var exploitationDifficulties:Array<String> = ["YOU'RE FUCKED", 'HAHAHAHHAHA', "YOU CAN'T ESCAPE FROM THE FUN ALREADY", 
-	"EXPUNGED'S REIGN IS HERE, AND THERE'S NOTHING YOU CAN DO ABOUT IT", "YOU HAVE REACHED THE END OF THE RABBIT HOLE"];
+	public static var exploitationDifficulties:Array<String> = ["YOU'RE FUCKED", 'HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA', "YOU CAN'T ESCAPE FROM THE FUN ALREADY", 
+	"EXPUNGED'S REIGN IS HERE, YOU'RE FUCKED", "YOU HAVE REACHED THE END OF THE RABBIT HOLE", "YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS YOU'RE WORTHLESS", ];
 	
 	public static function init()
 	{

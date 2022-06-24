@@ -119,6 +119,7 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('pooper', 'Pooper', [1, 1, 1, 1])
 		])
 	];
+	var bgShader:Shaders.GlitchEffect;
 	public function new() 
 	{
 		super();
@@ -161,16 +162,17 @@ class CharacterSelectState extends MusicBeatState
 		bg.antialiasing = true;
 		bg.scrollFactor.set(0.75, 0.75);
 		bg.active = false;
+		
 		if (PlayState.SONG.song.toLowerCase() == "exploitation")
 		{
 			bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 			
-			var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
-			testshader.waveAmplitude = 0.1;
-			testshader.waveFrequency = 5;
-			testshader.waveSpeed = 2;
+			bgShader = new Shaders.GlitchEffect();
+			bgShader.waveAmplitude = 0.1;
+			bgShader.waveFrequency = 5;
+			bgShader.waveSpeed = 2;
 			
-			bg.shader = testshader.shader;
+			bg.shader = bgShader.shader;
 		}
 		add(bg);
 
@@ -328,7 +330,7 @@ class CharacterSelectState extends MusicBeatState
 			babyArrow.ID = i;
 	
 			babyArrow.animation.play('static');
-			babyArrow.x += 78;
+			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 3.5));
 			babyArrow.y -= 10;
 			babyArrow.alpha = 0;
@@ -341,6 +343,10 @@ class CharacterSelectState extends MusicBeatState
 	}
 	override public function update(elapsed:Float):Void 
 	{
+		if (bgShader != null)
+		{
+			bgShader.shader.uTime.value[0] += elapsed;
+		}
 		Conductor.songPosition = FlxG.sound.music.time;
 		
 		var controlSet:Array<Bool> = [controls.LEFT_P, controls.DOWN_P, controls.UP_P, controls.RIGHT_P];
