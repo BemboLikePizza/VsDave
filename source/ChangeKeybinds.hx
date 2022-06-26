@@ -36,9 +36,10 @@ class ChangeKeybinds extends MusicBeatState
 	var bg:FlxSprite = new FlxSprite();
 
 	var camFollow:FlxObject;
-	var curControlSelected:Int = 0;
-	var controlItems:Array<FlxText> = new Array<FlxText>();
-	var curControl:FlxText;
+
+	var selectableItems:Array<FlxText> = new Array<FlxText>();
+	var curItemSelected:Int = 0;
+	var curItem:FlxText;
 
 	public static var uiControls:Array<ControlUI> = 
 	[
@@ -48,16 +49,18 @@ class ChangeKeybinds extends MusicBeatState
 		new ControlUI('Right', 'right'),
 		new ControlUI('Reset', 'reset'),
 	];
+
 	var currentUIControl:ControlUI;
 
-	var controlKeybindGroup:Array<TextGroup> = new Array<TextGroup>();
-	var currentKeybindGroup:TextGroup;
+	var textGroups:Array<TextGroup> = new Array<TextGroup>();
+	var curTextGroup:TextGroup;
+	var controlGroups:Array<TextGroup> = new Array<TextGroup>();
+	var controlTexts:Array<FlxText> = new Array<FlxText>();
 
 	var curKeybindSelected:Int = 0;
 	var currentKeybind:FlxText;
 
 	var keybindPresets:Array<String> = ['Arrow Keys', 'WASD', 'DFJK', 'ASKL', 'ZX,.'];
-
 	var choosePreset:FlxText;
 	var preset:FlxText;
 	var presetLeft:FlxText;
@@ -77,7 +80,8 @@ class ChangeKeybinds extends MusicBeatState
 		var tutorial:FlxText = new FlxText(0, 50, FlxG.width / 2, LanguageManager.getTextString('keybind_tutorial'), 32);
 		tutorial.screenCenter(X);
 		tutorial.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		tutorial.borderSize = 3;
+		tutorial.borderSize = 2;
+		tutorial.antialiasing = true;
 		add(tutorial);
 
 		createPresetUI();
@@ -87,10 +91,11 @@ class ChangeKeybinds extends MusicBeatState
 			var uiControl:ControlUI = uiControls[i];
 			addControlText(uiControl, i);
 		}
-		currentKeybindGroup = controlKeybindGroup[curControlSelected];
+		curTextGroup = textGroups[curItemSelected];
 
-		camFollow = new FlxObject(FlxG.width / 2, controlItems[curControlSelected].y);
+		camFollow = new FlxObject(FlxG.width / 2, selectableItems[curItemSelected].y);
 		FlxG.camera.follow(camFollow, 0.3);
+		
 		changeSelection();
 
 		super.create();
@@ -118,17 +123,17 @@ class ChangeKeybinds extends MusicBeatState
 				}
 				if (accept)
 				{
-					switch (controlKeybindGroup[curControlSelected].groupName)
+					switch (curTextGroup.groupName)
 					{
 						case 'presetGroup':
 							changePreset();
-						case 'keybindGroup':
+						case 'controlGroup':
 							state = KeybindState.SelectKeybind;
 							FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 							changeKeybindSelection();
 					}
 				}
-				if (controlKeybindGroup[curControlSelected].groupName == 'presetGroup')
+				if (curTextGroup.groupName == 'presetGroup')
 				{
 					if (controls.RIGHT)
 					{
@@ -172,6 +177,7 @@ class ChangeKeybinds extends MusicBeatState
 					state = KeybindState.ChangeKeybind;
 				}
 			case ChangeKeybind:
+				var oldKeybindText = currentKeybind.text;
 				currentKeybind.text = "_";
 
 				var keyID = FlxG.keys.firstJustPressed();
@@ -186,30 +192,41 @@ class ChangeKeybinds extends MusicBeatState
 					}
 					else
 					{
-						var keyJustPressed = cast(keyID, FlxKey);
-					
 						var controlKeybinds = KeybindPrefs.keybinds.get(currentUIControl.controlName);
-	
-						controlKeybinds[curKeybindSelected] = keyJustPressed;
+
+						var keyJustPressed = cast(keyID, FlxKey);
 						
 						var otherKeybind = curKeybindSelected == 1 ? 0 : 1;
-						var otherKeybindText = currentKeybindGroup.texts.members[otherKeybind];
+						var otherKeybindText = curTextGroup.texts.members[otherKeybind];
 						if (controlKeybinds[otherKeybind] == keyJustPressed)
 						{
-							controlKeybinds[otherKeybind] = FlxKey.NONE;
+							FlxG.camera.shake(0.05, 0.1);
+							FlxG.sound.play(Paths.sound('missnote'), 0.9);
+
+							updateText(currentKeybind, false);
+							updateText(otherKeybindText, false);
+
+							currentKeybind.text = oldKeybindText;
+		
+							state = KeybindState.SelectControl;
+							return;
 						}
+						else
+						{
+							controlKeybinds[curKeybindSelected] = keyJustPressed;
+						}
+						
 						KeybindPrefs.keybinds.set(currentUIControl.controlName, controlKeybinds);
 						PlayerSettings.player1.controls.setKeyboardScheme(Custom);
 	
 						FlxG.sound.play(Paths.sound('confirmMenu'));
 	
 						currentKeybind.text = keyJustPressed.toString();
-						otherKeybindText.text = controlKeybinds[otherKeybind].toString();
 						
 						updateText(currentKeybind, false);
 						updateText(otherKeybindText, false);
 	
-						state = KeybindState.SelectControl; 
+						state = KeybindState.SelectControl;
 					}
 				}
 		}
@@ -239,7 +256,8 @@ class ChangeKeybinds extends MusicBeatState
 		control.antialiasing = true;
 		add(control);
 
-		controlItems.push(control);
+		controlTexts.push(control);
+		selectableItems.push(control);
 
 		for (j in 0...uiControlKeybinds.length)
 		{
@@ -260,99 +278,81 @@ class ChangeKeybinds extends MusicBeatState
 
 			keybindTexts.add(keybind);
 		}
-		var keybindGroup = new TextGroup('keybindGroup', keybindTexts);
-
-		controlKeybindGroup.push(keybindGroup);
+		var controlGroup = new TextGroup('controlGroup', keybindTexts);
+		controlGroups.push(controlGroup);
+		textGroups.push(controlGroup);
 	}
 	function createPresetUI()
 	{
 		var arrowOffset:Float = 100;
 		var keybindPresetGroup:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 		
-		choosePreset = new FlxText(0, 125, FlxG.width / 2, LanguageManager.getTextString('keybind_preset'), 32);
+		choosePreset = new FlxText(0, 200, FlxG.width / 2, LanguageManager.getTextString('keybind_preset'), 32);
 		choosePreset.screenCenter(X);
 		choosePreset.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		choosePreset.borderSize = 2;
+		choosePreset.antialiasing = true;
 		keybindPresetGroup.add(choosePreset);
 		add(choosePreset);
 
-		preset = new FlxText(0, choosePreset.y + 75, FlxG.width / 2, keybindPresets[curSelectedPreset], 32);
+		preset = new FlxText(0, choosePreset.y + 40, FlxG.width / 2, keybindPresets[curSelectedPreset], 32);
 		preset.screenCenter(X);
 		preset.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		preset.borderSize = 2;
+		preset.antialiasing = true;
 		add(preset);
 		keybindPresetGroup.add(preset);
-		controlItems.push(preset);
+		selectableItems.push(preset);
 
-		presetLeft = new FlxText(preset.x - arrowOffset, preset.y, FlxG.width / 2, "<", 32);
+		presetLeft = new FlxText(preset.x - arrowOffset, choosePreset.y, FlxG.width / 2, "<", 32);
 		presetLeft.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		presetLeft.borderSize = 1;
+		presetLeft.antialiasing = true;
 		keybindPresetGroup.add(presetLeft);
 		add(presetLeft);
 
-		presetRight = new FlxText(preset.x + arrowOffset, preset.y, FlxG.width / 2, ">", 32);
+		presetRight = new FlxText(preset.x + arrowOffset, choosePreset.y, FlxG.width / 2, ">", 32);
 		presetRight.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		presetRight.borderSize = 1;
+		presetRight.antialiasing = true;
 		keybindPresetGroup.add(presetRight);
 		add(presetRight);
 		
 		var presetGroup:TextGroup = new TextGroup('presetGroup', keybindPresetGroup);
-		controlKeybindGroup.push(presetGroup);
+		textGroups.push(presetGroup);
 
 		changePresetSelection();
 	}
-	function updateUI()
-	{
-		for (controlItem in controlItems)
-		{
-			controlItems.remove(controlItem);
-			controlItem.destroy();
-		}
-		for (keybindText in controlKeybindGroup)
-		{
-			for (text in keybindText.texts)
-			{
-				keybindText.texts.remove(text);
-				text.destroy();
-			}
-			controlKeybindGroup.remove(keybindText);
-		}
-		/*
-		createPresetUI();
-		for (i in 0...uiControls.length)
-		{
-			var uiControl:ControlUI = uiControls[i];
-			addControlText(uiControl, i);
-		}*/
-	}
 	function changeSelection(amount:Int = 0)
 	{
-		curControlSelected += amount;
+		curItemSelected += amount;
 		if (amount != 0)
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
-		if (curControlSelected > controlItems.length - 1)
+
+		if (curItemSelected > selectableItems.length - 1)
 		{
-			curControlSelected = 0;
+			curItemSelected = 0;
 		}
-		if (curControlSelected < 0)
+		if (curItemSelected < 0)
 		{
-			curControlSelected = controlItems.length - 1;
+			curItemSelected = selectableItems.length - 1;
 		}
-		curControl = controlItems[curControlSelected];
+		curItem = selectableItems[curItemSelected];
+		curTextGroup = textGroups[curItemSelected];
 		
-		for (item in controlItems)
+		for (item in selectableItems)
 		{
-			updateText(item, item == curControl);
+			updateText(item, item == curItem);
 		}
-		camFollow.y = controlItems[curControlSelected].y;
-		if (controlKeybindGroup[curControlSelected].groupName == 'keybindGroup')
+		camFollow.y = selectableItems[curItemSelected].y;
+		if (curTextGroup.groupName == 'controlGroup')
 		{
-			currentKeybindGroup = controlKeybindGroup[curControlSelected];
-			currentUIControl = uiControls[curControlSelected];
+			currentUIControl = uiControls[controlGroups.indexOf(curTextGroup)];
 		}
 	}
+
 	function changeKeybindSelection(amount:Int = 0)
 	{
 		curKeybindSelected += amount;
@@ -360,21 +360,18 @@ class ChangeKeybinds extends MusicBeatState
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
-		if (curKeybindSelected > currentKeybindGroup.texts.length - 1)
+		if (curKeybindSelected > curTextGroup.texts.length - 1)
 		{
 			curKeybindSelected = 0;
 		}
 		if (curKeybindSelected < 0)
 		{
-			curKeybindSelected = currentKeybindGroup.texts.length - 1;
+			curKeybindSelected = curTextGroup.texts.length - 1;
 		}
-		if (currentKeybindGroup.groupName == 'keybindGroup')
+		currentKeybind = curTextGroup.texts.members[curKeybindSelected];
+		for (text in curTextGroup.texts)
 		{
-			currentKeybind = currentKeybindGroup.texts.members[curKeybindSelected];
-			for (text in currentKeybindGroup.texts)
-			{
-				updateText(text, text == currentKeybind);
-			}
+			updateText(text, text == currentKeybind);
 		}
 	}
 	function changePresetSelection(amount:Int = 0)
@@ -392,9 +389,11 @@ class ChangeKeybinds extends MusicBeatState
 		curPreset = keybindPresets[curSelectedPreset];
 		
 		preset.text = curPreset;
-		preset.y = (choosePreset.y + 75) - 30;
+		
+		preset.y = (choosePreset.y + 40) - 30;
 		preset.alpha = 0;
 		FlxTween.tween(preset, {alpha: 1, y: preset.y + 30}, 0.07);
+
 		presetLeft.x = preset.x - 100;
 		presetRight.x = preset.x + 100;
 	}
@@ -411,10 +410,24 @@ class ChangeKeybinds extends MusicBeatState
 			case 'ZX,.':
 				KeybindPrefs.setKeybindPreset(KeyboardScheme.ZxCommaDot);
 		}
-		updateUI();
-		KeybindPrefs.saveControls();
-		FlxFlicker.flicker(preset, 1.1, 0.07, true);
 		FlxG.sound.play(Paths.sound('confirmMenu'));
+		KeybindPrefs.saveControls();
+		
+		for (controlGroup in controlGroups)
+		{
+			for (text in controlGroup.texts)
+			{
+				FlxTween.tween(text, {alpha: 0}, 0.5);
+			}
+		}
+		for (text in controlTexts)
+		{
+			FlxTween.tween(text, {alpha: 0}, 0.5);
+		}
+		FlxFlicker.flicker(preset, 1.1, 0.07, true, false, function(flicker:FlxFlicker)
+		{
+			FlxG.resetState();
+		});
 	}
 
 	function updateText(text:FlxText, selected:Bool)

@@ -1,5 +1,8 @@
 package;
 
+import flixel.addons.effects.chainable.FlxEffectSprite;
+import flixel.addons.effects.chainable.FlxGlitchEffect;
+import flixel.addons.effects.chainable.FlxGlitchEffect.FlxGlitchDirection;
 import flixel.math.FlxPoint;
 import flixel.tweens.FlxEase;
 import openfl.ui.Keyboard;
@@ -80,9 +83,12 @@ class StoryMenuState extends MusicBeatState
 		0xFF800080, //FESTEVAL
 	
 	];
+	var awaitingExploitation:Bool;
 
 	override function create()
 	{
+		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
+
 		#if desktop
 		DiscordClient.changePresence("In the Story Menu", null);
 		#end
@@ -134,16 +140,17 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in 0...weekData.length)
 		{
-				var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, i);
-				weekThing.y += ((weekThing.height + 20) * i);
-				weekThing.targetY = i;
-				grpWeekText.add(weekThing);
-	
-				weekThing.screenCenter(X);
-				weekThing.antialiasing = true;
-				// weekThing.updateHitbox();
-	
-				// Needs an offset thingie
+			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, i);
+			weekThing.y += ((weekThing.height + 20) * i);
+			weekThing.targetY = i;
+			grpWeekText.add(weekThing);
+
+			weekThing.screenCenter(X);
+			weekThing.antialiasing = true;
+			// weekThing.updateHitbox();
+
+			
+			// Needs an offset thingie
 			if (!weekUnlocked[i])
 			{
 				var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);

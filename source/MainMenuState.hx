@@ -58,7 +58,30 @@ class MainMenuState extends MusicBeatState
 	var bg:FlxSprite;
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
-	public static var bgPaths:Array<String> = new Array<String>();
+	public static var bgPaths:Array<String> = [
+		'Aadsta',
+		'ArtiztGmer',
+		'DeltaKastel',
+		'DeltaKastel2',
+		'DeltaKastel3',
+		'DeltaKastel4',
+		'DeltaKastel5',
+		'diamond man',
+		'Jukebox',
+		'kiazu',
+		'Lancey',
+		'mamakotomi',
+		'mantis',
+		'mepperpint',
+		'morie',
+		'neon',
+		'Onuko',
+		'ps',
+		'ricee_png',
+		'sk0rbias',
+		'SwagnotrllyTheMod',
+		'zombought',
+	];
 
 	var logoBl:FlxSprite;
 
@@ -90,9 +113,9 @@ class MainMenuState extends MusicBeatState
 
 	var voidShader:Shaders.GlitchEffect;
 
+
 	override function create()
-	{		
-		bgPaths = FileSystem.readDirectory(Paths.getDirectory('backgrounds'));
+	{
 
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
@@ -429,6 +452,6 @@ class MainMenuState extends MusicBeatState
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
 	{
 		var chance:Int = FlxG.random.int(0, bgPaths.length - 1);
-		return Paths.getDirectory('backgrounds') + "/" + bgPaths[chance];
+		return Paths.image('backgrounds/${bgPaths[chance]}');
 	}
 }
