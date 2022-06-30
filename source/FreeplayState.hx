@@ -68,7 +68,7 @@ class FreeplayState extends MusicBeatState
 		0xFFFF0000,    // UNFAIRNESS
 		0xFFFF0000,    // KABUNGA
 		0xFFFF0000,    // EXPLOITATION
-		0xFFFFC0CB,    // ELECTRIC COCKADOODLEDOO
+		FlxColor.GREEN,    // SECRET MOD LEAK
 		FlxColor.fromRGB(44, 44, 44),    // RECURSER
     ];
 
@@ -286,7 +286,6 @@ class FreeplayState extends MusicBeatState
 				case "unfairness": FlxG.save.data.unfairnessFound;
 				case "kabunga": FlxG.save.data.exbungoFound;
 				case "exploitation": FlxG.save.data.exploitationFound;
-				case "eletric-cockadoodledoo": FlxG.save.data.bananacoreUnlocked;
 				case "recursed": FlxG.save.data.recursedUnlocked;
 				case 'secret-mod-leak': FlxG.save.data.secretModLeakUnlocked;
 				default: true;
