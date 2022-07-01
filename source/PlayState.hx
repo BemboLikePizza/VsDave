@@ -720,7 +720,7 @@ class PlayState extends MusicBeatState
 					case 'bambi-3d':
 						boyfriend.y += 50;
 					case 'bambi-unfair':
-						boyfriend.y += 50;	
+						boyfriend.y += 50;
 				}
 				
 			case 'cheating' | 'interdimension':
@@ -1446,13 +1446,6 @@ class PlayState extends MusicBeatState
 		
 		background.shader = testshader.shader;
 		curbg = background;
-	}
-	function destroyCockeyHat()
-	{
-		backgroundSprites.remove(cockeyHat);
-		cockeyHat.destroy();
-		remove(cockeyHat);
-		cockeyHat = null;
 	}
 	function changeInterdimensionBg(type:String)
 	{
@@ -2180,27 +2173,6 @@ class PlayState extends MusicBeatState
 				if (timeLeft <= 0)
 				{
 					cancelRecursedCamTween();
-				}
-			}
-		}
-		if (SONG.song.toLowerCase() == 'interdimensional')
-		{
-			if (cockeyHat != null)
-			{				
-				cockeyHat.angle += 40 * elapsed;
-				cockeyHat.x += 300 * elapsed;
-				cockeyHat.y += (Math.sin(elapsedtime) * 200) * elapsed;
-				
-				if (cockeyHat.x > (FlxG.width + cockeyHat.width) + 200)
-				{
-					destroyCockeyHat();
-				}
-				if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(cockeyHat))
-				{
-					destroyCockeyHat();
-					
-					FlxG.save.data.eccdPuzzles.push('cockey-hat');
-					FlxG.save.flush();
 				}
 			}
 		}
