@@ -39,8 +39,6 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'Oxygen';
 			case 'memory' | 'mealie':
 				songCreator = 'Alexander Cooper 19';
-			case 'confronting-yourself' | 'eletric-cockadoodledoo':
-				songCreator = 'Cuzsie';
 			case 'glitch':
 				songCreator = 'DeadShadow & PixelGH';
 			case 'overdrive':

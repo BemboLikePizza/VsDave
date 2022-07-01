@@ -87,26 +87,6 @@ class MainMenuState extends MusicBeatState
 
 	var lilMenuGuy:FlxSprite;
 
-	var easterEggKeyCombination:Array<FlxKey> = 
-	[
-		FlxKey.I, 
-		FlxKey.L, 
-		FlxKey.O, 
-		FlxKey.V, 
-		FlxKey.E, 
-		FlxKey.G, 
-		FlxKey.O, 
-		FlxKey.L, 
-		FlxKey.D, 
-		FlxKey.E, 
-		FlxKey.N, 
-		FlxKey.A, 
-		FlxKey.P, 
-		FlxKey.P, 
-		FlxKey.L, 
-		FlxKey.E
-	];
-	var lastKeysPressed:Array<FlxKey> = [];
 	var awaitingExploitation:Bool;
 	var rightArrow:FlxText;
 	var leftArrow:FlxText;
@@ -279,44 +259,6 @@ class MainMenuState extends MusicBeatState
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-		}
-
-		var finalKey:FlxKey = FlxG.keys.firstJustPressed();
-
-		if (finalKey != FlxKey.NONE)
-		{
-			lastKeysPressed.push(finalKey);
-
-			if (lastKeysPressed.length > easterEggKeyCombination.length)
-				lastKeysPressed.shift();
-
-			if (lastKeysPressed.length == easterEggKeyCombination.length)
-			{
-				var isDifferent:Bool = false;
-
-				for (i in 0...lastKeysPressed.length)
-				{
-					if (lastKeysPressed[i] != easterEggKeyCombination[i])
-					{
-						isDifferent = true;
-						break;
-					}
-				}
-
-				if (!isDifferent)
-				{
-					var poop:String = Highscore.formatSong("eletric-cockadoodledoo", 1);
-
-					PlayState.SONG = Song.loadFromJson(poop, "eletric-cockadoodledoo");
-					PlayState.isStoryMode = false;
-					PlayState.storyDifficulty = 1;
-
-					PlayState.storyWeek = 69;
-
-					FlxG.save.data.bananacoreUnlocked = true;
-					LoadingState.loadAndSwitchState(new PlayState());
-				}
-			}
 		}
 
 		if (FlxG.keys.justPressed.SEVEN)

@@ -84,8 +84,6 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				case 'exploitation':
 					doALittleTrolling(levelDifficulty);
-				case 'eletric-cockadoodledoo':
-					cockadoodledooTrolling(levelDifficulty);
 			}
 		}});
 
@@ -204,27 +202,6 @@ class PauseSubState extends MusicBeatSubstate
 			difficulty.x = FlxG.width - (difficulty.width + 20);
 
 			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
-		}
-	}
-	function cockadoodledooTrolling(levelDifficulty:FlxText)
-	{
-		var amountOfDifficulties = 247;
-
-		for (i in 0...amountOfDifficulties)
-		{
-			var difficulty:FlxText = new FlxText(new FlxRandom().float(levelDifficulty.width, FlxG.width - levelDifficulty.width),
-				new FlxRandom().float(levelDifficulty.height, FlxG.width - levelDifficulty.height), 0, levelDifficulty.text, 32);
-			difficulty.scrollFactor.set();
-			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
-			difficulty.updateHitbox();
-			if (this != null)
-				add(difficulty);
-
-			difficulty.angle = new FlxRandom().float(0, 180);
-
-			difficulty.alpha = 0;
-
-			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.01 * i});
 		}
 	}
 	function changeSelection(change:Int = 0):Void
