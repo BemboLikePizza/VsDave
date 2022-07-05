@@ -6,6 +6,7 @@ import flixel.FlxSubState;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import flash.system.System;
 import lime.app.Application;
 
 class GameOverSubstate extends MusicBeatSubstate
@@ -22,6 +23,13 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
+			case 'tb-funny-man':
+				#if linux
+				Sys.command('/usr/bin/xdg-open', ["https://www.youtube.com/watch?v=paS2p60AEUY", "&"]);
+				#else
+				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
+				#end
+				System.exit(0);	
 			default:
 				daBf = 'bf-death';
 		}

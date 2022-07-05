@@ -1,6 +1,7 @@
 package;
 
 import flixel.util.FlxColor;
+import flixel.util.FlxGradient;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -604,6 +605,34 @@ class Character extends FlxSprite
 				
 				nativelyPlayable = true;
 
+				playAnim('idle');
+			case 'tb-funny-man':
+				tex = Paths.getSparrowAtlas('characters/DONT_GO_SNOOPING_WHERE_YOURE_NOT_SUPPOSED_TO', 'shared');
+				frames = tex;
+
+				animation.addByPrefix('idle', 'idle dance', 24, false);
+				animation.addByPrefix('singUP', 'NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'HEY!!', 24, false);
+
+				//animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
+				//animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
+				//animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
+				animation.addByPrefix('scared', 'idle shaking', 24);
+
+				loadOffsetFile(curCharacter);
+
+				flipX = true;
+				barColor = FlxColor.fromRGB(102, 255, 0);
+
+				nativelyPlayable = true;
+				
 				playAnim('idle');
 		}
 		dance();

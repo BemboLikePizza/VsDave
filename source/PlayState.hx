@@ -121,6 +121,7 @@ class PlayState extends MusicBeatState
 	var focusOnDadGlobal:Bool = true;
 
 	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'cockey', 'pissey', 'pooper', 'shartey'];
+	//if you see anything related to cockey, pissey, pooper, and shartey in the code, ignore them, they are scrapped bcuz the creator is a weirdo
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -1064,6 +1065,8 @@ class PlayState extends MusicBeatState
 			case 'corn-theft':
 				smashPhone = [172, 174, 244, 245, 267, 288, 291, 294, 296, 300, 420, 424, 426, 428, 429, 430, 431, 432, 488, 591, 592, 593, 594, 595, 602,
 								617, 686, 720, 723, 726, 731, 734, 736, 739, 742, 896, 898, 900, 902, 1052, 1054, 1056, 1058, 1060, 1062, 1116, 1117, 1118, 1119];
+			case 'blocked':
+				smashPhone = [315, 317, 319, 334, 337, 388, 389, 411, 412, 413, 414, 492, 495, 641, 643, 645, 648];					
 		}
 		
 		subtitleManager = new SubtitleManager();
@@ -1124,6 +1127,7 @@ class PlayState extends MusicBeatState
 				{
 					var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/void/redsky_insanity'), null, 1, 1, true, true);
 					bg.alpha = 0.75;
+					bg.scrollFactor.set();
 					bg.visible = false;
 					add(bg);
 					// below code assumes shaders are always enabled which is bad
@@ -1250,20 +1254,24 @@ class PlayState extends MusicBeatState
 					case 'red-void':
 						bgZoom = 0.8;
 						bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
+						bg.scrollFactor.set();
 						stageName = 'daveEvilHouse';
 					case 'green-void':
 						bg.loadGraphic(Paths.image('backgrounds/cheating/cheater'));
+						bg.scrollFactor.set();
 						stageName = 'cheating';
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
 						bg.setPosition(0, 200);
 						bg.setGraphicSize(Std.int(bg.width * 3));
+						bg.scrollFactor.set();
 						stageName = 'unfairness';
 					case 'interdimension-void':
 						bgZoom = 0.6;
-					   bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
+					    bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 						bg.setPosition(-700, -350);
 						bg.setGraphicSize(Std.int(bg.width * 1.75));
+						bg.scrollFactor.set();
 						interdimensionBG = bg;
 						stageName = 'interdimension';
 					case 'banana-hell': // this is a Cockey moment
@@ -1279,7 +1287,7 @@ class PlayState extends MusicBeatState
 			case 'exbungo-land':
 				bgZoom = 0.7;
 
-				var bg:BGSprite = new BGSprite('bg', -850, -350, Paths.image('backgrounds/void/exbongo/Exbongo'), null, 1, 1, true, true);
+				var bg:BGSprite = new BGSprite('bg', -850, -350, Paths.image('backgrounds/void/exbongo/Exbongo'), null, 0, 0, true, true);
 				sprites.add(bg);
 				add(bg);
 
@@ -1462,22 +1470,27 @@ class PlayState extends MusicBeatState
 			case 'interdimension-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 				interdimensionBG.setPosition(-700, -350);
+				interdimensionBG.scrollFactor.set();
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 1.75));
 			case 'spike-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/spike'));
-				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
+				interdimensionBG.setPosition(-200, 0);
+				interdimensionBG.scrollFactor.set();
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 3));
 			case 'darkSpace':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/darkSpace'));
-				interdimensionBG.setPosition(-200, 200);
+				interdimensionBG.setPosition(-200, 0);
+				interdimensionBG.scrollFactor.set();
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 			case 'hexagon-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/hexagon'));
-				interdimensionBG.setPosition(-200, 200);
-				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
+				interdimensionBG.setPosition(-200, 0);
+				interdimensionBG.scrollFactor.set();
+				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 3));
 			case 'nimbi-void':
 				interdimensionBG.loadGraphic(Paths.image('backgrounds/void/interdimensions/nimbi/nimbiVoid'));
-				interdimensionBG.setPosition(-200, 200);
+				interdimensionBG.setPosition(-200, 0);
+				interdimensionBG.scrollFactor.set();
 				interdimensionBG.setGraphicSize(Std.int(interdimensionBG.width * 2.75));
 
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);

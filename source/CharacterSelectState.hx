@@ -112,11 +112,6 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('bambi-3d', '[EXPUNGED] (Bambi)', [0, 3, 0, 0], '3D'),
 			new CharacterForm('bambi-unfair', '[EXPUNGED] (Unfair)', [0, 3, 0, 0], '3D'),
 			new CharacterForm('expunged', '[EXPUNGED]', [0, 3, 0, 0], '3D')
-		]),
-		new CharacterInSelect('the-shart-fellars', [0, 3, 0, 0], [
-			new CharacterForm('cockey', 'Cockey', [1, 1, 1, 1]),
-			new CharacterForm('pissey', 'Pissey', [1, 1, 1, 1]),
-			new CharacterForm('pooper', 'Pooper', [1, 1, 1, 1])
 		])
 	];
 	var bgShader:Shaders.GlitchEffect;
@@ -407,8 +402,16 @@ class CharacterSelectState extends MusicBeatState
 			var heyAnimation:Bool = char.animation.getByName("hey") != null; 
 			char.playAnim(heyAnimation ? 'hey' : 'singUP', true);
 			FlxG.sound.music.stop();
-			FlxG.sound.play(Paths.music('gameOverEnd'));
-			new FlxTimer().start(1.9, endIt);
+			if (PlayState.SONG.song.toLowerCase() == "exploitation")
+			{
+				FlxG.sound.play(Paths.music('gameOverExpunged'));
+				new FlxTimer().start(2.5, endIt);
+			}
+			else
+			{
+				FlxG.sound.play(Paths.music('gameOverEnd'));
+				new FlxTimer().start(1.9, endIt);
+			}			
 		}
 		if (FlxG.keys.justPressed.LEFT && !selectedCharacter)
 		{

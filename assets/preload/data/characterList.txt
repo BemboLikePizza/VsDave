@@ -22,3 +22,4 @@ bambi-unfair
 expunged
 exbungo
 baldi
+tb-funny-man
