@@ -550,7 +550,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'maze')
 		{
-			tweenTime = sectionStartTime(32);
+			tweenTime = sectionStartTime(25);
 			for (i in 0...backgroundSprites.members.length)
 			{
 				var bgSprite = backgroundSprites.members[i];
@@ -779,8 +779,6 @@ class PlayState extends MusicBeatState
 			case 'desktop':
 				dad.x -= 500;
 				dad.y -= 100;
-			case 'banana-hell':
-				dad.x -= 600;
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
@@ -1071,6 +1069,7 @@ class PlayState extends MusicBeatState
 		
 		subtitleManager = new SubtitleManager();
 		subtitleManager.cameras = [camHUD];
+		add(subtitleManager);
 
 		super.create();
 	}
@@ -1244,7 +1243,7 @@ class PlayState extends MusicBeatState
 					add(bg);
 				#end*/
 	
-			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void' | "banana-hell":
+			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
 				bgZoom = 0.7;
 
 				var bg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
@@ -1274,12 +1273,6 @@ class PlayState extends MusicBeatState
 						bg.scrollFactor.set();
 						interdimensionBG = bg;
 						stageName = 'interdimension';
-					case 'banana-hell': // this is a Cockey moment
-						bg.loadGraphic(Paths.image('backgrounds/void/bananaVoid1'));
-						bg.setPosition(-700, -300);
-						bg.setGraphicSize(Std.int(bg.width * 2.55), Std.int(bg.height * 2));
-						weirdBG = bg;
-						stageName = 'banana-land';
 				}
 				sprites.add(bg);
 				add(bg);
@@ -2649,7 +2642,6 @@ class PlayState extends MusicBeatState
 								fuckingDumbassBullshitFuckYou = 'LEFT';
 						}
 					}
-					dad.canSing = true;
 					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 
@@ -3751,8 +3743,6 @@ class PlayState extends MusicBeatState
 			note.destroy();
 
 			updateAccuracy();
-
-			
 		}
 	}
 	function recursedNoteMiss()
@@ -4005,15 +3995,7 @@ class PlayState extends MusicBeatState
 			remove(glitch);
 		});
 	}
-
 	var black:FlxSprite;
-	var vineBoomTriggers:Array<Int> = [524, 588, 666, 720, 736, 752, 1088, 1092, 1096, 1100, 1152, 1168, 1172, 1174, 1176, 1180, 2113, 2144, 2176];
-	var shag:FlxSprite;
-	var indihome:FlxSprite;
-	var hideStuff:FlxSprite;
-	var sexDad:Character;
-	var curECCCharacter:String = "cockey";
-
 	override function stepHit()
 	{
 		super.stepHit();
@@ -4022,10 +4004,53 @@ class PlayState extends MusicBeatState
 
 		if (smashPhone.contains(curStep))
 		{
-			dad.playAnim('singSmash', true);
+			dad.playAnim('smash', true);
 		}
 		switch (SONG.song.toLowerCase())
 		{
+			case 'blocked':
+				switch (curStep)
+				{
+					case 128:
+						defaultCamZoom += 0.2;
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+
+						subtitleManager.addSubtitle('I block you', 0.02, 1);
+					case 165:
+						subtitleManager.addSubtitle('You are monster...', 0.02, 1);
+					case 188:
+						subtitleManager.addSubtitle('You ruined my life', 0.02, 1);
+					case 224:
+						subtitleManager.addSubtitle("Moldy I will swear to god I'll block you", 0.02, 1);
+					case 248:
+						subtitleManager.addSubtitle("FOREVER", 0.02, 0.5, {subtitleSize: 60});
+					case 256:
+						defaultCamZoom -= 0.2;
+						FlxG.camera.flash();
+						FlxTween.tween(black, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
+						{
+							remove(black);
+						}});
+				}
+			case 'maze':
+				switch (curStep)
+				{
+					case 466:
+						subtitleManager.addSubtitle("I mean...", 0.02, 1);
+					case 476:
+						subtitleManager.addSubtitle("You can", 0.02, 1);
+					case 484:
+						subtitleManager.addSubtitle("Play me", 0.02, 1);
+					case 498:
+						subtitleManager.addSubtitle("You don't?", 0.02, 1);
+					case 510:
+						subtitleManager.addSubtitle("Nothing come back again.", 0.02, 1, {subtitleSize: 60});
+				}
 			case 'recursed':
 				switch (curStep)
 				{
@@ -4291,23 +4316,23 @@ class PlayState extends MusicBeatState
 			case 'exploitation':
 				switch(curStep)
 				{
-					case 24, 36, 46:
+					case 12, 18, 23:
 						blackScreen.alpha = 1;
 						FlxTween.tween(blackScreen, {alpha: 0}, Conductor.crochet / 1000);
 						FlxG.sound.play(Paths.sound('static'), 0.5);
 
 						creditsPopup.switchHeading({path: 'songHeadings/glitchHeading', antiAliasing: false, animation: 
-						new Animation('glitch', 'glitchHeading', 24, true, [false, false])});
+						new Animation('glitch', 'glitchHeading', 24, true, [false, false]), iconOffset: -20});
 						
 						creditsPopup.changeText('', '');
-					case 40:
+					case 20:
 						creditsPopup.switchHeading({path: 'songHeadings/expungedHeading', antiAliasing: true,
-						animation: new Animation('expunged', 'Expunged', 24, true, [false, false])});
+						animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: -20});
 
 						creditsPopup.changeText('Song by Oxygen', 'Oxygen');
-					case 28, 48:
+					case 14, 24:
 						creditsPopup.changeText('Song by EXPUNGED', 'whoAreYou');
-					case 64 | 1024:
+					case 32 | 512:
 						FlxTween.tween(camHUD, {alpha: 0}, 3);
 						FlxTween.tween(boyfriend, {alpha: 0}, 3);
 						FlxTween.tween(gf, {alpha: 0}, 3);
@@ -4318,7 +4343,7 @@ class PlayState extends MusicBeatState
 						{
 							FlxTween.tween(spr, {alpha: 0}, 3);
 						}
-					case 256 | 1152:
+					case 128 | 576:
 						FlxTween.tween(camHUD, {alpha: 1}, 0.2);
 						defaultCamZoom = FlxG.camera.zoom - 0.3;
 						FlxTween.tween(boyfriend, {alpha: 1}, 0.2);
@@ -4330,11 +4355,11 @@ class PlayState extends MusicBeatState
 						}
 						mcStarted = true;
 
-					case 368 | 1648:
+					case 184 | 824:
 						FlxTween.tween(FlxG.camera, {angle: 10}, 0.1);
-					case 376 | 1656:
+					case 188 | 828:
 						FlxTween.tween(FlxG.camera, {angle: -10}, 0.1);
-					case 384 | 1664:
+					case 192 | 832:
 						FlxTween.tween(FlxG.camera, {angle: 0}, 0.2);
 				}
 			case "shredder":
@@ -4566,23 +4591,23 @@ class PlayState extends MusicBeatState
 			case 'exploitation':
 				switch (curBeat)
 				{
-					case 16:
+					case 8:
 						subtitleManager.addSubtitle('The fuck?', 0.02, 1);
-					case 32:
+					case 16:
 						subtitleManager.addSubtitle('Ha ha ha haaaaaa hoo?', 0.03, 1);
-					case 43:
+					case 22:
 						subtitleManager.addSubtitle('This say you?', 0.03, 1);
-					case 52:
+					case 26:
 						subtitleManager.addSubtitle('Ha ha, ha', 0.03, 1);
-					case 80, 88, 92, 112, 120, 124:
+					case 40, 44, 46, 56, 60, 62:
 						switchNoteScroll();
-					case 144, 152, 160, 176, 180, 184:
+					case 72, 76, 80, 88, 90, 92:
 						switchNoteSide();
-					case 287:
+					case 143:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
-					case 383:
+					case 192:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
-					case 974:
+					case 487:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
 			case 'furiosity':

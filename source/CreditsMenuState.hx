@@ -85,13 +85,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/TheBuilderXD')
       ]),
       
-      new Person("Cuzsie", CreditsType.Dev, "Programmer",
-      [
-         new Social('discord', 'https://discord.gg/s5hdfdqBp2'),
-         new Social('gamebanana', 'https://gamebanana.com/members/1833894'),
-         new Social('twitter', 'https://twitter.com/cuzsiedev')
-      ]),
-      
       new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist & More",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
