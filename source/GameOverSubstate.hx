@@ -23,9 +23,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
-				case 'tb-funny-man':
+			case 'tb-funny-man':
 				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
-				#end
 				System.exit(0);	
 			default:
 				daBf = 'bf-death';

@@ -1171,10 +1171,14 @@ class ChartingState extends MusicBeatState
 
 	function updateGrid():Void
 	{
-		var gridWidth = ((_song.song.toLowerCase() == 'shredder' && (curSection >= 64 && curSection <= 80))) ? 9 : 8;
+		var gridWidth = 8;
+		if (_song.song.toLowerCase() == 'shredder' && (curSection >= 64 && curSection <= 80))
+		{
+			gridWidth = 9;
+		}
 		remove(gridBG);
 		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * gridWidth, GRID_SIZE * _song.notes[curSection].lengthInSteps);
-        add(gridBG);
+      add(gridBG);
 
 		remove(gridBlackLine);
 		gridBlackLine = new FlxSprite(gridBG.x + gridBG.width / 2).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);

@@ -1,5 +1,6 @@
 package;
 
+import sys.FileSystem;
 import flixel.util.FlxArrayUtil;
 import flixel.addons.plugin.FlxScrollingText;
 import Alphabet;
@@ -252,7 +253,7 @@ class PlayState extends MusicBeatState
 
 	var mcStarted:Bool = false;
 	public static var devBotplay:Bool = false;
-	public var creditsPopup:CreditsPopup;
+	public var creditsPopup:CreditsPopUp;
 	public var blackScreen:FlxSprite;
 
 	var interdimensionBG:BGSprite;
