@@ -202,13 +202,12 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'dave-cool':
 				// DAVE SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/characters/thecoolerdave', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'Id', 24, false);
-				animation.addByPrefix('singUP', 'the up', 24, false);
-				animation.addByPrefix('singRIGHT', 'righ', 24, false);
-				animation.addByPrefix('singDOWN', 'dow', 24, false);
-				animation.addByPrefix('singLEFT', 'lef', 24, false);
+				frames = Paths.getSparrowAtlas('dave/characters/thecoolerdave', 'shared');
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
 	
 				loadOffsetFile(curCharacter);
 				
