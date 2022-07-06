@@ -2,7 +2,7 @@
 	"song": {
 		"player1": "bf",
 		"events": [],
-		"gfVersion": "gf-tankmen",
+		"gfVersion": "gf",
 		"notes": [
 			{
 				"sectionNotes": [],
@@ -2618,7 +2618,7 @@
 		"player2": "dave",
 		"player3": null,
 		"song": "Roots",
-		"stage": "tank",
+		"stage": "house",
 		"needsVoices": true,
 		"validScore": true,
 		"bpm": 130,

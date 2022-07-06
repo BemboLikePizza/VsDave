@@ -1,7 +1,6 @@
 package;
 
 import flixel.util.FlxColor;
-import flixel.util.FlxGradient;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -236,6 +235,19 @@ class Character extends FlxSprite
 				antialiasing = false;
 		
 				playAnim('idle');
+			case 'dave-fnaf':
+				frames = Paths.getSparrowAtlas('dave/characters/dave_fnaf', 'shared');
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				barColor = FlxColor.fromRGB(15, 95, 255);
+
+				playAnim('idle');
 				
 			case 'dave-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Dave', 'shared');
@@ -435,6 +447,18 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 	
 				flipX = true;
+			case 'bambi-shredder':
+				frames = Paths.getSparrowAtlas('festival/bambi_shredder', 'shared');
+				animation.addByPrefix('idle', 'shredder idle', 24, false);
+				animation.addByPrefix('singLEFT', 'shredder left', 24, false);
+				animation.addByPrefix('singDOWN', 'shredder down', 24, false);
+				animation.addByPrefix('singUP', 'shredder up', 24, false);
+				animation.addByPrefix('singRIGHT', 'shredder right', 24, false);
+				animation.addByPrefix('takeOut', 'shredder take out', 24, false);
+
+				barColor = FlxColor.fromRGB(37, 191, 55);
+
+				loadOffsetFile(curCharacter);
 			case 'tristan':
 				var tex = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
 				frames = tex;
@@ -607,33 +631,33 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 
 				playAnim('idle');
-			case 'tb-funny-man':
-				tex = Paths.getSparrowAtlas('characters/DONT_GO_SNOOPING_WHERE_YOURE_NOT_SUPPOSED_TO', 'shared');
-				frames = tex;
-
-				animation.addByPrefix('idle', 'idle dance', 24, false);
-				animation.addByPrefix('singUP', 'NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'HEY!!', 24, false);
-
-				//animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
-				//animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
-				//animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
-				animation.addByPrefix('scared', 'idle shaking', 24);
-
-				loadOffsetFile(curCharacter);
-
-				flipX = true;
-				barColor = FlxColor.fromRGB(102, 255, 0);
-
-				nativelyPlayable = true;
-				
+				case 'tb-funny-man':
+					tex = Paths.getSparrowAtlas('characters/DONT_GO_SNOOPING_WHERE_YOURE_NOT_SUPPOSED_TO', 'shared');
+					frames = tex;
+	
+					animation.addByPrefix('idle', 'idle dance', 24, false);
+					animation.addByPrefix('singUP', 'NOTE UP0', 24, false);
+					animation.addByPrefix('singLEFT', 'NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singDOWN', 'NOTE DOWN0', 24, false);
+					animation.addByPrefix('singUPmiss', 'NOTE UP MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'NOTE RIGHT MISS', 24, false);
+					animation.addByPrefix('singDOWNmiss', 'NOTE DOWN MISS', 24, false);
+					animation.addByPrefix('hey', 'HEY!!', 24, false);
+	
+					//animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
+					//animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
+					//animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
+					animation.addByPrefix('scared', 'idle shaking', 24);
+	
+					loadOffsetFile(curCharacter);
+	
+					flipX = true;
+					barColor = FlxColor.fromRGB(102, 255, 0);
+	
+					nativelyPlayable = true;
+					
 				playAnim('idle');
 		}
 		dance();

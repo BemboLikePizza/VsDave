@@ -23,10 +23,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			case 'bf-pixel':
 				stageSuffix = '-pixel';
-			case 'tb-funny-man':
-				#if linux
-				Sys.command('/usr/bin/xdg-open', ["https://www.youtube.com/watch?v=paS2p60AEUY", "&"]);
-				#else
+				case 'tb-funny-man':
 				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
 				#end
 				System.exit(0);	

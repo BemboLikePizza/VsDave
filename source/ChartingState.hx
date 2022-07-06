@@ -158,8 +158,8 @@ class ChartingState extends MusicBeatState
 		Conductor.changeBPM(_song.bpm);
 		Conductor.mapBPMChanges(_song);
 
-		leftIcon = new HealthIcon(_song.player1);
-		rightIcon = new HealthIcon(_song.player2);
+		leftIcon = new HealthIcon(_song.player2);
+		rightIcon = new HealthIcon(_song.player1);
 		leftIcon.scrollFactor.set(1, 1);
 		rightIcon.scrollFactor.set(1, 1);
 
@@ -679,27 +679,24 @@ class ChartingState extends MusicBeatState
 		var pressArray = [left, down, up, right, leftO, downO, upO, rightO];
 		var delete = false;
 		curRenderedNotes.forEach(function(note:Note)
+		{
+			if (strumLine.overlaps(note) && pressArray[Math.floor(Math.abs(note.noteData))])
 			{
-				if (strumLine.overlaps(note) && pressArray[Math.floor(Math.abs(note.noteData))])
-				{
-					deleteNote(note);
-					delete = true;
-					trace('deelte note');
-				}
-			});
+				deleteNote(note);
+				delete = true;
+				trace('deelte note');
+			}
+		});
 		for (p in 0...pressArray.length)
 		{
 			var i = pressArray[p];
 			if (i && !delete)
 			{
-				addNote(new Note(Conductor.songPosition , p, null, false, true, "normal", true));
+				addNote(new Note(Conductor.songPosition, p, null, false, true, "normal", true));
 			}
 		}
-
 		strumLine.y = getYfromStrum((Conductor.songPosition - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps));
 		
-
-
 		if (playClaps)
 		{
 			curRenderedNotes.forEach(function(note:Note)
@@ -1156,13 +1153,13 @@ class ChartingState extends MusicBeatState
 	{
 		if (check_mustHitSection.checked)
 		{
-			leftIcon.animation.play(_song.player1);
-			rightIcon.animation.play(_song.player2);
+			leftIcon.changeIcon(_song.player1);
+			rightIcon.changeIcon(_song.player2);
 		}
 		else
 		{
-			leftIcon.animation.play(_song.player2);
-			rightIcon.animation.play(_song.player1);
+			leftIcon.changeIcon(_song.player2);
+			rightIcon.changeIcon(_song.player1);
 		}
 	}
 
@@ -1174,8 +1171,9 @@ class ChartingState extends MusicBeatState
 
 	function updateGrid():Void
 	{
+		var gridWidth = ((_song.song.toLowerCase() == 'shredder' && (curSection >= 64 && curSection <= 80))) ? 9 : 8;
 		remove(gridBG);
-		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 8, GRID_SIZE * _song.notes[curSection].lengthInSteps);
+		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * gridWidth, GRID_SIZE * _song.notes[curSection].lengthInSteps);
         add(gridBG);
 
 		remove(gridBlackLine);

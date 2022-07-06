@@ -11894,12 +11894,12 @@
 				"mustHitSection": true
 			}
 		],
-		"gfVersion": "nothing",
+		"gfVersion": "gf",
 		"events": [],
 		"player3": null,
 		"song": "Rano",
 		"arrowSkin": "NOTE_assets",
-		"stage": "bambiFarmNight",
+		"stage": "farm-night",
 		"validScore": true,
 		"needsVoices": true,
 		"speed": 3.3,
