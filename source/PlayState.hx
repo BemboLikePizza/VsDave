@@ -781,6 +781,10 @@ class PlayState extends MusicBeatState
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
+			case 'house':
+				dad.setPosition(-164, 121);
+				boyfriend.setPosition(943, 270);
+				gf.setPosition(280,-60);
 		}
 		switch (curStage)
 		{
@@ -1083,7 +1087,7 @@ class PlayState extends MusicBeatState
 		switch (bgName)
 		{
 			case 'house' | 'house-night' | 'house-sunset':
-				bgZoom = 0.9;
+				bgZoom = 0.8;
 				
 				var skyType:String = '';
 				var assetType:String = '';
@@ -1105,20 +1109,22 @@ class PlayState extends MusicBeatState
 				sprites.add(bg);
 				add(bg);
 				
-				var stageHills:BGSprite = new BGSprite('stageHills', -225, -125, Paths.image('backgrounds/dave-house/' + assetType + 'hills'), null, 0.8, 0.8);
-				stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
+				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/' + assetType + 'hills'), null, 0.8, 0.8);
 				stageHills.updateHitbox();
 				sprites.add(stageHills);
 				add(stageHills);
+
+				var grassbg:BGSprite = new BGSprite('grassbg', -1205, 580, Paths.image('backgrounds/dave-house/' + assetType + 'grass bg'), null, 0.8, 0.8);
+				grassbg.updateHitbox();
+				sprites.add(grassbg);
+				add(grassbg);
 	
-				var gate:BGSprite = new BGSprite('gate', -200, -125, Paths.image('backgrounds/dave-house/' + assetType + 'gate'), null, 0.9, 0.9);
-				gate.setGraphicSize(Std.int(gate.width * 1.2));
+				var gate:BGSprite = new BGSprite('gate', -755, 250, Paths.image('backgrounds/dave-house/' + assetType + 'gate'), null, 0.9, 0.9);
 				gate.updateHitbox();
 				sprites.add(gate);
 				add(gate);
 	
-				var stageFront:BGSprite = new BGSprite('stageFront', -175, -125, Paths.image('backgrounds/dave-house/' + assetType + 'grass'), null);
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
+				var stageFront:BGSprite = new BGSprite('stageFront', -832, 505, Paths.image('backgrounds/dave-house/' + assetType + 'grass'), null);
 				stageFront.updateHitbox();
 				sprites.add(stageFront);
 				add(stageFront);
@@ -1707,7 +1713,7 @@ class PlayState extends MusicBeatState
 			blackScreen.alpha = 0;
 			add(blackScreen);
 				
-			Application.current.window.title = "EXPUNGED'S REIGN IS HERE, FUCK YOU";
+			Application.current.window.title = "[DATA EXPUNGED]";
 			Application.current.window.setIcon(lime.graphics.Image.fromFile("art/iconAAAA.png"));
 		}
 
