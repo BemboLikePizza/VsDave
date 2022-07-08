@@ -600,9 +600,9 @@ class PlayState extends MusicBeatState
 				dad.x += 175;
 
 			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
-				dad.y += 160;
-				dad.x += 250;
-
+				dad.y += 50;
+				dad.x += 150;
+				
 			case 'dave-angey':
 				dad.x += 150;
 				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
@@ -634,7 +634,6 @@ class PlayState extends MusicBeatState
 				dad.x -= 700;
 		}
 
-		dadmirror.y += 0;
 		dadmirror.x += 150;
 
 		dadmirror.visible = false;
@@ -675,6 +674,10 @@ class PlayState extends MusicBeatState
 				boyfriend.y = 100 + 450;
 				boyfriendOldIcon = 'bambi-old';
 		}
+		switch (stageCheck)
+		{
+			case 'house':
+		}
 		if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
 		{
 			dad.color = nightColor;
@@ -690,82 +693,6 @@ class PlayState extends MusicBeatState
 			gf.color = sunsetColor;
 			boyfriend.color = sunsetColor;
 		}
-		
-		//repositioning characters
-		switch (curStage)
-		{
-			case 'daveHouse' | 'daveHouse_night' | 'daveHouse_sunset':
-				switch (formoverride)
-				{
-					case 'bambi':
-						boyfriend.y -= 50;
-					case 'bambi-new':
-						boyfriend.y -= 125;
-					case 'bambi-splitathon' | 'bambi-angey':
-						boyfriend.y -= 25;
-					case 'bambi-old':
-						boyfriend.y -= 50;
-				}
-			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset':
-				switch (formoverride)
-				{
-					case 'bambi':
-						boyfriend.y -= 50;
-					case 'bambi-new':
-						boyfriend.y -= 125;
-					case 'bambi-splitathon' | 'bambi-angey':
-						boyfriend.y -= 25;
-					case 'bambi-old':
-						boyfriend.y -= 50;
-					case 'bambi-3d':
-						boyfriend.y += 50;
-					case 'bambi-unfair':
-						boyfriend.y += 50;
-				}
-				
-			case 'cheating' | 'interdimension':
-				switch (formoverride)
-				{
-					case 'bambi' | 'bambi-new' | 'bambi-splitathon' | 'bambi-angey':
-						boyfriend.y -= 100;
-					case 'bambi-old':
-						boyfriend.y -= 150;
-				}
-			case 'unfairness':
-				switch (formoverride)
-				{
-					case 'dave' | 'dave-insanity' | 'dave-splitathon' | 'dave-cool':
-						boyfriend.y += 100;
-					case 'bambi-new':
-						boyfriend.y -= 100;
-					case 'bambi' | 'bambi-splitathon' | 'bambi-angey':
-						boyfriend.y -= 100;
-					case 'bambi-old':
-						boyfriend.y -= 150;
-					case 'bambi-3d':
-						boyfriend.y += 100;
-					case 'bambi-unfair':
-						boyfriend.y += 100;
-				}
-			case 'kabunga':
-				switch (formoverride)
-				{
-					case 'dave-angey':
-						boyfriend.y -= 50;
-					case 'bambi-new':
-						boyfriend.y -= 100;
-					case 'bambi-splitathon':
-						boyfriend.y -= 50;
-					case 'bambi-angey':
-						boyfriend.y -= 100;
-					case 'bambi-old':
-						boyfriend.y -= 150;
-					case 'tristan' | 'tristan-golden' | 'tristan-festival' | 'tristan-golden-glowing':
-						boyfriend.y -= 100;
-					case 'bambi-unfair':
-						boyfriend.y -= 50;
-				}
-		}
 
 		add(gf);
 
@@ -773,15 +700,6 @@ class PlayState extends MusicBeatState
 		add(dadmirror);
 		add(boyfriend);
 
-		switch (stageCheck)
-		{
-			case 'desktop':
-				dad.x -= 500;
-				dad.y -= 100;
-			case 'roof':
-				dad.setPosition(200, 300);
-				boyfriend.setPosition(700, 100);
-		}
 		switch (curStage)
 		{
 			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset' | 'interdimension-void':
@@ -1099,29 +1017,26 @@ class PlayState extends MusicBeatState
 					case 'house-sunset':
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
-				}
-								
+				}			
 				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/' + skyType), null, 0.75, 0.75);
 				sprites.add(bg);
 				add(bg);
 				
-				var stageHills:BGSprite = new BGSprite('stageHills', -225, -125, Paths.image('backgrounds/dave-house/' + assetType + 'hills'), null, 0.8, 0.8);
-				stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
-				stageHills.updateHitbox();
+				var stageHills:BGSprite = new BGSprite('stageHills', -125, 35, Paths.image('backgrounds/dave-house/' + assetType + 'hills'), null, 0.8, 0.8);
 				sprites.add(stageHills);
 				add(stageHills);
+
+				var behindGrass:BGSprite = new BGSprite('behindGrass', -375, 550, Paths.image('backgrounds/dave-house/' + assetType + 'behind grass'), null, 1, 1);
+				sprites.add(behindGrass);
+				add(behindGrass);
 	
-				var gate:BGSprite = new BGSprite('gate', -200, -125, Paths.image('backgrounds/dave-house/' + assetType + 'gate'), null, 0.9, 0.9);
-				gate.setGraphicSize(Std.int(gate.width * 1.2));
-				gate.updateHitbox();
+				var gate:BGSprite = new BGSprite('gate', -280, 335, Paths.image('backgrounds/dave-house/' + assetType + 'gates'), null, 0.9, 0.9);
 				sprites.add(gate);
 				add(gate);
 	
-				var stageFront:BGSprite = new BGSprite('stageFront', -175, -125, Paths.image('backgrounds/dave-house/' + assetType + 'grass'), null);
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
-				stageFront.updateHitbox();
-				sprites.add(stageFront);
-				add(stageFront);
+				var grass:BGSprite = new BGSprite('grass', -150, 485, Paths.image('backgrounds/dave-house/' + assetType + 'grass'), null);
+				sprites.add(grass);
+				add(grass);
 
 				if (SONG.song.toLowerCase() == 'insanity')
 				{
@@ -1136,8 +1051,9 @@ class PlayState extends MusicBeatState
 				var variantColor = getBackgroundColor(stageName);
 				
 				stageHills.color = variantColor;
+				behindGrass.color = variantColor;
 				gate.color = variantColor;
-				stageFront.color = variantColor;
+				grass.color = variantColor;
 
 			case 'farm' | 'farm-night' | 'farm-sunset':
 				bgZoom = 0.8;
@@ -1168,7 +1084,7 @@ class PlayState extends MusicBeatState
 					nightBG.alpha = 0;
 					add(nightBG);
 					sprites.add(nightBG);
-				}
+				}/*
 				var flatGrass:BGSprite = new BGSprite('flatGrass', 500, 100, Paths.image('backgrounds/farm/gm_flatgrass'), null, 1.35, 1.35);
 				flatGrass.setGraphicSize(Std.int(flatGrass.width * 1.2));
 				sprites.add(flatGrass);
@@ -1208,8 +1124,9 @@ class PlayState extends MusicBeatState
 				add(path);
 				add(cornMaze);
 				add(cornMaze2);
-				add(cornBag);
-
+				add(cornBag);*/
+				
+				//var hills:BGSprite = new BGSprite('hills', -530, -18, )
 
 			case 'desktop':
 				bgZoom = 0.5;
@@ -4086,13 +4003,13 @@ class PlayState extends MusicBeatState
 					case 466:
 						subtitleManager.addSubtitle("I mean...", 0.02, 1);
 					case 476:
-						subtitleManager.addSubtitle("You can", 0.02, 1);
+						subtitleManager.addSubtitle("You can", 0.02, 0.7);
 					case 484:
 						subtitleManager.addSubtitle("Play me", 0.02, 1);
 					case 498:
 						subtitleManager.addSubtitle("You don't?", 0.02, 1);
 					case 510:
-						subtitleManager.addSubtitle("Nothing come back again.", 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle("Never come back again.", 0.02, 1, {subtitleSize: 60});
 				}
 			case 'recursed':
 				switch (curStep)
