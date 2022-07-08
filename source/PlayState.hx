@@ -700,6 +700,22 @@ class PlayState extends MusicBeatState
 		add(dadmirror);
 		add(boyfriend);
 
+<<<<<<< HEAD
+=======
+		switch (stageCheck)
+		{
+			case 'desktop':
+				dad.x -= 500;
+				dad.y -= 100;
+			case 'roof':
+				dad.setPosition(200, 300);
+				boyfriend.setPosition(700, 100);
+			case 'house':
+				dad.setPosition(-164, 121);
+				boyfriend.setPosition(943, 270);
+				gf.setPosition(280,-60);
+		}
+>>>>>>> 8923652bd3559d590ab65d85e4a5f2441870274c
 		switch (curStage)
 		{
 			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset' | 'interdimension-void':
@@ -1001,7 +1017,7 @@ class PlayState extends MusicBeatState
 		switch (bgName)
 		{
 			case 'house' | 'house-night' | 'house-sunset':
-				bgZoom = 0.9;
+				bgZoom = 0.8;
 				
 				var skyType:String = '';
 				var assetType:String = '';
@@ -1022,21 +1038,21 @@ class PlayState extends MusicBeatState
 				sprites.add(bg);
 				add(bg);
 				
-				var stageHills:BGSprite = new BGSprite('stageHills', -125, 35, Paths.image('backgrounds/dave-house/' + assetType + 'hills'), null, 0.8, 0.8);
+				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/' + assetType + 'hills'), null, 0.8, 0.8);
 				sprites.add(stageHills);
 				add(stageHills);
 
-				var behindGrass:BGSprite = new BGSprite('behindGrass', -375, 550, Paths.image('backgrounds/dave-house/' + assetType + 'behind grass'), null, 1, 1);
-				sprites.add(behindGrass);
-				add(behindGrass);
+				var grassbg:BGSprite = new BGSprite('grassbg', -1205, 580, Paths.image('backgrounds/dave-house/' + assetType + 'grass bg'), null, 0.8, 0.8);
+				sprites.add(grassbg);
+				add(grassbg);
 	
-				var gate:BGSprite = new BGSprite('gate', -280, 335, Paths.image('backgrounds/dave-house/' + assetType + 'gates'), null, 0.9, 0.9);
+				var gate:BGSprite = new BGSprite('gate', -755, 250, Paths.image('backgrounds/dave-house/' + assetType + 'gate'), null, 0.9, 0.9);
 				sprites.add(gate);
 				add(gate);
 	
-				var grass:BGSprite = new BGSprite('grass', -150, 485, Paths.image('backgrounds/dave-house/' + assetType + 'grass'), null);
-				sprites.add(grass);
-				add(grass);
+				var stageFront:BGSprite = new BGSprite('stageFront', -832, 505, Paths.image('backgrounds/dave-house/' + assetType + 'grass'), null);
+				sprites.add(stageFront);
+				add(stageFront);
 
 				if (SONG.song.toLowerCase() == 'insanity')
 				{
@@ -1051,9 +1067,9 @@ class PlayState extends MusicBeatState
 				var variantColor = getBackgroundColor(stageName);
 				
 				stageHills.color = variantColor;
-				behindGrass.color = variantColor;
+				grassbg.color = variantColor;
 				gate.color = variantColor;
-				grass.color = variantColor;
+				stageFront.color = variantColor;
 
 			case 'farm' | 'farm-night' | 'farm-sunset':
 				bgZoom = 0.8;
@@ -1624,7 +1640,7 @@ class PlayState extends MusicBeatState
 			blackScreen.alpha = 0;
 			add(blackScreen);
 				
-			Application.current.window.title = "EXPUNGED'S REIGN IS HERE, FUCK YOU";
+			Application.current.window.title = "[DATA EXPUNGED]";
 			Application.current.window.setIcon(lime.graphics.Image.fromFile("art/iconAAAA.png"));
 		}
 
