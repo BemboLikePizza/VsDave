@@ -142,6 +142,9 @@ class CharacterSelectState extends MusicBeatState
 		FlxG.cameras.add(camHUD);
 		FlxCamera.defaultCameras = [camGame];
 
+		FlxG.camera.zoom = 1.2;
+		camHUD.zoom = 0.75;
+
 		if (FlxG.save.data.charactersUnlocked == null)
 		{
 			reset();
@@ -152,6 +155,8 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music("badEnding"), 1, true);
 		else
 			FlxG.sound.playMusic(Paths.music("goodEnding"), 1, true);
+
+		//create BG
 
 		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/shared/sky_night'));
 		bg.antialiasing = true;
@@ -171,35 +176,30 @@ class CharacterSelectState extends MusicBeatState
 		}
 		add(bg);
 
-		var stageHills:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/night/hills'));
-		stageHills.setGraphicSize(Std.int(stageHills.width * 1.25));
-		stageHills.updateHitbox();
-		stageHills.antialiasing = true;
-		stageHills.scrollFactor.set(0.8, 0.8);
-		stageHills.active = false;
-		add(stageHills);
+		var hills:BGSprite = new BGSprite('hills', -128, 63, Paths.image('backgrounds/charSelect/hills'), null, 1, 1);
+		add(hills);
 
-		var gate:FlxSprite = new FlxSprite(-200, -125).loadGraphic(Paths.image('backgrounds/dave-house/night/gate'));
-		gate.setGraphicSize(Std.int(gate.width * 1.2));
-		gate.updateHitbox();
-		gate.antialiasing = true;
-		gate.scrollFactor.set(0.9, 0.9);
-		gate.active = false;
-		add(gate);
+		var house:BGSprite = new BGSprite('house', 388, 82, Paths.image('backgrounds/charSelect/house'), null, 1, 1);
+		add(house);
 
-		var stageFront:FlxSprite = new FlxSprite(-225, -125).loadGraphic(Paths.image('backgrounds/dave-house/night/grass'));
-		stageFront.setGraphicSize(Std.int(stageFront.width * 1.2));
-		stageFront.updateHitbox();
-		stageFront.antialiasing = true;
-		stageFront.active = false;
-		add(stageFront);
+		var behindGrass:BGSprite = new BGSprite('behindGrass', -33, 468, Paths.image('backgrounds/charSelect/behindGrass'), null, 1, 1);
+		add(behindGrass);
 
-		FlxG.camera.zoom = 0.75;
-		camHUD.zoom = 0.75;
+		var gateLeft:BGSprite = new BGSprite('gateLeft', -38, 464, Paths.image('backgrounds/charSelect/gateLeft'), null, 1, 1);
+		add(gateLeft);
 
-		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, "bf");
+		var gateRight:BGSprite = new BGSprite('gateRight', 1014, 464, Paths.image('backgrounds/charSelect/gateRight'), null, 1, 1);
+		add(gateRight);
+
+		var gateRight:BGSprite = new BGSprite('gateRight', 1014, 464, Paths.image('backgrounds/charSelect/gateRight'), null, 1, 1);
+		add(gateRight);
+
+		var grass:BGSprite = new BGSprite('grass', -80, 385, Paths.image('backgrounds/charSelect/grass'), null, 1, 1);
+		add(grass);
+
+		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, 'bf');
+		char.cameras = [camHUD];
 		char.screenCenter();
-		char.y = 450;
 		add(char);
 
 		strummies = new FlxTypedGroup<FlxSprite>();
@@ -229,7 +229,6 @@ class CharacterSelectState extends MusicBeatState
 		add(characterText);
 		
 		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, LanguageManager.getTextString('character_reset'));
-		resetText.font = 'Comic Sans MS Bold';
 		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		resetText.autoSize = false;
 		resetText.fieldWidth = FlxG.height;
@@ -254,6 +253,7 @@ class CharacterSelectState extends MusicBeatState
 		var arrowLeft:FlxSprite = new FlxSprite(5,0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
 		arrowLeft.screenCenter(Y);
 		arrowLeft.scrollFactor.set();
+		arrowLeft.cameras = [camHUD];
 		arrows[0] = arrowLeft;
 		add(arrowLeft);
 
@@ -261,6 +261,7 @@ class CharacterSelectState extends MusicBeatState
 		arrowRight.screenCenter(Y);
 		arrowRight.x = 1280 - arrowRight.width - 5;
 		arrowRight.scrollFactor.set();
+		arrowRight.cameras = [camHUD];
 		arrows[1] = arrowRight;
 		add(arrowRight);
 		
@@ -494,7 +495,7 @@ class CharacterSelectState extends MusicBeatState
 		char.destroy();
 		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, currentSelectedCharacter.forms[curForm].name);
 		char.screenCenter();
-		char.y = 450;
+		char.cameras = [camHUD];
 
 		switch (char.curCharacter)
 		{

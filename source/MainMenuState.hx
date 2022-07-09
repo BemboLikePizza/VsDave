@@ -1,5 +1,9 @@
 package;
 
+import flixel.addons.effects.chainable.FlxShakeEffect;
+import flixel.addons.effects.chainable.FlxWaveEffect;
+import flixel.addons.effects.chainable.FlxGlitchEffect;
+import flixel.addons.effects.chainable.FlxEffectSprite;
 import sys.FileSystem;
 import flixel.util.FlxSave;
 import flixel.math.FlxRandom;
@@ -157,8 +161,6 @@ class MainMenuState extends MusicBeatState
 			magenta.color = 0xFFfd719b;
 			add(magenta);
 		}
-		
-
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
