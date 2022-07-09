@@ -533,6 +533,12 @@ class PlayState extends MusicBeatState
 			charoffsetx += 300;
 			charoffsety += 300;
 		}
+		if (SONG.player1 == "tb-funny-man" && SONG.song != "Tutorial")
+		{
+			gfVersion = 'stereo';
+			charoffsetx += 500;
+			charoffsety += 500;
+		}
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
@@ -673,6 +679,8 @@ class PlayState extends MusicBeatState
 			case 'bambi-new' | 'bambi-splitathon' | 'bambi-angey':
 				boyfriend.y = 100 + 450;
 				boyfriendOldIcon = 'bambi-old';
+			case 'tb-funny-man':
+				boyfriend.x = 100 + 900;	
 		}
 		switch (stageCheck)
 		{
@@ -711,7 +719,7 @@ class PlayState extends MusicBeatState
 				dad.setPosition(-164, 121);
 				dadmirror.setPosition(-164, 121);
 				boyfriend.setPosition(943, 270);
-				gf.setPosition(280, -60);
+				gf.setPosition(280 + charoffsetx, -60 + charoffsety);	
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -3997,7 +4005,9 @@ class PlayState extends MusicBeatState
 					case 510:
 						subtitleManager.addSubtitle("Never come back again.", 0.02, 1, {subtitleSize: 60});
 					case 520:
-
+						defaultCamZoom -= 0.2;
+						remove(black);
+						FlxG.camera.flash();
 				}
 			case 'recursed':
 				switch (curStep)

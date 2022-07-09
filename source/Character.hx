@@ -658,6 +658,15 @@ class Character extends FlxSprite
 					nativelyPlayable = true;
 					
 				playAnim('idle');
+				case 'stereo':
+					tex = Paths.getSparrowAtlas('characters/IM_GONNA_TORNADER_YOU_AWAY', 'shared');
+					frames = tex;
+
+					animation.addByPrefix('idle', 'bump', 24, false);
+
+					loadOffsetFile(curCharacter);
+					
+				playAnim('idle');	
 		}
 		dance();
 
