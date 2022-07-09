@@ -717,7 +717,7 @@ class PlayState extends MusicBeatState
 				boyfriend.setPosition(700, 100);
 			case 'house' | 'house-night' | 'house-sunset':
 				dad.setPosition(-164, 121);
-				dadmirror.setPosition(-164, 121);
+				dadmirror.setPosition(-180, 60);
 				boyfriend.setPosition(943, 270);
 				gf.setPosition(280 + charoffsetx, -60 + charoffsety);	
 		}
@@ -906,6 +906,7 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/nimbi/nimbi');
 			case 'recursed':
 				preload('recursed/Recursed_BF');
+				preload('recursed/STOP_LOOKING_AT_THE_FILES');
 			case 'exploitation':
 				preload('backgrounds/cheating/cheater GLITCH');
 		}
@@ -3731,7 +3732,13 @@ class PlayState extends MusicBeatState
 
 		var boyfriendPos = boyfriend.getPosition();
 		remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'bf-recursed');
+		if(SONG.player1 == "tb-funny-man") {
+			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-recursed');
+			iconP1.changeIcon(boyfriend.curCharacter);
+		}
+		else {
+			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'bf-recursed');
+		}
 		add(boyfriend);
 
 		addRecursedUI();
@@ -3797,7 +3804,13 @@ class PlayState extends MusicBeatState
 		}
 		var boyfriendPos = boyfriend.getPosition();
 		remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
+		if(boyfriend.curCharacter == "tb-recursed") {
+			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-funny-man');
+			iconP1.changeIcon(boyfriend.curCharacter);
+		}
+		else {
+			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
+		}	
 		add(boyfriend);
 
 		health = preRecursedHealth;
@@ -4003,7 +4016,7 @@ class PlayState extends MusicBeatState
 					case 498:
 						subtitleManager.addSubtitle("You don't?", 0.02, 1);
 					case 510:
-						subtitleManager.addSubtitle("Never come back again.", 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle("Never coming back again.", 0.02, 1, {subtitleSize: 60});
 					case 520:
 						defaultCamZoom -= 0.2;
 						remove(black);

@@ -658,6 +658,35 @@ class Character extends FlxSprite
 					nativelyPlayable = true;
 					
 				playAnim('idle');
+				case 'tb-recursed':
+					tex = Paths.getSparrowAtlas('recursed/STOP_LOOKING_AT_THE_FILES', 'shared');
+					frames = tex;
+	
+					animation.addByPrefix('idle', 'BF idle dance', 24, false);
+					animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+					animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+					animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+					animation.addByPrefix('hey', 'BF HEY!!', 24, false);
+	
+					//animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
+					//animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
+					//animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
+					animation.addByPrefix('scared', 'BF idle shaking', 24);
+	
+					loadOffsetFile(curCharacter);
+	
+					flipX = true;
+					barColor = FlxColor.WHITE;
+	
+					nativelyPlayable = true;
+					
+				playAnim('idle');
+
 				case 'stereo':
 					tex = Paths.getSparrowAtlas('characters/IM_GONNA_TORNADER_YOU_AWAY', 'shared');
 					frames = tex;
