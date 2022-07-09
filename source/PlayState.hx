@@ -95,7 +95,7 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'johnland i think'];
+	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
 	var howManyPlayerNotes:Int = 0;
@@ -695,13 +695,10 @@ class PlayState extends MusicBeatState
 		}
 
 		add(gf);
-
 		add(dad);
 		add(dadmirror);
 		add(boyfriend);
 
-<<<<<<< HEAD
-=======
 		switch (stageCheck)
 		{
 			case 'desktop':
@@ -710,28 +707,11 @@ class PlayState extends MusicBeatState
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
-			case 'house':
+			case 'house' | 'house-night' | 'house-sunset':
 				dad.setPosition(-164, 121);
+				dadmirror.setPosition(-164, 121);
 				boyfriend.setPosition(943, 270);
-				gf.setPosition(280,-60);
-		}
->>>>>>> 8923652bd3559d590ab65d85e4a5f2441870274c
-		switch (curStage)
-		{
-			case 'bambiFarm' | 'bambiFarmNight' | 'bambiFarmSunset' | 'interdimension-void':
-				var sign:BGSprite = addFarmSign(false);
-				add(sign);
-				switch (SONG.song.toLowerCase())
-				{
-					case 'maze':
-						var tween = FlxTween.color(sign, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
-							FlxTween.color(sign, tweenTime / 1000, sunsetColor, nightColor)
-							);
-						tweenList.push(tween);
-					case 'interdimensional':
-						sign.alpha = 0;
-						revertedBG.add(sign);
-				}
+				gf.setPosition(280, -60);
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -999,7 +979,7 @@ class PlayState extends MusicBeatState
 				smashPhone = [172, 174, 244, 245, 267, 288, 291, 294, 296, 300, 420, 424, 426, 428, 429, 430, 431, 432, 488, 591, 592, 593, 594, 595, 602,
 								617, 686, 720, 723, 726, 731, 734, 736, 739, 742, 896, 898, 900, 902, 1052, 1054, 1056, 1058, 1060, 1062, 1116, 1117, 1118, 1119];
 			case 'blocked':
-				smashPhone = [315, 317, 319, 334, 337, 388, 389, 411, 412, 413, 414, 492, 495, 641, 643, 645, 648];					
+				smashPhone = [315, 317, 319, 334, 337, 388, 389, 411, 412, 413, 414, 492, 495, 641, 643, 645, 648];
 		}
 		
 		subtitleManager = new SubtitleManager();
@@ -1086,64 +1066,65 @@ class PlayState extends MusicBeatState
 	
 				var skyType:String = stageName == 'bambiFarmNight' ? 'sky_night' : stageName == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 				
-				var bg:BGSprite = new BGSprite('bg', -400, 0, Paths.image('backgrounds/shared/' + skyType), null, 1.4, 1.4);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/' + skyType), null, 0.9, 0.9);
 				sprites.add(bg);
+				add(bg);
 
 				if (SONG.song.toLowerCase() == 'maze')
 				{
-					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -700, 0, Paths.image('backgrounds/shared/sky_sunset'), null, 1.4, 1.4);
+					trace(stageName);
+					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -600, -200, Paths.image('backgrounds/shared/sky_sunset'), null, 0.9, 0.9);
 					sunsetBG.alpha = 0;
-					add(sunsetBG);
 					sprites.add(sunsetBG);
+					add(sunsetBG);
 
-					var nightBG:BGSprite = new BGSprite('nightBG', -700, 0, Paths.image('backgrounds/shared/sky_night'), null, 1.4, 1.4);
+					var nightBG:BGSprite = new BGSprite('nightBG', -600, -200, Paths.image('backgrounds/shared/sky_night'), null, 0.9, 0.9);
 					nightBG.alpha = 0;
-					add(nightBG);
 					sprites.add(nightBG);
-				}/*
-				var flatGrass:BGSprite = new BGSprite('flatGrass', 500, 100, Paths.image('backgrounds/farm/gm_flatgrass'), null, 1.35, 1.35);
-				flatGrass.setGraphicSize(Std.int(flatGrass.width * 1.2));
-				sprites.add(flatGrass);
+					add(nightBG);
+				}
+				var hills:BGSprite = new BGSprite('hills', 0, 50, Paths.image('backgrounds/farm/orangey hills'), null, 0.7, 0.7);
+				hills.setGraphicSize(Std.int(hills.width / 1.2));
+				hills.updateHitbox();
+				sprites.add(hills);
 				
-				var farmHouse:BGSprite = new BGSprite('farmHouse', -650, -50, Paths.image('backgrounds/farm/farmhouse'), null, 1.25, 1.1);
-				farmHouse.setGraphicSize(Std.int(farmHouse.width * 1));
+				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 150, Paths.image('backgrounds/farm/funfarmhouse'), null, 0.9, 0.9);
+				farmHouse.setGraphicSize(Std.int(farmHouse.width * 0.9));
+				farmHouse.updateHitbox();
 				sprites.add(farmHouse);
+
+				var grassLand:BGSprite = new BGSprite('grassLand', -650, 500, Paths.image('backgrounds/farm/grass lands'), null, 1, 1);
+				sprites.add(grassLand);
+
+				var cornFence:BGSprite = new BGSprite('cornFence', -400, 200, Paths.image('backgrounds/farm/cornFence'), null, 1, 1);
+				sprites.add(cornFence);
 				
-				var path:BGSprite = new BGSprite('path', -700, 500, Paths.image('backgrounds/farm/path'), null, 1, 1);
-				path.setGraphicSize(Std.int(path.width * 1.3));
-				sprites.add(path);
+				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2'), null, 1, 1);
+				sprites.add(cornFence2);
+
+				var cornBag:BGSprite = new BGSprite('cornBag', 1200, 550, Paths.image('backgrounds/farm/cornBag'), null, 1, 1);
+				sprites.add(cornFence2);
 				
-				var cornMaze:BGSprite = new BGSprite('cornMaze', -550, 150, Paths.image('backgrounds/farm/cornmaze'), null, 1.05, 1);
-				cornMaze.setGraphicSize(Std.int(cornMaze.width * 1.4));
-				sprites.add(cornMaze);
-				
-				var cornMaze2:BGSprite = new BGSprite('cornMaze2', 1350, 100, Paths.image('backgrounds/farm/cornmaze2'), null, 1.05, 1);
-				cornMaze2.setGraphicSize(Std.int(cornMaze2.width * 1.4));
-				sprites.add(cornMaze2);
-				
-				var cornBag:BGSprite = new BGSprite('cornBag', 1500, 500, Paths.image('backgrounds/farm/cornbag'), null, 1.05, 1);
-				cornBag.setGraphicSize(Std.int(cornBag.width * 1.4));
-				sprites.add(cornBag);
-				
+				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign'), null);
+				sprites.add(sign);
+
 				var variantColor:FlxColor = getBackgroundColor(stageName);
 				
-				flatGrass.color = variantColor;
+				hills.color = variantColor;
 				farmHouse.color = variantColor;
-				path.color = variantColor;
-				cornMaze.color = variantColor;
-				cornMaze2.color = variantColor;
-				cornBag.color = variantColor;
-				
-				add(bg);
-				add(flatGrass);
-				add(farmHouse);
-				add(path);
-				add(cornMaze);
-				add(cornMaze2);
-				add(cornBag);*/
-				
-				//var hills:BGSprite = new BGSprite('hills', -530, -18, )
+				grassLand.color = variantColor;
+				cornFence.color = variantColor;
+				cornFence2.color = variantColor;
+				cornBag.color = variantColor; 
+				sign.color = variantColor;
 
+				add(hills);
+				add(farmHouse);
+				add(grassLand);
+				add(cornFence);
+				add(cornFence2);
+				add(cornBag);
+				add(sign);
 			case 'desktop':
 				bgZoom = 0.5;
 				stageName = 'desktop';
@@ -1304,7 +1285,7 @@ class PlayState extends MusicBeatState
 		var variantColor:FlxColor = FlxColor.WHITE;
 		switch (stage)
 		{
-			case 'bambiFarmNight' | 'daveHouse_night' | 'johnland i think':
+			case 'bambiFarmNight' | 'daveHouse_night':
 				variantColor = nightColor;
 			case 'bambiFarmSunset' | 'daveHouse_sunset':
 				variantColor = sunsetColor;
@@ -1312,25 +1293,6 @@ class PlayState extends MusicBeatState
 				variantColor = FlxColor.WHITE;
 		}
 		return variantColor;
-	}
-	function addFarmSign(removeSign:Bool):BGSprite
-	{
-		if (removeSign)
-		{
-			for (bgSprite in backgroundSprites)
-			{
-				if (bgSprite.spriteName == 'sign')
-				{
-					remove(bgSprite);
-					backgroundSprites.members.remove(bgSprite);
-				}
-			}
-		}
-		var sign:BGSprite = new BGSprite('sign', -50, 600, Paths.image('backgrounds/farm/sign'), null);
-		sign.setGraphicSize(Std.int(sign.width * 1.4));
-		sign.color = getBackgroundColor(curStage);
-		backgroundSprites.add(sign);
-		return sign;
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox, isStart:Bool = true):Void
@@ -4017,6 +3979,14 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 466:
+						defaultCamZoom += 0.2;
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+
 						subtitleManager.addSubtitle("I mean...", 0.02, 1);
 					case 476:
 						subtitleManager.addSubtitle("You can", 0.02, 0.7);
@@ -4026,6 +3996,8 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle("You don't?", 0.02, 1);
 					case 510:
 						subtitleManager.addSubtitle("Never come back again.", 0.02, 1, {subtitleSize: 60});
+					case 520:
+
 				}
 			case 'recursed':
 				switch (curStep)
@@ -4712,8 +4684,8 @@ class PlayState extends MusicBeatState
 		remove(dad);
 		
 		dad = new Character(100, 100, char);
-		insert(members.indexOf(BGSprite.getBGSprite(backgroundSprites, 'sign')), dad);
-		dad.color = nightColor;
+		add(dad);
+		dad.color = getBackgroundColor(curStage);
 		switch (dad.curCharacter)
 		{
 			case 'dave-splitathon':
@@ -4741,7 +4713,7 @@ class PlayState extends MusicBeatState
 			case 'bambi':
 				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}
-		insert(members.indexOf(BGSprite.getBGSprite(backgroundSprites, 'sign')), splitathonCharacterExpression);
+		add(splitathonCharacterExpression);
 
 		splitathonCharacterExpression.color = nightColor;
 		splitathonCharacterExpression.canDance = false;

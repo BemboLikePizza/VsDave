@@ -158,8 +158,8 @@ class ChartingState extends MusicBeatState
 		Conductor.changeBPM(_song.bpm);
 		Conductor.mapBPMChanges(_song);
 
-		leftIcon = new HealthIcon(_song.player2);
-		rightIcon = new HealthIcon(_song.player1);
+		leftIcon = new HealthIcon(_song.player1);
+		rightIcon = new HealthIcon(_song.player2);
 		leftIcon.scrollFactor.set(1, 1);
 		rightIcon.scrollFactor.set(1, 1);
 
@@ -478,12 +478,9 @@ class ChartingState extends MusicBeatState
 
 		/*player2 = new Character(0,gridBG.y, _song.player2);
 		player1 = new Boyfriend(player2.width * 0.2,gridBG.y + player2.height, _song.player1);
-
 		player1.y = player1.y - player1.height;
-
 		player2.setGraphicSize(Std.int(player2.width * 0.2));
 		player1.setGraphicSize(Std.int(player1.width * 0.2));
-
 		UI_box.add(player1);
 		UI_box.add(player2);*/
 
@@ -531,7 +528,6 @@ class ChartingState extends MusicBeatState
 			loopCheck.checked = curNoteSelected.doesLoop;
 			tooltips.add(loopCheck, {title: 'Section looping', body: "Whether or not it's a simon says style section", style: tooltipType});
 			bullshitUI.add(loopCheck);
-
 		 */
 	}
 
@@ -679,24 +675,27 @@ class ChartingState extends MusicBeatState
 		var pressArray = [left, down, up, right, leftO, downO, upO, rightO];
 		var delete = false;
 		curRenderedNotes.forEach(function(note:Note)
-		{
-			if (strumLine.overlaps(note) && pressArray[Math.floor(Math.abs(note.noteData))])
 			{
-				deleteNote(note);
-				delete = true;
-				trace('deelte note');
-			}
-		});
+				if (strumLine.overlaps(note) && pressArray[Math.floor(Math.abs(note.noteData))])
+				{
+					deleteNote(note);
+					delete = true;
+					trace('deelte note');
+				}
+			});
 		for (p in 0...pressArray.length)
 		{
 			var i = pressArray[p];
 			if (i && !delete)
 			{
-				addNote(new Note(Conductor.songPosition, p, null, false, true, "normal", true));
+				addNote(new Note(Conductor.songPosition , p, null, false, true, "normal", true));
 			}
 		}
+
 		strumLine.y = getYfromStrum((Conductor.songPosition - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps));
 		
+
+
 		if (playClaps)
 		{
 			curRenderedNotes.forEach(function(note:Note)
@@ -1153,13 +1152,13 @@ class ChartingState extends MusicBeatState
 	{
 		if (check_mustHitSection.checked)
 		{
-			leftIcon.changeIcon(_song.player1);
-			rightIcon.changeIcon(_song.player2);
+			leftIcon.animation.play(_song.player1);
+			rightIcon.animation.play(_song.player2);
 		}
 		else
 		{
-			leftIcon.changeIcon(_song.player2);
-			rightIcon.changeIcon(_song.player1);
+			leftIcon.animation.play(_song.player2);
+			rightIcon.animation.play(_song.player1);
 		}
 	}
 
@@ -1171,18 +1170,16 @@ class ChartingState extends MusicBeatState
 
 	function updateGrid():Void
 	{
-		var gridWidth = 8;
-		if (_song.song.toLowerCase() == 'shredder' && (curSection >= 64 && curSection <= 80))
-		{
-			gridWidth = 9;
-		}
 		remove(gridBG);
-		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * gridWidth, GRID_SIZE * _song.notes[curSection].lengthInSteps);
+		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 8, GRID_SIZE * _song.notes[curSection].lengthInSteps);
       add(gridBG);
 
-		remove(gridBlackLine);
-		gridBlackLine = new FlxSprite(gridBG.x + gridBG.width / 2).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
-		add(gridBlackLine);
+		if (gridBG != null)
+		{
+			remove(gridBlackLine);
+			gridBlackLine = new FlxSprite(gridBG.x + gridBG.width / 2).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
+			add(gridBlackLine);
+		}
 		
 		while (curRenderedNotes.members.length > 0)
 		{
@@ -1416,23 +1413,18 @@ class ChartingState extends MusicBeatState
 		function calculateSectionLengths(?sec:SwagSection):Int
 		{
 			var daLength:Int = 0;
-
 			for (i in _song.notes)
 			{
 				var swagLength = i.lengthInSteps;
-
 				if (i.typeOfSection == Section.COPYCAT)
 					swagLength * 2;
-
 				daLength += swagLength;
-
 				if (sec != null && sec == i)
 				{
 					trace('swag loop??');
 					break;
 				}
 			}
-
 			return daLength;
 	}*/
 	private var daSpacing:Float = 0.3;
