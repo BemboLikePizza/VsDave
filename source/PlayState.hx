@@ -322,7 +322,6 @@ class PlayState extends MusicBeatState
 	{
 		instance = this;	
 
-		trace(Lib.current.loaderInfo.uncaughtErrorEvents);
 		switch (SONG.song.toLowerCase())
 		{
 			case 'exploitation':
