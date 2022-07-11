@@ -322,6 +322,7 @@ class PlayState extends MusicBeatState
 	{
 		instance = this;	
 
+		trace(Lib.current.loaderInfo.uncaughtErrorEvents);
 		switch (SONG.song.toLowerCase())
 		{
 			case 'exploitation':
@@ -605,14 +606,15 @@ class PlayState extends MusicBeatState
 				dad.y += 350;
 				dad.x += 175;
 
-			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
+			case 'dave' | 'dave-annoyed' | 'dave-cool':
 				dad.y += 50;
 				dad.x += 150;
-				
+			case 'dave-splitathon':
+				dad.y += 175;
+				dad.x += 250;
 			case 'dave-angey':
 				dad.x += 150;
 				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
-
 			case 'bambi-3d':
 				dad.y += 35;
 				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
@@ -1102,7 +1104,7 @@ class PlayState extends MusicBeatState
 				farmHouse.updateHitbox();
 				sprites.add(farmHouse);
 
-				var grassLand:BGSprite = new BGSprite('grassLand', -650, 500, Paths.image('backgrounds/farm/grass lands'), null, 1, 1);
+				var grassLand:BGSprite = new BGSprite('grassLand', -600, 500, Paths.image('backgrounds/farm/grass lands'), null, 1, 1);
 				sprites.add(grassLand);
 
 				var cornFence:BGSprite = new BGSprite('cornFence', -400, 200, Paths.image('backgrounds/farm/cornFence'), null, 1, 1);
@@ -1112,7 +1114,7 @@ class PlayState extends MusicBeatState
 				sprites.add(cornFence2);
 
 				var cornBag:BGSprite = new BGSprite('cornBag', 1200, 550, Paths.image('backgrounds/farm/cornBag'), null, 1, 1);
-				sprites.add(cornFence2);
+				sprites.add(cornBag);
 				
 				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign'), null);
 				sprites.add(sign);
@@ -4111,7 +4113,7 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('static'), 0.1);
 						dad.visible = false;
 						dadmirror.visible = true;
-						curbg.loadGraphic(Paths.image('dave/redsky'));
+						curbg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 						curbg.alpha = 1;
 						curbg.visible = true;
 						iconP2.changeIcon(dadmirror.curCharacter);

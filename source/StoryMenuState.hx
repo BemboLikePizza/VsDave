@@ -451,16 +451,16 @@ class StoryMenuState extends MusicBeatState
 		switch (curWeek)
 		{
 			case 1:
-				path = Paths.image("weekBanners/DaveHouse", "shared");
+				path = Paths.image("weekBanners/DaveHouse");
 				position = new FlxPoint(600, 55);
 			case 2:
-				path = Paths.image("weekBanners/bamboi", "shared");
+				path = Paths.image("weekBanners/bamboi");
 				position = new FlxPoint(600, 55);
 			case 3:
-				path = Paths.image("weekBanners/splitathon", "shared");
+				path = Paths.image("weekBanners/splitathon");
 				position = new FlxPoint(600, 55);
 			case 4:
-				path = Paths.image("weekBanners/festival", "shared");
+				path = Paths.image("weekBanners/festival");
 				position = new FlxPoint(600, 55);
 			default:
 				path = Paths.image("blank", "shared");
