@@ -175,6 +175,9 @@ class CharacterSelectState extends MusicBeatState
 			bg.shader = bgShader.shader;
 		}
 		add(bg);
+		
+		var frontGrass:BGSprite = new BGSprite('frontGrass', -163, 425, Paths.image('backgrounds/charSelect/frontGrass'), null, 1, 1);
+		add(frontGrass);
 
 		var hills:BGSprite = new BGSprite('hills', -128, 63, Paths.image('backgrounds/charSelect/hills'), null, 1, 1);
 		add(hills);
@@ -190,12 +193,19 @@ class CharacterSelectState extends MusicBeatState
 
 		var gateRight:BGSprite = new BGSprite('gateRight', 1014, 464, Paths.image('backgrounds/charSelect/gateRight'), null, 1, 1);
 		add(gateRight);
-
-		var gateRight:BGSprite = new BGSprite('gateRight', 1014, 464, Paths.image('backgrounds/charSelect/gateRight'), null, 1, 1);
-		add(gateRight);
-
+		
 		var grass:BGSprite = new BGSprite('grass', -80, 385, Paths.image('backgrounds/charSelect/grass'), null, 1, 1);
 		add(grass);
+		
+		var varientColor = 0xFF878787;
+		
+		frontGrass.color = varientColor;
+		hills.color = varientColor;
+		house.color = varientColor;
+		behindGrass.color = varientColor;
+		gateLeft.color = varientColor;
+		gateRight.color = varientColor;
+		grass.color = varientColor;
 
 		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, 'bf');
 		char.cameras = [camHUD];

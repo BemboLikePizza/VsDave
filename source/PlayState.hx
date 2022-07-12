@@ -3993,10 +3993,69 @@ class PlayState extends MusicBeatState
 					case 256:
 						defaultCamZoom -= 0.2;
 						FlxG.camera.flash();
-						FlxTween.tween(black, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
-						{
-							remove(black);
-						}});
+						FlxTween.tween(black, {alpha: 0}, 1);
+					case 640:
+						FlxG.camera.flash();
+						black.alpha = 0.6;
+						defaultCamZoom += 0.2;
+					case 644:
+						subtitleManager.addSubtitle("I'm trying to", 0.02, 1.5);
+					case 672:
+						subtitleManager.addSubtitle("No I'm not trying help you", 0.02, 1);
+					case 700:
+						subtitleManager.addSubtitle("Because watch me...", 0.02, 1);
+					case 720:
+						subtitleManager.addSubtitle("Because...", 0.02, 1);
+					case 734:
+						subtitleManager.addSubtitle("watch me go subscribe me", 0.02, 1);
+					case 759:
+						subtitleManager.addSubtitle("Whatever.", 0.02, 1, {subtitleSize: 45});
+					case 768:
+						FlxG.camera.flash();
+						defaultCamZoom -= 0.2;
+						black.alpha = 0;
+					case 1152:
+						defaultCamZoom += 0.3;
+					case 1200:
+					
+					case 1216:
+						defaultCamZoom -= 0.3;
+				}
+			case 'corn-theft':
+				switch (curStep)
+				{
+					case 916:
+						FlxG.camera.flash();
+					case 935:
+						defaultCamZoom += 0.2;
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						subtitleManager.addSubtitle('Because he ban me', 0.02, 1);
+					case 945:
+						subtitleManager.addSubtitle('Why you @ me', 0.02, 1);
+					case 976:
+						subtitleManager.addSubtitle('I-', 0.02, 0.5);
+					case 982:
+						subtitleManager.addSubtitle("I don't care", 0.02, 1);
+					case 992:
+						subtitleManager.addSubtitle('You want to', 0.02, 1);
+					case 1002:
+						subtitleManager.addSubtitle("I'll block you", 0.02, 0.3);
+					case 1007:
+						subtitleManager.addSubtitle("I'm never coming back again", 0.02, 0.3);
+					case 1033:
+						subtitleManager.addSubtitle("Ba Bye!", 0.02, 0.3, {subtitleSize: 45});
+						FlxTween.tween(dad, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
+						FlxTween.num(defaultCamZoom, defaultCamZoom + 0.3, (Conductor.stepCrochet / 1000) * 6);
+						FlxTween.tween(black, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
+					case 1040:
+						defaultCamZoom = 0.8; 
+						dad.alpha = 1;
+						remove(black);
+						FlxG.camera.flash();
 				}
 			case 'maze':
 				switch (curStep)
@@ -4019,9 +4078,33 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle("You don't?", 0.02, 1);
 					case 510:
 						subtitleManager.addSubtitle("Never coming back again.", 0.02, 1, {subtitleSize: 60});
-					case 520:
+					case 528:
+						defaultCamZoom -= 0.2;
+						FlxG.camera.flash();
+					case 832:
+						defaultCamZoom += 0.2;
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+					case 838:
+						subtitleManager.addSubtitle("Fine!", 0.02, 1);
+					case 847:
+						subtitleManager.addSubtitle("Everyway you want", 0.02, 0.5);
+					case 856:
+						subtitleManager.addSubtitle("You play me?", 0.02, 1);
+					case 867:
+						subtitleManager.addSubtitle("Sure.", 0.02, 1, {subtitleSize: 40});
+					case 879:
+						subtitleManager.addSubtitle("Want you want to play?", 0.02, 1);
+					case 890:
+						subtitleManager.addSubtitle("You gonna bully me?", 0.02, 1);
+					case 902:
+						subtitleManager.addSubtitle("Never come back again.", 0.02, 1, {subtitleSize: 60});
+					case 908:
+						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
+					case 912:
 						defaultCamZoom -= 0.2;
 						remove(black);
+						FlxG.camera.flash();
+					case 1232:
 						FlxG.camera.flash();
 				}
 			case 'recursed':
