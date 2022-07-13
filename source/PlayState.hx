@@ -235,6 +235,7 @@ class PlayState extends MusicBeatState
 
 	var possibleNotes:Array<Note> = [];
 
+	var glitch:FlxSprite;
 	var tweenList:Array<FlxTween> = new Array<FlxTween>();
 
 	var bfTween:ColorTween;
@@ -895,6 +896,8 @@ class PlayState extends MusicBeatState
 		{
 			case 'insanity':
 				preload('backgrounds/void/redsky_insanity');
+			case 'blocked':
+				preload('bambi/glitchedBlocked');
 			case 'shredder':
 				preload('festival/bambi_shredder');
 			case 'interdimensional':
@@ -3934,10 +3937,10 @@ class PlayState extends MusicBeatState
 		], 0, 0, true);
 		glitch.scrollFactor.set();
 		glitch.cameras = [camHUD];
+		glitch.animation.play('glitch');
 		glitch.setGraphicSize(FlxG.width, FlxG.height);
 		glitch.updateHitbox();
 		glitch.screenCenter();
-		glitch.animation.play('glitch');
 		add(glitch);
 
 		new FlxTimer().start(glitchTime, function(timer:FlxTimer)
@@ -4015,10 +4018,23 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 						black.alpha = 0;
 					case 1152:
+						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
 					case 1200:
-					
+						var scaler = 1 / defaultCamZoom;
+						
+						glitch = new FlxSprite(0, 200);
+						glitch.frames = Paths.getSparrowAtlas('bambi/glitchedBlocked');
+						glitch.animation.addByPrefix('idle', 'meeeee', 24, true);
+						glitch.animation.play('idle');
+						glitch.setGraphicSize(Std.int(glitch.width * 2 * scaler));
+						glitch.updateHitbox();
+						insert(members.indexOf(black), glitch);
+						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
 					case 1216:
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						remove(black);
+						remove(glitch);
 						defaultCamZoom -= 0.3;
 				}
 			case 'corn-theft':
@@ -4080,6 +4096,7 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle("Never coming back again.", 0.02, 1, {subtitleSize: 60});
 					case 528:
 						defaultCamZoom -= 0.2;
+						black.alpha = 0;
 						FlxG.camera.flash();
 					case 832:
 						defaultCamZoom += 0.2;
