@@ -2942,7 +2942,7 @@ class PlayState extends MusicBeatState
 				case "polygonized":
 					CharacterSelectState.unlockCharacter('dave-angey');
 				case 'greetings':
-					CharacterSelectState.unlockCharacter('tristan-festival');
+					CharacterSelectState.unlockCharacter('tristan-festival-playable');
 			}
 		}
 		// Song Character Unlocks (Freeplay)
@@ -3849,6 +3849,9 @@ class PlayState extends MusicBeatState
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-recursed');
 			iconP1.changeIcon(boyfriend.curCharacter);
 		}
+		else if(boyfriend.curCharacter == "tristan") {
+			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tristan-recursed');
+		}
 		else {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'bf-recursed');
 		}
@@ -3920,6 +3923,9 @@ class PlayState extends MusicBeatState
 		if(boyfriend.curCharacter == "tb-recursed") {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-funny-man');
 			iconP1.changeIcon(boyfriend.curCharacter);
+		}
+		if(boyfriend.curCharacter == "tristan-recursed") {
+			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tristan');
 		}
 		else {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
