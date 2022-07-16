@@ -8,7 +8,7 @@ class Animation
    public var looped:Bool;
    public var flip:Array<Bool>;
 
-	public function new(name:String, prefixName:String, frames:Int, looped:Bool, flip:Array<Bool>)
+	public function new(name:String, prefixName:String, frames:Int, looped:Bool, ?flip:Array<Bool>)
 	{
       if (flip == null) 
       {

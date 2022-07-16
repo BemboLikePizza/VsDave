@@ -97,7 +97,6 @@ class MainMenuState extends MusicBeatState
 
 	var voidShader:Shaders.GlitchEffect;
 
-
 	override function create()
 	{
 
@@ -196,7 +195,9 @@ class MainMenuState extends MusicBeatState
 					}
 				});
 			else
+				menuItem.screenCenter(X);
 				menuItem.y = 60 + (i * 160);
+				changeItem();
 		}
 
 		firstStart = false;

@@ -32,6 +32,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		add(bg);
 		var songCreator:String = '';
 		var headingPath:SongHeading = null;
+
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
@@ -92,17 +93,21 @@ class CreditsPopUp extends FlxSpriteGroup
 		
 		funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
 
-		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
+		var scaleValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (scaleValues[1] / scaleValues[0])));
 		funnyIcon.updateHitbox();
       
-		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.x = funnyText.width / 2 + offset;
-		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
+		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		funnyIcon.x = ((funnyText.width / 2) - funnyIcon.width) + offset;
+		funnyIcon.y = funnyIcon.y + ((heightValues[0] - heightValues[1]) / 2);
 		add(funnyIcon);
 
 		bg.setGraphicSize(Std.int((funnyText.width / 2) + funnyIcon.width), Std.int(funnyText.height));
 		bg.updateHitbox();
+
+		var yValues = CoolUtil.getMinAndMax(bg.height, funnyText.height);
+			
+		funnyText.y = funnyText.y + ((yValues[0] - yValues[1]) / 2);
 	}
 	public function updateHitboxes()
 	{
