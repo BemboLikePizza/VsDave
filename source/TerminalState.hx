@@ -130,7 +130,7 @@ class TerminalState extends FlxState
         
         else if (keyJustPressed == FlxKey.ENTER)
         {
-            if (curCommand == "administrator grant expunged.exe")
+            if (curCommand == "administrator grant expunged.dat")
             {
                 displayText.text += "\nLoading...";
                 expungedActivated = true;
