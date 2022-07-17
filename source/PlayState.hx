@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxGroup;
 import sys.FileSystem;
 import flixel.util.FlxArrayUtil;
 import flixel.addons.plugin.FlxScrollingText;
@@ -94,6 +95,10 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
+
+	public var dadGroup:FlxGroup;
+	public var bfGroup:FlxGroup;
+	public var gfGroup:FlxGroup;
 
 	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
@@ -530,6 +535,14 @@ class PlayState extends MusicBeatState
 
 		var charoffsetx:Float = 0;
 		var charoffsety:Float = 0;
+		
+		gfGroup = new FlxGroup();
+		dadGroup = new FlxGroup();
+		bfGroup = new FlxGroup();
+
+		add(gfGroup);
+		add(dadGroup);
+		add(bfGroup);
 		if (SONG.song != "Tutorial")
 		{
 			if (formoverride == "bf-pixel")
@@ -705,23 +718,25 @@ class PlayState extends MusicBeatState
 			boyfriend.color = sunsetColor;
 		}
 
-		add(gf);
-		add(dad);
-		add(dadmirror);
-		add(boyfriend);
+		gfGroup.add(gf);
+		dadGroup.add(dad);
+		dadGroup.add(dadmirror);
+		bfGroup.add(boyfriend);
 
 		switch (stageCheck)
 		{
 			case 'desktop':
 				dad.x -= 500;
 				dad.y -= 100;
+
+				boyfriend.y += 200;
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
 			case 'house' | 'house-night' | 'house-sunset':
-				dad.setPosition(-164, 121);
+				dad.setPosition(-64, 121);
 				dadmirror.setPosition(-180, 60);
-				boyfriend.setPosition(943, 270);
+				boyfriend.setPosition(843, 270);
 				gf.setPosition(280 + charoffsetx, -60 + charoffsety);
 			case 'backyard':
 				dad.setPosition(0, 200);
@@ -3846,7 +3861,7 @@ class PlayState extends MusicBeatState
 		FlxG.camera.flash();
 
 		var boyfriendPos = boyfriend.getPosition();
-		remove(boyfriend);
+		bfGroup.remove(boyfriend);
 		if(SONG.player1 == "tb-funny-man") {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-recursed');
 			iconP1.changeIcon(boyfriend.curCharacter);
@@ -3857,7 +3872,7 @@ class PlayState extends MusicBeatState
 		else {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'bf-recursed');
 		}
-		add(boyfriend);
+		bfGroup.add(boyfriend);
 
 		addRecursedUI();
 		
@@ -3921,7 +3936,7 @@ class PlayState extends MusicBeatState
 			remove(element);
 		}
 		var boyfriendPos = boyfriend.getPosition();
-		remove(boyfriend);
+		bfGroup.remove(boyfriend);
 		if(boyfriend.curCharacter == "tb-recursed") {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-funny-man');
 			iconP1.changeIcon(boyfriend.curCharacter);
@@ -3932,7 +3947,7 @@ class PlayState extends MusicBeatState
 		else {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
 		}	
-		add(boyfriend);
+		bfGroup.add(boyfriend);
 
 		health = preRecursedHealth;
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
@@ -4960,10 +4975,10 @@ class PlayState extends MusicBeatState
 	public function addSplitathonChar(char:String):Void
 	{
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
-		remove(dad);
+		dadGroup.remove(dad);
 		
 		dad = new Character(100, 100, char);
-		add(dad);
+		dadGroup.add(dad);
 		dad.color = getBackgroundColor(curStage);
 		switch (dad.curCharacter)
 		{
@@ -5058,9 +5073,9 @@ class PlayState extends MusicBeatState
 	}
 	function switchDad(newChar:String, position:FlxPoint)
 	{
-		remove(dad);
+		dadGroup.remove(dad);
 		dad = new Character(position.x, position.y, newChar, false);
-		add(dad);
+		dadGroup.add(dad);
 		iconP2.changeIcon(dad.curCharacter);
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
