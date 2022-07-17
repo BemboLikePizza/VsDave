@@ -127,7 +127,6 @@ class TerminalState extends FlxState
             }
             displayText.text = ">" + curCommand + "|";
         }
-        
         else if (keyJustPressed == FlxKey.ENTER)
         {
             if (curCommand == "administrator grant expunged.dat")
