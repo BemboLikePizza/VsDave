@@ -186,18 +186,23 @@ class MainMenuState extends MusicBeatState
 			menuItem.scrollFactor.set(0, 1);
 			menuItem.antialiasing = true;
 			if (firstStart)
+			{
 				FlxTween.tween(menuItem, {y: 60 + (i * 160)}, 1 + (i * 0.25), {
 					ease: FlxEase.expoInOut,
 					onComplete: function(flxTween:FlxTween)
 					{
 						finishedFunnyMove = true;
+						menuItem.screenCenter(X);
 						changeItem();
 					}
 				});
+			}
 			else
+			{
 				menuItem.screenCenter(X);
 				menuItem.y = 60 + (i * 160);
 				changeItem();
+			}
 		}
 
 		firstStart = false;
@@ -385,11 +390,10 @@ class MainMenuState extends MusicBeatState
 
 			if (spr.ID == curSelected && finishedFunnyMove)
 			{
-		
 				spr.animation.play('selected');
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}
-
+			spr.screenCenter(X);
 			spr.updateHitbox();
 		});
 	}

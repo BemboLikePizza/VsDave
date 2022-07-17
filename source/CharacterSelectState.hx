@@ -581,7 +581,6 @@ class CharacterSelectState extends MusicBeatState
 
 		if (PlayState.SONG.song.toLowerCase() == "exploitation")
 		{
-			FlxG.save.data.exploitationState = 'in';
 			FlxG.fullscreen = false;
 			FlxG.sound.play(Paths.sound('error'), 0.9);
 

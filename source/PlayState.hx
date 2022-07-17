@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxGroup;
 import sys.FileSystem;
 import flixel.util.FlxArrayUtil;
 import flixel.addons.plugin.FlxScrollingText;
@@ -94,6 +95,10 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
+
+	public var dadGroup:FlxGroup;
+	public var bfGroup:FlxGroup;
+	public var gfGroup:FlxGroup;
 
 	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
@@ -220,11 +225,6 @@ class PlayState extends MusicBeatState
 	var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
 
-	public static var timeCurrently:Float = 0;
-	public static var timeCurrentlyR:Float = 0;
-
-	public static var warningNeverDone:Bool = false;
-
 	public var crazyBatch:String = "shutdown /r /t 0";
 
 	public var backgroundSprites:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
@@ -257,6 +257,7 @@ class PlayState extends MusicBeatState
 	public var creditsPopup:CreditsPopUp;
 	public var blackScreen:FlxSprite;
 
+	var spotLight:FlxSprite;
 	var crowd:BGSprite;
 	var interdimensionBG:BGSprite;
 	var currentInterdimensionBG:String;
@@ -334,6 +335,7 @@ class PlayState extends MusicBeatState
 				{
 					FileSystem.deleteFile(textPath);
 				}
+				FlxG.save.data.exploitationState = null;
 				Main.toggleFuckedFPS(true);
 				modchart = ExploitationModchartType.None;
 			case 'recursed':
@@ -533,13 +535,24 @@ class PlayState extends MusicBeatState
 
 		var charoffsetx:Float = 0;
 		var charoffsety:Float = 0;
-		if (formoverride == "bf-pixel" && SONG.song != "Tutorial")
+		
+		gfGroup = new FlxGroup();
+		dadGroup = new FlxGroup();
+		bfGroup = new FlxGroup();
+
+		add(gfGroup);
+		add(dadGroup);
+		add(bfGroup);
+		if (SONG.song != "Tutorial")
 		{
-			gfVersion = 'gf-pixel';
-			charoffsetx += 300;
-			charoffsety += 300;
+			if (formoverride == "bf-pixel")
+			{
+				gfVersion = 'gf-pixel';
+				charoffsetx += 300;
+				charoffsety += 300;
+			}
 		}
-		if (SONG.player1 == "tb-funny-man" && SONG.song != "Tutorial")
+		if (SONG.player1 == 'tb-funny-man')
 		{
 			gfVersion = 'stereo';
 			charoffsetx += 500;
@@ -705,23 +718,25 @@ class PlayState extends MusicBeatState
 			boyfriend.color = sunsetColor;
 		}
 
-		add(gf);
-		add(dad);
-		add(dadmirror);
-		add(boyfriend);
+		gfGroup.add(gf);
+		dadGroup.add(dad);
+		dadGroup.add(dadmirror);
+		bfGroup.add(boyfriend);
 
 		switch (stageCheck)
 		{
 			case 'desktop':
 				dad.x -= 500;
 				dad.y -= 100;
+
+				boyfriend.y += 200;
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
 			case 'house' | 'house-night' | 'house-sunset':
-				dad.setPosition(-164, 121);
+				dad.setPosition(-64, 121);
 				dadmirror.setPosition(-180, 60);
-				boyfriend.setPosition(943, 270);
+				boyfriend.setPosition(843, 270);
 				gf.setPosition(280 + charoffsetx, -60 + charoffsety);
 			case 'backyard':
 				dad.setPosition(0, 200);
@@ -858,11 +873,11 @@ class PlayState extends MusicBeatState
 		switch(FlxG.random.int(0, 2))
 	    {
 			case 0:
-				engineName = 'Dave ';
+				engineName = 'Dave';
 			case 1:
-				engineName = 'Bambi ';
+				engineName = 'Bambi';
 			case 2:
-				engineName = 'Tristan ';
+				engineName = 'Tristan';
 		}
 		var creditsText:Bool = credits != '';
 		var textYPos:Float = healthBarBG.y + 50;
@@ -906,6 +921,8 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/redsky_insanity');
 			case 'blocked':
 				preload('bambi/glitchedBlocked');
+			case 'maze':
+				preload('spotlight');
 			case 'shredder':
 				preload('festival/bambi_shredder');
 			case 'interdimensional':
@@ -1136,7 +1153,7 @@ class PlayState extends MusicBeatState
 				grassLand.color = variantColor;
 				cornFence.color = variantColor;
 				cornFence2.color = variantColor;
-				cornBag.color = variantColor; 
+				cornBag.color = variantColor;
 				sign.color = variantColor;
 
 				add(hills);
@@ -3844,7 +3861,7 @@ class PlayState extends MusicBeatState
 		FlxG.camera.flash();
 
 		var boyfriendPos = boyfriend.getPosition();
-		remove(boyfriend);
+		bfGroup.remove(boyfriend);
 		if(SONG.player1 == "tb-funny-man") {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-recursed');
 			iconP1.changeIcon(boyfriend.curCharacter);
@@ -3855,7 +3872,7 @@ class PlayState extends MusicBeatState
 		else {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'bf-recursed');
 		}
-		add(boyfriend);
+		bfGroup.add(boyfriend);
 
 		addRecursedUI();
 		
@@ -3919,7 +3936,7 @@ class PlayState extends MusicBeatState
 			remove(element);
 		}
 		var boyfriendPos = boyfriend.getPosition();
-		remove(boyfriend);
+		bfGroup.remove(boyfriend);
 		if(boyfriend.curCharacter == "tb-recursed") {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-funny-man');
 			iconP1.changeIcon(boyfriend.curCharacter);
@@ -3930,7 +3947,7 @@ class PlayState extends MusicBeatState
 		else {
 			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
 		}	
-		add(boyfriend);
+		bfGroup.add(boyfriend);
 
 		health = preRecursedHealth;
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
@@ -4177,10 +4194,13 @@ class PlayState extends MusicBeatState
 					case 1007:
 						subtitleManager.addSubtitle("I'm never coming back again", 0.02, 0.3);
 					case 1033:
-						subtitleManager.addSubtitle("Ba Bye!", 0.02, 0.3, {subtitleSize: 45});
+						subtitleManager.addSubtitle("Bye Baa!", 0.02, 0.3, {subtitleSize: 45});
 						FlxTween.tween(dad, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
-						FlxTween.num(defaultCamZoom, defaultCamZoom + 0.3, (Conductor.stepCrochet / 1000) * 6);
 						FlxTween.tween(black, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
+						FlxTween.num(defaultCamZoom, defaultCamZoom + 0.2, (Conductor.stepCrochet / 1000) * 6, {}, function(newValue:Float)
+						{
+							defaultCamZoom = newValue;
+						});
 					case 1040:
 						defaultCamZoom = 0.8; 
 						dad.alpha = 1;
@@ -4214,7 +4234,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash();
 					case 832:
 						defaultCamZoom += 0.2;
-						FlxTween.tween(black, {alpha: 0.6}, 1);
+						FlxTween.tween(black, {alpha: 0.4}, 1);
 					case 838:
 						subtitleManager.addSubtitle("Fine!", 0.02, 1);
 					case 847:
@@ -4232,9 +4252,19 @@ class PlayState extends MusicBeatState
 					case 908:
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
 					case 912:
-						defaultCamZoom -= 0.2;
-						remove(black);
-						FlxG.camera.flash();
+						/*defaultCamZoom -= 0.2;
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+
+						spotLight = new FlxSprite().loadGraphic('spotLight');
+						spotLight.blend = BlendMode.ADD;
+						spotLight.setGraphicSize(Std.int(spotLight.width * (spotLight.width / dad.width)));
+						spotLight.updateHitbox();
+						spotLight.alpha = 0;
+						add(spotLight);
+
+						spotLight.setPosition(dad.getGraphicMidpoint().x, dad.y - dad.width);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						FlxTween.tween(spotLight, {alpha: 1}, 1);*/
 					case 1232:
 						FlxG.camera.flash();
 				}
@@ -4242,7 +4272,22 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 492:
-						
+						var curZoom = defaultCamZoom;
+						var time = (Conductor.stepCrochet / 1000) * 20;
+						FlxG.camera.fade(FlxColor.WHITE, time, false, function()
+						{
+							FlxG.camera.fade(FlxColor.WHITE, 0, true, function()
+							{
+								FlxG.camera.flash(FlxColor.WHITE, 0.5);
+							});
+						});
+						FlxTween.num(curZoom, curZoom + 0.4, time, {onComplete: function(tween:FlxTween)
+						{
+							defaultCamZoom = 0.7;
+						}}, function(newValue:Float)
+						{
+							defaultCamZoom = newValue;
+						});
 				}
 			case 'recursed':
 				switch (curStep)
@@ -4930,10 +4975,10 @@ class PlayState extends MusicBeatState
 	public function addSplitathonChar(char:String):Void
 	{
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
-		remove(dad);
+		dadGroup.remove(dad);
 		
 		dad = new Character(100, 100, char);
-		add(dad);
+		dadGroup.add(dad);
 		dad.color = getBackgroundColor(curStage);
 		switch (dad.curCharacter)
 		{
@@ -5028,9 +5073,9 @@ class PlayState extends MusicBeatState
 	}
 	function switchDad(newChar:String, position:FlxPoint)
 	{
-		remove(dad);
+		dadGroup.remove(dad);
 		dad = new Character(position.x, position.y, newChar, false);
-		add(dad);
+		dadGroup.add(dad);
 		iconP2.changeIcon(dad.curCharacter);
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
