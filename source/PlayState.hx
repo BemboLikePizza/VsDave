@@ -119,6 +119,10 @@ class PlayState extends MusicBeatState
 
 	public static var curmult:Array<Float> = [1, 1, 1, 1];
 
+	public var dadPosition:FlxPoint;
+   public var bfPosition:FlxPoint;
+   public var gfPosition:FlxPoint;
+	
 	public var curbg:BGSprite;
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
@@ -340,8 +344,12 @@ class PlayState extends MusicBeatState
 				{
 					FileSystem.deleteFile(textPath);
 				}
-				FlxG.save.data.exploitationState = null;
+				var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
+				FileSystem.deleteFile(path);
 				Main.toggleFuckedFPS(true);
+
+				FlxG.save.data.exploitationState = null;
+				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
 			case 'recursed':
 				daveBG = MainMenuState.randomizeBG();
@@ -931,7 +939,7 @@ class PlayState extends MusicBeatState
 			case 'blocked':
 				preload('bambi/glitchedBlocked');
 			case 'maze':
-				preload('spotlight');
+				preload('spotLight');
 			case 'shredder':
 				preload('festival/bambi_shredder');
 			case 'interdimensional':
@@ -1138,24 +1146,24 @@ class PlayState extends MusicBeatState
 				hills.updateHitbox();
 				sprites.add(hills);
 				
-				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 150, Paths.image('backgrounds/farm/funfarmhouse'), null, 0.9, 0.9);
+				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 150, Paths.image('backgrounds/farm/funfarmhouse', 'shared'), null, 0.9, 0.9);
 				farmHouse.setGraphicSize(Std.int(farmHouse.width * 0.9));
 				farmHouse.updateHitbox();
 				sprites.add(farmHouse);
 
-				var grassLand:BGSprite = new BGSprite('grassLand', -600, 500, Paths.image('backgrounds/farm/grass lands'), null, 1, 1);
+				var grassLand:BGSprite = new BGSprite('grassLand', -600, 500, Paths.image('backgrounds/farm/grass lands', 'shared'), null, 1, 1);
 				sprites.add(grassLand);
 
-				var cornFence:BGSprite = new BGSprite('cornFence', -400, 200, Paths.image('backgrounds/farm/cornFence'), null, 1, 1);
+				var cornFence:BGSprite = new BGSprite('cornFence', -400, 200, Paths.image('backgrounds/farm/cornFence', 'shared'), null, 1, 1);
 				sprites.add(cornFence);
 				
-				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2'), null, 1, 1);
+				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2', 'shared'), null, 1, 1);
 				sprites.add(cornFence2);
 
-				var cornBag:BGSprite = new BGSprite('cornBag', 1200, 550, Paths.image('backgrounds/farm/cornBag'), null, 1, 1);
+				var cornBag:BGSprite = new BGSprite('cornBag', 1200, 550, Paths.image('backgrounds/farm/cornBag', 'shared'), null, 1, 1);
 				sprites.add(cornBag);
 				
-				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign'), null);
+				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign', 'shared'), null);
 				sprites.add(sign);
 
 				var variantColor:FlxColor = getBackgroundColor(stageName);
@@ -3003,7 +3011,7 @@ class PlayState extends MusicBeatState
 				case "polygonized":
 					CharacterSelectState.unlockCharacter('dave-angey');
 				case 'greetings':
-					CharacterSelectState.unlockCharacter('tristan-festival-playable');
+					CharacterSelectState.unlockCharacter('tristan-festival');
 			}
 		}
 		// Song Character Unlocks (Freeplay)
@@ -3906,15 +3914,10 @@ class PlayState extends MusicBeatState
 
 		var boyfriendPos = boyfriend.getPosition();
 		bfGroup.remove(boyfriend);
-		if(SONG.player1 == "tb-funny-man") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-recursed');
+		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
+		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
+		{
 			iconP1.changeIcon(boyfriend.curCharacter);
-		}
-		else if(boyfriend.curCharacter == "tristan") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tristan-recursed');
-		}
-		else {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'bf-recursed');
 		}
 		bfGroup.add(boyfriend);
 
@@ -3981,16 +3984,11 @@ class PlayState extends MusicBeatState
 		}
 		var boyfriendPos = boyfriend.getPosition();
 		bfGroup.remove(boyfriend);
-		if(boyfriend.curCharacter == "tb-recursed") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-funny-man');
+		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
+		if (iconP1.getChar() != boyfriend.curCharacter)
+		{
 			iconP1.changeIcon(boyfriend.curCharacter);
 		}
-		if(boyfriend.curCharacter == "tristan-recursed") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tristan');
-		}
-		else {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
-		}	
 		bfGroup.add(boyfriend);
 
 		health = preRecursedHealth;
@@ -4273,7 +4271,7 @@ class PlayState extends MusicBeatState
 					case 510:
 						subtitleManager.addSubtitle("Never coming back again.", 0.02, 1, {subtitleSize: 60});
 					case 528:
-						defaultCamZoom -= 0.2;
+						 defaultCamZoom = 0.8;
 						black.alpha = 0;
 						FlxG.camera.flash();
 					case 832:
@@ -4296,19 +4294,20 @@ class PlayState extends MusicBeatState
 					case 908:
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
 					case 912:
-						/*defaultCamZoom -= 0.2;
+						defaultCamZoom -= 0.2;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 
-						spotLight = new FlxSprite().loadGraphic('spotLight');
+						spotLight = new FlxSprite().loadGraphic(Paths.image('spotLight'));
 						spotLight.blend = BlendMode.ADD;
 						spotLight.setGraphicSize(Std.int(spotLight.width * (spotLight.width / dad.width)));
 						spotLight.updateHitbox();
 						spotLight.alpha = 0;
 						add(spotLight);
 
-						spotLight.setPosition(dad.getGraphicMidpoint().x, dad.y - dad.width);
+						spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y - dad.height + spotLight.height / 2);
+						trace(spotLight.getPosition());
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-						FlxTween.tween(spotLight, {alpha: 1}, 1);*/
+						FlxTween.tween(spotLight, {alpha: 1}, 1);
 					case 1232:
 						FlxG.camera.flash();
 				}

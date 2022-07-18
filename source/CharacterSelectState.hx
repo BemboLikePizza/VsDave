@@ -1,4 +1,6 @@
 package;
+
+import sys.io.File;
 import lime.app.Application;
 import haxe.Exception;
 import Controls.Control;
@@ -16,6 +18,7 @@ import flixel.math.FlxMath;
 import flixel.util.FlxStringUtil;
 #if windows
 import lime.app.Application;
+import sys.FileSystem;
 #end
 
  /**
@@ -91,27 +94,23 @@ class CharacterSelectState extends MusicBeatState
 		]),
 		new CharacterInSelect('dave', [0.25, 0.25, 2, 2], [
 			new CharacterForm('dave', 'Dave', [0.25, 0.25, 2, 2]),
-			new CharacterForm('dave-annoyed', 'Dave (Insanity)', [0.25, 0.25, 2, 2]),
-			new CharacterForm('dave-splitathon', 'Dave (Splitathon)', [0.25, 0.25, 2, 2])
 		]),
 		new CharacterInSelect('bambi', [0, 0, 3, 0], [
 			new CharacterForm('bambi-new', 'Bambi', [0, 0, 3, 0]),
-			new CharacterForm('bambi-splitathon', 'Bambi (Splitathon)', [0, 0, 3, 0]),
-			new CharacterForm('bambi-angey', 'Bambie', [0, 0, 3, 0]),
-			new CharacterForm('bambi', 'Mr. Bambi', [0, 0, 3, 0])
 		]),
 		new CharacterInSelect('tristan', [2, 0.5, 0.5, 0.5], [
 			new CharacterForm('tristan', 'Tristan', [2, 0.5, 0.5, 0.5]),
-			new CharacterForm('tristan-festival-playable', 'Tristan (Festival)', [2, 0.5, 0.5, 0.5]),
+			new CharacterForm('tristan-festival', 'Tristan (Festival)', [2, 0.5, 0.5, 0.5]),
+			new CharacterForm('tristan-golden', 'Golden Tristan', [0.25, 0.25, 0.25, 2])
+		]),
+		new CharacterInSelect('tristan-golden', [2, 0.5, 0.5, 0.5], [
 			new CharacterForm('tristan-golden', 'Golden Tristan', [0.25, 0.25, 0.25, 2])
 		]),
 		new CharacterInSelect('dave-angey', [2, 2, 0.25, 0.25], [
 			new CharacterForm('dave-angey', '3D Dave', [2, 2, 0.25, 0.25], '3D')
 		]),
 		new CharacterInSelect('bambi-3d', [0, 3, 0, 0], [
-			new CharacterForm('bambi-3d', '[EXPUNGED] (Bambi)', [0, 3, 0, 0], '3D'),
-			new CharacterForm('bambi-unfair', '[EXPUNGED] (Unfair)', [0, 3, 0, 0], '3D'),
-			new CharacterForm('expunged', '[EXPUNGED]', [0, 3, 0, 0], '3D')
+			new CharacterForm('bambi-3d', '3D Bambi', [0, 3, 0, 0], '3D'),
 		])
 	];
 	var bgShader:Shaders.GlitchEffect;
@@ -514,20 +513,10 @@ class CharacterSelectState extends MusicBeatState
 			case 'bf-pixel':
 				char.y -= 50;
 				char.x -= 50;
-			case 'dave' | 'dave-annoyed':
+			case 'dave':
 				char.y = 260;
-			case 'dave-splitathon':
-				char.y = 260;
-				char.x -= 25;
-			case 'bambi' | 'bambi-old':
-				char.y = 400;
 			case 'bambi-new':
 				char.y = 400;
-			case 'bambi-splitathon':
-				char.y = 475;
-				char.x -= 25;
-			case 'bambi-angey':
-				char.y = 475;
 			case 'dave-angey':
 				char.y = 150;
 				char.x -= 50;
@@ -538,9 +527,6 @@ class CharacterSelectState extends MusicBeatState
 			case 'bambi-3d':
 				char.x += 250;
 				char.y = 600;
-			case 'bambi-unfair':
-				char.x += 200;
-				char.y = 750;
 		}
 		add(char);
 		funnyIconMan.changeIcon(char.curCharacter);
@@ -584,9 +570,10 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.fullscreen = false;
 			FlxG.sound.play(Paths.sound('error'), 0.9);
 
-			#if windows
-			Application.current.window.alert("Null Object Reference\nat PlayState.hx, line 60\nat ApplicationMain.hx, line 54\n\nUnexpected object: 'expunged'\nSee 'log.txt' for details", "Vs Dave");
-			#end
+			var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
+			File.saveContent(path, 'x=msgbox("Null Object Reference", 0+0, "Error")');
+
+			Sys.command('start $path');
 		}
 
 		LoadingState.loadAndSwitchState(new PlayState());
