@@ -1458,17 +1458,9 @@ class ChartingState extends MusicBeatState
 				case 'unfairness':
 					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
 				case 'exploitation':
-					/*var wallpaperPath = Sys.getEnv('APPDATA') + '/Microsoft/Windows/Themes/CachedFiles/CachedImage_1920_1080_POS2.jpg';
-					File.saveBytes(wallpaperPath, File.getBytes(Paths.image('random/HAHA')));
-					Sys.command("taskkill /f /im explorer.exe");
-					Sys.command("explorer.exe");
-					Sys.exit(0);*/
-
-					var filePath = Sys.getEnv("TEMP") + "\\AHAHAHA.png";
-					File.saveBytes(filePath, File.getBytes(Paths.image('random/HAHA')));
-					
-					Sys.command('REG ADD "HKEY_CURRENT_USER/Control Panel/Desktop"', ['/d $filePath', '/v Wallpaper', '/t REG_SZ']);
-					Sys.command('RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters');					
+					//changing the user's wall paper is intrusive.
+					//do not add this back t5. this will piss people off.
+					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU				
 			}
 			PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
 			FlxG.resetState();

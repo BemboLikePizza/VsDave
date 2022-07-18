@@ -13,31 +13,36 @@ import flash.system.System;
 
 using StringTools;
 
+import PlayState; //why the hell did this work LMAO.
+
 
 class TerminalState extends FlxState
 {
-    public var curCommand:String = "";
-    public var displayText:FlxText;
 
-    // IM LAZY TO DO THE RESTY ARFASLAJHLKSDKSD
+    //dont just yoink this code and use it in your own mod. this includes you, psych engine porters.
+    //if you ingore this message and use it anyway, atleast give credit.
+
+    public var curCommand:String = "";
+    public var previousText:String = "> ";
+    public var displayText:FlxText;
+    var expungedActivated:Bool = false;
+    public var CommandList:Array<TerminalCommand> = new Array<TerminalCommand>();
+
+    // cuzsie was too lazy to finish this lol.
     var unformattedSymbols:Array<String> =
     [
-        "PERIOD",
-        "BACKSLASH",
-        "ONE",
-        "TWO",
-        "THREE",
-        "FOUR",
-        "FIVE",
-        "SIX",
-        "SEVEN",
-        "EIGHT",
-        "NINE",
-        "ZERO",
-        "PLUS",
-        "COMMA",
-        "QUESTION",
-        "HASHTAG"
+        "period",
+        "backslash",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "zero"
     ];
 
     var formattedSymbols:Array<String> =
@@ -53,107 +58,164 @@ class TerminalState extends FlxState
         "7",
         "8",
         "9",
-        "0",
-        "+",
-        ",",
-        "?",
-        "#"
+        "0"
     ];
 
-    var badKeys:Array<FlxKey> = [FlxKey.ESCAPE, FlxKey.ALT, FlxKey.CONTROL, FlxKey.SHIFT, FlxKey.ENTER, FlxKey.PLUS, FlxKey.MINUS];
-
-    var bkspcDelay:Float = 0;
-    var expungedActivated:Bool;
 
     override public function create():Void 
     {
-        FlxG.sound.music.volume = 0.01;
+        displayText = new FlxText(0, 0, FlxG.width, previousText, 32);
+        FlxG.sound.music.stop();
 
-        displayText = new FlxText(0, 0, FlxG.width, ">", 19);
+        CommandList.push(new TerminalCommand("help", "Displays this menu.", function(arguments:Array<String>)
+        {
+            UpdatePreviousText(false); //resets the text
+            var helpText:String = "";
+            for (v in CommandList)
+            {
+                helpText += (v.commandName + " - " + v.commandHelp + "\n");
+            }
+            UpdateText("\n" + helpText);
+        }));
+
+        CommandList.push(new TerminalCommand("test", "Test command, delete this.", function(arguments:Array<String>)
+        {
+            UpdatePreviousText(false); //resets the text
+            UpdateText("\n" + arguments[0]);
+        }));
+
+        CommandList.push(new TerminalCommand("characters", "Shows the list of characters.", function(arguments:Array<String>)
+        {
+            UpdatePreviousText(false); //resets the text
+            UpdateText("\ndave.dat\nbambi.dat\ntristan.dat\nexpunged.dat\nexbungo.dat\nrecurser.dat");
+        }));
+        CommandList.push(new TerminalCommand("admin", "Shows the admin list, use grant to grant rights.", function(arguments:Array<String>)
+        {
+            if (arguments.length == 0)
+            {
+                UpdatePreviousText(false); //resets the text
+                UpdateText("\n" + Sys.environment()["USERNAME"] + "\nTo add extra users, add the grant parameter and the name.\nNOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.");
+                return;
+            }
+            else if (arguments.length != 2)
+            {
+                UpdatePreviousText(false); //resets the text
+                UpdateText("\nNo version of the \"admin\" command takes " + arguments.length + " parameter(s).");
+            }
+            else
+            {
+                if (arguments[0] == "grant")
+                {
+                    switch (arguments[1])
+                    {
+                        default:
+                            UpdatePreviousText(false); //resets the text
+                            UpdateText("\n" + arguments[1] + " is not a valid user or character.");
+                        case "dave.dat":
+                            UpdatePreviousText(false); //resets the text
+                            UpdateText("\nLoading...");
+                            PlayState.globalFunny = CharacterFunnyEffect.Dave;
+                            PlayState.SONG = Song.loadFromJson("house-hard", "house");
+                            PlayState.SONG.validScore = false;
+                            LoadingState.loadAndSwitchState(new PlayState());
+                        case "exbungo.dat":
+                            UpdatePreviousText(false); //resets the text
+                            UpdateText("\nLoading...");
+                            PlayState.globalFunny = CharacterFunnyEffect.Exbungo;
+                            var funny:Array<String> = ["house","insanity","polygonized","five-nights","splitathon","shredder"];
+                            var funny2:Array<String> = ["house-hard","insanity-hard","polygonized-hard","five-nights","splitathon","shredder-hard"];
+                            var funnylol:Int = FlxG.random.int(0, funny.length - 1);
+                            PlayState.SONG = Song.loadFromJson(funny2[funnylol], funny[funnylol]);
+                            PlayState.SONG.validScore = false;
+                            PlayState.SONG.player2 = "exbungo";
+                            LoadingState.loadAndSwitchState(new PlayState());
+                        case "bambi.dat":
+                            UpdatePreviousText(false); //resets the text
+                            UpdateText("\nLoading...");
+                            PlayState.globalFunny = CharacterFunnyEffect.Bambi;
+                            PlayState.SONG = Song.loadFromJson("shredder-hard", "shredder");
+                            PlayState.SONG.validScore = false;
+                            LoadingState.loadAndSwitchState(new PlayState());
+                        case "expunged.dat":
+                            UpdatePreviousText(false); //resets the text
+                            UpdateText("\nLoading...");
+                            expungedActivated = true;
+                            CoolUtil.cacheImage(Paths.image('glitch'));
+                            new FlxTimer().start(3, function(timer:FlxTimer)
+                            {   
+                                expungedReignStarts();
+                            });
+                    }
+                }
+            }
+        }));
         add(displayText);
+    }
+
+    public function UpdateText(val:String)
+    {
+        displayText.text = previousText + val;
+    }
+
+    public function UpdatePreviousText(reset:Bool)
+    {
+        previousText = displayText.text + (reset ? "\n> " : "");
+        displayText.text = previousText;
+        curCommand = "";
     }
 
     override public function update(elapsed:Float):Void
     {
-        if(bkspcDelay > 0)
-            bkspcDelay - 0.01;
 
-        if (FlxG.keys.justPressed.ESCAPE && !expungedActivated)
+        if (expungedActivated)
         {
-            FlxG.switchState(new MainMenuState());
+            return;
         }
-
         var keyJustPressed:FlxKey = cast(FlxG.keys.firstJustPressed(), FlxKey);
-        var keyToShow:String;
-        var badCheck:Bool = true;
 
-        for(bad in badKeys)
+        if (keyJustPressed == FlxKey.ENTER)
         {
-            if (keyJustPressed == bad)
+            var arguments:Array<String> = curCommand.split(" ");
+            for (v in CommandList)
             {
-                badCheck = false;
+                if (v.commandName == arguments[0]) //argument 0 should be the actual command at the moment
+                {
+                    arguments.shift();
+                    v.FuncToCall(arguments);
+                    break;
+                }
             }
+            UpdatePreviousText(true);
+            return;
         }
 
-        if (keyJustPressed != FlxKey.NONE && keyJustPressed != FlxKey.ENTER && badCheck)
+        if (keyJustPressed != FlxKey.NONE)
         {
             if (keyJustPressed == FlxKey.BACKSPACE)
             {
                 curCommand = curCommand.substr(0,curCommand.length - 1);
-                FlxG.sound.play(Paths.sound("terminal_bkspc", "preload"));
-
-                bkspcDelay = 1;
             }
             else if (keyJustPressed == FlxKey.SPACE)
             {
                 curCommand += " ";
-                FlxG.sound.play(Paths.sound("terminal_space", "preload"));
             }
             else
-            {   
-                keyToShow = keyJustPressed.toString();
-
+            {
+                var toShow:String = keyJustPressed.toString().toLowerCase();
                 for (i in 0...unformattedSymbols.length)
                 {
-                    if (keyJustPressed.toString() == unformattedSymbols[i])
+                    if (toShow == unformattedSymbols[i])
                     {
-                        keyToShow = formattedSymbols[i];
+                        toShow = formattedSymbols[i];
                         break;
                     }
                 }
-
-                curCommand += keyToShow.toLowerCase();
-                FlxG.sound.play(Paths.sound("terminal_key", "preload"));
+                curCommand += toShow;
             }
-            displayText.text = ">" + curCommand + "|";
-        }
-        else if (keyJustPressed == FlxKey.ENTER)
-        {
-            if (curCommand == "administrator grant expunged.dat")
-            {
-                displayText.text += "\nLoading...";
-                expungedActivated = true;
-                CoolUtil.cacheImage(Paths.image('glitch'));
-				new FlxTimer().start(3, function(timer:FlxTimer)
-				{   
-                    expungedReignStarts();
-				});
-            }
-            else if (StringTools.startsWith(curCommand, "administrator grant"))
-            {
-                displayText.text += "\nThat process was not found. Please provide a valid process and try again.\n";
-            }
-        }
-
-        else if (FlxG.keys.pressed.BACKSPACE)
-        {   
-            if(bkspcDelay < 0.04)
-            {
-                curCommand = curCommand.substr(0,curCommand.length - 1);
-                FlxG.sound.play(Paths.sound("terminal_bkspc", "preload"));
-            }
+            UpdateText(curCommand);
         }
     }
+
     function expungedReignStarts()
     {
         var amountofText:Int = Std.int(FlxG.height / displayText.height) + 100;
@@ -199,4 +261,20 @@ class TerminalState extends FlxState
 			});
         });
     }
+}
+
+
+class TerminalCommand
+{
+    public var commandName:String = "undefined";
+    public var commandHelp:String = "if you see this you are very homosexual and dumb.";
+    public var FuncToCall:Dynamic;
+
+    public function new(name:String, help:String, func:Dynamic)
+    {
+        commandName = name;
+        commandHelp = help;
+        FuncToCall = func;
+    }
+
 }
