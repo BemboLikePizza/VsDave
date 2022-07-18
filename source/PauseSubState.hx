@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxGroup;
 import haxe.Json;
 import haxe.Http;
 import flixel.math.FlxRandom;
@@ -31,10 +32,15 @@ class PauseSubState extends MusicBeatSubstate
 	var timeElapsed:Float = 0;
 	var patienceTime:Float = 0;
 
+	public var funnyTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
+
 	public function new(x:Float, y:Float)
 	{
 		super();
 		
+		funnyTexts = new FlxTypedGroup<FlxText>();
+		add(funnyTexts);
+
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			default:
@@ -175,6 +181,12 @@ class PauseSubState extends MusicBeatSubstate
 				FlxG.switchState(new MainMenuState());
 		}
 	}
+	override function close()
+	{
+		funnyTexts.clear();
+
+		super.close();
+	}
 
 	override function destroy()
 	{
@@ -194,8 +206,7 @@ class PauseSubState extends MusicBeatSubstate
 			difficulty.scrollFactor.set();
 			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
 			difficulty.updateHitbox();
-			if (this != null)
-				add(difficulty);
+			funnyTexts.add(difficulty);
 
 			difficulty.alpha = 0;
 

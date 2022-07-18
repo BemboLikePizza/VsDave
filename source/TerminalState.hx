@@ -165,11 +165,11 @@ class TerminalState extends FlxState
                 var expungedLines:Array<String> = ['TAKING OVER....', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START"];
                 var fakeDisplay:FlxText = new FlxText(0, i * (displayText.height), FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
                 add(fakeDisplay);
-                //FlxG.camera.follow(fakeDisplay, 1);
+                FlxG.camera.follow(fakeDisplay, 1);
             });
         }
 
-        var glitch = new BGSprite('glitch', 0, 0, 'glitch3', [
+        var glitch = new BGSprite('glitch', 0, 0, 'ui/glitch/glitch3', [
             new Animation('glitchScreen', 'glitch 3', 15, true, [false, false])
         ], 0, 0, true, true);
         glitch.setGraphicSize(FlxG.width, FlxG.height);

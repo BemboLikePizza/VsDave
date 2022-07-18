@@ -173,12 +173,17 @@ class Character extends FlxSprite
 				tex = Paths.getSparrowAtlas('dave/characters/dave_sheet', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}0', 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
+				}
 				animation.addByPrefix('hey', 'hey', 24, false);
+				animation.addByPrefix('firstDeath', "dave dead hit", 24, false);
+				animation.addByPrefix('deathLoop', "dave dead loop", 24, true);
+				animation.addByPrefix('deathConfirm', "dave dead retry confirm", 24, false);
 	
+				recursedSkin = 'dave-recursed';
 				loadOffsetFile(curCharacter);
 				
 				barColor = FlxColor.fromRGB(15, 95, 255);
@@ -251,21 +256,38 @@ class Character extends FlxSprite
 				
 			case 'dave-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Dave', 'shared');
-				animation.addByPrefix('idle', 'SplitIdle', 24, false);
-				animation.addByPrefix('singDOWN', 'SplitDown', 24, false);
-				animation.addByPrefix('singUP', 'SplitUp', 24, false);
-				animation.addByPrefix('singLEFT', 'SplitLeft', 24, false);
-				animation.addByPrefix('singRIGHT', 'SplitRight', 24, false);
-				animation.addByPrefix('scared', 'Nervous', 24, true);
-				animation.addByPrefix('what', 'Mad', 24, true);
-				animation.addByPrefix('happy', 'Happy', 24, true);
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				animation.addByPrefix('scared', 'waiting', 24, true);
+				animation.addByPrefix('what', 'bruh', 24, true);
+				animation.addByPrefix('happy', 'happy', 24, true);
 
 				loadOffsetFile(curCharacter);
 				
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
 				playAnim('idle');
+			case 'dave-recursed':
+				frames = Paths.getSparrowAtlas('recursed/Dave_Recursed', 'shared');
 
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}0', 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
+				}
+				animation.addByPrefix('firstDeath', "dave dead hit", 24, false);
+				animation.addByPrefix('deathLoop', "dave dead loop", 24, true);
+				animation.addByPrefix('deathConfirm', "dave dead retry confirm", 24, false);
+
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+
+				barColor = FlxColor.WHITE;
+
+				playAnim('idle');
 			case 'bambi':
 				var tex = Paths.getSparrowAtlas('bambi/characters/bambi', 'shared');
 				frames = tex;

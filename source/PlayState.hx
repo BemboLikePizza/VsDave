@@ -309,6 +309,7 @@ class PlayState extends MusicBeatState
 	var notesLeftText:FlxText;
 
 	var preRecursedHealth:Float;
+	var preRecursedSkin:String;
 	var rotateCamToRight:Bool;
 	var camRotateAngle:Float = 0;
 
@@ -942,7 +943,18 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/nimbi/nimbi_land');
 				preload('backgrounds/void/interdimensions/nimbi/nimbi');
 			case 'recursed':
-				preload('recursed/Recursed_BF');
+				switch (boyfriend.curCharacter)
+				{
+					case 'dave':
+						preload('recursed/Dave_Recursed');
+					case 'tb-funny-man':
+						preload('recursed/STOP_LOOKING_AT_THE_FILES');
+					case 'tristan':
+						preload('recursed/TristanRecursed');
+					default:
+						preload('recursed/Recursed_BF');
+				}
+				
 				//sorry tb not preloading something that isn't supposed to be a thing in the first place
 				//preload('recursed/STOP_LOOKING_AT_THE_FILES');
 			case 'exploitation':
@@ -2075,7 +2087,7 @@ class PlayState extends MusicBeatState
 				+ " | Misses: "
 				+ misses, iconRPC);
 			#end
-			if (!startTimer.finished)
+			if (startTimer != null && !startTimer.finished)
 				startTimer.active = false;
 		}
 
@@ -2110,7 +2122,7 @@ class PlayState extends MusicBeatState
 				resyncVocals();
 			}
 
-			if (!startTimer.finished)
+			if (startTimer != null && !startTimer.finished)
 				startTimer.active = true;
 
 			if (tweenList != null && tweenList.length != 0)
@@ -2125,7 +2137,7 @@ class PlayState extends MusicBeatState
 			}
 			paused = false;
 
-			if (startTimer.finished)
+			if (startTimer != null && startTimer.finished)
 			{
 				#if desktop
 				DiscordClient.changePresence(detailsText
@@ -3869,6 +3881,7 @@ class PlayState extends MusicBeatState
 		FlxG.camera.flash();
 
 		var boyfriendPos = boyfriend.getPosition();
+		preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
 		bfGroup.remove(boyfriend);
 		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
 		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
@@ -3940,7 +3953,7 @@ class PlayState extends MusicBeatState
 		}
 		var boyfriendPos = boyfriend.getPosition();
 		bfGroup.remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
+		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, preRecursedSkin);
 		if (iconP1.getChar() != boyfriend.curCharacter)
 		{
 			iconP1.changeIcon(boyfriend.curCharacter);
@@ -4900,7 +4913,7 @@ class PlayState extends MusicBeatState
 		var chance = FlxG.random.int(0, 99);
 		if (chance <= 2 && eyesoreson)
 		{
-			openSubState(new TheFunnySubState(formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? 'bf-recursed' : formoverride));
+			openSubState(new TheFunnySubState(formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.recursedSkin : formoverride));
 			#if desktop
 				DiscordClient.changePresence("GAME OVER -- "
 				+ SONG.song
@@ -5002,11 +5015,11 @@ class PlayState extends MusicBeatState
 		switch (character)
 		{
 			case 'dave':
-				splitathonCharacterExpression = new Character(0, 275, 'dave-splitathon');
+				splitathonCharacterExpression = new Character(0, 225, 'dave-splitathon');
 			case 'bambi':
 				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}
-		add(splitathonCharacterExpression);
+		insert(members.indexOf(dad), splitathonCharacterExpression);
 
 		splitathonCharacterExpression.color = nightColor;
 		splitathonCharacterExpression.canDance = false;

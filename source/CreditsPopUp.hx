@@ -62,7 +62,11 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 1:
 				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false, iconOffset: -20};
 			case 2:
-				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 0};
+				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 30};
+			case 3:
+				headingPath = {path: 'songHeadings/splitathonHeading', antiAliasing: false, iconOffset: 0};
+			case 4:
+				headingPath = {path: 'songHeadings/festivalHeading', antiAliasing: true, iconOffset: 0};
 			case 8:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: -20};
@@ -98,11 +102,11 @@ class CreditsPopUp extends FlxSpriteGroup
 		funnyIcon.updateHitbox();
       
 		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.x = ((funnyText.width / 2) - funnyIcon.width) + offset;
+		funnyIcon.x = funnyText.textField.textWidth + offset;
 		funnyIcon.y = funnyIcon.y + ((heightValues[0] - heightValues[1]) / 2);
 		add(funnyIcon);
 
-		bg.setGraphicSize(Std.int((funnyText.width / 2) + funnyIcon.width), Std.int(funnyText.height));
+		bg.setGraphicSize(Std.int((funnyText.textField.textWidth) + funnyIcon.width + offset), Std.int(funnyText.height));
 		bg.updateHitbox();
 
 		var yValues = CoolUtil.getMinAndMax(bg.height, funnyText.height);
@@ -149,7 +153,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		funnyText.text = newText;
 		if (!FileSystem.exists(Paths.image('songCreators/$newIcon', 'shared')))
 		{
-			//funnyIcon.loadGraphic(Paths.image('songCreators/none', 'shared'));
+			funnyIcon.loadGraphic(Paths.image('songCreators/none', 'shared'));
 		}
 		else
 		{
