@@ -43,6 +43,8 @@ class Note extends FlxSprite
 
 	private var notetolookfor = 0;
 
+	public var originalType = 0;
+
 	public var MyStrum:FlxSprite;
 
 	private var InPlayState:Bool = false;
@@ -64,6 +66,7 @@ class Note extends FlxSprite
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
+		originalType = noteData;
 
 		x += 78;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -160,11 +163,19 @@ class Note extends FlxSprite
 			antialiasing = true;
 			x -= (width - 78);
 		}
-
-		switch (PlayState.SONG.song.toLowerCase())
+		var str:String = PlayState.SONG.song.toLowerCase();
+		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+		{
+			var state:PlayState = cast(FlxG.state, PlayState);
+			if (state.localFunny == CharacterFunnyEffect.Dave)
+			{
+				str = 'cheating';
+			}
+		}
+		switch (str)
 		{
 			case 'cheating':
-				switch (noteData)
+				switch (originalType)
 				{
 					case 0:
 						x += swagWidth * 3;
@@ -186,9 +197,9 @@ class Note extends FlxSprite
 				flipY = (Math.round(Math.random()) == 0); // fuck you
 				flipX = (Math.round(Math.random()) == 1);
 			default:
-				x += swagWidth * noteData;
-				notetolookfor = noteData;
-				switch (noteData)
+				x += swagWidth * originalType;
+				notetolookfor = originalType;
+				switch (originalType)
 				{
 					case 0:
 						animation.play('purpleScroll');
@@ -200,9 +211,10 @@ class Note extends FlxSprite
 						animation.play('redScroll');
 				}
 		}
-		switch (PlayState.SONG.song.toLowerCase())
+		switch (str)
 		{
 			case 'cheating' | 'unfairness' | 'exploitation':
+				
 				if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
 				{
 					var state:PlayState = cast(FlxG.state, PlayState);
@@ -247,19 +259,20 @@ class Note extends FlxSprite
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			var rng:FlxRandom = new FlxRandom();
-			if (rng.int(0, 480) == 1)
+			if (rng.int(0, 481) == 1)
 			{
 				LocalScrollSpeed = 0.1;
 			}
 			else
 			{
-				LocalScrollSpeed = rng.float(3, 3.6);
+				LocalScrollSpeed = rng.float(2.8, 3.7);
 			}
 		}
 
 		// we make sure its downscroll and its a SUSTAIN NOTE (aka a trail, not a note)
 		// and flip it so it doesn't look weird.
 		// THIS DOESN'T FUCKING FLIP THE NOTE, CONTRIBUTERS DON'T JUST COMMENT THIS OUT JESUS
+		// lol funny kade engine comment
 		if (PlayState.scrollType == 'downscroll' && sustainNote)
 			flipY = true;
 

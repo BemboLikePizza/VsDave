@@ -95,6 +95,9 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
+	public static var globalFunny:CharacterFunnyEffect = CharacterFunnyEffect.None;
+
+	public var localFunny:CharacterFunnyEffect = CharacterFunnyEffect.None;
 
 	public var dadGroup:FlxGroup;
 	public var bfGroup:FlxGroup;
@@ -139,6 +142,8 @@ class PlayState extends MusicBeatState
 	var boyfriendOldIcon:String = 'bf-old';
 
 	private var vocals:FlxSound;
+
+	private var exbungo_funny:FlxSound;
 
 	private var dad:Character;
 	private var dadmirror:Character;
@@ -397,6 +402,9 @@ class PlayState extends MusicBeatState
 		detailsPausedText = "Paused - " + detailsText;
 
 		curStage = "";
+
+		localFunny = globalFunny;
+		globalFunny = CharacterFunnyEffect.None;
 
 		// Updating Discord Rich Presence.
 		#if desktop
@@ -806,6 +814,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
+
 		if (FlxG.save.data.songPosition)
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
@@ -994,7 +1003,7 @@ class PlayState extends MusicBeatState
 		kadeEngineWatermark.cameras = [camHUD];
 		doof.cameras = [camDialogue];
 		
-		if (SONG.song.toLowerCase() == 'kabunga')
+		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo)
 		{
 			lazychartshader.waveAmplitude = 0.03;
 			lazychartshader.waveFrequency = 5;
@@ -1044,6 +1053,9 @@ class PlayState extends MusicBeatState
 		subtitleManager = new SubtitleManager();
 		subtitleManager.cameras = [camHUD];
 		add(subtitleManager);
+
+		exbungo_funny = FlxG.sound.load(Paths.sound('amen_' + FlxG.random.int(1, 6)));
+		exbungo_funny.volume = 0.91;
 
 		super.create();
 	}
@@ -1827,6 +1839,11 @@ class PlayState extends MusicBeatState
 			{
 				var daStrumTime:Float = songNotes[0];
 				var daNoteData:Int = Std.int(songNotes[1] % 4);
+				var OGNoteDat = daNoteData;
+				if (localFunny == CharacterFunnyEffect.Bambi)
+				{
+					daNoteData = 2;
+				}
 				var daNoteStyle:String = songNotes[3];
 
 				var gottaHitNote:Bool = section.mustHitSection;
@@ -1843,6 +1860,7 @@ class PlayState extends MusicBeatState
 					oldNote = null;
 
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, gottaHitNote, daNoteStyle);
+				swagNote.originalType = OGNoteDat;
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 
@@ -1857,6 +1875,7 @@ class PlayState extends MusicBeatState
 
 					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true,
 						gottaHitNote);
+					sustainNote.originalType = OGNoteDat;
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
 
@@ -1909,7 +1928,12 @@ class PlayState extends MusicBeatState
 				babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
 				babyArrow.x += Note.swagWidth * Math.abs(i);
-				switch (Math.abs(i))
+				var arrowt:Int = i;
+				if (localFunny == CharacterFunnyEffect.Bambi)
+				{
+					arrowt = 2;
+				}
+				switch (Math.abs(arrowt))
 				{
 					case 0:
 						babyArrow.animation.addByPrefix('static', 'arrowLEFT');
@@ -1948,7 +1972,12 @@ class PlayState extends MusicBeatState
 						babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
 						babyArrow.x += Note.swagWidth * Math.abs(i);
-						switch (Math.abs(i))
+						var arrowt:Int = i;
+						if (localFunny == CharacterFunnyEffect.Bambi)
+						{
+							arrowt = 2;
+						}
+						switch (Math.abs(arrowt))
 						{
 							case 0:
 								babyArrow.animation.addByPrefix('static', 'arrowLEFT');
@@ -1979,7 +2008,7 @@ class PlayState extends MusicBeatState
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 			}
 			
-			babyArrow.ID = i;
+			babyArrow.ID = localFunny == CharacterFunnyEffect.Bambi ? 2 : i;
 			if (player == 1)
 			{
 				playerStrums.add(babyArrow);
@@ -2012,7 +2041,12 @@ class PlayState extends MusicBeatState
 			babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
 			babyArrow.x += Note.swagWidth * Math.abs(i);
-			switch (Math.abs(i))
+			var arrowt:Int = i;
+			if (localFunny == CharacterFunnyEffect.Bambi)
+			{
+				arrowt = 2;
+			}
+			switch (Math.abs(arrowt))
 			{
 				case 0:
 					babyArrow.animation.addByPrefix('static', 'arrowLEFT');
@@ -2038,7 +2072,7 @@ class PlayState extends MusicBeatState
 
 			babyArrow.updateHitbox();
 			babyArrow.scrollFactor.set();
-			babyArrow.ID = i;
+			babyArrow.ID = localFunny == CharacterFunnyEffect.Bambi ? 2 : i;
 			dadStrums.add(babyArrow);
 
 			babyArrow.animation.play('static');
@@ -2062,6 +2096,10 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.sound.music.pause();
 				vocals.pause();
+				if (exbungo_funny != null)
+				{
+					exbungo_funny.pause();
+				}
 			}
 			if (tweenList != null && tweenList.length != 0)
 			{
@@ -2209,6 +2247,12 @@ class PlayState extends MusicBeatState
 
 		if (startingSong && startTimer != null && !startTimer.active)
 			startTimer.active = true;
+
+		if (localFunny == CharacterFunnyEffect.Exbungo)
+		{
+			FlxG.sound.music.volume = 0;
+			exbungo_funny.play();
+		}
 			
 		if (paused && FlxG.sound.music != null && vocals != null && vocals.playing)
 		{
@@ -2319,7 +2363,7 @@ class PlayState extends MusicBeatState
 			gf.y += (Math.sin(elapsedtime) * 0.4);
 		}
 
-		if (SONG.song.toLowerCase() == 'cheating' && !inCutscene) // fuck you
+		if ((SONG.song.toLowerCase() == 'cheating' || localFunny == CharacterFunnyEffect.Dave) && !inCutscene) // fuck you
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
@@ -2728,10 +2772,10 @@ class PlayState extends MusicBeatState
 
 					//'LEFT', 'DOWN', 'UP', 'RIGHT'
 					var fuckingDumbassBullshitFuckYou:String;
-					fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(daNote.noteData)) % 4];
+					fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(daNote.originalType)) % 4];
 					if(dad.nativelyPlayable)
 					{
-						switch(notestuffs[Math.round(Math.abs(daNote.noteData)) % 4])
+						switch(notestuffs[daNote.originalType % 4])
 						{
 							case 'LEFT':
 								fuckingDumbassBullshitFuckYou = 'RIGHT';
@@ -2742,7 +2786,7 @@ class PlayState extends MusicBeatState
 					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 
-					cameraMoveOnNote(daNote.noteData, 'dad');
+					cameraMoveOnNote(daNote.originalType, 'dad');
 					
 					dadStrums.forEach(function(sprite:FlxSprite)
 					{
@@ -2814,7 +2858,7 @@ class PlayState extends MusicBeatState
 				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (350 / (0.45 * FlxMath.roundDecimal(SONG.speed * (daNote.LocalScrollSpeed == 0 ? 1 : daNote.LocalScrollSpeed), 2))))
 				{
 					if (!devBotplay)
-						noteMiss(daNote.noteData, daNote);
+						noteMiss(daNote.originalType, daNote);
 
 					vocals.volume = 0;
 
@@ -3790,10 +3834,10 @@ class PlayState extends MusicBeatState
 
 			//'LEFT', 'DOWN', 'UP', 'RIGHT'
 			var fuckingDumbassBullshitFuckYou:String;
-			fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(note.noteData)) % 4];
+			fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(note.originalType)) % 4];
 			if(!boyfriend.nativelyPlayable)
 			{
-				switch(notestuffs[Math.round(Math.abs(note.noteData)) % 4])
+				switch(notestuffs[Math.round(Math.abs(note.originalType)) % 4])
 				{
 					case 'LEFT':
 						fuckingDumbassBullshitFuckYou = 'RIGHT';
@@ -3807,7 +3851,7 @@ class PlayState extends MusicBeatState
 				camHUD.shake(0.0045, 0.1);
 			}
 			boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
-			cameraMoveOnNote(note.noteData, 'bf'); 
+			cameraMoveOnNote(note.originalType, 'bf'); 
 			if (UsingNewCam)
 			{
 				focusOnDadGlobal = false;
@@ -5096,4 +5140,9 @@ class PlayState extends MusicBeatState
 enum ExploitationModchartType
 {
 	None; ScrambledNotes;
+}
+
+enum CharacterFunnyEffect
+{
+	None; Dave; Bambi; Tristan; Exbungo;
 }
