@@ -116,6 +116,10 @@ class PlayState extends MusicBeatState
 
 	public static var curmult:Array<Float> = [1, 1, 1, 1];
 
+	public var dadPosition:FlxPoint;
+   public var bfPosition:FlxPoint;
+   public var gfPosition:FlxPoint;
+	
 	public var curbg:BGSprite;
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
@@ -335,6 +339,8 @@ class PlayState extends MusicBeatState
 				{
 					FileSystem.deleteFile(textPath);
 				}
+				var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
+				FileSystem.deleteFile(path);
 				FlxG.save.data.exploitationState = null;
 				Main.toggleFuckedFPS(true);
 				modchart = ExploitationModchartType.None;
@@ -922,7 +928,7 @@ class PlayState extends MusicBeatState
 			case 'blocked':
 				preload('bambi/glitchedBlocked');
 			case 'maze':
-				preload('spotlight');
+				preload('spotLight');
 			case 'shredder':
 				preload('festival/bambi_shredder');
 			case 'interdimensional':
@@ -2959,7 +2965,7 @@ class PlayState extends MusicBeatState
 				case "polygonized":
 					CharacterSelectState.unlockCharacter('dave-angey');
 				case 'greetings':
-					CharacterSelectState.unlockCharacter('tristan-festival-playable');
+					CharacterSelectState.unlockCharacter('tristan-festival');
 			}
 		}
 		// Song Character Unlocks (Freeplay)
@@ -3862,15 +3868,10 @@ class PlayState extends MusicBeatState
 
 		var boyfriendPos = boyfriend.getPosition();
 		bfGroup.remove(boyfriend);
-		if(SONG.player1 == "tb-funny-man") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-recursed');
+		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
+		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
+		{
 			iconP1.changeIcon(boyfriend.curCharacter);
-		}
-		else if(boyfriend.curCharacter == "tristan") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tristan-recursed');
-		}
-		else {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'bf-recursed');
 		}
 		bfGroup.add(boyfriend);
 
@@ -3937,16 +3938,11 @@ class PlayState extends MusicBeatState
 		}
 		var boyfriendPos = boyfriend.getPosition();
 		bfGroup.remove(boyfriend);
-		if(boyfriend.curCharacter == "tb-recursed") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tb-funny-man');
+		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
+		if (iconP1.getChar() != boyfriend.curCharacter)
+		{
 			iconP1.changeIcon(boyfriend.curCharacter);
 		}
-		if(boyfriend.curCharacter == "tristan-recursed") {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, 'tristan');
-		}
-		else {
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, formoverride == "none" || formoverride == "bf" ? 'bf' : formoverride);
-		}	
 		bfGroup.add(boyfriend);
 
 		health = preRecursedHealth;
@@ -4229,7 +4225,7 @@ class PlayState extends MusicBeatState
 					case 510:
 						subtitleManager.addSubtitle("Never coming back again.", 0.02, 1, {subtitleSize: 60});
 					case 528:
-						defaultCamZoom -= 0.2;
+						 defaultCamZoom = 0.8;
 						black.alpha = 0;
 						FlxG.camera.flash();
 					case 832:
@@ -4252,19 +4248,20 @@ class PlayState extends MusicBeatState
 					case 908:
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
 					case 912:
-						/*defaultCamZoom -= 0.2;
+						defaultCamZoom -= 0.2;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 
-						spotLight = new FlxSprite().loadGraphic('spotLight');
+						spotLight = new FlxSprite().loadGraphic(Paths.image('spotLight'));
 						spotLight.blend = BlendMode.ADD;
 						spotLight.setGraphicSize(Std.int(spotLight.width * (spotLight.width / dad.width)));
 						spotLight.updateHitbox();
 						spotLight.alpha = 0;
 						add(spotLight);
 
-						spotLight.setPosition(dad.getGraphicMidpoint().x, dad.y - dad.width);
+						spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y - dad.height + spotLight.height / 2);
+						trace(spotLight.getPosition());
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-						FlxTween.tween(spotLight, {alpha: 1}, 1);*/
+						FlxTween.tween(spotLight, {alpha: 1}, 1);
 					case 1232:
 						FlxG.camera.flash();
 				}
