@@ -341,8 +341,10 @@ class PlayState extends MusicBeatState
 				}
 				var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
 				FileSystem.deleteFile(path);
-				FlxG.save.data.exploitationState = null;
 				Main.toggleFuckedFPS(true);
+
+				FlxG.save.data.exploitationState = null;
+				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
 			case 'recursed':
 				daveBG = MainMenuState.randomizeBG();
@@ -1132,24 +1134,24 @@ class PlayState extends MusicBeatState
 				hills.updateHitbox();
 				sprites.add(hills);
 				
-				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 150, Paths.image('backgrounds/farm/funfarmhouse'), null, 0.9, 0.9);
+				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 150, Paths.image('backgrounds/farm/funfarmhouse', 'shared'), null, 0.9, 0.9);
 				farmHouse.setGraphicSize(Std.int(farmHouse.width * 0.9));
 				farmHouse.updateHitbox();
 				sprites.add(farmHouse);
 
-				var grassLand:BGSprite = new BGSprite('grassLand', -600, 500, Paths.image('backgrounds/farm/grass lands'), null, 1, 1);
+				var grassLand:BGSprite = new BGSprite('grassLand', -600, 500, Paths.image('backgrounds/farm/grass lands', 'shared'), null, 1, 1);
 				sprites.add(grassLand);
 
-				var cornFence:BGSprite = new BGSprite('cornFence', -400, 200, Paths.image('backgrounds/farm/cornFence'), null, 1, 1);
+				var cornFence:BGSprite = new BGSprite('cornFence', -400, 200, Paths.image('backgrounds/farm/cornFence', 'shared'), null, 1, 1);
 				sprites.add(cornFence);
 				
-				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2'), null, 1, 1);
+				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2', 'shared'), null, 1, 1);
 				sprites.add(cornFence2);
 
-				var cornBag:BGSprite = new BGSprite('cornBag', 1200, 550, Paths.image('backgrounds/farm/cornBag'), null, 1, 1);
+				var cornBag:BGSprite = new BGSprite('cornBag', 1200, 550, Paths.image('backgrounds/farm/cornBag', 'shared'), null, 1, 1);
 				sprites.add(cornBag);
 				
-				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign'), null);
+				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign', 'shared'), null);
 				sprites.add(sign);
 
 				var variantColor:FlxColor = getBackgroundColor(stageName);
