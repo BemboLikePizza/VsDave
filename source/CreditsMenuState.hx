@@ -186,6 +186,11 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/spa_log')
       ]),
 
+            new Person("Your mom", CreditsType.Contributor, "Made Vs Dave Rap, totally.",
+      [  
+         new Social('youtube', 'https://www.youtube.com/channel/UCeYxPL7ClfwXOOrpbtqJ13g'),
+      ]),
+
       // Beta Testers //
       new Person("letsy", CreditsType.BetaTester, "Beta Tester",
       [
