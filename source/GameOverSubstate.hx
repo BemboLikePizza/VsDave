@@ -28,12 +28,10 @@ class GameOverSubstate extends MusicBeatSubstate
 				System.exit(0);
 			case 'dave' | 'dave-recursed':
 				daBf = 'dave-death';
+			case 'bf-pixel':
+				"bf-pixel-dead";
 			default:
-				daBf = 'bf-death';
-		}
-		if (char == "bf-pixel")
-		{
-			char = "bf-pixel-dead";
+				daBf = 'bf';
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{
@@ -45,7 +43,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 
-		bf = new Boyfriend(x, y, char);
+		bf = new Boyfriend(x, y, daBf);
 		if(bf.animation.getByName('firstDeath') == null)
 		{
 			bf = new Boyfriend(x, y, "bf");
