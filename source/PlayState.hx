@@ -2302,7 +2302,6 @@ class PlayState extends MusicBeatState
 				FlxG.camera.angle = camRotateAngle;
 				camHUD.angle = camRotateAngle;
 
-
 				if (camRotateAngle > 8)
 				{
 					rotateCamToRight = false;
@@ -2314,6 +2313,13 @@ class PlayState extends MusicBeatState
 				
 				health = FlxMath.lerp(0, 2, timeLeft / timeGiven);
 				if (timeLeft <= 0)
+				{
+					
+				}
+			}
+			else
+			{
+				if (FlxG.camera.angle > 0 || camHUD.angle > 0)
 				{
 					cancelRecursedCamTween();
 				}
@@ -2473,7 +2479,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
-			persistentUpdate = false;	
+			persistentUpdate = false;
 			persistentDraw = true;
 			paused = true;
 
@@ -3045,10 +3051,10 @@ class PlayState extends MusicBeatState
 					CharacterSelectState.unlockCharacter('expunged');
 			}
 		}
-		if (SONG.song.toLowerCase() == 'exploitation')
+		switch (SONG.song.toLowerCase())
 		{
-			Application.current.window.title = Main.applicationName;
-			Main.toggleFuckedFPS(false);
+			case 'exploitation':
+				Application.current.window.title = Main.applicationName;
 		}
 		if (isStoryMode)
 		{
@@ -4072,6 +4078,8 @@ class PlayState extends MusicBeatState
 	{
 		rotatingCamTween.cancel();
 		rotatingCamTween = null;
+
+		camRotateAngle = 0;
 		
 		FlxG.camera.angle = 0;
 		camHUD.angle = 0;
@@ -4954,10 +4962,11 @@ class PlayState extends MusicBeatState
 	}
 	function gameOver()
 	{
+		var deathSkinCheck = formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.recursedSkin : formoverride;
 		var chance = FlxG.random.int(0, 99);
 		if (chance <= 2 && eyesoreson)
 		{
-			openSubState(new TheFunnySubState(formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.recursedSkin : formoverride));
+			openSubState(new TheFunnySubState(deathSkinCheck));
 			#if desktop
 				DiscordClient.changePresence("GAME OVER -- "
 				+ SONG.song
@@ -4996,7 +5005,11 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? 'bf-recursed' : formoverride));
+				if (SONG.song.toLowerCase() == 'recursed')
+				{
+					cancelRecursedCamTween();
+				}
+				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, deathSkinCheck));
 			}
 			
 			#if desktop
@@ -5043,7 +5056,7 @@ class PlayState extends MusicBeatState
 					dad.x += 250;
 			case 'bambi-splitathon':
 					dad.x += 200;
-					dad.y += 450;
+					dad.y += 425;
 		}
 		boyfriend.stunned = false;
 	}
@@ -5054,7 +5067,7 @@ class PlayState extends MusicBeatState
 		//stupid bullshit cuz i dont wanna bother with removing thing erighkjrehjgt
 		if(splitathonCharacterExpression != null)
 		{
-			remove(splitathonCharacterExpression);
+			dadGroup.remove(splitathonCharacterExpression);
 		}
 		switch (character)
 		{
@@ -5063,7 +5076,7 @@ class PlayState extends MusicBeatState
 			case 'bambi':
 				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
 		}
-		insert(members.indexOf(dad), splitathonCharacterExpression);
+		dadGroup.insert(dadGroup.members.indexOf(dad), splitathonCharacterExpression);
 
 		splitathonCharacterExpression.color = nightColor;
 		splitathonCharacterExpression.canDance = false;

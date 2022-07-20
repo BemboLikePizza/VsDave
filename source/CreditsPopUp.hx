@@ -52,7 +52,6 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 'vs-dave-rap':
 				songCreator = 'Your mom';
 			case 'recursed':
-				bg.color = FlxColor.fromRGB(44, 44, 44);
 				songCreator = 'Aadsta';
 			case 'adventure':
 				songCreator = 'Ruby';
@@ -70,6 +69,8 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 8:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: -20};
+			case 10:
+				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 0};
 		}
 		if (headingPath != null)
 		{
@@ -102,30 +103,27 @@ class CreditsPopUp extends FlxSpriteGroup
 		funnyIcon.updateHitbox();
       
 		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.x = funnyText.textField.textWidth + offset;
-		funnyIcon.y = funnyIcon.y + ((heightValues[0] - heightValues[1]) / 2);
+		funnyIcon.setPosition(funnyText.textField.textWidth + offset, (heightValues[0] - heightValues[1]) / 2);
 		add(funnyIcon);
 
-		bg.setGraphicSize(Std.int((funnyText.textField.textWidth) + funnyIcon.width + offset), Std.int(funnyText.height));
+		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width)), Std.int(funnyText.height));
 		bg.updateHitbox();
 
 		var yValues = CoolUtil.getMinAndMax(bg.height, funnyText.height);
-			
 		funnyText.y = funnyText.y + ((yValues[0] - yValues[1]) / 2);
 	}
 	public function updateHitboxes()
 	{
 		var offset = (curHeading == null ? 0 : curHeading.iconOffset);
-		var values = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		
-		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (values[1] / values[0])));
+		var scaleValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (scaleValues[1] / scaleValues[0])));
 		funnyIcon.updateHitbox();
 
-		var yValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.x = funnyText.width / 2 + offset;
-		funnyIcon.y = funnyIcon.y + ((yValues[0] - yValues[1]) / 2);
+		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		funnyIcon.setPosition(funnyText.textField.textWidth + offset, (heightValues[0] - heightValues[1]) / 2);
 		
-		bg.setGraphicSize(Std.int((funnyText.width / 2) + funnyIcon.width), Std.int(funnyText.height));
+		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width)), Std.int(funnyText.height));
 		bg.updateHitbox();
 	}
 	public function switchHeading(newHeading:SongHeading)
@@ -157,9 +155,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		}
 		else
 		{
-			remove(funnyIcon);
-			funnyIcon = new FlxSprite().loadGraphic(Paths.image('songCreators/$newIcon', 'shared'));
-			add(funnyIcon);
+			funnyIcon.loadGraphic(Paths.image('songCreators/$newIcon', 'shared'));
 		}
 		updateHitboxes();
 	}

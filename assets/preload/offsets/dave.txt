@@ -1,10 +1,7 @@
-deathLoop -9 1
 singRIGHTmiss -40 1
 singDOWN -30 18
 singLEFTmiss 5 14
 singUP -15 22
-deathConfirm -10 0
-firstDeath -10 0
 hey 8 11
 idle 0 0
 singRIGHT -29 3

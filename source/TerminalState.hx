@@ -60,6 +60,7 @@ class TerminalState extends FlxState
         "9",
         "0"
     ];
+    public var backspaceHeldFor:Float;
 
 
     override public function create():Void 
@@ -94,7 +95,8 @@ class TerminalState extends FlxState
             if (arguments.length == 0)
             {
                 UpdatePreviousText(false); //resets the text
-                UpdateText("\n" + Sys.environment()["USERNAME"] + "\nTo add extra users, add the grant parameter and the name.\nNOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.");
+                UpdateText("\n" + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'User354378')
+                 + "\nTo add extra users, add the grant parameter and the name.\nNOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.");
                 return;
             }
             else if (arguments.length != 2)
@@ -140,7 +142,6 @@ class TerminalState extends FlxState
                             UpdatePreviousText(false); //resets the text
                             UpdateText("\nLoading...");
                             expungedActivated = true;
-                            CoolUtil.cacheImage(Paths.image('glitch'));
                             new FlxTimer().start(3, function(timer:FlxTimer)
                             {   
                                 expungedReignStarts();
@@ -166,7 +167,6 @@ class TerminalState extends FlxState
 
     override public function update(elapsed:Float):Void
     {
-
         if (expungedActivated)
         {
             return;
@@ -213,6 +213,15 @@ class TerminalState extends FlxState
                 curCommand += toShow;
             }
             UpdateText(curCommand);
+        }
+        if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.BACKSPACE)
+        {
+            curCommand = "";
+            displayText.text = '';
+        }
+        if (FlxG.keys.justPressed.ESCAPE)
+        {
+            FlxG.switchState(new MainMenuState());
         }
     }
 

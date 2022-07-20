@@ -102,10 +102,6 @@ class Note extends FlxSprite
 			notePathLol = 'notes/NOTE_phone';
 		else if (PlayState.SONG.song.toLowerCase() == "overdrive")
 			notePathLol = 'notes/OMGtop10awesomehi';
-		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && (musthit && (this.strumTime / 50) % 20 > 12) && !isSustainNote)
-		{
-			this.noteStyle = 'text';
-		}
 		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
 		{
 			this.noteStyle = 'recursed';
@@ -114,6 +110,10 @@ class Note extends FlxSprite
 		else
 			notePathLol = 'notes/NOTE_assets';
 
+		if (PlayState.SONG.song.toLowerCase() == 'recursed' && (musthit && (this.strumTime / 50) % 20 > 12) && !isSustainNote)
+		{
+			this.noteStyle = 'text';
+		} 
 		if (this.noteStyle != 'text')
 		{
 			frames = Paths.getSparrowAtlas(notePathLol, 'shared');

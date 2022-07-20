@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.FlxG;
@@ -29,6 +30,7 @@ class Character extends FlxSprite
 	
 	public var canSing:Bool = true;
 	public var recursedSkin:String = 'bf-recursed';
+	public var positionOffset:FlxPoint;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -115,7 +117,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
 				animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "RETRY CONFIRM", 24, false);
-				animation.play('firstDeath');
+				
 				loadOffsetFile(curCharacter);
 
 				playAnim('firstDeath');
@@ -154,11 +156,8 @@ class Character extends FlxSprite
 				animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 				animation.addByIndices('danceRight', 'GF IDLE', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
-				if (!PlayState.curStage.startsWith('school'))
-				{
-					globaloffset[0] = -200;
-					globaloffset[1] = -175;
-				}
+				globaloffset[0] = -200;
+				globaloffset[1] = -175;
 				
 				loadOffsetFile(curCharacter);
 
@@ -179,12 +178,9 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
 				}
 				animation.addByPrefix('hey', 'hey', 24, false);
-				animation.addByPrefix('firstDeath', "dave dead hit", 24, false);
-				animation.addByPrefix('deathLoop', "dave dead loop", 24, true);
-				animation.addByPrefix('deathConfirm', "dave dead retry confirm", 24, false);
 	
 				recursedSkin = 'dave-recursed';
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
@@ -231,7 +227,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'DOWN', 24, false);
 				animation.addByPrefix('singLEFT', 'LEFT', 24, false);
 		
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
@@ -279,15 +275,22 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}0', 24, false);
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
 				}
-				animation.addByPrefix('firstDeath', "dave dead hit", 24, false);
-				animation.addByPrefix('deathLoop', "dave dead loop", 24, true);
-				animation.addByPrefix('deathConfirm', "dave dead retry confirm", 24, false);
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				barColor = FlxColor.WHITE;
 
 				playAnim('idle');
+			case 'dave-death':
+				frames = Paths.getSparrowAtlas('dave/characters/Dave_Dead', 'shared');
+
+				animation.addByPrefix('firstDeath', 'dave dead hit', 24, false);
+				animation.addByPrefix('deathLoop', 'dave dead loop', 24, true);
+				animation.addByPrefix('deathConfirm', 'dave dead retry confirm', 24, false);
+
+				loadOffsetFile(curCharacter);
+				playAnim('firstDeath');
+				
 			case 'bambi':
 				var tex = Paths.getSparrowAtlas('bambi/characters/bambi', 'shared');
 				frames = tex;
@@ -325,7 +328,7 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				playAnim('idle');
 
@@ -385,7 +388,7 @@ class Character extends FlxSprite
 		
 				barColor = FlxColor.fromRGB(17, 223, 10);
 
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				globaloffset[0] = 150;
 				globaloffset[1] = 450; //this is the y
@@ -515,7 +518,7 @@ class Character extends FlxSprite
 				recursedSkin = 'tristan-recursed';
 
 			case 'tristan-golden':
-			    var tex = Paths.getSparrowAtlas('dave/tristan_golden', 'shared');
+			   var tex = Paths.getSparrowAtlas('dave/tristan_golden', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);

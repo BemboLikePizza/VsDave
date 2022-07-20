@@ -508,25 +508,26 @@ class CharacterSelectState extends MusicBeatState
 
 		switch (char.curCharacter)
 		{
+			case 'dave':
+				char.y -= 90;
+				char.x -= 10;
 			case 'bf-pixel':
 				char.y -= 50;
 				char.x -= 50;
-			case 'dave':
-				char.y = 260;
 			case 'bambi-new':
-				char.y = 400;
+				char.y += 20;
+				char.x += 10;
 			case 'dave-angey':
-				char.y = 150;
-				char.x -= 50;
-			case 'tristan':
-				char.y = 425;
-			case 'tristan-golden':
-				char.y -= 50;
+				char.y -= 145;
+				char.x += 38;
+			case 'tristan' | 'tristan-golden':
+				char.y += 35;
+				char.x -= 40;
 			case 'bambi-3d':
-				char.x += 250;
-				char.y = 600;
+				char.x += 200;
+				char.y -= 200;
 		}
-		add(char);
+		insert(members.indexOf(strummies), char);
 		funnyIconMan.changeIcon(char.curCharacter);
 		funnyIconMan.color = FlxColor.WHITE;
 		if (isLocked(characters[current].forms[curForm].name))

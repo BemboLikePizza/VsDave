@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Dave_Dead.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dave dead hit0000" x="0" y="0" width="397" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0001" x="401" y="0" width="407" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0002" x="401" y="0" width="407" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0003" x="812" y="0" width="397" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0004" x="812" y="0" width="397" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0005" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0006" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0007" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0008" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0009" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0010" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0011" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0012" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0013" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0014" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0015" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0016" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0017" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0018" x="1213" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0019" x="1598" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0020" x="1598" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0021" x="1983" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0022" x="1983" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0023" x="2368" y="0" width="381" height="586" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0024" x="2753" y="0" width="381" height="649" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0025" x="3138" y="0" width="381" height="632" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0026" x="3138" y="0" width="381" height="632" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0027" x="3523" y="0" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0028" x="3523" y="0" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0029" x="3523" y="0" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0030" x="3523" y="0" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0031" x="3523" y="0" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0032" x="3523" y="0" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0033" x="3523" y="0" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0034" x="0" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0035" x="385" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0036" x="770" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0037" x="1155" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0038" x="1540" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0039" x="1540" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0040" x="1925" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead hit0041" x="1925" y="653" width="381" height="640" frameX="0" frameY="0" frameWidth="407" frameHeight="649"/>
+	<SubTexture name="dave dead loop0000" x="2310" y="653" width="382" height="640"/>
+	<SubTexture name="dave dead loop0001" x="2696" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0002" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0003" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0004" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0005" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0006" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0007" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0008" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0009" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0010" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0011" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0012" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0013" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0014" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0015" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0016" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0017" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0018" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0019" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0020" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0021" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0022" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0023" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0024" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0025" x="3466" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0026" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead loop0027" x="3081" y="653" width="381" height="640" frameX="-1" frameY="0" frameWidth="382" frameHeight="640"/>
+	<SubTexture name="dave dead retry confirm0000" x="0" y="1297" width="384" height="638" frameX="0" frameY="-2" frameWidth="384" frameHeight="640"/>
+	<SubTexture name="dave dead retry confirm0001" x="0" y="1297" width="384" height="638" frameX="0" frameY="-2" frameWidth="384" frameHeight="640"/>
+	<SubTexture name="dave dead retry confirm0002" x="388" y="1297" width="381" height="640" frameX="-2" frameY="0" frameWidth="384" frameHeight="640"/>
+	<SubTexture name="dave dead retry confirm0003" x="773" y="1297" width="381" height="640" frameX="-2" frameY="0" frameWidth="384" frameHeight="640"/>
+	<SubTexture name="dave dead retry confirm0004" x="1158" y="1297" width="381" height="640" frameX="-2" frameY="0" frameWidth="384" frameHeight="640"/>
+	<SubTexture name="dave dead retry confirm0005" x="1543" y="1297" width="381" height="640" frameX="-2" frameY="0" frameWidth="384" frameHeight="640"/>
+</TextureAtlas>
