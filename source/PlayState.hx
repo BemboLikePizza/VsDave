@@ -3620,6 +3620,10 @@ class PlayState extends MusicBeatState
 
 				for (note in possibleNotes) 
 				{
+					if (!note.mustPress)
+					{
+						continue;
+					}
 					if (controlArray[note.noteData % 4])
 					{
 						if (lasthitnotetime > Conductor.songPosition - Conductor.safeZoneOffset
