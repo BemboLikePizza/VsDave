@@ -863,9 +863,9 @@ class PlayState extends MusicBeatState
 			insert(members.indexOf(songPosBG), songPosBar);
 			
 			var songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
-			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.GREEN);
 			songName.scrollFactor.set();
-			songName.borderSize = 2.5;
+			songName.borderSize = 4;
 			songName.antialiasing = true;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
@@ -943,7 +943,7 @@ class PlayState extends MusicBeatState
 			default:
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale") + ' - $engineName Engine 3.0 (KE 1.2)';
 			case "exploitation":
-				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine 3.0 (???)";
+				funkyText = SONG.song + " NULL - [EXPUNGED] Engine 3.0 (???)";
 			case 'overdrive':
 				funkyText = '';
 		}
@@ -3619,7 +3619,7 @@ class PlayState extends MusicBeatState
 					if (controlArray[note.noteData % 4])
 					{
 						if (lasthitnotetime > Conductor.songPosition - Conductor.safeZoneOffset
-							&& lasthitnotetime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.2)) //reduce the past allowed barrier just so notes close together that aren't jacks dont cause missed inputs
+							&& lasthitnotetime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.1)) //reduce the past allowed barrier just so notes close together that aren't jacks dont cause missed inputs
 						{
 							if ((note.noteData % 4) == (lasthitnote % 4))
 							{
