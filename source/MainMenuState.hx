@@ -273,34 +273,6 @@ class MainMenuState extends MusicBeatState
 		{
 			FlxG.switchState(new TerminalState());
 		}
-		if (FlxG.keys.justPressed.EIGHT)
-		{
-			FlxG.switchState(new ChartingState());
-		}
-		if (FlxG.keys.justPressed.ONE)
-		{
-			FlxG.switchState(new CharacterDebug('dave'));
-		}
-		if (FlxG.keys.justPressed.TWO)
-		{
-			FlxG.switchState(new CharacterDebug('dave-angey'));
-		}
-		if (FlxG.keys.justPressed.THREE)
-		{
-			FlxG.switchState(new CharacterDebug('bambi-new'));
-		}
-		if (FlxG.keys.justPressed.FOUR)
-		{
-			FlxG.switchState(new CharacterDebug('tristan'));
-		}
-		if (FlxG.keys.justPressed.FIVE)
-		{
-			FlxG.switchState(new CharacterDebug('tristan-golden'));
-		}
-		if (FlxG.keys.justPressed.SIX)
-		{
-			FlxG.switchState(new CharacterDebug('bambi-3d'));
-		}
 		if (!selectedSomethin)
 		{
 			if (controls.UP_P)

@@ -589,40 +589,72 @@ class PlayState extends MusicBeatState
 			default:
 				dadmirror = new Character(100, 100, "dave-angey");
 		}
-		if (SONG.song.toLowerCase() == 'maze')
+		switch (SONG.song.toLowerCase())
 		{
-			tweenTime = sectionStartTime(25);
-			for (i in 0...backgroundSprites.members.length)
-			{
-				var bgSprite = backgroundSprites.members[i];
-				var tween:FlxTween = null;
-				switch (i)
+			case 'maze':
+				tweenTime = sectionStartTime(25);
+				for (i in 0...backgroundSprites.members.length)
 				{
-					case 0:
-						tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000);
-					case 1:
-						tween = FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000));
-					case 2:
-						tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000));
-					default:
-						tween = FlxTween.color(bgSprite, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
-							FlxTween.color(bgSprite, tweenTime / 1000, sunsetColor, nightColor)
-							);
+					var bgSprite = backgroundSprites.members[i];
+					var tween:FlxTween = null;
+					switch (i)
+					{
+						case 0:
+							tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000);
+						case 1:
+							tween = FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000));
+						case 2:
+							tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000));
+						default:
+							tween = FlxTween.color(bgSprite, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
+								FlxTween.color(bgSprite, tweenTime / 1000, sunsetColor, nightColor)
+								);
+					}
+					tweenList.push(tween);
 				}
-				tweenList.push(tween);
-			}
-			var gfTween = FlxTween.color(gf, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(gf, tweenTime / 1000, sunsetColor, nightColor));
-			var bambiTween = FlxTween.color(dad, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(dad, tweenTime / 1000, sunsetColor, nightColor));
-			bfTween = FlxTween.color(boyfriend, tweenTime / 1000, FlxColor.WHITE, sunsetColor, {
-				onComplete: function(tween:FlxTween)
+				var gfTween = FlxTween.color(gf, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(gf, tweenTime / 1000, sunsetColor, nightColor));
+				var bambiTween = FlxTween.color(dad, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(dad, tweenTime / 1000, sunsetColor, nightColor));
+				bfTween = FlxTween.color(boyfriend, tweenTime / 1000, FlxColor.WHITE, sunsetColor, {
+					onComplete: function(tween:FlxTween)
+					{
+						bfTween = FlxTween.color(boyfriend, tweenTime / 1000, sunsetColor, nightColor);
+					}
+				});
+	
+				tweenList.push(gfTween);
+				tweenList.push(bambiTween);
+				tweenList.push(bfTween);
+			case 'rano':
+				tweenTime = sectionStartTime(56);
+				for (i in 0...backgroundSprites.members.length)
 				{
-					bfTween = FlxTween.color(boyfriend, tweenTime / 1000, sunsetColor, nightColor);
+					var bgSprite = backgroundSprites.members[i];
+					var tween:FlxTween = null;
+					switch (i)
+					{
+						case 0:
+							tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000);
+						case 1:
+							tween = FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000));
+						case 2:
+							tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000));
+						default:
+							tween = FlxTween.color(bgSprite, tweenTime / 1000, nightColor, sunsetColor).then(
+								FlxTween.color(bgSprite, tweenTime / 1000, sunsetColor, FlxColor.WHITE));
+					}
+					tweenList.push(tween);
 				}
-			});
-
-			tweenList.push(gfTween);
-			tweenList.push(bambiTween);
-			tweenList.push(bfTween);
+				var gfTween = FlxTween.color(gf, tweenTime / 1000, nightColor, sunsetColor).then(FlxTween.color(gf, tweenTime / 1000, sunsetColor, FlxColor.WHITE));
+				var bambiTween = FlxTween.color(dad, tweenTime / 1000, nightColor, sunsetColor).then(FlxTween.color(dad, tweenTime / 1000, sunsetColor, FlxColor.WHITE));
+				bfTween = FlxTween.color(boyfriend, tweenTime / 1000, nightColor, sunsetColor, {
+					onComplete: function(tween:FlxTween)
+					{
+						bfTween = FlxTween.color(boyfriend, tweenTime / 1000, sunsetColor, FlxColor.WHITE);
+					}
+				});
+				tweenList.push(gfTween);
+				tweenList.push(bambiTween);
+				tweenList.push(bfTween);
 		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -719,7 +751,7 @@ class PlayState extends MusicBeatState
 			case 'tb-funny-man':
 				boyfriend.x = 100 + 900;
 		}
-		if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized")
+		if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" || SONG.song.toLowerCase() == 'rano')
 		{
 			dad.color = nightColor;
 			gf.color = nightColor;
@@ -756,8 +788,8 @@ class PlayState extends MusicBeatState
 				boyfriend.setPosition(843, 270);
 				gf.setPosition(280 + charoffsetx, -60 + charoffsety);
 			case 'backyard':
-				dad.setPosition(0, 200);
-				boyfriend.setPosition(690, 350);
+				dad.setPosition(50, 200);
+				boyfriend.setPosition(790, 350);
 				gf.setPosition(500 + charoffsetx, -100 + charoffsety);
 			case 'festival':
 				dad.x -= 200;
@@ -819,7 +851,7 @@ class PlayState extends MusicBeatState
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
-			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
+			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/timerBar'));
 			songPosBG.screenCenter(X);
 			songPosBG.scrollFactor.set();
 			add(songPosBG);
@@ -828,7 +860,7 @@ class PlayState extends MusicBeatState
 			'songPosition', 0, FlxG.sound.music.length);
 			songPosBar.scrollFactor.set();
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
-			add(songPosBar);
+			insert(members.indexOf(songPosBG), songPosBar);
 			
 			var songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
 			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1257,9 +1289,22 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.7;
 				stageName = 'backyard';
 
-				var bg:BGSprite = new BGSprite('bg', -600, -400, Paths.image('backgrounds/shared/sky_night'), null, 0.9, 0.9);
-				sprites.add(bg);
-				add(bg);
+				var festivalSky:BGSprite = new BGSprite('bg', -600, -400, Paths.image('backgrounds/shared/sky_festival'), null, 0.9, 0.9);
+				sprites.add(festivalSky);
+				add(festivalSky);
+
+				if (SONG.song.toLowerCase() == 'rano')
+				{
+					var sunriseBG:BGSprite = new BGSprite('sunriseBG', -600, -400, Paths.image('backgrounds/shared/sky_sunrise'), null, 0.9, 0.9);
+					sunriseBG.alpha = 0;
+					sprites.add(sunriseBG);
+					add(sunriseBG);
+
+					var skyBG:BGSprite = new BGSprite('bg', -600, -400, Paths.image('backgrounds/shared/sky'), null, 0.9, 0.9);
+					skyBG.alpha = 0;
+					sprites.add(skyBG);
+					add(skyBG);
+				}
 
 				var hills:BGSprite = new BGSprite('hills', -1330, -432, Paths.image('backgrounds/backyard/hills', 'shared'), null, 1, 1, true);
 				sprites.add(hills);
@@ -2111,7 +2156,11 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
-
+			if (rotatingCamTween != null)
+			{
+				rotatingCamTween.active = false;
+			}
+			
 			#if desktop
 			DiscordClient.changePresence("PAUSED on "
 				+ SONG.song
@@ -2172,6 +2221,10 @@ class PlayState extends MusicBeatState
 						tween.active = true;
 					}
 				}
+			}
+			if (rotatingCamTween != null)
+			{
+				rotatingCamTween.active = true;
 			}
 			paused = false;
 
@@ -4901,7 +4954,6 @@ class PlayState extends MusicBeatState
 					case 416:
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad('dave-annoyed', dad.getPosition());
-						dad.color = nightColor;
 				}
 		}
 		if (shakeCam)
@@ -4962,7 +5014,7 @@ class PlayState extends MusicBeatState
 	}
 	function gameOver()
 	{
-		var deathSkinCheck = formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.recursedSkin : formoverride;
+		var deathSkinCheck = formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.curCharacter : formoverride;
 		var chance = FlxG.random.int(0, 99);
 		if (chance <= 2 && eyesoreson)
 		{
