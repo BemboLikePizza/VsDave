@@ -779,6 +779,10 @@ class PlayState extends MusicBeatState
 				dad.y -= 100;
 
 				boyfriend.y += 200;
+
+			case 'red-void':
+				dad.x -= 100;
+
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
@@ -1054,7 +1058,7 @@ class PlayState extends MusicBeatState
 		{
 			startTimer.active = true;
 		}
-		if (isStoryMode || FlxG.save.data.freeplayCuts)
+		if (isStoryMode)
 		{
 			switch (curSong.toLowerCase())
 			{
@@ -2405,12 +2409,12 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				dad.y += (Math.sin(elapsedtime) * 0.4);
+				dad.y += (Math.sin(elapsedtime) * 0.2);
 			}
 		}
 		if(funnyFloatyBoys.contains(boyfriend.curCharacter.toLowerCase()) && canFloat)
 		{
-			boyfriend.y += (Math.sin(elapsedtime) * 0.4);
+			boyfriend.y += (Math.sin(elapsedtime) * 0.2);
 		}
 		/*if(funnyFloatyBoys.contains(dadmirror.curCharacter.toLowerCase()))
 		{
@@ -2419,7 +2423,7 @@ class PlayState extends MusicBeatState
 
 		if(funnyFloatyBoys.contains(gf.curCharacter.toLowerCase()) && canFloat)
 		{
-			gf.y += (Math.sin(elapsedtime) * 0.4);
+			gf.y += (Math.sin(elapsedtime) * 0.2);
 		}
 
 		if ((SONG.song.toLowerCase() == 'cheating' || localFunny == CharacterFunnyEffect.Dave) && !inCutscene) // fuck you
@@ -4649,12 +4653,12 @@ class PlayState extends MusicBeatState
 						generateStaticArrows(0);
 				}
 			case 'polygonized':
-				switch(curStep)
+				switch(curStep) //NO MORE STUPID CYNDA TIMINGS. I left the one at the beginning because it fit but... TODO: should this effect even be used more then once in polygonized?
 				{
-					case 1024 | 1312 | 1424 | 1552 | 1664:
+					case 1024:
 						shakeCam = true;
 						camZooming = true;
-					case 1152 | 1408 | 1472 | 1600 | 2048 | 2176:
+					case 1152:
 						shakeCam = false;
 						camZooming = false;
 				}
