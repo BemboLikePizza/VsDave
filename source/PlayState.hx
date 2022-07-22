@@ -867,7 +867,7 @@ class PlayState extends MusicBeatState
 			insert(members.indexOf(songPosBG), songPosBar);
 			
 			var songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
-			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.GREEN);
+			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
 			songName.borderSize = 4;
 			songName.antialiasing = true;
@@ -947,7 +947,7 @@ class PlayState extends MusicBeatState
 			default:
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale") + ' - $engineName Engine 3.0 (KE 1.2)';
 			case "exploitation":
-				funkyText = SONG.song + " NULL - [EXPUNGED] Engine 3.0 (???)";
+				funkyText = SONG.song + " EXPLOITATION - [EXPUNGED] Engine 3.0 (???)";
 			case 'overdrive':
 				funkyText = '';
 		}
