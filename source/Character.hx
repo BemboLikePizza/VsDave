@@ -219,19 +219,19 @@ class Character extends FlxSprite
 
 			case 'dave-angey':
 				// DAVE SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/characters/Dave_Furiosity', 'shared');
+				tex = Paths.getSparrowAtlas('dave/characters/Dave_3D', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'IDLE', 24, false);
-				animation.addByPrefix('singUP', 'UP', 24, false);
-				animation.addByPrefix('singRIGHT', 'RIGHT', 24, false);
-				animation.addByPrefix('singDOWN', 'DOWN', 24, false);
-				animation.addByPrefix('singLEFT', 'LEFT', 24, false);
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
 		
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
-				setGraphicSize(Std.int(width * furiosityScale),Std.int(height * furiosityScale));
+				setGraphicSize(Std.int((width * 0.7) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
 		

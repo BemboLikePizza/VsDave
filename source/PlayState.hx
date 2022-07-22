@@ -818,22 +818,22 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.songPosition)
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
-
-			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/healthBar'));
-			songPosBG.screenCenter(X);
-			songPosBG.scrollFactor.set();
-			add(songPosBG);
 			
 			songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), Conductor, 
 			'songPosition', 0, FlxG.sound.music.length);
 			songPosBar.scrollFactor.set();
-			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
+			songPosBar.createFilledBar(FlxColor.WHITE, FlxColor.GREEN);
 			add(songPosBar);
+
+			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/timerBar'));
+			songPosBG.screenCenter(X);
+			songPosBG.scrollFactor.set();
+			add(songPosBG);
 			
 			var songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
-			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.GREEN);
 			songName.scrollFactor.set();
-			songName.borderSize = 2.5;
+			songName.borderSize = 4;
 			songName.antialiasing = true;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
@@ -911,7 +911,7 @@ class PlayState extends MusicBeatState
 			default:
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale") + ' - $engineName Engine 3.0 (KE 1.2)';
 			case "exploitation":
-				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine 3.0 (???)";
+				funkyText = SONG.song + " NULL - [EXPUNGED] Engine 3.0 (???)";
 			case 'overdrive':
 				funkyText = '';
 		}
