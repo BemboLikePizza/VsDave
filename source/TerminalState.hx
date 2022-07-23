@@ -66,6 +66,8 @@ class TerminalState extends FlxState
     override public function create():Void 
     {
         displayText = new FlxText(0, 0, FlxG.width, previousText, 32);
+		displayText.setFormat(Paths.font("consola.ttf"), 16);
+		displayText.antialiasing = false;
         FlxG.sound.music.stop();
 
         CommandList.push(new TerminalCommand("help", "Displays this menu.", function(arguments:Array<String>)
@@ -217,7 +219,6 @@ class TerminalState extends FlxState
         if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.BACKSPACE)
         {
             curCommand = "";
-            displayText.text = '';
         }
         if (FlxG.keys.justPressed.ESCAPE)
         {

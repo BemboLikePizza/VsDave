@@ -22,14 +22,15 @@ class GameOverSubstate extends MusicBeatSubstate
 		switch (char)
 		{
 			case 'bf-pixel':
+				daBf = "bf-pixel-dead";
 				stageSuffix = '-pixel';
 			case 'tb-funny-man':
 				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
 				System.exit(0);
 			case 'dave' | 'dave-recursed':
 				daBf = 'dave-death';
-			case 'bf-pixel':
-				"bf-pixel-dead";
+			case 'tristan':
+				daBf = 'tristan-death';
 			default:
 				daBf = 'bf';
 		}
