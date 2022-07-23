@@ -740,6 +740,10 @@ class PlayState extends MusicBeatState
 				dad.x -= 500;
 				dad.y -= 100;
 				boyfriend.y += 200;
+
+			case 'red-void':
+				dad.x -= 100;
+
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
@@ -933,7 +937,7 @@ class PlayState extends MusicBeatState
 			default:
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale") + ' - $engineName Engine 3.0 (KE 1.2)';
 			case "exploitation":
-				funkyText = SONG.song + " NULL - [EXPUNGED] Engine 3.0 (???)";
+				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine 3.0 (???)";
 			case 'overdrive':
 				funkyText = '';
 		}
@@ -1042,7 +1046,7 @@ class PlayState extends MusicBeatState
 		{
 			startTimer.active = true;
 		}
-		if (isStoryMode || FlxG.save.data.freeplayCuts)
+		if (isStoryMode)
 		{
 			switch (curSong.toLowerCase())
 			{
@@ -2390,12 +2394,12 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				dad.y += (Math.sin(elapsedtime) * 0.4);
+				dad.y += (Math.sin(elapsedtime) * 0.2);
 			}
 		}
 		if(funnyFloatyBoys.contains(boyfriend.curCharacter.toLowerCase()) && canFloat)
 		{
-			boyfriend.y += (Math.sin(elapsedtime) * 0.4);
+			boyfriend.y += (Math.sin(elapsedtime) * 0.2);
 		}
 		/*if(funnyFloatyBoys.contains(dadmirror.curCharacter.toLowerCase()))
 		{
@@ -2404,7 +2408,7 @@ class PlayState extends MusicBeatState
 
 		if(funnyFloatyBoys.contains(gf.curCharacter.toLowerCase()) && canFloat)
 		{
-			gf.y += (Math.sin(elapsedtime) * 0.4);
+			gf.y += (Math.sin(elapsedtime) * 0.2);
 		}
 
 		if ((SONG.song.toLowerCase() == 'cheating' || localFunny == CharacterFunnyEffect.Dave) && !inCutscene) // fuck you
@@ -3602,6 +3606,10 @@ class PlayState extends MusicBeatState
 
 				for (note in possibleNotes) 
 				{
+					if (!note.mustPress)
+					{
+						continue;
+					}
 					if (controlArray[note.noteData % 4])
 					{
 						if (lasthitnotetime > Conductor.songPosition - Conductor.safeZoneOffset
