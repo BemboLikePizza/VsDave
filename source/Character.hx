@@ -231,7 +231,7 @@ class Character extends FlxSprite
 				
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
-				setGraphicSize(Std.int((width * 0.7) / furiosityScale));
+				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
 		
@@ -412,15 +412,15 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(178, 7, 7);
 
 				loadOffsetFile(curCharacter);
+				playAnim('idle');
 
+				antialiasing = false;
+				
 				globaloffset[0] = 150 * 1.3;
 				globaloffset[1] = 450 * 1.3; //this is the y
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
 				updateHitbox();
-				antialiasing = false;
-		
-				playAnim('idle');
-
+				
 			case 'expunged':
 				// EXPUNGED SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('bambi/ExpungedFinal', 'shared');
@@ -432,17 +432,16 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'Left', 24, false);
 		
 				loadOffsetFile(curCharacter);
-				
-				barColor = FlxColor.fromRGB(82, 15, 15);
+				playAnim('idle');
 
+				barColor = FlxColor.fromRGB(82, 15, 15);
+				antialiasing = false;
+				
 				globaloffset[0] = 150 * 0.8;
 				globaloffset[1] = 450 * 0.8; //this is the y
+				
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
-				antialiasing = false;
-		
-				playAnim('idle');
-			
 			case 'bambi-old':
 				var tex = Paths.getSparrowAtlas('bambi/characters/bambi-old', 'shared');
 				frames = tex;
@@ -460,18 +459,14 @@ class Character extends FlxSprite
 				animation.addByPrefix('firstDeath', "MARCELLO dead0", 24, false);
 				animation.addByPrefix('deathLoop', "MARCELLO dead0", 24, true);
 				animation.addByPrefix('deathConfirm', "MARCELLO dead0", 24, false);
-	
-				
-				barColor = FlxColor.fromRGB(12, 181, 0);
 
 				loadOffsetFile(curCharacter);
-				
-
 				playAnim('idle');
 
+				barColor = FlxColor.fromRGB(12, 181, 0);
 				nativelyPlayable = true;
-	
 				flipX = true;
+
 			case 'bambi-shredder':
 				frames = Paths.getSparrowAtlas('festival/bambi_shredder', 'shared');
 				animation.addByPrefix('idle', 'shredder idle', 24, false);
@@ -485,37 +480,36 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 			case 'tristan':
-				var tex = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
-				frames = tex;
+				frames = Paths.getSparrowAtlas('dave/Tristan', 'shared');
+				
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				for (anim in ['LEFT', 'DOWN', 'UP', 'RIGHT'])
+				{
+					animation.addByPrefix('sing$anim', 'BF NOTE ${anim} instance', 24, false);
+					animation.addByPrefix('sing${anim}miss', 'BF NOTE $anim MISS', 24, false);
+				}
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
-	
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
-				animation.addByPrefix('hit', 'BF hit', 24, false);
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
-				barColor = FlxColor.fromRGB(255, 19, 15);
-	
 				playAnim('idle');
 
+				barColor = FlxColor.fromRGB(255, 19, 15);
 				nativelyPlayable = true;
-	
 				flipX = true;
 
 				recursedSkin = 'tristan-recursed';
+
+			case 'tristan-death':
+				frames = Paths.getSparrowAtlas('dave/Tristan_Dead', 'shared');
+
+				animation.addByPrefix('firstDeath', "BF dies", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+
+				loadOffsetFile(curCharacter);
+				playAnim('firstDeath');
 
 			case 'tristan-golden':
 			   var tex = Paths.getSparrowAtlas('dave/tristan_golden', 'shared');
@@ -621,11 +615,11 @@ class Character extends FlxSprite
 			case 'recurser':
 				frames = Paths.getSparrowAtlas('recursed/Recurser', "shared");
 
-				animation.addByPrefix('idle', 'recursedIdle', 24);
-				animation.addByPrefix('singLEFT', 'recursedLeft', 24);
-				animation.addByPrefix('singDOWN', 'recursedDown', 24);
-				animation.addByPrefix('singUP', 'recursedUp', 24);
-				animation.addByPrefix('singRIGHT', 'recursedRight', 24);
+				animation.addByPrefix('idle', 'recursedIdle', 24, false);
+				animation.addByPrefix('singLEFT', 'recursedLeft', 24, false);
+				animation.addByPrefix('singDOWN', 'recursedDown', 24, false);
+				animation.addByPrefix('singUP', 'recursedUp', 24, false);
+				animation.addByPrefix('singRIGHT', 'recursedRight', 24, false);
 
 				barColor = FlxColor.fromRGB(44, 44, 44);
 
@@ -636,27 +630,21 @@ class Character extends FlxSprite
 				frames = Paths.getSparrowAtlas('recursed/Recursed_BF', 'shared');
 
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-
+				for (anim in ['LEFT', 'DOWN', 'UP', 'RIGHT'])
+				{
+					animation.addByPrefix('sing$anim', 'BF NOTE ${anim}0', 24, false);
+					animation.addByPrefix('sing${anim}miss', 'BF NOTE $anim MISS', 24, false);
+				}
 				animation.addByPrefix('firstDeath', 'BF dies', 24, false);
 				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
 				animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24, false);
 
-				flipX = true;
-				barColor = FlxColor.WHITE;
-				
 				loadOffsetFile(curCharacter);
 				
+				barColor = FlxColor.WHITE;
 				nativelyPlayable = true;
+				flipX = true;
 
 				playAnim('idle');
 				case 'tristan-recursed':

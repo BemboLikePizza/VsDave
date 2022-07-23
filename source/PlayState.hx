@@ -224,7 +224,7 @@ class PlayState extends MusicBeatState
 	public static var campaignScore:Int = 0;
 
 	var defaultCamZoom:Float = 1.05;
-
+	
 	public static var daPixelZoom:Float = 6;
 
 	public static var theFunne:Bool = true;
@@ -583,11 +583,11 @@ class PlayState extends MusicBeatState
 			gf.visible = false;
 		}
 
-		dad = new Character(100, 100, SONG.player2);
+		dad = new Character(100, 450, SONG.player2);
 		switch (SONG.song.toLowerCase())
 		{
 			default:
-				dadmirror = new Character(100, 100, "dave-angey");
+				dadmirror = new Character(100, 450, "dave-angey");
 		}
 		switch (SONG.song.toLowerCase())
 		{
@@ -669,44 +669,6 @@ class PlayState extends MusicBeatState
 					camPos.x += 600;
 					tweenCamIn();
 				}
-			case "tristan" | 'tristan-golden' | 'tristan-festival':
-				dad.y += 350;
-				dad.x += 175;
-
-			case 'dave' | 'dave-annoyed' | 'dave-cool':
-				dad.y += 50;
-				dad.x += 150;
-			case 'dave-splitathon':
-				dad.y += 175;
-				dad.x += 250;
-			case 'dave-angey':
-				dad.x += 150;
-				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
-			case 'bambi-3d':
-				dad.y += 35;
-				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
-
-			case 'bambi-unfair':
-				dad.y += 90;
-				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 50);
-
-			case 'bambi' | 'bambi-old':
-				dad.y += 400;
-
-			case 'bambi-new':
-				dad.y += 450;
-				dad.x += 200;
-
-			case 'bambi-splitathon':
-				dad.x += 175;
-				dad.y += 400;
-
-			case 'bambi-angey':
-				dad.y += 450;
-				dad.x += 100;
-			case 'recurser':
-				dad.y -= 150;
-				dad.x -= 700;
 		}
 
 		dadmirror.x += 150;
@@ -777,7 +739,6 @@ class PlayState extends MusicBeatState
 			case 'desktop':
 				dad.x -= 500;
 				dad.y -= 100;
-
 				boyfriend.y += 200;
 
 			case 'red-void':
@@ -786,9 +747,11 @@ class PlayState extends MusicBeatState
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
+			case 'farm' | 'farm-night'| 'farm-sunset':
+				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
-				dad.setPosition(-64, 121);
-				dadmirror.setPosition(-180, 60);
+				dad.setPosition(50, 270);
+				dadmirror.setPosition(100, 270);
 				boyfriend.setPosition(843, 270);
 				gf.setPosition(280 + charoffsetx, -60 + charoffsety);
 			case 'backyard':
@@ -800,7 +763,34 @@ class PlayState extends MusicBeatState
 				gf.x -= 200;
 				boyfriend.x -= 200;
 		}
-
+		//dad repositioning
+		switch (dad.curCharacter)
+		{
+			case 'dave' | 'dave-annoyed' | 'dave-cool':
+				dad.y -= 150;
+			case 'dave-angey':
+				dad.y -= 300;
+			case 'dave-splitathon':
+				dad.y -= 175;
+				dad.x += 250;
+			case 'bambi-splitathon':
+				dad.x += 200;
+				dad.y += 125;
+			case 'bambi-new':
+				dad.y += 100;
+			case 'bambi' | 'bambi-old':
+				dad.y += 50;
+			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
+				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
+			case 'bambi-3d':
+				dad.y -= 315;
+				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
+			case 'bambi-unfair':
+				dad.y -= 260;
+				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 50);
+			case 'recurser':
+				dad.x -= 200;
+		}
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
 			health = 2;
 
@@ -869,7 +859,7 @@ class PlayState extends MusicBeatState
 			var songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
 			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
-			songName.borderSize = 4;
+			songName.borderSize = 2.5;
 			songName.antialiasing = true;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
@@ -898,7 +888,7 @@ class PlayState extends MusicBeatState
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
-		add(healthBar);
+		insert(members.indexOf(healthBarBG), healthBar);
 
 		var credits:String;
 		switch (SONG.song.toLowerCase())
@@ -947,7 +937,7 @@ class PlayState extends MusicBeatState
 			default:
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale") + ' - $engineName Engine 3.0 (KE 1.2)';
 			case "exploitation":
-				funkyText = SONG.song + " EXPLOITATION - [EXPUNGED] Engine 3.0 (???)";
+				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine 3.0 (???)";
 			case 'overdrive':
 				funkyText = '';
 		}
@@ -972,6 +962,7 @@ class PlayState extends MusicBeatState
 		switch (curSong.toLowerCase())
 		{
 			case 'insanity':
+				preload('backgrounds/void/redsky');
 				preload('backgrounds/void/redsky_insanity');
 			case 'blocked':
 				preload('bambi/glitchedBlocked');
@@ -999,9 +990,6 @@ class PlayState extends MusicBeatState
 					default:
 						preload('recursed/Recursed_BF');
 				}
-				
-				//sorry tb not preloading something that isn't supposed to be a thing in the first place
-				//preload('recursed/STOP_LOOKING_AT_THE_FILES');
 			case 'exploitation':
 				preload('backgrounds/cheating/cheater GLITCH');
 		}
@@ -1107,7 +1095,6 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.8;
 				
 				var skyType:String = '';
-				var assetType:String = '';
 				switch (bgName)
 				{
 					case 'house':
@@ -1116,7 +1103,6 @@ class PlayState extends MusicBeatState
 					case 'house-night':
 						stageName = 'daveHouse_night';
 						skyType = 'sky_night';
-						assetType = 'night/';
 					case 'house-sunset':
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
@@ -1125,19 +1111,19 @@ class PlayState extends MusicBeatState
 				sprites.add(bg);
 				add(bg);
 				
-				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/' + assetType + 'hills'), null, 0.8, 0.8);
+				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/hills'), null, 0.8, 0.8);
 				sprites.add(stageHills);
 				add(stageHills);
 
-				var grassbg:BGSprite = new BGSprite('grassbg', -1205, 580, Paths.image('backgrounds/dave-house/' + assetType + 'grass bg'), null, 0.8, 0.8);
+				var grassbg:BGSprite = new BGSprite('grassbg', -1205, 580, Paths.image('backgrounds/dave-house/grass bg'), null, 0.8, 0.8);
 				sprites.add(grassbg);
 				add(grassbg);
 	
-				var gate:BGSprite = new BGSprite('gate', -755, 250, Paths.image('backgrounds/dave-house/' + assetType + 'gate'), null, 0.9, 0.9);
+				var gate:BGSprite = new BGSprite('gate', -755, 250, Paths.image('backgrounds/dave-house/gate'), null, 0.9, 0.9);
 				sprites.add(gate);
 				add(gate);
 	
-				var stageFront:BGSprite = new BGSprite('stageFront', -832, 505, Paths.image('backgrounds/dave-house/' + assetType + 'grass'), null);
+				var stageFront:BGSprite = new BGSprite('stageFront', -832, 505, Paths.image('backgrounds/dave-house/grass'), null);
 				sprites.add(stageFront);
 				add(stageFront);
 
@@ -1591,7 +1577,7 @@ class PlayState extends MusicBeatState
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
 				backgroundSprites.add(nimbiLand);
 				nimbiLand.setGraphicSize(Std.int(nimbiLand.width * 1.5));
-				insert(members.indexOf(gf), nimbiLand);
+				insert(members.indexOf(gfGroup), nimbiLand);
 
 				nimbi = new BGSprite('nimbi', 1100, 200, 'backgrounds/void/interdimensions/nimbi/nimbi', 
 				[
@@ -1599,8 +1585,7 @@ class PlayState extends MusicBeatState
 				], 1, 1, false, true);
 				nimbi.animation.play('idle');
 				backgroundSprites.add(nimbi);
-				insert(members.indexOf(gf), nimbi);
-
+				insert(members.indexOf(gfGroup), nimbi);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
@@ -2392,8 +2377,8 @@ class PlayState extends MusicBeatState
 		}
 		if (dad.curCharacter == 'recurser')
 		{
-			var toy = 100 + -Math.sin((elapsedtime) * 2) * 300;
-			var tox = -100 -Math.cos((elapsedtime)) * 200;
+			toy = 100 + -Math.sin((elapsedtime) * 2) * 300;
+			tox = -100 -Math.cos((elapsedtime)) * 200;
 
 			dad.x += (tox - dad.x);
 			dad.y += (toy - dad.y);
@@ -2477,6 +2462,7 @@ class PlayState extends MusicBeatState
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 			});
 		}
+		// no more 3d sinning avenue
 		if (tweenList != null && tweenList.length != 0)
 		{
 			for (tween in tweenList)
@@ -2485,7 +2471,7 @@ class PlayState extends MusicBeatState
 					tween.percent = FlxG.sound.music.time / tweenTime;
 			}
 		}
-        // no more 3d sinning avenue
+        
 
 		FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
 		if (shakeCam && eyesoreson)
@@ -4189,13 +4175,13 @@ class PlayState extends MusicBeatState
 		var glitch = new BGSprite('glitch', 0, 0, 'glitchSwitch', 
 		[
 			new Animation('glitch', 'glitchScreen', 24, true, [false, false])
-		], 0, 0, true);
+		], 0, 0, false, true);
 		glitch.scrollFactor.set();
 		glitch.cameras = [camHUD];
-		glitch.animation.play('glitch');
 		glitch.setGraphicSize(FlxG.width, FlxG.height);
 		glitch.updateHitbox();
 		glitch.screenCenter();
+		glitch.animation.play('glitch');
 		add(glitch);
 
 		new FlxTimer().start(glitchTime, function(timer:FlxTimer)
@@ -4657,12 +4643,12 @@ class PlayState extends MusicBeatState
 						generateStaticArrows(0);
 				}
 			case 'polygonized':
-				switch(curStep) //NO MORE STUPID CYNDA TIMINGS. I left the one at the beginning because it fit but... TODO: should this effect even be used more then once in polygonized?
+				switch(curStep)
 				{
-					case 1024:
+					case 1024 | 1312:
 						shakeCam = true;
 						camZooming = true;
-					case 1152:
+					case 1152 | 1408:
 						shakeCam = false;
 						camZooming = false;
 				}
@@ -5105,19 +5091,20 @@ class PlayState extends MusicBeatState
 	{
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
 		dadGroup.remove(dad);
-		
-		dad = new Character(100, 100, char);
+
+		dad = new Character(100, 450, char);
 		dadGroup.add(dad);
 		dad.color = getBackgroundColor(curStage);
-		switch (dad.curCharacter)
+		switch (char)
 		{
 			case 'dave-splitathon':
-					dad.y += 175;
-					dad.x += 250;
+				dad.y -= 175;
+				dad.x += 250;
 			case 'bambi-splitathon':
-					dad.x += 200;
-					dad.y += 425;
+				dad.x += 200;
+				dad.y += 75;
 		}
+
 		boyfriend.stunned = false;
 	}
 
