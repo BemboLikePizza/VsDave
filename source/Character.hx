@@ -480,7 +480,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 			case 'tristan':
-				frames = Paths.getSparrowAtlas('dave/Tristan', 'shared');
+				frames = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
 				
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				for (anim in ['LEFT', 'DOWN', 'UP', 'RIGHT'])
@@ -488,7 +488,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing$anim', 'BF NOTE ${anim} instance', 24, false);
 					animation.addByPrefix('sing${anim}miss', 'BF NOTE $anim MISS', 24, false);
 				}
-				animation.addByPrefix('hey', 'BF HEY', 24, false);
+				animation.addByPrefix('hey', 'BF HEY!!', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));

@@ -4665,11 +4665,27 @@ class PlayState extends MusicBeatState
 			case 'mealie':
 				switch (curStep)
 				{
+					case 659:
+						subtitleManager.addSubtitle("I will block you!", 0.02, 0.6);
+					case 1194:
+						subtitleManager.addSubtitle("I want you else", 0.02, 0.6);
+					case 1751:
+						subtitleManager.addSubtitle("Ah oh I'm gonna break my", 0.02, 0.6);
+					case 1770:
+						subtitleManager.addSubtitle("Phone", 0.02, 0.6);
 					case 1776:
-						var position = dad.getPosition();
+						var position = dad.getPosition(); 
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad('bambi-angey', position);
 						dad.color = nightColor;
+					case 1800:
+						subtitleManager.addSubtitle("Is this you wanted", 0.02, 0.6);
+					case 1810:
+						subtitleManager.addSubtitle("a fucking phone", 0.02, 0.6);
+					case 1843:
+						subtitleManager.addSubtitle("Holy shit", 0.02, 1, {subtitleSize: 60});
+					case 2418:
+						subtitleManager.addSubtitle("You fucking liar Moldy!", 0.02, 0.6);
 				}
 			case 'exploitation':
 				switch(curStep)
@@ -4723,6 +4739,30 @@ class PlayState extends MusicBeatState
 			case 'shredder':
 				switch (curStep)
 				{
+					case 261:
+						subtitleManager.addSubtitle("Oh my god", 0.02, 0.3);
+					case 273:
+						subtitleManager.addSubtitle("I fucking hate you", 0.02, 0.6);
+					case 296:
+						subtitleManager.addSubtitle("That guy, I hate you so much", 0.02, 0.6);
+					case 325:
+						subtitleManager.addSubtitle("Check your closet!", 0.02, 0.6);
+					case 342:
+						subtitleManager.addSubtitle("Check your closet!", 0.02, 0.6);
+					case 356:
+						subtitleManager.addSubtitle("Or else", 0.02, 0.6);
+					case 361:
+						subtitleManager.addSubtitle("I will kill you are rodeo", 0.02, 0.6);
+					case 384:
+						subtitleManager.addSubtitle("Trash.", 0.02, 0.6, {subtitleSize: 60);
+					case 393:
+						subtitleManager.addSubtitle("And this", 0.02, 0.6, {subtitleSize: 60);
+					case 408:
+						subtitleManager.addSubtitle("Durrrr!", 0.02, 0.6, {subtitleSize: 60);
+					case 425:
+						subtitleManager.addSubtitle("Check your closet motherfuckers", 0.02, 0.6, {subtitleSize: 60);
+					case 484:
+						subtitleManager.addSubtitle("Check you closet motherfuckers", 0.02, 0.6, {subtitleSize: 60);
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
@@ -4761,6 +4801,10 @@ class PlayState extends MusicBeatState
 						});
 						dadStrums.clear();
 						generateStaticArrows(0);
+					case 1937:
+						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60);
+					case 1946:
+						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60);
 				}
 				
 		}
