@@ -4754,15 +4754,15 @@ class PlayState extends MusicBeatState
 					case 361:
 						subtitleManager.addSubtitle("I will kill you are rodeo", 0.02, 0.6);
 					case 384:
-						subtitleManager.addSubtitle("Trash.", 0.02, 0.6, {subtitleSize: 60);
+						subtitleManager.addSubtitle("Trash.", 0.02, 0.6, {subtitleSize: 60});
 					case 393:
-						subtitleManager.addSubtitle("And this", 0.02, 0.6, {subtitleSize: 60);
+						subtitleManager.addSubtitle("And this", 0.02, 0.6, {subtitleSize: 60});
 					case 408:
-						subtitleManager.addSubtitle("Durrrr!", 0.02, 0.6, {subtitleSize: 60);
+						subtitleManager.addSubtitle("Durrrr!", 0.02, 0.6, {subtitleSize: 60});
 					case 425:
-						subtitleManager.addSubtitle("Check your closet motherfuckers", 0.02, 0.6, {subtitleSize: 60);
+						subtitleManager.addSubtitle("Check your closet motherfuckers", 0.02, 0.6, {subtitleSize: 60});
 					case 484:
-						subtitleManager.addSubtitle("Check you closet motherfuckers", 0.02, 0.6, {subtitleSize: 60);
+						subtitleManager.addSubtitle("Check you closet motherfuckers", 0.02, 0.6, {subtitleSize: 60});
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
@@ -4802,11 +4802,10 @@ class PlayState extends MusicBeatState
 						dadStrums.clear();
 						generateStaticArrows(0);
 					case 1937:
-						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60);
+						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60});
 					case 1946:
-						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60);
+						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60});
 				}
-				
 		}
 		#if desktop
 		DiscordClient.changePresence(detailsText
