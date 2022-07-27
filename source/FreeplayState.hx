@@ -71,6 +71,10 @@ class FreeplayState extends MusicBeatState
 		FlxColor.GREEN,    // SECRET MOD LEAK
 		FlxColor.fromRGB(44, 44, 44),    // RECURSER
     ];
+	var skipSelect:Array<String> = 
+	[
+		'five-nights'
+	];
 
 	private var camFollow:FlxObject;
 	private static var prevCamFollow:FlxObject;
@@ -485,7 +489,7 @@ class FreeplayState extends MusicBeatState
 				PlayState.storyDifficulty = curDifficulty;
 	
 				PlayState.storyWeek = songs[curSelected].week;
-				if (FlxG.keys.pressed.CONTROL)
+				if ((FlxG.keys.pressed.CONTROL || skipSelect.contains(PlayState.SONG.song.toLowerCase())) && PlayState.SONG.song.toLowerCase() != 'exploitation')
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
 				}

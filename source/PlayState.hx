@@ -539,10 +539,16 @@ class PlayState extends MusicBeatState
 				}
 		}
 		var gfVersion:String = 'gf';
+		
+		var noGFSongs = ['tutorial', 'memory', 'five-nights', 'secret-mod-leak'];
 
 		if(SONG.gf != null)
 		{
 			gfVersion = SONG.gf;
+		}
+		if (noGFSongs.contains(SONG.song.toLowerCase()))
+		{
+			gfVersion = 'gf-none';
 		}
 
 		screenshader.waveAmplitude = 1;
@@ -578,7 +584,7 @@ class PlayState extends MusicBeatState
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		if (!(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel") && SONG.song != "Tutorial" || SONG.song.toLowerCase() == 'memory' || SONG.song.toLowerCase() == 'secret-mod-leak')
+		if (!(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel") || noGFSongs.contains(SONG.song.toLowerCase()))
 		{
 			gf.visible = false;
 		}
@@ -766,7 +772,7 @@ class PlayState extends MusicBeatState
 		//dad repositioning
 		switch (dad.curCharacter)
 		{
-			case 'dave' | 'dave-annoyed' | 'dave-cool':
+			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
 				dad.y -= 150;
 			case 'dave-angey':
 				dad.y -= 300;

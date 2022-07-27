@@ -113,11 +113,11 @@ class ChangeKeybinds extends MusicBeatState
 		switch (state)
 		{
 			case SelectControl:
-				if (up)
+				if (up && !controls.RIGHT && !controls.LEFT)
 				{
 					changeSelection(-1);
 				}
-				if (down)
+				if (down && !controls.RIGHT && !controls.LEFT)
 				{
 					changeSelection(1);
 				}
@@ -151,11 +151,11 @@ class ChangeKeybinds extends MusicBeatState
 					{
 						updateText(presetLeft, false);
 					}
-					if (left && !controls.LEFT)
+					if (left)
 					{
 						changePresetSelection(-1);
 					}
-					if (right & !controls.RIGHT)
+					if (right)
 					{
 						changePresetSelection(1);
 					}

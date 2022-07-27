@@ -1,5 +1,6 @@
 package;
 
+import sys.FileSystem;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.addons.effects.chainable.FlxEffectSprite;
@@ -77,6 +78,35 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 
 				flipX = true;
+			case 'nofriend':
+				frames = Paths.getSparrowAtlas('fiveNights/nofriend', 'shared');
+
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'miss $anim', 24, false);
+				}
+				animation.addByPrefix('hey', 'hey', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				barColor = FlxColor.fromRGB(49, 176, 209);
+				
+				nativelyPlayable = true;
+				flipX = true;
+				
+				playAnim('idle');
+			case 'nofriend-death':
+				frames = Paths.getSparrowAtlas('fiveNights/nofriend_Dead', 'shared');
+
+				animation.addByPrefix('firstDeath', "dead0", 24, false);
+				animation.addByPrefix('deathLoop', "dead loop", 24, true);
+				animation.addByPrefix('deathConfirm', "dead confirm", 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('firstDeath');
 			case 'bf-pixel':
 				frames = Paths.getSparrowAtlas('weeb/bfPixel', 'shared');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
@@ -149,6 +179,24 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromString('#33de39');
 
 				playAnim('danceRight');
+			case 'gf-none':
+				frames = Paths.getSparrowAtlas('characters/noGF', 'shared');
+				
+				animation.addByIndices('danceLeft', 'GF Dancing Beat', [0], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing Beat', [0], "", 24, false);
+				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
+				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
+				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
+				animation.addByPrefix('singUP', 'GF Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
+				animation.addByIndices('sad', 'gf sad', [0], "", 24, false);
+				animation.addByPrefix('scared', 'GF FEAR', 24);
+
+				loadOffsetFile(curCharacter);
+
+				barColor = FlxColor.fromString('#33de39');
+
+				playAnim('danceRight');
 			case 'gf-pixel':
 				tex = Paths.getSparrowAtlas('weeb/gfPixel', 'shared');
 				frames = tex;
@@ -180,7 +228,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'hey', 24, false);
 	
 				recursedSkin = 'dave-recursed';
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 				
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
@@ -227,7 +275,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 		
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 				
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
@@ -237,7 +285,7 @@ class Character extends FlxSprite
 		
 				playAnim('idle');
 			case 'dave-fnaf':
-				frames = Paths.getSparrowAtlas('dave/characters/dave_fnaf', 'shared');
+				frames = Paths.getSparrowAtlas('fiveNights/dave_fnaf', 'shared');
 				animation.addByPrefix('idle', 'idle', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
@@ -276,7 +324,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
 				}
 
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 
 				barColor = FlxColor.WHITE;
 
@@ -328,7 +376,7 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
 
@@ -388,10 +436,10 @@ class Character extends FlxSprite
 		
 				barColor = FlxColor.fromRGB(17, 223, 10);
 
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 
-				globaloffset[0] = 150;
-				globaloffset[1] = 450; //this is the y
+				globaloffset[0] = 150 * 1.5;
+				globaloffset[1] = 450 * 1.5; //this is the y
 				setGraphicSize(Std.int((width * 1.5) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
@@ -491,7 +539,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'BF HEY!!', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 	
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
 
@@ -532,7 +580,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 	
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 				
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				
@@ -563,7 +611,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 		
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
 					
@@ -581,7 +629,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter);
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				
@@ -752,13 +800,30 @@ class Character extends FlxSprite
 	}
 	function loadOffsetFile(character:String)
 	{
-		var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character));
-		
-		for (offsetText in offsetStuffs)
+		var playerPrefix = '-playable';
+		if (isPlayer)
 		{
-			var offsetInfo:Array<String> = offsetText.split(' ');
+			character += playerPrefix;
+		}
 
-			addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]), Std.parseFloat(offsetInfo[2]));
+		if (FileSystem.exists(Paths.offsetFile(character)))
+		{
+			var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character));
+		
+			for (offsetText in offsetStuffs)
+			{
+				var offsetInfo:Array<String> = offsetText.split(' ');
+	
+				addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]), Std.parseFloat(offsetInfo[2]));
+			}
+		}
+		else
+		{
+			FlxG.log.warn('No offset file found at path: ${Paths.offsetFile(character)}, defaulting offsets to 0');
+			for (anim in animation.getAnimationList())
+			{
+				addOffset(anim.name, 0, 0);
+			}
 		}
 	}
 

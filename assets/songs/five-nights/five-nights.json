@@ -2,7 +2,7 @@
 	"song": {
 		"speed": 3,
 		"stage": "office",
-		"player1": "bf",
+		"player1": "nofriend",
 		"player2": "dave-fnaf",
 		"events": [],
 		"notes": [

@@ -31,8 +31,10 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'dave-death';
 			case 'tristan':
 				daBf = 'tristan-death';
+			case 'nofriend':
+				daBf = 'nofriend-death';
 			default:
-				daBf = 'bf';
+				daBf = char;
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{
