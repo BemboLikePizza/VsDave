@@ -43,7 +43,7 @@ class BambisCornGame extends MusicBeatState
     [
         "Welcome to Bambis' Corn Game!",
         "Your objective is to get all the corn before bambi catches you!",
-        "If you get all the cosrn before he finds you, you win!",
+        "If you get all the corn before he finds you, you win!",
         "Good luck!"
     ];
 
@@ -126,7 +126,7 @@ class BambisCornGame extends MusicBeatState
         FlxG.sound.playMusic(Paths.music('cornIntro', 'shared'));
 
         introText = new FlxText(0, 0, FlxG.width, texts[0] + "\n\n\n\n\nCONTINUE - ENTER",32);
-		introText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.WHITE, CENTER);
+		introText.setFormat(Paths.font("pixel.otf"), 32, FlxColor.WHITE, CENTER, null, FlxColor.BLACK);
 		introText.screenCenter();
 		introText.antialiasing = true;
 		add(introText);

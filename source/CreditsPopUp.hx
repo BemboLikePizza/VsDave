@@ -59,18 +59,18 @@ class CreditsPopUp extends FlxSpriteGroup
 		switch (PlayState.storyWeek)
 		{
 			case 1:
-				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false, iconOffset: -20};
+				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false, iconOffset: 0};
 			case 2:
 				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 30};
 			case 3:
-				headingPath = {path: 'songHeadings/splitathonHeading', antiAliasing: false, iconOffset: 0};
+				headingPath = {path: 'songHeadings/splitathonHeading', antiAliasing: false, iconOffset: -10};
 			case 4:
 				headingPath = {path: 'songHeadings/festivalHeading', antiAliasing: true, iconOffset: 0};
 			case 8:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: -20};
 			case 10:
-				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 0};
+				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
 		}
 		if (headingPath != null)
 		{
