@@ -110,10 +110,6 @@ class ChangeKeybinds extends MusicBeatState
 		var back = controls.BACK;
 		var accept = controls.ACCEPT;
 
-		if ()
-		{
-			
-		}
 		switch (state)
 		{
 			case SelectControl:
