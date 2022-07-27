@@ -58,6 +58,9 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		super();
 
+		if (!PlayState.instance.hasDialogue)
+			return;
+
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'house' | 'insanity' | 'splitathon':

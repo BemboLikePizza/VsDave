@@ -43,7 +43,7 @@ class OptionsMenu extends MusicBeatState
 		languages = LanguageManager.getLanguages();
 
 		controlsStrings = CoolUtil.coolStringFile( 
-			LanguageManager.getTextString('change_keybind')
+			LanguageManager.getTextString('option_change_keybinds')
 			+ "\n" + (FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')) 
 			+ "\n" + (FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll'))
 			+ "\n" + (FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off'))
@@ -115,7 +115,7 @@ class OptionsMenu extends MusicBeatState
 					{
 						FlxG.switchState(new ChangeKeybinds());
 					});
-					updateGroupControls(LanguageManager.getTextString('change_keybind'), 0, 'Vertical');
+					updateGroupControls(LanguageManager.getTextString('option_change_keybinds'), 0, 'Vertical');
 				case 1:
 					FlxG.save.data.newInput = !FlxG.save.data.newInput;
 					updateGroupControls((FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')), 1, 'Vertical');	

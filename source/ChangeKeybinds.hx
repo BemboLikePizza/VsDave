@@ -94,7 +94,7 @@ class ChangeKeybinds extends MusicBeatState
 		curTextGroup = textGroups[curItemSelected];
 
 		camFollow = new FlxObject(FlxG.width / 2, selectableItems[curItemSelected].y);
-		FlxG.camera.follow(camFollow, 0.3);
+		FlxG.camera.follow(camFollow, 0.05);
 		
 		changeSelection();
 
@@ -110,6 +110,10 @@ class ChangeKeybinds extends MusicBeatState
 		var back = controls.BACK;
 		var accept = controls.ACCEPT;
 
+		if ()
+		{
+			
+		}
 		switch (state)
 		{
 			case SelectControl:
@@ -151,16 +155,15 @@ class ChangeKeybinds extends MusicBeatState
 					{
 						updateText(presetLeft, false);
 					}
-					if (left)
+					if (left && !controls.LEFT)
 					{
 						changePresetSelection(-1);
 					}
-					if (right)
+					if (right & !controls.RIGHT)
 					{
 						changePresetSelection(1);
 					}
 				}
-				
 			case SelectKeybind:
 				if (left)
 				{
@@ -250,7 +253,7 @@ class ChangeKeybinds extends MusicBeatState
 
 		var keybindTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 
-		var control:FlxText = new FlxText((FlxG.width / 2) - 200, (preset.y + 75) + (order * 100), 0, uiControl.uiName + ":", 32);
+		var control:FlxText = new FlxText((FlxG.width / 2) - 200, (preset.y + 125) + (order * 100), 0, uiControl.uiName + ":", 32);
 		control.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		control.borderSize = 2;
 		control.antialiasing = true;
@@ -287,7 +290,7 @@ class ChangeKeybinds extends MusicBeatState
 		var arrowOffset:Float = 100;
 		var keybindPresetGroup:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 		
-		choosePreset = new FlxText(0, 200, FlxG.width / 2, LanguageManager.getTextString('keybind_preset'), 32);
+		choosePreset = new FlxText(0, 175, FlxG.width / 2, LanguageManager.getTextString('keybind_preset'), 32);
 		choosePreset.screenCenter(X);
 		choosePreset.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		choosePreset.borderSize = 2;
@@ -295,7 +298,7 @@ class ChangeKeybinds extends MusicBeatState
 		keybindPresetGroup.add(choosePreset);
 		add(choosePreset);
 
-		preset = new FlxText(0, choosePreset.y + 40, FlxG.width / 2, keybindPresets[curSelectedPreset], 32);
+		preset = new FlxText(0, choosePreset.y + 75, FlxG.width / 2, keybindPresets[curSelectedPreset], 32);
 		preset.screenCenter(X);
 		preset.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		preset.borderSize = 2;
@@ -304,14 +307,14 @@ class ChangeKeybinds extends MusicBeatState
 		keybindPresetGroup.add(preset);
 		selectableItems.push(preset);
 
-		presetLeft = new FlxText(preset.x - arrowOffset, choosePreset.y, FlxG.width / 2, "<", 32);
+		presetLeft = new FlxText(preset.x - arrowOffset, preset.y - preset.textField.height - 2, FlxG.width / 2, "<", 32);
 		presetLeft.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		presetLeft.borderSize = 1;
 		presetLeft.antialiasing = true;
 		keybindPresetGroup.add(presetLeft);
 		add(presetLeft);
 
-		presetRight = new FlxText(preset.x + arrowOffset, choosePreset.y, FlxG.width / 2, ">", 32);
+		presetRight = new FlxText(preset.x + arrowOffset, preset.y - preset.textField.height - 2, FlxG.width / 2, ">", 32);
 		presetRight.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		presetRight.borderSize = 1;
 		presetRight.antialiasing = true;

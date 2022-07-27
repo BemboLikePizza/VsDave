@@ -1048,12 +1048,13 @@ class PlayState extends MusicBeatState
 		}
 		if (isStoryMode)
 		{
-			switch (curSong.toLowerCase())
+			if (hasDialogue)
 			{
-				case 'house' | 'insanity' | 'furiosity' | 'polygonized' | 'supernovae' | 'glitch' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'interdimensional':
-					schoolIntro(doof);
-				default:
-					startCountdown();
+				schoolIntro(doof);
+			}
+			else
+			{
+				startCountdown();
 			}
 		}
 		else
@@ -2613,7 +2614,7 @@ class PlayState extends MusicBeatState
 		#if debug
 		if (FlxG.keys.justPressed.FOUR)
 		{
-			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\n CAMERA POSITION: ${camFollow.getPosition()}');
+			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\nCAMERA POSITION: ${camFollow.getPosition()}');
 		}
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(dad.curCharacter));
