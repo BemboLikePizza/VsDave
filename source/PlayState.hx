@@ -677,8 +677,6 @@ class PlayState extends MusicBeatState
 				}
 		}
 
-		dadmirror.x += 150;
-
 		dadmirror.visible = false;
 
 		if (formoverride == "none" || formoverride == "bf" || formoverride == SONG.player1)
@@ -755,7 +753,7 @@ class PlayState extends MusicBeatState
 				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
 				dad.setPosition(50, 270);
-				dadmirror.setPosition(100, 270);
+				dadmirror.setPosition(dad.x, dad.y);
 				boyfriend.setPosition(843, 270);
 				gf.setPosition(280 + charoffsetx, -60 + charoffsety);
 			case 'backyard':
@@ -919,6 +917,8 @@ class PlayState extends MusicBeatState
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale") + ' - $engineName Engine 3.0 (KE 1.2)';
 			case "exploitation":
 				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine 3.0 (???)";
+			case 'recursed':
+				funkyText = SONG.song + ' - $engineName Engine 3.0 (KE 1.2)';
 			case 'overdrive':
 				funkyText = '';
 		}
@@ -1356,6 +1356,8 @@ class PlayState extends MusicBeatState
 					case 'green-void':
 						bg.loadGraphic(Paths.image('backgrounds/cheating/cheater'));
 						stageName = 'cheating';
+						bg.setPosition(-700, -350);
+						bg.setGraphicSize(Std.int(bg.width * 2));
 					case 'glitchy-void':
 						bg.loadGraphic(Paths.image('backgrounds/void/scarybg'));
 						bg.setPosition(0, 200);
@@ -1363,7 +1365,7 @@ class PlayState extends MusicBeatState
 						stageName = 'unfairness';
 					case 'interdimension-void':
 						bgZoom = 0.6;
-					   bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
+						bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
 						bg.setPosition(-700, -350);
 						bg.setGraphicSize(Std.int(bg.width * 1.75));
 						interdimensionBG = bg;
@@ -2360,7 +2362,7 @@ class PlayState extends MusicBeatState
 		if (dad.curCharacter == 'recurser')
 		{
 			toy = 100 + -Math.sin((elapsedtime) * 2) * 300;
-			tox = -100 -Math.cos((elapsedtime)) * 200;
+			tox = -400 - Math.cos((elapsedtime)) * 200;
 
 			dad.x += (tox - dad.x);
 			dad.y += (toy - dad.y);
@@ -2454,7 +2456,6 @@ class PlayState extends MusicBeatState
 			}
 		}
         
-
 		FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
 		if (shakeCam && eyesoreson)
 		{
@@ -4551,13 +4552,15 @@ class PlayState extends MusicBeatState
 							spr.destroy();
 						});
 						generateStaticArrows(0);
+						
+						var color = getBackgroundColor(curStage);
 
-						FlxTween.color(dad, 0.6, dad.color, nightColor);
+						FlxTween.color(dad, 0.6, dad.color, color);
 						if (formoverride != 'tristan-golden-glowing')
 						{
-							FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
+							FlxTween.color(boyfriend, 0.6, boyfriend.color, color);
 						}
-						FlxTween.color(gf, 0.6, gf.color, nightColor);
+						FlxTween.color(gf, 0.6, gf.color, color);
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
 						
 						boyfriend.canDance = false;
@@ -4665,7 +4668,7 @@ class PlayState extends MusicBeatState
 					case 1810:
 						subtitleManager.addSubtitle("a fucking phone", 0.02, 0.6);
 					case 1843:
-						subtitleManager.addSubtitle("Holy shit", 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle("Holy shit!", 0.02, 1, {subtitleSize: 60});
 					case 2418:
 						subtitleManager.addSubtitle("You fucking liar Moldy!", 0.02, 0.6);
 				}
@@ -4865,7 +4868,7 @@ class PlayState extends MusicBeatState
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
 
-		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0 || (SONG.song.toLowerCase() == 'memory' && curBeat >= 416 && curBeat <= 672))
+		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0 || (SONG.song.toLowerCase() == 'memory' && curBeat >= 416 && curBeat <= 672) || (SONG.song.toLowerCase() == 'mealie' && curBeat >= 464 && curBeat <= 592))
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
@@ -5120,15 +5123,7 @@ class PlayState extends MusicBeatState
 		dad = new Character(300, 450, char);
 		dadGroup.add(dad);
 		dad.color = getBackgroundColor(curStage);
-		switch (char)
-		{
-			case 'dave-splitathon':
-				dad.y -= 175;
-				dad.x += 250;
-			case 'bambi-splitathon':
-				dad.x += 200;
-				dad.y += 75;
-		}
+		repositionChar(dad);
 
 		boyfriend.stunned = false;
 	}
@@ -5196,8 +5191,10 @@ class PlayState extends MusicBeatState
 			case 'bambi-unfair':
 				char.y -= 260;
 				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 50);
+			case 'exbungo':
+				char.y -= 300;
 			case 'recurser':
-				char.x = char.isPlayer ? char.x + 200 : char.x - 200;
+				char.x = char.isPlayer ? char.x + 500 : char.x - 500;
 		}
 	}
 

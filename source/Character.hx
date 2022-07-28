@@ -683,7 +683,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim}miss', 'BF NOTE $anim MISS', 24, false);
 				}
 				animation.addByPrefix('firstDeath', 'BF dies', 24, false);
-				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
+				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, true);
 				animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24, false);
 
@@ -807,7 +807,6 @@ class Character extends FlxSprite
 
 			addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]), Std.parseFloat(offsetInfo[2]));
 		}
-		trace('grabbed offset file: ${Paths.offsetFile(character)}');
 	}
 
 	override function update(elapsed:Float)
@@ -902,7 +901,7 @@ class Character extends FlxSprite
 			{
 				if(!nativelyPlayable)
 				{
-					offset.set((daOffset[0] * -1) + globaloffset[0], daOffset[1] + globaloffset[1]);
+					offset.set(daOffset[0] + globaloffset[0], daOffset[1] + globaloffset[1]);
 				}
 				else
 				{

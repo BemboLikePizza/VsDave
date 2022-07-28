@@ -213,6 +213,7 @@ class FreeplayState extends MusicBeatState
 
 		scoreText = new FlxText(FlxG.width * 0.7, 0, 0, "", 32);
 		scoreText.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, LEFT);
+		scoreText.antialiasing = true;
 		scoreText.y = -225;
 		scoreText.scrollFactor.set();
 
@@ -223,6 +224,7 @@ class FreeplayState extends MusicBeatState
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 15, 0, "", 24);
 		diffText.setFormat(Paths.font("comic.ttf"), 24, FlxColor.WHITE, LEFT);
+		diffText.antialiasing = true;
 		diffText.scrollFactor.set();
  
 		add(diffText);
