@@ -371,7 +371,11 @@ class CharacterSelectState extends MusicBeatState
 			{
 				for (character in characters)
 				{
-					unlockCharacter(character.name); //unlock everyone
+					for (form in character.forms)
+					{
+						unlockCharacter(character.form); //unlock everyone
+					}
+					
 				}
 			}
 		

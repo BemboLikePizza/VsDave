@@ -546,7 +546,7 @@ class PlayState extends MusicBeatState
 		{
 			gfVersion = SONG.gf;
 		}
-		if (noGFSongs.contains(SONG.song.toLowerCase()))
+		if (noGFSongs.contains(SONG.song.toLowerCase()) || !(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel"))
 		{
 			gfVersion = 'gf-none';
 		}
@@ -584,7 +584,7 @@ class PlayState extends MusicBeatState
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		if (!(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel") || noGFSongs.contains(SONG.song.toLowerCase()))
+		if (gfVersion == 'none')
 		{
 			gf.visible = false;
 		}
@@ -693,7 +693,7 @@ class PlayState extends MusicBeatState
 			}
 			boyfriend = new Boyfriend(770, 450, formoverride);
 		}
-		switch (boyfriend.curCharacter)
+		/*switch (boyfriend.curCharacter)
 		{
 			case "tristan" | 'tristan-golden' | 'tristan-festival' | 'tristan-golden-glowing':
 				boyfriend.y = 100 + 325;
@@ -718,7 +718,7 @@ class PlayState extends MusicBeatState
 				boyfriendOldIcon = 'bambi-old';
 			case 'tb-funny-man':
 				boyfriend.x = 100 + 900;
-		}
+		}*/
 		if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" || SONG.song.toLowerCase() == 'rano')
 		{
 			dad.color = nightColor;
@@ -746,10 +746,8 @@ class PlayState extends MusicBeatState
 				dad.x -= 500;
 				dad.y -= 100;
 				boyfriend.y += 200;
-
 			case 'red-void':
 				dad.x -= 100;
-
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
@@ -761,8 +759,8 @@ class PlayState extends MusicBeatState
 				boyfriend.setPosition(843, 270);
 				gf.setPosition(280 + charoffsetx, -60 + charoffsety);
 			case 'backyard':
-				dad.setPosition(50, 200);
-				boyfriend.setPosition(790, 350);
+				dad.setPosition(50, 300);
+				boyfriend.setPosition(790, 300);
 				gf.setPosition(500 + charoffsetx, -100 + charoffsety);
 			case 'festival':
 				dad.x -= 200;
@@ -770,33 +768,10 @@ class PlayState extends MusicBeatState
 				boyfriend.x -= 200;
 		}
 		//dad repositioning
-		switch (dad.curCharacter)
-		{
-			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
-				dad.y -= 150;
-			case 'dave-angey':
-				dad.y -= 300;
-			case 'dave-splitathon':
-				dad.y -= 175;
-				dad.x += 250;
-			case 'bambi-splitathon':
-				dad.x += 200;
-				dad.y += 125;
-			case 'bambi-new':
-				dad.y += 100;
-			case 'bambi' | 'bambi-old':
-				dad.y += 50;
-			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
-				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
-			case 'bambi-3d':
-				dad.y -= 315;
-				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 150);
-			case 'bambi-unfair':
-				dad.y -= 260;
-				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 50);
-			case 'recurser':
-				dad.x -= 200;
-		}
+		repositionChar(dad);
+		repositionChar(dadmirror);
+		repositionChar(boyfriend);
+
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
 			health = 2;
 
@@ -1201,7 +1176,7 @@ class PlayState extends MusicBeatState
 				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2', 'shared'), null, 1, 1);
 				sprites.add(cornFence2);
 
-				var cornBag:BGSprite = new BGSprite('cornBag', 1200, 550, Paths.image('backgrounds/farm/cornBag', 'shared'), null, 1, 1);
+				var cornBag:BGSprite = new BGSprite('cornFence2', 1200, 550, Paths.image('backgrounds/farm/cornbag', 'shared'), null);
 				sprites.add(cornBag);
 				
 				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign', 'shared'), null);
@@ -1307,7 +1282,7 @@ class PlayState extends MusicBeatState
 				sprites.add(hills);
 				add(hills);
 
-				var grass:BGSprite = new BGSprite('grass', -843, 154, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, 1, 1, true);
+				var grass:BGSprite = new BGSprite('grass', -800, 150, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, 1, 1, true);
 				sprites.add(grass);
 				add(grass);
 
@@ -5142,7 +5117,7 @@ class PlayState extends MusicBeatState
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
 		dadGroup.remove(dad);
 
-		dad = new Character(100, 450, char);
+		dad = new Character(300, 450, char);
 		dadGroup.add(dad);
 		dad.color = getBackgroundColor(curStage);
 		switch (char)
@@ -5193,6 +5168,36 @@ class PlayState extends MusicBeatState
 		if (boyfriend != null)
 		{
 			boyfriend.stunned = false;
+		}
+	}
+	public function repositionChar(char:Character)
+	{
+		switch (char.curCharacter)
+		{
+			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
+				char.y -= 150;
+			case 'dave-angey':
+				char.y -= 400;
+			case 'dave-splitathon':
+				char.y -= 175;
+				char.x += 250;
+			case 'bambi-splitathon':
+				char.x += 200;
+				char.y += 125;
+			case 'bambi-new':
+				char.y += 100;
+			case 'bambi' | 'bambi-old':
+				char.y += 50;
+			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
+				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
+			case 'bambi-3d':
+				char.y -= 315;
+				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
+			case 'bambi-unfair':
+				char.y -= 260;
+				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 50);
+			case 'recurser':
+				char.x = char.isPlayer ? char.x + 200 : char.x - 200;
 		}
 	}
 

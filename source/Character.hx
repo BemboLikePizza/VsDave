@@ -238,12 +238,11 @@ class Character extends FlxSprite
 				tex = Paths.getSparrowAtlas('dave/characters/Dave_insanity_lol', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
 				animation.addByPrefix('scared', 'scared', 24, true);
-				animation.addByPrefix('hey', 'hey', 24, false);
 	
 				loadOffsetFile(curCharacter);
 				
@@ -808,6 +807,7 @@ class Character extends FlxSprite
 
 			addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]), Std.parseFloat(offsetInfo[2]));
 		}
+		trace('grabbed offset file: ${Paths.offsetFile(character)}');
 	}
 
 	override function update(elapsed:Float)

@@ -300,7 +300,7 @@ class TitleState extends MusicBeatState
 			{
 				case 3:
 					addMoreText('TheBuilderXD, Erizur');
-					addMoreText('T5mpler, Cuzsie');
+					addMoreText('T5mpler');
 				case 4:
 					addMoreText('and our wonderful contributors!');
 				case 5:

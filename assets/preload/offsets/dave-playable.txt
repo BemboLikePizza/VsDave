@@ -1,10 +1,10 @@
 singDOWN 0 18
-singRIGHTmiss 20 0
-singLEFTmiss 25 13
-singUP 56 22
+singRIGHTmiss 21 1
+singLEFTmiss 25 14
+singUP 55 22
 hey 3 11
 idle 0 0
-singRIGHT 18 2
+singRIGHT 18 3
 singDOWNmiss 10 13
-singUPmiss 63 23
+singUPmiss 64 23
 singLEFT 24 14
