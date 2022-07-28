@@ -175,10 +175,10 @@ class CharacterSelectState extends MusicBeatState
 		
 		
 
-		var hills:BGSprite = new BGSprite('hills', -128, 63, Paths.image('backgrounds/charSelect/hills'), null, 1, 1);
+		var hills:BGSprite = new BGSprite('hills', -133, 52, Paths.image('backgrounds/charSelect/hills'), null, 1, 1);
 		add(hills);
 
-		var house:BGSprite = new BGSprite('house', 388, 82, Paths.image('backgrounds/charSelect/house'), null, 1, 1);
+		var house:BGSprite = new BGSprite('house', 385, 78, Paths.image('backgrounds/charSelect/house'), null, 1, 1);
 		add(house);
 
 		var behindGrass:BGSprite = new BGSprite('behindGrass', -33, 468, Paths.image('backgrounds/charSelect/behindGrass'), null, 1, 1);
@@ -193,7 +193,7 @@ class CharacterSelectState extends MusicBeatState
 		var grass:BGSprite = new BGSprite('grass', -80, 385, Paths.image('backgrounds/charSelect/grass'), null, 1, 1);
 		add(grass);
 		
-		var frontGrass:BGSprite = new BGSprite('frontGrass', -163, 425, Paths.image('backgrounds/charSelect/frontGrass'), null, 1, 1);
+		var frontGrass:BGSprite = new BGSprite('frontGrass', -185, 382, Paths.image('backgrounds/charSelect/frontGrass'), null, 1, 1);
 		add(frontGrass);
 		
 		var varientColor = 0xFF878787;
