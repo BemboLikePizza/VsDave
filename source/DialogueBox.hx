@@ -58,15 +58,12 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		super();
 
-		if (!PlayState.instance.hasDialogue)
-			return;
-
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'house' | 'insanity' | 'splitathon':
 				FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness' | 'interdimensional' | 'exploitation':
+			case 'furiosity' | 'polygonized' | 'interdimensional':
 				FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'supernovae' | 'glitch':
@@ -155,8 +152,6 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeftCharacter = ['bambi', 'splitathon'];
 			case 'cheating':
 				portraitLeftCharacter = ['bambi', '3d'];
-			case 'unfairness':
-				portraitLeftCharacter = ['bambi', 'unfair'];
 		}
 		
 
@@ -195,7 +190,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'furiosity' | 'polygonized' | 'cheating' | 'unfairness' | 'interdimensional':
+			case 'furiosity' | 'polygonized' | 'interdimensional':
 				dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
 				dropText.font = 'Comic Sans MS Bold';
 				dropText.color = 0xFFFFFFFF;

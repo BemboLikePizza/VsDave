@@ -1635,9 +1635,9 @@ class PlayState extends MusicBeatState
 			switch (SONG.song.toLowerCase())
 			{
 				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
-				'memory' | 'overdrive' | 'roots' | 'vs-dave-rap':
+				'memory' | 'overdrive' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
-				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 'secret-mod-leak' | 
+				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 
 				'shredder' | 'supernovae' | 'unfairness':
 					soundAssetsAlt = introSoundAssets.get('bambi');
 				case 'exploitation':
@@ -4249,22 +4249,22 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash();
 						black.alpha = 0.6;
 						defaultCamZoom += 0.2;
-					case 644:
-						subtitleManager.addSubtitle("I'm trying to", 0.02, 1.5);
-					case 672:
-						subtitleManager.addSubtitle("No I'm not trying help you", 0.02, 1);
-					case 700:
-						subtitleManager.addSubtitle("Because watch me...", 0.02, 1);
-					case 720:
-						subtitleManager.addSubtitle("Because...", 0.02, 1);
-					case 734:
-						subtitleManager.addSubtitle("watch me go subscribe me", 0.02, 1);
-					case 759:
-						subtitleManager.addSubtitle("Whatever.", 0.02, 1, {subtitleSize: 45});
 					case 768:
-						FlxG.camera.flash();
+					FlxG.camera.flash();
 						defaultCamZoom -= 0.2;
 						black.alpha = 0;
+					case 1028:
+						subtitleManager.addSubtitle("I'm trying to", 0.02, 1.5);
+					case 1056:
+						subtitleManager.addSubtitle("No I'm not trying help you", 0.02, 1);
+					case 1084:
+						subtitleManager.addSubtitle("Because watch me...", 0.02, 1);
+					case 1104:
+						subtitleManager.addSubtitle("Because...", 0.02, 1);
+					case 1118:
+						subtitleManager.addSubtitle("watch me go subscribe me", 0.02, 1);
+					case 1143:
+						subtitleManager.addSubtitle("Whatever.", 0.02, 1, {subtitleSize: 45});
 					case 1152:
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
@@ -4932,7 +4932,7 @@ class PlayState extends MusicBeatState
 						switchNoteSide();
 					case 143:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
-					case 192:
+					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 487:
 						modchart = ExploitationModchartType.ScrambledNotes;

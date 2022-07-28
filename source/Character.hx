@@ -228,7 +228,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'hey', 24, false);
 	
 				recursedSkin = 'dave-recursed';
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
@@ -275,7 +275,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 		
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
@@ -324,7 +324,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
 				}
 
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				barColor = FlxColor.WHITE;
 
@@ -376,7 +376,7 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				playAnim('idle');
 
@@ -436,7 +436,7 @@ class Character extends FlxSprite
 		
 				barColor = FlxColor.fromRGB(17, 223, 10);
 
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				globaloffset[0] = 150 * 1.5;
 				globaloffset[1] = 450 * 1.5; //this is the y
@@ -539,7 +539,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'BF HEY!!', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 	
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				playAnim('idle');
 
@@ -580,7 +580,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 	
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				
@@ -611,7 +611,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 		
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
 					
@@ -629,7 +629,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
-				loadOffsetFile(curCharacter);
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				
@@ -695,90 +695,90 @@ class Character extends FlxSprite
 				flipX = true;
 
 				playAnim('idle');
-				case 'tristan-recursed':
-					frames = Paths.getSparrowAtlas('recursed/TristanRecursed', 'shared');
-	
-					animation.addByPrefix('idle', 'BF idle dance', 24, false);
-					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-					animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-					animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-	
-					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-					animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-					animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-	
-					animation.addByPrefix('firstDeath', 'BF dies', 24, false);
-					animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
-					animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
-					animation.addByPrefix('scared', 'BF idle shaking', 24, false);
-	
-					flipX = true;
-					barColor = FlxColor.WHITE;
-					
-					loadOffsetFile(curCharacter);
-					
-					nativelyPlayable = true;
-	
-					playAnim('idle');	
-				case 'tb-funny-man':
-					tex = Paths.getSparrowAtlas('characters/DONT_GO_SNOOPING_WHERE_YOURE_NOT_SUPPOSED_TO', 'shared');
-					frames = tex;
-	
-					animation.addByPrefix('idle', 'idle dance', 24, false);
-					animation.addByPrefix('singUP', 'NOTE UP0', 24, false);
-					animation.addByPrefix('singLEFT', 'NOTE LEFT0', 24, false);
-					animation.addByPrefix('singRIGHT', 'NOTE RIGHT0', 24, false);
-					animation.addByPrefix('singDOWN', 'NOTE DOWN0', 24, false);
-					animation.addByPrefix('singUPmiss', 'NOTE UP MISS', 24, false);
-					animation.addByPrefix('singLEFTmiss', 'NOTE LEFT MISS', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'NOTE RIGHT MISS', 24, false);
-					animation.addByPrefix('singDOWNmiss', 'NOTE DOWN MISS', 24, false);
-					animation.addByPrefix('hey', 'HEY!!', 24, false);
-	
-					//animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
-					//animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
-					//animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
-					animation.addByPrefix('scared', 'idle shaking', 24);
-	
-					loadOffsetFile(curCharacter);
+			case 'tristan-recursed':
+				frames = Paths.getSparrowAtlas('recursed/TristanRecursed', 'shared');
 
-					recursedSkin = 'tb-recursed';
-	
-					flipX = true;
-					barColor = FlxColor.fromRGB(102, 255, 0);
-	
-					nativelyPlayable = true;
-					
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+
+				animation.addByPrefix('firstDeath', 'BF dies', 24, false);
+				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
+				animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
+				animation.addByPrefix('scared', 'BF idle shaking', 24, false);
+
+				flipX = true;
+				barColor = FlxColor.WHITE;
+
+				loadOffsetFile(curCharacter);
+
+				nativelyPlayable = true;
+
 				playAnim('idle');
-				case 'tb-recursed':
-					tex = Paths.getSparrowAtlas('recursed/STOP_LOOKING_AT_THE_FILES', 'shared');
-					frames = tex;
-	
-					animation.addByPrefix('idle', 'BF idle dance', 24, false);
-					animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-					animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-					animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-					animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-					animation.addByPrefix('hey', 'BF HEY!!', 24, false);
-	
-					//animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
-					//animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
-					//animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
-					animation.addByPrefix('scared', 'BF idle shaking', 24);
-	
-					loadOffsetFile(curCharacter);
-	
-					flipX = true;
-					barColor = FlxColor.WHITE;
-	
-					nativelyPlayable = true;
-					
+			case 'tb-funny-man':
+				tex = Paths.getSparrowAtlas('characters/DONT_GO_SNOOPING_WHERE_YOURE_NOT_SUPPOSED_TO', 'shared');
+				frames = tex;
+
+				animation.addByPrefix('idle', 'idle dance', 24, false);
+				animation.addByPrefix('singUP', 'NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'HEY!!', 24, false);
+
+				// animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
+				// animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
+				// animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
+				animation.addByPrefix('scared', 'idle shaking', 24);
+
+				loadOffsetFile(curCharacter);
+
+				recursedSkin = 'tb-recursed';
+
+				flipX = true;
+				barColor = FlxColor.fromRGB(102, 255, 0);
+
+				nativelyPlayable = true;
+
+				playAnim('idle');
+			case 'tb-recursed':
+				tex = Paths.getSparrowAtlas('recursed/STOP_LOOKING_AT_THE_FILES', 'shared');
+				frames = tex;
+
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY!!', 24, false);
+
+				// animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
+				// animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);
+				// animation.addByPrefix('deathConfirm', "IF YOU CAN SEE THIS YOU HAVE BEEN EPICLY TROLLED!!!", 24, false);
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
+
+				loadOffsetFile(curCharacter);
+
+				flipX = true;
+				barColor = FlxColor.WHITE;
+
+				nativelyPlayable = true;
+
 				playAnim('idle');
 
 			case 'stereo':
@@ -800,30 +800,13 @@ class Character extends FlxSprite
 	}
 	function loadOffsetFile(character:String)
 	{
-		var playerPrefix = '-playable';
-		if (isPlayer)
-		{
-			character += playerPrefix;
-		}
-
-		if (FileSystem.exists(Paths.offsetFile(character)))
-		{
-			var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character));
+		var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character));
 		
-			for (offsetText in offsetStuffs)
-			{
-				var offsetInfo:Array<String> = offsetText.split(' ');
-	
-				addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]), Std.parseFloat(offsetInfo[2]));
-			}
-		}
-		else
+		for (offsetText in offsetStuffs)
 		{
-			FlxG.log.warn('No offset file found at path: ${Paths.offsetFile(character)}, defaulting offsets to 0');
-			for (anim in animation.getAnimationList())
-			{
-				addOffset(anim.name, 0, 0);
-			}
+			var offsetInfo:Array<String> = offsetText.split(' ');
+
+			addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]), Std.parseFloat(offsetInfo[2]));
 		}
 	}
 
