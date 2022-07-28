@@ -368,16 +368,15 @@ class CharacterSelectState extends MusicBeatState
 		}
 
 		if (FlxG.keys.justPressed.SEVEN)
+		{
+			for (character in characters)
 			{
-				for (character in characters)
+				for (form in character.forms)
 				{
-					for (form in character.forms)
-					{
-						unlockCharacter(character.form.name); //unlock everyone
-					}
-					
+					unlockCharacter(form.name); // unlock everyone
 				}
 			}
+		}
 		
 		for (i in 0...controlSet.length)
 		{

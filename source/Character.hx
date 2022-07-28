@@ -788,7 +788,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 					
-				playAnim('idle');	
+				playAnim('idle');
 		}
 		dance();
 
