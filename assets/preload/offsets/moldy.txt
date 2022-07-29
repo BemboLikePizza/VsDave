@@ -1,0 +1,7 @@
+idle 0 0
+singDOWN 39 -21
+singRIGHT -6 -5
+helpMe 52 72
+singUP 48 89
+singLEFT 10 4
+waa 53 82

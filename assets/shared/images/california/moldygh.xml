@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="moldygh.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Idle0000" x="0" y="0" width="318" height="539" frameX="0" frameY="-15" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0001" x="0" y="0" width="318" height="539" frameX="0" frameY="-15" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0002" x="322" y="0" width="321" height="543" frameX="-1" frameY="-11" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0003" x="322" y="0" width="321" height="543" frameX="-1" frameY="-11" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0004" x="647" y="0" width="324" height="545" frameX="-1" frameY="-9" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0005" x="647" y="0" width="324" height="545" frameX="-1" frameY="-9" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0006" x="975" y="0" width="329" height="550" frameX="-2" frameY="-4" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0007" x="975" y="0" width="329" height="550" frameX="-2" frameY="-4" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0008" x="1308" y="0" width="333" height="554" frameX="-2" frameY="0" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0009" x="1308" y="0" width="333" height="554" frameX="-2" frameY="0" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0010" x="1308" y="0" width="333" height="554" frameX="-2" frameY="0" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0011" x="1308" y="0" width="333" height="554" frameX="-2" frameY="0" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0012" x="1308" y="0" width="333" height="554" frameX="-2" frameY="0" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="Idle0013" x="1308" y="0" width="333" height="554" frameX="-2" frameY="0" frameWidth="335" frameHeight="554"/>
+	<SubTexture name="cry0000" x="1658" y="1694" width="429" height="637" frameX="-6" frameY="0" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0001" x="2091" y="1694" width="429" height="637" frameX="-6" frameY="0" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0002" x="2524" y="1694" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0003" x="2972" y="1694" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0004" x="3420" y="1694" width="446" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0005" x="0" y="2335" width="446" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0006" x="450" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0007" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0008" x="1346" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0009" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0010" x="450" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0011" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0012" x="1346" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0013" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="cry0014" x="450" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="down0000" x="1645" y="0" width="431" height="517" frameX="0" frameY="-14" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0001" x="1645" y="0" width="431" height="517" frameX="0" frameY="-14" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0002" x="2080" y="0" width="428" height="524" frameX="0" frameY="-7" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0003" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0004" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0005" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0006" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0007" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0008" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0009" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0010" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0011" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0012" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="down0013" x="2512" y="0" width="417" height="531" frameX="-3" frameY="0" frameWidth="431" frameHeight="531"/>
+	<SubTexture name="left0000" x="2933" y="0" width="447" height="558" frameX="0" frameY="-2" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0001" x="2933" y="0" width="447" height="558" frameX="0" frameY="-2" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0002" x="3384" y="0" width="428" height="560" frameX="-15" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0003" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0004" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0005" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0006" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0007" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0008" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0009" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0010" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0011" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0012" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="left0013" x="0" y="564" width="429" height="560" frameX="-16" frameY="0" frameWidth="447" frameHeight="560"/>
+	<SubTexture name="right0000" x="433" y="564" width="364" height="548" frameX="-5" frameY="0" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0001" x="433" y="564" width="364" height="548" frameX="-5" frameY="0" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0002" x="801" y="564" width="352" height="544" frameX="-3" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0003" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0004" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0005" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0006" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0007" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0008" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0009" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0010" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0011" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0012" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="right0013" x="1157" y="564" width="352" height="544" frameX="0" frameY="-4" frameWidth="369" frameHeight="548"/>
+	<SubTexture name="stuck in fornia0000" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0001" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0002" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0003" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0004" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0005" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0006" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0007" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0008" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0009" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0010" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0011" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0012" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0013" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0014" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0015" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0016" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0017" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0018" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0019" x="1850" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0020" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0021" x="1513" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0022" x="2187" y="564" width="321" height="559" frameX="-61" frameY="-67" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0023" x="2187" y="564" width="321" height="559" frameX="-61" frameY="-67" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0024" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0025" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0026" x="2849" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0027" x="3186" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0028" x="3186" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0029" x="3523" y="564" width="335" height="550" frameX="-52" frameY="-76" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0030" x="3523" y="564" width="335" height="550" frameX="-52" frameY="-76" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0031" x="0" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0032" x="0" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0033" x="337" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0034" x="337" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0035" x="3186" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0036" x="3186" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0037" x="674" y="1128" width="325" height="559" frameX="-59" frameY="-67" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0038" x="674" y="1128" width="325" height="559" frameX="-59" frameY="-67" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0039" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0040" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0041" x="1003" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0042" x="1003" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0043" x="1340" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0044" x="1340" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0045" x="1677" y="1128" width="323" height="559" frameX="-63" frameY="-67" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0046" x="1677" y="1128" width="323" height="559" frameX="-63" frameY="-67" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0047" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0048" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0049" x="2849" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0050" x="2004" y="1128" width="325" height="557" frameX="-59" frameY="-69" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0051" x="2004" y="1128" width="325" height="557" frameX="-59" frameY="-69" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0052" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0053" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0054" x="2849" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0055" x="2333" y="1128" width="319" height="562" frameX="-62" frameY="-64" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0056" x="2333" y="1128" width="319" height="562" frameX="-62" frameY="-64" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0057" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0058" x="2512" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0059" x="2656" y="1128" width="340" height="548" frameX="-48" frameY="-78" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0060" x="2656" y="1128" width="340" height="548" frameX="-48" frameY="-78" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0061" x="0" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0062" x="0" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0063" x="3000" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0064" x="3000" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0065" x="3337" y="1128" width="342" height="549" frameX="-51" frameY="-77" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0066" x="3337" y="1128" width="342" height="549" frameX="-51" frameY="-77" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0067" x="3683" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0068" x="3683" y="1128" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0069" x="0" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0070" x="0" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0071" x="3186" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0072" x="3186" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0073" x="337" y="1694" width="312" height="562" frameX="-65" frameY="-64" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0074" x="337" y="1694" width="312" height="562" frameX="-65" frameY="-64" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0075" x="653" y="1694" width="327" height="557" frameX="-58" frameY="-69" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0076" x="653" y="1694" width="327" height="557" frameX="-58" frameY="-69" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0077" x="2849" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0078" x="2849" y="564" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0079" x="984" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0080" x="984" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0081" x="1321" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0082" x="1321" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0083" x="984" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0084" x="984" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0085" x="1321" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0086" x="1321" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0087" x="984" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0088" x="984" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0089" x="1321" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0090" x="1321" y="1694" width="333" height="554" frameX="-55" frameY="-72" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0091" x="1658" y="1694" width="429" height="637" frameX="-6" frameY="0" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0092" x="2091" y="1694" width="429" height="637" frameX="-6" frameY="0" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0093" x="2524" y="1694" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0094" x="2972" y="1694" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0095" x="3420" y="1694" width="446" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0096" x="0" y="2335" width="446" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0097" x="450" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0098" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0099" x="1346" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0100" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0101" x="450" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0102" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0103" x="1346" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0104" x="898" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="stuck in fornia0105" x="450" y="2335" width="444" height="633" frameX="0" frameY="-4" frameWidth="446" frameHeight="637"/>
+	<SubTexture name="up0000" x="1794" y="2335" width="429" height="637" frameX="0" frameY="-7" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0001" x="1794" y="2335" width="429" height="637" frameX="0" frameY="-7" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0002" x="2227" y="2335" width="419" height="642" frameX="-5" frameY="-2" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0003" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0004" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0005" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0006" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0007" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0008" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0009" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0010" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0011" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0012" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+	<SubTexture name="up0013" x="2650" y="2335" width="413" height="644" frameX="-8" frameY="0" frameWidth="429" frameHeight="644"/>
+</TextureAtlas>

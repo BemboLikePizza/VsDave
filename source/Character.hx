@@ -789,6 +789,22 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 					
 				playAnim('idle');
+			case 'moldy':
+				frames = Paths.getSparrowAtlas('california/moldygh', 'shared');
+
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				animation.addByPrefix('waa', 'cry', 24, false);
+				animation.addByPrefix('helpMe', 'stuck in fornia', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				barColor = FlxColor.WHITE;
+
+				playAnim('idle');
 		}
 		dance();
 

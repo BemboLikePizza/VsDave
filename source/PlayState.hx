@@ -1821,6 +1821,18 @@ class PlayState extends MusicBeatState
 		{
 			songPosBar.setRange(0, FlxG.sound.music.length);
 		}
+		switch (SONG.song.toLowerCase())
+		{
+			case 'escape-from-california':
+				dad.canSing = false;
+				dad.canDance = false;
+				dad.playAnim('helpMe', true);
+				dad.animation.finishCallback = function(anim:String)
+				{
+					dad.canSing = true;
+					dad.canDance = true;
+				}
+		}
 	}
 
 	var debugNum:Int = 0;
@@ -2597,6 +2609,10 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.FOUR)
 		{
 			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\nCAMERA POSITION: ${camFollow.getPosition()}');
+		}
+		if (FlxG.keys.justPressed.FIVE)
+		{
+			FlxG.switchState(new CharacterDebug(dad.curCharacter));
 		}
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(dad.curCharacter));
@@ -4977,6 +4993,19 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad('dave-annoyed', dad.getPosition());
 				}
+			case 'escape-from-california':
+				switch (curBeat)
+				{
+					case 270:
+						dad.canSing = false;
+						dad.canDance = false;
+						dad.playAnim('waa', true);
+						dad.animation.finishCallback = function(anim:String)
+						{
+							dad.canSing = true;
+							dad.canDance = true;
+						}
+				}
 		}
 		if (shakeCam)
 		{
@@ -5175,12 +5204,11 @@ class PlayState extends MusicBeatState
 				char.y -= 400;
 			case 'dave-splitathon':
 				char.y -= 175;
-				char.x += 250;
+				char.x += 50;
 			case 'bambi-splitathon':
-				char.x += 200;
 				char.y += 125;
 			case 'bambi-new':
-				char.y += 100;
+				char.y += 75;
 			case 'bambi' | 'bambi-old':
 				char.y += 50;
 			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
@@ -5195,6 +5223,9 @@ class PlayState extends MusicBeatState
 				char.y -= 300;
 			case 'recurser':
 				char.x = char.isPlayer ? char.x + 500 : char.x - 500;
+			case 'moldy':
+				char.x -= 30;
+				char.y -= 125;
 		}
 	}
 
