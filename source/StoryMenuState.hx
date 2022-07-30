@@ -76,9 +76,9 @@ class StoryMenuState extends MusicBeatState
 	var rightArrow:FlxSprite;
 
 	var songColors:Array<FlxColor> = [
-      0xFFca1f6f, // GF
+        0xFFca1f6f, // GF
 		0xFF4965FF, // DAVE
-		0xFF00B515, // MISTER BAMBI RETARD
+		0xFF00B515, // MISTER BAMBI RE(crazy man)
 		0xFF00FFFF, //SPLIT THE THONNNNN
 		0xFF800080, //FESTEVAL
 	
@@ -106,14 +106,17 @@ class StoryMenuState extends MusicBeatState
 
 		scoreText = new FlxText(10, 0, 0, "SCORE: 49324858", 36);
 		scoreText.setFormat("Comic Sans MS Bold", 32);
+		scoreText.antialiasing = true;
 
 		txtWeekTitle = new FlxText(FlxG.width * 0.7, 0, 0, "", 32);
 		txtWeekTitle.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, RIGHT);
+		txtWeekTitle.antialiasing = true;
 		txtWeekTitle.alpha = 0.7;
 
 		var rankText:FlxText = new FlxText(0, 10);
 		rankText.text = 'RANK: GREAT';
 		rankText.setFormat(Paths.font("comic.ttf"), 32);
+		rankText.antialiasing = true;
 		rankText.size = scoreText.size;
 		rankText.screenCenter(X);
 
@@ -218,6 +221,7 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
+		txtTracklist.antialiasing = true;
 		add(txtTracklist);
 		// add(rankText);
 		add(scoreText);
