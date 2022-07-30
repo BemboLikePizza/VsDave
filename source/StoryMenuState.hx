@@ -29,7 +29,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['Tutorial'],
+		['Warmup'],
 		['House', 'Insanity', 'Polygonized'],
 		['Blocked', 'Corn-Theft', 'Maze'],
 		['Splitathon'],

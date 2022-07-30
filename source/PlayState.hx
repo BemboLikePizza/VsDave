@@ -439,7 +439,7 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 
 		if (SONG == null)
-			SONG = Song.loadFromJson('tutorial');
+			SONG = Song.loadFromJson('warmup');
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
@@ -514,8 +514,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'freeplay';
 				case 'secret-mod-leak':
 					stageCheck = 'roof';
-				case 'tutorial':
-					stageCheck = 'stage';
+				case 'warmup':
+					stageCheck = 'house';
 			}
 		}
 		else
@@ -541,7 +541,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['tutorial', 'memory', 'five-nights', 'secret-mod-leak'];
+		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak'];
 
 		if(SONG.gf != null)
 		{
@@ -567,15 +567,7 @@ class PlayState extends MusicBeatState
 		add(gfGroup);
 		add(dadGroup);
 		add(bfGroup);
-		if (SONG.song != "Tutorial")
-		{
-			if (formoverride == "bf-pixel")
-			{
-				gfVersion = 'gf-pixel';
-				charoffsetx += 300;
-				charoffsety += 300;
-			}
-		}
+
 		if (SONG.player1 == 'tb-funny-man')
 		{
 			gfVersion = 'stereo';
@@ -2510,8 +2502,9 @@ class PlayState extends MusicBeatState
 			case 'exploitation':
 				scoreTxt.text = "Scor3: " + (songScore * FlxG.random.int(5,9)) + " | M1ss3s: " + (misses * FlxG.random.int(5,9)) + " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
 			default:
-				scoreTxt.text = LanguageManager.getTextString('play_score') + ' ' + Std.string(songScore) + " | " + LanguageManager.getTextString('play_miss') + ' ' +
-				misses + " | " + LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
+				scoreTxt.text = LanguageManager.getTextString('play_score') + ' ' + Std.string(songScore) + " | " + 
+				LanguageManager.getTextString('play_miss') + ' ' + misses +  " | " + 
+				LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
 		}
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
@@ -2798,7 +2791,7 @@ class PlayState extends MusicBeatState
 				}
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
-					if (SONG.song != 'Tutorial')
+					if (SONG.song != 'Warmup')
 						camZooming = true;
 
 					var altAnim:String = "";
@@ -2991,7 +2984,7 @@ class PlayState extends MusicBeatState
 					camFollow.y = dad.getMidpoint().y;
 			}
 
-			if (SONG.song.toLowerCase() == 'tutorial')
+			if (SONG.song.toLowerCase() == 'warmup')
 			{
 				tweenCamIn();
 			}
@@ -3024,7 +3017,7 @@ class PlayState extends MusicBeatState
 			camFollow.x += bfNoteCamOffset[0];
 			camFollow.y += bfNoteCamOffset[1];
 
-			if (SONG.song.toLowerCase() == 'tutorial')
+			if (SONG.song.toLowerCase() == 'warmup')
 			{
 				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
 			}
@@ -4230,15 +4223,15 @@ class PlayState extends MusicBeatState
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
 
-						subtitleManager.addSubtitle('I block you', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub1'), 0.02, 1);
 					case 165:
-						subtitleManager.addSubtitle('You are monster...', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub2'), 0.02, 1);
 					case 188:
-						subtitleManager.addSubtitle('You ruined my life', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub3'), 0.02, 1);
 					case 224:
-						subtitleManager.addSubtitle("Moldy I will swear to god I'll block you", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub4'), 0.02, 1);
 					case 248:
-						subtitleManager.addSubtitle("FOREVER", 0.02, 0.5, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub5'), 0.02, 0.5, {subtitleSize: 60});
 					case 256:
 						defaultCamZoom -= 0.2;
 						FlxG.camera.flash();
@@ -4252,17 +4245,17 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 						black.alpha = 0;
 					case 1028:
-						subtitleManager.addSubtitle("I'm trying to", 0.02, 1.5);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub6'), 0.02, 1.5);
 					case 1056:
-						subtitleManager.addSubtitle("No I'm not trying help you", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub7'), 0.02, 1);
 					case 1084:
-						subtitleManager.addSubtitle("Because watch me...", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub8'), 0.02, 1);
 					case 1104:
-						subtitleManager.addSubtitle("Because...", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub9'), 0.02, 1);
 					case 1118:
-						subtitleManager.addSubtitle("watch me go subscribe me", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub10'), 0.02, 1);
 					case 1143:
-						subtitleManager.addSubtitle("Whatever.", 0.02, 1, {subtitleSize: 45});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub11'), 0.02, 1, {subtitleSize: 45});
 					case 1152:
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
@@ -4295,20 +4288,21 @@ class PlayState extends MusicBeatState
 						black.alpha = 0;
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-						subtitleManager.addSubtitle('Because he ban me', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub1'), 0.02, 1);
 					case 945:
-						subtitleManager.addSubtitle('Why you @ me', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub2'), 0.02, 1);
 					case 976:
-						subtitleManager.addSubtitle('I-', 0.02, 0.5);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub3'), 0.02, 0.5);
 					case 982:
-						subtitleManager.addSubtitle("I don't care", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub4'), 0.02, 1);
 					case 992:
-						subtitleManager.addSubtitle('You want to', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub5'), 0.02, 1);
 					case 1002:
-						subtitleManager.addSubtitle("I'll block you", 0.02, 0.3);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub6'), 0.02, 0.3);
 					case 1007:
-						subtitleManager.addSubtitle("I'm never coming back again", 0.02, 0.3);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub7'), 0.02, 0.3);
 					case 1033:
+						//the subtitle here does not need any translation, as its just marcello saying goodbye.
 						subtitleManager.addSubtitle("Bye Baa!", 0.02, 0.3, {subtitleSize: 45});
 						FlxTween.tween(dad, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
 						FlxTween.tween(black, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
@@ -4334,15 +4328,15 @@ class PlayState extends MusicBeatState
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
 
-						subtitleManager.addSubtitle("I mean...", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub1'), 0.02, 1);
 					case 476:
-						subtitleManager.addSubtitle("You can", 0.02, 0.7);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub2'), 0.02, 0.7);
 					case 484:
-						subtitleManager.addSubtitle("Play me", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub3'), 0.02, 1);
 					case 498:
-						subtitleManager.addSubtitle("You don't?", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub4'), 0.02, 1);
 					case 510:
-						subtitleManager.addSubtitle("Never coming back again.", 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub5'), 0.02, 1, {subtitleSize: 60});
 					case 528:
 						 defaultCamZoom = 0.8;
 						black.alpha = 0;
@@ -4351,19 +4345,19 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.2;
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 					case 838:
-						subtitleManager.addSubtitle("Fine!", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub6'), 0.02, 1);
 					case 847:
-						subtitleManager.addSubtitle("Everyway you want", 0.02, 0.5);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub7'), 0.02, 0.5);
 					case 856:
-						subtitleManager.addSubtitle("You play me?", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub8'), 0.02, 1);
 					case 867:
-						subtitleManager.addSubtitle("Sure.", 0.02, 1, {subtitleSize: 40});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub9'), 0.02, 1, {subtitleSize: 40});
 					case 879:
-						subtitleManager.addSubtitle("Want you want to play?", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub10'), 0.02, 1);
 					case 890:
-						subtitleManager.addSubtitle("You gonna bully me?", 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub11'), 0.02, 1);
 					case 902:
-						subtitleManager.addSubtitle("Never come back again.", 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub12'), 0.02, 1, {subtitleSize: 60});
 					case 908:
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
 					case 912:
@@ -4872,7 +4866,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (SONG.song.toLowerCase())
 			{
-				case 'tutorial':
+				case 'warmup':
 					dad.dance();
 					dadmirror.dance();
 				default:
@@ -5063,11 +5057,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curBeat % 8 == 7 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf') // fixed your stupid fucking code ninjamuffin this is literally the easiest shit to fix like come on seriously why are you so dumb
-		{
-			dad.playAnim('cheer', true);
-			boyfriend.playAnim('hey', true);
-		}
 	}
 	function gameOver()
 	{
