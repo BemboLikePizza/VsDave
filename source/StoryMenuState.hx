@@ -33,7 +33,7 @@ class StoryMenuState extends MusicBeatState
 		['House', 'Insanity', 'Polygonized'],
 		['Blocked', 'Corn-Theft', 'Maze'],
 		['Splitathon'],
-		['Shredder', 'Greetings', 'Interdimensional']
+		['Shredder', 'Greetings', 'Interdimensional', 'Rano']
 	];
 
 	var curDifficulty:Int = 1;
@@ -78,7 +78,7 @@ class StoryMenuState extends MusicBeatState
 	var songColors:Array<FlxColor> = [
         0xFFca1f6f, // GF
 		0xFF4965FF, // DAVE
-		0xFF00B515, // MISTER BAMBI RE(crazy man)
+		0xFF00B515, // MISTER BAMBI RETARD
 		0xFF00FFFF, //SPLIT THE THONNNNN
 		0xFF800080, //FESTEVAL
 	
