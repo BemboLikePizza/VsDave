@@ -886,17 +886,6 @@ class PlayState extends MusicBeatState
 			default:
 				credits = '';
 		}
-
-		var engineName:String = 'stupid';
-		switch(FlxG.random.int(0, 2))
-	    {
-			case 0:
-				engineName = 'Dave';
-			case 1:
-				engineName = 'Bambi';
-			case 2:
-				engineName = 'Tristan';
-		}
 		var creditsText:Bool = credits != '';
 		var textYPos:Float = healthBarBG.y + 50;
 		if (creditsText)
@@ -909,11 +898,11 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase())
 		{
 			default:
-				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale") + ' - $engineName Engine 3.0 (KE 1.2)';
+				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? CoolUtil.difficultyString() : "Finale");
 			case "exploitation":
-				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine 3.0 (???)";
+				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine";
 			case 'recursed':
-				funkyText = SONG.song + ' - $engineName Engine 3.0 (KE 1.2)';
+				funkyText = SONG.song;
 			case 'overdrive':
 				funkyText = '';
 		}
@@ -1171,7 +1160,7 @@ class PlayState extends MusicBeatState
 				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2', 'shared'), null, 1, 1);
 				sprites.add(cornFence2);
 
-				var cornBag:BGSprite = new BGSprite('cornFence2', 1200, 550, Paths.image('backgrounds/farm/cornbag', 'shared'), null);
+				var cornBag:BGSprite = new BGSprite('cornFence2', 1200, 550, Paths.image('backgrounds/farm/cornBag', 'shared'), null);
 				sprites.add(cornBag);
 				
 				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign', 'shared'), null);
@@ -2513,8 +2502,9 @@ class PlayState extends MusicBeatState
 			case 'exploitation':
 				scoreTxt.text = "Scor3: " + (songScore * FlxG.random.int(5,9)) + " | M1ss3s: " + (misses * FlxG.random.int(5,9)) + " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
 			default:
-				scoreTxt.text = LanguageManager.getTextString('play_score') + Std.string(songScore) + " | " + LanguageManager.getTextString('play_miss') +
-				misses + " | " + LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "% ";
+				scoreTxt.text = LanguageManager.getTextString('play_score') + ' ' + Std.string(songScore) + " | " + 
+				LanguageManager.getTextString('play_miss') + ' ' + misses +  " | " + 
+				LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
 		}
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
@@ -3977,20 +3967,27 @@ class PlayState extends MusicBeatState
 			remove(cover);
 		}
 		FlxG.camera.flash();
-
-		var boyfriendPos = boyfriend.getPosition();
-		preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
-		bfGroup.remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
-		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
-		{
-			iconP1.changeIcon(boyfriend.curCharacter);
-		}
-		bfGroup.add(boyfriend);
-
-		addRecursedUI();
 		
-		healthBar.createFilledBar(dad.barColor, FlxColor.WHITE);
+		if (boyfriend.curCharacter == 'bambi-3d')
+		{
+			gameOver();
+		}
+		else
+		{
+			var boyfriendPos = boyfriend.getPosition();
+			preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
+			bfGroup.remove(boyfriend);
+			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
+			if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
+			{
+				iconP1.changeIcon(boyfriend.curCharacter);
+			}
+			bfGroup.add(boyfriend);
+			addRecursedUI();
+		
+			healthBar.createFilledBar(dad.barColor, FlxColor.WHITE);
+		}
+		
 	}
 	function addRecursedUI()
 	{
@@ -4244,7 +4241,7 @@ class PlayState extends MusicBeatState
 						black.alpha = 0.6;
 						defaultCamZoom += 0.2;
 					case 768:
-					FlxG.camera.flash();
+						FlxG.camera.flash();
 						defaultCamZoom -= 0.2;
 						black.alpha = 0;
 					case 1028:
@@ -5206,7 +5203,7 @@ class PlayState extends MusicBeatState
 			case 'bambi-splitathon':
 				char.y += 125;
 			case 'bambi-new':
-				char.y += 75;
+				char.y += 100;
 			case 'bambi' | 'bambi-old':
 				char.y += 50;
 			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
