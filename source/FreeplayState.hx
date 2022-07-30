@@ -51,7 +51,6 @@ class FreeplayState extends MusicBeatState
 	var translatedCatagory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra')];
 
 	private var CurrentPack:Int = 0;
-
 	private var NameAlpha:Alphabet;
 
 	var loadingPack:Bool = false;
@@ -100,6 +99,7 @@ class FreeplayState extends MusicBeatState
 
 	var bgShader:Shaders.GlitchEffect;
 	var awaitingExploitation:Bool;
+	public static var packTransitionDone:Bool = false;
 
 	override function create()
 	{
@@ -155,8 +155,8 @@ class FreeplayState extends MusicBeatState
 			NameAlpha.x = CurrentSongIcon.x;
 
 			add(CurrentSongIcon);
-			add(NameAlpha);
 			icons.push(CurrentSongIcon);
+			add(NameAlpha);
 			titles.push(NameAlpha);
 		}
 
@@ -174,6 +174,65 @@ class FreeplayState extends MusicBeatState
 		FlxG.camera.follow(camFollow, LOCKON, 0.04);
 		FlxG.camera.focusOn(camFollow.getPosition());
 
+		if (awaitingExploitation)
+		{
+			if (!packTransitionDone)
+			{
+				var curIcon = icons[CurrentPack];
+				var curTitle = titles[CurrentPack];
+
+				canInteract = false;
+				var expungedPack:FlxSprite = new FlxSprite(curIcon.x, curIcon.y).loadGraphic(Paths.image('packs/uhoh', "preload"));
+				expungedPack.centerOffsets(false);
+				expungedPack.antialiasing = false;
+				expungedPack.alpha = 0;
+				add(expungedPack);
+
+				var expungedTitle:Alphabet = new Alphabet(40, (FlxG.height / 2) - 282, 'uh oh', true, false);
+				expungedTitle.x = expungedPack.x;
+				add(expungedTitle);
+			
+				FlxTween.tween(curIcon, {alpha: 0}, 1);
+				FlxTween.tween(curTitle, {alpha: 0}, 1);
+				FlxTween.tween(expungedTitle, {alpha: 1}, 1);
+				FlxTween.tween(expungedPack, {alpha: 1}, 1, {onComplete: function(tween:FlxTween)
+				{
+					icons[CurrentPack].destroy();
+					titles[CurrentPack].destroy();
+				
+					icons[CurrentPack] = expungedPack;
+					titles[CurrentPack] = expungedTitle;
+
+					curIcon.alpha = 1;
+					curTitle.alpha = 1;
+
+					Catagories = ['uhoh'];
+					translatedCatagory = ['uh oh'];
+					packTransitionDone = true;
+					canInteract = true;
+				}});
+			}
+			else
+			{
+				var originalIconPos = icons[CurrentPack].getPosition();
+				var originalTitlePos = titles[CurrentPack].getPosition();
+				
+				icons[CurrentPack].destroy();
+				titles[CurrentPack].destroy();
+								
+				icons[CurrentPack].loadGraphic(Paths.image('packs/uhoh', "preload"));
+				icons[CurrentPack].setPosition(originalIconPos.x, originalIconPos.y);
+				icons[CurrentPack].centerOffsets(false);
+				icons[CurrentPack].antialiasing = false;
+				
+				titles[CurrentPack] = new Alphabet(40, (FlxG.height / 2) - 282, 'uh oh', true, false);
+				titles[CurrentPack].setPosition(originalTitlePos.x, originalTitlePos.y);
+				
+				Catagories = ['uhoh'];
+				translatedCatagory = ['uh oh'];
+			}
+		}
+
 		super.create();
 	}
 
@@ -181,6 +240,8 @@ class FreeplayState extends MusicBeatState
 	{
 		switch (Catagories[CurrentPack].toLowerCase())
 		{
+			case 'uhoh':
+				addWeek(['Exploitation'], 8, ['expunged']);
 			case 'dave':
 				addWeek(['Warmup'], 0, ['dave']);
 				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave-annoyed', 'dave-angey', 'dave']);
@@ -201,7 +262,7 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Kabunga'], 7, ['exbungo']);
 				if (FlxG.save.data.secretModLeakUnlocked)
 					addWeek(['Secret-Mod-Leak'], 11, ['baldi']);
-			case 'extra':
+			case 'extras':
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);
 
@@ -410,7 +471,7 @@ class FreeplayState extends MusicBeatState
 					});	
 				});
 			}
-			if (controls.BACK && canInteract)
+			if (controls.BACK && canInteract && !awaitingExploitation)
 			{
 				FlxG.switchState(new MainMenuState());
 			}	
@@ -512,6 +573,8 @@ class FreeplayState extends MusicBeatState
 				PlayState.storyDifficulty = curDifficulty;
 	
 				PlayState.storyWeek = songs[curSelected].week;
+				
+				packTransitionDone = false;
 				if ((FlxG.keys.pressed.CONTROL || skipSelect.contains(PlayState.SONG.song.toLowerCase())) && PlayState.SONG.song.toLowerCase() != 'exploitation')
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
