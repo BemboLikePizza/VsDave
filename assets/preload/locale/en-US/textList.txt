@@ -97,3 +97,39 @@ play_easy==EASY
 play_score==Score:
 play_miss==Misses:
 play_accuracy==Accuracy:
+
+// Blocked Subtitles //
+blocked_sub1==I block you...
+blocked_sub2==You are monster...
+blocked_sub3==You ruined my life!
+blocked_sub4==Moldy I swear to god I'll block you
+blocked_sub5==FOREVER.
+blocked_sub6==I'm trying to...
+blocked_sub7==No I'm not trying help you...
+blocked_sub8==Because watch me...
+blocked_sub9==Because...
+blocked_sub10==watch me go subscribe me
+blocked_sub11==Whatever.
+
+// Corn-Theft Subtitles //
+ctheft_sub1==Because he ban me...
+ctheft_sub2==Why you ban me...
+ctheft_sub3==I-
+ctheft_sub4==I don't care...
+ctheft_sub5==You want to
+ctheft_sub6==I'll block you
+ctheft_sub7==I'm never coming back again.
+
+// Maze Subtitles //
+maze_sub1==I mean...
+maze_sub2==You can
+maze_sub3==Play me...
+maze_sub4==You don't?
+maze_sub5==Never come back again.
+maze_sub6==Fine!
+maze_sub7==Everyway you want
+maze_sub8==You play me?
+maze_sub9==Sure.
+maze_sub10==What you want to play?
+maze_sub11==You bully me?
+maze_sub12==Never come back again.
