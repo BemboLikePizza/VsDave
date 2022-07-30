@@ -69,25 +69,25 @@ class CoolUtil
 		}
 		return dumbArray;
 	}
-	public static function formatString(string:String):String
+	public static function formatString(string:String, separator:String):String
+	{
+		var split:Array<String> = string.split(separator);
+		var formattedString:String = '';
+		for (i in 0...split.length)
 		{
-			 var split:Array<String> = string.split('-');
-			 var formattedString:String = '';
-			 for (i in 0...split.length) 
-			 {
-				  var piece:String = split[i];
-				  var allSplit = piece.split('');
-				  var firstLetterUpperCased = allSplit[0].toUpperCase();
-				  var substring = piece.substr(1, piece.length - 1);
-				  var newPiece = firstLetterUpperCased + substring;
-				  if (i != split.length - 1)
-				  {
-						newPiece += " ";
-				  }
-				  formattedString += newPiece;
-			 }
-			 return formattedString;
+			var piece:String = split[i];
+			var allSplit = piece.split('');
+			var firstLetterUpperCased = allSplit[0].toUpperCase();
+			var substring = piece.substr(1, piece.length - 1);
+			var newPiece = firstLetterUpperCased + substring;
+			if (i != split.length - 1)
+			{
+				newPiece += " ";
+			}
+			formattedString += newPiece;
 		}
+		return formattedString;
+	}
 	public static function getMinAndMax(value1:Float, value2:Float):Array<Float>
 	{
 		var minAndMaxs = new Array<Float>();

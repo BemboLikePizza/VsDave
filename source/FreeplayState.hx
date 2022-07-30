@@ -20,7 +20,6 @@ import lime.utils.Assets;
 import flixel.FlxObject;
 import flixel.addons.util.FlxAsyncLoop;
 #if sys import sys.FileSystem; #end
-import SongPack.SongPackData;
 #if desktop import Discord.DiscordClient; #end
 
 using StringTools;
@@ -48,8 +47,8 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var Catagories:Array<String> = [];
-	var translatedCategory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra')];
+	private var Catagories:Array<String> = ['dave', 'joke', 'extras'];
+	var translatedCatagory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra')];
 
 	private var CurrentPack:Int = 0;
 
@@ -106,8 +105,6 @@ class FreeplayState extends MusicBeatState
 	{
 		#if desktop DiscordClient.changePresence("In the Freeplay Menu", null); #end
 		
-		Catagories = Assets.getText(Paths.data("packs/PackList.txt")).split(":");
-
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 
 		if (awaitingExploitation)
@@ -134,19 +131,27 @@ class FreeplayState extends MusicBeatState
 			bg.scrollFactor.set();
 			add(bg);
 		}
-		
+		if (FlxG.save.data.terminalFound)
+		{
+			Catagories = ['dave', 'joke', 'terminal', 'extras'];
+			translatedCatagory = [
+			LanguageManager.getTextString('freeplay_dave'), 
+			LanguageManager.getTextString('freeplay_joke'),
+			LanguageManager.getTextString('freeplay_terminal'), 
+			LanguageManager.getTextString('freeplay_extra')];
+		}
 
 		for (i in 0...Catagories.length)
 		{
 			Highscore.load();
 
-			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.data('packs/' + (Catagories[i].toLowerCase()) + "/pack.png", "preload"));
+			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('packs/' + (Catagories[i].toLowerCase()), "preload"));
 			CurrentSongIcon.centerOffsets(false);
 			CurrentSongIcon.x = (1000 * i + 1);
 			CurrentSongIcon.y = (FlxG.height / 2) - 256;
 			CurrentSongIcon.antialiasing = true;
 
-			var NameAlpha:Alphabet = new Alphabet(40, (FlxG.height / 2) - 282, translatedCategory[i], true, false);
+			var NameAlpha:Alphabet = new Alphabet(40, (FlxG.height / 2) - 282, translatedCatagory[i], true, false);
 			NameAlpha.x = CurrentSongIcon.x;
 
 			add(CurrentSongIcon);
@@ -174,16 +179,47 @@ class FreeplayState extends MusicBeatState
 
 	public function LoadProperPack()
 	{
-		var packData:SongPackData = SongPack.loadFromJson(Catagories[CurrentPack].toLowerCase());
-
-		for (song in packData.packSongs)
+		switch (Catagories[CurrentPack].toLowerCase())
 		{
-			// Song, Character Icon, Week
-			var args:Array<String> = song.split(":");
+			case 'dave':
+				addWeek(['Warmup'], 0, ['dave']);
+				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave-annoyed', 'dave-angey', 'dave']);
+				addWeek(['Blocked', 'Corn-Theft', 'Maze'], 2, ['bambi-new', 'bambi-new', 'bambi-new']);
+				addWeek(['Splitathon'], 3, ['the-duo']);
+				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan', 'dave-angey', 'dave']);
+			case 'joke':
+				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
 				
-			addWeek([args[0]], Std.parseInt(args[2]), [args[1]]);
+				if (!FlxG.save.data.terminalFound)
+				{
+					if (FlxG.save.data.cheatingFound)
+						addWeek(['Cheating'], 2, ['bambi-3d']);
+					if (FlxG.save.data.unfairnessFound)
+						addWeek(['Unfairness'], 6, ['bambi-unfair']);
+				}
+				if (FlxG.save.data.exbungoFound)
+					addWeek(['Kabunga'], 7, ['exbungo']);
+				if (FlxG.save.data.secretModLeakUnlocked)
+					addWeek(['Secret-Mod-Leak'], 11, ['baldi']);
+			case 'extra':
+				if (FlxG.save.data.recursedUnlocked)
+					addWeek(['Recursed'], 10, ['recurser']);
+
+				addWeek(['Adventure'], 5, ['tristan']);
+				addWeek(['Furiosity'], 1, ['dave-angey']);
+				addWeek(['Escape-From-California'], 5, ['tristan']);
+				addWeek(['Five-Nights', 'Overdrive'], 1, ['dave']);
+				addWeek(['Mealie'], 2, ['bambi-loser']);
+				addWeek(['Memory', 'Vs-Dave-Rap'], 1, ['dave-cool']);
+			case 'terminal':
+				if (FlxG.save.data.cheatingFound)
+					addWeek(['Cheating'], 2, ['bambi-3d']);
+				if (FlxG.save.data.unfairnessFound)
+					addWeek(['Unfairness'], 6, ['bambi-unfair']);
+				if (FlxG.save.data.exploitationFound)
+					addWeek(['Exploitation'], 8, ['expunged']);
 		}
-	}	
+	}
 
 	var scoreBG:FlxSprite;
 
@@ -281,24 +317,9 @@ class FreeplayState extends MusicBeatState
 
 		var num:Int = 0;
 
-		var unlockSave:Bool = true;
-
 		for (song in songs)
 		{
-			// Song unlock stuff
-			unlockSave = switch (song.toLowerCase())
-			{
-				case "cheating": FlxG.save.data.cheatingFound;
-				case "unfairness": FlxG.save.data.unfairnessFound;
-				case "kabunga": FlxG.save.data.exbungoFound;
-				case "exploitation": FlxG.save.data.exploitationFound;
-				case "recursed": FlxG.save.data.recursedUnlocked;
-				case 'secret-mod-leak': FlxG.save.data.secretModLeakUnlocked;
-				default: true;
-			}
-
-			if (unlockSave)
-				addSong(song, weekNum, songCharacters[num]);
+			addSong(song, weekNum, songCharacters[num]);
 
 			if (songCharacters.length != 1)
 				num++;
@@ -558,8 +579,6 @@ class FreeplayState extends MusicBeatState
 				diffText.text = LanguageManager.getTextString('freeplay_finale') + " - " + curChar.toUpperCase();
 			case 8:
 				diffText.text = LanguageManager.getTextString('freeplay_fucked') + " - " + curChar.toUpperCase();
-			case 9:
-				diffText.text = LanguageManager.getTextString('freeplay_lmao') + " - " + curChar.toUpperCase();
 			case 10:
 				diffText.text = "RECURSED" + " - " + curChar.toUpperCase();
 			default:
@@ -613,7 +632,7 @@ class FreeplayState extends MusicBeatState
 		if (curSelected >= songs.length)
 			curSelected = 0;
 		
-		var songsWithOneDifficulty = [3, 8, 9, 10];
+		var songsWithOneDifficulty = [3, 8, 10];
 		if (!songsWithOneDifficulty.contains(songs[curSelected].week))
 		{
 			if (curDifficulty < 0)

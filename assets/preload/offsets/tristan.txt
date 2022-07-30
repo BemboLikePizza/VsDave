@@ -1,11 +1,8 @@
 scared 0 -1
-deathLoop -58 2
 singRIGHTmiss -38 -8
 singDOWN -86 -30
 singLEFTmiss 2 -4
 singUP -69 86
-deathConfirm -78 38
-firstDeath -62 3
 hey -23 1
 idle 0 0
 singDOWNmiss -88 -25

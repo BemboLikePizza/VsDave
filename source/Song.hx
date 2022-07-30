@@ -50,20 +50,7 @@ class Song
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
 	{
 		var rawJson = "";
-		try
-		{
-			rawJson = Assets.getText(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
-		}
-		catch(ex)
-		{
-			var exep:String = "A fatal song error occured.\nThis may have happened because the song / pack you tried to load didnt exist.\nTry checking the file at " + Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase()).trim();
-			#if windows
-			Application.current.window.alert(exep, "Vs Dave");
-			#else
-			trace(exep);
-			#end
-		}
-		
+		rawJson = Assets.getText(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 
 		while (!rawJson.endsWith("}"))
 		{

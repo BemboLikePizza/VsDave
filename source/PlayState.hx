@@ -351,6 +351,7 @@ class PlayState extends MusicBeatState
 				Main.toggleFuckedFPS(true);
 
 				FlxG.save.data.exploitationState = null;
+				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
 			case 'recursed':
@@ -547,7 +548,7 @@ class PlayState extends MusicBeatState
 		{
 			gfVersion = SONG.gf;
 		}
-		if (noGFSongs.contains(SONG.song.toLowerCase()) || !(formoverride == "bf" || formoverride == "none" || formoverride == "bf-pixel"))
+		if (noGFSongs.contains(SONG.song.toLowerCase()) || !(formoverride == "bf" || formoverride == "none"))
 		{
 			gfVersion = 'gf-none';
 		}
@@ -560,6 +561,19 @@ class PlayState extends MusicBeatState
 		var charoffsetx:Float = 0;
 		var charoffsety:Float = 0;
 		
+		if (formoverride == "bf-pixel")
+		{
+			gfVersion = 'gf-pixel';
+			charoffsetx += 300;
+			charoffsety += 300;
+		}
+		if (SONG.player1 == 'tb-funny-man')
+		{
+			gfVersion = 'stereo';
+			charoffsetx += 500;
+			charoffsety += 500;
+		}
+		
 		gfGroup = new FlxGroup();
 		dadGroup = new FlxGroup();
 		bfGroup = new FlxGroup();
@@ -568,16 +582,10 @@ class PlayState extends MusicBeatState
 		add(dadGroup);
 		add(bfGroup);
 
-		if (SONG.player1 == 'tb-funny-man')
-		{
-			gfVersion = 'stereo';
-			charoffsetx += 500;
-			charoffsety += 500;
-		}
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		if (gfVersion == 'none')
+		if (gfVersion == 'gf-none')
 		{
 			gf.visible = false;
 		}
@@ -758,10 +766,6 @@ class PlayState extends MusicBeatState
 				gf.x -= 200;
 				boyfriend.x -= 200;
 		}
-		//dad repositioning
-		repositionChar(dad);
-		repositionChar(dadmirror);
-		repositionChar(boyfriend);
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
 			health = 2;
@@ -812,6 +816,11 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
+
+		//char repositioning
+		repositionChar(dad);
+		repositionChar(dadmirror);
+		repositionChar(boyfriend);
 
 		if (FlxG.save.data.songPosition)
 		{
@@ -1061,6 +1070,7 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.8;
 				
 				var skyType:String = '';
+				var assetType:String = '';
 				switch (bgName)
 				{
 					case 'house':
@@ -1069,27 +1079,28 @@ class PlayState extends MusicBeatState
 					case 'house-night':
 						stageName = 'daveHouse_night';
 						skyType = 'sky_night';
+						assetType = 'night/';
 					case 'house-sunset':
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
 				}			
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/' + skyType), null, 0.75, 0.75);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${assetType}${skyType}'), null, 0.75, 0.75);
 				sprites.add(bg);
 				add(bg);
 				
-				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/hills'), null, 0.8, 0.8);
+				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/${assetType}hills'), null, 0.8, 0.8);
 				sprites.add(stageHills);
 				add(stageHills);
 
-				var grassbg:BGSprite = new BGSprite('grassbg', -1205, 580, Paths.image('backgrounds/dave-house/grass bg'), null, 0.8, 0.8);
+				var grassbg:BGSprite = new BGSprite('grassbg', -1205, 580, Paths.image('backgrounds/dave-house/${assetType}grass bg'), null, 0.8, 0.8);
 				sprites.add(grassbg);
 				add(grassbg);
 	
-				var gate:BGSprite = new BGSprite('gate', -755, 250, Paths.image('backgrounds/dave-house/gate'), null, 0.9, 0.9);
+				var gate:BGSprite = new BGSprite('gate', -755, 250, Paths.image('backgrounds/dave-house/${assetType}gate'), null, 0.9, 0.9);
 				sprites.add(gate);
 				add(gate);
 	
-				var stageFront:BGSprite = new BGSprite('stageFront', -832, 505, Paths.image('backgrounds/dave-house/grass'), null);
+				var stageFront:BGSprite = new BGSprite('stageFront', -832, 505, Paths.image('backgrounds/dave-house/${assetType}grass'), null);
 				sprites.add(stageFront);
 				add(stageFront);
 
@@ -1104,12 +1115,13 @@ class PlayState extends MusicBeatState
 				}
 
 				var variantColor = getBackgroundColor(stageName);
-				
-				stageHills.color = variantColor;
-				grassbg.color = variantColor;
-				gate.color = variantColor;
-				stageFront.color = variantColor;
-
+				if (stageName != 'daveHouse_night')
+				{
+					stageHills.color = variantColor;
+					grassbg.color = variantColor;
+					gate.color = variantColor;
+					stageFront.color = variantColor;
+				}
 			case 'farm' | 'farm-night' | 'farm-sunset':
 				bgZoom = 0.8;
 
@@ -2500,10 +2512,14 @@ class PlayState extends MusicBeatState
 			case 'overdrive':
 				scoreTxt.text = "Score: " + Std.string(songScore);
 			case 'exploitation':
-				scoreTxt.text = "Scor3: " + (songScore * FlxG.random.int(5,9)) + " | M1ss3s: " + (misses * FlxG.random.int(5,9)) + " | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
+				scoreTxt.text = 
+				"Scor3: " + (songScore * FlxG.random.int(5,9)) + 
+				" | M1ss3s: " + (misses * FlxG.random.int(5,9)) + 
+				" | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
 			default:
-				scoreTxt.text = LanguageManager.getTextString('play_score') + ' ' + Std.string(songScore) + " | " + 
-				LanguageManager.getTextString('play_miss') + ' ' + misses +  " | " + 
+				scoreTxt.text = 
+				LanguageManager.getTextString('play_score') + Std.string(songScore) + " | " + 
+				LanguageManager.getTextString('play_miss') + misses +  " | " + 
 				LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
 		}
 
@@ -5207,9 +5223,12 @@ class PlayState extends MusicBeatState
 			case 'bambi' | 'bambi-old':
 				char.y += 50;
 			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
+				char.x += 100;
+				char.y -= 10;
 				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
 			case 'bambi-3d':
-				char.y -= 315;
+				char.x += 200;
+				char.y += 70;
 				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
 			case 'bambi-unfair':
 				char.y -= 260;

@@ -92,8 +92,6 @@ class MainMenuState extends MusicBeatState
 	var lilMenuGuy:FlxSprite;
 
 	var awaitingExploitation:Bool;
-	var rightArrow:FlxText;
-	var leftArrow:FlxText;
 
 	var voidShader:Shaders.GlitchEffect;
 
@@ -117,6 +115,7 @@ class MainMenuState extends MusicBeatState
 
 		if (awaitingExploitation)
 		{
+			optionShit = ['freeplay'];
 			bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 			bg.scrollFactor.set(0, 0.2);
 			bg.antialiasing = false;
@@ -211,44 +210,6 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-
-		if (awaitingExploitation)
-		{
-			var goToFreeplay = new FlxText(0, 150, 0, "Go To Freeplay", 50);
-			goToFreeplay.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			goToFreeplay.borderSize = 3;
-			goToFreeplay.antialiasing = true;
-			goToFreeplay.screenCenter(X);
-			goToFreeplay.alpha = 0;
-			goToFreeplay.scrollFactor.set();
-	
-	
-			var blackBorder:FlxSprite = new FlxSprite(goToFreeplay.x, goToFreeplay.y).makeGraphic(Std.int(goToFreeplay.width + 20), Std.int(goToFreeplay.height + 10), FlxColor.BLACK);
-			blackBorder.alpha = 0;
-			blackBorder.scrollFactor.set();
-	
-			add(blackBorder);
-			add(goToFreeplay);
-
-			rightArrow = new FlxText(menuItems.members[1].x - 200, menuItems.members[1].y, 0, ">>>", 50);
-			rightArrow.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER);
-			rightArrow.antialiasing = true;
-			rightArrow.scrollFactor.set(1, 1);
-
-			leftArrow = new FlxText(menuItems.members[1].x + 200, menuItems.members[1].y, 0, "<<<", 50);
-			leftArrow.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER);
-			leftArrow.antialiasing = true;
-			rightArrow.scrollFactor.set(1, 1);
-
-			add(rightArrow);
-			add(leftArrow);
-
-			FlxTween.tween(rightArrow, {alpha: 1}, 1);
-			FlxTween.tween(leftArrow, {alpha: 1}, 1);
-
-			FlxTween.tween(blackBorder, {alpha: 0.7}, 1);
-			FlxTween.tween(goToFreeplay, {alpha: 1}, 1);
-		}
 
 		// NG.core.calls.event.logEvent('swag').send();
 

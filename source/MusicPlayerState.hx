@@ -154,17 +154,16 @@ class MusicPlayerState extends MusicBeatState
             {
                 #if desktop
                 DiscordClient.changePresence('In The OST Menu', '\nListening To: ' +
-                    CoolUtil.formatString(songs[curSelected].songName) + ' | ' + 
+                    CoolUtil.formatString(songs[curSelected].songName, '-') + ' | ' + 
                     currentTimeFormatted + ' / ' + lengthFormatted,
                     null);
                 #end
-                
             }
             else
             {
                 #if desktop
                 DiscordClient.changePresence('In The OST Menu', '\nListening To: ' +
-                    CoolUtil.formatString(songs[curSelected].songName) + ' Instrumental | ' +
+                    CoolUtil.formatString(songs[curSelected].songName, '-') + ' Instrumental | ' +
                     currentTimeFormatted + ' / ' + lengthFormatted, 
                     null);
                 #end
