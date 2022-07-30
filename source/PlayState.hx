@@ -272,6 +272,7 @@ class PlayState extends MusicBeatState
 	var currentInterdimensionBG:String;
 	var nimbiLand:BGSprite;
 	var nimbi:BGSprite;
+	var nimbiSign:BGSprite;
 
 	var vcr:VCRDistortionShader;
 
@@ -825,6 +826,7 @@ class PlayState extends MusicBeatState
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
 			songPosBG = new FlxSprite(0, yPos).loadGraphic(Paths.image('ui/timerBar'));
+			songPosBG.antialiasing = true;
 			songPosBG.screenCenter(X);
 			songPosBG.scrollFactor.set();
 			add(songPosBG);
@@ -861,6 +863,7 @@ class PlayState extends MusicBeatState
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
+		healthBarBG.antialiasing = true;
 		add(healthBarBG);
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
@@ -1563,13 +1566,20 @@ class PlayState extends MusicBeatState
 				nimbiLand.setGraphicSize(Std.int(nimbiLand.width * 1.5));
 				insert(members.indexOf(gfGroup), nimbiLand);
 
-				nimbi = new BGSprite('nimbi', 1100, 200, 'backgrounds/void/interdimensions/nimbi/nimbi', 
+				//don't revert this commit, i don't like nimbi so im replacing him with a sign lol
+
+				/*nimbi = new BGSprite('nimbi', 1100, 200, 'backgrounds/void/interdimensions/nimbi/nimbi', 
 				[
 					new Animation('idle', 'lol hi dave and boyfriend fnf what a peculiar coincidence that we are here at this exact time', 24, true, [false, false])
-				], 1, 1, false, true);
-				nimbi.animation.play('idle');
-				backgroundSprites.add(nimbi);
-				insert(members.indexOf(gfGroup), nimbi);
+				], 1, 1, false, true);*/
+				//nimbi.animation.play('idle');
+				//backgroundSprites.add(nimbi);
+				//insert(members.indexOf(gfGroup), nimbi);
+
+				nimbiSign = new BGSprite('sign', 800, -73, Paths.image('backgrounds/void/interdimensions/nimbi/sign'), null, 1, 1, false, true);
+				backgroundSprites.add(nimbiSign);
+				nimbiSign.setGraphicSize(Std.int(nimbiSign.width * 0.2));
+				insert(members.indexOf(gfGroup), nimbiSign);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
