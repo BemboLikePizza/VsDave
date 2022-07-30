@@ -439,7 +439,7 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 
 		if (SONG == null)
-			SONG = Song.loadFromJson('tutorial');
+			SONG = Song.loadFromJson('warmup');
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
@@ -514,8 +514,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'freeplay';
 				case 'secret-mod-leak':
 					stageCheck = 'roof';
-				case 'tutorial':
-					stageCheck = 'stage';
+				case 'warmup':
+					stageCheck = 'house';
 			}
 		}
 		else
@@ -541,7 +541,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['tutorial', 'memory', 'five-nights', 'secret-mod-leak'];
+		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak'];
 
 		if(SONG.gf != null)
 		{
@@ -567,15 +567,7 @@ class PlayState extends MusicBeatState
 		add(gfGroup);
 		add(dadGroup);
 		add(bfGroup);
-		if (SONG.song != "Tutorial")
-		{
-			if (formoverride == "bf-pixel")
-			{
-				gfVersion = 'gf-pixel';
-				charoffsetx += 300;
-				charoffsety += 300;
-			}
-		}
+
 		if (SONG.player1 == 'tb-funny-man')
 		{
 			gfVersion = 'stereo';
@@ -2809,7 +2801,7 @@ class PlayState extends MusicBeatState
 				}
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
-					if (SONG.song != 'Tutorial')
+					if (SONG.song != 'Warmup')
 						camZooming = true;
 
 					var altAnim:String = "";
@@ -3002,7 +2994,7 @@ class PlayState extends MusicBeatState
 					camFollow.y = dad.getMidpoint().y;
 			}
 
-			if (SONG.song.toLowerCase() == 'tutorial')
+			if (SONG.song.toLowerCase() == 'warmup')
 			{
 				tweenCamIn();
 			}
@@ -3035,7 +3027,7 @@ class PlayState extends MusicBeatState
 			camFollow.x += bfNoteCamOffset[0];
 			camFollow.y += bfNoteCamOffset[1];
 
-			if (SONG.song.toLowerCase() == 'tutorial')
+			if (SONG.song.toLowerCase() == 'warmup')
 			{
 				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
 			}
@@ -4876,7 +4868,7 @@ class PlayState extends MusicBeatState
 		{
 			switch (SONG.song.toLowerCase())
 			{
-				case 'tutorial':
+				case 'warmup':
 					dad.dance();
 					dadmirror.dance();
 				default:
@@ -5067,11 +5059,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if (curBeat % 8 == 7 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf') // fixed your stupid fucking code ninjamuffin this is literally the easiest shit to fix like come on seriously why are you so dumb
-		{
-			dad.playAnim('cheer', true);
-			boyfriend.playAnim('hey', true);
-		}
 	}
 	function gameOver()
 	{
