@@ -147,12 +147,12 @@ class FreeplayState extends MusicBeatState
 
 			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('packs/' + (Catagories[i].toLowerCase()), "preload"));
 			CurrentSongIcon.centerOffsets(false);
-			CurrentSongIcon.x = (1000 * i + 1);
-			CurrentSongIcon.y = (FlxG.height / 2) - 256;
+			CurrentSongIcon.x = (1000 * i + 1) - CurrentSongIcon.width / 2;
+			CurrentSongIcon.y = (FlxG.height / 2) - CurrentSongIcon.height / 2;
 			CurrentSongIcon.antialiasing = true;
 
 			var NameAlpha:Alphabet = new Alphabet(40, (FlxG.height / 2) - 282, translatedCatagory[i], true, false);
-			NameAlpha.x = CurrentSongIcon.x;
+			NameAlpha.x = CurrentSongIcon.x - NameAlpha.width / 2;
 
 			add(CurrentSongIcon);
 			icons.push(CurrentSongIcon);

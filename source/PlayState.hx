@@ -3105,6 +3105,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'exploitation':
 				Application.current.window.title = Main.applicationName;
+				Main.toggleFuckedFPS(false);
 		}
 		if (isStoryMode)
 		{
@@ -4186,7 +4187,7 @@ class PlayState extends MusicBeatState
 	}
 	function swapGlitch(glitchTime:Float, toBackground:String)
 	{
-		var glitch = new BGSprite('glitch', 0, 0, 'glitchSwitch', 
+		var glitch = new BGSprite('glitch', 0, 0, 'ui/glitch/glitchSwitch', 
 		[
 			new Animation('glitch', 'glitchScreen', 24, true, [false, false])
 		], 0, 0, false, true);

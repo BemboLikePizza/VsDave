@@ -21,6 +21,7 @@ Discord
 freeplay_dave==Dave
 freeplay_joke==Joke
 freeplay_extra==Extra
+freeplay_terminal==Terminal
 
 freeplay_personalBest==PERSONAL BEST:
 freeplay_hard==HARD
@@ -28,7 +29,6 @@ freeplay_normal==NORMAL
 freeplay_easy==EASY
 freeplay_finale==FINALE
 freeplay_fucked==YOU'RE FUCKED
-freeplay_lmao==LMAO
 
 // Credits State //
 credits_dev==Developers
