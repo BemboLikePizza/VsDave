@@ -43,6 +43,16 @@ class MainMenuState extends MusicBeatState
 		'discord'
 	];
 
+	var languagesOptions:Array<String> =
+	[
+		'main_story',
+		'main_freeplay',
+		'main_credits',
+		'main_ost',
+		'main_options',
+		'main_discord'
+	];
+
 	public static var firstStart:Bool = true;
 
 	public static var finishedFunnyMove:Bool = false;
@@ -170,7 +180,7 @@ class MainMenuState extends MusicBeatState
 		selectUi.updateHitbox();
 		add(selectUi);
 
-		curOptText = new FlxText(0, 0, FlxG.width, CoolUtil.formatString(optionShit[curSelected], ' '));
+		curOptText = new FlxText(0, 0, FlxG.width, CoolUtil.formatString(LanguageManager.getTextString(languagesOptions[curSelected]), ' '));
 		curOptText.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		curOptText.scrollFactor.set(0, 0);
 		curOptText.borderSize = 3;
@@ -209,7 +219,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.antialiasing = true;
 			if (firstStart)
 			{
-				FlxTween.tween(menuItem, {x: 60 + (i * 160)}, 1 + (i * 0.25), {
+				FlxTween.tween(menuItem, {x: FlxG.width / 2 - 450 + (i * 160)}, 1 + (i * 0.25), {
 					ease: FlxEase.expoInOut,
 					onComplete: function(flxTween:FlxTween)
 					{
@@ -222,7 +232,7 @@ class MainMenuState extends MusicBeatState
 			else
 			{
 				//menuItem.screenCenter(Y);
-				menuItem.x = 60 + (i * 160);
+				menuItem.x = FlxG.width / 2 - 450 + (i * 160);
 				changeItem();
 			}
 		}
@@ -381,7 +391,7 @@ class MainMenuState extends MusicBeatState
 			spr.updateHitbox();
 		});
 
-		curOptText.text = CoolUtil.formatString(optionShit[curSelected], ' ');
+		curOptText.text = CoolUtil.formatString(LanguageManager.getTextString(languagesOptions[curSelected]), ' ');
 	}
 
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset

@@ -6,15 +6,12 @@ introWarningFirstPlay==Hola! Este mod utiliza shaders que le puede resultar pert
 introWarningSeen==Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, desactiva la opcion de "Efectos" en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard" Presiona Enter para continuar.
 
 // Main Menu State //
-Modo Historia
-Juego Libre
-Creditos
-Extras
-Opciones
-
-// Extras Menu State //
-OST
-Discord
+main_story==Modo Historia
+main_freeplay==Juego Libre
+main_credits==Creditos
+main_ost==OST
+main_options==Opciones
+main_discord==Discord
 
 // Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
 freeplay_dave==Dave

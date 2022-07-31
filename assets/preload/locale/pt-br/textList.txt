@@ -6,15 +6,12 @@ introWarningFirstPlay==Olá! Esse mod utiliza shaders que podem ser prejudiciais
 introWarningSeen==Olá! Esse mod utiliza shaders que podem ser prejudiciais para alguns. Se você quiser desativar eles, pressione N, se não quiser, pressione Y. Você pode mudar isso nas opções. Supernovae e Glitch são músicas que não devem ser levadas a sério e não são produzidas por mim. Supernovae foi feito por ArchWk, e Glitch foi feito por The Boneyard. 
 
 // Main Menu State //
-Modo História
-Modo Livre
-Créditos
-Extras
-Opções
-
-// Extras Menu State //
-OST
-Discord
+main_story==Story Mode
+main_freeplay==Freeplay
+main_credits==Credits
+main_ost==OST
+main_options==Options
+main_discord==Discord
 
 // Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
 freeplay_dave==Dave
