@@ -2120,7 +2120,7 @@ class PlayState extends MusicBeatState
 
 	function tweenCamIn():Void
 	{
-		FlxTween.tween(FlxG.camera, {zoom: 1.3}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
+		FlxTween.tween(FlxG.camera, {zoom: 1.3}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.sineInOut});
 	}
 
 	override function openSubState(SubState:FlxSubState)
@@ -2843,7 +2843,6 @@ class PlayState extends MusicBeatState
 					}
 					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
-
 					cameraMoveOnNote(daNote.originalType, 'dad');
 					
 					dadStrums.forEach(function(sprite:FlxSprite)
@@ -3037,7 +3036,7 @@ class PlayState extends MusicBeatState
 
 			if (SONG.song.toLowerCase() == 'warmup')
 			{
-				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
+				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.sineInOut});
 			}
 		}
 	}
@@ -3914,7 +3913,7 @@ class PlayState extends MusicBeatState
 				camHUD.shake(0.0045, 0.1);
 			}
 			boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
-			cameraMoveOnNote(note.originalType, 'bf'); 
+			cameraMoveOnNote(note.originalType, 'bf');
 			if (UsingNewCam)
 			{
 				focusOnDadGlobal = false;
