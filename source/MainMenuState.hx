@@ -221,7 +221,7 @@ class MainMenuState extends MusicBeatState
 		curOptDesc = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString(languagesDescriptions[curSelected]));
 		curOptDesc.setFormat("Comic Sans MS Bold", 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		curOptDesc.scrollFactor.set(0, 0);
-		curOptDesc.borderSize = 3;
+		curOptDesc.borderSize = 2;
 		curOptDesc.antialiasing = true;
 		curOptDesc.screenCenter(X);
 		curOptDesc.y = FlxG.height - 58;
