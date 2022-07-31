@@ -59,8 +59,8 @@ option_fpsCap==Cambiar FPS Maximos
 option_freeplay_cutscenes_off==Escenas en Juego Libre Desactivado
 option_freeplay_cutscenes_on==Escenas en Juego Libre Activado
 
-option_noteCamera_on==Camera Movement On Note
-option_noteCamera_off==Normal Camera
+option_noteCamera_on==Camara Dinamica
+option_noteCamera_off==Camara Predefinida
 
 cur_language==Idioma actual
 en-US==Ingles
