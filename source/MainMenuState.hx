@@ -131,6 +131,7 @@ class MainMenuState extends MusicBeatState
 		if (awaitingExploitation)
 		{
 			optionShit = ['freeplay'];
+			languagesOptions = ['main_freeplay'];
 			bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 			bg.scrollFactor.set(0, 0.2);
 			bg.antialiasing = false;
