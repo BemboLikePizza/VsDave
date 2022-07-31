@@ -4238,11 +4238,11 @@ class PlayState extends MusicBeatState
 						black.alpha = 0;
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
@@ -4259,11 +4259,11 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 						FlxG.camera.flash();
 						FlxTween.tween(black, {alpha: 0}, 1);
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
@@ -4276,11 +4276,11 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 						black.alpha = 0;
 					case 1028:
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
@@ -4295,11 +4295,11 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub10'), 0.02, 1);
 					case 1143:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub11'), 0.02, 1, {subtitleSize: 45});
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
@@ -4335,11 +4335,11 @@ class PlayState extends MusicBeatState
 						black.alpha = 0;
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
@@ -4365,11 +4365,11 @@ class PlayState extends MusicBeatState
 						{
 							defaultCamZoom = newValue;
 						});
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
@@ -4390,11 +4390,11 @@ class PlayState extends MusicBeatState
 						black.alpha = 0;
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
@@ -4407,11 +4407,11 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub4'), 0.02, 1);
 					case 510:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub5'), 0.02, 1, {subtitleSize: 60});
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
@@ -4423,11 +4423,11 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.2;
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 					case 838:
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 0}, 1);
 						});
@@ -4444,11 +4444,11 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub11'), 0.02, 1);
 					case 902:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub12'), 0.02, 1, {subtitleSize: 60});
-						dadStrums.forEach(function(strum:Strum)
+						dadStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
-						playerStrums.forEach(function(strum:Strum)
+						playerStrums.forEach(function(strum:FlxSprite)
 						{
 							FlxTween.tween(strum, {alpha: 1}, 1);
 						});
