@@ -4325,7 +4325,6 @@ class PlayState extends MusicBeatState
 					case 1007:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub7'), 0.02, 0.3);
 					case 1033:
-						//the subtitle here does not need any translation, as its just marcello saying goodbye.
 						subtitleManager.addSubtitle("Bye Baa!", 0.02, 0.3, {subtitleSize: 45});
 						FlxTween.tween(dad, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
 						FlxTween.tween(black, {alpha: 0}, (Conductor.stepCrochet / 1000) * 6);
@@ -5169,11 +5168,8 @@ class PlayState extends MusicBeatState
 	public function addSplitathonChar(char:String):Void
 	{
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
-		dadGroup.remove(dad);
-
-		dad = new Character(300, 450, char);
-		dadGroup.add(dad);
-		dad.color = getBackgroundColor(curStage);
+		
+		switchDad(char, new FlxPoint(300, 450));
 		repositionChar(dad);
 
 		boyfriend.stunned = false;
@@ -5181,8 +5177,7 @@ class PlayState extends MusicBeatState
 
 	public function splitathonExpression(character:String, expression:String):Void
 	{
-		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
-		//stupid bullshit cuz i dont wanna bother with removing thing erighkjrehjgt
+		boyfriend.stunned = true;
 		if(splitathonCharacterExpression != null)
 		{
 			dadGroup.remove(splitathonCharacterExpression);
@@ -5196,7 +5191,7 @@ class PlayState extends MusicBeatState
 		}
 		dadGroup.insert(dadGroup.members.indexOf(dad), splitathonCharacterExpression);
 
-		splitathonCharacterExpression.color = nightColor;
+		splitathonCharacterExpression.color = getBackgroundColor(curStage);
 		splitathonCharacterExpression.canDance = false;
 		splitathonCharacterExpression.playAnim(expression, true);
 		boyfriend.stunned = false;
@@ -5306,36 +5301,36 @@ class PlayState extends MusicBeatState
 	}
 	function makeInvisibleNotes(invisible:Bool)
 	{
-		if(invisible == true)
+		if (invisible == true)
+		{
+			dadStrums.forEach(function(strum:FlxSprite)
 			{
-				dadStrums.forEach(function(strum:FlxSprite)
-				{
-					FlxTween.tween(strum, {alpha: 0}, 1);
-				});
-				playerStrums.forEach(function(strum:FlxSprite)
-				{
-					FlxTween.tween(strum, {alpha: 0}, 1);
-				});
-				strumLineNotes.forEach(function(strum:FlxSprite)
-				{
-					FlxTween.tween(strum, {alpha: 0}, 1);
-				});
-			}
+				FlxTween.tween(strum, {alpha: 0}, 1);
+			});
+			playerStrums.forEach(function(strum:FlxSprite)
+			{
+				FlxTween.tween(strum, {alpha: 0}, 1);
+			});
+			strumLineNotes.forEach(function(strum:FlxSprite)
+			{
+				FlxTween.tween(strum, {alpha: 0}, 1);
+			});
+		}
 		else
+		{
+			dadStrums.forEach(function(strum:FlxSprite)
 			{
-				dadStrums.forEach(function(strum:FlxSprite)
-				{
-					FlxTween.tween(strum, {alpha: 1}, 1);
-				});
-				playerStrums.forEach(function(strum:FlxSprite)
-				{
-					FlxTween.tween(strum, {alpha: 1}, 1);
-				});
-				strumLineNotes.forEach(function(strum:FlxSprite)
-				{
-					FlxTween.tween(strum, {alpha: 1}, 1);
-				});
-			}
+				FlxTween.tween(strum, {alpha: 1}, 1);
+			});
+			playerStrums.forEach(function(strum:FlxSprite)
+			{
+				FlxTween.tween(strum, {alpha: 1}, 1);
+			});
+			strumLineNotes.forEach(function(strum:FlxSprite)
+			{
+				FlxTween.tween(strum, {alpha: 1}, 1);
+			});
+		}
 	}
 }
 enum ExploitationModchartType

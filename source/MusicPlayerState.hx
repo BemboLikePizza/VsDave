@@ -81,8 +81,8 @@ class MusicPlayerState extends MusicBeatState
             grpSongs.add(songText);
 
             var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
-            icon.sprTracker = songText;
-            icon.animation.curAnim.curFrame = songs[i].ShowBadIcon ? 1 : 0;
+            icon.sprTracker = songText;			
+			icon.changeState(songs[i].ShowBadIcon ? 'losing' : 'normal');
 
             iconArray.push(icon);
             add(icon);
@@ -98,7 +98,7 @@ class MusicPlayerState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this, 'playdist', 0, 1);
 		healthBar.scrollFactor.set();
 		healthBar.createFilledBar(FlxColor.WHITE, FlxColor.BLACK);
-		add(healthBar);
+		insert(members.indexOf(healthBarBG), healthBar);
 
         iconP1 = new HealthIcon("bf", true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -112,6 +112,7 @@ class MusicPlayerState extends MusicBeatState
 		barText.setFormat(Paths.font("comic.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		barText.scrollFactor.set();
         barText.borderSize = 1.5;
+		barText.antialiasing = true;
         barText.screenCenter(X);
 		add(barText);
 
@@ -171,14 +172,14 @@ class MusicPlayerState extends MusicBeatState
         }
 
         if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
+			iconP1.changeState('losing');
 		else
-			iconP1.animation.curAnim.curFrame = 0;
+			iconP1.changeState('normal');
 
 		if (healthBar.percent > 80)
-			iconP2.animation.curAnim.curFrame = 1;
+			iconP2.changeState('losing');
 		else
-			iconP2.animation.curAnim.curFrame = 0;
+			iconP2.changeState('normal');
 
 		if (upP)
 		{
@@ -349,7 +350,7 @@ class MusicPlayerState extends MusicBeatState
         healthBar.alpha = 0;
         healthBarBG.alpha = 0;
         iconP1.visible = true;
-        iconP2.animation.play(char);
+        iconP2.changeIcon(char);
         iconP2.visible = true;
         barText.visible = true;
         healthBar.visible = true;

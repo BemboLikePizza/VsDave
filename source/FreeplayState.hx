@@ -152,7 +152,7 @@ class FreeplayState extends MusicBeatState
 			CurrentSongIcon.antialiasing = true;
 
 			var NameAlpha:Alphabet = new Alphabet(40, (FlxG.height / 2) - 282, translatedCatagory[i], true, false);
-			NameAlpha.x = CurrentSongIcon.x - NameAlpha.width / 2;
+			NameAlpha.x = CurrentSongIcon.x;
 
 			add(CurrentSongIcon);
 			icons.push(CurrentSongIcon);
@@ -293,7 +293,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
-			songText.itemType = 'D-Shape';
+			songText.itemType = 'Classic';
 			songText.targetY = i;
 			songText.scrollFactor.set();
 			songText.alpha = 0;
