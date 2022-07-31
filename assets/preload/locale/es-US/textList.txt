@@ -66,8 +66,8 @@ option_songPosition_off==Barra de progreso Desactivado
 option_eyesores_enabled==Efectos Activados
 option_eyesores_disabled==Efectos Desactivados
 
-option_selfAwareness_on==Detectar nombre Activado
-option_selfAwareness_off==Detectar nombre Desactivado
+option_selfAwareness_on==Autoconciencia Activada
+option_selfAwareness_off==Autoconciencia Desactivada
 
 option_hitsound_on==Hitsounds Activados
 option_hitsound_off==Hitsounds Desactivados
