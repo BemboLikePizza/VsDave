@@ -255,7 +255,7 @@ class MusicPlayerState extends MusicBeatState
             else
             {
                 FlxG.autoPause = true;
-                FlxG.switchState(new ExtrasMenuState());
+                FlxG.switchState(new MainMenuState());
             }
         }
         if (accepted)

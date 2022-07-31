@@ -4239,7 +4239,7 @@ class PlayState extends MusicBeatState
 						black.alpha = 0;
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-
+						makeInvisibleNotes(true);
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub1'), 0.02, 1);
 					case 165:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub2'), 0.02, 1);
@@ -4253,6 +4253,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 						FlxG.camera.flash();
 						FlxTween.tween(black, {alpha: 0}, 1);
+						makeInvisibleNotes(false);
 					case 640:
 						FlxG.camera.flash();
 						black.alpha = 0.6;
@@ -4262,6 +4263,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 						black.alpha = 0;
 					case 1028:
+						makeInvisibleNotes(true);
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub6'), 0.02, 1.5);
 					case 1056:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub7'), 0.02, 1);
@@ -4273,6 +4275,7 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub10'), 0.02, 1);
 					case 1143:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub11'), 0.02, 1, {subtitleSize: 45});
+						makeInvisibleNotes(false);
 					case 1152:
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
@@ -4305,6 +4308,7 @@ class PlayState extends MusicBeatState
 						black.alpha = 0;
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
+						makeInvisibleNotes(true);
 						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub1'), 0.02, 1);
 					case 945:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('ctheft_sub2'), 0.02, 1);
@@ -4327,6 +4331,7 @@ class PlayState extends MusicBeatState
 						{
 							defaultCamZoom = newValue;
 						});
+						makeInvisibleNotes(false);
 					case 1040:
 						defaultCamZoom = 0.8; 
 						dad.alpha = 1;
@@ -4344,7 +4349,7 @@ class PlayState extends MusicBeatState
 						black.alpha = 0;
 						add(black);
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-
+						makeInvisibleNotes(true);
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub1'), 0.02, 1);
 					case 476:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub2'), 0.02, 0.7);
@@ -4354,6 +4359,7 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub4'), 0.02, 1);
 					case 510:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub5'), 0.02, 1, {subtitleSize: 60});
+						makeInvisibleNotes(false);
 					case 528:
 						 defaultCamZoom = 0.8;
 						black.alpha = 0;
@@ -4362,6 +4368,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.2;
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 					case 838:
+						makeInvisibleNotes(true);
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub6'), 0.02, 1);
 					case 847:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub7'), 0.02, 0.5);
@@ -4375,6 +4382,7 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub11'), 0.02, 1);
 					case 902:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('maze_sub12'), 0.02, 1, {subtitleSize: 60});
+						makeInvisibleNotes(false);
 					case 908:
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
 					case 912:
@@ -4684,26 +4692,26 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 659:
-						subtitleManager.addSubtitle("I will block you!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub1'), 0.02, 0.6);
 					case 1194:
-						subtitleManager.addSubtitle("I want you else", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub2'), 0.02, 0.6);
 					case 1751:
-						subtitleManager.addSubtitle("Ah oh I'm gonna break my", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub3'), 0.02, 0.6);
 					case 1770:
-						subtitleManager.addSubtitle("Phone", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 0.6);
 					case 1776:
 						var position = dad.getPosition(); 
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad('bambi-angey', position);
 						dad.color = nightColor;
 					case 1800:
-						subtitleManager.addSubtitle("Is this you wanted", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 0.6);
 					case 1810:
-						subtitleManager.addSubtitle("a fucking phone", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub6'), 0.02, 0.6);
 					case 1843:
-						subtitleManager.addSubtitle("Holy shit!", 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub7'), 0.02, 1, {subtitleSize: 60});
 					case 2418:
-						subtitleManager.addSubtitle("You fucking liar Moldy!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub8'), 0.02, 0.6);
 				}
 			case 'exploitation':
 				switch(curStep)
@@ -4758,29 +4766,29 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 261:
-						subtitleManager.addSubtitle("Oh my god", 0.02, 0.3);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub1'), 0.02, 0.3);
 					case 273:
-						subtitleManager.addSubtitle("I fucking hate you", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub2'), 0.02, 0.6);
 					case 296:
-						subtitleManager.addSubtitle("That guy, I hate you so much", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub3'), 0.02, 0.6);
 					case 325:
-						subtitleManager.addSubtitle("Check your closet!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub4'), 0.02, 0.6);
 					case 342:
-						subtitleManager.addSubtitle("Check your closet!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub5'), 0.02, 0.6);
 					case 356:
-						subtitleManager.addSubtitle("Or else", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub6'), 0.02, 0.6);
 					case 361:
-						subtitleManager.addSubtitle("I will kill you are rodeo", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub7'), 0.02, 0.6);
 					case 384:
-						subtitleManager.addSubtitle("Trash.", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub8'), 0.02, 0.6, {subtitleSize: 60});
 					case 393:
-						subtitleManager.addSubtitle("And this", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub9'), 0.02, 0.6, {subtitleSize: 60});
 					case 408:
-						subtitleManager.addSubtitle("Durrrr!", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub10'), 0.02, 0.6, {subtitleSize: 60});
 					case 425:
-						subtitleManager.addSubtitle("Check your closet motherfuckers", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub11'), 0.02, 0.6, {subtitleSize: 60});
 					case 484:
-						subtitleManager.addSubtitle("Check you closet motherfuckers", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub12'), 0.02, 0.6, {subtitleSize: 60});
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
@@ -4820,9 +4828,9 @@ class PlayState extends MusicBeatState
 						dadStrums.clear();
 						generateStaticArrows(0);
 					case 1937:
-						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub13'), 0.02, 0.6, {subtitleSize: 60});
 					case 1946:
-						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub14'), 0.02, 0.6, {subtitleSize: 60});
 				}
 		}
 		#if desktop
@@ -4930,13 +4938,13 @@ class PlayState extends MusicBeatState
 				switch (curBeat)
 				{
 					case 8:
-						subtitleManager.addSubtitle('The fuck?', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub1'), 0.02, 1);
 					case 16:
-						subtitleManager.addSubtitle('Ha ha ha haaaaaa hoo?', 0.03, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub2'), 0.03, 1);
 					case 22:
-						subtitleManager.addSubtitle('This say you?', 0.03, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub3'), 0.03, 1);
 					case 26:
-						subtitleManager.addSubtitle('Ha ha, ha', 0.03, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub4'), 0.03, 1);
 					case 40, 44, 46, 56, 60, 62:
 						switchNoteScroll();
 					case 72, 76, 80, 88, 90, 92:
@@ -5293,6 +5301,39 @@ class PlayState extends MusicBeatState
 		iconP2.changeIcon(dad.curCharacter);
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
+	}
+	function makeInvisibleNotes(invisible:Bool)
+	{
+		if(invisible == true)
+			{
+				dadStrums.forEach(function(strum:FlxSprite)
+				{
+					FlxTween.tween(strum, {alpha: 0}, 1);
+				});
+				playerStrums.forEach(function(strum:FlxSprite)
+				{
+					FlxTween.tween(strum, {alpha: 0}, 1);
+				});
+				strumLineNotes.forEach(function(strum:FlxSprite)
+				{
+					FlxTween.tween(strum, {alpha: 0}, 1);
+				});
+			}
+		else
+			{
+				dadStrums.forEach(function(strum:FlxSprite)
+				{
+					FlxTween.tween(strum, {alpha: 1}, 1);
+				});
+				playerStrums.forEach(function(strum:FlxSprite)
+				{
+					FlxTween.tween(strum, {alpha: 1}, 1);
+				});
+				strumLineNotes.forEach(function(strum:FlxSprite)
+				{
+					FlxTween.tween(strum, {alpha: 1}, 1);
+				});
+			}
 	}
 }
 enum ExploitationModchartType
