@@ -24,6 +24,7 @@ import flixel.math.FlxRandom;
 import openfl.net.FileFilter;
 import openfl.filters.BitmapFilter;
 import Shaders.PulseEffect;
+import Shaders.BlockedGlitchShader;
 import Section.SwagSection;
 import Song.SwagSong;
 import flixel.FlxBasic;
@@ -126,6 +127,7 @@ class PlayState extends MusicBeatState
 	public var curbg:BGSprite;
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
+	public static var blockedshader:Shaders.BlockedGlitchShader = new Shaders.BlockedGlitchShader();
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -877,21 +879,21 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'supernovae':
-				credits = 'Original Song made by ArchWk!';
+				credits = LanguageManager.getTextString('supernovae_credit');
 			case 'glitch':
-				credits = 'Original Song made by DeadShadow and PixelGH!';
+				credits = LanguageManager.getTextString('glitch_credit');
 			case 'mealie' | 'memory':
-				credits = 'Original Song made by Alexander Cooper 19!';
+				credits = LanguageManager.getTextString('mealie_credit');
 			case 'overdrive':
-				credits = 'Original Song made by Top 10 Awesome! lol';
+				credits = LanguageManager.getTextString('overdrive_credit');
 			case 'unfairness':
-				credits = "Ghost tapping is forced off! FUCK you!";
+				credits = LanguageManager.getTextString('unfairness_credit');
 			case 'cheating':
-				credits = 'Notes are scrambled! FUCK you!';
+				credits = LanguageManager.getTextString('cheating_credit');
 			case 'exploitation':
-				credits = "You won't survive " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!";
+				credits = LanguageManager.getTextString('exploitation_credit')+ " " + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'Boyfriend') + "!";
 			case 'kabunga':
-				credits = 'OH MY GOD I JUST DEFLATED';
+				credits = LanguageManager.getTextString('kabunga_credit');
 			default:
 				credits = '';
 		}
