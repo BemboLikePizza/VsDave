@@ -4691,26 +4691,26 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 659:
-						subtitleManager.addSubtitle("I will block you!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub1'), 0.02, 0.6);
 					case 1194:
-						subtitleManager.addSubtitle("I want you else", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub2'), 0.02, 0.6);
 					case 1751:
-						subtitleManager.addSubtitle("Ah oh I'm gonna break my", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub3'), 0.02, 0.6);
 					case 1770:
-						subtitleManager.addSubtitle("Phone", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 0.6);
 					case 1776:
 						var position = dad.getPosition(); 
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad('bambi-angey', position);
 						dad.color = nightColor;
 					case 1800:
-						subtitleManager.addSubtitle("Is this you wanted", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 0.6);
 					case 1810:
-						subtitleManager.addSubtitle("a fucking phone", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub6'), 0.02, 0.6);
 					case 1843:
-						subtitleManager.addSubtitle("Holy shit!", 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub7'), 0.02, 1, {subtitleSize: 60});
 					case 2418:
-						subtitleManager.addSubtitle("You fucking liar Moldy!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub8'), 0.02, 0.6);
 				}
 			case 'exploitation':
 				switch(curStep)
@@ -4765,29 +4765,29 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 261:
-						subtitleManager.addSubtitle("Oh my god", 0.02, 0.3);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub1'), 0.02, 0.3);
 					case 273:
-						subtitleManager.addSubtitle("I fucking hate you", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub2'), 0.02, 0.6);
 					case 296:
-						subtitleManager.addSubtitle("That guy, I hate you so much", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub3'), 0.02, 0.6);
 					case 325:
-						subtitleManager.addSubtitle("Check your closet!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub4'), 0.02, 0.6);
 					case 342:
-						subtitleManager.addSubtitle("Check your closet!", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub5'), 0.02, 0.6);
 					case 356:
-						subtitleManager.addSubtitle("Or else", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub6'), 0.02, 0.6);
 					case 361:
-						subtitleManager.addSubtitle("I will kill you are rodeo", 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub7'), 0.02, 0.6);
 					case 384:
-						subtitleManager.addSubtitle("Trash.", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub8'), 0.02, 0.6, {subtitleSize: 60});
 					case 393:
-						subtitleManager.addSubtitle("And this", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub9'), 0.02, 0.6, {subtitleSize: 60});
 					case 408:
-						subtitleManager.addSubtitle("Durrrr!", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub10'), 0.02, 0.6, {subtitleSize: 60});
 					case 425:
-						subtitleManager.addSubtitle("Check your closet motherfuckers", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub11'), 0.02, 0.6, {subtitleSize: 60});
 					case 484:
-						subtitleManager.addSubtitle("Check you closet motherfuckers", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub12'), 0.02, 0.6, {subtitleSize: 60});
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
@@ -4827,9 +4827,9 @@ class PlayState extends MusicBeatState
 						dadStrums.clear();
 						generateStaticArrows(0);
 					case 1937:
-						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub13'), 0.02, 0.6, {subtitleSize: 60});
 					case 1946:
-						subtitleManager.addSubtitle("That's it!", 0.02, 0.6, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub14'), 0.02, 0.6, {subtitleSize: 60});
 				}
 		}
 		#if desktop
@@ -4937,13 +4937,13 @@ class PlayState extends MusicBeatState
 				switch (curBeat)
 				{
 					case 8:
-						subtitleManager.addSubtitle('The fuck?', 0.02, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub1'), 0.02, 1);
 					case 16:
-						subtitleManager.addSubtitle('Ha ha ha haaaaaa hoo?', 0.03, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub2'), 0.03, 1);
 					case 22:
-						subtitleManager.addSubtitle('This say you?', 0.03, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub3'), 0.03, 1);
 					case 26:
-						subtitleManager.addSubtitle('Ha ha, ha', 0.03, 1);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub4'), 0.03, 1);
 					case 40, 44, 46, 56, 60, 62:
 						switchNoteScroll();
 					case 72, 76, 80, 88, 90, 92:

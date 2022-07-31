@@ -3,7 +3,7 @@ Presiona Enter para empezar
 
 // OUTDATED SUBSTATE //
 introWarningFirstPlay==Hola! Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, presiona N, al contrario, presiona Y. Puedes cambiar esto en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard"
-introWarningSeen==Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, desactiva la opcion de "Eyesores" en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard" Presiona Enter para continuar.
+introWarningSeen==Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, desactiva la opcion de "Efectos" en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard" Presiona Enter para continuar.
 
 // Main Menu State //
 Modo Historia
@@ -26,7 +26,7 @@ freeplay_hard==DIFICIL
 freeplay_normal==NORMAL
 freeplay_easy==FACIL
 freeplay_finale==FINALE
-freeplay_fucked==YOU'RE FUCKED
+freeplay_fucked==ESTAS EN PELIGRO
 freeplay_lmao==LMAO
 
 // Credits State //
@@ -37,35 +37,35 @@ credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimientos Especiales
 
 // Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
-option_change_keybinds==Cambiar Keybinds
+option_change_keybinds==Cambiar Teclas
 
-option_ghostTapping_on==Ghost Tapping
-option_ghostTapping_off==No Ghost Tapping
+option_ghostTapping_on==Presionar sin notas
+option_ghostTapping_off==No presionar sin notas
 
-option_downscroll==Downscroll
-option_upscroll==Upscroll
+option_downscroll==Notas para abajo
+option_upscroll==Notas para arriba
 
-option_songPosition_on==Posición de la canción ACTIVADO
-option_songPosition_off==Posición de la canción DESACTIVADO
+option_songPosition_on==Barra de progreso Activado
+option_songPosition_off==Barra de progreso Desactivado
 
-option_eyesores_enabled==Eyesores Enabled
-option_eyesores_disabled==Eyesores Disabled
+option_eyesores_enabled==Efectos Activados
+option_eyesores_disabled==Efectos Desactivados
 
-option_selfAwareness_on==Self Awareness Enabled
-option_selfAwareness_off==Self Awareness Disabled
+option_selfAwareness_on==Detectar nombre Activado
+option_selfAwareness_off==Detectar nombre Desactivado
 
-option_hitsound_on==Hitsounds Activado
-option_hitsound_off==Hitsounds Desactivado
+option_hitsound_on==Hitsounds Activados
+option_hitsound_off==Hitsounds Desactivados
 
-option_fpsCap==idk
+option_fpsCap==Cambiar FPS Maximos
 
-option_freeplay_cutscenes_off==Animaciones en Juego Libre Desactivado
-option_freeplay_cutscenes_on==Animaciones en Juego Libre Activado
+option_freeplay_cutscenes_off==Escenas en Juego Libre Desactivado
+option_freeplay_cutscenes_on==Escenas en Juego Libre Activado
 
 option_noteCamera_on==Camera Movement On Note
 option_noteCamera_off==Normal Camera
 
-cur_language==Current Language
+cur_language==Idioma actual
 en-US==Ingles
 es-US==Español
 pt-br==Brasilero-Portugues
@@ -132,3 +132,35 @@ maze_sub9==Bien.
 maze_sub10==Que quieres jugar?
 maze_sub11==Me quieres acosar?
 maze_sub12==Nunca regreses de nuevo.
+
+// Mealie Subtitles //
+mealie_sub1==Te voy a bloquear!
+mealie_sub2==Quiero que tu...
+mealie_sub3==Yo voy a romper mi
+mealie_sub4==Celular!
+mealie_sub5==Esto es lo que querias?
+mealie_sub6==el telefono?
+mealie_sub7==DIOS MIO!
+mealie_sub8==Eres un mentiroso Moldy!
+
+// Shredder Subtitles //
+shred_sub1==Oh dios mio...
+shred_sub2==Te odio
+shred_sub3==Ese tipo, Te odio demasiado...
+shred_sub4==Mira tu closet!
+shred_sub5==Mira tu closet!
+shred_sub6==O si no
+shred_sub7==Te matare eres una gran
+shred_sub8==Basura.
+shred_sub9==Y esto
+shred_sub10==Durrrr!
+shred_sub11==Miren sus closets estupidos
+shred_sub12==Miren sus closets estupidos
+shred_sub13==Eso es todo!
+shred_sub14==Eso es todo!
+
+// Exploitation Subtitles //
+exploit_sub1==Que rayos?
+exploit_sub2==Ha ha haaaaaa hoo?
+exploit_sub3==Este eres tu?
+exploit_sub4==Ja ja, ja

@@ -132,3 +132,35 @@ maze_sub9==Sure.
 maze_sub10==What you want to play?
 maze_sub11==You bully me?
 maze_sub12==Never come back again.
+
+// Mealie Subtitles //
+mealie_sub1==I will block you!
+mealie_sub2==I want you else
+mealie_sub3==Ah oh I'm gonna break my
+mealie_sub4==Phone!
+mealie_sub5==Is this want you wanted?
+mealie_sub6==a phone?
+mealie_sub7==HOLY SHIT!
+mealie_sub8==You fucking liar Moldy!
+
+// Shredder Subtitles //
+shred_sub1==Oh my god...
+shred_sub2==I fucking hate you
+shred_sub3==That guy, I hate you so much...
+shred_sub4==Check your closet!
+shred_sub5==Check your closet!
+shred_sub6==Or else
+shred_sub7==I will kill you are rodeo
+shred_sub8==Trash.
+shred_sub9==And this
+shred_sub10==Durrrr!
+shred_sub11==Check your closet motherfuckers
+shred_sub12==Check your closet motherfuckers
+shred_sub13==That's it!
+shred_sub14==That's it!
+
+// Exploitation Subtitles //
+exploit_sub1==The fuck?
+exploit_sub2==Ha ha haaaaaa hoo?
+exploit_sub3==This say you?
+exploit_sub4==Ha ha, ha
