@@ -33,6 +33,16 @@ credits_contributor==Contribuidores
 credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimentos Especiais
 
+// Credits Words //
+supernovae_credit==Original Song made by ArchWk!
+glitch_credit==Original Song made by DeadShadow and PixelGH!
+mealie_credit==Original Song made by Alexander Cooper 19!
+overdrive_credit==Original Song made by Top 10 Awesome!
+unfairness_credit==Ghost Tapping is forced off! FUCK YOU!
+cheating_credit==Notes are scrambled! FUCK YOU!
+exploitation_credit==You won't survive
+kabunga_credit==OH MY GOD I JUST DEFLATED
+
 // Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
 option_change_keybinds==Mudar Teclas
 

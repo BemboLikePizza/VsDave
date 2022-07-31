@@ -18,6 +18,7 @@ main_discord==Discord
 freeplay_dave==Dave
 freeplay_joke==Joke
 freeplay_extra==Extra
+freeplay_terminal==Terminal
 
 freeplay_personalBest==PERSONAL BEST:
 freeplay_hard==HARD
@@ -25,7 +26,6 @@ freeplay_normal==NORMAL
 freeplay_easy==EASY
 freeplay_finale==FINALE
 freeplay_fucked==YOU'RE FUCKED
-freeplay_lmao==LMAO
 
 // Credits State //
 credits_dev==Developers
@@ -33,6 +33,16 @@ credits_translator==Translators
 credits_contributor==Contributors
 credits_betaTester==Beta Testers
 credits_specialThanks==Special Thanks
+
+// Credits Words //
+supernovae_credit==Original Song made by ArchWk!
+glitch_credit==Original Song made by DeadShadow and PixelGH!
+mealie_credit==Original Song made by Alexander Cooper 19!
+overdrive_credit==Original Song made by Top 10 Awesome!
+unfairness_credit==Ghost Tapping is forced off! FUCK YOU!
+cheating_credit==Notes are scrambled! FUCK YOU!
+exploitation_credit==You won't survive
+kabunga_credit==OH MY GOD I JUST DEFLATED
 
 // Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
 option_change_keybinds==Change Keybinds
