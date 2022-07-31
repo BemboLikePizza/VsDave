@@ -157,7 +157,7 @@ shred_sub3==Ese tipo, Te odio demasiado...
 shred_sub4==Mira tu closet!
 shred_sub5==Mira tu closet!
 shred_sub6==O si no
-shred_sub7==Te matare eres una gran
+shred_sub7==Te matare y tirare toda tu
 shred_sub8==Basura.
 shred_sub9==Y esto
 shred_sub10==Durrrr!
