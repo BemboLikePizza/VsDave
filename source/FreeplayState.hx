@@ -57,9 +57,9 @@ class FreeplayState extends MusicBeatState
 
 	var songColors:Array<FlxColor> = 
 	[
-    	0xFFca1f6f,    // GF
+    	0xFF00137F,    // gf but its actually dave!
 		0xFF4965FF,    // DAVE
-		0xFF00B515,    // MISTER BAMBI RETARD
+		0xFF00B515,    // MISTER BAMBI RETARD (autistic btw...)
 		0xFF00FFFF,    // SPLIT THE THONNNNN
 		0xFF800080,    // FESTIVAL
 		0xFFFF0000,    // TRISTAN
