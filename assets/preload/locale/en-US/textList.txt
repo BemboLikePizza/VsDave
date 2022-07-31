@@ -14,6 +14,14 @@ main_ost==OST
 main_options==Options
 main_discord==Discord
 
+// Main Menu Descriptions //
+desc_story==Play the story mode to unlock new characters, and understand the story!
+desc_freeplay==Play any song as you wish and get new scores!
+desc_credits==Look at the people who have worked or contributed to the mod!
+desc_ost==Listen to the songs of the mod.
+desc_options==Adjust game settings and keybinds.
+desc_discord==¡Join the official Vs. Dave and Bambi Discord!
+
 // Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
 freeplay_dave==Dave
 freeplay_joke==Joke

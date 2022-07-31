@@ -13,6 +13,14 @@ main_ost==OST
 main_options==Opciones
 main_discord==Discord
 
+// Main Menu Descriptions //
+desc_story==¡Juega el modo historia para desbloquear nuevos personajes y entender la historia!
+desc_freeplay==¡Juega cualquier canción como quieras y consigue nuevas puntuaciones!
+desc_credits==¡Mira que personas trabajaron o contribuyeron al mod!
+desc_ost==Escucha las canciones del mod.
+desc_options==Ajusta las opciones del juego o cambia las teclas.
+desc_discord==¡Unete al servidor oficial de Vs. Dave and Bambi!
+
 // Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
 freeplay_dave==Dave
 freeplay_joke==Broma
@@ -34,10 +42,10 @@ credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimientos Especiales
 
 // Credits Words //
-supernovae_credit==¡La cancion original fue creada por ArchWk!
-glitch_credit==¡La cancion original fue creada por DeadShadow and PixelGH!
-mealie_credit==¡La cancion original fue creada por Alexander Cooper 19!
-overdrive_credit==¡La cancion original fue creada por Top 10 Awesome!
+supernovae_credit==¡La canción original fue creada por ArchWk!
+glitch_credit==¡La canción original fue creada por DeadShadow and PixelGH!
+mealie_credit==¡La canción original fue creada por Alexander Cooper 19!
+overdrive_credit==¡La canción original fue creada por Top 10 Awesome!
 unfairness_credit==¡Presionar sin notas esta desactivado! JODETE!
 cheating_credit==¡Las notas estan en desorden! JODETE!
 exploitation_credit==¡No sobrevivirás
@@ -79,12 +87,12 @@ pt-br==Brasilero-Portugues
 ru-RU==Russian
 
 // Keybind State //
-keybind_tutorial==Seleccione un control y seleccione una keybind
-keybind_preset==Keybinds Preestablecidos:
+keybind_tutorial==Seleccione un control y presione una tecla
+keybind_preset==Controles Preestablecidos:
 
 // Story Mode State //
 story_track==Canciones
-story_weekScore==Puntuacion de la semana:
+story_weekScore==Puntuación:
 story_tutorial==Tutorial
 story_daveWeek==La divertida batalla de rap de Dave!
 story_bambiWeek==El diverido laberinto de maiz de Mr. Bambi!
@@ -100,9 +108,9 @@ play_normal==NORMAL
 play_easy==FACIL
 
 // Play State //
-play_score==Puntuacion:
+play_score==Puntuación:
 play_miss==Fallos:
-play_accuracy==Precision:
+play_accuracy==Precisión:
 
 // Blocked Subtitles //
 blocked_sub1==Te bloqueo...
@@ -157,7 +165,7 @@ shred_sub3==Ese tipo, Te odio demasiado...
 shred_sub4==Mira tu closet!
 shred_sub5==Mira tu closet!
 shred_sub6==O si no
-shred_sub7==Te matare y tirare toda tu
+shred_sub7==Te mataré y tiraré toda tu
 shred_sub8==Basura.
 shred_sub9==Y esto
 shred_sub10==Durrrr!

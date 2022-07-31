@@ -53,6 +53,16 @@ class MainMenuState extends MusicBeatState
 		'main_discord'
 	];
 
+	var languagesDescriptions:Array<String> =
+	[
+		'desc_story',
+		'desc_freeplay',
+		'desc_credits',
+		'desc_ost',
+		'desc_options',
+		'desc_discord'
+	];
+
 	public static var firstStart:Bool = true;
 
 	public static var finishedFunnyMove:Bool = false;
@@ -73,6 +83,7 @@ class MainMenuState extends MusicBeatState
 	var bg:FlxSprite;
 	var magenta:FlxSprite;
 	var selectUi:FlxSprite;
+	var bigIcons:FlxSprite;
 	var camFollow:FlxObject;
 	public static var bgPaths:Array<String> = [
 		'Aadsta',
@@ -107,6 +118,7 @@ class MainMenuState extends MusicBeatState
 	var rightArrow:FlxText;
 	var leftArrow:FlxText;
 	var curOptText:FlxText;
+	var curOptDesc:FlxText;
 
 	var voidShader:Shaders.GlitchEffect;
 
@@ -132,6 +144,7 @@ class MainMenuState extends MusicBeatState
 		{
 			optionShit = ['freeplay'];
 			languagesOptions = ['main_freeplay'];
+			languagesDescriptions = ['desc_freeplay'];
 			bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 			bg.scrollFactor.set(0, 0.2);
 			bg.antialiasing = false;
@@ -181,6 +194,21 @@ class MainMenuState extends MusicBeatState
 		selectUi.updateHitbox();
 		add(selectUi);
 
+		var bigIconsFrames = Paths.getSparrowAtlas('ui/menu_big_icons');
+
+		bigIcons = new FlxSprite(0, 0);
+		bigIcons.frames = bigIconsFrames;
+		for (i in 0...optionShit.length)
+		{
+			bigIcons.animation.addByPrefix(optionShit[i], optionShit[i], 24);
+		}
+		bigIcons.scrollFactor.set(0, 0);
+		bigIcons.antialiasing = true;
+		bigIcons.updateHitbox();
+		bigIcons.animation.play(optionShit[0]);
+		bigIcons.screenCenter(X);
+		add(bigIcons);
+
 		curOptText = new FlxText(0, 0, FlxG.width, CoolUtil.formatString(LanguageManager.getTextString(languagesOptions[curSelected]), ' '));
 		curOptText.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		curOptText.scrollFactor.set(0, 0);
@@ -189,6 +217,15 @@ class MainMenuState extends MusicBeatState
 		curOptText.screenCenter(X);
 		curOptText.y = FlxG.height / 2 + 28;
 		add(curOptText);
+
+		curOptDesc = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString(languagesDescriptions[curSelected]));
+		curOptDesc.setFormat("Comic Sans MS Bold", 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		curOptDesc.scrollFactor.set(0, 0);
+		curOptDesc.borderSize = 3;
+		curOptDesc.antialiasing = true;
+		curOptDesc.screenCenter(X);
+		curOptDesc.y = FlxG.height - 58;
+		add(curOptDesc);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -356,10 +393,6 @@ class MainMenuState extends MusicBeatState
 
 		super.update(elapsed);
 
-		menuItems.forEach(function(spr:FlxSprite)
-		{
-			//spr.screenCenter(Y);
-		});
 	}
 
 	override function beatHit()
@@ -392,7 +425,9 @@ class MainMenuState extends MusicBeatState
 			spr.updateHitbox();
 		});
 
+		bigIcons.animation.play(optionShit[curSelected]);
 		curOptText.text = CoolUtil.formatString(LanguageManager.getTextString(languagesOptions[curSelected]), ' ');
+		curOptDesc.text = LanguageManager.getTextString(languagesDescriptions[curSelected]);
 	}
 
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
