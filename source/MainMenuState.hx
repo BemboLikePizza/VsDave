@@ -38,8 +38,9 @@ class MainMenuState extends MusicBeatState
 		'story mode', 
 		'freeplay', 
 		'credits',
-		'extras', 
-		'options'
+		'ost',
+		'options',
+		'discord'
 	];
 
 	public static var firstStart:Bool = true;
@@ -61,6 +62,7 @@ class MainMenuState extends MusicBeatState
 	
 	var bg:FlxSprite;
 	var magenta:FlxSprite;
+	var selectUi:FlxSprite;
 	var camFollow:FlxObject;
 	public static var bgPaths:Array<String> = [
 		'Aadsta',
@@ -92,6 +94,9 @@ class MainMenuState extends MusicBeatState
 	var lilMenuGuy:FlxSprite;
 
 	var awaitingExploitation:Bool;
+	var rightArrow:FlxText;
+	var leftArrow:FlxText;
+	var curOptText:FlxText;
 
 	var voidShader:Shaders.GlitchEffect;
 
@@ -159,47 +164,65 @@ class MainMenuState extends MusicBeatState
 			magenta.color = 0xFFfd719b;
 			add(magenta);
 		}
+		selectUi = new FlxSprite(0, 0).loadGraphic(Paths.image('mainMenu/Select_Thing', 'preload'));
+		selectUi.scrollFactor.set(0, 0);
+		selectUi.antialiasing = true;
+		selectUi.updateHitbox();
+		add(selectUi);
+
+		curOptText = new FlxText(0, 0, FlxG.width, CoolUtil.formatString(optionShit[curSelected], ' '));
+		curOptText.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		curOptText.scrollFactor.set(0, 0);
+		curOptText.borderSize = 3;
+		curOptText.antialiasing = true;
+		curOptText.screenCenter(X);
+		curOptText.y = FlxG.height / 2 + 28;
+		add(curOptText);
+
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		var tex = Paths.getSparrowAtlas('ui/FNF_main_menu_assets');
+		var tex = Paths.getSparrowAtlas('ui/main_menu_icons');
 
-		camFollow = new FlxObject(0, 0, 1, 1);
-		add(camFollow);
+		//camFollow = new FlxObject(0, 0, 1, 1);
+		//add(camFollow);
 
-		FlxG.camera.follow(camFollow, null, 0.06);
+		//FlxG.camera.follow(camFollow, null, 0.06);
 
-		camFollow.setPosition(640, 150.5);
+		//camFollow.setPosition(640, 150.5);
 
 		for (i in 0...optionShit.length)
 		{
 			var currentOptionShit = optionShit[i];
-			var menuItem:FlxSprite = new FlxSprite(0, FlxG.height * 1.6);
+			var menuItem:FlxSprite = new FlxSprite(FlxG.width * 1.6, 0);
 			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', currentOptionShit + " basic", 24);
 			menuItem.animation.addByPrefix('selected', currentOptionShit + " white", 24);
 			menuItem.animation.play('idle');
+			menuItem.setGraphicSize(128, 128);
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
+			menuItem.updateHitbox();
+			//menuItem.screenCenter(Y);
+			//menuItem.alpha = 0; //TESTING
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set(0, 1);
 			menuItem.antialiasing = true;
 			if (firstStart)
 			{
-				FlxTween.tween(menuItem, {y: 60 + (i * 160)}, 1 + (i * 0.25), {
+				FlxTween.tween(menuItem, {x: 60 + (i * 160)}, 1 + (i * 0.25), {
 					ease: FlxEase.expoInOut,
 					onComplete: function(flxTween:FlxTween)
 					{
 						finishedFunnyMove = true;
-						menuItem.screenCenter(X);
+						//menuItem.screenCenter(Y);
 						changeItem();
 					}
 				});
 			}
 			else
 			{
-				menuItem.screenCenter(X);
-				menuItem.y = 60 + (i * 160);
+				//menuItem.screenCenter(Y);
+				menuItem.x = 60 + (i * 160);
 				changeItem();
 			}
 		}
@@ -210,6 +233,11 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
+
+		menuItems.forEach(function(spr:FlxSprite)
+		{
+			spr.y = FlxG.height / 2 + 130;
+		});
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -319,7 +347,7 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			spr.screenCenter(X);
+			//spr.screenCenter(Y);
 		});
 	}
 
@@ -347,11 +375,13 @@ class MainMenuState extends MusicBeatState
 			if (spr.ID == curSelected && finishedFunnyMove)
 			{
 				spr.animation.play('selected');
-				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
+				//camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}
-			spr.screenCenter(X);
+			//spr.screenCenter(Y);
 			spr.updateHitbox();
 		});
+
+		curOptText.text = CoolUtil.formatString(optionShit[curSelected], ' ');
 	}
 
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
