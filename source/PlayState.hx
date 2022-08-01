@@ -5027,6 +5027,7 @@ class PlayState extends MusicBeatState
 						makeInvisibleNotes(false);
 					case 270:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub2'), 0.04, 0.3, {subtitleSize: 60});
+						FlxG.camera.shake(0.005, 0.6);
 						dad.canSing = false;
 						dad.canDance = false;
 						dad.playAnim('waa', true);
