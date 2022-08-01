@@ -360,6 +360,11 @@ class PlayState extends MusicBeatState
 				daveBG = MainMenuState.randomizeBG();
 				bambiBG = MainMenuState.randomizeBG();
 				tristanBG = MainMenuState.randomizeBG();
+			case 'vs-dave-rap':
+				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.width * 2, FlxColor.BLACK);
+				blackScreen.cameras = [camHUD];
+				blackScreen.scrollFactor.set();
+				add(blackScreen);
 		}
 		scrollType = FlxG.save.data.downscroll ? 'downscroll' : 'upscroll';
 
@@ -567,7 +572,7 @@ class PlayState extends MusicBeatState
 		{
 			gfVersion = 'gf-pixel';
 			charoffsetx += 300;
-			charoffsety += 300;
+			charoffsety -= 300;
 		}
 		if (SONG.player1 == 'tb-funny-man')
 		{
@@ -764,9 +769,13 @@ class PlayState extends MusicBeatState
 				boyfriend.setPosition(790, 300);
 				gf.setPosition(500 + charoffsetx, -100 + charoffsety);
 			case 'festival':
-				dad.x -= 200;
 				gf.x -= 200;
 				boyfriend.x -= 200;
+				
+				for (char in [dad, gf, boyfriend])
+				{
+					char.blend = BlendMode.ADD;
+				}
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1086,7 +1095,7 @@ class PlayState extends MusicBeatState
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
 				}			
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${assetType}${skyType}'), null, 0.75, 0.75);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/$${skyType}'), null, 0.75, 0.75);
 				sprites.add(bg);
 				add(bg);
 				
@@ -1249,7 +1258,7 @@ class PlayState extends MusicBeatState
 
 				var stageGlow:BGSprite = new BGSprite('stageGlow', -450, 300, 'backgrounds/festival/generalGlow', [
 					new Animation('glow', 'idle', 5, true, [false, false])
-				], 1, 1);
+				], 0, 0, true, true);
 				stageGlow.blend = BlendMode.ADD;
 				stageGlow.animation.play('glow');
 				sprites.add(stageGlow);
@@ -1778,28 +1787,13 @@ class PlayState extends MusicBeatState
 	}
 
 	var previousFrameTime:Int = 0;
-	var lastReportedPlayheadPosition:Int = 0;
 	var songTime:Float = 0;
 
 	function startSong():Void
 	{
-		if (SONG.song.toLowerCase() == "exploitation")
-		{
-			blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-			blackScreen.cameras = [camHUD];
-			blackScreen.screenCenter();
-			blackScreen.scrollFactor.set();
-			blackScreen.alpha = 0;
-			add(blackScreen);
-				
-			Application.current.window.title = "[DATA EXPUNGED]";
-			Application.current.window.setIcon(lime.graphics.Image.fromFile("art/iconAAAA.png"));
-		}
-
 		startingSong = false;
 
 		previousFrameTime = FlxG.game.ticks;
-		lastReportedPlayheadPosition = 0;
 
 		if (!paused)
 		{
@@ -1837,6 +1831,21 @@ class PlayState extends MusicBeatState
 					dad.canSing = true;
 					dad.canDance = true;
 				}
+			case 'exploitation':
+				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+				blackScreen.cameras = [camHUD];
+				blackScreen.screenCenter();
+				blackScreen.scrollFactor.set();
+				blackScreen.alpha = 0;
+				add(blackScreen);
+					
+				Application.current.window.title = "[DATA EXPUNGED]";
+				Application.current.window.setIcon(lime.graphics.Image.fromFile("art/icons/iconAAAA.png"));
+			case 'vs-dave-rap':
+				FlxTween.tween(blackScreen, {alpha: 0}, 3, {onComplete: function(tween:FlxTween)
+				{
+					remove(blackScreen);
+				}});
 		}
 	}
 
@@ -4570,7 +4579,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						FlxG.mouse.visible = false;
 						changeInterdimensionBg('interdimension-void');
-					case 2876:
+					case 2652:
 						defaultCamZoom = 0.7;
 						for (bgSprite in backgroundSprites)
 						{
@@ -4584,7 +4593,7 @@ class PlayState extends MusicBeatState
 						canFloat = false;
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						var position = dad.getPosition();
-						switchDad('dave', position);
+						switchDad('dave-festival', position);
 
 						dadStrums.forEach(function(spr:FlxSprite)
 						{
@@ -4613,7 +4622,7 @@ class PlayState extends MusicBeatState
 			case 'unfairness':
 				switch(curStep)
 				{
-					case 2560:					
+					case 2560:
 						dadStrums.forEach(function(spr:FlxSprite)
 						{
 							FlxTween.tween(spr, {alpha: 0}, 6);
@@ -4831,6 +4840,18 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub13'), 0.02, 0.6, {subtitleSize: 60});
 					case 1946:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub14'), 0.02, 0.6, {subtitleSize: 60});
+				}
+			case 'rano':
+				switch (curStep)
+				{
+					case 1664:
+						dad.canDance = false;
+						dad.canSing = false;
+						dad.playAnim('sleepIdle', true);
+						dad.animation.finishCallback = function(anim:String)
+						{
+							dad.playAnim('sleeping', true);
+						}
 				}
 		}
 		#if desktop
@@ -5214,7 +5235,7 @@ class PlayState extends MusicBeatState
 	{
 		switch (char.curCharacter)
 		{
-			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
+			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf' | 'dave-festival':
 				char.y -= 150;
 			case 'dave-angey':
 				char.y -= 400;

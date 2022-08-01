@@ -337,7 +337,22 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
+			case 'dave-festival':
+				frames = Paths.getSparrowAtlas('festival/dave_festival', 'shared');
 				
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				animation.addByPrefix('sleepIdle', 'sleepy', 24, false);
+				animation.addByPrefix('sleeping', 'sleeping', 24, true);
+				
+				loadOffsetFile(curCharacter);
+				
+				barColor = FlxColor.fromRGB(15, 95, 255);
+
+				playAnim('idle');
 			case 'bambi':
 				var tex = Paths.getSparrowAtlas('bambi/characters/bambi', 'shared');
 				frames = tex;

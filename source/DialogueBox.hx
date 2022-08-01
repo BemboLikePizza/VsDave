@@ -398,63 +398,57 @@ class DialogueBox extends FlxSpriteGroup
 				switch (expression)
 				{
 					case 'annoyed':
-						portrait.portraitPath = 'dialogue/dave_insanity';
+						portrait.portraitPath = 'dialogue/dave//dave_insanity';
 						portrait.portraitPrefix = 'dave insanity portrait';
 					case 'scared':
-						portrait.portraitPath = 'dialogue/dave_pre-furiosity';
+						portrait.portraitPath = 'dialogue/dave/dave_pre-furiosity';
 						portrait.portraitPrefix = 'dave pre-furiosity portrait';
 					case 'confused':
-						portrait.portraitPath = 'dialogue/dave_bambiweek';
+						portrait.portraitPath = 'dialogue/dave/dave_bambiweek';
 						portrait.portraitPrefix = 'dave bambi week portrait';
 					case '3d-scared':
-						portrait.portraitPath = 'dialogue/dave_furiosity';
+						portrait.portraitPath = 'dialogue/dave/dave_furiosity';
 						portrait.portraitPrefix = 'dave furiosity portrait';
 					case 'splitathon':
-						portrait.portraitPath = 'dialogue/dave_splitathon';
+						portrait.portraitPath = 'dialogue/dave/dave_splitathon';
 						portrait.portraitPrefix = 'dave splitathon portrait';
 					default:
-						portrait.portraitPath = 'dialogue/dave_house';
+						portrait.portraitPath = 'dialogue/dave/dave_house';
 						portrait.portraitPrefix = 'dave house portrait';
 				}
 			case 'bambi':
 				switch (expression)
 				{
 					case 'annoyed':
-						portrait.portraitPath = 'dialogue/bambi_blocked';
+						portrait.portraitPath = 'dialogue/bambi/bambi_blocked';
 						portrait.portraitPrefix = 'bambi blocked portrait';
 					case 'upset':
-						portrait.portraitPath = 'dialogue/bambi_maze';
+						portrait.portraitPath = 'dialogue/bambi/bambi_maze';
 						portrait.portraitPrefix = 'bambi maze portrait';
 					case 'splitathon':
-						portrait.portraitPath = 'dialogue/bambi_splitathon';
+						portrait.portraitPath = 'dialogue/bambi/bambi_splitathon';
 						portrait.portraitPrefix = 'bambi splitathon portrait';
 					case 'bevel':
-						portrait.portraitPath = 'dialogue/bambi_bevel';
+						portrait.portraitPath = 'dialogue/bambi/bambi_bevel';
 						portrait.portraitPrefix = 'bambienter';
-					case '3d':
-						portrait.portraitPath = 'dialogue/3d_bamb';
-						portrait.portraitPrefix = 'bambi 3d portrait';
-					case 'unfair':
-						portrait.portraitPath = 'dialogue/unfairnessPortrait';
-						portrait.portraitPrefix = 'bambi unfairness portrait';
 					default:
-						portrait.portraitPath = 'dialogue/bambi_corntheft';
+						portrait.portraitPath = 'dialogue/bambi/bambi_corntheft';
 						portrait.portraitPrefix = 'bambi corntheft portrait';
 				}
 			case 'bf':
 				switch (expression)
 				{
 					case 'ready':
-						portrait.portraitPath = 'dialogue/bf_insanity_splitathon';
+						portrait.portraitPath = 'dialogue/bf/bf_insanity_splitathon';
 						portrait.portraitPrefix = 'bf insanity & splitathon portrait';
 					case 'confused':
-						portrait.portraitPath = 'dialogue/bf_furiosity_corntheft';
+						portrait.portraitPath = 'dialogue/bf/bf_furiosity_corntheft';
 						portrait.portraitPrefix = 'bf furiosity & corntheft portrait';
 					case 'upset':
-						portrait.portraitPath = 'dialogue/bf_blocked_maze';
+						portrait.portraitPath = 'dialogue/bf/bf_blocked_maze';
 						portrait.portraitPrefix = 'bf blocked & maze portrait';
 					default:
-						portrait.portraitPath = 'dialogue/bf_house';
+						portrait.portraitPath = 'dialogue/bf/bf_house';
 						portrait.portraitPrefix = 'bf house portrait';
 				}
 				portrait.left = false;
@@ -462,16 +456,16 @@ class DialogueBox extends FlxSpriteGroup
 				switch (expression)
 				{
 					case 'confused':
-						portrait.portraitPath = 'dialogue/gf_corntheft';
+						portrait.portraitPath = 'dialogue/gf/gf_corntheft';
 						portrait.portraitPrefix = 'gf corntheft portrait';
 					case 'what':
-						portrait.portraitPath = 'dialogue/gf_maze';
+						portrait.portraitPath = 'dialogue/gf/gf_maze';
 						portrait.portraitPrefix = 'gf maze portrait';
 					case 'cheer':
-						portrait.portraitPath = 'dialogue/gf_splitathon';
+						portrait.portraitPath = 'dialogue/gf/gf_splitathon';
 						portrait.portraitPrefix = 'gf splitathon portrait';
 					default:
-						portrait.portraitPath = 'dialogue/gf_blocked';
+						portrait.portraitPath = 'dialogue/gf/gf_blocked';
 						portrait.portraitPrefix = 'gf blocked portrait';
 				}
 				portrait.left = false;
@@ -479,7 +473,7 @@ class DialogueBox extends FlxSpriteGroup
 				switch (expression)
 				{
 					default:
-						portrait.portraitPath = 'dialogue/tristanPortrait';
+						portrait.portraitPath = 'dialogue/tristan/tristanPortrait';
 						portrait.portraitPrefix = 'tristan portrait';
 				}
 		}
