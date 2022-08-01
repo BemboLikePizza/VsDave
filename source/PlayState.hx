@@ -4814,6 +4814,10 @@ class PlayState extends MusicBeatState
 			case 'rano':
 				switch (curStep)
 				{
+				case 511:
+				defaultCamZoom = 0.9;
+				case 640:
+				defaultCamZoom = 0.7;
 					case 1792:
 						dad.canDance = false;
 						dad.canSing = false;
