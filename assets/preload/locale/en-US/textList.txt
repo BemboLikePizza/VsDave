@@ -180,3 +180,7 @@ exploit_sub1==The fuck?
 exploit_sub2==Ha ha haaaaaa hoo?
 exploit_sub3==This say you?
 exploit_sub4==Ha ha, ha
+
+// Escape from California Subtitles //
+california_sub1==Help me! I'm stuck in California!
+california_sub2==WAAAAAAAAAAAAAAAAAAAAAA!-
