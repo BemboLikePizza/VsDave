@@ -107,9 +107,6 @@ class PlayState extends MusicBeatState
 	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
-	var howManyPlayerNotes:Int = 0;
-	var howManyEnemyNotes:Int = 0;
-
 	public var stupidx:Float = 0;
 	public var stupidy:Float = 0; // stupid velocities for cutscene
 	public var updatevels:Bool = false;
@@ -362,7 +359,6 @@ class PlayState extends MusicBeatState
 				tristanBG = MainMenuState.randomizeBG();
 			case 'vs-dave-rap':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.width * 2, FlxColor.BLACK);
-				blackScreen.cameras = [camHUD];
 				blackScreen.scrollFactor.set();
 				add(blackScreen);
 		}
@@ -771,11 +767,8 @@ class PlayState extends MusicBeatState
 			case 'festival':
 				gf.x -= 200;
 				boyfriend.x -= 200;
-				
-				for (char in [dad, gf, boyfriend])
-				{
-					char.blend = BlendMode.ADD;
-				}
+
+
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1095,7 +1088,7 @@ class PlayState extends MusicBeatState
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
 				}			
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/$${skyType}'), null, 0.75, 0.75);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${skyType}'), null, 0.75, 0.75);
 				sprites.add(bg);
 				add(bg);
 				
@@ -2125,6 +2118,27 @@ class PlayState extends MusicBeatState
 
 			strumLineNotes.add(babyArrow);
 		}
+	}
+	function regenerateStaticArrows(player:Int)
+	{
+		switch (player)
+		{
+			case 0:
+				dadStrums.forEach(function(spr:FlxSprite)
+				{
+					dadStrums.remove(spr);
+					remove(spr);
+					spr.destroy();
+				});
+			case 1:
+				playerStrums.forEach(function(spr:FlxSprite)
+				{
+					playerStrums.remove(spr);
+					remove(spr);
+					spr.destroy();
+				});
+		}
+		generateStaticArrows(player);
 	}
 
 	function tweenCamIn():Void
@@ -4561,16 +4575,16 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('darkSpace');
 						
-						tweenList.push(FlxTween.color(gf, 1, dad.color, FlxColor.BLUE));
+						tweenList.push(FlxTween.color(gf, 1, gf.color, FlxColor.BLUE));
 						tweenList.push(FlxTween.color(dad, 1, dad.color, FlxColor.BLUE));
-						bfTween = FlxTween.color(boyfriend, 1, dad.color, FlxColor.BLUE);
+						bfTween = FlxTween.color(boyfriend, 1, boyfriend.color, FlxColor.BLUE);
 					case 1408:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('hexagon-void');
 
 						tweenList.push(FlxTween.color(dad, 1, dad.color, FlxColor.WHITE));
-						bfTween = FlxTween.color(boyfriend, 1, dad.color, FlxColor.WHITE);
-						tweenList.push(FlxTween.color(gf, 1, dad.color, FlxColor.WHITE));
+						bfTween = FlxTween.color(boyfriend, 1, boyfriend.color, FlxColor.WHITE);
+						tweenList.push(FlxTween.color(gf, 1, gf.color, FlxColor.WHITE));
 					case 1792:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						FlxG.mouse.visible = true;
@@ -4595,13 +4609,7 @@ class PlayState extends MusicBeatState
 						var position = dad.getPosition();
 						switchDad('dave-festival', position);
 
-						dadStrums.forEach(function(spr:FlxSprite)
-						{
-							dadStrums.remove(spr);
-							remove(spr);
-							spr.destroy();
-						});
-						generateStaticArrows(0);
+						regenerateStaticArrows(0);
 						
 						var color = getBackgroundColor(curStage);
 
@@ -4644,38 +4652,6 @@ class PlayState extends MusicBeatState
 						shakeCam = true;
 					case 640 | 896:
 						shakeCam = false;
-					case 1305:
-						defaultCamZoom = 0.8;
-						boyfriend.canDance = false;
-						gf.canDance = false;
-						boyfriend.playAnim('hey', true);
-						gf.playAnim('cheer', true);
-						for (bgSprite in backgroundSprites)
-						{
-							FlxTween.tween(bgSprite, {alpha: 0}, 1);
-						}
-						for (bgSprite in revertedBG)
-						{
-							FlxTween.tween(bgSprite, {alpha: 1}, 1);
-						}
-						canFloat = false;
-						var position = dad.getPosition();
-						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-
-						switchDad('dave', position);
-
-						FlxTween.color(dad, 0.6, dad.color, nightColor);
-						FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
-						FlxTween.color(gf, 0.6, gf.color, nightColor);
-						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
-
-						dadStrums.forEach(function(spr:FlxSprite)
-						{
-							dadStrums.remove(spr);
-							remove(spr);
-							spr.destroy();
-						});
-						generateStaticArrows(0);
 				}
 			case 'polygonized':
 				switch(curStep)
@@ -4829,13 +4805,7 @@ class PlayState extends MusicBeatState
 						}});
 						defaultCamZoom -= 0.2;
 
-						dadStrums.forEach(function(spr:FlxSprite)
-						{
-							spr.visible = false;
-							remove(spr);
-						});
-						dadStrums.clear();
-						generateStaticArrows(0);
+						regenerateStaticArrows(0);
 					case 1937:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub13'), 0.02, 0.6, {subtitleSize: 60});
 					case 1946:
@@ -4844,7 +4814,7 @@ class PlayState extends MusicBeatState
 			case 'rano':
 				switch (curStep)
 				{
-					case 1664:
+					case 1792:
 						dad.canDance = false;
 						dad.canSing = false;
 						dad.playAnim('sleepIdle', true);
@@ -5024,13 +4994,7 @@ class PlayState extends MusicBeatState
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
 						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
 
-						dadStrums.forEach(function(spr:FlxSprite)
-						{
-							dadStrums.remove(spr);
-							remove(spr);
-							spr.destroy();
-						});
-						generateStaticArrows(0);
+						regenerateStaticArrows(0);
 				}
 			case 'memory':
 				switch (curBeat)

@@ -932,29 +932,24 @@ class Character extends FlxSprite
 			{
 				if(!nativelyPlayable)
 				{
-					trace('player is not natively playable');
 					offset.set(daOffset[0] + globaloffset[0], daOffset[1] + globaloffset[1]);
 				}
 				else
 				{
-					trace('player is natively playable');
-					offset.set(daOffset[0] + globaloffset[0], daOffset[1] + globaloffset[1]);
+					offset.set((daOffset[0] * -1) + globaloffset[0], daOffset[1] + globaloffset[1]);
 				}
 			}
 			else
 			{
 				if(nativelyPlayable)
 				{
-					trace('opponent is natively playable');
-					offset.set((daOffset[0] * -1), daOffset[1]);
+					offset.set((daOffset[0] * -1) + globaloffset[0], daOffset[1] + globaloffset[1]);
 				}
 				else
 				{
-					trace('opponent is not natively playable');
-					offset.set(daOffset[0], daOffset[1]);
+					offset.set(daOffset[0] + globaloffset[0], daOffset[1] + globaloffset[1]);
 				}
 			}
-			
 		}
 		
 		else

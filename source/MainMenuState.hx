@@ -194,10 +194,8 @@ class MainMenuState extends MusicBeatState
 		selectUi.updateHitbox();
 		add(selectUi);
 
-		var bigIconsFrames = Paths.getSparrowAtlas('ui/menu_big_icons');
-
 		bigIcons = new FlxSprite(0, 0);
-		bigIcons.frames = bigIconsFrames;
+		bigIcons.frames = Paths.getSparrowAtlas('ui/menu_big_icons');
 		for (i in 0...optionShit.length)
 		{
 			bigIcons.animation.addByPrefix(optionShit[i], optionShit[i], 24);
@@ -212,7 +210,7 @@ class MainMenuState extends MusicBeatState
 		curOptText = new FlxText(0, 0, FlxG.width, CoolUtil.formatString(LanguageManager.getTextString(languagesOptions[curSelected]), ' '));
 		curOptText.setFormat("Comic Sans MS Bold", 48, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		curOptText.scrollFactor.set(0, 0);
-		curOptText.borderSize = 3;
+		curOptText.borderSize = 2.5;
 		curOptText.antialiasing = true;
 		curOptText.screenCenter(X);
 		curOptText.y = FlxG.height / 2 + 28;
@@ -301,12 +299,10 @@ class MainMenuState extends MusicBeatState
 		{
 			voidShader.shader.uTime.value[0] += elapsed;
 		}
-
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
-
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			FlxG.switchState(new TerminalState());
@@ -368,18 +364,14 @@ class MainMenuState extends MusicBeatState
 								{
 									case 'story mode':
 										FlxG.switchState(new StoryMenuState());
-										trace("Story Menu Selected");
 									case 'freeplay':
 										if (FlxG.random.bool(0.1))
 										{
 											fancyOpenURL("https://www.youtube.com/watch?v=Z7wWa1G9_30%22");
 										}
 										FlxG.switchState(new FreeplayState());
-										trace("Freeplay Menu Selected");
 									case 'options':
 										FlxG.switchState(new OptionsMenu());
-									case 'extras':
-										FlxG.switchState(new ExtrasMenuState());
 									case 'ost':
 										FlxG.switchState(new MusicPlayerState());
 									case 'credits':

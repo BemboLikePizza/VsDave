@@ -39,7 +39,6 @@ class BGSprite extends FlxSprite
 	}
 	public static function getBGSprite(spriteGroup:FlxTypedGroup<BGSprite>, spriteName:String):BGSprite
 	{
-		
 		for (bgSprite in spriteGroup.members)
 		{
 			if (bgSprite.spriteName == spriteName)
