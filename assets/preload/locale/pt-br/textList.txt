@@ -6,12 +6,20 @@ introWarningFirstPlay==Olá! Esse mod utiliza shaders que podem ser prejudiciais
 introWarningSeen==Olá! Esse mod utiliza shaders que podem ser prejudiciais para alguns. Se você quiser desativar eles, pressione N, se não quiser, pressione Y. Você pode mudar isso nas opções. Supernovae e Glitch são músicas que não devem ser levadas a sério e não são produzidas por mim. Supernovae foi feito por ArchWk, e Glitch foi feito por The Boneyard. 
 
 // Main Menu State //
-main_story==Story Mode
-main_freeplay==Freeplay
-main_credits==Credits
+main_story==Modo História
+main_freeplay==Modo Livre
+main_credits==Créditos
 main_ost==OST
-main_options==Options
+main_options==Opções
 main_discord==Discord
+
+// Main Menu Descriptions //
+desc_story==Jogue o modo história para desbloquear novos personagens, e entender a história em si!
+desc_freeplay==Jogue qualquer música de escolha sua e alcançe novas pontuações!
+desc_credits==Dê uma olhada no pessoal que trabalhou e contribuiu para o mod!
+desc_ost==Escute as músicas do mod.
+desc_options==Ajuste suas configurações e preferências.
+desc_discord==Junte-se ao servidor do Discord oficial de Vs. Dave & Bambi!
 
 // Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
 freeplay_dave==Dave
@@ -34,14 +42,14 @@ credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimentos Especiais
 
 // Credits Words //
-supernovae_credit==Original Song made by ArchWk!
-glitch_credit==Original Song made by DeadShadow and PixelGH!
-mealie_credit==Original Song made by Alexander Cooper 19!
-overdrive_credit==Original Song made by Top 10 Awesome!
-unfairness_credit==Ghost Tapping is forced off! FUCK YOU!
-cheating_credit==Notes are scrambled! FUCK YOU!
-exploitation_credit==You won't survive
-kabunga_credit==OH MY GOD I JUST DEFLATED
+supernovae_credit==Música original feita por ArchWk!
+glitch_credit==Música original feita por DeadShadow e PixelGH!
+mealie_credit==Música original feita por Alexander Cooper 19!
+overdrive_credit==Música original feita por Top 10 Awesome!
+unfairness_credit==Ghost Tapping foi desligado! SE FODEU!
+cheating_credit==Notas embaralhadas! SE FODEU!
+exploitation_credit==Você não sobreviverá
+kabunga_credit==CARALHO EU MURCHEI
 
 // Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
 option_change_keybinds==Mudar Teclas
@@ -58,19 +66,19 @@ option_songPosition_off==Posição da Música Off
 option_eyesores_enabled==Efeitos Ativados
 option_eyesores_disabled==Efeitos Desativados
 
-option_selfAwareness_on==Self Awareness Enabled
-option_selfAwareness_off==Self Awareness Disabled
+option_selfAwareness_on==Autoconsciência Ativada
+option_selfAwareness_off==Autoconsciência Desativada
 
 option_hitsound_on==Hitsounds Ativos
 option_hitsound_off==Hitsounds Desativados
 
 option_fpsCap==idk
 
-option_freeplay_cutscenes_off==Freeplay Cutscenes Off
-option_freeplay_cutscenes_on==Freeplay Cutscenes On
+option_freeplay_cutscenes_off==Cutscenes no Modo Livre Off
+option_freeplay_cutscenes_on==Cutscenes no Modo Livre On
 
-option_noteCamera_on==Camera Movement On Note
-option_noteCamera_off==Normal Camera
+option_noteCamera_on==Movimento de Câmera por Pose
+option_noteCamera_off==Câmera Normal
 
 cur_language==Idioma Atual
 en-US==Inglês
@@ -105,69 +113,69 @@ play_miss==Erros:
 play_accuracy==Precisão:
 
 // Blocked Subtitles //
-blocked_sub1==I block you...
-blocked_sub2==You are monster...
-blocked_sub3==You ruined my life!
-blocked_sub4==Moldy I swear to god I'll block you
-blocked_sub5==FOREVER.
-blocked_sub6==I'm trying to...
-blocked_sub7==No I'm not trying help you...
-blocked_sub8==Because watch me...
-blocked_sub9==Because...
-blocked_sub10==watch me go subscribe me
-blocked_sub11==Whatever.
+blocked_sub1==Eu te bloquear...
+blocked_sub2==Você é um monstro...
+blocked_sub3==Você arruinou minha vida!
+blocked_sub4==Moldy eu juro por deus eu vou te bloquear
+blocked_sub5==PRA SEMPRE.
+blocked_sub6==Eu tô tentando...
+blocked_sub7==Não eu não tô tentando te ajudar...
+blocked_sub8==Porque cê vai ver...
+blocked_sub9==Porque...
+blocked_sub10==me assista vá se inscrever a mim
+blocked_sub11==Que seja.
 
 // Corn-Theft Subtitles //
-ctheft_sub1==Because he ban me...
-ctheft_sub2==Why you ban me...
-ctheft_sub3==I-
-ctheft_sub4==I don't care...
-ctheft_sub5==You want to
-ctheft_sub6==I'll block you
-ctheft_sub7==I'm never coming back again.
+ctheft_sub1==Por causa que ele me banir...
+ctheft_sub2==Por que você me banir...
+ctheft_sub3==Eu-
+ctheft_sub4==Eu não ligo...
+ctheft_sub5==Você quer
+ctheft_sub6==Eu vou te bloquear
+ctheft_sub7==Eu nunca vou voltar.
 
 // Maze Subtitles //
-maze_sub1==I mean...
-maze_sub2==You can
-maze_sub3==Play me...
-maze_sub4==You don't?
-maze_sub5==Never come back again.
-maze_sub6==Fine!
-maze_sub7==Everyway you want
-maze_sub8==You play me?
-maze_sub9==Sure.
-maze_sub10==What you want to play?
-maze_sub11==You bully me?
-maze_sub12==Never come back again.
+maze_sub1==Quer dizer...
+maze_sub2==Você pode...
+maze_sub3==Joga comigo...
+maze_sub4==Você não?
+maze_sub5==Nunca mais volte.
+maze_sub6==Tá bom!
+maze_sub7==O que quiser
+maze_sub8==Você joga comigo?
+maze_sub9==Claro.
+maze_sub10==O que você quer jogar?
+maze_sub11==Você me bullying?
+maze_sub12==Nunca mais volte.
 
 // Mealie Subtitles //
-mealie_sub1==I will block you!
-mealie_sub2==I want you else
-mealie_sub3==Ah oh I'm gonna break my
-mealie_sub4==Phone!
-mealie_sub5==Is this want you wanted?
-mealie_sub6==a phone?
-mealie_sub7==HOLY SHIT!
-mealie_sub8==You fucking liar Moldy!
+mealie_sub1==Eu vou te bloquear!
+mealie_sub2==Eu quero você outro
+mealie_sub3==Ah oh eu vou quebrar meu
+mealie_sub4==Celular!
+mealie_sub5==É isso que você queria?
+mealie_sub6==um celular?
+mealie_sub7==PUTA MERDA!
+mealie_sub8==Seu mentiroso Moldy!
 
 // Shredder Subtitles //
-shred_sub1==Oh my god...
-shred_sub2==I fucking hate you
-shred_sub3==That guy, I hate you so much...
-shred_sub4==Check your closet!
-shred_sub5==Check your closet!
-shred_sub6==Or else
-shred_sub7==I will kill you are rodeo
-shred_sub8==Trash.
-shred_sub9==And this
+shred_sub1==Ai meu deus...
+shred_sub2==Eu te odeio tanto
+shred_sub3==Aquele cara, eu te odeio tanto...
+shred_sub4==Olha seu armário!
+shred_sub5==Olha seu armário!
+shred_sub6==Se não
+shred_sub7==Eu vou te matar seu forasteiro de uma
+shred_sub8==Figa.
+shred_sub9==E isso
 shred_sub10==Durrrr!
-shred_sub11==Check your closet motherfuckers
-shred_sub12==Check your closet motherfuckers
-shred_sub13==That's it!
-shred_sub14==That's it!
+shred_sub11==Olha seu armário filhos da puta
+shred_sub12==Olha seu armário filhos da puta
+shred_sub13==Isso aí!
+shred_sub14==Isso aí!
 
 // Exploitation Subtitles //
-exploit_sub1==The fuck?
+exploit_sub1==Mai que porra?
 exploit_sub2==Ha ha haaaaaa hoo?
-exploit_sub3==This say you?
+exploit_sub3==Isso diz você?
 exploit_sub4==Ha ha, ha

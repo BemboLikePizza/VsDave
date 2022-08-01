@@ -5042,7 +5042,23 @@ class PlayState extends MusicBeatState
 			case 'escape-from-california':
 				switch (curBeat)
 				{
+					case 2:
+						makeInvisibleNotes(true);
+						defaultCamZoom += 0.2;
+						subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub1'), 0.02, 1.5);
+					case 14:
+					    subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub2'), 0.04, 0.3, {subtitleSize: 60});
+						FlxG.camera.fade(FlxColor.WHITE, 0.8, false, function()
+						{
+							FlxG.camera.fade(FlxColor.WHITE, 0, true);
+						});
+						FlxG.camera.shake(0.015, 0.6);
+					case 16:
+					    FlxG.camera.flash();
+					    defaultCamZoom -= 0.2;
+						makeInvisibleNotes(false);
 					case 270:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub2'), 0.04, 0.3, {subtitleSize: 60});
 						dad.canSing = false;
 						dad.canDance = false;
 						dad.playAnim('waa', true);

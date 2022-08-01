@@ -35,7 +35,7 @@ class CreditsPopUp extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
+			case 'warmup' | 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
 				'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'furiosity' | 'kabunga' | 'roots' | 'secret' |
 				'secret-mod-leak' | 'unfairness' | 'rano':
 				songCreator = 'MoldyGH';
@@ -58,7 +58,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		}
 		switch (PlayState.storyWeek)
 		{
-			case 1:
+			case 1 | 0:
 				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false, iconOffset: 0};
 			case 2:
 				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 10};

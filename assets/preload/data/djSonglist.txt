@@ -1,3 +1,4 @@
+internal,warmup,dave,good
 internal,house,dave,good
 internal,insanity,dave,bad
 external,im-angey,dave-angey,bad
@@ -11,7 +12,7 @@ internal,splitathon,the-duo,good
 internal,shredder,bambi,good
 internal,greetings,tristan,good
 internal,interdimensional,dave-angey,good
-internal,escape-from-california,dave,good
+internal,escape-from-california,moldy,good
 external,a-new-day,dave,good
 external,bambi-speak,bambi,bad
 external,good-ending,bf-old,good

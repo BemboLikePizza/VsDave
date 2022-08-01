@@ -65,9 +65,10 @@ class FreeplayState extends MusicBeatState
 		0xFFFF0000,    // TRISTAN
 		0xFFFF0000,    // UNFAIRNESS
 		0xFFFF0000,    // KABUNGA
-		0xFFFF0000,    // EXPLOITATION
+		0xFF810000,    // EXPLOITATION
 		FlxColor.GREEN,    // SECRET MOD LEAK
 		FlxColor.fromRGB(44, 44, 44),    // RECURSER
+		0xFF31323F // MOLDY		
     ];
 	var skipSelect:Array<String> = 
 	[
@@ -261,14 +262,14 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.exbungoFound)
 					addWeek(['Kabunga'], 7, ['exbungo']);
 				if (FlxG.save.data.secretModLeakUnlocked)
-					addWeek(['Secret-Mod-Leak'], 11, ['baldi']);
+					addWeek(['Secret-Mod-Leak'], 9, ['baldi']);
 			case 'extras':
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);
 
 				addWeek(['Adventure'], 5, ['tristan']);
 				addWeek(['Furiosity'], 1, ['dave-angey']);
-				addWeek(['Escape-From-California'], 5, ['tristan']);
+				addWeek(['Escape-From-California'], 11, ['moldy']);
 				addWeek(['Five-Nights', 'Overdrive'], 1, ['dave']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Memory', 'Vs-Dave-Rap'], 1, ['dave-cool']);
