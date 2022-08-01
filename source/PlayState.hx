@@ -572,7 +572,7 @@ class PlayState extends MusicBeatState
 		{
 			gfVersion = 'gf-pixel';
 			charoffsetx += 300;
-			charoffsety -= 300;
+			charoffsety += 300;
 		}
 		if (SONG.player1 == 'tb-funny-man')
 		{

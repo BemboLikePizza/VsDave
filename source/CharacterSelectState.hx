@@ -528,7 +528,7 @@ class CharacterSelectState extends MusicBeatState
 				char.x -= 40;
 			case 'bambi-3d':
 				char.x += 200;
-				char.y += 70;
+				char.y += 270;
 		}
 		insert(members.indexOf(strummies), char);
 		funnyIconMan.changeIcon(char.curCharacter);
