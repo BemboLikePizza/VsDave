@@ -936,7 +936,7 @@ class Character extends FlxSprite
 				}
 				else
 				{
-					offset.set((daOffset[0] * -1) + globaloffset[0], daOffset[1] + globaloffset[1]);
+					offset.set((daOffset[0]) + globaloffset[0], daOffset[1] + globaloffset[1]);
 				}
 			}
 			else

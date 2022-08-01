@@ -61,7 +61,7 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 1 | 0:
 				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false, iconOffset: 0};
 			case 2:
-				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 10};
+				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 0};
 			case 3:
 				headingPath = {path: 'songHeadings/splitathonHeading', antiAliasing: false, iconOffset: -10};
 			case 4:
