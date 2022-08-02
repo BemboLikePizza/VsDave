@@ -425,7 +425,15 @@ class MainMenuState extends MusicBeatState
 
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
 	{
+		var date = Date.now();
 		var chance:Int = FlxG.random.int(0, bgPaths.length - 1);
-		return Paths.image('backgrounds/${bgPaths[chance]}');
+		if(date.getMonth() == 3 && date.getDate() == 1)
+		{
+			return Paths.image('backgrounds/ramzgaming');
+		}
+		else
+		{
+			return Paths.image('backgrounds/${bgPaths[chance]}');
+		}
 	}
 }
