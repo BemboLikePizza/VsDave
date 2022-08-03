@@ -153,6 +153,11 @@ class InvertColorsEffect
 
 }
 
+class BlockedGlitchEffect
+{
+    public var shader(default,null):BlockedGlitchShader = new BlockedGlitchShader();
+}
+
 class GlitchShader extends FlxShader
 {
     @:glFragmentSource('
@@ -346,6 +351,9 @@ class BlockedGlitchShader extends FlxShader
     #define TILE_SIZE 16.0
     
     precision highp float;
+
+    uniform vec2 iResolution;
+    uniform float iTime;
     
     float wow;
     float Amount = 4.0;
@@ -380,7 +388,7 @@ class BlockedGlitchShader extends FlxShader
     
     vec4 downsample(sampler2D sampler, vec2 uv, float pixelSize)
     {
-        return texture(sampler, uv - mod(uv, vec2(pixelSize) / iResolution.xy));
+        return texture2D(sampler, uv - mod(uv, vec2(pixelSize) / iResolution.xy));
     }
     
     float rand(float n)
@@ -419,7 +427,7 @@ class BlockedGlitchShader extends FlxShader
         return (
         mix(downsample(sampler, uv - vec2(dx, 0.0), sampleSize), downsample(sampler, uv + vec2(dx, 0.0), sampleSize), mod(uv.x, dx) / dx) +
         mix(downsample(sampler, uv - vec2(0.0, dy), sampleSize), downsample(sampler, uv + vec2(0.0, dy), sampleSize), mod(uv.y, dy) / dy)    
-        ).rgb / 2.0 - texture(sampler, uv).rgb;
+        ).rgb / 2.0 - texture2D(sampler, uv).rgb;
     }
     
     vec3 distort(sampler2D sampler, vec2 uv, float edgeSize)
@@ -429,20 +437,21 @@ class BlockedGlitchShader extends FlxShader
         vec2 distort = pixel * sin((field.rb) * PI * 2.0);
         float shiftx = noise(vec2(quantize(uv.y + 31.5, iResolution.y / TILE_SIZE) * iTime, fract(iTime) * 300.0));
         float shifty = noise(vec2(quantize(uv.x + 11.5, iResolution.x / TILE_SIZE) * iTime, fract(iTime) * 100.0));
-        vec3 rgb = texture(sampler, uv + (distort + (pixel - pixel / 2.0) * vec2(shiftx, shifty) * (50.0 + 100.0 * Amount)) * Amount).rgb;
+        vec3 rgb = texture2D(sampler, uv + (distort + (pixel - pixel / 2.0) * vec2(shiftx, shifty) * (50.0 + 100.0 * Amount)) * Amount).rgb;
         vec3 hsv = rgb2hsv(rgb);
         hsv.y = mod(hsv.y + shifty * pow(Amount, 5.0) * 0.25, 1.0);
         return posterize(hsv2rgb(hsv), floor(mix(256.0, pow(1.0 - hsv.z - 0.5, 2.0) * 64.0 * shiftx + 4.0, 1.0 - pow(1.0 - Amount, 5.0))));
     }
     
-    void mainImage( out vec4 fragColor, in vec2 fragCoord )
+    void main()
     {
+        vec2 fragCoord = openfl_TextureCoordv * iResolution;
         vec2 uv = fragCoord.xy / iResolution.xy;
         Amount = uv.x; // Just erase this line if you want to use the control at the top
         wow = clamp(mod(noise(iTime + uv.y), 1.0), 0.0, 1.0) * 2.0 - 1.0;    
         vec3 finalColor;
-        finalColor += distort(iChannel0, uv, 8.0);
-        fragColor = vec4(finalColor, 1.0);
+        finalColor += distort(bitmap, uv, 8.0);
+        gl_FragColor = vec4(finalColor, 1.0);
     }
     ')
 
