@@ -228,7 +228,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'hey', 24, false);
 	
 				recursedSkin = 'dave-recursed';
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
@@ -274,7 +274,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 		
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
@@ -323,7 +323,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
 				}
 
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 
 				barColor = FlxColor.WHITE;
 
@@ -390,7 +390,7 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 
 				playAnim('idle');
 
@@ -450,7 +450,7 @@ class Character extends FlxSprite
 		
 				barColor = FlxColor.fromRGB(17, 223, 10);
 
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 
 				globaloffset[0] = 150 * 1.5;
 				globaloffset[1] = 450 * 1.5; //this is the y
@@ -553,7 +553,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'BF HEY!!', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 	
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 
 				playAnim('idle');
 
@@ -594,7 +594,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 	
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter,(isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				
@@ -625,7 +625,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 		
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
 					
@@ -643,7 +643,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				
@@ -828,16 +828,24 @@ class Character extends FlxSprite
 			flipX = !flipX;
 		}
 	}
-	function loadOffsetFile(character:String)
+
+	function loadOffsetFile(character:String, addd:String = '', invert:Int = 1):Bool
 	{
-		var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character));
+		var offsetStuffs:Array<String> = CoolUtil.coolTextFile(Paths.offsetFile(character + addd));
+
+		if (offsetStuffs.length == 0)
+		{
+			return loadOffsetFile(character,'',-1);
+		}
 		
 		for (offsetText in offsetStuffs)
 		{
 			var offsetInfo:Array<String> = offsetText.split(' ');
 
-			addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]), Std.parseFloat(offsetInfo[2]));
+			addOffset(offsetInfo[0], Std.parseFloat(offsetInfo[1]) * invert, Std.parseFloat(offsetInfo[2]) * invert);
 		}
+
+		return true;
 	}
 
 	override function update(elapsed:Float)

@@ -1174,7 +1174,7 @@ class PlayState extends MusicBeatState
 				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2', 'shared'), null, 1, 1);
 				sprites.add(cornFence2);
 
-				var cornBag:BGSprite = new BGSprite('cornFence2', 1200, 550, Paths.image('backgrounds/farm/cornBag', 'shared'), null);
+				var cornBag:BGSprite = new BGSprite('cornFence2', 1200, 550, Paths.image('backgrounds/farm/cornbag', 'shared'), null);
 				sprites.add(cornBag);
 				
 				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign', 'shared'), null);
@@ -4812,6 +4812,10 @@ class PlayState extends MusicBeatState
 			case 'rano':
 				switch (curStep)
 				{
+				case 511:
+				defaultCamZoom = 0.9;
+				case 640:
+				defaultCamZoom = 0.7;
 					case 1792:
 						dad.canDance = false;
 						dad.canSing = false;
@@ -5021,6 +5025,7 @@ class PlayState extends MusicBeatState
 						makeInvisibleNotes(false);
 					case 270:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub2'), 0.04, 0.3, {subtitleSize: 60});
+						FlxG.camera.shake(0.005, 0.6);
 						dad.canSing = false;
 						dad.canDance = false;
 						dad.playAnim('waa', true);

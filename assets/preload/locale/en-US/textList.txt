@@ -85,7 +85,7 @@ keybind_preset==Keybind Presets:
 // Story Mode State //
 story_track==Tracks
 story_weekScore==WEEK SCORE:
-story_tutorial==Tutorial
+story_tutorial==Dave Teaches You How to Funk!
 story_daveWeek==Dave’s Fun Rapping Battle!
 story_bambiWeek==Mr. Bambi’s Fun Corn Maze!
 story_finale==The Finale

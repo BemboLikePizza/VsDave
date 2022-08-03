@@ -1,8 +1,6 @@
 bf
 bf-pixel
-bf-christmas
 gf
-gf-christmas
 dave
 dave-angey
 dave-annoyed

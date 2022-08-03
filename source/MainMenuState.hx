@@ -245,6 +245,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('idle', currentOptionShit + " basic", 24);
 			menuItem.animation.addByPrefix('selected', currentOptionShit + " white", 24);
 			menuItem.animation.play('idle');
+			menuItem.antialiasing = false;
 			menuItem.setGraphicSize(128, 128);
 			menuItem.ID = i;
 			menuItem.updateHitbox();
@@ -252,7 +253,6 @@ class MainMenuState extends MusicBeatState
 			//menuItem.alpha = 0; //TESTING
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set(0, 1);
-			menuItem.antialiasing = true;
 			if (firstStart)
 			{
 				FlxTween.tween(menuItem, {x: FlxG.width / 2 - 450 + (i * 160)}, 1 + (i * 0.25), {
@@ -425,7 +425,15 @@ class MainMenuState extends MusicBeatState
 
 	public static function randomizeBG():flixel.system.FlxAssets.FlxGraphicAsset
 	{
+		var date = Date.now();
 		var chance:Int = FlxG.random.int(0, bgPaths.length - 1);
-		return Paths.image('backgrounds/${bgPaths[chance]}');
+		if(date.getMonth() == 3 && date.getDate() == 1)
+		{
+			return Paths.image('backgrounds/ramzgaming');
+		}
+		else
+		{
+			return Paths.image('backgrounds/${bgPaths[chance]}');
+		}
 	}
 }
