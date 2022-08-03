@@ -405,7 +405,7 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/dave/dave_annoyed';
 					case 'scared':
 						portrait.portraitPath = 'dialogue/dave/dave_scared';
-						portrait.portraitAnim = new Animation('enter', 'post insanity', 24, [false, false]);
+						portrait.portraitAnim = new Animation('enter', 'post insanity', 24, true, [false, false]);
 					case 'phone':
 						portrait.portraitPath = 'dialogue/dave/dave_phone';
 					case '3d-scared':
