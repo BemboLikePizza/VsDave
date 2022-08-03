@@ -4,16 +4,16 @@
 :generic:Dave comes out of the corn.
 :bambi: Oh shit!
 :dave:Hey, I'm here. Sorry, I was running late.
-:dave:Tristan was a pain to get up.
-:dave:He was like "But Dave.." this, "But Dave.." that.
-:tristan: Don't talk about me like I'm not here!
-:dave,confused:With all due respect, son, shut up.
+:dave,post-maze:Tristan was a pain to get up.
+:dave,post-maze:He was like "But Dave.." this, "But Dave.." that.
+:tristan,irritated: Don't talk about me like I'm not here!
+:dave,post-maze:With all due respect, son, shut up.
 :bambi:Oh. Ohhh, ohhhhhh!
 :bambi,annoyed:So I BROKE MY PHONE FOR NO REASON!
 :gf,what:And I have no idea why you thought that was a good idea...
 :bambi,upset:I'M SO STUPID!
 :dave:It's okay Bambi, everyone makes mistakes from time to time!
-:dave,confused:Even very stupid mistakes that could've easily been averted.
+:dave,post-maze:Even very stupid mistakes that could've easily been averted.
 :bambi,annoyed:I see straight through your sarcasm!
 :gf,what:Lets just get this picnic started.
 :tristan: That would be great!

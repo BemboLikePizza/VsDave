@@ -410,8 +410,16 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/dave/dave_phone';
 					case '3d-scared':
 						portrait.portraitPath = 'dialogue/dave/dave_3d_scared';
+					case 'post-maze':
+						portrait.portraitPath = 'dialogue/dave/dave_postMaze';
 					case 'splitathon':
 						portrait.portraitPath = 'dialogue/dave/dave_splitathon';
+					case 'festival':
+						portrait.portraitPath = 'dialogue/dave/dave_festival_happy';
+					case 'festival-exhausted':
+						portrait.portraitPath = 'dialogue/dave/dave_festival_exhausted';
+					case 'festival-tired':
+						portrait.portraitPath = 'dialogue/dave/dave_festival_tired';
 					default:
 						portrait.portraitPath = 'dialogue/dave/dave_happy';
 				}

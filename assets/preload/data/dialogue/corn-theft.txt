@@ -1,18 +1,18 @@
 :bambi,annoyed: Oh my focking god!
 :generic: INCOMING CALL FROM: DAVE
 :bambi,confused: Huh? Hello?
-:dave,confused: Hey Bambi, it's Dave..
+:dave,phone: Hey Bambi, it's Dave..
 :bambi,confused: Why you tryna calling me?
 :dave,confused: Is there a chance you are currently fighting two equally as short "Trespassers" over corn right now?
 :bambi,annoyed: Yes.. Justifiably!
 :dave,confused: Bambi. They aren't trespassing.
 :bambi,confused: What?
-:dave,confused: I literally told you beforehand I was planning on having a picnic with the two!
+:dave,phone: I literally told you beforehand I was planning on having a picnic with the two!
 :bambi,confused: That doesn't make sense...
-:dave,confused: Bambi, listen-
+:dave,phone: Bambi, listen-
 :bambi,annoyed: I think I know what's going on here!
 :bambi,annoyed: These aren't the friends you thought they were!
-:dave,confused: Bambi you've got to be kidding me-
+:dave,phone: Bambi you've got to be kidding me-
 :generic: HANG UP
 :bambi: Uhhh...
 :bambi: Are you two using Dave invite as excuse to steal corn!?
