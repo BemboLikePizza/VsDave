@@ -1,5 +1,6 @@
 package;
 
+import openfl.system.System;
 import sys.io.File;
 import sys.FileSystem;
 import flixel.FlxCamera;
@@ -1447,24 +1448,25 @@ class ChartingState extends MusicBeatState
 	}
 
 	function loadJson(song:String):Void
+	{
+		switch (song.toLowerCase())
 		{
-			switch (song.toLowerCase())
-			{
-				case 'supernovae' | 'glitch':
-					var video = new MP4Handler();
-					video.playVideo(Paths.video('fortniteballs')); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
-				case 'cheating':
-					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
-				case 'unfairness':
-					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
-				case 'exploitation':
-					//changing the user's wall paper is intrusive.
-					//do not add this back t5. this will piss people off.
-					FlxG.switchState(new YouCheatedSomeoneIsComing()); //YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU				
-			}
-			PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
-			FlxG.resetState();
+			case 'supernovae' | 'glitch':
+				var video = new MP4Handler();
+				video.playVideo(Paths.video('fortniteballs')); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
+			case 'cheating':
+				FlxG.switchState(new YouCheatedSomeoneIsComing()); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
+			case 'unfairness':
+				FlxG.switchState(new YouCheatedSomeoneIsComing()); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
+			case 'exploitation':
+				
+			case 'opposition':
+				System.exit(0);
+				FlxG.openURL('https://whatsmyip.com');
 		}
+		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
+		FlxG.resetState();
+	}
 
 	function loadAutosave():Void
 	{

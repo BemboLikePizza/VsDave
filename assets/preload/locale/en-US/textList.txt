@@ -22,7 +22,7 @@ desc_ost==Listen to the songs of the mod.
 desc_options==Adjust game settings and keybinds.
 desc_discord==Join the official Vs. Dave and Bambi Discord!
 
-// Freeplay State // (freeplay_finale, freeplay_fucked, freeplay_lmao)
+// Freeplay State //
 freeplay_dave==Dave
 freeplay_joke==Joke
 freeplay_extra==Extra
@@ -42,17 +42,8 @@ credits_contributor==Contributors
 credits_betaTester==Beta Testers
 credits_specialThanks==Special Thanks
 
-// Credits Words //
-supernovae_credit==Original Song made by ArchWk!
-glitch_credit==Original Song made by DeadShadow and PixelGH!
-mealie_credit==Original Song made by Alexander Cooper 19!
-overdrive_credit==Original Song made by Top 10 Awesome!
-unfairness_credit==Ghost Tapping is forced off! FUCK YOU!
-cheating_credit==Notes are scrambled! FUCK YOU!
-exploitation_credit==You won't survive
-kabunga_credit==OH MY GOD I JUST DEFLATED
 
-// Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
+// Options State //
 option_change_keybinds==Change Keybinds
 
 option_ghostTapping_on==Ghost Tapping
@@ -81,7 +72,7 @@ option_freeplay_cutscenes_on==Freeplay Cutscenes On
 option_noteCamera_on==Camera Movement On Note
 option_noteCamera_off==Normal Camera
 
-cur_language==Current Language
+cur_language==Change Language
 en-US==English
 es-US==Spanish
 pt-br==Brazilian-Portuguese
@@ -113,6 +104,17 @@ play_score==Score:
 play_miss==Misses:
 play_accuracy==Accuracy:
 
+// Credits Words //
+supernovae_credit==Original Song made by ArchWk!
+glitch_credit==Original Song made by DeadShadow and PixelGH!
+mealie_credit==Original Song made by Alexander Cooper 19!
+overdrive_credit==Original Song made by Top 10 Awesome!
+unfairness_credit==Ghost Tapping is forced off! FUCK YOU!
+cheating_credit==Notes are scrambled! FUCK YOU!
+exploitation_credit==You won't survive
+kabunga_credit==OH MY GOD I JUST DEFLATED
+
+//SUBTITLES
 // Blocked Subtitles //
 blocked_sub1==I block you...
 blocked_sub2==You are monster...
@@ -126,7 +128,7 @@ blocked_sub9==Because...
 blocked_sub10==watch me subscribe me
 blocked_sub11==Whatever.
 
-// Corn-Theft Subtitles //
+// Corn Theft Subtitles //
 ctheft_sub1==Because he add me...
 ctheft_sub2==Why you add me...
 ctheft_sub3==I-

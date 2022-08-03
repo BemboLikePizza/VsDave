@@ -759,7 +759,7 @@ class PlayState extends MusicBeatState
 				dad.setPosition(50, 270);
 				dadmirror.setPosition(dad.x, dad.y);
 				boyfriend.setPosition(843, 270);
-				gf.setPosition(280 + charoffsetx, -60 + charoffsety);
+				gf.setPosition(230 + charoffsetx, -60 + charoffsety);
 			case 'backyard':
 				dad.setPosition(50, 300);
 				boyfriend.setPosition(790, 300);
@@ -767,8 +767,6 @@ class PlayState extends MusicBeatState
 			case 'festival':
 				gf.x -= 200;
 				boyfriend.x -= 200;
-
-
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')

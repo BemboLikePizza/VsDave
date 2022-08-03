@@ -74,7 +74,7 @@ class ChangeKeybinds extends MusicBeatState
 	{
 		bg.color = 0xFFea71fd;
 		bg.loadGraphic(MainMenuState.randomizeBG());
-      bg.scrollFactor.set();
+		bg.scrollFactor.set();
 		add(bg);
 		
 		var tutorial:FlxText = new FlxText(0, 50, FlxG.width / 2, LanguageManager.getTextString('keybind_tutorial'), 32);
