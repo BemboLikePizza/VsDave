@@ -1,7 +1,7 @@
 setfont_code:dave,3d-scared:UH OH NOT AGAIN
-:dave,3d-scared:THIS ISN'T A GOOD TIME RIGHT NOW
-distort:dave,3d-scared:THERE ARE PEOPLE AROUND, THEY COULD GET HURT
-undistort:dave,3d-scared:HELP
-:dave,3d-scared:WAIT I HAVE AN IDEA THAT COULD SAVE ME AND EVERYONE ELSE
-:dave,3d-scared:TRY RAP BATTLING ME LIKE LAST TIME
+:dave,festival-3d-scared:THIS ISN'T A GOOD TIME RIGHT NOW
+distort:dave,festival-3d-scared:THERE ARE PEOPLE AROUND, THEY COULD GET HURT
+undistort:dave,festival-3d-scared:HELP
+:dave,festival-3d-scared:WAIT I HAVE AN IDEA THAT COULD SAVE ME AND EVERYONE ELSE
+:dave,festival-3d-scared:TRY RAP BATTLING ME LIKE LAST TIME
 setfont_normal:bf,confused:Boop bap

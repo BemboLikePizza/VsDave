@@ -315,7 +315,7 @@ class DialogueBox extends FlxSpriteGroup
 			switch (curCharacter)
 			{
 				case 'dave' | 'bambi' | 'tristan': //guys its the funny bambi character
-					portraitLeft.setPosition(220, 220);
+					portraitLeft.setPosition(300, 100);
 				case 'bf' | 'gf': //create boyfriend & genderbent boyfriend
 					portraitRight.setPosition(570, 220);
 			}
@@ -420,6 +420,8 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/dave/dave_festival_exhausted';
 					case 'festival-tired':
 						portrait.portraitPath = 'dialogue/dave/dave_festival_tired';
+					case 'festival-3d-scared':
+						portrait.portraitPath = 'dialogue/dave/dave_3d_festival';
 					default:
 						portrait.portraitPath = 'dialogue/dave/dave_happy';
 				}

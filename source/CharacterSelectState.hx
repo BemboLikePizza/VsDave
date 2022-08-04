@@ -121,6 +121,17 @@ class CharacterSelectState extends MusicBeatState
 	{
 		super.create();
 
+		for (char in characters)
+		{
+			for (form in char.forms)
+			{
+				if (PlayState.SONG.player2 == form.name)
+				{
+					char.forms.remove(form);
+				}
+			}
+		}
+
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			if (FlxG.fullscreen)
