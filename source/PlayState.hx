@@ -386,7 +386,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave' | 'dave-angey':
 				iconRPC = 'icon_dave';
-			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-old' | 'bambi-3d' | 'bambi-unfair' | 'expunged':
+			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-joke' | 'bambi-3d' | 'bambi-unfair' | 'expunged':
 				iconRPC = 'icon_bambi';
 			default:
 				iconRPC = 'icon_none';
@@ -711,16 +711,16 @@ class PlayState extends MusicBeatState
 				boyfriendOldIcon = 'dave-angey';
 			case 'bambi-3d':
 				boyfriend.y = 100 + 350;
-				boyfriendOldIcon = 'bambi-old';
+				boyfriendOldIcon = 'bambi-joke';
 			case 'bambi-unfair':
 				boyfriend.y = 100 + 575;
-				boyfriendOldIcon = 'bambi-old';
-			case 'bambi' | 'bambi-old':
+				boyfriendOldIcon = 'bambi-joke';
+			case 'bambi' | 'bambi-joke':
 				boyfriend.y = 100 + 400;
-				boyfriendOldIcon = 'bambi-old';
+				boyfriendOldIcon = 'bambi-joke';
 			case 'bambi-new' | 'bambi-splitathon' | 'bambi-angey':
 				boyfriend.y = 100 + 450;
-				boyfriendOldIcon = 'bambi-old';
+				boyfriendOldIcon = 'bambi-joke';
 			case 'tb-funny-man':
 				boyfriend.x = 100 + 900;
 		}*/
@@ -3305,7 +3305,7 @@ class PlayState extends MusicBeatState
 						marcello.color = 0xFF878787;
 						dad.visible = false;
 						boyfriend.stunned = true;
-						marcello.frames = Paths.getSparrowAtlas('bambi/cutscenes/cutscene', 'shared');
+						marcello.frames = Paths.getSparrowAtlas('joke/cutscene', 'shared');
 						marcello.animation.addByPrefix('throw_phone', 'bambi0', 24, false);
 						FlxG.sound.play(Paths.sound('break_phone'), 1, false, null, true);
 						boyfriend.playAnim('hit', true);
@@ -3327,14 +3327,14 @@ class PlayState extends MusicBeatState
 						canPause = false;
 						FlxG.sound.music.volume = 0;
 						vocals.volume = 0;
-						var marcello:FlxSprite = new FlxSprite(dad.x - 170, dad.y);
+						var marcello:FlxSprite = new FlxSprite(dad.x, dad.y);
 						marcello.flipX = true;
 						add(marcello);
 						marcello.antialiasing = true;
 						marcello.color = 0xFF878787;
 						dad.visible = false;
 						boyfriend.stunned = true;
-						marcello.frames = Paths.getSparrowAtlas('dave/cutscene');
+						marcello.frames = Paths.getSparrowAtlas('joke/cutscene');
 						marcello.animation.addByPrefix('throw_phone', 'bambi0', 24, false);
 						FlxG.sound.play(Paths.sound('break_phone'), 1, false, null, true);
 						boyfriend.playAnim('hit', true);
@@ -5273,7 +5273,7 @@ class PlayState extends MusicBeatState
 				char.y += 125;
 			case 'bambi-new':
 				char.y += 100;
-			case 'bambi' | 'bambi-old':
+			case 'bambi' | 'bambi-joke':
 				char.y += 50;
 			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
 				char.x += 100;
