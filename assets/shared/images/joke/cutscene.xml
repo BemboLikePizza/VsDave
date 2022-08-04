@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="cutscene.png">
+	<!-- Created with Adobe Animate version 22.0.3.179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="bambi0000" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0001" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0002" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0003" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0004" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0005" x="400" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0006" x="800" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0007" x="1200" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0008" x="1600" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0009" x="2000" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0010" x="2400" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0011" x="2800" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0012" x="3200" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0013" x="3600" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0014" x="4000" y="0" width="301" height="371" frameX="-374" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0015" x="4401" y="0" width="309" height="371" frameX="-366" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0016" x="4810" y="0" width="316" height="371" frameX="-359" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0017" x="5226" y="0" width="323" height="371" frameX="-352" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0018" x="5649" y="0" width="330" height="371" frameX="-345" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0019" x="6079" y="0" width="338" height="371" frameX="-337" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0020" x="6517" y="0" width="345" height="371" frameX="-330" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0021" x="6962" y="0" width="352" height="371" frameX="-323" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0022" x="7414" y="0" width="359" height="371" frameX="-316" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0023" x="0" y="471" width="367" height="371" frameX="-308" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0024" x="467" y="471" width="374" height="371" frameX="-301" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0025" x="941" y="471" width="381" height="371" frameX="-294" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0026" x="1422" y="471" width="389" height="371" frameX="-286" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0027" x="1911" y="471" width="396" height="371" frameX="-279" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0028" x="2407" y="471" width="403" height="371" frameX="-272" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0029" x="2910" y="471" width="417" height="371" frameX="-258" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0030" x="3427" y="471" width="429" height="371" frameX="-246" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0031" x="3956" y="471" width="439" height="371" frameX="-236" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0032" x="4495" y="471" width="448" height="371" frameX="-227" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0033" x="5043" y="471" width="459" height="371" frameX="-216" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0034" x="5602" y="471" width="476" height="371" frameX="-199" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0035" x="6178" y="471" width="502" height="371" frameX="-173" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0036" x="6780" y="471" width="529" height="371" frameX="-146" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0037" x="7409" y="471" width="554" height="371" frameX="-121" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0038" x="0" y="942" width="576" height="371" frameX="-99" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0039" x="676" y="942" width="595" height="371" frameX="-80" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0040" x="1371" y="942" width="597" height="371" frameX="-78" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0041" x="2068" y="942" width="600" height="371" frameX="-75" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0042" x="2768" y="942" width="602" height="371" frameX="-73" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0043" x="3470" y="942" width="605" height="371" frameX="-70" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0044" x="4175" y="942" width="607" height="371" frameX="-68" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0045" x="4882" y="942" width="610" height="371" frameX="-65" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0046" x="5592" y="942" width="613" height="371" frameX="-62" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0047" x="6305" y="942" width="615" height="371" frameX="-60" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0048" x="7020" y="942" width="618" height="371" frameX="-57" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0049" x="0" y="1413" width="620" height="371" frameX="-55" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0050" x="720" y="1413" width="623" height="371" frameX="-52" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0051" x="1443" y="1413" width="625" height="371" frameX="-50" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0052" x="2168" y="1413" width="628" height="371" frameX="-47" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0053" x="2896" y="1413" width="631" height="371" frameX="-44" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0054" x="3627" y="1413" width="633" height="371" frameX="-42" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0055" x="4360" y="1413" width="636" height="371" frameX="-39" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0056" x="5096" y="1413" width="638" height="371" frameX="-37" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0057" x="5834" y="1413" width="641" height="371" frameX="-34" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0058" x="6575" y="1413" width="644" height="371" frameX="-31" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0059" x="7319" y="1413" width="646" height="371" frameX="-29" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0060" x="0" y="1884" width="649" height="371" frameX="-26" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0061" x="749" y="1884" width="651" height="371" frameX="-24" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0062" x="1500" y="1884" width="654" height="371" frameX="-21" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0063" x="2254" y="1884" width="657" height="371" frameX="-18" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0064" x="3011" y="1884" width="659" height="371" frameX="-16" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0065" x="3770" y="1884" width="662" height="371" frameX="-13" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0066" x="4532" y="1884" width="664" height="371" frameX="-11" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0067" x="5296" y="1884" width="667" height="371" frameX="-8" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0068" x="6063" y="1884" width="669" height="371" frameX="-6" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0069" x="6832" y="1884" width="672" height="371" frameX="-3" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0070" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0071" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0072" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0073" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0074" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0075" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0076" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0077" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0078" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0079" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0080" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0081" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0082" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0083" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0084" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0085" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0086" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0087" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0088" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0089" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0090" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0091" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0092" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0093" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0094" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0095" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0096" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0097" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0098" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0099" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0100" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0101" x="0" y="2355" width="675" height="371"/>
+	<SubTexture name="bambi0102" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0103" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0104" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0105" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0106" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0107" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0108" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0109" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0110" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0111" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0112" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0113" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0114" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0115" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0116" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0117" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+	<SubTexture name="bambi0118" x="0" y="0" width="300" height="371" frameX="-375" frameY="0" frameWidth="675" frameHeight="371"/>
+</TextureAtlas>

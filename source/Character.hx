@@ -371,31 +371,6 @@ class Character extends FlxSprite
 				antialiasing = false;
 		
 				playAnim('idle');
-			case 'bambi':
-				var tex = Paths.getSparrowAtlas('bambi/characters/bambi', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS0', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS0', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS0', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS0', 24, false);
-
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-	
-				barColor = FlxColor.fromRGB(37, 191, 55);
-
-				loadOffsetFile(curCharacter);
-
-				playAnim('idle');
-
-				nativelyPlayable = true;
-				flipX = true;
 
 			case 'bambi-new':
 				frames = Paths.getSparrowAtlas('bambi/bambiRemake', 'shared');
@@ -522,23 +497,15 @@ class Character extends FlxSprite
 				
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
-			case 'bambi-old':
-				var tex = Paths.getSparrowAtlas('bambi/characters/bambi-old', 'shared');
+			case 'bambi-joke':
+				var tex = Paths.getSparrowAtlas('joke/bambi-joke', 'shared');
 				frames = tex;
-				animation.addByPrefix('idle', 'MARCELLO idle dance', 24, false);
-				animation.addByPrefix('singUP', 'MARCELLO NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'MARCELLO NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'MARCELLO NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'MARCELLO NOTE DOWN0', 24, false);
-				animation.addByPrefix('idle', 'MARCELLO idle dance', 24, false);
-				animation.addByPrefix('singUPmiss', 'MARCELLO MISS UP0', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'MARCELLO MISS LEFT0', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'MARCELLO MISS RIGHT0', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'MARCELLO MISS DOWN0', 24, false);
-
-				animation.addByPrefix('firstDeath', "MARCELLO dead0", 24, false);
-				animation.addByPrefix('deathLoop', "MARCELLO dead0", 24, true);
-				animation.addByPrefix('deathConfirm', "MARCELLO dead0", 24, false);
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('hey', 'hey', 24, false);
 
 				loadOffsetFile(curCharacter);
 				playAnim('idle');

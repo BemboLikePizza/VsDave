@@ -250,7 +250,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan', 'dave-angey', 'dave']);
 			case 'joke':
-				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-stupid']);
+				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-joke']);
 				
 				if (!FlxG.save.data.terminalFound)
 				{
