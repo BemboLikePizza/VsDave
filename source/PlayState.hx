@@ -1,5 +1,6 @@
 package;
 
+import Shaders.BlockedGlitchEffect;
 import flixel.group.FlxGroup;
 import sys.FileSystem;
 import flixel.util.FlxArrayUtil;
@@ -124,7 +125,7 @@ class PlayState extends MusicBeatState
 	public var curbg:BGSprite;
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
-	public static var blockedShader:Shaders.BlockedGlitchShader = new Shaders.BlockedGlitchShader();
+	public static var blockedShader:BlockedGlitchEffect;
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -1015,7 +1016,8 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'blocked')
 		{
-			camHUD.setFilters([new ShaderFilter(blockedShader)]);
+			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
+			camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 		}
 
 		// if (SONG.song == 'South')
@@ -2538,6 +2540,10 @@ class PlayState extends MusicBeatState
 
 		screenshader.shader.uTime.value[0] += elapsed;
 		lazychartshader.shader.uTime.value[0] += elapsed;
+		if (blockedShader != null)
+		{
+			blockedShader.update(elapsed);
+		}
 		if (shakeCam && eyesoreson)
 		{
 			screenshader.shader.uampmul.value[0] = 1;
@@ -2562,8 +2568,6 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
-
-		
 
 		switch (SONG.song.toLowerCase())
 		{

@@ -21,7 +21,6 @@ class GlitchEffect
         shader.uTime.value[0] += elapsed;
     }
 
-
     function set_waveSpeed(v:Float):Float
     {
         waveSpeed = v;
@@ -155,7 +154,48 @@ class InvertColorsEffect
 
 class BlockedGlitchEffect
 {
-    public var shader(default,null):BlockedGlitchShader = new BlockedGlitchShader();
+    public var shader(default, null):BlockedGlitchShader = new BlockedGlitchShader();
+
+    public var resolution(default, set):Float = 0;
+    public var time(default, set):Float = 0;
+    public var colorMultiplier(default, set):Float = 0;
+    public var hasColorTransform(default, set):Bool = false;
+
+    public function new(res:Float, time:Float, colorMultiplier:Float, colorTransform:Bool):Void
+    {
+        set_resolution(res);
+        set_time(time);
+        set_colorMultiplier(colorMultiplier);
+        set_hasColorTransform(colorTransform);
+    }
+    public function update(elapsed:Float):Void
+    {
+        shader.iTime.value[0] += elapsed;
+    }
+
+	function set_hasColorTransform(value:Bool):Bool {
+		this.hasColorTransform = value;
+        shader.hasColorTransform.value = [hasColorTransform];
+        return hasColorTransform;
+	}
+
+	function set_resolution(value:Float):Float {
+        this.resolution = value;
+        shader.iResolution.value = [value];
+        return this.resolution;
+    }
+
+	function set_colorMultiplier(value:Float):Float {
+        this.colorMultiplier = value;
+        shader.colorMultiplier.value = [value];
+        return this.colorMultiplier;
+    }
+
+	function set_time(value:Float):Float {
+        this.time = value;
+        shader.iTime.value = [value];
+        return this.time;
+    }
 }
 
 class GlitchShader extends FlxShader
@@ -326,8 +366,6 @@ class PulseShader extends FlxShader
             pt.y = mix(pt.y,sin(pt.y / 3 * pt.z + (2 * offsetZ) - pt.x),uWaveAmplitude * uampmul);
             pt.z = mix(pt.z,sin(pt.z / 6 * (pt.x * offsetY) - (50 * offsetZ) * (pt.z * offsetX)),uWaveAmplitude * uampmul);
         }
-
-
         return vec4(pt.x, pt.y, pt.z, pt.w);
     }
 
@@ -447,13 +485,11 @@ class BlockedGlitchShader extends FlxShader
     {
         vec2 fragCoord = openfl_TextureCoordv * iResolution;
         vec2 uv = fragCoord.xy / iResolution.xy;
-        Amount = uv.x; // Just erase this line if you want to use the control at the top
         wow = clamp(mod(noise(iTime + uv.y), 1.0), 0.0, 1.0) * 2.0 - 1.0;    
         vec3 finalColor;
         finalColor += distort(bitmap, uv, 8.0);
         gl_FragColor = vec4(finalColor, 1.0);
-    }
-    ')
+    }')
 
     public function new()
     {
