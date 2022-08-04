@@ -1035,14 +1035,7 @@ class ChartingState extends MusicBeatState
 
 	override function beatHit() 
 	{
-		trace('beat');
-
 		super.beatHit();
-		if (!player2.animation.curAnim.name.startsWith("sing"))
-		{
-			player2.playAnim('idle');
-		}
-		player1.dance();
 	}
 
 	function recalculateSteps():Int

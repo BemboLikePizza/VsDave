@@ -124,7 +124,7 @@ class PlayState extends MusicBeatState
 	public var curbg:BGSprite;
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
-	public static var blockedshader:Shaders.BlockedGlitchShader = new Shaders.BlockedGlitchShader();
+	public static var blockedShader:Shaders.BlockedGlitchShader = new Shaders.BlockedGlitchShader();
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -272,6 +272,7 @@ class PlayState extends MusicBeatState
 	var nimbiLand:BGSprite;
 	var nimbi:BGSprite;
 	var nimbiSign:BGSprite;
+	var flyingBgChars:FlxTypedGroup<FlyingBGChar> = new FlxTypedGroup<FlyingBGChar>();
 
 	var vcr:VCRDistortionShader;
 
@@ -354,6 +355,7 @@ class PlayState extends MusicBeatState
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
 			case 'recursed':
+				daveBG = MainMenuState.randomizeBG();
 				daveBG = MainMenuState.randomizeBG();
 				bambiBG = MainMenuState.randomizeBG();
 				tristanBG = MainMenuState.randomizeBG();
@@ -1011,6 +1013,10 @@ class PlayState extends MusicBeatState
 
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
+		if (SONG.song.toLowerCase() == 'blocked')
+		{
+			camHUD.setFilters([new ShaderFilter(blockedShader)]);
+		}
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1340,7 +1346,7 @@ class PlayState extends MusicBeatState
 					add(bg);
 				#end*/
 	
-			case 'red-void' | 'green-void' | 'glitchy-void' | 'interdimension-void':
+			case 'red-void' | 'green-void' | 'glitchy-void':
 				bgZoom = 0.7;
 
 				var bg:BGSprite = new BGSprite('void', -600, -200, '', null, 1, 1, false, true);
@@ -1361,17 +1367,30 @@ class PlayState extends MusicBeatState
 						bg.setPosition(0, 200);
 						bg.setGraphicSize(Std.int(bg.width * 3));
 						stageName = 'unfairness';
-					case 'interdimension-void':
-						bgZoom = 0.6;
-						bg.loadGraphic(Paths.image('backgrounds/void/interdimensions/interdimensionVoid'));
-						bg.setPosition(-700, -350);
-						bg.setGraphicSize(Std.int(bg.width * 1.75));
-						interdimensionBG = bg;
-						stageName = 'interdimension';
 				}
 				sprites.add(bg);
 				add(bg);
 				voidShader(bg);
+			case 'interdimension-void':
+				bgZoom = 0.6;
+				stageName = 'interdimension';
+
+				var bg:BGSprite = new BGSprite('void', -700, -350, Paths.image('backgrounds/void/interdimensions/interdimensionVoid'), null, 1, 1, false, true);
+				bg.setGraphicSize(Std.int(bg.width * 1.75));
+				sprites.add(bg);
+				add(bg);
+
+				voidShader(bg);
+				
+				interdimensionBG = bg;
+
+				for (char in ['ball', 'bimpe', 'maldo', 'memes kids', 'muko', 'ruby man'])
+				{
+					var bgChar = new FlyingBGChar(char, Paths.image('backgrounds/festival/scaredCrowd/$char'));
+					sprites.add(bgChar);
+					flyingBgChars.add(bgChar);
+				}
+				add(flyingBgChars);
 			case 'exbungo-land':
 				bgZoom = 0.7;
 				stageName = 'kabunga';
@@ -1559,22 +1578,12 @@ class PlayState extends MusicBeatState
 				nimbiLand = new BGSprite('nimbiLand', 200, 100, Paths.image('backgrounds/void/interdimensions/nimbi/nimbi_land'), null, 1, 1, false, true);
 				backgroundSprites.add(nimbiLand);
 				nimbiLand.setGraphicSize(Std.int(nimbiLand.width * 1.5));
-				insert(members.indexOf(gfGroup), nimbiLand);
-
-				//don't revert this commit, i don't like nimbi so im replacing him with a sign lol
-
-				/*nimbi = new BGSprite('nimbi', 1100, 200, 'backgrounds/void/interdimensions/nimbi/nimbi', 
-				[
-					new Animation('idle', 'lol hi dave and boyfriend fnf what a peculiar coincidence that we are here at this exact time', 24, true, [false, false])
-				], 1, 1, false, true);*/
-				//nimbi.animation.play('idle');
-				//backgroundSprites.add(nimbi);
-				//insert(members.indexOf(gfGroup), nimbi);
+				insert(members.indexOf(flyingBgChars), nimbiLand);
 
 				nimbiSign = new BGSprite('sign', 800, -73, Paths.image('backgrounds/void/interdimensions/nimbi/sign'), null, 1, 1, false, true);
 				backgroundSprites.add(nimbiSign);
 				nimbiSign.setGraphicSize(Std.int(nimbiSign.width * 0.2));
-				insert(members.indexOf(gfGroup), nimbiSign);
+				insert(members.indexOf(flyingBgChars), nimbiSign);
 		}
 		voidShader(interdimensionBG);
 		currentInterdimensionBG = type;
@@ -2389,12 +2398,38 @@ class PlayState extends MusicBeatState
 				}
 			}
 		}
+		if (SONG.song.toLowerCase() == 'interdimensional')
+		{
+			var speed = 300;
+			flyingBgChars.forEach(function(bgChar:FlyingBGChar)
+			{
+				var moveDir = bgChar.direction == 'left' ? -1 : bgChar.direction == 'right' ? 1 : 0;
+				bgChar.x += speed * elapsed * moveDir * bgChar.randomSpeed;
+				bgChar.y += (Math.sin(elapsedtime) * 5);
+	
+				bgChar.angle += bgChar.angleChangeAmount * elapsed;
+
+				switch (bgChar.direction)
+				{
+					case 'left':
+						if (bgChar.x < bgChar.leftPosCheck)
+						{
+							bgChar.switchDirection();
+						}
+					case 'right':
+						if (bgChar.x > bgChar.rightPosCheck)
+						{
+							bgChar.switchDirection();
+						}
+				}
+			});
+		}
 		
 		var toy = -100 + -Math.sin((curStep / 9.5) * 2) * 30 * 5;
 		var tox = -330 -Math.cos((curStep / 9.5)) * 100;
 
 		//welcome to 3d sinning avenue
-        if(stageCheck == 'exbungo-land') {
+      if (stageCheck == 'exbungo-land') {
 			place.y -= (Math.sin(elapsedtime) * 0.4);
 		}
 		if (dad.curCharacter == 'recurser')
@@ -4576,6 +4611,10 @@ class PlayState extends MusicBeatState
 						tweenList.push(FlxTween.color(gf, 1, gf.color, FlxColor.BLUE));
 						tweenList.push(FlxTween.color(dad, 1, dad.color, FlxColor.BLUE));
 						bfTween = FlxTween.color(boyfriend, 1, boyfriend.color, FlxColor.BLUE);
+						flyingBgChars.forEach(function(char:FlyingBGChar)
+						{
+							tweenList.push(FlxTween.color(char, 1, char.color, FlxColor.BLUE));
+						});
 					case 1408:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						changeInterdimensionBg('hexagon-void');
@@ -4583,6 +4622,10 @@ class PlayState extends MusicBeatState
 						tweenList.push(FlxTween.color(dad, 1, dad.color, FlxColor.WHITE));
 						bfTween = FlxTween.color(boyfriend, 1, boyfriend.color, FlxColor.WHITE);
 						tweenList.push(FlxTween.color(gf, 1, gf.color, FlxColor.WHITE));
+						flyingBgChars.forEach(function(char:FlyingBGChar)
+						{
+							tweenList.push(FlxTween.color(char, 1, char.color, FlxColor.WHITE));
+						});
 					case 1792:
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						FlxG.mouse.visible = true;
@@ -4591,7 +4634,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 0.3, false);
 						FlxG.mouse.visible = false;
 						changeInterdimensionBg('interdimension-void');
-					case 2652:
+					case 2688:
 						defaultCamZoom = 0.7;
 						for (bgSprite in backgroundSprites)
 						{
@@ -5250,6 +5293,10 @@ class PlayState extends MusicBeatState
 				char.x -= 30;
 				char.y -= 125;
 		}
+	}
+	public function getCamZoom():Float
+	{
+		return defaultCamZoom;
 	}
 
 	function sectionStartTime(section:Int):Float
