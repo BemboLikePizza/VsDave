@@ -353,6 +353,24 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
 				playAnim('idle');
+			case 'dave-festival-3d':
+				frames = Paths.getSparrowAtlas('festival/dave_festival_3d', 'shared');
+				
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				
+				loadOffsetFile(curCharacter);
+				
+				barColor = FlxColor.fromRGB(249, 180, 207);
+
+				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
+				updateHitbox();
+				antialiasing = false;
+		
+				playAnim('idle');
 			case 'bambi':
 				var tex = Paths.getSparrowAtlas('bambi/characters/bambi', 'shared');
 				frames = tex;

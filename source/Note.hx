@@ -49,7 +49,7 @@ class Note extends FlxSprite
 
 	private var InPlayState:Bool = false;
 
-	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged'];
+	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d'];
 
 	public var noteStyle:String = 'normal';
 

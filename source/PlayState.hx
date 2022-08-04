@@ -131,7 +131,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'dave-festival-3d'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -3053,7 +3053,7 @@ class PlayState extends MusicBeatState
 
 			switch (dad.curCharacter)
 			{
-				case 'dave-angey':
+				case 'dave-angey' | 'dave-festival-3d':
 					camFollow.y = dad.getMidpoint().y;
 			}
 
@@ -3080,9 +3080,6 @@ class PlayState extends MusicBeatState
 				case 'bambi-3d':
 					camFollow.x = boyfriend.getMidpoint().x - 375;
 					camFollow.y = boyfriend.getMidpoint().y - 550;
-				case 'bambi-unfair':
-					camFollow.x = boyfriend.getMidpoint().x - 325;
-					camFollow.y = boyfriend.getMidpoint().y - 1100;
 			}
 			dadNoteCamOffset[0] = 0;
 			dadNoteCamOffset[1] = 0;
@@ -5263,7 +5260,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf' | 'dave-festival':
 				char.y -= 150;
-			case 'dave-angey':
+			case 'dave-angey' | 'dave-festival-3d':
 				char.y -= 400;
 			case 'dave-splitathon':
 				char.y -= 175;
