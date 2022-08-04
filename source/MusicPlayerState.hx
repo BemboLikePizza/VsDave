@@ -61,7 +61,7 @@ class MusicPlayerState extends MusicBeatState
             }
         }
 
-        bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/SUSSUS AMOGUS'));
+        bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/Aadsta'));
         bg.loadGraphic(MainMenuState.randomizeBG());
         bg.color = 0xFFFD719B;
 		add(bg);
