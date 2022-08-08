@@ -426,7 +426,7 @@ class CharacterSelectState extends MusicBeatState
 			var heyAnimation:Bool = char.animation.getByName("hey") != null; 
 			char.playAnim(heyAnimation ? 'hey' : 'singUP', true);
 			FlxG.sound.music.stop();
-			FlxG.sound.play(Paths.music('gameOverEnd'));
+			FlxG.sound.play(Paths.sound('confirmMenu', 'preload'));
 			new FlxTimer().start(1.9, endIt);
 		}
 		if (FlxG.keys.justPressed.LEFT && !selectedCharacter)

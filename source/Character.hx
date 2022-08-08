@@ -459,7 +459,7 @@ class Character extends FlxSprite
 	
 			case 'bambi-3d':
 				// BAMBI SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('bambi/characters/Cheating', 'shared');
+				tex = Paths.getSparrowAtlas('expunged/Cheating', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singUP', 'Up', 24, false);
@@ -482,7 +482,7 @@ class Character extends FlxSprite
 
 			case 'bambi-unfair':
 				// BAMBI SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('bambi/unfair_bambi', 'shared');
+				tex = Paths.getSparrowAtlas('expunged/unfair_bambi', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idle', 24, false);
 				for (anim in ['left', 'down', 'up', 'right'])
@@ -504,7 +504,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'expunged':
 				// EXPUNGED SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('bambi/ExpungedFinal', 'shared');
+				tex = Paths.getSparrowAtlas('expunged/ExpungedFinal', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singUP', 'Up', 24, false);
@@ -662,7 +662,7 @@ class Character extends FlxSprite
 				flipX = true;
 				playAnim('idle');
 			case 'exbungo':
-				var tex = Paths.getSparrowAtlas('bambi/exbungo', 'shared');
+				var tex = Paths.getSparrowAtlas('characters/exbungo', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idle', 24, false);
 				animation.addByPrefix('singUP', 'up', 24, false);

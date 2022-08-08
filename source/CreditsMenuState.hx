@@ -79,13 +79,13 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/rappareplol')
       ]),
 
-      new Person("TheBuilderXD", CreditsType.Dev, "Gamebanana Page Manager, Secondary Artist, Poopy Voice Actor",
+      new Person("TheBuilderXD", CreditsType.Dev, "Secondary Artist",
       [
          new Social('youtube', 'https://www.youtube.com/user/99percentMember'),
          new Social('twitter', 'https://twitter.com/TheBuilderXD')
       ]),
-      
-      new Person("Erizur", CreditsType.Dev, "Programmer, Week Icon Artist & More",
+
+      new Person("Erizur", CreditsType.Dev, "New Main Menu Programmer, Week Icon Artist",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
          new Social('twitter', 'https://twitter.com/am_erizur')
