@@ -47,10 +47,10 @@ class Song
 		this.bpm = bpm;
 	}
 
-	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
+	public static function loadFromJson(jsonInput:String):SwagSong
 	{
 		var rawJson = "";
-		rawJson = Assets.getText(Paths.chart(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+		rawJson = Assets.getText(Paths.chart(jsonInput.toLowerCase())).trim();
 
 		while (!rawJson.endsWith("}"))
 		{

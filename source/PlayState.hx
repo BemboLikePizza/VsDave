@@ -132,7 +132,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'dave-festival-3d'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'dave-festival-3d', 'dave-3d-recursed'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -384,7 +384,7 @@ class PlayState extends MusicBeatState
 		// To avoid having duplicate images in Discord assets
 		switch (SONG.player2)
 		{
-			case 'dave' | 'dave-angey':
+			case 'dave' | 'dave-angey' | 'dave-3d-recursed':
 				iconRPC = 'icon_dave';
 			case 'bambi-new' | 'bambi-angey' | 'bambi' | 'bambi-joke' | 'bambi-3d' | 'bambi-unfair' | 'expunged':
 				iconRPC = 'icon_bambi';
@@ -698,32 +698,6 @@ class PlayState extends MusicBeatState
 			}
 			boyfriend = new Boyfriend(770, 450, formoverride);
 		}
-		/*switch (boyfriend.curCharacter)
-		{
-			case "tristan" | 'tristan-golden' | 'tristan-festival' | 'tristan-golden-glowing':
-				boyfriend.y = 100 + 325;
-				boyfriendOldIcon = 'tristan';
-			case 'dave' | 'dave-annoyed' | 'dave-splitathon' | 'dave-cool':
-				boyfriend.y = 100 + 160;
-				boyfriendOldIcon = 'dave';
-			case 'dave-angey':
-				boyfriend.y = 100;
-				boyfriendOldIcon = 'dave-angey';
-			case 'bambi-3d':
-				boyfriend.y = 100 + 350;
-				boyfriendOldIcon = 'bambi-joke';
-			case 'bambi-unfair':
-				boyfriend.y = 100 + 575;
-				boyfriendOldIcon = 'bambi-joke';
-			case 'bambi' | 'bambi-joke':
-				boyfriend.y = 100 + 400;
-				boyfriendOldIcon = 'bambi-joke';
-			case 'bambi-new' | 'bambi-splitathon' | 'bambi-angey':
-				boyfriend.y = 100 + 450;
-				boyfriendOldIcon = 'bambi-joke';
-			case 'tb-funny-man':
-				boyfriend.x = 100 + 900;
-		}*/
 		if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" || SONG.song.toLowerCase() == 'rano')
 		{
 			dad.color = nightColor;
@@ -966,6 +940,8 @@ class PlayState extends MusicBeatState
 						preload('recursed/STOP_LOOKING_AT_THE_FILES');
 					case 'tristan':
 						preload('recursed/TristanRecursed');
+					case 'dave-angey':
+						preload('recursed/Dave_3D_Recursed');
 					default:
 						preload('recursed/Recursed_BF');
 				}
@@ -1019,12 +995,6 @@ class PlayState extends MusicBeatState
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
 			camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 		}
-
-		// if (SONG.song == 'South')
-		// FlxG.camera.alpha = 0.7;
-		// UI_camera.zoom = 1;
-
-		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 		if (startTimer != null && !startTimer.active)
 		{
@@ -2469,7 +2439,7 @@ class PlayState extends MusicBeatState
 		{
 			gf.y += (Math.sin(elapsedtime) * 0.2);
 		}
-
+		
 		if ((SONG.song.toLowerCase() == 'cheating' || localFunny == CharacterFunnyEffect.Dave) && !inCutscene) // fuck you
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -2606,7 +2576,7 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'supernovae':
-					PlayState.SONG = Song.loadFromJson("cheating", "cheating"); // you dun fucked up
+					PlayState.SONG = Song.loadFromJson("cheating"); // you dun fucked up
 					FlxG.save.data.cheatingFound = true;
 					shakeCam = false;
 					screenshader.Enabled = false;
@@ -2614,7 +2584,7 @@ class PlayState extends MusicBeatState
 					return;
 					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
 				case 'cheating':
-					PlayState.SONG = Song.loadFromJson("unfairness", "unfairness"); // you dun fucked up again
+					PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
 					FlxG.save.data.unfairnessFound = true;
 					shakeCam = false;
 					screenshader.Enabled = false;
@@ -2628,7 +2598,7 @@ class PlayState extends MusicBeatState
 					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
 				case 'glitch':
-					PlayState.SONG = Song.loadFromJson("kabunga", "kabunga"); // lol you loser
+					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
 					FlxG.save.data.exbungoFound = true;
 					shakeCam = false;
 					screenshader.Enabled = false;
@@ -3057,7 +3027,7 @@ class PlayState extends MusicBeatState
 
 			switch (dad.curCharacter)
 			{
-				case 'dave-angey' | 'dave-festival-3d':
+				case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 					camFollow.y = dad.getMidpoint().y;
 			}
 
@@ -3128,16 +3098,8 @@ class PlayState extends MusicBeatState
 		{
 			switch (curSong.toLowerCase())
 			{
-				case "splitathon":
-					CharacterSelectState.unlockCharacter('dave-splitathon');
-					CharacterSelectState.unlockCharacter('bambi-splitathon');
-					CharacterSelectState.unlockCharacter('tristan');
-				case "insanity":
-					CharacterSelectState.unlockCharacter('dave-annoyed');
 				case "polygonized":
 					CharacterSelectState.unlockCharacter('dave-angey');
-				case 'greetings':
-					CharacterSelectState.unlockCharacter('tristan-festival');
 			}
 		}
 		// Song Character Unlocks (Freeplay)
@@ -3147,16 +3109,8 @@ class PlayState extends MusicBeatState
 			{
 				case "bonus-song":
 					CharacterSelectState.unlockCharacter('dave');
-				case "mealie":
-					CharacterSelectState.unlockCharacter('bambi-angey');
-				case "supernovae":
-					CharacterSelectState.unlockCharacter('bambi');
 				case "cheating":
 					CharacterSelectState.unlockCharacter('bambi-3d');
-				case "unfairness":
-					CharacterSelectState.unlockCharacter('bambi-unfair');
-				case "exploitation":
-					CharacterSelectState.unlockCharacter('expunged');
 			}
 		}
 		switch (SONG.song.toLowerCase())
@@ -3414,7 +3368,7 @@ class PlayState extends MusicBeatState
 		FlxTransitionableState.skipNextTransOut = true;
 		prevCamFollow = camFollow;
 
-		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
+		PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0]);
 		FlxG.sound.music.stop();
 
 		switch (curSong.toLowerCase())
@@ -5264,7 +5218,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf' | 'dave-festival':
 				char.y -= 150;
-			case 'dave-angey' | 'dave-festival-3d':
+			case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 				char.y -= 400;
 			case 'dave-splitathon':
 				char.y -= 175;

@@ -119,7 +119,7 @@ class TerminalState extends FlxState
                             UpdatePreviousText(false); //resets the text
                             UpdateText("\nLoading...");
                             PlayState.globalFunny = CharacterFunnyEffect.Dave;
-                            PlayState.SONG = Song.loadFromJson("house-hard", "house");
+                            PlayState.SONG = Song.loadFromJson("house");
                             PlayState.SONG.validScore = false;
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "exbungo.dat":
@@ -127,9 +127,8 @@ class TerminalState extends FlxState
                             UpdateText("\nLoading...");
                             PlayState.globalFunny = CharacterFunnyEffect.Exbungo;
                             var funny:Array<String> = ["house","insanity","polygonized","five-nights","splitathon","shredder"];
-                            var funny2:Array<String> = ["house-hard","insanity-hard","polygonized-hard","five-nights","splitathon","shredder-hard"];
                             var funnylol:Int = FlxG.random.int(0, funny.length - 1);
-                            PlayState.SONG = Song.loadFromJson(funny2[funnylol], funny[funnylol]);
+                            PlayState.SONG = Song.loadFromJson(funny[funnylol]);
                             PlayState.SONG.validScore = false;
                             PlayState.SONG.player2 = "exbungo";
                             LoadingState.loadAndSwitchState(new PlayState());
@@ -137,7 +136,7 @@ class TerminalState extends FlxState
                             UpdatePreviousText(false); //resets the text
                             UpdateText("\nLoading...");
                             PlayState.globalFunny = CharacterFunnyEffect.Bambi;
-                            PlayState.SONG = Song.loadFromJson("shredder-hard", "shredder");
+                            PlayState.SONG = Song.loadFromJson('shredder');
                             PlayState.SONG.validScore = false;
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "expunged.dat":

@@ -58,7 +58,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		}
 		switch (PlayState.storyWeek)
 		{
-			case 1 | 0:
+			case 0 | 1:
 				headingPath = {path: 'songHeadings/daveHeading', antiAliasing: false, iconOffset: 0};
 			case 2:
 				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 0};
@@ -71,6 +71,11 @@ class CreditsPopUp extends FlxSpriteGroup
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: -20};
 			case 10:
 				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
+		}
+		switch (PlayState.SONG.song.toLowerCase())
+		{
+			case 'polygonized':
+				headingPath = {path: 'songHeadings/3D-daveHeading', antiAliasing: false, iconOffset: 0};
 		}
 		if (headingPath != null)
 		{

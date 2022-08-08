@@ -29,8 +29,8 @@ class Alphabet extends FlxSpriteGroup
 	var _finalText:String = "";
 	var _curText:String = "";
 
-	var groupX:Float = 90;
-	var groupY:Float = 0.48;
+	public var groupX:Float = 90;
+	public var groupY:Float = 0.48;
 
 	public var SwitchXandY:Bool = false;
 

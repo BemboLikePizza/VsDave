@@ -122,9 +122,9 @@ class Paths
 	}
 	
 
-	inline static public function chart(key:String)
+	inline static public function chart(key:String, ?library:String)
 	{
-		return 'songs:assets/songs/$key.json';
+		return getPath('data/charts/$key.json', TEXT, library);
 	}
 
 	static public function sound(key:String, ?library:String)

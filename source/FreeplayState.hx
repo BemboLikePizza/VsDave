@@ -30,7 +30,6 @@ class FreeplayState extends MusicBeatState
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
-	var curDifficulty:Int = 1;
 
 	var bg:FlxSprite = new FlxSprite();
 
@@ -132,7 +131,7 @@ class FreeplayState extends MusicBeatState
 			bg.scrollFactor.set();
 			add(bg);
 		}
-		if (FlxG.save.data.terminalFound)
+		if (FlxG.save.data.terminalFound && !awaitingExploitation)
 		{
 			Catagories = ['dave', 'joke', 'terminal', 'extras'];
 			translatedCatagory = [
@@ -148,8 +147,8 @@ class FreeplayState extends MusicBeatState
 
 			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('packs/' + (Catagories[i].toLowerCase()), "preload"));
 			CurrentSongIcon.centerOffsets(false);
-			CurrentSongIcon.x = (1000 * i + 1) - CurrentSongIcon.width / 2;
-			CurrentSongIcon.y = (FlxG.height / 2) - CurrentSongIcon.height / 2;
+			CurrentSongIcon.x = (1000 * i + 1);
+			CurrentSongIcon.y = (FlxG.height / 2) - 256;
 			CurrentSongIcon.antialiasing = true;
 
 			var NameAlpha:Alphabet = new Alphabet(40, (FlxG.height / 2) - 282, translatedCatagory[i], true, false);
@@ -294,7 +293,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
-			songText.itemType = 'Classic';
+			songText.itemType = 'Classic'; // til i get new freeplay menu properly working (it's much harder to do than i thought waaaa)
 			songText.targetY = i;
 			songText.scrollFactor.set();
 			songText.alpha = 0;
@@ -346,7 +345,6 @@ class FreeplayState extends MusicBeatState
 		}
 
 		changeSelection();
-		changeDiff();
 	}
 
 	public function addSong(songName:String, weekNum:Int, songCharacter:String)
@@ -459,7 +457,7 @@ class FreeplayState extends MusicBeatState
 					
 					for (item in icons) { FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut}); }
 					for (item in titles) { FlxTween.tween(item, {alpha: 0, y: item.y - 200}, 0.2, {ease: FlxEase.cubeInOut}); }
-
+					
 					new FlxTimer().start(0.2, function(Dumbshit:FlxTimer)
 					{
 						for (item in icons) { item.visible = false; }
@@ -475,8 +473,8 @@ class FreeplayState extends MusicBeatState
 			if (controls.BACK && canInteract && !awaitingExploitation)
 			{
 				FlxG.switchState(new MainMenuState());
-			}	
-		
+			}
+
 			return;
 		}
 
@@ -497,20 +495,15 @@ class FreeplayState extends MusicBeatState
 				stringKey = 'down';
 				changeSelection(1);
 			}
-			if (controls.LEFT_P && canInteract)
-				changeDiff(-1);
-			if (controls.RIGHT_P && canInteract)
-				changeDiff(1);
-	
 			if (controls.BACK && canInteract)
-			{
+			{				
 				loadingPack = true;
 				canInteract = false;
 				
 				for (i in grpSongs)
 				{
 					i.unlockY = true;
-	
+
 					FlxTween.tween(i, {y: 5000, alpha: 0}, 0.3, {onComplete: function(twn:FlxTween)
 					{
 						i.unlockY = false;
@@ -562,16 +555,12 @@ class FreeplayState extends MusicBeatState
 					}});
 				}
 			}
-	
 			if (accepted && canInteract)
 			{
 				Main.currentPackGlobal = Catagories[CurrentPack].toLowerCase();
 
-				var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
-		
-				PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+				PlayState.SONG = Song.loadFromJson(songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
-				PlayState.storyDifficulty = curDifficulty;
 	
 				PlayState.storyWeek = songs[curSelected].week;
 				
@@ -585,6 +574,19 @@ class FreeplayState extends MusicBeatState
 					LoadingState.loadAndSwitchState(new CharacterSelectState());
 				}
 			}
+			/*for (song in grpSongs.members)
+			{
+				var ratio = 0.16 / (openfl.Lib.application.window.frameRate / 60);
+				var songWidth = getTrueSongTextWidth(song);
+				
+				song.x = FlxMath.lerp(song.x, ((FlxG.width - songWidth) / 2) + (song.targetY), ratio);
+				song.y = FlxMath.lerp(song.y, (FlxG.height * song.groupY) + Math.abs(song.targetY * 100), ratio);
+
+				var widthThingy:Float = 0;
+				target Y 0 is at center
+				target Y < 0 is at bottom, and is subtracted based on the width of the last object, (or +1)
+				target Y > 0's x is added based on the width of the last object (or, - 1)
+			}*/
 		}
 
 		if (FlxG.sound.music.volume < 0.7)
@@ -612,29 +614,6 @@ class FreeplayState extends MusicBeatState
 		diffText.x -= diffText.width / 2;
 	}
 
-	function changeDiff(change:Int = 0)
-	{
-		curDifficulty += change;
-
-		if (curDifficulty < 0)
-			curDifficulty = 2;
-		if (curDifficulty > 2)
-			curDifficulty = 0;
-
-		var oneDiffWeeks = [3, 8, 9, 10];
-		if (oneDiffWeeks.contains(songs[curSelected].week))
-		{
-			curDifficulty = 1;
-		}
-		#if !switch
-		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
-		#end
-		curChar = Highscore.getChar(songs[curSelected].songName, curDifficulty);
-
-		if (diffText != null)
-			updateDifficultyText();
-	}
-
 	function updateDifficultyText()
 	{
 		switch (songs[curSelected].week)
@@ -646,15 +625,7 @@ class FreeplayState extends MusicBeatState
 			case 10:
 				diffText.text = "RECURSED" + " - " + curChar.toUpperCase();
 			default:
-				switch (curDifficulty)
-				{
-					case 0:
-						diffText.text = LanguageManager.getTextString('freeplay_easy') + " - " + curChar.toUpperCase();
-					case 1:
-						diffText.text = LanguageManager.getTextString('freeplay_normal') + " - " + curChar.toUpperCase();
-					case 2:
-						diffText.text = LanguageManager.getTextString('freeplay_hard') + " - " + curChar.toUpperCase();
-				}
+				diffText.text = curChar.toUpperCase();
 		}
 	}
 
@@ -695,28 +666,14 @@ class FreeplayState extends MusicBeatState
 	
 		if (curSelected >= songs.length)
 			curSelected = 0;
-		
-		var songsWithOneDifficulty = [3, 8, 10];
-		if (!songsWithOneDifficulty.contains(songs[curSelected].week))
-		{
-			if (curDifficulty < 0)
-				curDifficulty = 2;
-				
-			if (curDifficulty > 2)
-				curDifficulty = 0;
-		}
-		else
-		{
-			curDifficulty = 1;
-		}
 
-		curChar = Highscore.getChar(songs[curSelected].songName, curDifficulty);
+		curChar = Highscore.getChar(songs[curSelected].songName);
 
 		if (diffText != null)
 			updateDifficultyText();
 
 		#if !switch
-		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
+		intendedScore = Highscore.getScore(songs[curSelected].songName);
 		#end
 
 		#if PRELOAD_ALL
@@ -745,6 +702,13 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 		FlxTween.color(bg, 0.25, bg.color, songColors[songs[curSelected].week]);
+	}
+	function getTrueSongTextWidth(song:Alphabet)
+	{
+		var index = grpSongs.members.indexOf(song);
+		var icon = iconArray[index];
+
+		return song.width + icon.width + 10;
 	}
 	function resetPresses()
 	{
@@ -811,10 +775,7 @@ class FreeplayState extends MusicBeatState
 					{
 						new FlxTimer().start(1, function(timer:FlxTimer)
 						{
-							var poop:String = Highscore.formatSong("Recursed", 1);
-
-							PlayState.SONG = Song.loadFromJson(poop, "Recursed");
-							PlayState.storyDifficulty = 1;
+							PlayState.SONG = Song.loadFromJson("Recursed");
 
 							PlayState.storyWeek = 10;
 

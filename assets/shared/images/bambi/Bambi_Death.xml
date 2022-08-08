@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Bambi_Death.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="bambi die0000" x="0" y="0" width="356" height="325" frameX="-44" frameY="-28" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0001" x="361" y="0" width="382" height="337" frameX="-18" frameY="-16" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0002" x="748" y="0" width="406" height="337" frameX="-18" frameY="-16" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0003" x="1159" y="0" width="424" height="330" frameX="0" frameY="-23" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0004" x="1588" y="0" width="402" height="353" frameX="0" frameY="0" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0005" x="1995" y="0" width="402" height="353" frameX="0" frameY="0" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0006" x="2402" y="0" width="382" height="339" frameX="-47" frameY="-14" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0007" x="2402" y="0" width="382" height="339" frameX="-47" frameY="-14" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0008" x="2789" y="0" width="355" height="320" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0009" x="2789" y="0" width="355" height="320" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0010" x="3149" y="0" width="369" height="320" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0011" x="3149" y="0" width="369" height="320" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0012" x="3523" y="0" width="374" height="338" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0013" x="3523" y="0" width="374" height="338" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0014" x="0" y="358" width="374" height="329" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0015" x="0" y="358" width="374" height="329" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0016" x="379" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0017" x="379" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0018" x="379" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0019" x="379" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0020" x="379" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0021" x="379" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0022" x="758" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0023" x="1137" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0024" x="1137" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0025" x="1516" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0026" x="1516" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0027" x="1516" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0028" x="1895" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="bambi die0029" x="1895" y="358" width="374" height="333" frameX="-47" frameY="-33" frameWidth="429" frameHeight="371"/>
+	<SubTexture name="die end0000" x="2274" y="358" width="361" height="350" frameX="-7" frameY="-45" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0001" x="2640" y="358" width="361" height="380" frameX="-7" frameY="-15" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0002" x="3006" y="358" width="374" height="395"/>
+	<SubTexture name="die end0003" x="3385" y="358" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0004" x="0" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0005" x="379" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0006" x="758" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0007" x="1137" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0008" x="1516" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0009" x="1895" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0010" x="2274" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0011" x="2653" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0012" x="3032" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0013" x="3411" y="758" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0014" x="0" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0015" x="379" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0016" x="758" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0017" x="1137" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0018" x="1516" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0019" x="1895" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0020" x="2274" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die end0021" x="2653" y="1128" width="374" height="365" frameX="0" frameY="-30" frameWidth="374" frameHeight="395"/>
+	<SubTexture name="die loop0000" x="3032" y="1128" width="374" height="333"/>
+	<SubTexture name="die loop0001" x="3411" y="1128" width="374" height="333"/>
+	<SubTexture name="die loop0002" x="0" y="1498" width="374" height="333"/>
+	<SubTexture name="die loop0003" x="379" y="1498" width="374" height="333"/>
+	<SubTexture name="die loop0004" x="758" y="1498" width="374" height="333"/>
+	<SubTexture name="die loop0005" x="1137" y="1498" width="374" height="333"/>
+	<SubTexture name="die loop0006" x="1516" y="1498" width="374" height="333"/>
+	<SubTexture name="die loop0007" x="1895" y="1498" width="374" height="333"/>
+	<SubTexture name="die loop0008" x="2274" y="1498" width="374" height="333"/>
+	<SubTexture name="die loop0009" x="1895" y="1498" width="374" height="333"/>
+</TextureAtlas>

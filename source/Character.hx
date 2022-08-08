@@ -281,6 +281,8 @@ class Character extends FlxSprite
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
 				antialiasing = false;
+				
+				recursedSkin = 'dave-3d-recursed';
 		
 				playAnim('idle');
 			case 'dave-fnaf':
@@ -327,6 +329,22 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.WHITE;
 
+				playAnim('idle');
+			case 'dave-3d-recursed':
+				frames = Paths.getSparrowAtlas('recursed/Dave_3D_Recursed', 'shared');
+
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}', 24, false);
+				}
+
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
+
+				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
+				updateHitbox();
+				
+				barColor = FlxColor.WHITE;
 				playAnim('idle');
 			case 'dave-death':
 				frames = Paths.getSparrowAtlas('dave/characters/Dave_Dead', 'shared');
@@ -375,18 +393,26 @@ class Character extends FlxSprite
 			case 'bambi-new':
 				frames = Paths.getSparrowAtlas('bambi/bambiRemake', 'shared');
 				animation.addByPrefix('idle', 'bambi idle', 24, false);
-				animation.addByPrefix('singDOWN', 'bambi down', 24, false);
-				animation.addByPrefix('singUP', 'bambi up', 24, false);
-				animation.addByPrefix('singLEFT', 'bambi left', 24, false);
-				animation.addByPrefix('singRIGHT', 'bambi right', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'bambi $anim', 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'miss $anim', 24, false);
+				}
 				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
-
+				
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
 				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
 
 				playAnim('idle');
+			case 'bambi-death':
+				frames = Paths.getSparrowAtlas('bambi/bambiRemake', 'shared');
 
+				animation.addByPrefix('firstDeath', 'bambi die', 24, false);
+				animation.addByPrefix('deathLoop', 'die loop', 24, true);
+				animation.addByPrefix('deathConfirm', 'die end', 24, false);
+
+				playAnim('firstDeath');
 			case 'baldi':
 				frames = Paths.getSparrowAtlas('characters/BaldiInRoof', 'shared');
 				animation.addByPrefix('idle', 'idle', 24, false);
@@ -459,11 +485,11 @@ class Character extends FlxSprite
 				tex = Paths.getSparrowAtlas('bambi/unfair_bambi', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singUP', 'singUP', 24, false);
-				animation.addByPrefix('singRIGHT', 'singRIGHT', 24, false);
-				animation.addByPrefix('singDOWN', 'singDOWN', 24, false);
-				animation.addByPrefix('singLEFT', 'singLEFT', 24, false);
-		
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+
 				barColor = FlxColor.fromRGB(178, 7, 7);
 
 				loadOffsetFile(curCharacter);
@@ -474,8 +500,8 @@ class Character extends FlxSprite
 				globaloffset[0] = 150 * 1.3;
 				globaloffset[1] = 450 * 1.3; //this is the y
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
-				updateHitbox();
-				
+
+				playAnim('idle');
 			case 'expunged':
 				// EXPUNGED SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('bambi/ExpungedFinal', 'shared');
