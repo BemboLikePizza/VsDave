@@ -4245,6 +4245,7 @@ class PlayState extends MusicBeatState
 					case 128:
 						defaultCamZoom += 0.2;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 						black.screenCenter();
 						black.alpha = 0;
@@ -4291,7 +4292,6 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
 					case 1200:
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
 					case 1216:
 						camHUD.setFilters([]);
