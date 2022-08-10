@@ -559,8 +559,8 @@ class PlayState extends MusicBeatState
 			gfVersion = 'gf-none';
 		}
 
-		screenshader.waveAmplitude = 1;
-		screenshader.waveFrequency = 2;
+		screenshader.waveAmplitude = 0.35;
+		screenshader.waveFrequency = 0.5;
 		screenshader.waveSpeed = 1;
 		screenshader.shader.uTime.value[0] = new flixel.math.FlxRandom().float(-100000, 100000);
 

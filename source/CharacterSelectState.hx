@@ -272,15 +272,17 @@ class CharacterSelectState extends MusicBeatState
 		tutorialThing.cameras = [camHUD];
 		add(tutorialThing);
 
-		var arrowLeft:FlxSprite = new FlxSprite(5,0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
+		var arrowLeft:FlxSprite = new FlxSprite(10,0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
 		arrowLeft.screenCenter(Y);
+		arrowLeft.antialiasing = true;
 		arrowLeft.scrollFactor.set();
 		arrowLeft.cameras = [camHUD];
 		arrows[0] = arrowLeft;
 		add(arrowLeft);
 
-		var arrowRight:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
+		var arrowRight:FlxSprite = new FlxSprite(-5,0).loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
 		arrowRight.screenCenter(Y);
+		arrowRight.antialiasing = true;
 		arrowRight.x = 1280 - arrowRight.width - 5;
 		arrowRight.scrollFactor.set();
 		arrowRight.cameras = [camHUD];
