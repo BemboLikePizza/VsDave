@@ -335,8 +335,8 @@ class FreeplayState extends MusicBeatState
 			characterSelectText.antialiasing = true;
 			characterSelectText.scrollFactor.set();
 			characterSelectText.alpha = 0;
-			characterSelectText.x -= characterSelectText.textField.textWidth - 10;
-			characterSelectText.y -= characterSelectText.textField.textHeight - 10;
+			characterSelectText.x -= characterSelectText.textField.textWidth;
+			characterSelectText.y -= characterSelectText.textField.textHeight;
 			add(characterSelectText);
 
 			FlxTween.tween(characterSelectText,{alpha: 1}, 0.5, {ease: FlxEase.expoInOut});

@@ -172,8 +172,6 @@ class CharacterSelectState extends MusicBeatState
 			bg.shader = bgShader.shader;
 		}
 		add(bg);
-		
-		
 
 		var hills:BGSprite = new BGSprite('hills', -133, 52, Paths.image('backgrounds/charSelect/hills'), null, 1, 1);
 		add(hills);
@@ -231,7 +229,7 @@ class CharacterSelectState extends MusicBeatState
 		characterText.setFormat(Paths.font("comic.ttf"), 90, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		characterText.autoSize = false;
 		characterText.fieldWidth = 1080;
-		characterText.borderSize = 7;
+		characterText.borderSize = 5;
 		characterText.screenCenter(X);
 		characterText.cameras = [camHUD];
 		characterText.antialiasing = true;
@@ -239,10 +237,10 @@ class CharacterSelectState extends MusicBeatState
 		add(characterText);
 		
 		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, LanguageManager.getTextString('character_reset'));
-		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		resetText.autoSize = false;
 		resetText.fieldWidth = FlxG.height;
-		resetText.borderSize = 5;
+		resetText.borderSize = 3;
 		resetText.cameras = [camHUD];
 		resetText.antialiasing = true;
 		add(resetText);
