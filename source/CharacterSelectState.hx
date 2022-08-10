@@ -128,6 +128,7 @@ class CharacterSelectState extends MusicBeatState
 				if (PlayState.SONG.player2 == form.name)
 				{
 					char.forms.remove(form);
+					characters.remove(char);
 				}
 			}
 		}
