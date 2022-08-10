@@ -228,7 +228,7 @@ class CharacterSelectState extends MusicBeatState
 		add(strummies);
 		generateStaticArrows(false);
 		
-		notemodtext = new FlxText((FlxG.width / 3.5) + 80, 40, 0, "1.00x       1.00x        1.00x       1.00x", 30);
+		notemodtext = new FlxText((FlxG.width / 3.5) + 80, FlxG.height, 0, "1.00x       1.00x        1.00x       1.00x", 30);
 		notemodtext.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		notemodtext.scrollFactor.set();
 		notemodtext.alpha = 0;
@@ -246,6 +246,7 @@ class CharacterSelectState extends MusicBeatState
 		characterText.screenCenter(X);
 		characterText.cameras = [camHUD];
 		characterText.antialiasing = true;
+		characterText.y = FlxG.height - 180;
 		add(characterText);
 		
 		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, LanguageManager.getTextString('character_reset'));
@@ -303,7 +304,7 @@ class CharacterSelectState extends MusicBeatState
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
-			var babyArrow:FlxSprite = new FlxSprite(0, 0);
+			var babyArrow:FlxSprite = new FlxSprite(0, FlxG.height - 40);
 
 			var noteAsset:String = 'notes/NOTE_assets';
 			switch (noteType)
