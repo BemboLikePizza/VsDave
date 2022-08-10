@@ -31,6 +31,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'dave-death';
 			case 'tristan':
 				daBf = 'tristan-death';
+			case 'bambi-new':
+				daBf = 'bambi-new';
 			case 'nofriend':
 				daBf = 'nofriend-death';
 			default:

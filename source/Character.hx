@@ -316,7 +316,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'dave-recursed':
-				frames = Paths.getSparrowAtlas('recursed/Dave_Recursed', 'shared');
+				frames = Paths.getSparrowAtlas('recursed/characters/Dave_Recursed', 'shared');
 
 				animation.addByPrefix('idle', 'idle', 24, false);
 				for (anim in ['left', 'down', 'up', 'right'])
@@ -331,7 +331,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'dave-3d-recursed':
-				frames = Paths.getSparrowAtlas('recursed/Dave_3D_Recursed', 'shared');
+				frames = Paths.getSparrowAtlas('recursed/characters/Dave_3D_Recursed', 'shared');
 
 				animation.addByPrefix('idle', 'idle', 24, false);
 				for (anim in ['left', 'down', 'up', 'right'])
@@ -721,7 +721,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'tristan-recursed':
-				frames = Paths.getSparrowAtlas('recursed/TristanRecursed', 'shared');
+				frames = Paths.getSparrowAtlas('recursed/characters/TristanRecursed', 'shared');
 
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
@@ -778,7 +778,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'tb-recursed':
-				tex = Paths.getSparrowAtlas('recursed/STOP_LOOKING_AT_THE_FILES', 'shared');
+				tex = Paths.getSparrowAtlas('recursed/characters/STOP_LOOKING_AT_THE_FILES', 'shared');
 				frames = tex;
 
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);

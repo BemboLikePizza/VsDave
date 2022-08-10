@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="gold pieces.png">
+	<!-- Created with Adobe Flash CS6 version 12.0.0.481 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="gold piece 10000" x="0" y="0" width="130" height="110"/>
+	<SubTexture name="gold piece 20000" x="133" y="0" width="28" height="96"/>
+	<SubTexture name="gold piece 30000" x="164" y="0" width="70" height="28"/>
+	<SubTexture name="gold piece 40000" x="0" y="113" width="78" height="46"/>
+</TextureAtlas>

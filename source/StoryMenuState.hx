@@ -323,11 +323,11 @@ class StoryMenuState extends MusicBeatState
 						video = new MP4Handler();
 						video.finishCallback = function()
 						{
-							LoadingState.loadAndSwitchState(new PlayState(), true);
+							LoadingState.loadAndSwitchState(new CharacterSelectState(), true);
 						}
 						video.playVideo(Paths.video('daveCutscene'));
 					default:
-						LoadingState.loadAndSwitchState(new PlayState(), true);
+						LoadingState.loadAndSwitchState(new CharacterSelectState(), true);
 					
 				}
 

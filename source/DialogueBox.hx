@@ -37,8 +37,8 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var finishThing:Void->Void;
 
-	public var noAa:Array<String> = ["dialogue/dave_scared_3d"];
-
+	public var noAa:Array<String> = ["dialogue/dave/dave_scared_3d", "dialogue/dave/dave_3d_festival"];
+	
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
 
@@ -95,7 +95,7 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
-		add(bgFade);	
+		add(bgFade);
 
 		FlxTween.tween(bgFade, {alpha: 0.7}, 4.15);
 		
@@ -315,7 +315,7 @@ class DialogueBox extends FlxSpriteGroup
 			switch (curCharacter)
 			{
 				case 'dave' | 'bambi' | 'tristan': //guys its the funny bambi character
-					portraitLeft.setPosition(300, 100);
+					portraitLeft.setPosition(350, 220);
 				case 'bf' | 'gf': //create boyfriend & genderbent boyfriend
 					portraitRight.setPosition(570, 220);
 			}

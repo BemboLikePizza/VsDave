@@ -100,12 +100,15 @@ class FreeplayState extends MusicBeatState
 	var bgShader:Shaders.GlitchEffect;
 	var awaitingExploitation:Bool;
 	public static var packTransitionDone:Bool = false;
+	var characterSelectText:FlxText;
+	var showCharText:Bool = true;
 
 	override function create()
 	{
 		#if desktop DiscordClient.changePresence("In the Freeplay Menu", null); #end
 		
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
+		showCharText = FlxG.save.data.wasInCharSelect;
 
 		if (awaitingExploitation)
 		{
@@ -323,13 +326,29 @@ class FreeplayState extends MusicBeatState
 		diffText.setFormat(Paths.font("comic.ttf"), 24, FlxColor.WHITE, LEFT);
 		diffText.antialiasing = true;
 		diffText.scrollFactor.set();
- 
+
+		if (showCharText)
+		{
+			characterSelectText = new FlxText(FlxG.width, FlxG.height, 0, "Hold CTRL to Skip Character Select", 18);
+			characterSelectText.setFormat("Comic Sans MS Bold", 18, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			characterSelectText.borderSize = 1.5;
+			characterSelectText.antialiasing = true;
+			characterSelectText.scrollFactor.set();
+			characterSelectText.alpha = 0;
+			characterSelectText.x -= characterSelectText.textField.textWidth - 10;
+			characterSelectText.y -= characterSelectText.textField.textHeight - 10;
+			add(characterSelectText);
+
+			FlxTween.tween(characterSelectText,{alpha: 1}, 0.5, {ease: FlxEase.expoInOut});
+		}
+	
 		add(diffText);
 		add(scoreText);
 
 		FlxTween.tween(scoreBG,{y: 0},0.5,{ease: FlxEase.expoInOut});
 		FlxTween.tween(scoreText,{y: -5},0.5,{ease: FlxEase.expoInOut});
 		FlxTween.tween(diffText,{y: 30},0.5,{ease: FlxEase.expoInOut});
+		
 
 		for (song in 0...grpSongs.length)
 		{
@@ -435,6 +454,7 @@ class FreeplayState extends MusicBeatState
 			scoreBG = null;
 			scoreText = null;
 			diffText = null;
+			characterSelectText = null;
 			
 			if (controls.LEFT_P && canInteract)
 			{
@@ -537,6 +557,18 @@ class FreeplayState extends MusicBeatState
 								diffText = null;
 							}});
 						}
+						if (showCharText)
+						{
+							if (characterSelectText != null)
+							{
+								FlxTween.tween(characterSelectText,{alpha: 0}, 0.5,{ease: FlxEase.expoInOut, onComplete: 
+								function(spr:FlxTween)
+								{
+									characterSelectText = null;
+								}});
+							}
+						}
+						
 	
 						InMainFreeplayState = false;
 						loadingPack = false;
@@ -571,6 +603,11 @@ class FreeplayState extends MusicBeatState
 				}
 				else
 				{
+					if (!FlxG.save.data.wasInCharSelect)
+					{
+						FlxG.save.data.wasInCharSelect = true;
+						FlxG.save.flush();
+					}
 					LoadingState.loadAndSwitchState(new CharacterSelectState());
 				}
 			}

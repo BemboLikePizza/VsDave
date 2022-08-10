@@ -78,6 +78,14 @@ import sys.io.Process;
 import lime.app.Application;
 #end
 
+import flixel.system.debug.Window;
+import lime.app.Application;
+import openfl.Lib;
+import openfl.geom.Matrix;
+import lime.ui.Window;
+import openfl.geom.Rectangle;
+import openfl.display.Sprite;
+
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -332,6 +340,11 @@ class PlayState extends MusicBeatState
 	var switchSide:Bool;
 
 	public var subtitleManager:SubtitleManager;
+	
+	//window stuff
+	var window:Window;
+	var davescroll = new Sprite();
+	var davesprite = new Sprite();
 	
 	override public function create()
 	{
@@ -935,13 +948,13 @@ class PlayState extends MusicBeatState
 				switch (boyfriend.curCharacter)
 				{
 					case 'dave':
-						preload('recursed/Dave_Recursed');
+						preload('recursed/characters/Dave_Recursed');
 					case 'tb-funny-man':
-						preload('recursed/STOP_LOOKING_AT_THE_FILES');
-					case 'tristan':
-						preload('recursed/TristanRecursed');
+						preload('recursed/characters/STOP_LOOKING_AT_THE_FILES');
+					case 'tristan' | 'tristan-golden':
+						preload('recursed/characters/TristanRecursed');
 					case 'dave-angey':
-						preload('recursed/Dave_3D_Recursed');
+						preload('recursed/characters/Dave_3D_Recursed');
 					default:
 						preload('recursed/Recursed_BF');
 				}
@@ -2974,6 +2987,29 @@ class PlayState extends MusicBeatState
 				BAMBICUTSCENEICONHURHURHUR.y += stupidy;
 			}
 		}
+
+		if (window == null)
+		{
+			return;	
+		}
+		else
+		{
+			var display = Application.current.window.display.currentMode;
+
+			@:privateAccess
+			var dadFrame = dad._frame;
+			if (dadFrame == null || dadFrame.frame == null) return; // prevent crashes (i hope)
+	  
+			var rect = new Rectangle(dadFrame.frame.x, dadFrame.frame.y, dadFrame.frame.width, dadFrame.frame.height);
+
+			window.width = Std.int(dadFrame.frame.width);
+			window.height = Std.int(dadFrame.frame.height);
+			
+
+			davescroll.scrollRect = rect;
+			davescroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * davescroll.scaleX);
+			davescroll.y = (((dadFrame.offset.y) - (dad.offset.y)) * davescroll.scaleY);
+		}
 	}
 	
 
@@ -3997,25 +4033,46 @@ class PlayState extends MusicBeatState
 		}
 		FlxG.camera.flash();
 		
-		if (boyfriend.curCharacter == 'bambi-3d')
+		switch (boyfriend.curCharacter)
 		{
-			gameOver();
+			case 'bambi-3d':
+				gameOver();
+				return;
+			case 'tristan' | 'tristan-golden':
+				for (i in 0...15)
+				{
+					var goldenPiece = new FlxSprite(boyfriend.getGraphicMidpoint().x + FlxG.random.int(-100, 100), boyfriend.getGraphicMidpoint().y);
+					goldenPiece.frames = Paths.getSparrowAtlas('recursed/gold_pieces_but_not_broken', 'shared');
+					goldenPiece.animation.addByPrefix('piece', 'gold piece ${FlxG.random.int(1, 4)}', 0, false);
+					goldenPiece.animation.play('piece');
+					add(goldenPiece);
+
+					goldenPiece.angularVelocity = -50;
+				
+					goldenPiece.acceleration.y = 600;
+					goldenPiece.velocity.y -= FlxG.random.int(300, 400);
+					goldenPiece.velocity.x -= FlxG.random.int(-20, 20);
+					goldenPiece.angularAcceleration = 200;
+
+					FlxTween.tween(goldenPiece, {alpha: 0}, 2, {onComplete: function(tween:FlxTween)
+					{
+						remove(goldenPiece);
+					}});
+				}
 		}
-		else
+
+		var boyfriendPos = boyfriend.getPosition();
+		preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
+		bfGroup.remove(boyfriend);
+		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
+		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
 		{
-			var boyfriendPos = boyfriend.getPosition();
-			preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
-			bfGroup.remove(boyfriend);
-			boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
-			if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
-			{
-				iconP1.changeIcon(boyfriend.curCharacter);
-			}
-			bfGroup.add(boyfriend);
-			addRecursedUI();
-		
-			healthBar.createFilledBar(dad.barColor, FlxColor.WHITE);
+			iconP1.changeIcon(boyfriend.curCharacter);
 		}
+		bfGroup.add(boyfriend);
+		addRecursedUI();
+
+		healthBar.createFilledBar(dad.barColor, FlxColor.WHITE);
 		
 	}
 	function addRecursedUI()
@@ -5337,6 +5394,58 @@ class PlayState extends MusicBeatState
 			});
 		}
 	}
+	function popupWindow() {
+		var display = Application.current.window.display.currentMode;
+		// PlayState.defaultCamZoom = 0.5;
+		
+		window = Application.current.createWindow({
+			 title: "Expung",
+			 width: 640,
+			 height: 480,
+			 borderless: true,
+			 alwaysOnTop: false
+			 
+		});
+		window.x = -6000;
+		window.y = 400;
+
+		window.stage.color = 0xFF010101;
+		@:privateAccess
+		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
+		@:privateAccess
+		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
+		Application.current.window.x = Std.int(FlxG.width / 2);
+		Application.current.window.y = Std.int((display.height - Application.current.window.y) / 2);
+		WindowsUtil.getWindowsTransparent();
+
+		FlxTween.tween(window, {x: FlxG.width / 2}, 1, {ease: FlxEase.cubeOut});
+		
+		/*var bg = Paths.image("holyshit").bitmap;
+		var spr = new Sprite();
+		
+		
+		spr.graphics.beginBitmapFill(bg, m);
+		spr.graphics.drawRect(0, 0, bg.width, bg.height);
+		spr.graphics.endFill();
+		window.stage.addChild(spr);*/
+
+		var m = new Matrix();
+  
+		FlxG.mouse.useSystemCursor = true;
+  
+		Application.current.window.resize(854, 480);
+
+		davesprite.graphics.beginBitmapFill(dad.pixels, m);
+		davesprite.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
+		davesprite.graphics.endFill();
+		davescroll.scrollRect = new Rectangle();
+		window.stage.addChild(davescroll);
+		davescroll.addChild(davesprite);
+		davescroll.scaleX = 0.5;
+		davescroll.scaleY = 0.5;
+
+		Application.current.window.focus();
+  }
 }
 enum ExploitationModchartType
 {

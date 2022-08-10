@@ -1,6 +1,7 @@
 export/
 .vscode/
 APIStuff.hx
+WindowsUtil.hx
 *.hxml
 BGSource/.vs
 vscode-project.hxml

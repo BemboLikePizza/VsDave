@@ -44,7 +44,7 @@ class SaveDataHandler
 		if (FlxG.save.data.selfAwareness == null)
 			FlxG.save.data.selfAwareness = false;
 		
-		if (FlxG.save.data.fpsCap == null)
-			FlxG.save.data.fpsCap = 150;
+		if (FlxG.save.data.wasInCharSelect == null)
+			FlxG.save.data.wasInCharSelect = false;
     }
 }
