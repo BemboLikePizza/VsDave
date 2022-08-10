@@ -993,7 +993,6 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'blocked')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
-			camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 		}
 		startingSong = true;
 		if (startTimer != null && !startTimer.active)
@@ -1600,7 +1599,7 @@ class PlayState extends MusicBeatState
 				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
 				'memory' | 'overdrive' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
-				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 
+				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' |
 				'shredder' | 'supernovae' | 'unfairness':
 					soundAssetsAlt = introSoundAssets.get('bambi');
 				case 'exploitation':
@@ -2512,7 +2511,7 @@ class PlayState extends MusicBeatState
 		lazychartshader.shader.uTime.value[0] += elapsed;
 		if (blockedShader != null)
 		{
-			blockedShader.update(elapsed);
+			blockedShader.shader.time.value[0] += elapsed;
 		}
 		if (shakeCam && eyesoreson)
 		{
@@ -4292,17 +4291,10 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
 					case 1200:
-						var scaler = 1 / defaultCamZoom;
-						
-						glitch = new FlxSprite(0, 200);
-						glitch.frames = Paths.getSparrowAtlas('bambi/glitchedBlocked');
-						glitch.animation.addByPrefix('idle', 'meeeee', 24, true);
-						glitch.animation.play('idle');
-						glitch.setGraphicSize(Std.int(glitch.width * 2 * scaler));
-						glitch.updateHitbox();
-						insert(members.indexOf(black), glitch);
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
 					case 1216:
+						camHUD.setFilters([]);
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						remove(black);
 						remove(glitch);
