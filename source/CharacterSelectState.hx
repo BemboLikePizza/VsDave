@@ -217,7 +217,7 @@ class CharacterSelectState extends MusicBeatState
 		add(strummies);
 		generateStaticArrows(false);
 		
-		notemodtext = new FlxText((FlxG.width / 3.5) + 80, 40, 0, "1.00x       1.00x        1.00x       1.00x", 30);
+		notemodtext = new FlxText((FlxG.width / 3.5) + 80, FlxG.height, 0, "1.00x       1.00x        1.00x       1.00x", 30);
 		notemodtext.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		notemodtext.scrollFactor.set();
 		notemodtext.alpha = 0;
@@ -235,6 +235,7 @@ class CharacterSelectState extends MusicBeatState
 		characterText.screenCenter(X);
 		characterText.cameras = [camHUD];
 		characterText.antialiasing = true;
+		characterText.y = FlxG.height - 180;
 		add(characterText);
 		
 		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, LanguageManager.getTextString('character_reset'));
@@ -259,15 +260,17 @@ class CharacterSelectState extends MusicBeatState
 		tutorialThing.cameras = [camHUD];
 		add(tutorialThing);
 
-		var arrowLeft:FlxSprite = new FlxSprite(5,0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
+		var arrowLeft:FlxSprite = new FlxSprite(10,0).loadGraphic(Paths.image("ui/ArrowLeft_Idle", "preload"));
 		arrowLeft.screenCenter(Y);
+		arrowLeft.antialiasing = true;
 		arrowLeft.scrollFactor.set();
 		arrowLeft.cameras = [camHUD];
 		arrows[0] = arrowLeft;
 		add(arrowLeft);
 
-		var arrowRight:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
+		var arrowRight:FlxSprite = new FlxSprite(-5,0).loadGraphic(Paths.image("ui/ArrowRight_Idle", "preload"));
 		arrowRight.screenCenter(Y);
+		arrowRight.antialiasing = true;
 		arrowRight.x = 1280 - arrowRight.width - 5;
 		arrowRight.scrollFactor.set();
 		arrowRight.cameras = [camHUD];
@@ -292,7 +295,7 @@ class CharacterSelectState extends MusicBeatState
 		for (i in 0...4)
 		{
 			// FlxG.log.add(i);
-			var babyArrow:FlxSprite = new FlxSprite(0, 0);
+			var babyArrow:FlxSprite = new FlxSprite(0, FlxG.height - 40);
 
 			var noteAsset:String = 'notes/NOTE_assets';
 			switch (noteType)
@@ -414,7 +417,7 @@ class CharacterSelectState extends MusicBeatState
 			selectedCharacter = true;
 			var heyAnimation:Bool = char.animation.getByName("hey") != null; 
 			char.playAnim(heyAnimation ? 'hey' : 'singUP', true);
-			FlxG.sound.music.stop();
+			FlxG.sound.music.fadeOut(1.9, 0);
 			FlxG.sound.play(Paths.sound('confirmMenu', 'preload'));
 			new FlxTimer().start(1.9, endIt);
 		}
@@ -578,6 +581,7 @@ class CharacterSelectState extends MusicBeatState
 			Sys.command('start $path');
 		}
 
+		FlxG.sound.music.stop(); //if the music doesn't fade out, it will forcibly stop playing.
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
 }

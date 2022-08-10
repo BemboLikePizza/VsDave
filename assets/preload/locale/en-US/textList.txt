@@ -123,9 +123,9 @@ blocked_sub4==Moldy I swear to god I'll block you
 blocked_sub5==FOREVER.
 blocked_sub6==I'm trying to...
 blocked_sub7==No I'm not trying help you...
-blocked_sub8==Because watch me...
+blocked_sub8==Because you go watch me...
 blocked_sub9==Because...
-blocked_sub10==watch me subscribe me
+blocked_sub10==go watch me scribe me
 blocked_sub11==Whatever.
 
 // Corn Theft Subtitles //
@@ -142,38 +142,38 @@ maze_sub1==I mean...
 maze_sub2==You can
 maze_sub3==Play me...
 maze_sub4==You don't?
-maze_sub5==Never come back again.
+maze_sub5==Never coming back again.
 maze_sub6==Fine!
-maze_sub7==Everyday you want
+maze_sub7==I do whatever you want
 maze_sub8==You play me?
 maze_sub9==Sure.
 maze_sub10==What you want to play?
-maze_sub11==You bully me?
-maze_sub12==Never come back again.
+maze_sub11==You gonna bully me?
+maze_sub12==Never coming back again.
 
 // Mealie Subtitles //
 mealie_sub1==I will block you!
 mealie_sub2==I want you else
 mealie_sub3==Ah oh I'm gonna break my
-mealie_sub4==Phone!
-mealie_sub5==Is this want you wanted?
-mealie_sub6==a phone?
+mealie_sub4==PHONE!
+mealie_sub5==Is you wanted the-
+mealie_sub6==fucking phone?
 mealie_sub7==HOLY SHIT!
 mealie_sub8==You fucking liar Moldy!
 
 // Shredder Subtitles //
 shred_sub1==Oh my god...
 shred_sub2==I fucking hate you
-shred_sub3==Fuck off, I hate you so much...
+shred_sub3==Fuck ahh, I hate you so much...
 shred_sub4==Check your closet!
 shred_sub5==Check your closet!
 shred_sub6==Or else
-shred_sub7==I will kill you and throw your
+shred_sub7==Imma kill you like rodeo
 shred_sub8==Trash.
-shred_sub9==And this
-shred_sub10==Durrrr!
+shred_sub9==Like this
+shred_sub10==Grrrrr!
 shred_sub11==Check your closet motherfuckers
-shred_sub12==Check your closet motherfuckers
+shred_sub12==Check your closet mothafuckas!
 shred_sub13==That's it!
 shred_sub14==That's it!
 
