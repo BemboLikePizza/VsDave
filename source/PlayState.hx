@@ -1,6 +1,5 @@
 package;
 
-import Shaders.BlockedGlitchEffect;
 import flixel.group.FlxGroup;
 import sys.FileSystem;
 import flixel.util.FlxArrayUtil;
@@ -26,6 +25,8 @@ import openfl.net.FileFilter;
 import openfl.filters.BitmapFilter;
 import Shaders.PulseEffect;
 import Shaders.BlockedGlitchShader;
+import Shaders.BlockedGlitchEffect;
+import Shaders.DitherEffect;
 import Section.SwagSection;
 import Song.SwagSong;
 import flixel.FlxBasic;
@@ -134,6 +135,7 @@ class PlayState extends MusicBeatState
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
+	public static var houseShader:DitherEffect = new DitherEffect();
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -1004,7 +1006,11 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'blocked')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
-			camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+		}
+		if (SONG.song.toLowerCase() == 'house')
+		{
+			camHUD.setFilters([new ShaderFilter(houseShader.shader)]);
+			camGame.setFilters([new ShaderFilter(houseShader.shader)]);
 		}
 		startingSong = true;
 		if (startTimer != null && !startTimer.active)
@@ -4348,12 +4354,12 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.3;
 					case 1200:
 						var scaler = 1 / defaultCamZoom;
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
 					case 1216:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						camHUD.setFilters([]);
 						remove(black);
-						remove(glitch);
 						defaultCamZoom -= 0.3;
 				}
 			case 'corn-theft':
