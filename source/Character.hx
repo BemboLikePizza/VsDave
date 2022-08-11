@@ -116,9 +116,9 @@ class Character extends FlxSprite
 			case 'nofriend-death':
 				frames = Paths.getSparrowAtlas('fiveNights/nofriend_Dead', 'shared');
 
-				animation.addByPrefix('firstDeath', "dead0", 24, false);
-				animation.addByPrefix('deathLoop', "dead loop", 24, true);
-				animation.addByPrefix('deathConfirm', "dead confirm", 24, false);
+				animation.addByPrefix('firstDeath', "death", 24, false);
+				animation.addByPrefix('deathLoop', "loop", 24, true);
+				animation.addByPrefix('deathConfirm', "hey", 24, false);
 
 				loadOffsetFile(curCharacter);
 
