@@ -4042,15 +4042,16 @@ class PlayState extends MusicBeatState
 				gameOver();
 				return;
 			case 'tristan' | 'tristan-golden':
+				FlxG.sound.play(Paths.sound('recursed/boom', 'shared'), 1.5, false);
 				for (i in 0...15)
 				{
-					var goldenPiece = new FlxSprite(boyfriend.getGraphicMidpoint().x + FlxG.random.int(-100, 100), boyfriend.getGraphicMidpoint().y);
+					var goldenPiece = new FlxSprite(boyfriend.getGraphicMidpoint().x + FlxG.random.int(-200, 100), boyfriend.getGraphicMidpoint().y);
 					goldenPiece.frames = Paths.getSparrowAtlas('recursed/gold_pieces_but_not_broken', 'shared');
 					goldenPiece.animation.addByPrefix('piece', 'gold piece ${FlxG.random.int(1, 4)}', 0, false);
 					goldenPiece.animation.play('piece');
 					add(goldenPiece);
 
-					goldenPiece.angularVelocity = -50;
+					goldenPiece.angularVelocity = 50;
 				
 					goldenPiece.acceleration.y = 600;
 					goldenPiece.velocity.y -= FlxG.random.int(300, 400);

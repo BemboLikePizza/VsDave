@@ -392,6 +392,8 @@ class PulseShader extends FlxShader
 
 class BlockedGlitchShader extends FlxShader
 {
+    // https://www.shadertoy.com/view/MlVSD3
+
     @:glFragmentSource('
     #pragma header
 
@@ -430,6 +432,7 @@ class BlockedGlitchShader extends FlxShader
 
 class DitherShader extends FlxShader
 {
+    // couldn't find a shadertoy link srry http://devlog-martinsh.blogspot.com/2011/03/glsl-8x8-bayer-matrix-dithering.html
     @:glFragmentSource('
         #pragma header
         // Ordered dithering aka Bayer matrix dithering
