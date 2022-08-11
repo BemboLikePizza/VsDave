@@ -135,7 +135,7 @@ class PlayState extends MusicBeatState
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
-	public static var houseShader:DitherEffect = new DitherEffect();
+	public static var ditherShader:DitherEffect = new DitherEffect();
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -479,7 +479,7 @@ class PlayState extends MusicBeatState
 			case 2:
 				trace("Hi, song genie here. You're playing " + SONG.song + ", right?");
 			case 3:
-				eatShit("this song doesnt have dialogue idiot. if you want this retarded trace function to call itself then why dont you play a song with ACTUAL dialogue? jesus fuck");
+				eatShit("this song doesnt have dialogue idiot. if you want this trace function to call itself then why dont you play a song with ACTUAL dialogue?");
 			case 4:
 				trace("suck my balls");
 			case 5:
@@ -1007,10 +1007,9 @@ class PlayState extends MusicBeatState
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
 		}
-		if (SONG.song.toLowerCase() == 'house')
+		if (SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'cheating' || SONG.song.toLowerCase() == 'unfairness' || SONG.song.toLowerCase() == 'exploitation' || SONG.song.toLowerCase() == 'interdimensional' || SONG.song.toLowerCase() == 'furiosity' )
 		{
-			camHUD.setFilters([new ShaderFilter(houseShader.shader)]);
-			camGame.setFilters([new ShaderFilter(houseShader.shader)]);
+			camHUD.setFilters([new ShaderFilter(ditherShader.shader)]);
 		}
 		startingSong = true;
 		if (startTimer != null && !startTimer.active)
@@ -1614,7 +1613,7 @@ class PlayState extends MusicBeatState
 
 			switch (SONG.song.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
+				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' |
 				'memory' | 'overdrive' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
 				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 

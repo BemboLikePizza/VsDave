@@ -465,8 +465,8 @@ class DitherShader extends FlxShader
         void main(void)
         {
             vec4 lum = vec4(0.299, 0.587, 0.114, 0);
-            float grayscale = dot(texture2D(bitmap, gl_TexCoord[0].xy), lum);
-            vec3 rgb = texture2D(bitmap, gl_TexCoord[0].xy).rgb;
+            float grayscale = dot(texture2D(bitmap, openfl_TextureCoordv), lum);
+            vec3 rgb = texture2D(bitmap, openfl_TextureCoordv).rgb;
 
             vec2 xy = gl_FragCoord.xy * Scale;
             int x = int(mod(xy.x, 8));
