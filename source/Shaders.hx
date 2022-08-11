@@ -434,7 +434,6 @@ class DitherShader extends FlxShader
         #pragma header
         // Ordered dithering aka Bayer matrix dithering
 
-        uniform sampler2D bgl_RenderedTexture;
         float Scale = 1.0;
 
         float find_closest(int x, int y, float c0)
@@ -466,19 +465,20 @@ class DitherShader extends FlxShader
         {
             vec4 lum = vec4(0.299, 0.587, 0.114, 0);
             float grayscale = dot(texture2D(bitmap, openfl_TextureCoordv), lum);
-            vec3 rgb = texture2D(bitmap, openfl_TextureCoordv).rgb;
+            vec4 rgba = texture2D(bitmap, openfl_TextureCoordv).rgba;
 
             vec2 xy = gl_FragCoord.xy * Scale;
             int x = int(mod(xy.x, 8));
             int y = int(mod(xy.y, 8));
 
-            vec3 finalRGB;
-            finalRGB.r = find_closest(x, y, rgb.r);
-            finalRGB.g = find_closest(x, y, rgb.g);
-            finalRGB.b = find_closest(x, y, rgb.b);
+            vec4 finalRGB;
+            finalRGB.r = find_closest(x, y, rgba.r);
+            finalRGB.g = find_closest(x, y, rgba.g);
+            finalRGB.b = find_closest(x, y, rgba.b);
+            finalRGB.a = find_closest(x, y, rgba.a);
 
             float final = find_closest(x, y, grayscale);
-            gl_FragColor = vec4(finalRGB, 1.0);
+            gl_FragColor = finalRGB;
         }
     ')
 
