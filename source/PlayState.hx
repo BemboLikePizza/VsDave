@@ -4348,17 +4348,10 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.3;
 					case 1200:
 						var scaler = 1 / defaultCamZoom;
-						
-						glitch = new FlxSprite(0, 200);
-						glitch.frames = Paths.getSparrowAtlas('bambi/glitchedBlocked');
-						glitch.animation.addByPrefix('idle', 'meeeee', 24, true);
-						glitch.animation.play('idle');
-						glitch.setGraphicSize(Std.int(glitch.width * 2 * scaler));
-						glitch.updateHitbox();
-						insert(members.indexOf(black), glitch);
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
 					case 1216:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						camHUD.setFilters([]);
 						remove(black);
 						remove(glitch);
 						defaultCamZoom -= 0.3;
