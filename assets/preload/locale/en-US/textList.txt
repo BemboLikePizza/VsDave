@@ -142,14 +142,14 @@ maze_sub1==I mean...
 maze_sub2==You can
 maze_sub3==Play me...
 maze_sub4==You don't?
-maze_sub5==Never coming back again.
+maze_sub5==Never come back again.
 maze_sub6==Fine!
-maze_sub7==I do whatever you want
+maze_sub7==Anything you want
 maze_sub8==You play me?
 maze_sub9==Sure.
 maze_sub10==What you want to play?
-maze_sub11==You gonna bully me?
-maze_sub12==Never coming back again.
+maze_sub11==You are bully me?
+maze_sub12==Never come back again.
 
 // Mealie Subtitles //
 mealie_sub1==I will block you!
