@@ -197,6 +197,16 @@ class BlockedGlitchEffect
     }
 }
 
+class DitherEffect
+{
+    public var shader(default,null):DitherShader = new DitherShader();
+
+    public function new():Void
+    {
+
+    }
+}
+
 class GlitchShader extends FlxShader
 {
     @:glFragmentSource('
@@ -382,6 +392,8 @@ class PulseShader extends FlxShader
 
 class BlockedGlitchShader extends FlxShader
 {
+    // https://www.shadertoy.com/view/MlVSD3
+
     @:glFragmentSource('
     #pragma header
 
@@ -404,12 +416,73 @@ class BlockedGlitchShader extends FlxShader
     }
     
     void main(void) {
-      vec2 uv = vec2(1,-1)*gl_FragCoord.xy / screenSize;
+      vec2 uv = openfl_TextureCoordv;
       gl_FragColor = texture(bitmap, uv);
       gl_FragColor.r = texture(bitmap, uv + vec2(offset(64.0, uv) * 0.03, 0.0)).r;
       gl_FragColor.g = texture(bitmap, uv + vec2(offset(64.0, uv) * 0.03 * 0.16666666, 0.0)).g;
       gl_FragColor.b = texture(bitmap, uv + vec2(offset(64.0, uv) * 0.03, 0.0)).b;
     }
+    ')
+
+    public function new()
+    {
+        super();
+    }
+}
+
+class DitherShader extends FlxShader
+{
+    // couldn't find a shadertoy link srry http://devlog-martinsh.blogspot.com/2011/03/glsl-8x8-bayer-matrix-dithering.html
+    @:glFragmentSource('
+        #pragma header
+        // Ordered dithering aka Bayer matrix dithering
+
+        float Scale = 1.0;
+
+        float find_closest(int x, int y, float c0)
+        {
+
+        int dither[8][8] = {
+        { 0, 32, 8, 40, 2, 34, 10, 42}, /* 8x8 Bayer ordered dithering */
+        {48, 16, 56, 24, 50, 18, 58, 26}, /* pattern. Each input pixel */
+        {12, 44, 4, 36, 14, 46, 6, 38}, /* is scaled to the 0..63 range */
+        {60, 28, 52, 20, 62, 30, 54, 22}, /* before looking in this table */
+        { 3, 35, 11, 43, 1, 33, 9, 41}, /* to determine the action. */
+        {51, 19, 59, 27, 49, 17, 57, 25},
+        {15, 47, 7, 39, 13, 45, 5, 37},
+        {63, 31, 55, 23, 61, 29, 53, 21} };
+
+        float limit = 0.0;
+        if(x < 8)
+        {
+            limit = (dither[x][y]+1)/64.0;
+        }
+
+
+        if(c0 < limit)
+            return 0.0;
+            return 1.0;
+        }
+
+        void main(void)
+        {
+            vec4 lum = vec4(0.299, 0.587, 0.114, 0);
+            float grayscale = dot(texture2D(bitmap, openfl_TextureCoordv), lum);
+            vec4 rgba = texture2D(bitmap, openfl_TextureCoordv).rgba;
+
+            vec2 xy = gl_FragCoord.xy * Scale;
+            int x = int(mod(xy.x, 8));
+            int y = int(mod(xy.y, 8));
+
+            vec4 finalRGB;
+            finalRGB.r = find_closest(x, y, rgba.r);
+            finalRGB.g = find_closest(x, y, rgba.g);
+            finalRGB.b = find_closest(x, y, rgba.b);
+            finalRGB.a = find_closest(x, y, rgba.a);
+
+            float final = find_closest(x, y, grayscale);
+            gl_FragColor = finalRGB;
+        }
     ')
 
     public function new()

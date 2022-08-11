@@ -1,6 +1,5 @@
 package;
 
-import Shaders.BlockedGlitchEffect;
 import flixel.group.FlxGroup;
 import sys.FileSystem;
 import flixel.util.FlxArrayUtil;
@@ -26,6 +25,8 @@ import openfl.net.FileFilter;
 import openfl.filters.BitmapFilter;
 import Shaders.PulseEffect;
 import Shaders.BlockedGlitchShader;
+import Shaders.BlockedGlitchEffect;
+import Shaders.DitherEffect;
 import Section.SwagSection;
 import Song.SwagSong;
 import flixel.FlxBasic;
@@ -134,6 +135,7 @@ class PlayState extends MusicBeatState
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
+	public static var ditherShader:DitherEffect = new DitherEffect();
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -482,7 +484,7 @@ class PlayState extends MusicBeatState
 			case 2:
 				trace("Hi, song genie here. You're playing " + SONG.song + ", right?");
 			case 3:
-				eatShit("this song doesnt have dialogue idiot. if you want this retarded trace function to call itself then why dont you play a song with ACTUAL dialogue? jesus fuck");
+				eatShit("this song doesnt have dialogue idiot. if you want this trace function to call itself then why dont you play a song with ACTUAL dialogue?");
 			case 4:
 				trace("suck my balls");
 			case 5:
@@ -1010,7 +1012,10 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'blocked')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
-			camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+		}
+		if (SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'cheating' || SONG.song.toLowerCase() == 'unfairness' || SONG.song.toLowerCase() == 'exploitation' || SONG.song.toLowerCase() == 'interdimensional' || SONG.song.toLowerCase() == 'furiosity' )
+		{
+			camHUD.setFilters([new ShaderFilter(ditherShader.shader)]);
 		}
 		startingSong = true;
 		if (startTimer != null && !startTimer.active)
@@ -1614,7 +1619,7 @@ class PlayState extends MusicBeatState
 
 			switch (SONG.song.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' | 
+				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' |
 				'memory' | 'overdrive' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
 				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 
@@ -4042,15 +4047,16 @@ class PlayState extends MusicBeatState
 				gameOver();
 				return;
 			case 'tristan' | 'tristan-golden':
+				FlxG.sound.play(Paths.sound('recursed/boom', 'shared'), 1.5, false);
 				for (i in 0...15)
 				{
-					var goldenPiece = new FlxSprite(boyfriend.getGraphicMidpoint().x + FlxG.random.int(-100, 100), boyfriend.getGraphicMidpoint().y);
+					var goldenPiece = new FlxSprite(boyfriend.getGraphicMidpoint().x + FlxG.random.int(-200, 100), boyfriend.getGraphicMidpoint().y);
 					goldenPiece.frames = Paths.getSparrowAtlas('recursed/gold_pieces_but_not_broken', 'shared');
 					goldenPiece.animation.addByPrefix('piece', 'gold piece ${FlxG.random.int(1, 4)}', 0, false);
 					goldenPiece.animation.play('piece');
 					add(goldenPiece);
 
-					goldenPiece.angularVelocity = -50;
+					goldenPiece.angularVelocity = 50;
 				
 					goldenPiece.acceleration.y = 600;
 					goldenPiece.velocity.y -= FlxG.random.int(300, 400);
@@ -4354,19 +4360,12 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.3;
 					case 1200:
 						var scaler = 1 / defaultCamZoom;
-						
-						glitch = new FlxSprite(0, 200);
-						glitch.frames = Paths.getSparrowAtlas('bambi/glitchedBlocked');
-						glitch.animation.addByPrefix('idle', 'meeeee', 24, true);
-						glitch.animation.play('idle');
-						glitch.setGraphicSize(Std.int(glitch.width * 2 * scaler));
-						glitch.updateHitbox();
-						insert(members.indexOf(black), glitch);
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
 					case 1216:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						camHUD.setFilters([]);
 						remove(black);
-						remove(glitch);
 						defaultCamZoom -= 0.3;
 				}
 			case 'corn-theft':

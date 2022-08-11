@@ -431,7 +431,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'bambi-death':
-				frames = Paths.getSparrowAtlas('bambi/bambiRemake', 'shared');
+				frames = Paths.getSparrowAtlas('bambi/Bambi_Death', 'shared');
 
 				animation.addByPrefix('firstDeath', 'bambi die', 24, false);
 				animation.addByPrefix('deathLoop', 'die loop', 24, true);
@@ -608,6 +608,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
+				flipX = true;
 
 			case 'tristan-golden':
 			   var tex = Paths.getSparrowAtlas('dave/tristan_golden', 'shared');
