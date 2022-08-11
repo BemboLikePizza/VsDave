@@ -3447,7 +3447,7 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'shit';
 			totalNotesHit -= 2;
-			score = -3000;
+			score = 50;
 			ss = false;
 			shits++;
 		}
@@ -3455,14 +3455,14 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'shit';
 			totalNotesHit -= 2;
-			score = -3000;
+			score = 50;
 			ss = false;
 			shits++;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.45)
 		{
 			daRating = 'bad';
-			score = -1000;
+			score = 100;
 			totalNotesHit += 0.2;
 			ss = false;
 			bads++;
