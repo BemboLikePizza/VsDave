@@ -31,7 +31,7 @@ class Character extends FlxSprite
 	
 	public var canSing:Bool = true;
 	public var recursedSkin:String = 'bf-recursed';
-	public var positionOffset:FlxPoint;
+	public var positionOffset:FlxPoint = new FlxPoint(0, 0);
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -77,6 +77,22 @@ class Character extends FlxSprite
 
 				nativelyPlayable = true;
 
+				flipX = true;
+			case 'bf-3d':
+				frames = Paths.getSparrowAtlas('characters/3d_bf', 'shared');
+
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);	
+				}
+				loadOffsetFile(curCharacter);
+
+				barColor = FlxColor.fromRGB(49, 176, 209);
+
+				playAnim('idle');
+
+				nativelyPlayable = true;
 				flipX = true;
 			case 'nofriend':
 				frames = Paths.getSparrowAtlas('fiveNights/nofriend', 'shared');
@@ -125,8 +141,7 @@ class Character extends FlxSprite
 				globaloffset[1] = -175;
 
 				barColor = FlxColor.fromRGB(49, 176, 209);
-				
-				
+
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
 				
@@ -138,9 +153,7 @@ class Character extends FlxSprite
 				antialiasing = false;
 
 				nativelyPlayable = true;
-
 				flipX = true;
-				
 			case 'bf-pixel-dead':
 				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD', 'shared');
 				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
@@ -173,6 +186,18 @@ class Character extends FlxSprite
 				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
 				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
 				animation.addByPrefix('scared', 'GF FEAR', 24);
+
+				loadOffsetFile(curCharacter);
+
+				barColor = FlxColor.fromString('#33de39');
+
+				playAnim('danceRight');
+			case 'gf-3d':
+				frames = Paths.getSparrowAtlas('characters/3d_gf', 'shared');
+				animation.addByIndices('danceLeft', 'idle gf', CoolUtil.numberArray(6, 0), '', 24, false);
+				animation.addByIndices('danceRight', 'idle gf', CoolUtil.numberArray(13, 7), '', 24, false);
+
+				animation.addByPrefix('sad', 'gf sad', 24, false);
 
 				loadOffsetFile(curCharacter);
 
@@ -910,7 +935,7 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-pixel':
+				case 'gf' | 'gf-pixel' | 'gf-3d':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;

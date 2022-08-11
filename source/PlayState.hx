@@ -223,6 +223,8 @@ class PlayState extends MusicBeatState
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
+	var kadeEngineWatermark:FlxText;
+	var creditsWatermark:FlxText;
 
 	var GFScared:Bool = false;
 
@@ -361,7 +363,10 @@ class PlayState extends MusicBeatState
 					FileSystem.deleteFile(textPath);
 				}
 				var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
-				FileSystem.deleteFile(path);
+				if (FileSystem.exists(path))
+				{
+					FileSystem.deleteFile(path);
+				}
 				Main.toggleFuckedFPS(true);
 
 				FlxG.save.data.exploitationState = null;
@@ -906,7 +911,7 @@ class PlayState extends MusicBeatState
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? '' : "- Finale");
 		}
 
-		var kadeEngineWatermark = new FlxText(4, textYPos, 0, funkyText, 16);
+		kadeEngineWatermark = new FlxText(4, textYPos, 0, funkyText, 16);
 
 		kadeEngineWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
@@ -915,7 +920,7 @@ class PlayState extends MusicBeatState
 		add(kadeEngineWatermark);
 		if (creditsText)
 		{
-			var creditsWatermark = new FlxText(4, healthBarBG.y + 50, 0, credits, 16);
+			creditsWatermark = new FlxText(4, healthBarBG.y + 50, 0, credits, 16);
 			creditsWatermark.setFormat(Paths.font("comic.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			creditsWatermark.scrollFactor.set();
 			creditsWatermark.borderSize = 1.25;
@@ -928,8 +933,9 @@ class PlayState extends MusicBeatState
 			case 'insanity':
 				preload('backgrounds/void/redsky');
 				preload('backgrounds/void/redsky_insanity');
-			case 'blocked':
-				preload('bambi/glitchedBlocked');
+			case 'polygonized':
+				preload('characters/3d_bf');
+				preload('characters/3d_gf');
 			case 'maze':
 				preload('spotLight');
 			case 'shredder':
@@ -2565,7 +2571,6 @@ class PlayState extends MusicBeatState
 				LanguageManager.getTextString('play_miss') + misses +  " | " + 
 				LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
 		}
-
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
@@ -4049,7 +4054,7 @@ class PlayState extends MusicBeatState
 				
 					goldenPiece.acceleration.y = 600;
 					goldenPiece.velocity.y -= FlxG.random.int(300, 400);
-					goldenPiece.velocity.x -= FlxG.random.int(-20, 20);
+					goldenPiece.velocity.x -= FlxG.random.int(-100, 100);
 					goldenPiece.angularAcceleration = 200;
 
 					FlxTween.tween(goldenPiece, {alpha: 0}, 2, {onComplete: function(tween:FlxTween)
@@ -4283,6 +4288,7 @@ class PlayState extends MusicBeatState
 		});
 	}
 	var black:FlxSprite;
+
 	override function stepHit()
 	{
 		super.stepHit();
@@ -4710,9 +4716,17 @@ class PlayState extends MusicBeatState
 					case 1024 | 1312:
 						shakeCam = true;
 						camZooming = true;
+
+						switchBF('bf-3d', boyfriend.getPosition());
+						switchGF('gf-3d', gf.getPosition());
 					case 1152 | 1408:
 						shakeCam = false;
 						camZooming = false;
+
+						var bfSkin = formoverride == "none" || formoverride == "bf" ? SONG.player1 : formoverride;
+						var gfSkin = formoverride == 'none' || formoverride == 'bf' ? 'gf' : 'gf-none';
+						switchBF(bfSkin, boyfriend.getPosition());
+						switchGF(gfSkin, gf.getPosition());
 				}
 			case 'glitch':
 				switch (curStep)
@@ -4865,10 +4879,10 @@ class PlayState extends MusicBeatState
 			case 'rano':
 				switch (curStep)
 				{
-				case 511:
-				defaultCamZoom = 0.9;
-				case 640:
-				defaultCamZoom = 0.7;
+					case 511:
+						defaultCamZoom = 0.9;
+					case 640:
+						defaultCamZoom = 0.7;
 					case 1792:
 						dad.canDance = false;
 						dad.canSing = false;
@@ -4879,6 +4893,14 @@ class PlayState extends MusicBeatState
 						}
 				}
 		}
+		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)
+        {
+            var fonts = ['arial', 'chalktastic', 'openSans', 'pkmndp', 'webdings', 'comic'];
+            var chosenFont = fonts[FlxG.random.int(0, fonts.length)];
+            kadeEngineWatermark.font = Paths.font('exploit/${chosenFont}.ttf');
+            creditsWatermark.font= Paths.font('exploit/${chosenFont}.ttf');
+            scoreTxt.font = Paths.font('exploit/${chosenFont}.ttf');
+        }
 		#if desktop
 		DiscordClient.changePresence(detailsText
 			+ " "
@@ -5333,7 +5355,7 @@ class PlayState extends MusicBeatState
 		var i = 0;
 		for (strumNote in strumLineNotes)
 		{
-			FlxTween.tween(strumNote, {angle: strumNote.angle + 360}, 0.4, {ease: FlxEase.expoOut});
+			FlxTween.tween(strumNote, {angle: 360}, 0.4, {ease: FlxEase.expoOut});
 			FlxTween.tween(strumNote, {y: strumLine.y}, 0.6, {ease: FlxEase.backOut});
 			i++;
 		}
@@ -5355,10 +5377,33 @@ class PlayState extends MusicBeatState
 		dadGroup.remove(dad);
 		dad = new Character(position.x, position.y, newChar, false);
 		dadGroup.add(dad);
-		iconP2.changeIcon(dad.curCharacter);
+		if (FileSystem.exists(Paths.image('ui/iconGrid/${dad.curCharacter}', 'preload')))
+		{
+			iconP2.changeIcon(dad.curCharacter);
+		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
 	}
+	function switchBF(newChar:String, position:FlxPoint)
+	{
+		bfGroup.remove(boyfriend);
+		boyfriend = new Boyfriend(position.x, position.y, newChar);
+		bfGroup.add(boyfriend);
+		if (FileSystem.exists(Paths.image('ui/iconGrid/${boyfriend.curCharacter}', 'preload')))
+		{
+			iconP2.changeIcon(boyfriend.curCharacter);
+		}
+		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
+		boyfriend.color = getBackgroundColor(curStage);
+	}
+	function switchGF(newChar:String, position:FlxPoint)
+	{
+		gfGroup.remove(gf);
+		gf = new Character(position.x, position.y, newChar);
+		gfGroup.add(gf);
+		gf.color = getBackgroundColor(curStage);
+	}
+
 	function makeInvisibleNotes(invisible:Bool)
 	{
 		if (invisible == true)
@@ -5392,6 +5437,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 	}
+
 	function popupWindow() {
 		var display = Application.current.window.display.currentMode;
 		// PlayState.defaultCamZoom = 0.5;

@@ -166,6 +166,7 @@ class PauseSubState extends MusicBeatSubstate
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
 			case "Exit to menu":
+				funnyTexts.clear();
 				PlayState.screenshader.shader.uampmul.value[0] = 0;
 				PlayState.screenshader.Enabled = false;
 				PlayState.characteroverride = 'none';
@@ -206,7 +207,10 @@ class PauseSubState extends MusicBeatSubstate
 			difficulty.scrollFactor.set();
 			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
 			difficulty.updateHitbox();
-			funnyTexts.add(difficulty);
+			if (funnyTexts != null)
+			{
+				funnyTexts.add(difficulty);
+			}
 
 			difficulty.alpha = 0;
 

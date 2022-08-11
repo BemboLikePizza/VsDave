@@ -150,7 +150,7 @@ class FreeplayState extends MusicBeatState
 
 			var CurrentSongIcon:FlxSprite = new FlxSprite(0,0).loadGraphic(Paths.image('packs/' + (Catagories[i].toLowerCase()), "preload"));
 			CurrentSongIcon.centerOffsets(false);
-			CurrentSongIcon.x = (1000 * i + 1);
+			CurrentSongIcon.x = (1000 * i + 1) + (512 - CurrentSongIcon.width);
 			CurrentSongIcon.y = (FlxG.height / 2) - 256;
 			CurrentSongIcon.antialiasing = true;
 
@@ -162,6 +162,7 @@ class FreeplayState extends MusicBeatState
 			add(NameAlpha);
 			titles.push(NameAlpha);
 		}
+
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollow.setPosition(icons[CurrentPack].x + 256, icons[CurrentPack].y + 256);

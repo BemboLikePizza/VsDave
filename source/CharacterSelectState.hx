@@ -236,10 +236,12 @@ class CharacterSelectState extends MusicBeatState
 		characterText.y = FlxG.height - 180;
 		add(characterText);
 		
-		var resetText = new FlxText((FlxG.width / 2) + 350, (FlxG.height / 8) - 200, LanguageManager.getTextString('character_reset'));
+		var resetText = new FlxText(FlxG.width, FlxG.height, LanguageManager.getTextString('character_reset'));
 		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		resetText.autoSize = false;
 		resetText.fieldWidth = FlxG.height;
+		resetText.x -= resetText.textField.textWidth;
+		resetText.y -= resetText.textField.textHeight;
 		resetText.borderSize = 3;
 		resetText.cameras = [camHUD];
 		resetText.antialiasing = true;

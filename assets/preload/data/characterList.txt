@@ -1,6 +1,8 @@
 bf
 bf-pixel
+bf-3d
 gf
+gf-3d
 dave
 dave-angey
 dave-annoyed
