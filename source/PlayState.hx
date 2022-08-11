@@ -227,6 +227,7 @@ class PlayState extends MusicBeatState
 	var scoreTxt:FlxText;
 	var kadeEngineWatermark:FlxText;
 	var creditsWatermark:FlxText;
+	var songName:FlxText;
 
 	var GFScared:Bool = false;
 
@@ -837,7 +838,7 @@ class PlayState extends MusicBeatState
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.fromRGB(57, 255, 20));
 			insert(members.indexOf(songPosBG), songPosBar);
 			
-			var songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
+			songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
 			songName.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5;
@@ -998,6 +999,7 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+		songName.cameras = [camHUD];
 		kadeEngineWatermark.cameras = [camHUD];
 		doof.cameras = [camDialogue];
 		
@@ -4265,6 +4267,7 @@ class PlayState extends MusicBeatState
 	}
 	function swapGlitch(glitchTime:Float, toBackground:String)
 	{
+		//hey t5 if you make the static fade in and out, can you use the sounds i made? they are in preload
 		var glitch = new BGSprite('glitch', 0, 0, 'ui/glitch/glitchSwitch', 
 		[
 			new Animation('glitch', 'glitchScreen', 24, true, [false, false])
@@ -4787,21 +4790,12 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(gf, {alpha: 0}, 3);
 						defaultCamZoom = FlxG.camera.zoom + 0.3;
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 4);
-
-						for (spr in backgroundSprites)
-						{
-							FlxTween.tween(spr, {alpha: 0}, 3);
-						}
 					case 128 | 576:
 						FlxTween.tween(camHUD, {alpha: 1}, 0.2);
 						defaultCamZoom = FlxG.camera.zoom - 0.3;
 						FlxTween.tween(boyfriend, {alpha: 1}, 0.2);
 						FlxTween.tween(gf, {alpha: 1}, 0.2);
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom - 0.3}, 0.05);
-						for (spr in backgroundSprites)
-						{
-							FlxTween.tween(spr, {alpha: 1}, 0.2);
-						}
 						mcStarted = true;
 
 					case 184 | 824:
@@ -4894,11 +4888,12 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)
         {
-            var fonts = ['arial', 'chalktastic', 'openSans', 'pkmndp', 'webdings', 'comic'];
+            var fonts = ['arial', 'chalktastic', 'openSans', 'pkmndp', 'barcode', 'vcr'];
             var chosenFont = fonts[FlxG.random.int(0, fonts.length)];
             kadeEngineWatermark.font = Paths.font('exploit/${chosenFont}.ttf');
             creditsWatermark.font= Paths.font('exploit/${chosenFont}.ttf');
             scoreTxt.font = Paths.font('exploit/${chosenFont}.ttf');
+			songName.font = Paths.font('exploit/${chosenFont}.ttf');
         }
 		#if desktop
 		DiscordClient.changePresence(detailsText
