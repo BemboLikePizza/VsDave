@@ -279,6 +279,10 @@ class PlayState extends MusicBeatState
 	public var blackScreen:FlxSprite;
 
 	var spotLight:FlxSprite;
+	var spotLightPart:Bool;
+	var spotLightScaler:Float = 1.3;
+	var lastSinger:Character;
+
 	var crowd:BGSprite;
 	var interdimensionBG:BGSprite;
 	var currentInterdimensionBG:String;
@@ -3086,8 +3090,7 @@ class PlayState extends MusicBeatState
 			camFollow.x += dadNoteCamOffset[0];
 			camFollow.y += dadNoteCamOffset[1];
 		}
-
-		if (!focusondad)
+		else
 		{
 			camFollow.setPosition(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
 
@@ -4358,7 +4361,7 @@ class PlayState extends MusicBeatState
 					case 1152:
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
-					case 1200:
+					case 1178:
 						var scaler = 1 / defaultCamZoom;
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
@@ -4457,20 +4460,30 @@ class PlayState extends MusicBeatState
 					case 908:
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
 					case 912:
-						defaultCamZoom -= 0.2;
+						spotLightPart = true;
+						defaultCamZoom -= 0.1;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 
 						spotLight = new FlxSprite().loadGraphic(Paths.image('spotLight'));
 						spotLight.blend = BlendMode.ADD;
-						spotLight.setGraphicSize(Std.int(spotLight.width * (spotLight.width / dad.width)));
+						spotLight.setGraphicSize(Std.int(spotLight.width * (dad.frameWidth / spotLight.width) * spotLightScaler));
 						spotLight.updateHitbox();
 						spotLight.alpha = 0;
 						add(spotLight);
 
-						spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y - dad.height + spotLight.height / 2);
-						trace(spotLight.getPosition());
+						spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y + dad.frameHeight / 2 - (spotLight.height));
+
+						updateSpotlight(false);
+						
 						FlxTween.tween(black, {alpha: 0.6}, 1);
 						FlxTween.tween(spotLight, {alpha: 1}, 1);
+					case 1168:
+						spotLightPart = false;
+						FlxTween.tween(spotLight, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
+						{
+							remove(spotLight);
+						}});
+						FlxTween.tween(black, {alpha: 0}, 1);
 					case 1232:
 						FlxG.camera.flash();
 				}
@@ -4998,6 +5011,10 @@ class PlayState extends MusicBeatState
 		{
 			crowd.animation.play('idle', true);
 		}
+		if (curBeat % 4 == 0 && spotLightPart && spotLight != null)
+		{
+			updateSpotlight(currentSection.mustHitSection);
+		}
 		switch (curSong.toLowerCase())
 		{
 			//exploitation stuff
@@ -5022,6 +5039,12 @@ class PlayState extends MusicBeatState
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 487:
 						modchart = ExploitationModchartType.ScrambledNotes;
+					case 1264:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub5'), 0.03, 1, {subtitleSize: 50});
+					case 1270:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub6'), 0.03, 1, {subtitleSize: 60});
+					case 1276:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub7'), 0.03, 1, {subtitleSize: 60});
 				}
 			case 'furiosity':
 				if ((curBeat >= 128 && curBeat < 160) || (curBeat >= 192 && curBeat < 224))
@@ -5323,6 +5346,28 @@ class PlayState extends MusicBeatState
 			case 'moldy':
 				char.x -= 30;
 				char.y -= 125;
+		}
+	}
+	function updateSpotlight(bfSinging:Bool)
+	{
+		var curSinger = bfSinging ? boyfriend : dad;
+
+		if (lastSinger != curSinger)
+		{
+			var positionOffset:FlxPoint = new FlxPoint();
+
+			switch (curSinger.curCharacter)
+			{
+				case 'bambi-new':
+					positionOffset.x = -25;
+					positionOffset.y = -50;
+				case 'bf-pixel':
+					positionOffset.y = -225;
+			}
+			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x - curSinger.globaloffset[0], curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y - curSinger.globaloffset[1]);
+			
+			FlxTween.tween(spotLight, {x: targetPosition.x, y: targetPosition.y}, 0.66, {ease: FlxEase.expoOut});
+			lastSinger = curSinger;
 		}
 	}
 	public function getCamZoom():Float
