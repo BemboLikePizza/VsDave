@@ -135,7 +135,6 @@ class PlayState extends MusicBeatState
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
-	public static var ditherShader:DitherEffect = new DitherEffect();
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -1027,10 +1026,6 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'blocked')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
-		}
-		if (SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'cheating' || SONG.song.toLowerCase() == 'unfairness' || SONG.song.toLowerCase() == 'exploitation' || SONG.song.toLowerCase() == 'interdimensional' || SONG.song.toLowerCase() == 'furiosity' )
-		{
-			camHUD.setFilters([new ShaderFilter(ditherShader.shader)]);
 		}
 		startingSong = true;
 		if (startTimer != null && !startTimer.active)
@@ -5457,7 +5452,7 @@ class PlayState extends MusicBeatState
 		bfGroup.add(boyfriend);
 		if (FileSystem.exists(Paths.image('ui/iconGrid/${boyfriend.curCharacter}', 'preload')))
 		{
-			iconP2.changeIcon(boyfriend.curCharacter);
+			iconP1.changeIcon(boyfriend.curCharacter);
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		boyfriend.color = getBackgroundColor(curStage);

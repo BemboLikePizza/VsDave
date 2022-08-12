@@ -1010,7 +1010,15 @@ class Character extends FlxSprite
 				{
 					offset.set(daOffset[0], daOffset[1]);
 				}
+			}/*
+			if (isPlayer)
+			{
+				offset.set((daOffset[0] + globaloffset[0]), (daOffset[1] + globaloffset[1]));
 			}
+			else
+			{
+				offset.set(daOffset[0], daOffset[1]);
+			}*/
 		}
 		
 		else
