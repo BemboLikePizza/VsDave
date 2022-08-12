@@ -41,7 +41,7 @@ class StoryMenuState extends MusicBeatState
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
-		['empty', 'bf', 'gf'],
+		['empty', 'empty', 'empty'],
 		['empty', 'empty', 'empty'],
 		['empty', 'empty', 'empty'],
 		['empty', 'empty', 'empty'],
@@ -133,7 +133,7 @@ class StoryMenuState extends MusicBeatState
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
 
-		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, FlxColor.BLACK);
+		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 55, FlxColor.BLACK);
 		add(blackBarThingie);
 
 		grpLocks = new FlxTypedGroup<FlxSprite>();
@@ -327,28 +327,28 @@ class StoryMenuState extends MusicBeatState
 		{
 			case 0:
 				path = Paths.image("weekBanners/warmup");
-				position = new FlxPoint(600, 55);
+				position = new FlxPoint(600, 56);
 			case 1:
 				path = Paths.image("weekBanners/DaveHouse");
-				position = new FlxPoint(600, 55);
+				position = new FlxPoint(600, 56);
 			case 2:
 				path = Paths.image("weekBanners/bamboi");
-				position = new FlxPoint(600, 55);
+				position = new FlxPoint(600, 56);
 			case 3:
 				path = Paths.image("weekBanners/splitathon");
-				position = new FlxPoint(600, 55);
+				position = new FlxPoint(600, 56);
 			case 4:
 				path = Paths.image("weekBanners/festival");
-				position = new FlxPoint(600, 55);
+				position = new FlxPoint(600, 56);
 			default:
 				path = Paths.image("blank", "shared");
 				position = new FlxPoint(600, 200);
 		}
 		imageBG.destroy();
 		imageBG = new FlxSprite(position.x, position.y).loadGraphic(path);
-		imageBG.antialiasing = true;
+		imageBG.antialiasing = false;
 		imageBG.screenCenter(X);
-		imageBG.active = false;
+		imageBG.active = true;
 		add(imageBG);
 	}
 
