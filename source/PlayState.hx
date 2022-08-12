@@ -752,6 +752,9 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 200;
 			case 'red-void':
 				dad.x -= 100;
+			case 'interdimension-void':
+				dad.x -= 200;
+				dad.y -= 100;
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
