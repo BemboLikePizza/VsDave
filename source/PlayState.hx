@@ -1184,7 +1184,8 @@ class PlayState extends MusicBeatState
 				var cornFence2:BGSprite = new BGSprite('cornFence2', 1100, 200, Paths.image('backgrounds/farm/cornFence2', 'shared'), null);
 				sprites.add(cornFence2);
 
-				var cornBag:BGSprite = new BGSprite('cornFence2', 1200, 550, Paths.image('backgrounds/farm/cornbag', 'shared'), null);
+				var bagType = FlxG.random.int(0, 1000) == 0 ? 'popeye' : 'cornbag';
+				var cornBag:BGSprite = new BGSprite('cornFence2', 1200, 550, Paths.image('backgrounds/farm/$bagType', 'shared'), null);
 				sprites.add(cornBag);
 				
 				var sign:BGSprite = new BGSprite('sign', 0, 350, Paths.image('backgrounds/farm/sign', 'shared'), null);
