@@ -258,6 +258,21 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
 				playAnim('idle');
+			case 'davefriend':
+				// DAVEFRIEND SHITE ANIMATION LOADING CODE
+				tex = Paths.getSparrowAtlas('dave/characters/davefriend', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}0', 24, false);
+				}
+					
+				loadOffsetFile(curCharacter, (isPlayer ? '-playable' : ''));
+								
+				barColor = FlxColor.fromRGB(15, 95, 255);
+				
+				playAnim('idle');	
 			case 'dave-annoyed':
 				// DAVE SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('dave/characters/Dave_insanity_lol', 'shared');

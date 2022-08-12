@@ -64,14 +64,18 @@ class PauseSubState extends MusicBeatSubstate
 		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
-		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
+		levelInfo.setFormat(Paths.font("comic.ttf"), 32, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		levelInfo.antialiasing = true;
+		levelInfo.borderSize = 2.5;
 		levelInfo.updateHitbox();
 		add(levelInfo);
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
 		levelDifficulty.text += CoolUtil.difficultyString();
 		levelDifficulty.scrollFactor.set();
-		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
+		levelDifficulty.setFormat(Paths.font('comic.ttf'), 32, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		levelDifficulty.antialiasing = true;
+		levelDifficulty.borderSize = 2.5;
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
@@ -205,7 +209,9 @@ class PauseSubState extends MusicBeatSubstate
 			var difficulty:FlxText = new FlxText(20, (15 + 32) * (i + 2), 0, "", 32);
 			difficulty.text += levelDifficulty.text;
 			difficulty.scrollFactor.set();
-			difficulty.setFormat(Paths.font('vcr.ttf'), 32);
+			difficulty.setFormat(Paths.font('comic.ttf'), 32, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			difficulty.antialiasing = true;
+			difficulty.borderSize = 2.5;
 			difficulty.updateHitbox();
 			if (funnyTexts != null)
 			{
