@@ -218,6 +218,7 @@ class PlayState extends MusicBeatState
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 
 	var notestuffs:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
+	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
 	var fc:Bool = true;
 
 	var wiggleShit:WiggleEffect = new WiggleEffect();
@@ -349,6 +350,10 @@ class PlayState extends MusicBeatState
 	var switchSide:Bool;
 
 	public var subtitleManager:SubtitleManager;
+	
+	public var guitarSection:Bool;
+	public var dadStrumAmount = 4;
+	public var playerStrumAmount = 4;
 	
 	//window stuff
 	var window:Window;
@@ -1877,12 +1882,16 @@ class PlayState extends MusicBeatState
 
 		for (section in noteData)
 		{
+			var sectionCount = noteData.indexOf(section);
+
+			var isGuitarSection = (sectionCount >= 64 && sectionCount < 80) && SONG.song.toLowerCase() == 'shredder';
+
 			var coolSection:Int = Std.int(section.lengthInSteps / 4);
 
 			for (songNotes in section.sectionNotes)
 			{
 				var daStrumTime:Float = songNotes[0];
-				var daNoteData:Int = Std.int(songNotes[1] % 4);
+				var daNoteData:Int = Std.int(songNotes[1] % (isGuitarSection ? 5 : 4));
 				var OGNoteDat = daNoteData;
 				if (localFunny == CharacterFunnyEffect.Bambi)
 				{
@@ -1892,7 +1901,7 @@ class PlayState extends MusicBeatState
 
 				var gottaHitNote:Bool = section.mustHitSection;
 
-				if (songNotes[1] > 3)
+				if (songNotes[1] > (isGuitarSection ? 4 : 3))
 				{
 					gottaHitNote = !section.mustHitSection;
 				}
@@ -1903,7 +1912,7 @@ class PlayState extends MusicBeatState
 				else
 					oldNote = null;
 
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, gottaHitNote, daNoteStyle);
+				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, gottaHitNote, daNoteStyle, false, isGuitarSection);
 				swagNote.originalType = OGNoteDat;
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
@@ -1918,7 +1927,7 @@ class PlayState extends MusicBeatState
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
 					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true,
-						gottaHitNote);
+						gottaHitNote, false, isGuitarSection);
 					sustainNote.originalType = OGNoteDat;
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
@@ -2080,6 +2089,7 @@ class PlayState extends MusicBeatState
 			babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 			babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
 			babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
+			babyArrow.animation.addByPrefix('yellow', 'arrowLEFT');
 
 			babyArrow.antialiasing = true;
 			babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
@@ -2101,17 +2111,17 @@ class PlayState extends MusicBeatState
 					babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
 					babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
 				case 2:
-					babyArrow.animation.addByPrefix('static', 'arrowUP');
-					babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
-					babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-				case 3:
-					babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-					babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
-					babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-				case 4:
 					babyArrow.animation.addByPrefix('static', 'arrowLEFT');
 					babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
 					babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+				case 3:
+					babyArrow.animation.addByPrefix('static', 'arrowUP');
+					babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+					babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
+				case 4:
+					babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+					babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+					babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
 			}
 
 			babyArrow.updateHitbox();
@@ -2887,10 +2897,11 @@ class PlayState extends MusicBeatState
 
 					//'LEFT', 'DOWN', 'UP', 'RIGHT'
 					var fuckingDumbassBullshitFuckYou:String;
-					fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(daNote.originalType)) % 4];
+					var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+					fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(daNote.originalType)) % dadStrumAmount];
 					if(dad.nativelyPlayable)
 					{
-						switch(notestuffs[daNote.originalType % 4])
+						switch(noteTypes[daNote.originalType % dadStrumAmount])
 						{
 							case 'LEFT':
 								fuckingDumbassBullshitFuckYou = 'RIGHT';
@@ -2904,7 +2915,7 @@ class PlayState extends MusicBeatState
 					
 					dadStrums.forEach(function(sprite:FlxSprite)
 					{
-						if (Math.abs(Math.round(Math.abs(daNote.noteData)) % 4) == sprite.ID)
+						if (Math.abs(Math.round(Math.abs(daNote.noteData)) % dadStrumAmount) == sprite.ID)
 						{
 							sprite.animation.play('confirm', true);
 							if (sprite.animation.curAnim.name == 'confirm')
@@ -3793,14 +3804,16 @@ class PlayState extends MusicBeatState
 			FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 			// FlxG.log.add('played imss note');
+			
 			if (boyfriend.animation.getByName("singLEFTmiss") != null)
 			{
-				//'LEFT', 'DOWN', 'UP', 'RIGHT'
 				var fuckingDumbassBullshitFuckYou:String;
-				fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(direction)) % 4];
+				var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+
+				fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
 				if(!boyfriend.nativelyPlayable)
 				{
-					switch(notestuffs[Math.round(Math.abs(direction)) % 4])
+					switch(noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount])
 					{
 						case 'LEFT':
 							fuckingDumbassBullshitFuckYou = 'RIGHT';
@@ -3815,10 +3828,12 @@ class PlayState extends MusicBeatState
 				boyfriend.color = 0xFF000084;
 				//'LEFT', 'DOWN', 'UP', 'RIGHT'
 				var fuckingDumbassBullshitFuckYou:String;
-				fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(direction)) % 4];
+				var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+
+				fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
 				if(!boyfriend.nativelyPlayable)
 				{
-					switch(notestuffs[Math.round(Math.abs(direction)) % 4])
+					switch(noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount])
 					{
 						case 'LEFT':
 							fuckingDumbassBullshitFuckYou = 'RIGHT';
@@ -3956,10 +3971,11 @@ class PlayState extends MusicBeatState
 
 			//'LEFT', 'DOWN', 'UP', 'RIGHT'
 			var fuckingDumbassBullshitFuckYou:String;
-			fuckingDumbassBullshitFuckYou = notestuffs[Math.round(Math.abs(note.originalType)) % 4];
+			var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+			fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(note.originalType)) % playerStrumAmount];
 			if(!boyfriend.nativelyPlayable)
 			{
-				switch(notestuffs[Math.round(Math.abs(note.originalType)) % 4])
+				switch(noteTypes[Math.round(Math.abs(note.originalType)) % playerStrumAmount])
 				{
 					case 'LEFT':
 						fuckingDumbassBullshitFuckYou = 'RIGHT';
@@ -5009,6 +5025,13 @@ class PlayState extends MusicBeatState
 		if (curBeat % 4 == 0 && spotLightPart && spotLight != null)
 		{
 			updateSpotlight(currentSection.mustHitSection);
+		}
+		if (SONG.song.toLowerCase() == 'shredder' && curBeat % 4 == 0)
+		{
+			var curSection = SONG.notes.indexOf(currentSection);
+			guitarSection = curSection >= 64 && curSection < 80;
+			dadStrumAmount = guitarSection ? 5 : 4;
+			trace('is the guitar section now? $guitarSection');
 		}
 		switch (curSong.toLowerCase())
 		{

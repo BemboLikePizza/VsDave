@@ -100,6 +100,8 @@ class ChartingState extends MusicBeatState
 	var claps:Array<Note> = [];
 
 	public var snapText:FlxText;
+	
+	var guitarPart:Bool = false;
 
 	override function create()
 	{
@@ -698,7 +700,7 @@ class ChartingState extends MusicBeatState
 			var i = pressArray[p];
 			if (i && !delete)
 			{
-				addNote(new Note(Conductor.songPosition , p, null, false, true, "normal", true));
+				addNote(new Note(Conductor.songPosition , p, null, false, true, "normal", true, guitarPart));
 			}
 		}
 
@@ -1173,14 +1175,17 @@ class ChartingState extends MusicBeatState
 
 	function updateGrid():Void
 	{
+		guitarPart = (_song.song.toLowerCase() == 'shredder' && (curSection >= 64 && curSection < 80));
+		
+		var gridWidth = guitarPart ? 9 : 8;
 		remove(gridBG);
-		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * 8, GRID_SIZE * _song.notes[curSection].lengthInSteps);
+		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * gridWidth, GRID_SIZE * _song.notes[curSection].lengthInSteps);
       add(gridBG);
 
 		if (gridBG != null)
 		{
 			remove(gridBlackLine);
-			gridBlackLine = new FlxSprite(gridBG.x + gridBG.width / 2).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
+			gridBlackLine = new FlxSprite(gridBG.x + gridBG.width / 2 + (guitarPart ? GRID_SIZE / 2 : 0)).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
 			add(gridBlackLine);
 		}
 		
@@ -1232,7 +1237,7 @@ class ChartingState extends MusicBeatState
 			var daSus = i[2];
 
 			// (strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal")
-			var note:Note = new Note(daStrumTime, daNoteInfo % 4, null, false, true, "normal", true);
+			var note:Note = new Note(daStrumTime, daNoteInfo % (guitarPart ? 5 : 4), null, false, true, "normal", true, guitarPart);
 			note.sustainLength = daSus;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
@@ -1275,7 +1280,7 @@ class ChartingState extends MusicBeatState
 
 		for (i in _song.notes[curSection].sectionNotes)
 		{
-			if (i.strumTime == note.strumTime && i.noteData % 4 == note.noteData)
+			if (i.strumTime == note.strumTime && i.noteData % (guitarPart ? 5 : 4) == note.noteData)
 			{
 				curSelectedNote = _song.notes[curSection].sectionNotes[swagNum];
 			}

@@ -457,6 +457,22 @@ class StoryMenuState extends MusicBeatState
 		imageBG.active = false;
 		add(imageBG);
 	}
+	function resetData()
+	{
+		FlxG.save.erase();
+		FlxG.save.flush();
+		
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+
+		SaveDataHandler.initSave();
+		LanguageManager.init();
+
+		Highscore.load();
+		
+		CoolUtil.init();
+
+		FlxG.switchState(new StartStateSelector());
+	}
 
 	function updateText()
 	{

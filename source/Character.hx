@@ -954,6 +954,7 @@ class Character extends FlxSprite
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
+		trace(AnimName);
 		if (animation.getByName(AnimName) == null)
 		{
 			return; //why wasn't this a thing in the first place
