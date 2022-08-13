@@ -94,6 +94,33 @@ class Character extends FlxSprite
 
 				nativelyPlayable = true;
 				flipX = true;
+			case 'bf-dark':
+				var tex = Paths.getSparrowAtlas('characters/Dark_BF', 'shared');
+				frames = tex;
+				
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				for (anim in ['LEFT', 'DOWN', 'UP', 'RIGHT'])
+				{
+					animation.addByPrefix('sing$anim', 'BF NOTE ${anim}0', 24, false);
+					animation.addByPrefix('sing${anim}miss', 'BF NOTE ${anim} MISS', 24, false);
+				}
+				animation.addByPrefix('hey', 'BF HEY', 24, false);
+				animation.addByPrefix('firstDeath', "BF dies", 24, false);
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
+				animation.addByPrefix('hit', 'BF hit', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				barColor = FlxColor.fromRGB(49, 176, 209);
+
+				playAnim('idle');
+
+				nativelyPlayable = true;
+
+				flipX = true;
 			case 'nofriend':
 				frames = Paths.getSparrowAtlas('fiveNights/nofriend', 'shared');
 
