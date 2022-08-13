@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.transition.Transition;
 import flixel.group.FlxGroup;
 import sys.FileSystem;
 import flixel.util.FlxArrayUtil;
@@ -213,6 +214,7 @@ class PlayState extends MusicBeatState
 	private var camDialogue:FlxCamera;
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
+	private var camTransition:FlxCamera;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
 
@@ -464,12 +466,16 @@ class PlayState extends MusicBeatState
 		camHUD.bgColor.alpha = 0;
 		camDialogue = new FlxCamera();
 		camDialogue.bgColor.alpha = 0;
+		camTransition = new FlxCamera();
+		camTransition.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camDialogue);
+		FlxG.cameras.add(camTransition);
 
 		FlxCamera.defaultCameras = [camGame];
+		Transition.nextCamera = camTransition; 
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -1069,6 +1075,8 @@ class PlayState extends MusicBeatState
 		exbungo_funny.volume = 0.91;
 
 		super.create();
+
+		Transition.nextCamera = camTransition;
 	}
 	
 	public function createBackgroundSprites(bgName:String, revertedBG:Bool):FlxTypedGroup<BGSprite>
@@ -2610,6 +2618,11 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
+			if(FlxTransitionableState.skipNextTransIn)
+			{
+				Transition.nextCamera = null;
+			}
+			
 			switch (curSong.toLowerCase())
 			{
 				case 'supernovae':
@@ -3211,6 +3224,10 @@ class PlayState extends MusicBeatState
 
 			if (storyPlaylist.length <= 0)
 			{
+				if(FlxTransitionableState.skipNextTransIn)
+				{
+					Transition.nextCamera = null;
+				}
 				switch (curSong.toLowerCase())
 				{
 					case 'polygonized':
@@ -3404,7 +3421,10 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.switchState(new FreeplayState());
 			}
-			
+			if(FlxTransitionableState.skipNextTransIn)
+			{
+				Transition.nextCamera = null;
+			}
 		}
 	}
 

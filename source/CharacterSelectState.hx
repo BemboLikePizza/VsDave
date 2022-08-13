@@ -1,5 +1,7 @@
 package;
 
+import flixel.addons.transition.Transition;
+import flixel.addons.transition.FlxTransitionableState;
 import sys.io.File;
 import lime.app.Application;
 import haxe.Exception;
@@ -79,6 +81,7 @@ class CharacterSelectState extends MusicBeatState
 
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
+	private var camTransition:FlxCamera;
 
 	var currentSelectedCharacter:CharacterInSelect;
 
@@ -135,8 +138,11 @@ class CharacterSelectState extends MusicBeatState
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
+		camTransition = new FlxCamera();
+		camTransition.bgColor.alpha = 0;
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
+		FlxG.cameras.add(camTransition);
 		FlxCamera.defaultCameras = [camGame];
 		
 		FlxG.camera.zoom = 1.2;
@@ -580,8 +586,11 @@ class CharacterSelectState extends MusicBeatState
 
 			Sys.command('start $path');
 		}
-
-		FlxG.sound.music.stop(); //if the music doesn't fade out, it will forcibly stop playing.
+		if (FlxTransitionableState.skipNextTransIn)
+		{
+			Transition.nextCamera = null;
+		}
+		FlxG.sound.music.stop();
 		LoadingState.loadAndSwitchState(new PlayState());
 	}
 }
