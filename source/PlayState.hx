@@ -1633,7 +1633,7 @@ class PlayState extends MusicBeatState
 				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' |
 				'memory' | 'overdrive' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
-				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' | 
+				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' |
 				'shredder' | 'supernovae' | 'unfairness':
 					soundAssetsAlt = introSoundAssets.get('bambi');
 				case 'exploitation':
@@ -4380,7 +4380,7 @@ class PlayState extends MusicBeatState
 					case 1152:
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
-					case 1178:
+					case 1200:
 						var scaler = 1 / defaultCamZoom;
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
