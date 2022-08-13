@@ -35,7 +35,7 @@ freeplay_easy==EASY
 freeplay_finale==FINALE
 freeplay_fucked==YOU'RE FUCKED
 
-freeplay_skipchar==Hold CTRL to Skip Character Selection
+freeplay_skipChar==Hold CTRL To Skip The Character Select
 
 // Credits State //
 credits_dev==Developers
