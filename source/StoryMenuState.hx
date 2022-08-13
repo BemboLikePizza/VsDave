@@ -179,6 +179,8 @@ class StoryMenuState extends MusicBeatState
 		add(txtWeekTitle);
 
 		updateText();
+		
+		imageBgCheck();
 
 		super.create();
 	}

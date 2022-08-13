@@ -271,7 +271,6 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Recursed'], 10, ['recurser']);
 
 				addWeek(['Adventure'], 5, ['tristan']);
-				addWeek(['Furiosity'], 1, ['dave-angey']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
 				addWeek(['Five-Nights', 'Overdrive'], 1, ['dave']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);

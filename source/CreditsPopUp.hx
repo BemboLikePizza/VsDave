@@ -36,7 +36,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'warmup' | 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
-				'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'furiosity' | 'kabunga' | 'roots' | 'secret' |
+				'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'kabunga' | 'roots' | 'secret' |
 				'secret-mod-leak' | 'unfairness' | 'rano':
 				songCreator = 'MoldyGH';
 			case 'exploitation':
@@ -68,7 +68,7 @@ class CreditsPopUp extends FlxSpriteGroup
 				headingPath = {path: 'songHeadings/festivalHeading', antiAliasing: true, iconOffset: 0};
 			case 8:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
-				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: -20};
+				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0};
 			case 10:
 				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
 		}

@@ -37,7 +37,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var finishThing:Void->Void;
 
-	public var noAa:Array<String> = ["dialogue/dave/dave_scared_3d", "dialogue/dave/dave_3d_festival"];
+	public var noAa:Array<String> = ["dialogue/dave/dave_3d_scared", "dialogue/dave/dave_3d_festival"];
 	
 	var portraitLeft:FlxSprite;
 	var portraitRight:FlxSprite;
@@ -63,7 +63,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'house' | 'insanity' | 'splitathon':
 				FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'furiosity' | 'polygonized' | 'interdimensional':
+			case 'polygonized' | 'interdimensional':
 				FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'supernovae' | 'glitch':
@@ -132,7 +132,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeftCharacter = ['dave', 'normal'];
 			case 'insanity':
 				portraitLeftCharacter = ['dave', 'annoyed'];
-			case 'furiosity' | 'polygonized' | 'interdimensional':
+			case 'polygonized' | 'interdimensional':
 				portraitLeftCharacter = ['dave', '3d-scared'];
 			case 'blocked':
 				portraitLeftCharacter = ['bambi', 'annoyed'];
@@ -178,7 +178,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'furiosity' | 'polygonized' | 'interdimensional':
+			case 'polygonized' | 'interdimensional':
 				dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
 				dropText.font = 'Comic Sans MS Bold';
 				dropText.color = 0xFFFFFFFF;
@@ -314,13 +314,24 @@ class DialogueBox extends FlxSpriteGroup
 			}
 			switch (curCharacter)
 			{
-				case 'dave' | 'bambi' | 'tristan': //guys its the funny bambi character
-					portraitLeft.setPosition(350, 220);
+				case 'dave':
+					switch (curExpression)
+					{
+						case 'phone':
+							portraitLeft.setPosition(77, 145);
+						case 'festival-3d-scared':
+							portraitLeft.setPosition(135, 174);
+						default:
+							portraitLeft.setPosition(200, 220);
+					}
+				case 'bambi': //guys its the funny bambi character
+					portraitLeft.setPosition(200, 220);
+				case 'tristan':
+					portraitLeft.setPosition(143, 200);
 				case 'bf' | 'gf': //create boyfriend & genderbent boyfriend
 					portraitRight.setPosition(570, 220);
 			}
 			box.flipX = portraitLeft.visible;
-			portraitLeft.x -= 150;
 
 			portraitLeft.antialiasing = !noAa.contains(portrait.portraitPath);
 			portraitRight.antialiasing = !noAa.contains(portrait.portraitPath);
@@ -431,7 +442,7 @@ class DialogueBox extends FlxSpriteGroup
 					case 'annoyed':
 						portrait.portraitPath = 'dialogue/bambi/bambi_annoyed';
 					case 'upset':
-						portrait.portraitPath = 'dialogue/bambi/bambi_maze';
+						portrait.portraitPath = 'dialogue/bambi/bambi_upset';
 					case 'splitathon':
 						portrait.portraitPath = 'dialogue/bambi/bambi_splitathon';
 					case 'bevel':

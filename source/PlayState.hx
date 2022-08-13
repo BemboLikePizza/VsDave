@@ -317,7 +317,7 @@ class PlayState extends MusicBeatState
 	var tristanBG:String;
 	var charBackdrop:FlxBackdrop;
 	var alphaCharacters:FlxTypedGroup<Alphabet> = new FlxTypedGroup<Alphabet>();
-	var daveSongs:Array<String> = ['House', 'Insanity', 'Polygonized', 'Bonus Song', 'Furiosity'];
+	var daveSongs:Array<String> = ['House', 'Insanity', 'Polygonized', 'Bonus Song'];
 	var bambiSongs:Array<String> = ['Blocked', 'Corn-Theft', 'Maze', 'Mealie'];
 	var tristanSongs:Array<String> = ['Adventure', 'Vs-Tristan'];
 
@@ -355,6 +355,8 @@ class PlayState extends MusicBeatState
 	public var guitarSection:Bool;
 	public var dadStrumAmount = 4;
 	public var playerStrumAmount = 4;
+
+	public var dither:DitherEffect = new DitherEffect();
 	
 	//window stuff
 	var window:Window;
@@ -526,9 +528,9 @@ class PlayState extends MusicBeatState
 			{
 				case 'house' | 'insanity' | 'supernovae' | 'roots':
 					stageCheck = 'house';
-				case 'polygonized' | 'furiosity':
+				case 'polygonized':
 					stageCheck = 'red-void';
-				case 'blocked' | 'corn-theft' | 'old-corn-theft' | 'maze':
+				case 'blocked' | 'corn-theft' | 'maze':
 					stageCheck = 'farm';
 				case 'splitathon' | 'mealie':
 					stageCheck = 'farm-night';
@@ -572,7 +574,7 @@ class PlayState extends MusicBeatState
 		}
 		switch (SONG.song.toLowerCase())
 		{
-			case 'polygonized' | 'furiosity' | 'interdimensional':
+			case 'polygonized' | 'interdimensional':
 				var stage = SONG.song.toLowerCase() != 'interdimensional' ? 'house-night' : 'festival';
 				revertedBG = createBackgroundSprites(stage, true);
 				for (bgSprite in revertedBG)
@@ -1077,6 +1079,11 @@ class PlayState extends MusicBeatState
 		super.create();
 
 		Transition.nextCamera = camTransition;
+
+		blackScreen = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
+		add(blackScreen);
+
+		blackScreen.shader = dither.shader;
 	}
 	
 	public function createBackgroundSprites(bgName:String, revertedBG:Bool):FlxTypedGroup<BGSprite>
@@ -1638,7 +1645,7 @@ class PlayState extends MusicBeatState
 
 			switch (SONG.song.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' | 'furiosity' |
+				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' |
 				'memory' | 'overdrive' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
 				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' |
@@ -2352,7 +2359,7 @@ class PlayState extends MusicBeatState
 		}
 		if (curbg != null)
 		{
-			if (curbg.active) // only the furiosity background is active
+			if (curbg.active) // only the polygonized background is active
 			{
 				var shad = cast(curbg.shader, Shaders.GlitchShader);
 				shad.uTime.value[0] += elapsed;
@@ -4752,14 +4759,6 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						dad.visible = false;
 						iconP2.visible = false;
-				}	
-			case 'furiosity':
-				switch (curStep)
-				{
-					case 512 | 768:
-						shakeCam = true;
-					case 640 | 896:
-						shakeCam = false;
 				}
 			case 'polygonized':
 				switch(curStep)
@@ -5083,22 +5082,6 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub6'), 0.03, 1, {subtitleSize: 60});
 					case 1276:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub7'), 0.03, 1, {subtitleSize: 60});
-				}
-			case 'furiosity':
-				if ((curBeat >= 128 && curBeat < 160) || (curBeat >= 192 && curBeat < 224))
-				{
-					if (camZooming)
-					{
-						FlxG.camera.zoom += 0.015;
-						camHUD.zoom += 0.03;
-					}
-				}
-				switch (curBeat)
-				{
-					case 127 | 191:
-						camZooming = true;
-					case 159 | 223:
-						camZooming = false;
 				}
 			case 'polygonized':
 				switch (curBeat)
