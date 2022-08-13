@@ -5478,10 +5478,10 @@ class PlayState extends MusicBeatState
 			{
 				FlxTween.tween(strum, {alpha: 0}, 1);
 			});
-			strumLineNotes.forEach(function(strum:FlxSprite)
+			for (strumNote in strumLineNotes)
 			{
-				FlxTween.tween(strum, {alpha: 0}, 1);
-			});
+				FlxTween.tween(strumNote, {alpha: 0}, 1);
+			}
 		}
 		else
 		{
@@ -5493,10 +5493,10 @@ class PlayState extends MusicBeatState
 			{
 				FlxTween.tween(strum, {alpha: 1}, 1);
 			});
-			strumLineNotes.forEach(function(strum:FlxSprite)
+			for (strumNote in strumLineNotes)
 			{
-				FlxTween.tween(strum, {alpha: 1}, 1);
-			});
+				FlxTween.tween(strumNote, {alpha: 1}, 1);
+			}
 		}
 	}
 
