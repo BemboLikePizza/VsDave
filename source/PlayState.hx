@@ -1079,11 +1079,6 @@ class PlayState extends MusicBeatState
 		super.create();
 
 		Transition.nextCamera = camTransition;
-
-		blackScreen = new FlxSprite().makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.WHITE);
-		add(blackScreen);
-
-		blackScreen.shader = dither.shader;
 	}
 	
 	public function createBackgroundSprites(bgName:String, revertedBG:Bool):FlxTypedGroup<BGSprite>
