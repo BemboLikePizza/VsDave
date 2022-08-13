@@ -872,6 +872,17 @@ class Character extends FlxSprite
 				barColor = FlxColor.WHITE;
 
 				playAnim('idle');
+			case 'playrobot':
+				frames = Paths.getSparrowAtlas('playrobot/playbot', 'shared');
+				animation.addByPrefix('idle', 'idle', 24, false);
+
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				loadOffsetFile(curCharacter);
+				barColor = FlxColor.WHITE;
+				playAnim('idle');
 		}
 		dance();
 
@@ -990,34 +1001,12 @@ class Character extends FlxSprite
 		{
 			if (isPlayer)
 			{
-				if(!nativelyPlayable)
-				{
-					offset.set(daOffset[0] + globaloffset[0], daOffset[1] + globaloffset[1]);
-				}
-				else
-				{
-					offset.set(daOffset[0] + globaloffset[0], daOffset[1] + globaloffset[1]);
-				}
-			}
-			else
-			{
-				if(nativelyPlayable)
-				{
-					offset.set((daOffset[0] * -1), daOffset[1]);
-				}
-				else
-				{
-					offset.set(daOffset[0], daOffset[1]);
-				}
-			}/*
-			if (isPlayer)
-			{
 				offset.set((daOffset[0] + globaloffset[0]), (daOffset[1] + globaloffset[1]));
 			}
 			else
 			{
 				offset.set(daOffset[0], daOffset[1]);
-			}*/
+			}
 		}
 		
 		else

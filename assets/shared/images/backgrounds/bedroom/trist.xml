@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="trist.png">
+	<!-- Created with Adobe Animate version 19.2.1.408 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="day0000" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0001" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0002" x="250" y="0" width="250" height="340"/>
+	<SubTexture name="day0003" x="250" y="0" width="250" height="340"/>
+	<SubTexture name="day0004" x="500" y="0" width="250" height="340"/>
+	<SubTexture name="day0005" x="500" y="0" width="250" height="340"/>
+	<SubTexture name="day0006" x="750" y="0" width="250" height="340"/>
+	<SubTexture name="day0007" x="750" y="0" width="250" height="340"/>
+	<SubTexture name="day0008" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0009" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0010" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0011" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0012" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0013" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="day0014" x="0" y="0" width="250" height="340"/>
+	<SubTexture name="night0000" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0001" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0002" x="250" y="340" width="250" height="340"/>
+	<SubTexture name="night0003" x="250" y="340" width="250" height="340"/>
+	<SubTexture name="night0004" x="500" y="340" width="250" height="340"/>
+	<SubTexture name="night0005" x="500" y="340" width="250" height="340"/>
+	<SubTexture name="night0006" x="750" y="340" width="250" height="340"/>
+	<SubTexture name="night0007" x="750" y="340" width="250" height="340"/>
+	<SubTexture name="night0008" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0009" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0010" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0011" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0012" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0013" x="0" y="340" width="250" height="340"/>
+	<SubTexture name="night0014" x="0" y="340" width="250" height="340"/>
+</TextureAtlas>

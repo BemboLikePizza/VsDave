@@ -526,7 +526,7 @@ class PlayState extends MusicBeatState
 		{
 			switch(SONG.song.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'supernovae' | 'roots':
+				case 'house' | 'insanity' | 'supernovae' | 'warmup':
 					stageCheck = 'house';
 				case 'polygonized':
 					stageCheck = 'red-void';
@@ -558,8 +558,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'freeplay';
 				case 'secret-mod-leak':
 					stageCheck = 'roof';
-				case 'warmup':
-					stageCheck = 'house';
+				case 'bot-trot':
+					stageCheck = 'bedroom';
 			}
 		}
 		else
@@ -585,7 +585,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak'];
+		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot'];
 
 		if(SONG.gf != null)
 		{
@@ -1470,6 +1470,11 @@ class PlayState extends MusicBeatState
 				stageName = 'roof';
 				var roof:BGSprite = new BGSprite('roof', -350, 0, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
 				add(roof);
+			case 'bedroom':
+				bgZoom = 1.2;
+				stageName = 'bedroom';
+
+
 			default:
 				bgZoom = 0.9;
 				stageName = 'stage';
