@@ -34,6 +34,8 @@ freeplay_finale==FINALE
 freeplay_fucked==ESTAS EN PELIGRO
 freeplay_lmao==LMAO
 
+freeplay_skipchar==Mantén CTRL para saltarse la Seleción de Personaje
+
 // Credits State //
 credits_dev==Desarolladores
 credits_translator==Traductores

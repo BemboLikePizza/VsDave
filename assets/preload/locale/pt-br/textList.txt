@@ -34,6 +34,8 @@ freeplay_finale==FINALE
 freeplay_fucked==YOU'RE FUCKED
 freeplay_lmao==LMAO
 
+freeplay_skipchar==Hold CTRL to Skip Character Selection
+
 // Credits State //
 credits_dev==Desenvolvedores
 credits_translator==Tradutores
