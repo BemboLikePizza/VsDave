@@ -11,6 +11,7 @@ dave-festival-3d
 bambi-new
 tristan
 tristan-golden
+playrobot
 exbungo
 baldi
 tb-funny-man
