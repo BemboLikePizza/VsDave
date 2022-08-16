@@ -23,10 +23,10 @@ desc_options==Adjust game settings and keybinds.
 desc_discord==Join the official Vs. Dave and Bambi Discord!
 
 // Freeplay State //
-freeplay_dave==Dave
+freeplay_dave==Story
 freeplay_joke==Joke
 freeplay_extra==Extra
-freeplay_terminal==Terminal
+freeplay_terminal==Console
 
 freeplay_personalBest==PERSONAL BEST:
 freeplay_hard==HARD

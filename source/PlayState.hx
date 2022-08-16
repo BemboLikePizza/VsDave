@@ -577,7 +577,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot'];
+		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'vs-dave-rap'];
 
 		if(SONG.gf != null)
 		{
@@ -759,6 +759,9 @@ class PlayState extends MusicBeatState
 			case 'interdimension-void':
 				dad.x -= 200;
 				dad.y -= 100;
+			case 'green-void':
+				dad.x -= 200;
+				dad.y -= 400;
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
@@ -779,6 +782,10 @@ class PlayState extends MusicBeatState
 			case 'bedroom':
 				dad.setPosition(-116, 63);
 				boyfriend.setPosition(547, 190);
+			case 'rapBattle':
+			 	boyfriend.x -= -200;
+				boyfriend.y -= -100;
+				dad.x -= -100;
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1418,7 +1425,7 @@ class PlayState extends MusicBeatState
 				
 				voidShader(bg);
 			case 'rapBattle':
-				bgZoom = 0.9;
+				bgZoom = 1.2;
 				stageName = 'rapLand';
 
 				var bg:BGSprite = new BGSprite('rapBG', -100, -100, Paths.image('backgrounds/rapBattle'), null);
