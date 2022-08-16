@@ -25,7 +25,7 @@ class GitarooPause extends MusicBeatState
 		add(bg);
 
 		var bf:FlxSprite = new FlxSprite(0, 30);
-		bf.frames = Paths.getSparrowAtlas('pauseAlt/bfLol');
+		bf.frames = Paths.getSparrowAtlas('pauseAlt/daveLol');
 		bf.animation.addByPrefix('lol', "funnyThing", 13);
 		bf.animation.play('lol');
 		add(bf);
