@@ -103,6 +103,9 @@ class ChartingState extends MusicBeatState
 	
 	var guitarPart:Bool = false;
 
+	var noteTypes = ['normal', 'phone'];
+	var curNoteType:Int;
+
 	override function create()
 	{
 		curSection = lastSection;
@@ -669,6 +672,15 @@ class ChartingState extends MusicBeatState
 		if (snap <= 1)
 			snap = 1;*/
 
+		if (FlxG.keys.justPressed.O)
+		{
+			curNoteType++;
+			if (curNoteType > noteTypes.length - 1)
+			{
+				curNoteType = 0;
+			}
+		}
+
 		if (FlxG.keys.justPressed.CONTROL)
 			doSnapShit = !doSnapShit;
 
@@ -700,14 +712,12 @@ class ChartingState extends MusicBeatState
 			var i = pressArray[p];
 			if (i && !delete)
 			{
-				addNote(new Note(Conductor.songPosition , p, null, false, true, "normal", true, guitarPart));
+				addNote(new Note(Conductor.songPosition , p, null, false, true, noteTypes[curNoteType], true, guitarPart));
 			}
 		}
 
 		strumLine.y = getYfromStrum((Conductor.songPosition - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps));
 		
-
-
 		if (playClaps)
 		{
 			curRenderedNotes.forEach(function(note:Note)
@@ -1025,7 +1035,10 @@ class ChartingState extends MusicBeatState
 			+ "\nCurBeat: " 
 			+ curBeat
 			+ "\nCurStep: " 
-			+ curStep;
+			+ curStep
+			+ "\n\nCurrent Note Type \n(Press O to change): \n"
+			+ noteTypes[curNoteType];
+
 		super.update(elapsed);
 	}
 
@@ -1235,14 +1248,18 @@ class ChartingState extends MusicBeatState
 			var daNoteInfo = i[1];
 			var daStrumTime = i[0];
 			var daSus = i[2];
+			var noteType = i[3];
 
 			// (strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal")
-			var note:Note = new Note(daStrumTime, daNoteInfo % (guitarPart ? 5 : 4), null, false, true, "normal", true, guitarPart);
+			var note:Note = new Note(daStrumTime, daNoteInfo % (guitarPart ? 5 : 4), null, false, true, noteType, true, guitarPart);
 			note.sustainLength = daSus;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
 			note.x = Math.floor(daNoteInfo * GRID_SIZE);
 			note.y = Math.floor(getYfromStrum((daStrumTime - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps)));
+			
+			note.mustPress = _song.notes[curSection].mustHitSection;
+			if(i[1] > 3) note.mustPress = !note.mustPress;
 
 			if (curSelectedNote != null)
 				if (curSelectedNote[0] == note.strumTime)
@@ -1298,7 +1315,7 @@ class ChartingState extends MusicBeatState
 			lastNote = note;
 			for (i in _song.notes[curSection].sectionNotes)
 			{
-				if (i[0] == note.strumTime && i[1] % 4 == note.noteData)
+				if (i[0] == note.strumTime && i[1] % (guitarPart ? 5 : 4) == note.noteData)
 				{
 					_song.notes[curSection].sectionNotes.remove(i);
 				}
@@ -1391,11 +1408,12 @@ class ChartingState extends MusicBeatState
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
 		var noteData = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
+		var noteStyle = noteTypes[curNoteType];
 
 		if (n != null)
-			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength]);
+			_song.notes[curSection].sectionNotes.push([n.strumTime, n.noteData, n.sustainLength, n.noteStyle]);
 		else
-			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus]);
+			_song.notes[curSection].sectionNotes.push([noteStrum, noteData, noteSus, noteStyle]);
 
 		var thingy = _song.notes[curSection].sectionNotes[_song.notes[curSection].sectionNotes.length - 1];
 

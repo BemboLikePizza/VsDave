@@ -67,7 +67,8 @@ class FreeplayState extends MusicBeatState
 		0xFF810000,    // EXPLOITATION
 		FlxColor.GREEN,    // SECRET MOD LEAK
 		FlxColor.fromRGB(44, 44, 44),    // RECURSER
-		0xFF31323F // MOLDY		
+		0xFF31323F, // MOLDY		
+		FlxColor.fromRGB(162, 150, 188) // PLAYROBOT
     ];
 	var skipSelect:Array<String> = 
 	[
@@ -271,7 +272,7 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Recursed'], 10, ['recurser']);
 
 				addWeek(['Adventure'], 5, ['tristan']);
-				addWeek(['Bot-Trot'], 5, ['tristan']);
+				addWeek(['Bot-Trot'], 12, ['playrobot']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
 				addWeek(['Five-Nights', 'Overdrive'], 1, ['dave']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);

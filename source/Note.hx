@@ -68,6 +68,7 @@ class Note extends FlxSprite
 			prevNote = this;
 
 		this.prevNote = prevNote;
+		this.noteStyle = noteStyle;
 		isSustainNote = sustainNote;
 		originalType = noteData;
 		this.guitarSection = guitarSection;
@@ -356,7 +357,7 @@ class Note extends FlxSprite
 				}
 			}
 		}
-		if (mustPress)
+		if (mustPress && Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
 		{
 			// The * 0.5 is so that it's easier to hit them too late, instead of too early
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset

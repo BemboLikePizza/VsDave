@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxPoint;
 import flixel.ui.FlxButton;
 import openfl.net.FileReference;
 import openfl.display.TriangleCulling;
@@ -126,6 +127,7 @@ class CharacterDebug extends MusicBeatState
 	}
 	function updateText()
 	{
-		offsetText.text = 'Dad position: ${dad.getPosition()}\n Boyfriend Position: ${bf.getPosition()}';
+		var dadScreenCenter = new FlxPoint((FlxG.width - dad.width) / 2, (FlxG.height - dad.height) / 2);
+		offsetText.text = "Dad position: ${dad.getPosition()}\n Dad offset position from it's center position: " + new FlxPoint(dadScreenCenter.x - dad.getPosition().x, dadScreenCenter.y - dad.getPosition().y);
 	}
 }

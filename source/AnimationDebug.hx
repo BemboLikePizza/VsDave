@@ -210,16 +210,15 @@ class AnimationDebug extends MusicBeatState
 
 		if (upP || rightP || downP || leftP)
 		{
-			var change = char.nativelyPlayable ? -1 : 1;
 			updateTexts();
 			if (upP)
 				char.animOffsets.get(animList[curAnim])[1] += 1 * multiplier;
 			if (downP)
 				char.animOffsets.get(animList[curAnim])[1] -= 1 * multiplier;
 			if (leftP)
-				char.animOffsets.get(animList[curAnim])[0] += 1 * multiplier * change;
+				char.animOffsets.get(animList[curAnim])[0] += 1 * multiplier;
 			if (rightP)
-				char.animOffsets.get(animList[curAnim])[0] -= 1 * multiplier * change;
+				char.animOffsets.get(animList[curAnim])[0] -= 1 * multiplier;
 
 			updateTexts();
 			genBoyOffsets(false);

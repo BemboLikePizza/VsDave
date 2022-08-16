@@ -136,6 +136,8 @@ class PlayState extends MusicBeatState
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
+	public var dither:DitherEffect = new DitherEffect();
+
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
@@ -152,7 +154,6 @@ class PlayState extends MusicBeatState
 	var boyfriendOldIcon:String = 'bf-old';
 
 	private var vocals:FlxSound;
-
 	private var exbungo_funny:FlxSound;
 
 	private var dad:Character;
@@ -165,17 +166,17 @@ class PlayState extends MusicBeatState
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
 
-	private var strumLine:FlxSprite;
 	private var curSection:Int = 0;
 
 	private var camFollow:FlxObject;
 
+	var nightColor:FlxColor = 0xFF878787;
 	public var sunsetColor:FlxColor = FlxColor.fromRGB(255, 143, 178);
 
 	private static var prevCamFollow:FlxObject;
 
+	private var strumLine:FlxSprite;
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
-
 	public var playerStrums:FlxTypedGroup<FlxSprite>;
 	public var dadStrums:FlxTypedGroup<FlxSprite>;
 
@@ -206,18 +207,18 @@ class PlayState extends MusicBeatState
 
 	public var TwentySixKey:Bool = false;
 
-	public static var amogus:Int = 0;
-
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
 	private var BAMBICUTSCENEICONHURHURHUR:HealthIcon;
+
 	private var camDialogue:FlxCamera;
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 	private var camTransition:FlxCamera;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
-
+	public var hasDialogue:Bool = true;
+	
 	var notestuffs:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
 	var fc:Bool = true;
@@ -226,15 +227,11 @@ class PlayState extends MusicBeatState
 
 	var talking:Bool = true;
 	var songScore:Int = 0;
+
 	var scoreTxt:FlxText;
 	var kadeEngineWatermark:FlxText;
 	var creditsWatermark:FlxText;
 	var songName:FlxText;
-
-	var GFScared:Bool = false;
-
-	var scaryBG:FlxSprite;
-	var showScary:Bool = false;
 
 	public static var campaignScore:Int = 0;
 
@@ -244,9 +241,6 @@ class PlayState extends MusicBeatState
 
 	public static var theFunne:Bool = true;
 
-	private var already_forced_screen:Bool = false;
-
-	var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
 
 	public var crazyBatch:String = "shutdown /r /t 0";
@@ -254,8 +248,6 @@ class PlayState extends MusicBeatState
 	public var backgroundSprites:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
 	var revertedBG:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
 	var canFloat:Bool = true;
-
-	var nightColor:FlxColor = 0xFF878787;
 
 	var possibleNotes:Array<Note> = [];
 
@@ -281,6 +273,8 @@ class PlayState extends MusicBeatState
 	public var creditsPopup:CreditsPopUp;
 	public var blackScreen:FlxSprite;
 
+
+	//bg stuff
 	var spotLight:FlxSprite;
 	var spotLightPart:Bool;
 	var spotLightScaler:Float = 1.3;
@@ -290,9 +284,11 @@ class PlayState extends MusicBeatState
 	var interdimensionBG:BGSprite;
 	var currentInterdimensionBG:String;
 	var nimbiLand:BGSprite;
-	var nimbi:BGSprite;
 	var nimbiSign:BGSprite;
 	var flyingBgChars:FlxTypedGroup<FlyingBGChar> = new FlxTypedGroup<FlyingBGChar>();
+
+	var tristan:BGSprite;
+	var curTristanAnim:String;
 
 	var vcr:VCRDistortionShader;
 
@@ -303,8 +299,6 @@ class PlayState extends MusicBeatState
 	// FUCKING UHH particles
 	var _emitter:FlxEmitter;
 	var smashPhone:Array<Int> = new Array<Int>();
-	
-	public var hasDialogue:Bool = true;
 
 	//recursed
 	var darkSky:BGSprite;
@@ -355,8 +349,6 @@ class PlayState extends MusicBeatState
 	public var guitarSection:Bool;
 	public var dadStrumAmount = 4;
 	public var playerStrumAmount = 4;
-
-	public var dither:DitherEffect = new DitherEffect();
 	
 	//window stuff
 	var window:Window;
@@ -596,7 +588,6 @@ class PlayState extends MusicBeatState
 			gfVersion = 'gf-none';
 		}
 
-		//t5 don't change these values back it makes the sprites look kinda ugly if they are set too high.
 		screenshader.waveAmplitude = 0.5;
 		screenshader.waveFrequency = 1;
 		screenshader.waveSpeed = 1;
@@ -785,6 +776,9 @@ class PlayState extends MusicBeatState
 			case 'festival':
 				gf.x -= 200;
 				boyfriend.x -= 200;
+			case 'bedroom':
+				dad.setPosition(-116, 63);
+				boyfriend.setPosition(547, 190);
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1471,10 +1465,37 @@ class PlayState extends MusicBeatState
 				var roof:BGSprite = new BGSprite('roof', -350, 0, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
 				add(roof);
 			case 'bedroom':
-				bgZoom = 1.2;
+				bgZoom = 0.8;
 				stageName = 'bedroom';
 
+				var sky:BGSprite = new BGSprite('nightSky', 87, 96, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
+				sprites.add(sky);
+				add(sky);
 
+				var outside:BGSprite = new BGSprite('outside', 234, 135, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
+				sprites.add(outside);
+				add(outside);
+
+				var bedroom:BGSprite = new BGSprite('bedroom', 0, 0, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
+				sprites.add(bedroom);
+				add(bedroom);
+
+				var tv:BGSprite = new BGSprite('tv', 0, 474, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
+				sprites.add(tv);
+				add(tv);
+
+				tristan = new BGSprite('tristan', 969, 288, 'backgrounds/bedroom/trist', [
+					new Animation('idle', 'day', 24, false, [false, false]),
+					new Animation('idleNight', 'night', 24, false, [false, false])
+				], 1, 1, true, true);
+				curTristanAnim = 'idle';
+				tristan.animation.play('idle');
+				sprites.add(tristan);
+				add(tristan);
+
+				var baldi:BGSprite = new BGSprite('tv', 1132, 513, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
+				sprites.add(baldi);
+				add(baldi);
 			default:
 				bgZoom = 0.9;
 				stageName = 'stage';
@@ -2914,23 +2935,28 @@ class PlayState extends MusicBeatState
 								healthtolower = 0.005;
 							}
 					}
-
-					//'LEFT', 'DOWN', 'UP', 'RIGHT'
-					var fuckingDumbassBullshitFuckYou:String;
-					var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-					fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(daNote.originalType)) % dadStrumAmount];
-					if(dad.nativelyPlayable)
+					switch (daNote.noteStyle)
 					{
-						switch(noteTypes[daNote.originalType % dadStrumAmount])
-						{
-							case 'LEFT':
-								fuckingDumbassBullshitFuckYou = 'RIGHT';
-							case 'RIGHT':
-								fuckingDumbassBullshitFuckYou = 'LEFT';
-						}
+						case 'phone':
+							dad.playAnim('singSmash', true);
+						default:
+							//'LEFT', 'DOWN', 'UP', 'RIGHT'
+							var fuckingDumbassBullshitFuckYou:String;
+							var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+							fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(daNote.originalType)) % dadStrumAmount];
+							if(dad.nativelyPlayable)
+							{
+								switch(noteTypes[daNote.originalType % dadStrumAmount])
+								{
+									case 'LEFT':
+										fuckingDumbassBullshitFuckYou = 'RIGHT';
+									case 'RIGHT':
+										fuckingDumbassBullshitFuckYou = 'LEFT';
+								}
+							}
+						dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
+						dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					}
-					dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
-					dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
 					cameraMoveOnNote(daNote.originalType, 'dad');
 					
 					dadStrums.forEach(function(sprite:FlxSprite)
@@ -2965,12 +2991,8 @@ class PlayState extends MusicBeatState
 					{
 						case 'cheating':
 							health -= healthtolower;
-							
 						case 'unfairness':
 							health -= (healthtolower / 5);
-					}
-					if(dad.curCharacter == 'pooper') {
-						health -= (healthtolower / 3);
 					}
 					// boyfriend.playAnim('hit',true);
 					dad.holdTimer = 0;
@@ -2994,13 +3016,13 @@ class PlayState extends MusicBeatState
 				}
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
-				var noteStrum:FlxSprite = daNote.MyStrum != null ? daNote.MyStrum : strumLine;
+				var noteSpeed = (daNote.LocalScrollSpeed == 0 ? 1 : daNote.LocalScrollSpeed);
 				
 				if (daNote.wasGoodHit && daNote.isSustainNote && Conductor.songPosition >= (daNote.strumTime + 10))
 				{
 					destroyNote(daNote);
 				}
-				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (350 / (0.45 * FlxMath.roundDecimal(SONG.speed * (daNote.LocalScrollSpeed == 0 ? 1 : daNote.LocalScrollSpeed), 2))))
+				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (350 / (0.45 * FlxMath.roundDecimal(SONG.speed * noteSpeed, 2))))
 				{
 					if (!devBotplay)
 						noteMiss(daNote.originalType, daNote);
@@ -4408,9 +4430,8 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
 					case 1200:
-						var scaler = 1 / defaultCamZoom;
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
-						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 16);
+						FlxTween.tween(black, {alpha: 0.7}, (Conductor.stepCrochet / 1000) * 8);
 					case 1216:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						camHUD.setFilters([]);
@@ -4852,6 +4873,31 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(FlxG.camera, {angle: -10}, 0.1);
 					case 192 | 832:
 						FlxTween.tween(FlxG.camera, {angle: 0}, 0.2);
+					case 1276:
+						FlxG.camera.fade(FlxColor.WHITE, (Conductor.stepCrochet / 1000) * 4, false, function()
+						{
+							FlxG.camera.stopFX();
+						});
+						FlxG.camera.shake(0.015, (Conductor.stepCrochet / 1000) * 4);
+					case 1280:
+						var curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
+						var targetWindowSize = new FlxPoint(854, 480);
+						FlxTween.tween(curWindowSize, {x: targetWindowSize, y: targetWindowSize}, 0.4, {
+							ease: FlxEase.expoOut,
+							onUpdate: function(tween:FlxTween)
+							{
+								Application.current.window.resize(Std.int(curWindowSize.x), Std.int(curWindowSize.y));
+							},
+							onComplete: function(tween:FlxTween)
+							{
+								Application.current.window.resize(854, 480);
+								var display = Application.current.window.display.currentMode;
+								
+								Application.current.window.x = Std.int(FlxG.width / 2);
+								Application.current.window.y = Std.int(FlxG.height / 2);
+							}
+						});
+						dadStrums.visible = false;
 				}
 			case 'shredder':
 				switch (curStep)
@@ -4936,12 +4982,12 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)
         {
-            var fonts = ['arial', 'chalktastic', 'openSans', 'pkmndp', 'barcode', 'vcr'];
+            var fonts = ['arial', 'chalktastic', 'openSans', 'pkmndp', 'barcode', 'vcr', 'comic'];
             var chosenFont = fonts[FlxG.random.int(0, fonts.length)];
             kadeEngineWatermark.font = Paths.font('exploit/${chosenFont}.ttf');
             creditsWatermark.font= Paths.font('exploit/${chosenFont}.ttf');
             scoreTxt.font = Paths.font('exploit/${chosenFont}.ttf');
-			songName.font = Paths.font('exploit/${chosenFont}.ttf');
+				songName.font = Paths.font('exploit/${chosenFont}.ttf');
         }
 		#if desktop
 		DiscordClient.changePresence(detailsText
@@ -5040,6 +5086,10 @@ class PlayState extends MusicBeatState
 		if (curBeat % 2 == 0 && crowd != null)
 		{
 			crowd.animation.play('idle', true);
+		}
+		if (curBeat % 2 == 0 && tristan != null)
+		{
+			tristan.animation.play(curTristanAnim);
 		}
 		if (curBeat % 4 == 0 && spotLightPart && spotLight != null)
 		{
@@ -5391,6 +5441,14 @@ class PlayState extends MusicBeatState
 			lastSinger = curSinger;
 		}
 	}
+	function switchToNight()
+	{
+		var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bedroom');
+		var baldiSpr = BGSprite.getBGSprite(backgroundSprites, 'baldi');
+
+		bedroomSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bedroom'));
+		baldiSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/baldi'));
+	}
 	public function getCamZoom():Float
 	{
 		return defaultCamZoom;
@@ -5527,7 +5585,7 @@ class PlayState extends MusicBeatState
 		Application.current.window.y = Std.int((display.height - Application.current.window.y) / 2);
 		WindowsUtil.getWindowsTransparent();
 
-		FlxTween.tween(window, {x: FlxG.width / 2}, 1, {ease: FlxEase.cubeOut});
+		FlxTween.tween(window, {x: FlxG.width / 2 - 300}, 1, {ease: FlxEase.cubeOut});
 		
 		/*var bg = Paths.image("holyshit").bitmap;
 		var spr = new Sprite();

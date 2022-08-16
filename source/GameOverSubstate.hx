@@ -31,6 +31,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'dave-death';
 			case 'tristan':
 				daBf = 'tristan-death';
+			case 'tristan-golden':
+				daBf = 'tristan-golden-death';
 			case 'bambi-new':
 				daBf = 'bambi-death';
 			case 'nofriend':
@@ -92,6 +94,10 @@ class GameOverSubstate extends MusicBeatSubstate
 				FlxG.switchState(new StoryMenuState());
 			else
 				FlxG.switchState(new FreeplayState());
+		}
+		if (FlxG.keys.justPressed.SEVEN)
+		{
+			FlxG.switchState(new AnimationDebug(bf.curCharacter));
 		}
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
