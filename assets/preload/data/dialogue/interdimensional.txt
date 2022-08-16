@@ -1,4 +1,4 @@
-setfont_code:dave,3d-scared:UH OH NOT AGAIN
+setfont_code:dave,festival-3d-scared:UH OH NOT AGAIN
 :dave,festival-3d-scared:THIS ISN'T A GOOD TIME RIGHT NOW
 distort:dave,festival-3d-scared:THERE ARE PEOPLE AROUND, THEY COULD GET HURT
 undistort:dave,festival-3d-scared:HELP

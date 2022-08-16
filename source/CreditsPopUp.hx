@@ -55,6 +55,8 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'Aadsta';
 			case 'adventure':
 				songCreator = 'Ruby';
+			case 'bot-trot':
+				songCreator = 'TH3R34LD34L';
 		}
 		switch (PlayState.storyWeek)
 		{

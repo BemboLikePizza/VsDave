@@ -3316,6 +3316,21 @@ class PlayState extends MusicBeatState
 						};
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
+					case 'interdimensional':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.sound.playMusic(Paths.music('freakyMenu'));
+							FlxG.switchState(new CreditsMenuState());
+						};
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
 					default:
 						FlxG.sound.playMusic(Paths.music('freakyMenu'));
 						FlxG.switchState(new StoryMenuState());
@@ -3357,6 +3372,17 @@ class PlayState extends MusicBeatState
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						doof.scrollFactor.set();
+						doof.finishThing = nextSong;
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'interdimensional':
+											canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = nextSong;
 						doof.cameras = [camDialogue];
@@ -3442,6 +3468,20 @@ class PlayState extends MusicBeatState
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
 						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'interdimensional':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
