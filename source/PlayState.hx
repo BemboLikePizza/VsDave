@@ -1107,11 +1107,11 @@ class PlayState extends MusicBeatState
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
 				}			
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${skyType}'), null, 1.35, 1.35);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${skyType}'), null, 0.6, 0.6);
 				sprites.add(bg);
 				add(bg);
 				
-				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/${assetType}hills'), null, 1.1, 1.1);
+				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/${assetType}hills'), null, 0.7, 0.7);
 				sprites.add(stageHills);
 				add(stageHills);
 
@@ -1160,28 +1160,28 @@ class PlayState extends MusicBeatState
 	
 				var skyType:String = stageName == 'bambiFarmNight' ? 'sky_night' : stageName == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 				
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/' + skyType), null, 1.35, 1.35);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/' + skyType), null, 0.6, 0.6);
 				sprites.add(bg);
 				add(bg);
 
 				if (SONG.song.toLowerCase() == 'maze')
 				{
-					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -600, -200, Paths.image('backgrounds/shared/sky_sunset'), null, 1.35, 1.35);
+					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -600, -200, Paths.image('backgrounds/shared/sky_sunset'), null, 0.6, 0.6);
 					sunsetBG.alpha = 0;
 					sprites.add(sunsetBG);
 					add(sunsetBG);
 
-					var nightBG:BGSprite = new BGSprite('nightBG', -600, -200, Paths.image('backgrounds/shared/sky_night'), null, 1.35, 1.35);
+					var nightBG:BGSprite = new BGSprite('nightBG', -600, -200, Paths.image('backgrounds/shared/sky_night'), null, 0.6, 0.6);
 					nightBG.alpha = 0;
 					sprites.add(nightBG);
 					add(nightBG);
 				}
-				var hills:BGSprite = new BGSprite('hills', 0, 150, Paths.image('backgrounds/farm/orangey hills'), null, 1.3, 1.3);
+				var hills:BGSprite = new BGSprite('hills', 0, 50, Paths.image('backgrounds/farm/orangey hills'), null, 0.65, 0.65);
 				hills.setGraphicSize(Std.int(hills.width / 1.2));
 				hills.updateHitbox();
 				sprites.add(hills);
 				
-				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 200, Paths.image('backgrounds/farm/funfarmhouse', 'shared'), null, 1.2, 1.2);
+				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 125, Paths.image('backgrounds/farm/funfarmhouse', 'shared'), null, 0.7, 0.7);
 				farmHouse.setGraphicSize(Std.int(farmHouse.width * 0.9));
 				farmHouse.updateHitbox();
 				sprites.add(farmHouse);
