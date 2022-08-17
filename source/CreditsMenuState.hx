@@ -270,16 +270,11 @@ class CreditsMenuState extends MusicBeatState
          new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
          new Social('twitter', 'https://twitter.com/Foxnap2')
       ]),
+      
       new Person("nihilistt", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
          new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
-      ]),
-      new Person("Magical", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCvKxIVXxdfCWpOoeqCDQPGw'),
-         new Social('twitter', 'https://twitter.com/EvilMoldyGH'),
-         new Social('roblox', 'https://www.roblox.com/users/55575817/profile')
       ]),
 
       new Person("mantis", CreditsType.BetaTester, "Beta Tester",

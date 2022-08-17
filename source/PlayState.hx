@@ -3307,7 +3307,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
@@ -3371,7 +3371,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = nextSong;
 						doof.cameras = [camDialogue];
@@ -3467,7 +3467,7 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
