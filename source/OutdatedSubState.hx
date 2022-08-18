@@ -55,6 +55,8 @@ class OutdatedSubState extends MusicBeatState
 	}
 	function leaveState()
 	{
+		FlxG.save.data.alreadyGoneToWarningScreen = true;
+		FlxG.save.flush();
 		leftState = true;
 		FlxG.switchState(new MainMenuState());
 	}
