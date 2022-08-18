@@ -15,6 +15,7 @@ import openfl.display.BitmapDataChannel;
 import openfl.geom.Matrix;
 import openfl.geom.Point;
 import flixel.FlxCamera;
+import Shaders.DitherEffect;
 
 @:keep @:bitmap("assets/images/transitions/diagonal_gradient.png")
 private class GraphicDiagonalGradient extends BitmapData {}
@@ -153,6 +154,7 @@ class TransitionFade extends TransitionEffect
 	function makeSprite(DirX:Float, DirY:Float, region:FlxRect):FlxSprite
 	{
 		var s = new FlxSprite(region.x, region.y);
+		var dShader = new DitherEffect();
 		var locX:Float = 0;
 		var locY:Float = 0;
 		var angle:Int = 0;
@@ -161,6 +163,7 @@ class TransitionFade extends TransitionEffect
 		{
 			// no direction
 			s.makeGraphic(Std.int(region.width), Std.int(region.height), _data.color);
+			s.shader = dShader.shader;
 		}
 		else if (DirX == 0 && Math.abs(DirY) > 0)
 		{
@@ -173,6 +176,7 @@ class TransitionFade extends TransitionEffect
 			pixels.copyPixels(gvert, gvert.rect, new Point(0, locY));
 			s.pixels = pixels;
 			s.scale.set(region.width, 1.0);
+			s.shader = dShader.shader;
 			s.updateHitbox();
 		}
 		else if (Math.abs(DirX) > 0 && DirY == 0)
@@ -186,6 +190,7 @@ class TransitionFade extends TransitionEffect
 			pixels.copyPixels(ghorz, ghorz.rect, new Point(locX, 0));
 			s.pixels = pixels;
 			s.scale.set(1.0, region.height);
+			s.shader = dShader.shader;
 			s.updateHitbox();
 		}
 		else if (Math.abs(DirX) > 0 && Math.abs(DirY) > 0)
@@ -193,6 +198,7 @@ class TransitionFade extends TransitionEffect
 			// diagonal wipe
 			locY = DirY > 0 ? region.height : 0;
 			s.loadGraphic(getGradient());
+			s.shader = dShader.shader;
 			s.flipX = DirX < 0;
 			s.flipY = DirY < 0;
 		}
