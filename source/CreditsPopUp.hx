@@ -55,6 +55,8 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'Aadsta';
 			case 'adventure':
 				songCreator = 'Ruby';
+			case 'bot-trot':
+				songCreator = 'TH3R34LD34L';
 		}
 		switch (PlayState.storyWeek)
 		{
@@ -63,7 +65,7 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 2:
 				headingPath = {path: 'songHeadings/bambiHeading', antiAliasing: true, iconOffset: 0};
 			case 3:
-				headingPath = {path: 'songHeadings/splitathonHeading', antiAliasing: false, iconOffset: -10};
+				headingPath = {path: 'songHeadings/splitathonHeading', antiAliasing: false, iconOffset: 0};
 			case 4:
 				headingPath = {path: 'songHeadings/festivalHeading', antiAliasing: true, iconOffset: 0};
 			case 8:

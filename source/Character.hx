@@ -627,6 +627,24 @@ class Character extends FlxSprite
 
 				recursedSkin = 'tristan-recursed';
 
+			case 'tristan-opponent':
+				frames = Paths.getSparrowAtlas('dave/TristanHairFlipped', 'shared');
+				
+				
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				
+				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				
+				barColor = FlxColor.fromRGB(255, 19, 15);
+				
+				nativelyPlayable = true;
+				flipX = true;
+				playAnim('idle');
+
 			case 'tristan-death':
 				frames = Paths.getSparrowAtlas('dave/Tristan_Dead', 'shared');
 

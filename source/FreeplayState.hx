@@ -56,17 +56,17 @@ class FreeplayState extends MusicBeatState
 
 	var songColors:Array<FlxColor> = 
 	[
-    	0xFF00137F,    // gf but its actually dave!
+    	0xFF00137F,    // GF but its actually dave!
 		0xFF4965FF,    // DAVE
-		0xFF00B515,    // MISTER BAMBI RETARD (autistic btw...)
+		0xFF00B515,    // MISTER BAMBI RETARD
 		0xFF00FFFF,    // SPLIT THE THONNNNN
 		0xFF800080,    // FESTIVAL
 		0xFFFF0000,    // TRISTAN
 		0xFFFF0000,    // UNFAIRNESS
 		0xFFFF0000,    // KABUNGA
 		0xFF810000,    // EXPLOITATION
-		FlxColor.GREEN,    // SECRET MOD LEAK
-		FlxColor.fromRGB(44, 44, 44),    // RECURSER
+		0xFF0EAE2C,    // SECRET MOD LEAK
+		FlxColor.fromRGB(44, 44, 44),    // RECURSED
 		0xFF31323F, // MOLDY		
 		FlxColor.fromRGB(162, 150, 188) // PLAYROBOT
     ];
@@ -252,7 +252,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave-annoyed', 'dave-angey', 'dave']);
 				addWeek(['Blocked', 'Corn-Theft', 'Maze'], 2, ['bambi-new', 'bambi-new', 'bambi-new']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
-				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan', 'dave-angey', 'dave']);
+				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-angey', 'dave']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch'], 2, ['bambi-joke']);
 				
@@ -271,7 +271,7 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);
 
-				addWeek(['Adventure'], 5, ['tristan']);
+				addWeek(['Adventure'], 5, ['tristan-opponent']);
 				addWeek(['Bot-Trot'], 12, ['playrobot']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
 				addWeek(['Five-Nights', 'Overdrive'], 1, ['dave']);

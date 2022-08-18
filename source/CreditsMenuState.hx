@@ -85,7 +85,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/TheBuilderXD')
       ]),
 
-      new Person("Erizur", CreditsType.Dev, "New Main Menu Programmer, Week Icon Artist",
+      new Person("Erizur", CreditsType.Dev, "New Main Menu Programmer, Week Icon Artist & Spanish Translator",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
          new Social('twitter', 'https://twitter.com/am_erizur')
@@ -133,21 +133,42 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
       ]),
+      new Person("evdial", CreditsType.Contributor, "Bambi Week Main Artist",
+      [
+
+      ]),
+      new Person("wugalex", CreditsType.Contributor, "BG Artist",
+      [
+         
+      ]),
+      new Person("Jukebox", CreditsType.BetaTester, "BG Artist",
+      [
+         new Social('twitter', 'https://twitter.com/Juk3b0x_'),
+         new Social('youtube', 'https://www.youtube.com/channel/UCwA3jnG5cu3toaVCOhc-Tqw'),
+      ]),
       
-      new Person("Oxygen", CreditsType.Contributor, "Beta Tester, Exploitation song",
+      new Person("Oxygen", CreditsType.Contributor, "Composer, Beta Tester",
       [
          new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
          new Social('twitter', 'https://twitter.com/oxygenboi2000'),
          new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
       ]),
-      new Person("Zmac", CreditsType.Contributor, "3D Background, Intro text help, YAFN help",
+      new Person("Zmac", CreditsType.Contributor, "3D Backgrounds, Intro text help, YAFN help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
       ]),
-      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie composer & charter, Main Menu Composer, Beta tester",
+      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie composer & charter, Composer, Beta tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
+      ]),
+      new Person("Aadsta", CreditsType.Contributor, "Composer, BG Artist, Beta Tester",
+      [
+         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
+      ]),
+      new Person("Project Tea", CreditsType.Contributor, "Charter",
+      [
+         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
       ]),
       new Person("Top 10 Awesome", CreditsType.Contributor, "Overdrive composer, funny guy",
       [
@@ -162,10 +183,18 @@ class CreditsMenuState extends MusicBeatState
          new Social ('youtube', 'https://youtube.com/c/RubysArt_'),
          new Social ('twitter', 'https://twitter.com/RubysArt_')
       ]),
-      new Person("Lancey", CreditsType.Contributor, "OST art for the OST videos",
+      new Person("Lancey", CreditsType.Contributor, "Made a menu background",
       [  
          new Social('youtube', 'https://youtube.com/c/Lancey170'),
          new Social('twitter', 'https://twitter.com/Lancey170')
+      ]),
+      new Person("Paraso", CreditsType.Contributor, "Main Menu BG Artist",
+      [  
+
+      ]),
+      new Person("Sammypigzy", CreditsType.Contributor, "Artist, Bot Trot Main Artist",
+      [  
+
       ]),
       
       new Person("Devianator", CreditsType.Contributor, "Beta Tester, and helping with Credits icons",
@@ -174,19 +203,12 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/devianator404')
       ]),
       
-      new Person("sk0rbias", CreditsType.Contributor, "Credits Menu icons & Beta Tester",
+      new Person("sk0rbias", CreditsType.Contributor, "Credits & Menu icons & general art concepts",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
          new Social('twitter', 'https://twitter.com/sk0rbias')
       ]),
-      
-      new Person("logspa", CreditsType.Contributor, "Menu Character Design",
-      [  
-         new Social('youtube', 'https://www.youtube.com/channel/UCz_dSpnfh9USvpuShDwtP9Q'),
-         new Social('twitter', 'https://twitter.com/spa_log')
-      ]),
-
-            new Person("Your mom", CreditsType.Contributor, "Made Vs Dave Rap, totally.",
+      new Person("Your mom", CreditsType.Contributor, "Made Vs Dave Rap, totally.",
       [  
          new Social('youtube', 'https://www.youtube.com/channel/UCeYxPL7ClfwXOOrpbtqJ13g'),
       ]),
@@ -209,27 +231,22 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('twitter', 'https://twitter.com/tailsmaster1')
       ]),
-      new Person("Aadsta", CreditsType.BetaTester, "Beta Tester & Supporter",
-      [
-         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
-      ]),
       
       new Person("Bendy", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC44WnxbLouBs6USX8loLS5g')
       ]),
       
-      new Person("weednose", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('twitter', 'https://twitter.com/GucciWallece')
-      ]),
-      
       new Person("vex", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('twitter', 'https://twitter.com/vex________')
       ]),
+      new Person("xml", CreditsType.BetaTester, "Beta Tester",
+      [
+         new Social('twitter', 'https://twitter.com/vex________')
+      ]),
       
-      new Person("ztgds", CreditsType.BetaTester, "Beta Tester",
+      new Person("ztgds", CreditsType.BetaTester, "Minor programming help, Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCUmuZE0RPjvUhB036T6omfQ')
       ]),
@@ -270,16 +287,11 @@ class CreditsMenuState extends MusicBeatState
          new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
          new Social('twitter', 'https://twitter.com/Foxnap2')
       ]),
+      
       new Person("nihilistt", CreditsType.BetaTester, "Beta Tester",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
          new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
-      ]),
-      new Person("Magical", CreditsType.BetaTester, "Beta Tester",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCvKxIVXxdfCWpOoeqCDQPGw'),
-         new Social('twitter', 'https://twitter.com/EvilMoldyGH'),
-         new Social('roblox', 'https://www.roblox.com/users/55575817/profile')
       ]),
 
       new Person("mantis", CreditsType.BetaTester, "Beta Tester",
@@ -318,10 +330,9 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/c/Villezen')
       ]),
-      new Person("Jukebox", CreditsType.BetaTester, "Beta Tester",
+      new Person("TecheVent", CreditsType.BetaTester, "Beta Tester",
       [
-         new Social('twitter', 'https://twitter.com/Juk3b0x_'),
-         new Social('youtube', 'https://www.youtube.com/channel/UCwA3jnG5cu3toaVCOhc-Tqw'),
+         new Social('youtube', 'https://www.youtube.com/c/Villezen')
       ]),
       new Person("emiko", CreditsType.BetaTester, "Beta Tester",
       [
@@ -331,10 +342,9 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('twitter', 'https://twitter.com/Ctiles1'),
          new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
-         
       ]),
 	  // Special Thanks // 
-	  new Person("Golden Apple Team", CreditsType.SpecialThanks, "Made a great fanmade mod, huge motivator for 3.0",
+     new Person("Golden Apple Team", CreditsType.SpecialThanks, "Made a great fanmade mod, huge motivator for 3.0",
       [
          new Social('gamebanana', 'https://gamebanana.com/mods/343129')
       ])

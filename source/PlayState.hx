@@ -583,7 +583,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'escape-from-california'];
+		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'vs-dave-rap', 'escape-from-california'];
 
 		if(SONG.gf != null)
 		{
@@ -765,6 +765,9 @@ class PlayState extends MusicBeatState
 			case 'interdimension-void':
 				dad.x -= 200;
 				dad.y -= 100;
+			case 'green-void':
+				dad.x -= 200;
+				dad.y -= 400;
 			case 'roof':
 				dad.setPosition(200, 300);
 				boyfriend.setPosition(700, 100);
@@ -785,9 +788,6 @@ class PlayState extends MusicBeatState
 			case 'bedroom':
 				dad.setPosition(-116, 63);
 				boyfriend.setPosition(547, 190);
-			case 'desert':
-				dad.x -= 400;
-				boyfriend.x -= 400;
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1109,11 +1109,11 @@ class PlayState extends MusicBeatState
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
 				}			
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${skyType}'), null, 1.35, 1.35);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${skyType}'), null, 0.6, 0.6);
 				sprites.add(bg);
 				add(bg);
 				
-				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/${assetType}hills'), null, 1.1, 1.1);
+				var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/${assetType}hills'), null, 0.7, 0.7);
 				sprites.add(stageHills);
 				add(stageHills);
 
@@ -1162,28 +1162,28 @@ class PlayState extends MusicBeatState
 	
 				var skyType:String = stageName == 'bambiFarmNight' ? 'sky_night' : stageName == 'bambiFarmSunset' ? 'sky_sunset' : 'sky';
 				
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/' + skyType), null, 1.35, 1.35);
+				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/' + skyType), null, 0.6, 0.6);
 				sprites.add(bg);
 				add(bg);
 
 				if (SONG.song.toLowerCase() == 'maze')
 				{
-					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -600, -200, Paths.image('backgrounds/shared/sky_sunset'), null, 1.35, 1.35);
+					var sunsetBG:BGSprite = new BGSprite('sunsetBG', -600, -200, Paths.image('backgrounds/shared/sky_sunset'), null, 0.6, 0.6);
 					sunsetBG.alpha = 0;
 					sprites.add(sunsetBG);
 					add(sunsetBG);
 
-					var nightBG:BGSprite = new BGSprite('nightBG', -600, -200, Paths.image('backgrounds/shared/sky_night'), null, 1.35, 1.35);
+					var nightBG:BGSprite = new BGSprite('nightBG', -600, -200, Paths.image('backgrounds/shared/sky_night'), null, 0.6, 0.6);
 					nightBG.alpha = 0;
 					sprites.add(nightBG);
 					add(nightBG);
 				}
-				var hills:BGSprite = new BGSprite('hills', 0, 150, Paths.image('backgrounds/farm/orangey hills'), null, 1.3, 1.3);
+				var hills:BGSprite = new BGSprite('hills', 0, 50, Paths.image('backgrounds/farm/orangey hills'), null, 0.65, 0.65);
 				hills.setGraphicSize(Std.int(hills.width / 1.2));
 				hills.updateHitbox();
 				sprites.add(hills);
 				
-				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 200, Paths.image('backgrounds/farm/funfarmhouse', 'shared'), null, 1.2, 1.2);
+				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 125, Paths.image('backgrounds/farm/funfarmhouse', 'shared'), null, 0.7, 0.7);
 				farmHouse.setGraphicSize(Std.int(farmHouse.width * 0.9));
 				farmHouse.updateHitbox();
 				sprites.add(farmHouse);
@@ -1427,7 +1427,7 @@ class PlayState extends MusicBeatState
 				
 				voidShader(bg);
 			case 'rapBattle':
-				bgZoom = 0.9;
+				bgZoom = 1.2;
 				stageName = 'rapLand';
 
 				var bg:BGSprite = new BGSprite('rapBG', -100, -100, Paths.image('backgrounds/rapBattle'), null);
@@ -3334,7 +3334,22 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.sound.playMusic(Paths.music('freakyMenu'));
+							FlxG.switchState(new CreditsMenuState());
+						};
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'interdimensional':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
@@ -3383,7 +3398,18 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
+						doof.scrollFactor.set();
+						doof.finishThing = nextSong;
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'interdimensional':
+											canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = nextSong;
 						doof.cameras = [camDialogue];
@@ -3468,7 +3494,21 @@ class PlayState extends MusicBeatState
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
 						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-dialogueEnd')));
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'interdimensional':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
 						doof.scrollFactor.set();
 						doof.finishThing = function()
 						{
