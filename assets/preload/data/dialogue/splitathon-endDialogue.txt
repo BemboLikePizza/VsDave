@@ -5,16 +5,16 @@
 :tristan:But the game was really fun!
 :tristan:You press these number buttons, and sometimes they would say certain things.
 :tristan:911 was a little scary though
-:dave,annoyed:YOU CALLED THE COPS!?
+:dave,annoyed:SON YOU CALLED THE COPS!?
 :bf,upset:Boop!?
 :bambi:WHY YOU DO THAT??
 :tristan:Wait that's what it was?
-:dave,annoyed:Yes! and you know what, son! you are grounded!
+:dave,annoyed:Yes! and you know what, you are grounded!
 :generic:Tristan starts crying
-:tristan:But dad! I didn't know!
+:tristan,sad:But dad! I didn't know!
 :dave,annoyed:I don't care Tristan! Those are real people, I could've got in lots of trouble!
 :dave,annoyed:Give me the phone now.
-:tristan:But daaaaad-
+:tristan,sad:But daaaaad-
 :dave,annoyed:Give me the phone!
 :generic:Tristan hands Dave the phone.
 :dave,annoyed:Ugh, sorry about that.
