@@ -149,6 +149,10 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
       ]),
+      new Person("Aadsta", CreditsType.Contributor, "Composed Recursed, Beta Tester",
+      [
+         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
+      ]),
       new Person("Top 10 Awesome", CreditsType.Contributor, "Overdrive composer, funny guy",
       [
          new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
@@ -162,7 +166,7 @@ class CreditsMenuState extends MusicBeatState
          new Social ('youtube', 'https://youtube.com/c/RubysArt_'),
          new Social ('twitter', 'https://twitter.com/RubysArt_')
       ]),
-      new Person("Lancey", CreditsType.Contributor, "OST art for the OST videos",
+      new Person("Lancey", CreditsType.Contributor, "Made a menu background",
       [  
          new Social('youtube', 'https://youtube.com/c/Lancey170'),
          new Social('twitter', 'https://twitter.com/Lancey170')
@@ -174,7 +178,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/devianator404')
       ]),
       
-      new Person("sk0rbias", CreditsType.Contributor, "Credits Menu icons & Beta Tester",
+      new Person("sk0rbias", CreditsType.Contributor, "Credits Menu icons",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
          new Social('twitter', 'https://twitter.com/sk0rbias')
@@ -208,10 +212,6 @@ class CreditsMenuState extends MusicBeatState
       new Person("peejeada", CreditsType.BetaTester, "Beta Tester & Supporter",
       [
          new Social('twitter', 'https://twitter.com/tailsmaster1')
-      ]),
-      new Person("Aadsta", CreditsType.BetaTester, "Beta Tester & Supporter",
-      [
-         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
       ]),
       
       new Person("Bendy", CreditsType.BetaTester, "Beta Tester",

@@ -12,7 +12,13 @@ internal,splitathon,the-duo,good
 internal,shredder,bambi,good
 internal,greetings,tristan,good
 internal,interdimensional,dave-angey,good
+internal,rano,dave,good
 internal,escape-from-california,moldy,good
+internal,mealie,bambi,good
+internal,memory,dave,good
+internal,five-nights,dave,good
+internal,adventure,tristan,good
+internal,bot-trot,playrobot,good
 external,a-new-day,dave,good
 external,bambi-speak,bambi,bad
 external,good-ending,bf-old,good
