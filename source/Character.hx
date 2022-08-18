@@ -221,9 +221,8 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 			case 'gf-3d':
 				frames = Paths.getSparrowAtlas('characters/3d_gf', 'shared');
-				animation.addByIndices('danceLeft', 'idle gf', CoolUtil.numberArray(6, 0), '', 24, false);
-				animation.addByIndices('danceRight', 'idle gf', CoolUtil.numberArray(13, 7), '', 24, false);
-
+				
+				animation.addByPrefix('idle', 'idle gf', 24, false);
 				animation.addByPrefix('sad', 'gf sad', 24, false);
 
 				loadOffsetFile(curCharacter);
@@ -285,21 +284,6 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
 				playAnim('idle');
-			case 'davefriend':
-				// DAVEFRIEND SHITE ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('dave/characters/davefriend', 'shared');
-				frames = tex;
-				animation.addByPrefix('idle', 'idle', 24, false);
-				for (anim in ['left', 'down', 'up', 'right'])
-				{
-					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}0', 24, false);
-				}
-					
-				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
-								
-				barColor = FlxColor.fromRGB(15, 95, 255);
-				
-				playAnim('idle');	
 			case 'dave-annoyed':
 				// DAVE SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('dave/characters/Dave_insanity_lol', 'shared');
@@ -987,7 +971,7 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-pixel' | 'gf-3d':
+				case 'gf' | 'gf-pixel':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;

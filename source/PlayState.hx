@@ -1,5 +1,6 @@
 package;
 
+import flixel.graphics.FlxGraphic;
 import flixel.addons.transition.Transition;
 import flixel.group.FlxGroup;
 import sys.FileSystem;
@@ -290,6 +291,9 @@ class PlayState extends MusicBeatState
 	var tristan:BGSprite;
 	var curTristanAnim:String;
 
+	var desertBG:BGSprite;
+	var desertBG2:BGSprite;
+
 	var vcr:VCRDistortionShader;
 
 	var place:BGSprite;
@@ -552,6 +556,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'roof';
 				case 'bot-trot':
 					stageCheck = 'bedroom';
+				case 'escape-from-california':
+					stageCheck = 'desert';
 			}
 		}
 		else
@@ -577,7 +583,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot'];
+		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'escape-from-california'];
 
 		if(SONG.gf != null)
 		{
@@ -779,6 +785,9 @@ class PlayState extends MusicBeatState
 			case 'bedroom':
 				dad.setPosition(-116, 63);
 				boyfriend.setPosition(547, 190);
+			case 'desert':
+				dad.x -= 400;
+				boyfriend.x -= 400;
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1446,7 +1455,6 @@ class PlayState extends MusicBeatState
 				freeplayBG.updateHitbox();
 				freeplayBG.screenCenter();
 				freeplayBG.color = FlxColor.multiply(0xFF4965FF, FlxColor.fromRGB(44, 44, 44));
-				freeplayBG.alpha = 0.8;
 				freeplayBG.alpha = 0;
 				add(freeplayBG);
 				
@@ -1496,6 +1504,25 @@ class PlayState extends MusicBeatState
 				var baldi:BGSprite = new BGSprite('tv', 1132, 513, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
 				sprites.add(baldi);
 				add(baldi);
+			case 'desert':
+				bgZoom = 0.6;
+				stageName = 'desert';
+				
+				desertBG = new BGSprite('desert', -786, -400, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
+				desertBG.setGraphicSize(Std.int(desertBG.width * 1.5));
+				desertBG.updateHitbox();
+				sprites.add(desertBG);
+				add(desertBG);
+
+				desertBG2 = new BGSprite('desert2', desertBG.x - desertBG.width, 0, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
+				desertBG.setGraphicSize(Std.int(desertBG.width * 1.5));
+				desertBG.updateHitbox();
+				sprites.add(desertBG2);
+				add(desertBG2);
+
+				var train:BGSprite = new BGSprite('train', -800, 700, Paths.image('california/train'), null, 1, 1, true);
+				sprites.add(train);
+				add(train);
 			default:
 				bgZoom = 0.9;
 				stageName = 'stage';
@@ -2386,7 +2413,18 @@ class PlayState extends MusicBeatState
 				shad.uTime.value[0] += elapsed;
 			}
 		}
-
+		if (SONG.song.toLowerCase() == 'escape-from-california')
+		{
+			var scrollSpeed = 100;
+			desertBG.x -= 30 * scrollSpeed * elapsed;
+			
+			if (desertBG.x <= -(desertBG.width) + (desertBG.width - 1280))
+			{
+				desertBG.x = desertBG.width - 1280;
+			}
+			desertBG2.x = desertBG.x - desertBG.width;
+			desertBG2.y = desertBG.y;
+		}
 
 		if (SONG.song.toLowerCase() == 'recursed')
 		{
@@ -2431,10 +2469,6 @@ class PlayState extends MusicBeatState
 				}
 				
 				health = FlxMath.lerp(0, 2, timeLeft / timeGiven);
-				if (timeLeft <= 0)
-				{
-					
-				}
 			}
 			else
 			{
@@ -4116,7 +4150,7 @@ class PlayState extends MusicBeatState
 			case 'bambi-3d':
 				gameOver();
 				return;
-			case 'tristan' | 'tristan-golden':
+			case 'tristan-golden':
 				FlxG.sound.play(Paths.sound('recursed/boom', 'shared'), 1.5, false);
 				for (i in 0...15)
 				{
@@ -5341,7 +5375,6 @@ class PlayState extends MusicBeatState
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
 		
 		switchDad(char, new FlxPoint(300, 450));
-		repositionChar(dad);
 
 		boyfriend.stunned = false;
 	}
@@ -5386,7 +5419,7 @@ class PlayState extends MusicBeatState
 	{
 		switch (char.curCharacter)
 		{
-			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf' | 'dave-festival' | 'davefriend':
+			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf' | 'dave-festival':
 				char.y -= 150;
 			case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 				char.y -= 400;
@@ -5478,7 +5511,8 @@ class PlayState extends MusicBeatState
 		var i = 0;
 		for (strumNote in strumLineNotes)
 		{
-			FlxTween.tween(strumNote, {angle: 360}, 0.4, {ease: FlxEase.expoOut});
+			var originAngle = strumNote.angle;
+			FlxTween.tween(strumNote, {angle: originAngle + 360}, 0.4, {ease: FlxEase.expoOut});
 			FlxTween.tween(strumNote, {y: strumLine.y}, 0.6, {ease: FlxEase.backOut});
 			i++;
 		}
@@ -5506,6 +5540,8 @@ class PlayState extends MusicBeatState
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
+
+		repositionChar(dad);
 	}
 	function switchBF(newChar:String, position:FlxPoint)
 	{
@@ -5518,6 +5554,8 @@ class PlayState extends MusicBeatState
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		boyfriend.color = getBackgroundColor(curStage);
+
+		repositionChar(boyfriend);
 	}
 	function switchGF(newChar:String, position:FlxPoint)
 	{
@@ -5525,6 +5563,8 @@ class PlayState extends MusicBeatState
 		gf = new Character(position.x, position.y, newChar);
 		gfGroup.add(gf);
 		gf.color = getBackgroundColor(curStage);
+
+		repositionChar(gf);
 	}
 
 	function makeInvisibleNotes(invisible:Bool)

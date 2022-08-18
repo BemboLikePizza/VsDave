@@ -71,7 +71,7 @@ class Transition extends FlxSubState
 		switch (Data.type)
 		{
 			case TransitionType.TILES:
-				return new TransitionTiles(Data);
+				return new TransitionDither(Data);
 			case TransitionType.FADE:
 				return new TransitionFade(Data);
 			default:
