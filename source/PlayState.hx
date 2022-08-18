@@ -1509,18 +1509,19 @@ class PlayState extends MusicBeatState
 				stageName = 'desert';
 				
 				desertBG = new BGSprite('desert', -786, -400, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
-				desertBG.setGraphicSize(Std.int(desertBG.width * 1.5));
+				desertBG.setGraphicSize(Std.int(desertBG.width * 1.2));
 				desertBG.updateHitbox();
 				sprites.add(desertBG);
 				add(desertBG);
 
 				desertBG2 = new BGSprite('desert2', desertBG.x - desertBG.width, 0, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
-				desertBG.setGraphicSize(Std.int(desertBG.width * 1.5));
-				desertBG.updateHitbox();
+				desertBG2.setGraphicSize(Std.int(desertBG2.width * 1.2));
+				desertBG2.updateHitbox();
 				sprites.add(desertBG2);
 				add(desertBG2);
 
-				var train:BGSprite = new BGSprite('train', -800, 700, Paths.image('california/train'), null, 1, 1, true);
+				var train:BGSprite = new BGSprite('train', -800, 500
+				, Paths.image('california/train'), null, 1, 1, true);
 				sprites.add(train);
 				add(train);
 			default:

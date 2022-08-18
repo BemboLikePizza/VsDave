@@ -134,7 +134,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
-				barColor = FlxColor.fromRGB(49, 176, 209);
+				barColor = FlxColor.fromRGB(3, 38, 133);
 				
 				nativelyPlayable = true;
 				flipX = true;
