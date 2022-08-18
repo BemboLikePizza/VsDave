@@ -196,6 +196,12 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
+			case 'phone':
+				setGraphicSize(Std.int(width * noteSize));
+				updateHitbox();
+				antialiasing = true;
+				
+				x -= (width - 78);
 
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
