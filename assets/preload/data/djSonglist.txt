@@ -4,7 +4,6 @@ internal,insanity,dave,bad
 external,im-angey,dave-angey,bad
 internal,polygonized,dave-angey,bad
 internal,bonus-song,dave,good
-internal,furiosity,dave-angey,good
 internal,blocked,bambi,bad
 internal,corn-theft,bambi,bad
 internal,maze,bambi,good
