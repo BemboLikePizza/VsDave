@@ -60,12 +60,14 @@ class Note extends FlxSprite
 
 	public var alphaMult:Float = 1.0;
 
+	public var noteOffset:Float = 0;
+
 	var notes = ['purple', 'blue', 'green', 'red'];
 
 	public function GoToStrum(strum:FlxSprite)
 	{
 		x = strum.x + (isSustainNote ? width : 0);
-		x += (noteStyle == 'phone' ? 20 : 0);
+		x += noteOffset;
 		alpha = strum.alpha * alphaMult;
 	}
 
@@ -121,6 +123,10 @@ class Note extends FlxSprite
 		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
 		{
 			this.noteStyle = 'recursed';
+			if (sustainNote)
+			{
+				noteOffset = 18;
+			}
 			notePathLol = 'notes/NOTE_recursed';
 		}
 		else
@@ -180,6 +186,7 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * 1.2));
 				updateHitbox();
 				antialiasing = true;
+				noteOffset = 20;
 				x -= (width - 78);
 			case 'guitarHero':
 				frames = Paths.getSparrowAtlas('notes/NOTE_gh', 'shared');
@@ -220,6 +227,7 @@ class Note extends FlxSprite
 				antialiasing = true;
 				
 				x -= (width - 78);
+				noteOffset = 20;
 
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
