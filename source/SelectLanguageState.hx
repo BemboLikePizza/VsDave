@@ -24,7 +24,7 @@ class SelectLanguageState extends MusicBeatState
    public override function create()
    {
       PlayerSettings.init();
-      
+
       FlxG.sound.playMusic(Paths.music('selectLanguageMenu'), 0.7);
       
       FlxG.sound.music.fadeIn(2, 0, 0.7);
@@ -37,10 +37,10 @@ class SelectLanguageState extends MusicBeatState
       add(bg);
 
       selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, 0, "Please Select A Language", 45);
-      selectLanguage.screenCenter(X);
       selectLanguage.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       selectLanguage.antialiasing = true;
       selectLanguage.borderSize = 2;
+      selectLanguage.screenCenter(X);
       add(selectLanguage);
 
       for (i in 0...langaugeList.length)
@@ -132,7 +132,7 @@ class SelectLanguageState extends MusicBeatState
    {
       if (selected)
       {
-         text.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+         text.setFormat("Comic Sans MS Bold", 25, FlxColor.YELLOW, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       }
       else
       {

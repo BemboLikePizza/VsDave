@@ -435,6 +435,7 @@ class DitherShader extends FlxShader
     // couldn't find a shadertoy link srry http://devlog-martinsh.blogspot.com/2011/03/glsl-8x8-bayer-matrix-dithering.html
     @:glFragmentSource('
         #pragma header
+        #extension GL_ARB_arrays_of_arrays : require
         // Ordered dithering aka Bayer matrix dithering
 
         float Scale = 1.0;
@@ -471,8 +472,8 @@ class DitherShader extends FlxShader
             vec4 rgba = texture2D(bitmap, openfl_TextureCoordv).rgba;
 
             vec2 xy = gl_FragCoord.xy * Scale;
-            int x = int(mod(xy.x, 8));
-            int y = int(mod(xy.y, 8));
+            int x = int(mod(xy.x, 8.0));
+            int y = int(mod(xy.y, 8.0));
 
             vec4 finalRGB;
             finalRGB.r = find_closest(x, y, rgba.r);
