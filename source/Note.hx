@@ -58,7 +58,16 @@ class Note extends FlxSprite
 	public var noteObject:FlxObject;
 	public var guitarSection:Bool;
 
+	public var alphaMult:Float = 1.0;
+
 	var notes = ['purple', 'blue', 'green', 'red'];
+
+	public function GoToStrum(strum:FlxSprite)
+	{
+		x = strum.x + (isSustainNote ? width : 0);
+		x += (noteStyle == 'phone' ? 20 : 0);
+		alpha = strum.alpha * alphaMult;
+	}
 
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal", inCharter:Bool = false, guitarSection:Bool = false)
 	{
@@ -203,6 +212,8 @@ class Note extends FlxSprite
 				animation.addByPrefix('blueScroll', 'blue0');
 				animation.addByPrefix('purpleScroll', 'purple0');
 				animation.addByPrefix('yellowScroll', 'purple');
+
+				LocalScrollSpeed = 1.08;
 				
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
@@ -260,8 +271,9 @@ class Note extends FlxSprite
 				{
 					if (spr.ID == notetolookfor)
 					{
-						x = spr.x;
+						GoToStrum(spr);
 						MyStrum = spr;
+						return;
 					}
 				});
 			}
@@ -271,8 +283,9 @@ class Note extends FlxSprite
 				{
 					if (spr.ID == notetolookfor)
 					{
-						x = spr.x;
+						GoToStrum(spr);
 						MyStrum = spr;
+						return;
 					}
 				});
 			}
@@ -308,7 +321,7 @@ class Note extends FlxSprite
 
 		if (isSustainNote && prevNote != null)
 		{
-			alpha = 0.6;
+			alphaMult = 0.6;
 
 			x += width / 2;
 
@@ -334,9 +347,7 @@ class Note extends FlxSprite
 
 		if (MyStrum != null)
 		{
-			x = MyStrum.x + (isSustainNote ? width : 0);
-			x += (noteStyle == 'phone' ? 20 : 0);
-			alpha = MyStrum.alpha;
+			GoToStrum(MyStrum);
 		}
 		else
 		{
@@ -349,7 +360,7 @@ class Note extends FlxSprite
 					{
 						if (spr.ID == notetolookfor)
 						{
-							x = spr.x;
+							GoToStrum(spr);
 							MyStrum = spr;
 						}
 					});
@@ -360,7 +371,7 @@ class Note extends FlxSprite
 					{
 						if (spr.ID == notetolookfor)
 						{
-							x = spr.x;
+							GoToStrum(spr);
 							MyStrum = spr;
 						}
 					});
@@ -389,8 +400,7 @@ class Note extends FlxSprite
 
 		if (tooLate)
 		{
-			if (alpha > 0.3)
-				alpha = 0.3;
+			alphaMult = 0.3;
 		}
 	}
 }
