@@ -31,7 +31,7 @@ class DiscordClient
 			details: "In the Menus",
 			state: null,
 			largeImageKey: 'icon_logo',
-			largeImageText: "Vs Dave & Bambi'"
+			largeImageText: "Vs Dave & Bambi"
 		});
 	}
 
