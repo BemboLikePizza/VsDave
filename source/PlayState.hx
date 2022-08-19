@@ -5639,6 +5639,14 @@ class PlayState extends MusicBeatState
 
 	function makeInvisibleNotes(invisible:Bool)
 	{
+		dadStrums.forEach(function(strum:FlxSprite)
+		{
+			FlxTween.cancelTweensOf(strum);
+		});
+		playerStrums.forEach(function(strum:FlxSprite)
+		{
+			FlxTween.cancelTweensOf(strum);
+		});
 		if (invisible == true)
 		{
 			dadStrums.forEach(function(strum:FlxSprite)
@@ -5649,10 +5657,6 @@ class PlayState extends MusicBeatState
 			{
 				FlxTween.tween(strum, {alpha: 0}, 1);
 			});
-			for (strumNote in strumLineNotes)
-			{
-				FlxTween.tween(strumNote, {alpha: 0}, 1);
-			}
 		}
 		else
 		{
@@ -5664,10 +5668,6 @@ class PlayState extends MusicBeatState
 			{
 				FlxTween.tween(strum, {alpha: 1}, 1);
 			});
-			for (strumNote in strumLineNotes)
-			{
-				FlxTween.tween(strumNote, {alpha: 1}, 1);
-			}
 		}
 	}
 
