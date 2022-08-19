@@ -299,8 +299,8 @@ class TitleState extends MusicBeatState
 			switch (curBeat)
 			{
 				case 3:
-					addMoreText('TheBuilderXD, Erizur');
-					addMoreText('T5mpler');
+					addMoreText('TheBuilderXD');
+					addMoreText('Erizur, T5mpler');
 				case 4:
 					addMoreText('and our wonderful contributors!');
 				case 5:
