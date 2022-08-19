@@ -197,6 +197,13 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 			case 'phone':
+				frames = Paths.getSparrowAtlas('notes/NOTE_phone', 'shared');
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
+				animation.addByPrefix('yellowScroll', 'purple');
+				
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
@@ -243,37 +250,32 @@ class Note extends FlxSprite
 
 				animation.play('${notes[originalType]}Scroll');
 		}
-		switch (str)
+		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
 		{
-			case 'cheating' | 'unfairness' | 'exploitation':
-				
-				if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+			var state:PlayState = cast(FlxG.state, PlayState);
+			InPlayState = true;
+			if (musthit)
+			{
+				state.playerStrums.forEach(function(spr:FlxSprite)
 				{
-					var state:PlayState = cast(FlxG.state, PlayState);
-					InPlayState = true;
-					if (musthit)
+					if (spr.ID == notetolookfor)
 					{
-						state.playerStrums.forEach(function(spr:FlxSprite)
-						{
-							if (spr.ID == notetolookfor)
-							{
-								x = spr.x;
-								MyStrum = spr;
-							}
-						});
+						x = spr.x;
+						MyStrum = spr;
 					}
-					else
+				});
+			}
+			else
+			{
+				state.dadStrums.forEach(function(spr:FlxSprite)
+				{
+					if (spr.ID == notetolookfor)
 					{
-						state.dadStrums.forEach(function(spr:FlxSprite)
-						{
-							if (spr.ID == notetolookfor)
-							{
-								x = spr.x;
-								MyStrum = spr;
-							}
-						});
+						x = spr.x;
+						MyStrum = spr;
 					}
-				}
+				});
+			}
 		}
 		if (PlayState.SONG.song.toLowerCase() == 'unfairness')
 		{
@@ -333,6 +335,8 @@ class Note extends FlxSprite
 		if (MyStrum != null)
 		{
 			x = MyStrum.x + (isSustainNote ? width : 0);
+			x += (noteStyle == 'phone' ? 20 : 0);
+			alpha = MyStrum.alpha;
 		}
 		else
 		{

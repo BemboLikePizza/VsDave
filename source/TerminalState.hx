@@ -81,12 +81,6 @@ class TerminalState extends FlxState
             UpdateText("\n" + helpText);
         }));
 
-        CommandList.push(new TerminalCommand("test", "Test command, delete this.", function(arguments:Array<String>)
-        {
-            UpdatePreviousText(false); //resets the text
-            UpdateText("\n" + arguments[0]);
-        }));
-
         CommandList.push(new TerminalCommand("characters", "Shows the list of characters.", function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text

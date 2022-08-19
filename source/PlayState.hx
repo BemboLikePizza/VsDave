@@ -2950,6 +2950,11 @@ class PlayState extends MusicBeatState
 					daNote.visible = true;
 					daNote.active = true;
 				}
+				if (daNote.mustPress && (Conductor.songPosition >= daNote.strumTime) && daNote.health != 2 && daNote.noteStyle == 'phone')
+				{
+					daNote.health = 2;
+					dad.playAnim('singSmash', true);
+				}
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
 					if (SONG.song != 'Warmup')
@@ -3922,6 +3927,14 @@ class PlayState extends MusicBeatState
 				{
 					case 'text':
 						recursedNoteMiss();
+					case 'phone':
+						FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+						boyfriend.playAnim('hit', true);
+						note.MyStrum.alpha = 0;
+						FlxTween.tween(note.MyStrum, {alpha: 1}, 9, {ease: FlxEase.expoIn });
+						health -= 0.07;
+						updateAccuracy();
+						return;
 				}
 			}
 
@@ -4093,26 +4106,38 @@ class PlayState extends MusicBeatState
 				boyfriend.color = bfTween.color;
 			}
 
-			//'LEFT', 'DOWN', 'UP', 'RIGHT'
-			var fuckingDumbassBullshitFuckYou:String;
-			var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-			fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(note.originalType)) % playerStrumAmount];
-			if(!boyfriend.nativelyPlayable)
+
+			switch (note.noteStyle)
 			{
-				switch(noteTypes[Math.round(Math.abs(note.originalType)) % playerStrumAmount])
-				{
-					case 'LEFT':
-						fuckingDumbassBullshitFuckYou = 'RIGHT';
-					case 'RIGHT':
-						fuckingDumbassBullshitFuckYou = 'LEFT';
-				}
+				default:
+					//'LEFT', 'DOWN', 'UP', 'RIGHT'
+					var fuckingDumbassBullshitFuckYou:String;
+					var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+					fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(note.originalType)) % playerStrumAmount];
+					if(!boyfriend.nativelyPlayable)
+					{
+						switch(noteTypes[Math.round(Math.abs(note.originalType)) % playerStrumAmount])
+						{
+							case 'LEFT':
+								fuckingDumbassBullshitFuckYou = 'RIGHT';
+							case 'RIGHT':
+								fuckingDumbassBullshitFuckYou = 'LEFT';
+						}
+					}
+					if(boyfriend.curCharacter == 'bambi-unfair' || boyfriend.curCharacter == 'bambi-3d' || boyfriend.curCharacter == 'expunged')
+					{
+						FlxG.camera.shake(0.0075, 0.1);
+						camHUD.shake(0.0045, 0.1);
+					}
+					boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
+
+				case 'phone':
+					boyfriend.playAnim('dodge', true);
+					if (note.health != 2)
+					{
+						dad.playAnim('singSmash', true);
+					}
 			}
-			if(boyfriend.curCharacter == 'bambi-unfair' || boyfriend.curCharacter == 'bambi-3d' || boyfriend.curCharacter == 'expunged')
-			{
-				FlxG.camera.shake(0.0075, 0.1);
-				camHUD.shake(0.0045, 0.1);
-			}
-			boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
 			cameraMoveOnNote(note.originalType, 'bf');
 			if (UsingNewCam)
 			{

@@ -666,7 +666,6 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'BF NOTE $anim MISS', 24, false);
 				}
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
-				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 	
