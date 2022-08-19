@@ -3931,7 +3931,8 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 						var hitAnimation:Bool = boyfriend.animation.getByName("hit") != null;
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
-						note.MyStrum.alpha = 0;
+						note.MyStrum.alpha = 0.01;
+						FlxTween.cancelTweensOf(note.MyStrum);
 						FlxTween.tween(note.MyStrum, {alpha: 1}, 11, {ease: FlxEase.expoIn });
 						health -= 0.09;
 						updateAccuracy();
