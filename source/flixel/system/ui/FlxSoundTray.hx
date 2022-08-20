@@ -71,12 +71,12 @@ class FlxSoundTray extends Sprite
 		text.gridFitType = GridFitType.PIXEL;
 		#else
 		#end
-		var dtf:TextFormat = new TextFormat("Comic Sans MS Bold", 24, 0xffffff);
+		var dtf:TextFormat = new TextFormat("Comic Sans MS Bold", 10, 0xffffff);
 		dtf.align = TextFormatAlign.CENTER;
 		text.defaultTextFormat = dtf;
 		addChild(text);
-		text.text = "VOLUME";
-		text.y = 16;
+		text.text = "Volume";
+		text.y = 14;
 
 		var bx:Int = 10;
 		var by:Int = 14;
