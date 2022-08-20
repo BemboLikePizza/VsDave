@@ -201,11 +201,6 @@ class Paths
 		return FlxAtlasFrames.fromSparrow(splashImage(key, library), splashFile('images/$key.xml', library));
 	}
 
-	inline static public function executable(key:String, ?library:String)
-	{
-		return getPath('executables/$key.exe', BINARY, library);
-	}
-
 	inline static public function font(key:String)
 	{
 		return 'assets/fonts/$key';
