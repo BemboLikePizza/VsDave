@@ -3078,7 +3078,7 @@ class PlayState extends MusicBeatState
 			switch (dad.curCharacter)
 			{
 				case 'playrobot':
-					camFollow.x = dad.getMidpoint().x;
+					camFollow.x = dad.getMidpoint().x + 50;
 				case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 					camFollow.y = dad.getMidpoint().y;
 			}

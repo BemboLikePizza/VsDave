@@ -1,5 +1,6 @@
 package flixel.system;
 
+import flixel.text.FlxText;
 import flash.display.Graphics;
 import flash.display.Sprite;
 import flash.Lib;
@@ -32,6 +33,7 @@ class FlxSplash extends FlxState
 	var _cachedBgColor:FlxColor;
 	var _cachedTimestep:Bool;
 	var _cachedAutoPause:Bool;
+	var skipScreen:FlxText;
 
 	override public function create():Void
 	{
@@ -44,10 +46,6 @@ class FlxSplash extends FlxState
 
 		_cachedAutoPause = FlxG.autoPause;
 		FlxG.autoPause = false;
-
-		#if FLX_KEYBOARD
-		FlxG.keys.enabled = false;
-		#end
 
 		animatedTex = Paths.getSplashSparrowAtlas('ui/flixel_intro', 'preload');
 
@@ -73,6 +71,27 @@ class FlxSplash extends FlxState
 			FlxG.sound.load(Paths.sound("flixel", 'preload')).play();
 		}
 		#end
+		if (FlxG.save.data.hasSeenSplash != null && FlxG.save.data.hasSeenSplash)
+		{
+			skipScreen = new FlxText(0, FlxG.height, 0, 'Press Enter To Skip', 16);
+			skipScreen.setFormat("Comic Sans MS Bold", 18, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			skipScreen.borderSize = 1.5;
+			skipScreen.antialiasing = true;
+			skipScreen.scrollFactor.set();
+			skipScreen.alpha = 0;
+			skipScreen.y -= skipScreen.textField.textHeight;
+			add(skipScreen);
+
+			FlxTween.tween(skipScreen, {alpha: 1}, 1);
+		}
+	}
+	override public function update(elapsed:Float)
+	{
+		if (FlxG.save.data.hasSeenSplash && FlxG.keys.justPressed.ENTER)
+		{
+			onComplete(null);
+		}
+		super.update(elapsed);
 	}
 
 	override public function destroy():Void
@@ -88,7 +107,6 @@ class FlxSplash extends FlxState
 
 	function timerCallback(Timer:FlxTimer):Void
 	{
-
 		FlxTween.tween(animatedIntro, {alpha: 0}, 3.0, {ease: FlxEase.quadOut, onComplete: onComplete});
 	}
 
@@ -102,5 +120,11 @@ class FlxSplash extends FlxState
 		#end
 		FlxG.switchState(Type.createInstance(nextState, []));
 		FlxG.game._gameJustStarted = true;
+
+		if (FlxG.save.data.hasSeenSplash == null)
+		{
+			FlxG.save.data.hasSeenSplash = true;
+			FlxG.save.flush();
+		}
 	}
 }
