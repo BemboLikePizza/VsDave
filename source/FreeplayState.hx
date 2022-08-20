@@ -424,7 +424,7 @@ class FreeplayState extends MusicBeatState
 			{
 				resetPresses();
 			}
-				if (pressSpeeds.length >= pressUnlockNumber)
+				if (pressSpeeds.length >= pressUnlockNumber && !FlxG.save.data.recursedUnlocked)
 				{
 					var canPass:Bool = true;
 					for (i in 0...pressSpeeds.length)
@@ -691,7 +691,7 @@ class FreeplayState extends MusicBeatState
 				resetPresses();
 			}
 			var shakeCheck = pressSpeeds.length % 5;
-			if (shakeCheck == 0 && pressSpeeds.length > 0)
+			if (shakeCheck == 0 && pressSpeeds.length > 0 && !FlxG.save.data.recursedUnlocked)
 			{
 				FlxG.camera.shake(0.003 * (pressSpeeds.length / 5), 0.1);
 				FlxG.sound.play(Paths.sound('recursed/thud', 'shared'), 1, false, null, true);
