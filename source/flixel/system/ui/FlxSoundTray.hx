@@ -4,6 +4,7 @@ package flixel.system.ui;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.Sprite;
+import flash.display.BlendMode;
 import flash.Lib;
 import flash.text.TextField;
 import flash.text.TextFormat;
@@ -43,6 +44,8 @@ class FlxSoundTray extends Sprite
 
 	var _defaultScale:Float = 2.0;
 
+	var text:TextField = new TextField(); // I want to use this in other functions hehe --erizur
+
 	/**
 	 * Sets up the "sound tray", the little volume meter that pops down sometimes.
 	 */
@@ -58,7 +61,6 @@ class FlxSoundTray extends Sprite
 		screenCenter();
 		addChild(tmp);
 
-		var text:TextField = new TextField();
 		text.width = tmp.width;
 		text.height = tmp.height;
 		text.multiline = true;
@@ -71,11 +73,11 @@ class FlxSoundTray extends Sprite
 		text.gridFitType = GridFitType.PIXEL;
 		#else
 		#end
-		var dtf:TextFormat = new TextFormat("Comic Sans MS Bold", 10, 0xffffff);
+		var dtf:TextFormat = new TextFormat("Comic Sans MS Bold", 8, 0xffffff);
 		dtf.align = TextFormatAlign.CENTER;
 		text.defaultTextFormat = dtf;
 		addChild(text);
-		text.text = "Volume";
+		text.text = "Volume - 100%";
 		text.y = 14;
 
 		var bx:Int = 10;
@@ -84,7 +86,7 @@ class FlxSoundTray extends Sprite
 
 		for (i in 0...10)
 		{
-			tmp = new Bitmap(new BitmapData(4, i + 1, false, FlxColor.WHITE));
+			tmp = new Bitmap(new BitmapData(4, i + 1, false, FlxColor.BLUE));
 			tmp.x = bx;
 			tmp.y = by;
 			addChild(tmp);
@@ -157,9 +159,11 @@ class FlxSoundTray extends Sprite
 			}
 			else
 			{
-				_bars[i].alpha = 0.5;
+				_bars[i].alpha = 0.4;
 			}
 		}
+
+		text.text = "Volume - " + globalVolume * 10 + "%";
 	}
 
 	public function screenCenter():Void
