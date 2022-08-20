@@ -3838,7 +3838,9 @@ class PlayState extends MusicBeatState
 						recursedNoteMiss();
 					case 'phone':
 						FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-						boyfriend.playAnim('hit', true);
+						var hitAnimation:Bool = boyfriend.animation.getByName("hit") != null;
+						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
+						FlxTween.cancelTweensOf(note.MyStrum);
 						note.MyStrum.alpha = 0;
 						note.MyStrum.copyAlpha = true;
 						FlxTween.tween(note.MyStrum, {alpha: 1}, 9, {ease: FlxEase.expoIn, onComplete: function(tween:FlxTween)
@@ -4045,7 +4047,9 @@ class PlayState extends MusicBeatState
 					boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
 
 				case 'phone':
-					boyfriend.playAnim('dodge', true);
+					var hitAnimation:Bool = boyfriend.animation.getByName("dodge") != null;
+					var heyAnimation:Bool = boyfriend.animation.getByName("hey") != null;
+					boyfriend.playAnim(hitAnimation ? 'dodge' : (heyAnimation ? 'hey' : 'singUPmiss'), true);
 					if (note.health != 2)
 					{
 						dad.playAnim('singSmash', true);
@@ -5250,7 +5254,7 @@ class PlayState extends MusicBeatState
 
 		if(curBeat % 2 == 0)
 		{
-			if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance)
+			if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance && !(boyfriend.animation.curAnim.name == "hit") && !(boyfriend.animation.curAnim.name == "dodge"))
 			{
 				boyfriend.playAnim('idle', true);
 				if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" && formoverride != 'tristan-golden-glowing')

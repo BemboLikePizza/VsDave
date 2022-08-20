@@ -46,5 +46,8 @@ class SaveDataHandler
 		
 		if (FlxG.save.data.wasInCharSelect == null)
 			FlxG.save.data.wasInCharSelect = false;
+		
+		if (FlxG.save.data.charactersUnlocked == null)
+			FlxG.save.data.charactersUnlocked = [];
     }
 }

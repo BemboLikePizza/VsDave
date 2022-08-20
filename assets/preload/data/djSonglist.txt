@@ -12,6 +12,7 @@ internal,shredder,bambi,good
 internal,greetings,tristan,good
 internal,interdimensional,dave-angey,good
 internal,rano,dave,good
+internal,glitch,bambi-joke,good
 internal,escape-from-california,moldy,good
 internal,mealie,bambi,good
 internal,memory,dave,good

@@ -52,8 +52,8 @@ class ChangeLanguageState extends MusicBeatState
 
          var text:FlxText = new FlxText(0, 350 + (i * 75), 0, curLanguage.langaugeName, 40);
          text.setFormat("Comic Sans MS Bold", 30, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE);
-         text.screenCenter(X);
          text.antialiasing = true;
+         text.screenCenter(X);
          add(text);
          languageTextGroup.add(text);
 
@@ -140,10 +140,4 @@ class ChangeLanguageState extends MusicBeatState
          FlxG.resetState();
       });
    }
-
-	override function beatHit()
-	{
-		super.beatHit();
-		FlxTween.tween(FlxG.camera, {zoom: 1.01}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
-	}
 }
