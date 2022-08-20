@@ -178,6 +178,29 @@ class Paths
 		}
 	}
 
+	/*
+		WARNING!!
+		DO NOT USE splashImage, splashFile or getSplashSparrowAtlas for searching stuff in paths!!!!!
+		I'm only using these for FlxSplash since the languages haven't loaded yet!
+	*/
+
+	inline static public function splashImage(key:String, ?library:String, ?ext:String = 'png')
+	{
+		var defaultReturnPath = getPath('images/$key.$ext', IMAGE, library);
+		return defaultReturnPath;
+	}
+
+	inline static public function splashFile(file:String, type:AssetType = TEXT, ?library:String)
+	{
+		var defaultReturnPath = getPath(file, type, library);
+		return defaultReturnPath;
+	}
+
+	inline static public function getSplashSparrowAtlas(key:String, ?library:String)
+	{
+		return FlxAtlasFrames.fromSparrow(splashImage(key, library), splashFile('images/$key.xml', library));
+	}
+
 	inline static public function executable(key:String, ?library:String)
 	{
 		return getPath('executables/$key.exe', BINARY, library);
