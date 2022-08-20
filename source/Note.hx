@@ -45,20 +45,19 @@ class Note extends FlxSprite
 
 	public var originalType = 0;
 
-	public var MyStrum:FlxSprite;
-
-	private var InPlayState:Bool = false;
+	public var MyStrum:StrumNote;
 
 	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed'];
 
 	public var noteStyle:String = 'normal';
 
-	public var noteText:FlxText;
-
-	public var noteObject:FlxObject;
 	public var guitarSection:Bool;
 
 	var notes = ['purple', 'blue', 'green', 'red'];
+	
+	public var startX:Float;
+	public var offsetX:Float;
+	var baseAlpha:Float = 1;
 
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal", inCharter:Bool = false, guitarSection:Bool = false)
 	{
@@ -66,16 +65,13 @@ class Note extends FlxSprite
 
 		if (prevNote == null)
 			prevNote = this;
-
+		this.noteData = noteData;
 		this.prevNote = prevNote;
 		this.noteStyle = noteStyle;
-		isSustainNote = sustainNote;
-		originalType = noteData;
+		this.isSustainNote = sustainNote;
+		this.originalType = noteData;
 		this.guitarSection = guitarSection;
 		
-		x += 78;
-		// MAKE SURE ITS DEFINITELY OFF SCREEN?
-		y -= 2000;
 		if (inCharter)
 			this.strumTime = strumTime;
 		else 
@@ -83,13 +79,15 @@ class Note extends FlxSprite
 
 		if (this.strumTime < 0)
 			this.strumTime = 0;
-
-		this.noteData = noteData;
-
-		if (!Type.getClassName(Type.getClass(FlxG.state)).contains("ChartingState"))
+		if (!isInState('ChartingState'))
 		{
 			this.strumTime += FlxG.save.data.offset;
+			setStrumNote();
 		}
+		x += 78;
+		// MAKE SURE ITS DEFINITELY OFF SCREEN?
+		y -= 2000;
+		
 		if ((guitarSection && inCharter && noteData < 5) || (guitarSection))
 		{
 			notes = ['purple', 'blue', 'yellow', 'green', 'red'];
@@ -171,7 +169,8 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * 1.2));
 				updateHitbox();
 				antialiasing = true;
-				x -= (width - 78);
+
+				offsetX = -(width - 78);
 			case 'guitarHero':
 				frames = Paths.getSparrowAtlas('notes/NOTE_gh', 'shared');
 
@@ -208,11 +207,11 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 				
-				x -= (width - 78);
+				offsetX = -(width - 78);
 
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
-		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+		if (isInState('PlayState'))
 		{
 			var state:PlayState = cast(FlxG.state, PlayState);
 			if (state.localFunny == CharacterFunnyEffect.Dave)
@@ -250,56 +249,21 @@ class Note extends FlxSprite
 
 				animation.play('${notes[originalType]}Scroll');
 		}
-		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+		startX += x;
+		if (['unfairness', 'exploitation'].contains(PlayState.SONG.song.toLowerCase()))
 		{
-			var state:PlayState = cast(FlxG.state, PlayState);
-			InPlayState = true;
-			if (musthit)
-			{
-				state.playerStrums.forEach(function(spr:FlxSprite)
-				{
-					if (spr.ID == notetolookfor)
-					{
-						x = spr.x;
-						MyStrum = spr;
-					}
-				});
-			}
-			else
-			{
-				state.dadStrums.forEach(function(spr:FlxSprite)
-				{
-					if (spr.ID == notetolookfor)
-					{
-						x = spr.x;
-						MyStrum = spr;
-					}
-				});
-			}
-		}
-		if (PlayState.SONG.song.toLowerCase() == 'unfairness')
-		{
-			var rng:FlxRandom = new FlxRandom();
-			if (rng.int(0, 120) == 1)
-			{
-				LocalScrollSpeed = 0.1;
-			}
-			else
-			{
-				LocalScrollSpeed = rng.float(1, 3);
-			}
-		}
+			var song = PlayState.SONG.song.toLowerCase();
 
-		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
-		{
 			var rng:FlxRandom = new FlxRandom();
-			if (rng.int(0, 481) == 1)
+			if (rng.int(0, song == 'unfairness' ? 120 : 481) == 1)
 			{
 				LocalScrollSpeed = 0.1;
 			}
 			else
 			{
-				LocalScrollSpeed = rng.float(2.8, 3.7);
+				var min = song == 'unfairness' ? 1 : 2.8;
+				var max = song == 'unfairness' ? 3 : 3.7;
+				LocalScrollSpeed = rng.float(min, max);
 			}
 		}
 
@@ -308,15 +272,14 @@ class Note extends FlxSprite
 
 		if (isSustainNote && prevNote != null)
 		{
-			alpha = 0.6;
+			baseAlpha = 0.6;
 
-			x += width / 2;
+			offsetX += width / 2;
 
 			animation.play('${notes[noteData]}holdend');
-
 			updateHitbox();
 
-			x -= width / 2;
+			offsetX -= width / 2;
 
 			if (prevNote.isSustainNote)
 			{
@@ -334,40 +297,17 @@ class Note extends FlxSprite
 
 		if (MyStrum != null)
 		{
-			x = MyStrum.x + (isSustainNote ? width : 0);
-			x += (noteStyle == 'phone' ? 20 : 0);
-			alpha = MyStrum.alpha;
+			x = MyStrum.copyX ? MyStrum.x + offsetX : startX + offsetX;
+			alpha = MyStrum.copyAlpha ? MyStrum.alpha * baseAlpha : baseAlpha;
 		}
 		else
 		{
-			if (InPlayState)
+			if (isInState('PlayState'))
 			{
-				var state:PlayState = cast(FlxG.state, PlayState);
-				if (mustPress)
-				{
-					state.playerStrums.forEach(function(spr:FlxSprite)
-					{
-						if (spr.ID == notetolookfor)
-						{
-							x = spr.x;
-							MyStrum = spr;
-						}
-					});
-				}
-				else
-				{
-					state.dadStrums.forEach(function(spr:FlxSprite)
-					{
-						if (spr.ID == notetolookfor)
-						{
-							x = spr.x;
-							MyStrum = spr;
-						}
-					});
-				}
+				setStrumNote();
 			}
 		}
-		if (mustPress && Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+		if (mustPress && isInState('PlayState'))
 		{
 			// The * 0.5 is so that it's easier to hit them too late, instead of too early
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
@@ -389,8 +329,48 @@ class Note extends FlxSprite
 
 		if (tooLate)
 		{
-			if (alpha > 0.3)
-				alpha = 0.3;
+			if (baseAlpha > 0.3)
+				baseAlpha = 0.3;
+		}
+	}
+	function isInState(stateName:String):Bool
+	{
+		return Type.getClassName(Type.getClass(FlxG.state)).contains(stateName);
+	}
+	public function init()
+	{
+		setStrumNote();
+		if (MyStrum.copyAlpha)
+		{
+			alpha = MyStrum.alpha * baseAlpha;
+		}
+		if (MyStrum.copyX)
+		{
+			x = MyStrum.x + offsetX;
+		}
+	}
+	public function setStrumNote()
+	{
+		var state:PlayState = cast(FlxG.state, PlayState);
+		if (mustPress)
+		{
+			state.playerStrums.forEach(function(spr:StrumNote)
+			{
+				if (spr.ID == notetolookfor)
+				{
+					MyStrum = spr;
+				}
+			});
+		}
+		else
+		{
+			state.dadStrums.forEach(function(spr:StrumNote)
+			{
+				if (spr.ID == notetolookfor)
+				{
+					MyStrum = spr;
+				}
+			});
 		}
 	}
 }

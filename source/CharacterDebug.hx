@@ -127,7 +127,8 @@ class CharacterDebug extends MusicBeatState
 	}
 	function updateText()
 	{
+		var dadPosition = ${dad.getPosition()};
 		var dadScreenCenter = new FlxPoint((FlxG.width - dad.width) / 2, (FlxG.height - dad.height) / 2);
-		offsetText.text = "Dad position: ${dad.getPosition()}\n Dad offset position from it's center position: " + new FlxPoint(dadScreenCenter.x - dad.getPosition().x, dadScreenCenter.y - dad.getPosition().y);
+		offsetText.text = "Dad position: $dadPosition \nDad offset position from it's center position: " + new FlxPoint(dadScreenCenter.x - dad.getPosition().x, dadScreenCenter.y + dad.getPosition().y);
 	}
 }

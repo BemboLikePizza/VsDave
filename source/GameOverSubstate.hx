@@ -15,6 +15,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	var camFollow:FlxObject;
 
 	var stageSuffix:String = "";
+	var deathSuffix:String = '';
 
 	public function new(x:Float, y:Float,char:String)
 	{
@@ -24,6 +25,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'bf-pixel':
 				daBf = "bf-pixel-dead";
 				stageSuffix = '-pixel';
+				deathSuffix = '-pixel';
 			case 'tb-funny-man':
 				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
 				System.exit(0);
@@ -31,10 +33,13 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'dave-death';
 			case 'tristan':
 				daBf = 'tristan-death';
+				deathSuffix = '-tristan';
 			case 'tristan-golden':
 				daBf = 'tristan-golden-death';
-			case 'bambi-new':
+				deathSuffix = '-tristan';
+			case 'bambi-new' | 'bambi-recursed':
 				daBf = 'bambi-death';
+				deathSuffix = '-bambi';
 			case 'nofriend':
 				daBf = 'nofriend-death';
 			default:
@@ -60,7 +65,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
 		add(camFollow);
 
-		FlxG.sound.play(Paths.sound('fnf_loss_sfx' + stageSuffix));
+		FlxG.sound.play(Paths.sound('fnf_loss_sfx' + deathSuffix));
 		Conductor.changeBPM(100);
 
 		// FlxG.camera.followLerp = 1;

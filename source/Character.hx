@@ -454,8 +454,24 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				recursedSkin = 'bambi-recursed';
 
 				playAnim('idle');
+			case 'bambi-recursed':
+				frames = Paths.getSparrowAtlas('recursed/characters/Bambi_Recursed', 'shared');
+
+				animation.addByPrefix('idle', 'bambi idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'bambi $anim', 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'miss $anim', 24, false);
+				}
+				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
+				
+				barColor = FlxColor.WHITE;
+				loadOffsetFile(curCharacter);
+				playAnim('idle');
+
 			case 'bambi-death':
 				frames = Paths.getSparrowAtlas('bambi/Bambi_Death', 'shared');
 
