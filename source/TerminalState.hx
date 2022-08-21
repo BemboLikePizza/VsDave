@@ -65,6 +65,7 @@ class TerminalState extends FlxState
 
     override public function create():Void 
     {
+        Main.fps.visible = false;
         displayText = new FlxText(0, 0, FlxG.width, previousText, 32);
 		displayText.setFormat(Paths.font("consola.ttf"), 16);
 		displayText.antialiasing = false;
@@ -115,6 +116,7 @@ class TerminalState extends FlxState
                             PlayState.globalFunny = CharacterFunnyEffect.Dave;
                             PlayState.SONG = Song.loadFromJson("house");
                             PlayState.SONG.validScore = false;
+                            Main.fps.visible = true;
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "exbungo.dat":
                             UpdatePreviousText(false); //resets the text
@@ -125,6 +127,7 @@ class TerminalState extends FlxState
                             PlayState.SONG = Song.loadFromJson(funny[funnylol]);
                             PlayState.SONG.validScore = false;
                             PlayState.SONG.player2 = "exbungo";
+                            Main.fps.visible = true;
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "bambi.dat":
                             UpdatePreviousText(false); //resets the text
@@ -215,6 +218,7 @@ class TerminalState extends FlxState
         }
         if (FlxG.keys.justPressed.ESCAPE)
         {
+            Main.fps.visible = true;
             FlxG.switchState(new MainMenuState());
         }
     }
