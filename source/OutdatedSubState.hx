@@ -26,7 +26,7 @@ class OutdatedSubState extends MusicBeatState
 		{
 			txt = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('intoWarningExpunged'), 32);
 			
-			FlxG.save.data.exploitationState = 'awaiting';
+			FlxG.save.data.exploitationState = null;
 			FlxG.save.flush();
 		}
 		else if (FlxG.save.data.begin_thing)
