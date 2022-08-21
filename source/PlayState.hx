@@ -591,8 +591,6 @@ class PlayState extends MusicBeatState
 		var charoffsetx:Float = 0;
 		var charoffsety:Float = 0;
 		
-		
-		
 		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'vs-dave-rap', 'escape-from-california'];
 		
 		if(SONG.gf != null)
@@ -629,19 +627,6 @@ class PlayState extends MusicBeatState
 		add(gfGroup);
 		add(dadGroup);
 		add(bfGroup);
-
-		switch (SONG.song.toLowerCase())
-		{
-			case 'bot-trot':
-				var tv:BGSprite = new BGSprite('tv', -419, 448, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
-				tv.setGraphicSize(Std.int(tv.width * 1.5));
-				tv.updateHitbox();
-
-				var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bedroom');
-
-				backgroundSprites.insert(members.indexOf(bedroomSpr), tv);
-				insert(members.indexOf(gfGroup), tv);
-		}
 
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
@@ -807,6 +792,19 @@ class PlayState extends MusicBeatState
 			case 'bedroom':
 				dad.setPosition(-500, 90);
 				boyfriend.setPosition(480, 190);
+		}
+
+		switch (SONG.song.toLowerCase())
+		{
+			case 'bot-trot':
+				var tv:BGSprite = new BGSprite('tv', -518, 466, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
+				tv.setGraphicSize(Std.int(tv.width * 2));
+				tv.updateHitbox();
+
+				var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bedroom');
+
+				backgroundSprites.insert(members.indexOf(bedroomSpr), tv);
+				insert(members.indexOf(gfGroup), tv);
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1483,37 +1481,39 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.8;
 				stageName = 'bedroom';
 				
-				var sky:BGSprite = new BGSprite('nightSky', -287, -122, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
-				sky.setGraphicSize(Std.int(sky.width * 1.5));
+				var sky:BGSprite = new BGSprite('nightSky', -374, -164, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
+				sky.setGraphicSize(Std.int(sky.width * 1.7));
 				sky.updateHitbox();
 				sprites.add(sky);
 				add(sky);
 
-				var outside:BGSprite = new BGSprite('outside', -65, -64, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
-				outside.setGraphicSize(Std.int(outside.width * 1.5));
+				var outside:BGSprite = new BGSprite('outside', -129, -98, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
+				outside.setGraphicSize(Std.int(outside.width * 1.7));
 				outside.updateHitbox();
 				sprites.add(outside);
 				add(outside);
 
-				var bedroom:BGSprite = new BGSprite('bedroom', -419, -267, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
-				bedroom.setGraphicSize(Std.int(bedroom.width * 1.5));
+				var bedroom:BGSprite = new BGSprite('bedroom', -765, -462, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
+				bedroom.setGraphicSize(Std.int(bedroom.width * 1.7));
 				bedroom.updateHitbox();
 				sprites.add(bedroom);
 				add(bedroom);
 
-				tristan = new BGSprite('tristan', 1044, 167, 'backgrounds/bedroom/trist', [
-					new Animation('idle', 'day', 24, false, [false, false]),
-					new Animation('idleNight', 'night', 24, false, [false, false])
-				], 1, 1, true, true);
-				curTristanAnim = 'idle';
-				tristan.animation.play('idle');
-				tristan.setGraphicSize(Std.int(tristan.width * 1.5));
-				tristan.updateHitbox();
-				sprites.add(tristan);
-				add(tristan);
+				if (!['tristan', 'tristan-glowing'].contains(formoverride))
+				{
+					tristan = new BGSprite('tristan', -518, -323, 'backgrounds/bedroom/trist', [
+						new Animation('idle', 'day', 24, false, [false, false]),
+						new Animation('idleNight', 'night', 24, false, [false, false])
+					], 1, 1, true, true);
+					changeTristanAnim('day');
+					tristan.setGraphicSize(Std.int(tristan.width * 1.7));
+					tristan.updateHitbox();
+					sprites.add(tristan);
+					add(tristan);
+				}
 
-				var baldi:BGSprite = new BGSprite('baldi', 1289, 507, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
-				baldi.setGraphicSize(Std.int(baldi.width * 1.5));
+				var baldi:BGSprite = new BGSprite('baldi', 1555, 590, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
+				baldi.setGraphicSize(Std.int(baldi.width * 2));
 				baldi.updateHitbox();
 				sprites.add(baldi);
 				add(baldi);
@@ -1534,10 +1534,10 @@ class PlayState extends MusicBeatState
 				add(desertBG2);
 
 				var train = new BGSprite('train', -800, 500, 'california/train', [
-					new Animation('idle', 'trainRide', 24, false, [false, false])
+					new Animation('idle', 'trainRide', 24, true, [false, false])
 				], 1, 1, true, true);
 				train.animation.play('idle');
-				train.setGraphicSize(Std.int(train.width * 1.5));
+				train.setGraphicSize(Std.int(train.width * 2));
 				train.updateHitbox();
 				sprites.add(train);
 				add(train);
@@ -5471,11 +5471,26 @@ class PlayState extends MusicBeatState
 		bedroomSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bedroom'));
 		baldiSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/baldi'));
 
-		curTristanAnim = 'idleNight';
-		tristan.animation.play('idleNight');
+		changeTristanAnim('night');
 
 		dad.color = nightColor;
 		darkLevels.push(curStage);
+	}
+	function changeTristanAnim(time:String)
+	{
+		if (tristan != null)
+		{
+			switch (time)
+			{
+				case 'day':
+					curTristanAnim = 'idleNight';
+					tristan.animation.play('idleNight');
+				case 'night':
+					curTristanAnim = 'idle';
+					tristan.animation.play('idle');
+			}
+		}
+		
 	}
 	public function getCamZoom():Float
 	{
