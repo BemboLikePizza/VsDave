@@ -2595,7 +2595,7 @@ class PlayState extends MusicBeatState
 					FlxG.switchState(new PlayState());
 					return;
 					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
-			    case 'cheating':
+				case 'cheating':
 					PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
 					FlxG.save.data.unfairnessFound = true;
 					shakeCam = false;
@@ -3142,9 +3142,6 @@ class PlayState extends MusicBeatState
 				|| characteroverride == "bf" ? "bf" : characteroverride);
 			#end
 		}
-		FlxG.save.data.exploitationState = null;
-
-		FlxG.save.flush();
 
 		// Song Character Unlocks (Story Mode)
 		if (isStoryMode)
@@ -3733,7 +3730,7 @@ class PlayState extends MusicBeatState
 					if (controlArray[note.noteData % 4])
 					{
 						if (lasthitnotetime > Conductor.songPosition - Conductor.safeZoneOffset
-							&& lasthitnotetime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.08)) //reduce the past allowed barrier just so notes close together that aren't jacks dont cause missed inputs
+							&& lasthitnotetime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.1)) //reduce the past allowed barrier just so notes close together that aren't jacks dont cause missed inputs
 						{
 							if ((note.noteData % 4) == (lasthitnote % 4))
 							{
@@ -3844,7 +3841,7 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
 						FlxTween.cancelTweensOf(note.MyStrum);
 						note.MyStrum.alpha = 0.01;
-						FlxTween.tween(note.MyStrum, {alpha: 1}, 9, {ease: FlxEase.expoIn});
+						FlxTween.tween(note.MyStrum, {alpha: 1}, 11, {ease: FlxEase.expoIn});
 						health -= 0.07;
 						updateAccuracy();
 						return;
@@ -4781,32 +4778,6 @@ class PlayState extends MusicBeatState
 			case 'unfairness':
 				switch(curStep)
 				{
-					case 256:
-						defaultCamZoom += 0.2;
-							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-							black.screenCenter();
-							black.alpha = 0;
-							add(black);
-							FlxTween.tween(black, {alpha: 0.6}, 1);
-							makeInvisibleNotes(true);
-					case 261:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub1'), 0.02, 0.6);
-					case 284:
-					    subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub2'), 0.02, 0.6);
-					case 321:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub3'), 0.02, 0.6);
-					case 353:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub4'), 0.02, 1.5);
-					case 414:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub5'), 0.02, 0.6);
-					case 439:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub6'), 0.02, 1);
-					case 468:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub7'), 0.02, 1);
-					case 512:
-						defaultCamZoom -= 0.2;
-							FlxTween.tween(black, {alpha: 0}, 1);
-							makeInvisibleNotes(false);
 					case 2560:
 						dadStrums.forEach(function(spr:StrumNote)
 						{
@@ -4822,92 +4793,6 @@ class PlayState extends MusicBeatState
 						dad.visible = false;
 						iconP2.visible = false;
 				}
-				case 'cheating':
-					switch(curStep)
-					{
-						case 512:
-							defaultCamZoom += 0.2;
-							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-							black.screenCenter();
-							black.alpha = 0;
-							add(black);
-							FlxTween.tween(black, {alpha: 0.6}, 1);
-							makeInvisibleNotes(true);
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub1'), 0.02, 0.6);
-						case 537:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub2'), 0.02, 0.6);
-						case 552:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub3'), 0.02, 0.6);
-						case 570:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub4'), 0.02, 1);
-						case 595:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub5'), 0.02, 0.6);
-						case 607:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub6'), 0.02, 0.6);
-						case 619:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub7'), 0.02, 1);
-						case 640:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub8'), 0.02, 0.6);
-						case 649:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub9'), 0.02, 0.6);
-						case 654:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub10'), 0.02, 0.6);
-						case 666:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub11'), 0.02, 0.6);
-						case 675:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub12'), 0.02, 0.6);
-						case 685:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub13'), 0.02, 0.6);
-						case 695:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub14'), 0.02, 0.6);
-						case 712:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub15'), 0.02, 0.6);
-						case 715:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub16'), 0.02, 0.6);
-						case 722:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub17'), 0.02, 0.6);
-						case 745:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub18'), 0.02, 0.3);
-						case 749:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub19'), 0.02, 0.3);
-						case 756:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub20'), 0.02, 0.6);
-						case 768:
-							defaultCamZoom -= 0.2;
-							FlxTween.tween(black, {alpha: 0}, 1);
-							makeInvisibleNotes(false);
-						case 1280:
-							defaultCamZoom += 0.2;
-							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-							black.screenCenter();
-							black.alpha = 0;
-							add(black);
-							FlxTween.tween(black, {alpha: 0.6}, 1);
-						case 1301:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub21'), 0.02, 0.6);
-						case 1316:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub22'), 0.02, 0.6);
-						case 1344:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub23'), 0.02, 0.6);
-						case 1374:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub24'), 0.02, 1);
-						case 1394:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub25'), 0.02, 0.5);
-						case 1403:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub26'), 0.02, 1);
-						case 1429:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub27'), 0.02, 0.6);
-						case 1475:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub28'), 0.02, 1.5);
-						case 1504:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub29'), 0.02, 1);
-						case 1528:
-							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub30'), 0.02, 0.6);
-						case 1536:
-							defaultCamZoom -= 0.2;
-							FlxTween.tween(black, {alpha: 0}, 1);
-						
-					}
 			case 'polygonized':
 				switch(curStep)
 				{
@@ -5115,44 +5000,6 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash();
 						switchToNight();
 						
-				}
-			case 'vs-dave-rap':
-				switch(curStep)
-				{
-					case 64:
-						FlxG.camera.flash();
-					case 68:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub1'), 0.02, 1);
-					case 92:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub2'), 0.02, 0.8);
-					case 112:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub3'), 0.02, 0.8);
-					case 124:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub4'), 0.02, 0.5);
-					case 140:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub5'), 0.02, 0.5);
-					case 150:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub6'), 0.02, 1);
-					case 176:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub7'), 0.02, 0.5);
-					case 184:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub8'), 0.02, 0.8);
-					case 201:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub9'), 0.02, 0.5);
-					case 211:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub10'), 0.02, 0.8);
-					case 229:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub11'), 0.02, 0.5);
-					case 241:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub12'), 0.02, 0.8);
-					case 260:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub13'), 0.02, 0.8);
-					case 281:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub14'), 0.02, 0.5);
-					case 288:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub15'), 0.02, 1.5);
-					case 322:
-						FlxG.camera.flash();
 				}
 		}
 		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)

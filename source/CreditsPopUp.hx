@@ -44,11 +44,11 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 'memory' | 'mealie':
 				songCreator = 'Alexander Cooper 19';
 			case 'glitch':
-				songCreator = 'DeadShadow & PixelGH';
+				songCreator = 'DeadShadow & PixelGH\nRemix by MoldyGH';
 			case 'overdrive':
 				songCreator = 'Top 10 Awesome';
 			case 'supernovae':
-				songCreator = 'ArchWk';
+				songCreator = 'ArchWk\nRemix by MoldyGH';
 			case 'vs-dave-rap':
 				songCreator = 'Your mom';
 			case 'recursed':

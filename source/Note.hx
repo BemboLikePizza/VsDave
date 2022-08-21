@@ -47,41 +47,32 @@ class Note extends FlxSprite
 
 	public var MyStrum:FlxSprite;
 
-	private var InPlayState:Bool = false;
-
 	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed'];
 
 	public var noteStyle:String = 'normal';
 
-	public var noteText:FlxText;
-
-	public var noteObject:FlxObject;
 	public var guitarSection:Bool;
 
 	public var alphaMult:Float = 1.0;
 
 	public var noteOffset:Float = 0;
 
-	public var ModchartEnabled:Bool = true;
-
 	var notes = ['purple', 'blue', 'green', 'red'];
 
 	public function GoToStrum(strum:FlxSprite)
 	{
-		x = strum.x + (isSustainNote ? width : 0);
-		x += noteOffset;
+		x = strum.x + noteOffset;
 		alpha = strum.alpha * alphaMult;
 	}
 
-	public function InPlaystate()
+	public function isInState(state:String)
 	{
-		return Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState");
+		return Type.getClassName(Type.getClass(FlxG.state)).contains(state);
 	}
 
 	public function SearchForStrum(musthit:Bool)
 	{
 		var state:PlayState = cast(FlxG.state, PlayState);
-		InPlayState = true;
 		if (musthit)
 		{
 			state.playerStrums.forEach(function(spr:FlxSprite)
@@ -117,9 +108,10 @@ class Note extends FlxSprite
 
 		this.prevNote = prevNote;
 		this.noteStyle = noteStyle;
-		isSustainNote = sustainNote;
-		originalType = noteData;
+		this.isSustainNote = sustainNote;
+		this.originalType = noteData;
 		this.guitarSection = guitarSection;
+		this.noteData = noteData;
 		
 		x += 78;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -132,9 +124,7 @@ class Note extends FlxSprite
 		if (this.strumTime < 0)
 			this.strumTime = 0;
 
-		this.noteData = noteData;
-
-		if (!Type.getClassName(Type.getClass(FlxG.state)).contains("ChartingState"))
+		if (isInState('PlayState'))
 		{
 			this.strumTime += FlxG.save.data.offset;
 		}
@@ -160,10 +150,6 @@ class Note extends FlxSprite
 		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
 		{
 			this.noteStyle = 'recursed';
-			if (sustainNote)
-			{
-				noteOffset = 18;
-			}
 			notePathLol = 'notes/NOTE_recursed';
 		}
 		else
@@ -200,6 +186,7 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
+
 			case 'text':
 				frames = Paths.getSparrowAtlas('ui/alphabet');
 
@@ -224,6 +211,7 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 				noteOffset = -(width - 78);
+
 			case 'guitarHero':
 				frames = Paths.getSparrowAtlas('notes/NOTE_gh', 'shared');
 
@@ -268,7 +256,7 @@ class Note extends FlxSprite
 
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
-		if (InPlaystate())
+		if (isInState('PlayState'))
 		{
 			var state:PlayState = cast(FlxG.state, PlayState);
 			if (state.localFunny == CharacterFunnyEffect.Dave)
@@ -306,7 +294,7 @@ class Note extends FlxSprite
 
 				animation.play('${notes[originalType]}Scroll');
 		}
-		if (InPlaystate() && ModchartEnabled)
+		if (isInState('PlayState'))
 		{
 			SearchForStrum(musthit);
 		}
@@ -342,13 +330,13 @@ class Note extends FlxSprite
 		{
 			alphaMult = 0.6;
 
-			x += width / 2;
+			noteOffset += width / 2;
 
 			animation.play('${notes[noteData]}holdend');
 
 			updateHitbox();
 
-			x -= width / 2;
+			noteOffset -= width / 2;
 
 			if (prevNote.isSustainNote)
 			{
@@ -370,12 +358,12 @@ class Note extends FlxSprite
 		}
 		else
 		{
-			if (InPlayState && ModchartEnabled)
+			if (isInState('PlayState'))
 			{
 				SearchForStrum(mustPress);
 			}
 		}
-		if (mustPress && InPlaystate())
+		if (mustPress && isInState('PlayState'))
 		{
 			// The * 0.5 is so that it's easier to hit them too late, instead of too early
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
