@@ -5594,7 +5594,9 @@ class PlayState extends MusicBeatState
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
+		#if windows
 		WindowsUtil.getWindowsTransparent();
+		#end
 
 		//FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 		
