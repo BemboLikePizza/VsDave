@@ -5109,6 +5109,44 @@ class PlayState extends MusicBeatState
 						switchToNight();
 						
 				}
+			case 'vs-dave-rap':
+				switch(curStep)
+				{
+					case 64:
+						FlxG.camera.flash();
+					case 68:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub1'), 0.02, 1);
+					case 92:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub2'), 0.02, 0.8);
+					case 112:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub3'), 0.02, 0.8);
+					case 124:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub4'), 0.02, 0.5);
+					case 140:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub5'), 0.02, 0.5);
+					case 150:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub6'), 0.02, 1);
+					case 176:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub7'), 0.02, 0.5);
+					case 184:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub8'), 0.02, 0.8);
+					case 201:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub9'), 0.02, 0.5);
+					case 211:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub10'), 0.02, 0.8);
+					case 229:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub11'), 0.02, 0.5);
+					case 241:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub12'), 0.02, 0.8);
+					case 260:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub13'), 0.02, 0.8);
+					case 281:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub14'), 0.02, 0.5);
+					case 288:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub15'), 0.02, 1.5);
+					case 322:
+						FlxG.camera.flash();
+				}
 		}
 		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)
 		{
