@@ -382,7 +382,7 @@ class FreeplayState extends MusicBeatState
 		if (CurrentPack == Catagories.length)
 			CurrentPack = 0;
 
-		camFollow.setPosition(icons[CurrentPack].x + 256, icons[CurrentPack].y + 256);
+		camFollow.x = icons[CurrentPack].x + 256;
 	}
 
 	override function beatHit()
@@ -489,7 +489,7 @@ class FreeplayState extends MusicBeatState
 						resetPresses();
 						InMainFreeplayState = true;
 						loadingPack = false;
-					});	
+					});
 				});
 			}
 			if (controls.BACK && canInteract && !awaitingExploitation)
@@ -553,7 +553,7 @@ class FreeplayState extends MusicBeatState
 
 						if (diffText != null)
 						{
-							FlxTween.tween(diffText,{y: diffText.y - 100},0.5,{ease: FlxEase.expoInOut, onComplete: 
+							FlxTween.tween(diffText,{y: diffText.y - 100}, 0.5,{ease: FlxEase.expoInOut, onComplete: 
 							function(spr:FlxTween)
 							{
 								diffText = null;
@@ -570,13 +570,12 @@ class FreeplayState extends MusicBeatState
 								}});
 							}
 						}
-						
 	
 						InMainFreeplayState = false;
 						loadingPack = false;
 
-						for (i in grpSongs){remove(i);}
-						for (i in iconArray){remove(i);}
+						for (i in grpSongs) { remove(i); }
+						for (i in iconArray) { remove(i); }
 
 						FlxTween.color(bg, 0.25, bg.color, defColor);
 
