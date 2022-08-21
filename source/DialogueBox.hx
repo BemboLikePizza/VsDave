@@ -321,6 +321,8 @@ class DialogueBox extends FlxSpriteGroup
 							portraitLeft.setPosition(77, 145);
 						case 'festival-3d-scared':
 							portraitLeft.setPosition(135, 174);
+						case 'festival-tired' | 'festival-exhausted' | 'festival':
+							portraitLeft.setPosition(200, 140);
 						default:
 							portraitLeft.setPosition(200, 220);
 					}
