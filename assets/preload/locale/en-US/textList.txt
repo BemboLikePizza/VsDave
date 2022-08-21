@@ -188,3 +188,74 @@ exploit_sub4==Ha ha, ha
 // Escape from California Subtitles //
 california_sub1==Help me! I'm stuck in California!
 california_sub2==WAAAAAAAAAAAAAAAAAAAAAA!-
+
+// Cheating Subtitles //
+cheating_sub1==I block you.
+cheating_sub2==You are monster.
+cheating_sub3==You ruin my life!
+cheating_sub4==Moldy I swear to god I block you forever.
+cheating_sub5==I am block you.
+cheating_sub6==Do you stop click to friend...
+cheating_sub7==Jumpman12 I block you Moldy! 
+cheating_sub8==Auugh auugh
+cheating_sub9==*gibberish*
+cheating_sub10==Ok, *gibberish*
+cheating_sub11==You stupid.
+cheating_sub12==Uhhh, *gibberish*
+cheating_sub13==What's your, umm...
+cheating_sub14==What's your fun games?
+cheating_sub15==Wh-
+cheating_sub16==What your favorite games?
+cheating_sub17==What your favorite?
+cheating_sub18==His name-
+cheating_sub19==He said...
+cheating_sub20==Dead games.
+cheating_sub21==Dick!
+cheating_sub22==Jumpman...
+cheating_sub23==No...
+cheating_sub24==Dick, heh!
+cheating_sub25==Oh my god so...
+cheating_sub26==It's not funny this is stupid.
+cheating_sub27==Ohoh!!!
+cheating_sub28==Hehehe! Huhuhuhuh...
+cheating_sub29==Hehehehe...
+cheating_sub30==Huhuhuhuhuhu, hehe!
+
+//Unfairness Subtitles//
+unfairness_sub1==Kidding!
+unfairness_sub2==I...
+unfairness_sub3==Paint...
+unfairness_sub4==This one two hours I painting.
+unfairness_sub5==Look!
+unfairness_sub6==I'm not kidding this is...
+unfairness_sub7==Fucking real!
+
+//Vs Dave Rap Subtitles//
+daverap_sub1==VS Dave, is kinda poopoo
+daverap_sub2==It remids me of doodoo
+daverap_sub3==Oooooh!
+daverap_sub4==When I think of Obama
+daverap_sub5==Fortnite
+daverap_sub6==It makes me farty sharty
+daverap_sub7==Yeah!
+daverap_sub8==Slipped on a banana
+daverap_sub9==Ow!
+daverap_sub10==We drivin' the Jalopy
+daverap_sub11==Hell yeah!
+daverap_sub12==Gordon Freeman is green
+daverap_sub13==Sub to Stats45
+daverap_sub14==Yeah!
+daverap_sub15==My dick itch, it burn like Baldi sick
+
+//Memory Subtitles//
+memory_sub1==Well...
+memory_sub2==So far this has been such a ride,
+memory_sub3==But I want to say this.
+memory_sub4==Even if you might leave to go up against new opponents,
+memory_sub5==Remember that I will always be with you in your heart,
+memory_sub6==And that I will support you along the way
+memory_sub7==as much as I can. But...
+memory_sub8==Before things come to an end,
+memory_sub9==Wanna settle this rap with me?
+memory_sub10==Yeah!
+memory_sub11==Awesome! Let's do it!
