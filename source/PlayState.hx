@@ -4893,23 +4893,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.shake(0.015, (Conductor.stepCrochet / 1000) * 4);
 					case 1280:
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
-						var targetWindowSize = new FlxPoint(854, 480);
-						FlxTween.tween(curWindowSize, {x: targetWindowSize, y: targetWindowSize}, 0.4, {
-							ease: FlxEase.expoOut,
-							onUpdate: function(tween:FlxTween)
-							{
-								Application.current.window.resize(Std.int(curWindowSize.x), Std.int(curWindowSize.y));
-							},
-							onComplete: function(tween:FlxTween)
-							{
-								Application.current.window.resize(854, 480);
-								var display = Application.current.window.display.currentMode;
-								
-								Application.current.window.x = Std.int(FlxG.width / 2);
-								Application.current.window.y = Std.int(FlxG.height / 2) - Std.int(display.height / 4);
-								popupWindow();
-							}
-						});
+						popupWindow();
 						dadStrums.visible = false;
 				}
 			case 'shredder':
@@ -5582,6 +5566,18 @@ class PlayState extends MusicBeatState
 
 	function popupWindow() {
 		var display = Application.current.window.display.currentMode;
+
+		var screenwidth = Application.current.window.display.bounds.width;
+		var screenheight = Application.current.window.display.bounds.height;
+
+		var expungedXoffset = 0;
+		var expungedYoffset = 0;
+
+		//center
+		Application.current.window.x = Std.int((screenwidth / 2) - (1280 / 2));
+		Application.current.window.y = Std.int((screenheight / 2) - (720 / 2));
+		Application.current.window.width = 1280;
+		Application.current.window.height = 720;
 		// PlayState.defaultCamZoom = 0.5;
 		
 		window = Application.current.createWindow({
@@ -5589,19 +5585,18 @@ class PlayState extends MusicBeatState
 			 width: 2000,
 			 height: 2000,
 			 borderless: true,
-			 alwaysOnTop: false
+			 alwaysOnTop: true
 			 
 		});
-		window.x = -6000;
 
-		window.stage.color = 0xFF010101;
+		window.stage.color = 0x00010101;
 		@:privateAccess
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
 		WindowsUtil.getWindowsTransparent();
 
-		//FlxTween.tween(window, {x: FlxG.width / 2 - 300}, 1, {ease: FlxEase.cubeOut});
+		//FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 		
 		/*var bg = Paths.image("holyshit").bitmap;
 		var spr = new Sprite();
@@ -5613,6 +5608,11 @@ class PlayState extends MusicBeatState
 		window.stage.addChild(spr);*/
 
 		var m = new Matrix();
+
+		m.translate(0,120);
+
+		dad.x = 0;
+		dad.y = 0;
   
 		FlxG.mouse.useSystemCursor = true;
 
@@ -5625,8 +5625,8 @@ class PlayState extends MusicBeatState
 		expungedScroll.scaleX = 0.5;
 		expungedScroll.scaleY = 0.5;
 
-		window.x = Std.int((FlxG.width / 2) - 300);
-		window.y = Std.int((FlxG.height - expungedScroll.width) / 2);
+		window.x = 100;
+		window.y = Application.current.window.y;
 
 		dad.visible = false;
 		dadStrums.forEach(function(strum:StrumNote)
