@@ -13,13 +13,22 @@ class OutdatedSubState extends MusicBeatState
 
 	public static var needVer:String = "IDFK LOL";
 
+	public var InExpungedState:Bool = false;
+
 	override function create()
 	{
 		super.create();
+		InExpungedState = FlxG.save.data.exploitationState == 'playing';
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 		var txt:FlxText = null;
-		if (FlxG.save.data.begin_thing)
+		if (InExpungedState)
+		{
+			txt = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('intoWarningExpunged'), 32);
+			FlxG.save.data.exploitationState = null;
+			FlxG.save.flush();
+		}
+		else if (FlxG.save.data.begin_thing)
 		{
 			txt = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('introWarningSeen'), 32);
 		}
@@ -35,9 +44,14 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.PAUSE && FlxG.save.data.begin_thing == true)
+		if (controls.PAUSE && (FlxG.save.data.begin_thing == true || InExpungedState))
 		{
 			leaveState();
+		}
+		if (InExpungedState)
+		{
+			super.update(elapsed);
+			return;
 		}
 		if (FlxG.keys.justPressed.Y && FlxG.save.data.begin_thing != true || FlxG.keys.justPressed.ENTER && FlxG.save.data.begin_thing != true)
 		{

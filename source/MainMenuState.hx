@@ -124,11 +124,6 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-
-		if (FlxG.save.data.exploitationState == 'playing')
-		{
-			FlxG.save.data.exploitationState == 'awaiting';
-		}
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
 		{
