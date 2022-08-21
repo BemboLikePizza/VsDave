@@ -573,7 +573,7 @@ class PlayState extends MusicBeatState
 		backgroundSprites = createBackgroundSprites(stageCheck, false);
 		switch (SONG.song.toLowerCase())
 		{
-			case 'supernovae' | 'glitch' | 'secret':
+			case 'supernovae' | 'secret':
 				UsingNewCam = true;
 		}
 		switch (SONG.song.toLowerCase())
@@ -1533,8 +1533,12 @@ class PlayState extends MusicBeatState
 				sprites.add(desertBG2);
 				add(desertBG2);
 
-				var train:BGSprite = new BGSprite('train', -800, 500
-				, Paths.image('california/train'), null, 1, 1, true);
+				var train = new BGSprite('train', -800, 500, 'california/train', [
+					new Animation('idle', 'trainRide', 24, false, [false, false])
+				], 1, 1, true, true);
+				train.animation.play('idle');
+				train.setGraphicSize(Std.int(train.width * 1.5));
+				train.updateHitbox();
 				sprites.add(train);
 				add(train);
 			default:
