@@ -5229,6 +5229,10 @@ class PlayState extends MusicBeatState
 								FlxTween.tween(black, {alpha: 0.6}, 1);
 								makeInvisibleNotes(true);
 								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub11'), 0.02, 1);
+							case 1664:
+								defaultCamZoom -= 0.2;
+								FlxTween.tween(black, {alpha: 0}, 1);
+								makeInvisibleNotes(false);
 	
 						}
 					}
