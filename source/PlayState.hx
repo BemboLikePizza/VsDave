@@ -4819,10 +4819,10 @@ class PlayState extends MusicBeatState
 			case 'glitch':
 				switch (curStep)
 				{
-					case 480 | 681 | 1390 | 1445 | 1515 | 1542 | 1598 | 1655:
+					case 132 | 612 | 740 | 771 | 836:
 						shakeCam = true;
 						camZooming = true;
-					case 512 | 688 | 1420 | 1464 | 1540 | 1558 | 1608 | 1745:
+					case 144 | 624 | 752 | 784 | 848:
 						shakeCam = false;
 						camZooming = false;
 				}
