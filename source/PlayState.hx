@@ -5512,7 +5512,7 @@ class PlayState extends MusicBeatState
 		for (strumNote in strumLineNotes)
 		{
 			var originAngle = strumNote.angle;
-			FlxTween.tween(strumNote, {angle: originAngle + 360}, 0.4, {ease: FlxEase.expoOut});
+			FlxTween.angle(strumNote, strumNote.angle, strumNote.angle + 360, 0.4, {ease: FlxEase.expoOut});
 			FlxTween.tween(strumNote, {y: strumLine.y}, 0.6, {ease: FlxEase.backOut});
 			i++;
 		}
