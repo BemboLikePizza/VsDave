@@ -4,6 +4,9 @@ import flixel.FlxSprite;
 
 class StrumNote extends FlxSprite
 {
+	public var copyAlpha:Bool = true;
+	public var copyX:Bool = true;
+
    public function new(x:Float, y:Float, type:String, strumID:Int)
    {
       super(x, y);

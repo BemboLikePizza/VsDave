@@ -590,8 +590,6 @@ class FreeplayState extends MusicBeatState
 			}
 			if (accepted && canInteract)
 			{
-				Main.currentPackGlobal = Catagories[CurrentPack].toLowerCase();
-
 				PlayState.SONG = Song.loadFromJson(songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
 	

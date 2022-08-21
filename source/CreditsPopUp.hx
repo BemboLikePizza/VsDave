@@ -156,13 +156,13 @@ class CreditsPopUp extends FlxSpriteGroup
 	public function changeText(newText:String, newIcon:String)
 	{
 		funnyText.text = newText;
-		if (!FileSystem.exists(Paths.image('songCreators/$newIcon', 'shared')))
+		if (!FileSystem.exists(Paths.image('songCreators/' + newIcon, 'shared')))
 		{
 			funnyIcon.loadGraphic(Paths.image('songCreators/none', 'shared'));
 		}
 		else
 		{
-			funnyIcon.loadGraphic(Paths.image('songCreators/$newIcon', 'shared'));
+			funnyIcon.loadGraphic(Paths.image('songCreators/' + newIcon, 'shared'));
 		}
 		updateHitboxes();
 	}
