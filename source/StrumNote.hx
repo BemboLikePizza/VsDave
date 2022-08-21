@@ -4,14 +4,11 @@ import flixel.FlxSprite;
 
 class StrumNote extends FlxSprite
 {
-   public var copyAlpha:Bool = false;
-   public var copyX:Bool = false;
-
    public function new(x:Float, y:Float, type:String, strumID:Int)
    {
       super(x, y);
 
-		ID = strumID;
+	  ID = strumID;
 
       //get the frames and stuff
       switch (type)
