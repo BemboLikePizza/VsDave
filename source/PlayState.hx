@@ -2591,13 +2591,13 @@ class PlayState extends MusicBeatState
 					FlxG.switchState(new PlayState());
 					return;
 					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
-				//case 'cheating':
-					//PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
-					//FlxG.save.data.unfairnessFound = true;
-					//shakeCam = false;
-					//screenshader.Enabled = false;
-				//	FlxG.switchState(new PlayState());
-				//	return;
+			    case 'cheating':
+					PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
+					FlxG.save.data.unfairnessFound = true;
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
+					return;
 				case 'unfairness':
 					shakeCam = false;
 					screenshader.Enabled = false;
