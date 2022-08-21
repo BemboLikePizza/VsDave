@@ -9,6 +9,7 @@ introWarningSeen==Hello! This mod utilizes shaders that may be of disturbance to
 // Main Menu State //
 main_story==Story Mode
 main_freeplay==Freeplay
+main_freeplay_glitch==MY Play
 main_credits==Credits
 main_ost==OST
 main_options==Options
@@ -17,6 +18,7 @@ main_discord==Discord
 // Main Menu Descriptions //
 desc_story==Play the story mode to unlock new characters, and understand the story!
 desc_freeplay==Play any song as you wish and get new scores!
+desc_freeplay_glitch==Play my song as I wish and fail.
 desc_credits==Look at the people who have worked or contributed to the mod!
 desc_ost==Listen to the songs of the mod.
 desc_options==Adjust game settings and keybinds.

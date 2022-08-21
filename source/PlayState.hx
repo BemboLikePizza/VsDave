@@ -386,7 +386,7 @@ class PlayState extends MusicBeatState
 				}
 				Main.toggleFuckedFPS(true);
 
-				FlxG.save.data.exploitationState = null;
+				FlxG.save.data.exploitationState = 'playing';
 				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
@@ -3138,6 +3138,9 @@ class PlayState extends MusicBeatState
 				|| characteroverride == "bf" ? "bf" : characteroverride);
 			#end
 		}
+		FlxG.save.data.exploitationState = null;
+
+		FlxG.save.flush();
 
 		// Song Character Unlocks (Story Mode)
 		if (isStoryMode)

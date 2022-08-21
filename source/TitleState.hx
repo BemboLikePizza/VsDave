@@ -89,6 +89,7 @@ class TitleState extends MusicBeatState
 			if (!StoryMenuState.weekUnlocked[0])
 				StoryMenuState.weekUnlocked[0] = true;
 		}
+		
 
 		awaitingExploitation = FlxG.save.data.exploitationState == 'awaiting';
 

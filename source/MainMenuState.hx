@@ -125,6 +125,10 @@ class MainMenuState extends MusicBeatState
 	override function create()
 	{
 
+		if (FlxG.save.data.exploitationState == 'playing')
+		{
+			FlxG.save.data.exploitationState == 'awaiting';
+		}
 		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
 		if (!FlxG.sound.music.playing)
 		{
@@ -142,9 +146,9 @@ class MainMenuState extends MusicBeatState
 
 		if (awaitingExploitation)
 		{
-			optionShit = ['freeplay'];
-			languagesOptions = ['main_freeplay'];
-			languagesDescriptions = ['desc_freeplay'];
+			optionShit = ['freeplay glitch'];
+			languagesOptions = ['main_freeplay_glitch'];
+			languagesDescriptions = ['desc_freeplay_glitch'];
 			bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 			bg.scrollFactor.set(0, 0.2);
 			bg.antialiasing = false;
@@ -198,7 +202,7 @@ class MainMenuState extends MusicBeatState
 		bigIcons.frames = Paths.getSparrowAtlas('ui/menu_big_icons');
 		for (i in 0...optionShit.length)
 		{
-			bigIcons.animation.addByPrefix(optionShit[i], optionShit[i], 24);
+			bigIcons.animation.addByPrefix(optionShit[i], optionShit[i] == 'freeplay' ? 'freeplay0' : optionShit[i], 24);
 		}
 		bigIcons.scrollFactor.set(0, 0);
 		bigIcons.antialiasing = true;
@@ -364,8 +368,8 @@ class MainMenuState extends MusicBeatState
 								{
 									case 'story mode':
 										FlxG.switchState(new StoryMenuState());
-									case 'freeplay':
-										if (FlxG.random.bool(0.1))
+									case 'freeplay' | 'freeplay glitch':
+										if (FlxG.random.bool(0.05))
 										{
 											fancyOpenURL("https://www.youtube.com/watch?v=Z7wWa1G9_30%22");
 										}

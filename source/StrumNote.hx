@@ -82,7 +82,7 @@ class StrumNote extends FlxSprite
       }
       animation.play('static');
 
-      antialiasing = true;
+      antialiasing = type != '3D';
 
       setGraphicSize(Std.int(width * 0.7));
       updateHitbox();

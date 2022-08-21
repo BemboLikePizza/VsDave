@@ -223,8 +223,7 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * 1.2));
 				updateHitbox();
 				antialiasing = true;
-				noteOffset = 22;
-				x -= (width - 78);
+				noteOffset = -(width - 78);
 			case 'guitarHero':
 				frames = Paths.getSparrowAtlas('notes/NOTE_gh', 'shared');
 
@@ -263,7 +262,8 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 				
-				x -= (width - 78);
+				//x -= (width - 78);
+				//TODO: make this MATH.
 				noteOffset = 20;
 
 		}
