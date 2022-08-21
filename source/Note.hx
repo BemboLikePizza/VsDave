@@ -62,6 +62,8 @@ class Note extends FlxSprite
 
 	public var noteOffset:Float = 0;
 
+	public var ModchartEnabled:Bool = true;
+
 	var notes = ['purple', 'blue', 'green', 'red'];
 
 	public function GoToStrum(strum:FlxSprite)
@@ -269,7 +271,7 @@ class Note extends FlxSprite
 
 				animation.play('${notes[originalType]}Scroll');
 		}
-		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState") && ModchartEnabled)
 		{
 			var state:PlayState = cast(FlxG.state, PlayState);
 			InPlayState = true;
@@ -359,7 +361,7 @@ class Note extends FlxSprite
 		}
 		else
 		{
-			if (InPlayState)
+			if (InPlayState && ModchartEnabled)
 			{
 				var state:PlayState = cast(FlxG.state, PlayState);
 				if (mustPress)
