@@ -266,7 +266,7 @@ class PlayState extends MusicBeatState
 	var bfNoteCamOffset:Array<Float> = new Array<Float>();
 	var dadNoteCamOffset:Array<Float> = new Array<Float>();
 
-	var video:MP4Handler;
+	var video:VideoHandler;
 	public var modchart:ExploitationModchartType;
 	var weirdBG:FlxSprite;
 
@@ -1841,7 +1841,7 @@ class PlayState extends MusicBeatState
 		inCutscene = true;
 		FlxG.sound.music.stop();
 
-		video = new MP4Handler();
+		video = new VideoHandler();
 		video.finishCallback = function()
 		{
 			switch (curSong.toLowerCase())
@@ -1864,7 +1864,7 @@ class PlayState extends MusicBeatState
 	{
 		inCutscene = true;
 
-		video = new MP4Handler();
+		video = new VideoHandler();
 		video.finishCallback = function()
 		{
 			LoadingState.loadAndSwitchState(new PlayState());
