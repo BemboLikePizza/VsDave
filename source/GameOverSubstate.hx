@@ -31,6 +31,7 @@ class GameOverSubstate extends MusicBeatSubstate
 				System.exit(0);
 			case 'dave' | 'dave-recursed':
 				daBf = 'dave-death';
+				deathSuffix = '-dave';
 			case 'tristan':
 				daBf = 'tristan-death';
 				deathSuffix = '-tristan';
@@ -42,6 +43,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				deathSuffix = '-bambi';
 			case 'nofriend':
 				daBf = 'nofriend-death';
+				deathSuffix = '-nofriend';
+
 			default:
 				daBf = char;
 		}
