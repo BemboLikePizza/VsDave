@@ -3837,7 +3837,7 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
 						FlxTween.cancelTweensOf(note.MyStrum);
 						note.MyStrum.alpha = 0.01;
-						FlxTween.tween(note.MyStrum, {alpha: 1}, 11, {ease: FlxEase.expoIn});
+						FlxTween.tween(note.MyStrum, {alpha: 1}, 9, {ease: FlxEase.expoIn});
 						health -= 0.07;
 						updateAccuracy();
 						return;
