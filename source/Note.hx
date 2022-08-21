@@ -59,46 +59,6 @@ class Note extends FlxSprite
 
 	var notes = ['purple', 'blue', 'green', 'red'];
 
-	public function GoToStrum(strum:FlxSprite)
-	{
-		x = strum.x + noteOffset;
-		alpha = strum.alpha * alphaMult;
-	}
-
-	public function isInState(state:String)
-	{
-		return Type.getClassName(Type.getClass(FlxG.state)).contains(state);
-	}
-
-	public function SearchForStrum(musthit:Bool)
-	{
-		var state:PlayState = cast(FlxG.state, PlayState);
-		if (musthit)
-		{
-			state.playerStrums.forEach(function(spr:FlxSprite)
-			{
-				if (spr.ID == notetolookfor)
-				{
-					GoToStrum(spr);
-					MyStrum = spr;
-					return;
-				}
-			});
-		}
-		else
-		{
-			state.dadStrums.forEach(function(spr:FlxSprite)
-			{
-				if (spr.ID == notetolookfor)
-				{
-					GoToStrum(spr);
-					MyStrum = spr;
-					return;
-				}
-			});
-		}
-	}
-
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal", inCharter:Bool = false, guitarSection:Bool = false)
 	{
 		super();
@@ -386,6 +346,45 @@ class Note extends FlxSprite
 		if (tooLate)
 		{
 			alphaMult = 0.3;
+		}
+	}
+	public function GoToStrum(strum:FlxSprite)
+	{
+		x = strum.x + noteOffset;
+		alpha = strum.alpha * alphaMult;
+	}
+
+	public function isInState(state:String)
+	{
+		return Type.getClassName(Type.getClass(FlxG.state)).contains(state);
+	}
+
+	public function SearchForStrum(musthit:Bool)
+	{
+		var state:PlayState = cast(FlxG.state, PlayState);
+		if (musthit)
+		{
+			state.playerStrums.forEach(function(spr:FlxSprite)
+			{
+				if (spr.ID == notetolookfor)
+				{
+					GoToStrum(spr);
+					MyStrum = spr;
+					return;
+				}
+			});
+		}
+		else
+		{
+			state.dadStrums.forEach(function(spr:FlxSprite)
+			{
+				if (spr.ID == notetolookfor)
+				{
+					GoToStrum(spr);
+					MyStrum = spr;
+					return;
+				}
+			});
 		}
 	}
 }

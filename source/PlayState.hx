@@ -573,7 +573,7 @@ class PlayState extends MusicBeatState
 		backgroundSprites = createBackgroundSprites(stageCheck, false);
 		switch (SONG.song.toLowerCase())
 		{
-			case 'supernovae' | 'secret':
+			case 'secret':
 				UsingNewCam = true;
 		}
 		switch (SONG.song.toLowerCase())
