@@ -2822,7 +2822,6 @@ class PlayState extends MusicBeatState
 			if (unspawnNotes[0].strumTime - Conductor.songPosition < thing)
 			{
 				var dunceNote:Note = unspawnNotes[0];
-				dunceNote.init();
 				dunceNote.finishedGenerating = true;
 
 				notes.add(dunceNote);
@@ -5714,7 +5713,6 @@ class PlayState extends MusicBeatState
 		dad.visible = false;
 		dadStrums.forEach(function(strum:StrumNote)
 		{
-			strum.copyAlpha = true;
 			FlxTween.tween(strum, {alpha: 0}, 1);
 		});
 
