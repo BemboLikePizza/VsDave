@@ -1469,7 +1469,7 @@ class ChartingState extends MusicBeatState
 		switch (song.toLowerCase())
 		{
 			case 'supernovae' | 'glitch':
-				var video = new MP4Handler();
+				var video = new VideoHandler();
 				video.playVideo(Paths.video('fortniteballs')); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
 			case 'cheating':
 				FlxG.switchState(new YouCheatedSomeoneIsComing()); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU

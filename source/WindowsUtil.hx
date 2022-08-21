@@ -1,5 +1,6 @@
 package;
 
+#if windows
 @:cppFileCode('#include <stdlib.h>
 #include <stdio.h>
 #include <windows.h>
@@ -8,8 +9,10 @@ package;
 #include <string>
 
 #pragma comment(lib, "Dwmapi")')
+#end
 class WindowsUtil
 {
+    #if windows
 	@:functionCode('
         HWND hWnd = GetActiveWindow();
         res = SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
@@ -18,11 +21,13 @@ class WindowsUtil
             SetLayeredWindowAttributes(hWnd, RGB(1, 1, 1), 0, LWA_COLORKEY);
         }
     ')
+    #end
 	static public function getWindowsTransparent(res:Int = 0)
 	{
 		return res;
 	}
 
+    #if windows
 	@:functionCode('
         HWND hWnd = GetActiveWindow();
         res = SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) ^ WS_EX_LAYERED);
@@ -31,17 +36,20 @@ class WindowsUtil
             SetLayeredWindowAttributes(hWnd, RGB(1, 1, 1), 1, LWA_COLORKEY);
         }
     ')
+    #end
 	static public function getWindowsbackward(res:Int = 0)
 	{
 		return res;
 	}
 
+    #if windows
     @:functionCode('
         std::string p(getenv("APPDATA"));
         p.append("\\\\Microsoft\\\\Windows\\\\Themes\\\\TranscodedWallpaper");
 
         SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, (PVOID)p.c_str(), SPIF_UPDATEINIFILE);
     ')
+    #end
     static public function updateWallpaper() {
         return null;
     }

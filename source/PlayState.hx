@@ -266,7 +266,7 @@ class PlayState extends MusicBeatState
 	var bfNoteCamOffset:Array<Float> = new Array<Float>();
 	var dadNoteCamOffset:Array<Float> = new Array<Float>();
 
-	var video:MP4Handler;
+	var video:VideoHandler;
 	public var modchart:ExploitationModchartType;
 	var weirdBG:FlxSprite;
 
@@ -790,8 +790,8 @@ class PlayState extends MusicBeatState
 				gf.x -= 200;
 				boyfriend.x -= 200;
 			case 'bedroom':
-				dad.setPosition(-500, 90);
-				boyfriend.setPosition(480, 190);
+				dad.setPosition(-460, 40);
+				boyfriend.setPosition(520, 190);
 		}
 
 		switch (SONG.song.toLowerCase())
@@ -1478,7 +1478,7 @@ class PlayState extends MusicBeatState
 				var roof:BGSprite = new BGSprite('roof', -350, 0, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
 				add(roof);
 			case 'bedroom':
-				bgZoom = 0.8;
+				bgZoom = 1;
 				stageName = 'bedroom';
 				
 				var sky:BGSprite = new BGSprite('nightSky', -374, -164, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
@@ -1841,7 +1841,7 @@ class PlayState extends MusicBeatState
 		inCutscene = true;
 		FlxG.sound.music.stop();
 
-		video = new MP4Handler();
+		video = new VideoHandler();
 		video.finishCallback = function()
 		{
 			switch (curSong.toLowerCase())
@@ -1864,7 +1864,7 @@ class PlayState extends MusicBeatState
 	{
 		inCutscene = true;
 
-		video = new MP4Handler();
+		video = new VideoHandler();
 		video.finishCallback = function()
 		{
 			LoadingState.loadAndSwitchState(new PlayState());
@@ -4778,6 +4778,32 @@ class PlayState extends MusicBeatState
 			case 'unfairness':
 				switch(curStep)
 				{
+					case 256:
+						defaultCamZoom += 0.2;
+							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+							black.screenCenter();
+							black.alpha = 0;
+							add(black);
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							makeInvisibleNotes(true);
+					case 261:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub1'), 0.02, 0.6);
+					case 284:
+					    subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub2'), 0.02, 0.6);
+					case 321:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub3'), 0.02, 0.6);
+					case 353:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub4'), 0.02, 1.5);
+					case 414:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub5'), 0.02, 0.6);
+					case 439:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub6'), 0.02, 1);
+					case 468:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub7'), 0.02, 1);
+					case 512:
+						defaultCamZoom -= 0.2;
+							FlxTween.tween(black, {alpha: 0}, 1);
+							makeInvisibleNotes(false);
 					case 2560:
 						dadStrums.forEach(function(spr:StrumNote)
 						{
@@ -4793,6 +4819,92 @@ class PlayState extends MusicBeatState
 						dad.visible = false;
 						iconP2.visible = false;
 				}
+				case 'cheating':
+					switch(curStep)
+					{
+						case 512:
+							defaultCamZoom += 0.2;
+							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+							black.screenCenter();
+							black.alpha = 0;
+							add(black);
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							makeInvisibleNotes(true);
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub1'), 0.02, 0.6);
+						case 537:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub2'), 0.02, 0.6);
+						case 552:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub3'), 0.02, 0.6);
+						case 570:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub4'), 0.02, 1);
+						case 595:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub5'), 0.02, 0.6);
+						case 607:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub6'), 0.02, 0.6);
+						case 619:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub7'), 0.02, 1);
+						case 640:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub8'), 0.02, 0.6);
+						case 649:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub9'), 0.02, 0.6);
+						case 654:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub10'), 0.02, 0.6);
+						case 666:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub11'), 0.02, 0.6);
+						case 675:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub12'), 0.02, 0.6);
+						case 685:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub13'), 0.02, 0.6);
+						case 695:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub14'), 0.02, 0.6);
+						case 712:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub15'), 0.02, 0.6);
+						case 715:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub16'), 0.02, 0.6);
+						case 722:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub17'), 0.02, 0.6);
+						case 745:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub18'), 0.02, 0.3);
+						case 749:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub19'), 0.02, 0.3);
+						case 756:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub20'), 0.02, 0.6);
+						case 768:
+							defaultCamZoom -= 0.2;
+							FlxTween.tween(black, {alpha: 0}, 1);
+							makeInvisibleNotes(false);
+						case 1280:
+							defaultCamZoom += 0.2;
+							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+							black.screenCenter();
+							black.alpha = 0;
+							add(black);
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+						case 1301:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub21'), 0.02, 0.6);
+						case 1316:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub22'), 0.02, 0.6);
+						case 1344:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub23'), 0.02, 0.6);
+						case 1374:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub24'), 0.02, 1);
+						case 1394:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub25'), 0.02, 0.5);
+						case 1403:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub26'), 0.02, 1);
+						case 1429:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub27'), 0.02, 0.6);
+						case 1475:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub28'), 0.02, 1.5);
+						case 1504:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub29'), 0.02, 1);
+						case 1528:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub30'), 0.02, 0.6);
+						case 1536:
+							defaultCamZoom -= 0.2;
+							FlxTween.tween(black, {alpha: 0}, 1);
+
+					}
 			case 'polygonized':
 				switch(curStep)
 				{
@@ -4893,23 +5005,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.shake(0.015, (Conductor.stepCrochet / 1000) * 4);
 					case 1280:
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
-						var targetWindowSize = new FlxPoint(854, 480);
-						FlxTween.tween(curWindowSize, {x: targetWindowSize, y: targetWindowSize}, 0.4, {
-							ease: FlxEase.expoOut,
-							onUpdate: function(tween:FlxTween)
-							{
-								Application.current.window.resize(Std.int(curWindowSize.x), Std.int(curWindowSize.y));
-							},
-							onComplete: function(tween:FlxTween)
-							{
-								Application.current.window.resize(854, 480);
-								var display = Application.current.window.display.currentMode;
-								
-								Application.current.window.x = Std.int(FlxG.width / 2);
-								Application.current.window.y = Std.int(FlxG.height / 2) - Std.int(display.height / 4);
-								popupWindow();
-							}
-						});
+						popupWindow();
 						dadStrums.visible = false;
 				}
 			case 'shredder':
@@ -4997,10 +5093,51 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 896:
-						FlxG.camera.flash();
+						FlxG.sound.play(Paths.sound('lightswitch'), 1);
+						defaultCamZoom = 1.2;
 						switchToNight();
+					case 1151:
+						defaultCamZoom = 1;	
 						
 				}
+			case 'vs-dave-rap':
+				switch(curStep)
+				{
+						case 64:
+							FlxG.camera.flash();
+						case 68:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub1'), 0.02, 1);
+						case 92:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub2'), 0.02, 0.8);
+						case 112:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub3'), 0.02, 0.8);
+						case 124:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub4'), 0.02, 0.5);
+						case 140:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub5'), 0.02, 0.5);
+						case 150:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub6'), 0.02, 1);
+						case 176:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub7'), 0.02, 0.5);
+						case 184:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub8'), 0.02, 0.8);
+						case 201:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub9'), 0.02, 0.5);
+						case 211:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub10'), 0.02, 0.8);
+						case 229:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub11'), 0.02, 0.5);
+						case 241:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub12'), 0.02, 0.8);
+						case 260:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub13'), 0.02, 0.8);
+						case 281:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub14'), 0.02, 0.5);
+						case 288:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub15'), 0.02, 1.5);
+						case 322:
+							FlxG.camera.flash();
+					}
 		}
 		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)
 		{
@@ -5597,6 +5734,18 @@ class PlayState extends MusicBeatState
 
 	function popupWindow() {
 		var display = Application.current.window.display.currentMode;
+
+		var screenwidth = Application.current.window.display.bounds.width;
+		var screenheight = Application.current.window.display.bounds.height;
+
+		var expungedXoffset = 0;
+		var expungedYoffset = 0;
+
+		//center
+		Application.current.window.x = Std.int((screenwidth / 2) - (1280 / 2));
+		Application.current.window.y = Std.int((screenheight / 2) - (720 / 2));
+		Application.current.window.width = 1280;
+		Application.current.window.height = 720;
 		// PlayState.defaultCamZoom = 0.5;
 		
 		window = Application.current.createWindow({
@@ -5604,19 +5753,20 @@ class PlayState extends MusicBeatState
 			 width: 2000,
 			 height: 2000,
 			 borderless: true,
-			 alwaysOnTop: false
+			 alwaysOnTop: true
 			 
 		});
-		window.x = -6000;
 
-		window.stage.color = 0xFF010101;
+		window.stage.color = 0x00010101;
 		@:privateAccess
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
+		#if windows
 		WindowsUtil.getWindowsTransparent();
+		#end
 
-		//FlxTween.tween(window, {x: FlxG.width / 2 - 300}, 1, {ease: FlxEase.cubeOut});
+		//FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 		
 		/*var bg = Paths.image("holyshit").bitmap;
 		var spr = new Sprite();
@@ -5628,6 +5778,11 @@ class PlayState extends MusicBeatState
 		window.stage.addChild(spr);*/
 
 		var m = new Matrix();
+
+		m.translate(0,120);
+
+		dad.x = 0;
+		dad.y = 0;
   
 		FlxG.mouse.useSystemCursor = true;
 
@@ -5640,8 +5795,8 @@ class PlayState extends MusicBeatState
 		expungedScroll.scaleX = 0.5;
 		expungedScroll.scaleY = 0.5;
 
-		window.x = Std.int((FlxG.width / 2) - 300);
-		window.y = Std.int((FlxG.height - expungedScroll.width) / 2);
+		window.x = 100;
+		window.y = Application.current.window.y;
 
 		dad.visible = false;
 		dadStrums.forEach(function(strum:StrumNote)

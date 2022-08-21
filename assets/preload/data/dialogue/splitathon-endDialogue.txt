@@ -1,13 +1,12 @@
-:dave,splitathon:Wow great job BF! About about another!-
 :tristan:Dad! I think Bambi's phone is broken, it's just a black screen.
-:bambi:WHAT, WHY YOU PLAYING WITH MY PHONE
+:bambi,splitathon:WHAT, WHY YOU PLAYING WITH MY PHONE
 :dave,splitathon:Tristan, you shouldn't be playing on Bambi's phone without his permission
 :tristan:But the game was really fun!
 :tristan:You press these number buttons, and sometimes they would say certain things.
 :tristan:911 was a little scary though
 :dave,annoyed:SON YOU CALLED THE COPS!?
 :bf,upset:Boop!?
-:bambi:WHY YOU DO THAT??
+:bambi,splitathon:WHY YOU DO THAT??
 :tristan:Wait that's what it was?
 :dave,annoyed:Yes! and you know what, you are grounded!
 :generic:Tristan starts crying
@@ -19,7 +18,7 @@
 :generic:Tristan hands Dave the phone.
 :dave,annoyed:Ugh, sorry about that.
 :dave:Anyways, I think me and Tristan are gonna go home now, Bambi, do you want to come with us?
-:bambi:No thanks, I'm gonna sleep in the barn.
+:bambi,splitathon:No thanks, I'm gonna sleep in the barn.
 :dave:Ok.
 :dave:Also BF, I need to tell you something before we leave.
 :bf,confused:Bep?
@@ -32,7 +31,6 @@
 :gf:Seeya!
 :generic:BF and GF leave the farm.
 :dave:Bye Bambi
-:bambi:see you later
+:bambi,splitathon:see you later
 :generic:Dave and Tristan leave the farm
-:generic:Bambi goes to the barn to sleep
 to_black:generic:The End... for now.

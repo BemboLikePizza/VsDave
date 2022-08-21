@@ -3,9 +3,9 @@
 :bambi,confused: Huh? Hello?
 :dave,phone: Hey Bambi, it's Dave..
 :bambi,confused: Why you tryna calling me?
-:dave,confused: Is there a chance you are currently fighting two equally as short "Trespassers" over corn right now?
+:dave,phone: Is there a chance you are currently fighting two equally as short "Trespassers" over corn right now?
 :bambi,annoyed: Yes.. Justifiably!
-:dave,confused: Bambi. They aren't trespassing.
+:dave,phone: Bambi. They aren't trespassing.
 :bambi,confused: What?
 :dave,phone: I literally told you beforehand I was planning on having a picnic with the two!
 :bambi,confused: That doesn't make sense...
