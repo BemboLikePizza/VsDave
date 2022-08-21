@@ -1078,13 +1078,6 @@ class PlayState extends MusicBeatState
 					startCountdown();
 			}
 		}
-		if (['cheating', 'unfairness', 'exploitation'].contains(SONG.song.toLowerCase()))
-		{
-			strumLineNotes.forEach(function(strum:StrumNote)
-			{
-				strum.copyX = true;
-			});
-		}
 		
 		subtitleManager = new SubtitleManager();
 		subtitleManager.cameras = [camHUD];
@@ -2017,19 +2010,9 @@ class PlayState extends MusicBeatState
 					unspawnNotes.push(sustainNote);
 
 					sustainNote.mustPress = gottaHitNote;
-
-					if (sustainNote.mustPress)
-					{
-						sustainNote.startX += FlxG.width / 2; // general offset
-					}
 				}
 
 				swagNote.mustPress = gottaHitNote;
-
-				if (swagNote.mustPress)
-				{
-					swagNote.startX += FlxG.width / 2; // general offset
-				}
 			}
 		}
 
@@ -2839,7 +2822,6 @@ class PlayState extends MusicBeatState
 			if (unspawnNotes[0].strumTime - Conductor.songPosition < thing)
 			{
 				var dunceNote:Note = unspawnNotes[0];
-				dunceNote.init();
 				dunceNote.finishedGenerating = true;
 
 				notes.add(dunceNote);
@@ -3854,12 +3836,8 @@ class PlayState extends MusicBeatState
 						var hitAnimation:Bool = boyfriend.animation.getByName("hit") != null;
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
 						FlxTween.cancelTweensOf(note.MyStrum);
-						note.MyStrum.alpha = 0;
-						note.MyStrum.copyAlpha = true;
-						FlxTween.tween(note.MyStrum, {alpha: 1}, 9, {ease: FlxEase.expoIn, onComplete: function(tween:FlxTween)
-						{
-							note.MyStrum.copyAlpha = false;
-						}});
+						note.MyStrum.alpha = 0.01;
+						FlxTween.tween(note.MyStrum, {alpha: 1}, 11, {ease: FlxEase.expoIn});
 						health -= 0.07;
 						updateAccuracy();
 						return;
@@ -4832,10 +4810,10 @@ class PlayState extends MusicBeatState
 			case 'glitch':
 				switch (curStep)
 				{
-					case 480 | 681 | 1390 | 1445 | 1515 | 1542 | 1598 | 1655:
+					case 132 | 612 | 740 | 771 | 836:
 						shakeCam = true;
 						camZooming = true;
-					case 512 | 688 | 1420 | 1464 | 1540 | 1558 | 1608 | 1745:
+					case 144 | 624 | 752 | 784 | 848:
 						shakeCam = false;
 						camZooming = false;
 				}
@@ -5584,7 +5562,7 @@ class PlayState extends MusicBeatState
 		{
 			for (strumNote in strumLineNotes)
 			{
-				strumNote.copyAlpha = true;
+				FlxTween.cancelTweensOf(strumNote);
 				FlxTween.tween(strumNote, {alpha: 0}, 1);
 			}
 		}
@@ -5592,11 +5570,8 @@ class PlayState extends MusicBeatState
 		{
 			for (strumNote in strumLineNotes)
 			{
-				strumNote.copyAlpha = true;
-				FlxTween.tween(strumNote, {alpha: 1}, 1, {onComplete: function(tween:FlxTween)
-				{
-					strumNote.copyAlpha = false;
-				}});
+				FlxTween.cancelTweensOf(strumNote);
+				FlxTween.tween(strumNote, {alpha: 1}, 1);
 			}
 		}
 	}

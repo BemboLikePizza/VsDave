@@ -122,7 +122,6 @@ class CharacterSelectState extends MusicBeatState
 	
 	override public function create():Void 
 	{
-		super.create();
 
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
@@ -136,14 +135,15 @@ class CharacterSelectState extends MusicBeatState
 		Conductor.changeBPM(110);
 
 		camGame = new FlxCamera();
-		camHUD = new FlxCamera();
-		camHUD.bgColor.alpha = 0;
 		camTransition = new FlxCamera();
 		camTransition.bgColor.alpha = 0;
+		camHUD = new FlxCamera();
+		camHUD.bgColor.alpha = 0;
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 		FlxG.cameras.add(camTransition);
 		FlxCamera.defaultCameras = [camGame];
+		Transition.nextCamera = camTransition;
 		
 		FlxG.camera.zoom = 1.2;
 		camHUD.zoom = 0.75;
@@ -282,7 +282,10 @@ class CharacterSelectState extends MusicBeatState
 		arrowRight.cameras = [camHUD];
 		arrows[1] = arrowRight;
 		add(arrowRight);
-		
+
+		super.create();
+
+		Transition.nextCamera = camTransition;
 	}
 
 	private function generateStaticArrows(noteType:String = 'normal', regenerated:Bool):Void
