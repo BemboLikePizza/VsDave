@@ -805,8 +805,8 @@ class PlayState extends MusicBeatState
 				gf.x -= 200;
 				boyfriend.x -= 200;
 			case 'bedroom':
-				dad.setPosition(-500, 90);
-				boyfriend.setPosition(480, 190);
+				dad.setPosition(-460, 40);
+				boyfriend.setPosition(520, 190);
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -1480,7 +1480,7 @@ class PlayState extends MusicBeatState
 				var roof:BGSprite = new BGSprite('roof', -350, 0, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
 				add(roof);
 			case 'bedroom':
-				bgZoom = 0.8;
+				bgZoom = 1;
 				stageName = 'bedroom';
 				
 				var sky:BGSprite = new BGSprite('nightSky', -287, -122, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
@@ -4981,8 +4981,11 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 896:
-						FlxG.camera.flash();
+						FlxG.sound.play(Paths.sound('lightswitch'), 1);
+						defaultCamZoom = 1.2;
 						switchToNight();
+					case 1151:
+						defaultCamZoom = 1;	
 						
 				}
 		}
