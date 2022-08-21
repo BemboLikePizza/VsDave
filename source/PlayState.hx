@@ -2822,6 +2822,7 @@ class PlayState extends MusicBeatState
 			if (unspawnNotes[0].strumTime - Conductor.songPosition < thing)
 			{
 				var dunceNote:Note = unspawnNotes[0];
+				dunceNote.init();
 				dunceNote.finishedGenerating = true;
 
 				notes.add(dunceNote);
