@@ -73,6 +73,41 @@ class Note extends FlxSprite
 		alpha = strum.alpha * alphaMult;
 	}
 
+	public function InPlaystate()
+	{
+		return Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState");
+	}
+
+	public function SearchForStrum(musthit:Bool)
+	{
+		var state:PlayState = cast(FlxG.state, PlayState);
+		InPlayState = true;
+		if (musthit)
+		{
+			state.playerStrums.forEach(function(spr:FlxSprite)
+			{
+				if (spr.ID == notetolookfor)
+				{
+					GoToStrum(spr);
+					MyStrum = spr;
+					return;
+				}
+			});
+		}
+		else
+		{
+			state.dadStrums.forEach(function(spr:FlxSprite)
+			{
+				if (spr.ID == notetolookfor)
+				{
+					GoToStrum(spr);
+					MyStrum = spr;
+					return;
+				}
+			});
+		}
+	}
+
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal", inCharter:Bool = false, guitarSection:Bool = false)
 	{
 		super();
@@ -233,7 +268,7 @@ class Note extends FlxSprite
 
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
-		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+		if (InPlaystate())
 		{
 			var state:PlayState = cast(FlxG.state, PlayState);
 			if (state.localFunny == CharacterFunnyEffect.Dave)
@@ -271,34 +306,9 @@ class Note extends FlxSprite
 
 				animation.play('${notes[originalType]}Scroll');
 		}
-		if (Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState") && ModchartEnabled)
+		if (InPlaystate() && ModchartEnabled)
 		{
-			var state:PlayState = cast(FlxG.state, PlayState);
-			InPlayState = true;
-			if (musthit)
-			{
-				state.playerStrums.forEach(function(spr:FlxSprite)
-				{
-					if (spr.ID == notetolookfor)
-					{
-						GoToStrum(spr);
-						MyStrum = spr;
-						return;
-					}
-				});
-			}
-			else
-			{
-				state.dadStrums.forEach(function(spr:FlxSprite)
-				{
-					if (spr.ID == notetolookfor)
-					{
-						GoToStrum(spr);
-						MyStrum = spr;
-						return;
-					}
-				});
-			}
+			SearchForStrum(musthit);
 		}
 		if (PlayState.SONG.song.toLowerCase() == 'unfairness')
 		{
@@ -312,7 +322,6 @@ class Note extends FlxSprite
 				LocalScrollSpeed = rng.float(1, 3);
 			}
 		}
-
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			var rng:FlxRandom = new FlxRandom();
@@ -363,32 +372,10 @@ class Note extends FlxSprite
 		{
 			if (InPlayState && ModchartEnabled)
 			{
-				var state:PlayState = cast(FlxG.state, PlayState);
-				if (mustPress)
-				{
-					state.playerStrums.forEach(function(spr:FlxSprite)
-					{
-						if (spr.ID == notetolookfor)
-						{
-							GoToStrum(spr);
-							MyStrum = spr;
-						}
-					});
-				}
-				else
-				{
-					state.dadStrums.forEach(function(spr:FlxSprite)
-					{
-						if (spr.ID == notetolookfor)
-						{
-							GoToStrum(spr);
-							MyStrum = spr;
-						}
-					});
-				}
+				SearchForStrum(mustPress);
 			}
 		}
-		if (mustPress && Type.getClassName(Type.getClass(FlxG.state)).contains("PlayState"))
+		if (mustPress && InPlaystate())
 		{
 			// The * 0.5 is so that it's easier to hit them too late, instead of too early
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
