@@ -932,6 +932,17 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 				barColor = FlxColor.fromRGB(162, 150, 188);
 				playAnim('idle');
+			case 'playrobot-shadow':
+				frames = Paths.getSparrowAtlas('playrobot/playbot_shadow', 'shared');
+				
+				animation.addByPrefix('idle', 'idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				loadOffsetFile(curCharacter);
+				barColor = FlxColor.fromRGB(162, 150, 188);
+				playAnim('idle');
 		}
 		dance();
 

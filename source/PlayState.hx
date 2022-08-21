@@ -4754,8 +4754,7 @@ class PlayState extends MusicBeatState
 
 						canFloat = false;
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						var position = dad.getPosition();
-						switchDad('dave-festival', position);
+						switchDad('dave-festival', dad.getPosition());
 
 						regenerateStaticArrows(0);
 						
@@ -4945,9 +4944,8 @@ class PlayState extends MusicBeatState
 					case 1770:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 0.6);
 					case 1776:
-						var position = dad.getPosition(); 
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						switchDad('bambi-angey', position);
+						switchDad('bambi-angey', dad.getPosition());
 						dad.color = nightColor;
 					case 1800:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 0.6);
@@ -5500,6 +5498,8 @@ class PlayState extends MusicBeatState
 		
 		switchDad(char, new FlxPoint(300, 450));
 
+		repositionChar(dad);
+
 		boyfriend.stunned = false;
 	}
 
@@ -5612,6 +5612,8 @@ class PlayState extends MusicBeatState
 
 		dad.color = nightColor;
 		darkLevels.push(curStage);
+
+		switchDad('playrobot-shadow', dad.getPosition());
 	}
 	function changeTristanAnim(time:String)
 	{
@@ -5685,8 +5687,6 @@ class PlayState extends MusicBeatState
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
-
-		repositionChar(dad);
 	}
 	function switchBF(newChar:String, position:FlxPoint)
 	{
