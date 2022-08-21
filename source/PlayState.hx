@@ -3823,8 +3823,8 @@ class PlayState extends MusicBeatState
 						var hitAnimation:Bool = boyfriend.animation.getByName("hit") != null;
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
 						FlxTween.cancelTweensOf(note.MyStrum);
-						note.MyStrum.alpha = 0;
-						FlxTween.tween(note.MyStrum, {alpha: 1}, 9, {ease: FlxEase.expoIn});
+						note.MyStrum.alpha = 0.01;
+						FlxTween.tween(note.MyStrum, {alpha: 1}, 11, {ease: FlxEase.expoIn});
 						health -= 0.07;
 						updateAccuracy();
 						return;
@@ -5551,6 +5551,7 @@ class PlayState extends MusicBeatState
 		{
 			for (strumNote in strumLineNotes)
 			{
+				FlxTween.cancelTweensOf(strumNote);
 				FlxTween.tween(strumNote, {alpha: 0}, 1);
 			}
 		}
@@ -5558,6 +5559,7 @@ class PlayState extends MusicBeatState
 		{
 			for (strumNote in strumLineNotes)
 			{
+				FlxTween.cancelTweensOf(strumNote);
 				FlxTween.tween(strumNote, {alpha: 1}, 1);
 			}
 		}
