@@ -182,7 +182,7 @@ class PlayState extends MusicBeatState
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var dadStrums:FlxTypedGroup<StrumNote>;
 
-	private var camZooming:Bool = false;
+	public static var camZooming:Bool = false;
 	private var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
@@ -2630,8 +2630,6 @@ class PlayState extends MusicBeatState
 			persistentUpdate = false;
 			persistentDraw = true;
 			paused = true;
-			shakeCam = false;
-			camZooming = false;
 
 			// 1 / 1000 chance for Gitaroo Man easter egg
 			if (FlxG.random.bool(0.1))
