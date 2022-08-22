@@ -2615,7 +2615,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'overdrive':
-				scoreTxt.text = "Score: " + Std.string(songScore);
+				scoreTxt.text = LanguageManager.getTextString('play_score') + Std.string(songScore);
 			case 'exploitation':
 				scoreTxt.text = 
 				"Scor3: " + (songScore * FlxG.random.int(5,9)) + 
@@ -2745,6 +2745,7 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new AnimationDebug(boyfriend.curCharacter));
 		if (FlxG.keys.justPressed.TWO) //Go 10 seconds into the future :O
 		{
+			devBotplay = true;
 			FlxG.sound.music.pause();
 			vocals.pause();
 			boyfriend.stunned = true;
@@ -2782,6 +2783,7 @@ class PlayState extends MusicBeatState
 			vocals.time = Conductor.songPosition;
 			vocals.play();
 			boyfriend.stunned = false;
+			devBotplay = false;
 		}
 		if (FlxG.keys.justPressed.THREE)
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
