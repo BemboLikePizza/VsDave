@@ -19,7 +19,7 @@ import openfl.events.IOErrorEvent;
  */
 class CharacterDebug extends MusicBeatState
 {
-	var bf:Boyfriend;
+	var bf:Character;
 	var dad:Character;
 	var char:Character;
 	var dadChar:String;
@@ -43,13 +43,23 @@ class CharacterDebug extends MusicBeatState
 		gridBG.scrollFactor.set(0.5, 0.5);
 		add(gridBG);
 		
-		bf = new Boyfriend(0, 0);
-		bf.screenCenter();
-		bf.debugMode = true;
-		bf.alpha = 0.3;
-		bf.flipX = true;
-		add(bf);
-
+		if (dadChar == 'gf-pixel')
+		{
+			bf = new Character(0, 0, 'gf');
+			bf.screenCenter();
+			bf.debugMode = true;
+			bf.alpha = 0.3;
+			add(bf);
+		}
+		else
+		{
+			bf = new Boyfriend(0, 0);
+			bf.screenCenter();
+			bf.debugMode = true;
+			bf.alpha = 0.3;
+			add(bf);
+		}
+		
 		dad = new Character(bf.x, bf.y, dadChar);
 		dad.screenCenter();
 		dad.debugMode = true;
@@ -127,8 +137,8 @@ class CharacterDebug extends MusicBeatState
 	}
 	function updateText()
 	{
-		var dadPosition = ${dad.getPosition()};
+		var dadPosition = dad.getPosition();
 		var dadScreenCenter = new FlxPoint((FlxG.width - dad.width) / 2, (FlxG.height - dad.height) / 2);
-		offsetText.text = "Dad position: $dadPosition \nDad offset position from it's center position: " + new FlxPoint(dadScreenCenter.x - dad.getPosition().x, dadScreenCenter.y + dad.getPosition().y);
+		offsetText.text = "Dad position: " + dadPosition + "\nDad screen center position: " + dadScreenCenter;
 	}
 }

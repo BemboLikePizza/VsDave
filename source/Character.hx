@@ -48,8 +48,7 @@ class Character extends FlxSprite
 		switch (curCharacter)
 		{
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
-				frames = tex;
+				frames = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
 				
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -93,33 +92,6 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				nativelyPlayable = true;
-				flipX = true;
-			case 'bf-dark':
-				var tex = Paths.getSparrowAtlas('characters/Dark_BF', 'shared');
-				frames = tex;
-				
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				for (anim in ['LEFT', 'DOWN', 'UP', 'RIGHT'])
-				{
-					animation.addByPrefix('sing$anim', 'BF NOTE ${anim}0', 24, false);
-					animation.addByPrefix('sing${anim}miss', 'BF NOTE ${anim} MISS', 24, false);
-				}
-				animation.addByPrefix('hey', 'BF HEY', 24, false);
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
-				animation.addByPrefix('hit', 'BF hit', 24, false);
-
-				loadOffsetFile(curCharacter);
-
-				barColor = FlxColor.fromRGB(49, 176, 209);
-
-				playAnim('idle');
-
-				nativelyPlayable = true;
-
 				flipX = true;
 			case 'nofriend':
 				frames = Paths.getSparrowAtlas('fiveNights/nofriend', 'shared');
@@ -255,8 +227,8 @@ class Character extends FlxSprite
 				animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 				animation.addByIndices('danceRight', 'GF IDLE', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
-				globaloffset[0] = -200;
-				globaloffset[1] = -175;
+				globaloffset[0] = 300;
+				globaloffset[1] = 280;
 				
 				loadOffsetFile(curCharacter);
 
