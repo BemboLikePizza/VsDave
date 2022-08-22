@@ -37,7 +37,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		{
 			case 'warmup' | 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
 				'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'kabunga' | 'roots' | 'secret' |
-				'secret-mod-leak' | 'unfairness' | 'rano':
+				'secret-mod-leak' | 'unfairness' | 'rano' | 'master':
 				songCreator = 'MoldyGH';
 			case 'exploitation':
 				songCreator = 'Oxygen';
