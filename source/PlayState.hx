@@ -1013,6 +1013,7 @@ class PlayState extends MusicBeatState
 			case 'bot-trot':
 				preload('backgrounds/bedroom/night/bedroom');
 				preload('backgrounds/bedroom/night/baldi');
+				preload('playrobot/playrobot_shadow');
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, FlxG.width, "", 20);
@@ -5608,11 +5609,15 @@ class PlayState extends MusicBeatState
 					"YOU LIAR...YOU LIAR!"
 				];
 
-				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
+				var path = CoolSystemStuff.getTempPath() + "/HELLO.txt";
 
 				var randomLine = new FlxRandom().int(0, expungedLines.length);
 				File.saveContent(path, expungedLines[randomLine]);
+				#if windows
 				Sys.command("start " + path);
+				#else
+				Sys.command("xdg-open " + path);
+				#end
 			}
 			#end
 
