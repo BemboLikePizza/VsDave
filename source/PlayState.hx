@@ -800,6 +800,11 @@ class PlayState extends MusicBeatState
 				dad.setPosition(52, -166);
 				boyfriend.setPosition(1152, 311);
 				gf.setPosition(807 + charoffsetx, -22 + charoffsety);
+			case 'desert':
+				dad.y -= 150;
+				dad.x -= 160;
+				boyfriend.x -= 100;
+				boyfriend.y -= 50;
 		}
 
 		switch (SONG.song.toLowerCase())
@@ -1529,6 +1534,10 @@ class PlayState extends MusicBeatState
 			case 'desert':
 				bgZoom = 0.6;
 				stageName = 'desert';
+
+				var bg:BGSprite = new BGSprite('bg', -600, -300, Paths.image('backgrounds/shared/sky'), null, 0.2, 0.2);
+				sprites.add(bg);
+				add(bg);
 				
 				desertBG = new BGSprite('desert', -786, -400, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
 				desertBG.setGraphicSize(Std.int(desertBG.width * 1.2));
