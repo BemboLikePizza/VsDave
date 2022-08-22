@@ -819,8 +819,8 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'bot-trot':
-				var tv:BGSprite = new BGSprite('tv', -518, 466, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
-				tv.setGraphicSize(Std.int(tv.width * 2));
+				var tv:BGSprite = new BGSprite('tv', -419, 448, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
+				tv.setGraphicSize(Std.int(tv.width * 1.5));
 				tv.updateHitbox();
 
 				var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bedroom');
@@ -1512,39 +1512,41 @@ class PlayState extends MusicBeatState
 				bgZoom = 1;
 				stageName = 'bedroom';
 				
-				var sky:BGSprite = new BGSprite('nightSky', -374, -164, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
-				sky.setGraphicSize(Std.int(sky.width * 1.7));
+				var sky:BGSprite = new BGSprite('nightSky', -287, -122, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
+				sky.setGraphicSize(Std.int(sky.width * 1.5));
 				sky.updateHitbox();
 				sprites.add(sky);
 				add(sky);
 
-				var outside:BGSprite = new BGSprite('outside', -129, -98, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
-				outside.setGraphicSize(Std.int(outside.width * 1.7));
+				var outside:BGSprite = new BGSprite('outside', -65, -64, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
+				outside.setGraphicSize(Std.int(outside.width * 1.5));
 				outside.updateHitbox();
 				sprites.add(outside);
 				add(outside);
 
-				var bedroom:BGSprite = new BGSprite('bedroom', -765, -462, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
-				bedroom.setGraphicSize(Std.int(bedroom.width * 1.7));
+				var bedroom:BGSprite = new BGSprite('bedroom', -419, -267, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
+				bedroom.setGraphicSize(Std.int(bedroom.width * 1.5));
 				bedroom.updateHitbox();
 				sprites.add(bedroom);
 				add(bedroom);
 
 				if (!['tristan', 'tristan-glowing'].contains(formoverride))
 				{
-					tristan = new BGSprite('tristan', -518, -323, 'backgrounds/bedroom/trist', [
-						new Animation('idle', 'day', 24, false, [false, false]),
-						new Animation('idleNight', 'night', 24, false, [false, false])
-					], 1, 1, true, true);
-					changeTristanAnim('day');
-					tristan.setGraphicSize(Std.int(tristan.width * 1.7));
-					tristan.updateHitbox();
-					sprites.add(tristan);
-					add(tristan);
+				tristan = new BGSprite('tristan', 1044, 167, 'backgrounds/bedroom/trist', [
+					new Animation('idle', 'day', 24, false, [false, false]),
+					new Animation('idleNight', 'night', 24, false, [false, false])
+				], 1, 1, true, true);
+				curTristanAnim = 'idle';
+				tristan.animation.play('idle');
+				tristan.setGraphicSize(Std.int(tristan.width * 1.5));
+				tristan.updateHitbox();
+				sprites.add(tristan);
+				add(tristan);
+
 				}
 
-				var baldi:BGSprite = new BGSprite('baldi', 1555, 590, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
-				baldi.setGraphicSize(Std.int(baldi.width * 2));
+				var baldi:BGSprite = new BGSprite('baldi', 1289, 507, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
+				baldi.setGraphicSize(Std.int(baldi.width * 1.5));
 				baldi.updateHitbox();
 				sprites.add(baldi);
 				add(baldi);
@@ -3069,7 +3071,9 @@ class PlayState extends MusicBeatState
 		{
 			if (expungedWindowMode)
 			{
+				#if windows
 				popupWindow();
+				#end
 			}
 			else
 			{
@@ -5116,7 +5120,9 @@ class PlayState extends MusicBeatState
 						FlxG.camera.shake(0.015, (Conductor.stepCrochet / 1000) * 4);
 					case 1280:
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
+						#if windows
 						popupWindow();
+						#end
 						dadStrums.visible = false;
 				}
 			case 'shredder':
@@ -5788,6 +5794,8 @@ class PlayState extends MusicBeatState
 				char.y -= 125;
 			case 'playrobot':
 				char.y -= 100;
+			case 'playrobot-shadow':
+				char.x -= 200;
 		}
 	}
 	function updateSpotlight(bfSinging:Bool)
@@ -5962,8 +5970,8 @@ class PlayState extends MusicBeatState
 		
 		window = Application.current.createWindow({
 			 title: "expunged.dat",
-			 width: 1500,
-			 height: 1500,
+			 width: 800,
+			 height: 800,
 			 borderless: true,
 			 alwaysOnTop: true
 			 

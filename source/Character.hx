@@ -922,7 +922,7 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(162, 150, 188);
 				playAnim('idle');
 			case 'playrobot-shadow':
-				frames = Paths.getSparrowAtlas('playrobot/playbot_shadow', 'shared');
+				frames = Paths.getSparrowAtlas('playrobot/playrobot_shadow', 'shared');
 				
 				animation.addByPrefix('idle', 'idle', 24, false);
 				for (anim in ['left', 'down', 'up', 'right'])
