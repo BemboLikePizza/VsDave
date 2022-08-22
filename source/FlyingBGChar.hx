@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.math.FlxRandom;
 
@@ -15,7 +16,7 @@ class FlyingBGChar extends BGSprite
    
    public function new(spriteName:String, path:String)
    {
-      super(spriteName, 0, 0, path, null, 0, 0, true, false);
+      super(spriteName, 0, 0, path, null, 1, 1, true, false);
 
       init();
    }
@@ -24,7 +25,7 @@ class FlyingBGChar extends BGSprite
    {
       angleChangeAmount = new FlxRandom().float(100, 200);
 	  
-	  y = (FlxG.height / 2) - height / 2;
+      y = (FlxG.height / 2) - height / 2;
 
       direction = direction == 'left' ? 'right' : direction == 'right' ? 'left' : '';
    }

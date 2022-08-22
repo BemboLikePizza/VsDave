@@ -590,6 +590,7 @@ class FreeplayState extends MusicBeatState
 			}
 			if (accepted && canInteract)
 			{
+				FlxG.sound.music.fadeOut(1, 0);
 				PlayState.SONG = Song.loadFromJson(songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
 	

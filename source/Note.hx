@@ -54,7 +54,6 @@ class Note extends FlxSprite
 	public var guitarSection:Bool;
 
 	public var alphaMult:Float = 1.0;
-
 	public var noteOffset:Float = 0;
 
 	var notes = ['purple', 'blue', 'green', 'red'];
@@ -87,7 +86,7 @@ class Note extends FlxSprite
 		if (isInState('PlayState'))
 		{
 			this.strumTime += FlxG.save.data.offset;
-		}
+		}		
 		if ((guitarSection && inCharter && noteData < 5) || (guitarSection))
 		{
 			notes = ['purple', 'blue', 'yellow', 'green', 'red'];

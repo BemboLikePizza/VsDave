@@ -120,7 +120,6 @@ class StoryMenuState extends MusicBeatState
 		rankText.size = scoreText.size;
 		rankText.screenCenter(X);
 
-		var ui_tex = Paths.getSparrowAtlas('ui/campaign_menu_UI_assets');
 		yellowBG = new FlxSprite(0, 56).makeGraphic(FlxG.width * 2, 400, FlxColor.WHITE);
 		yellowBG.color = songColors[0];
 
@@ -150,18 +149,6 @@ class StoryMenuState extends MusicBeatState
 			weekThing.antialiasing = true;
 			// weekThing.updateHitbox();
 
-			
-			// Needs an offset thingie
-			if (!weekUnlocked[i])
-			{
-				var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);
-				lock.frames = ui_tex;
-				lock.animation.addByPrefix('lock', 'lock');
-				lock.animation.play('lock');
-				lock.ID = i;
-				lock.antialiasing = true;
-				grpLocks.add(lock);
-			}
 		}
 
 		difficultySelectors = new FlxGroup();
@@ -197,12 +184,7 @@ class StoryMenuState extends MusicBeatState
 		// FlxG.watch.addQuick('font', scoreText.font);
 
 		difficultySelectors.visible = false;
-
-		grpLocks.forEach(function(lock:FlxSprite)
-		{
-			lock.y = grpWeekText.members[lock.ID].y;
-		});
-
+		
 		if (!movedBack)
 		{
 			if (!selectedWeek)
@@ -352,22 +334,6 @@ class StoryMenuState extends MusicBeatState
 		imageBG.screenCenter(X);
 		imageBG.active = true;
 		add(imageBG);
-	}
-	function resetData()
-	{
-		FlxG.save.erase();
-		FlxG.save.flush();
-		
-		FlxG.save.bind('funkin', 'ninjamuffin99');
-
-		SaveDataHandler.initSave();
-		LanguageManager.init();
-
-		Highscore.load();
-		
-		CoolUtil.init();
-
-		FlxG.switchState(new StartStateSelector());
 	}
 
 	function updateText()

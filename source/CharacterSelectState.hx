@@ -122,7 +122,6 @@ class CharacterSelectState extends MusicBeatState
 	
 	override public function create():Void 
 	{
-
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			if (FlxG.fullscreen)
@@ -492,6 +491,7 @@ class CharacterSelectState extends MusicBeatState
 		if (!FlxG.save.data.charactersUnlocked.contains(character))
 		{
 			FlxG.save.data.charactersUnlocked.push(character);
+			FlxG.save.flush();
 		}
 	}
 	public static function isLocked(character:String):Bool
