@@ -134,7 +134,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
-				barColor = FlxColor.fromRGB(3, 38, 133);
+				barColor = FlxColor.fromString("0x127798");
 				
 				nativelyPlayable = true;
 				flipX = true;
@@ -419,7 +419,7 @@ class Character extends FlxSprite
 				
 				loadOffsetFile(curCharacter);
 				
-				barColor = FlxColor.fromRGB(15, 95, 255);
+				barColor = FlxColor.fromString("0x128109");
 
 				playAnim('idle');
 			case 'dave-festival-3d':
