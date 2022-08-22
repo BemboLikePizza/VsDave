@@ -363,6 +363,8 @@ class PlayState extends MusicBeatState
 	var expungedSpr = new Sprite();
 	var curWindowSize = new FlxPoint();
 	var expungedWindowMode:Bool = false;
+	var expungedOffset:FlxPoint = new FlxPoint();
+	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
 	
 	override public function create()
@@ -3016,11 +3018,27 @@ class PlayState extends MusicBeatState
 	  
 			var rect = new Rectangle(dadFrame.frame.x, dadFrame.frame.y, dadFrame.frame.width, dadFrame.frame.height);
 
-			window.width = Std.int(dadFrame.frame.width);
-			window.height = Std.int(dadFrame.frame.height);
 			expungedScroll.scrollRect = rect;
 
-			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX);
+			window.x = Std.int(expungedOffset.x);
+			window.y = Std.int(expungedOffset.y);
+
+			if (!expungedMoving)
+			{
+				var toy = -Math.sin((curStep / 9.5) * 2) * 30 * 5;
+				var tox = -Math.cos((curStep / 9.5)) * 100;
+
+				expungedOffset.x += (tox - expungedOffset.x) / 12;
+				expungedOffset.y += (toy - expungedOffset.y) / 12;
+
+				var screenwidth = Application.current.window.display.bounds.width;
+				var screenheight = Application.current.window.display.bounds.height;
+
+				//center
+				Application.current.window.y = Std.int(((screenheight / 2) - (720 / 2)) + (Math.sin((curStep / 30)) * 80));
+			}
+
+			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX) + 80;
 			expungedScroll.y = (((dadFrame.offset.y) - (dad.offset.y)) * expungedScroll.scaleY);
 		}
 	}
@@ -5749,9 +5767,9 @@ class PlayState extends MusicBeatState
 		// PlayState.defaultCamZoom = 0.5;
 		
 		window = Application.current.createWindow({
-			 title: "Expung",
-			 width: 2000,
-			 height: 2000,
+			 title: "expunged.dat",
+			 width: 1500,
+			 height: 1500,
 			 borderless: true,
 			 alwaysOnTop: true
 			 
@@ -5786,23 +5804,36 @@ class PlayState extends MusicBeatState
   
 		FlxG.mouse.useSystemCursor = true;
 
-		expungedScroll.graphics.beginBitmapFill(dad.pixels, m);
-		expungedScroll.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
-		expungedScroll.graphics.endFill();
+		expungedSpr.graphics.beginBitmapFill(dad.pixels, m);
+		expungedSpr.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
+		expungedSpr.graphics.endFill();
+
 		expungedScroll.scrollRect = new Rectangle();
 		window.stage.addChild(expungedScroll);
 		expungedScroll.addChild(expungedSpr);
 		expungedScroll.scaleX = 0.5;
 		expungedScroll.scaleY = 0.5;
 
-		window.x = 100;
-		window.y = Application.current.window.y;
+		expungedOffset.x = Application.current.window.x;
+		expungedOffset.y = Application.current.window.y;
 
 		dad.visible = false;
 		dadStrums.forEach(function(strum:StrumNote)
 		{
 			FlxTween.tween(strum, {alpha: 0}, 1);
 		});
+
+		var windowX = Application.current.window.x + 270;
+
+		FlxTween.tween(expungedOffset, {x: -20}, 2, {ease: FlxEase.elasticOut});
+
+		FlxTween.tween(Application.current.window, {x: windowX}, 3, {ease: FlxEase.elasticOut, onComplete: function(tween:FlxTween)
+		{
+			expungedMoving = false;
+
+		}});
+
+
 
 		Application.current.window.onClose.add(function()
 		{
