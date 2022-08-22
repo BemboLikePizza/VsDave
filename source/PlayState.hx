@@ -4681,6 +4681,14 @@ class PlayState extends MusicBeatState
 			case 'insanity':
 				switch (curStep)
 				{
+					case 384 | 1040:
+						defaultCamZoom = 0.9;
+					case 448 | 777 | 1056:
+						defaultCamZoom = 0.8;
+					case 512 | 768:
+						defaultCamZoom = 1;
+					case 640:
+						defaultCamZoom = 1.1;
 					case 660 | 680:
 						FlxG.sound.play(Paths.sound('static'), 0.1);
 						dad.visible = false;
@@ -4928,13 +4936,26 @@ class PlayState extends MusicBeatState
 			case 'polygonized':
 				switch(curStep)
 				{
+					case 128 | 640 | 704 | 1535:
+						defaultCamZoom = 0.9;
+					case 256 | 768 | 1468 | 1596 | 2048 | 2144 | 2428:
+						defaultCamZoom = 0.7;
+					case 688 | 752 | 1279 | 1663 | 2176:
+						defaultCamZoom = 1;
+					case 1019 | 1471 | 1599 | 2064:
+						defaultCamZoom = 0.8;
+					case 1920:
+						defaultCamZoom = 1.1;
+
 					case 1024 | 1312:
+						defaultCamZoom = 1.1;
 						shakeCam = true;
 						camZooming = true;
 
 						switchBF('bf-3d', boyfriend.getPosition());
 						switchGF('gf-3d', gf.getPosition());
 					case 1152 | 1408:
+						defaultCamZoom = 0.9;
 						shakeCam = false;
 						camZooming = false;
 
@@ -5122,7 +5143,7 @@ class PlayState extends MusicBeatState
 			case 'supernovae':
 				switch (curStep)
 				{
-					case 60 | 1420:
+					case 60:
 						dad.playAnim('hey', true);
 					case 64:
 						defaultCamZoom = 1;
@@ -5134,18 +5155,16 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.6;
 					case 448 | 960 | 1344:
 						defaultCamZoom = 0.8;
-					case 896:
+					case 896 | 1152:
 						defaultCamZoom = 1.2;
 					case 1024:
 						defaultCamZoom = 1;
 						shakeCam = true;
 						FlxTween.linearMotion(dad, dad.x, dad.y, 25, 50, 15, true);
-					case 1152:
-						defaultCamZoom = 1.2;
-						shakeCam = false;
 
 					case 1280:
 						FlxTween.linearMotion(dad, dad.x, dad.y, 50, 280, 0.6, true);
+						shakeCam = false;
 						defaultCamZoom = 1;
 				}
 			case 'vs-dave-rap':
@@ -5474,7 +5493,6 @@ class PlayState extends MusicBeatState
 				switch (curBeat)
 				{
 					case 416:
-						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad('dave-annoyed', dad.getPosition());
 				}
 			case 'escape-from-california':
