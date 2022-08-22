@@ -5792,6 +5792,8 @@ class PlayState extends MusicBeatState
 				char.y -= 125;
 			case 'playrobot':
 				char.y -= 100;
+			case 'playrobot-shadow':
+				char.x -= 200;
 		}
 	}
 	function updateSpotlight(bfSinging:Bool)
