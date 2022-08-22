@@ -1919,7 +1919,10 @@ class PlayState extends MusicBeatState
 					dad.canSing = true;
 					dad.canDance = true;
 				}
-			case 'exploitation':
+			case 'supernovae' | 'glitch' | 'master':
+				Application.current.window.title = "when you realize you have school this monday";
+				
+				case 'exploitation':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 				blackScreen.cameras = [camHUD];
 				blackScreen.screenCenter();
@@ -4772,8 +4775,7 @@ class PlayState extends MusicBeatState
 
 						canFloat = false;
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						var position = dad.getPosition();
-						switchDad('dave-festival', position);
+						switchDad('dave-festival', dad.getPosition());
 
 						regenerateStaticArrows(0);
 						
@@ -4963,9 +4965,8 @@ class PlayState extends MusicBeatState
 					case 1770:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 0.6);
 					case 1776:
-						var position = dad.getPosition(); 
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						switchDad('bambi-angey', position);
+						switchDad('bambi-angey', dad.getPosition());
 						dad.color = nightColor;
 					case 1800:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 0.6);
@@ -5118,6 +5119,35 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 1;	
 						
 				}
+			case 'supernovae':
+				switch (curStep)
+				{
+					case 60 | 1420:
+						dad.playAnim('hey', true);
+					case 64:
+						defaultCamZoom = 1;
+					case 192:
+						defaultCamZoom = 0.9;
+					case 320 | 768:
+						defaultCamZoom = 1.1;
+					case 444:
+						defaultCamZoom = 0.6;
+					case 448 | 960 | 1344:
+						defaultCamZoom = 0.8;
+					case 896:
+						defaultCamZoom = 1.2;
+					case 1024:
+						defaultCamZoom = 1;
+						shakeCam = true;
+						FlxTween.linearMotion(dad, dad.x, dad.y, 25, 50, 15, true);
+					case 1152:
+						defaultCamZoom = 1.2;
+						shakeCam = false;
+
+					case 1280:
+						FlxTween.linearMotion(dad, dad.x, dad.y, 50, 280, 0.6, true);
+						defaultCamZoom = 1;
+				}
 			case 'vs-dave-rap':
 				switch(curStep)
 				{
@@ -5155,6 +5185,104 @@ class PlayState extends MusicBeatState
 							subtitleManager.addSubtitle(LanguageManager.getTextString('daverap_sub15'), 0.02, 1.5);
 						case 322:
 							FlxG.camera.flash();
+					}
+							case 'memory':
+			    {
+					switch(curStep)
+				    {
+						case 1408:
+							defaultCamZoom += 0.2;
+							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+							black.screenCenter();
+							black.alpha = 0;
+							add(black);
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							makeInvisibleNotes(true);
+						case 1422:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub1'), 0.02, 0.5);
+						case 1436:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub2'), 0.02, 1);
+						case 1458:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub3'), 0.02, 0.7);
+						case 1476:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub4'), 0.02, 1);
+						case 1508:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub5'), 0.02, 1.5);
+						case 1541:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub6'), 0.02, 1);
+						case 1561:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub7'), 0.02, 1);
+						case 1583:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub8'), 0.02, 0.8);
+						case 1608:
+							defaultCamZoom -= 0.2;
+							FlxTween.tween(black, {alpha: 0}, 1);
+							makeInvisibleNotes(false);
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub9'), 0.02, 1);
+						case 1632:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub10'), 0.02, 0.5);
+						case 1646:
+							defaultCamZoom += 0.2;
+							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+							black.screenCenter();
+							black.alpha = 0;
+							add(black);
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							makeInvisibleNotes(true);
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub11'), 0.02, 1);
+
+					}
+				}
+		    case 'memory':
+					{
+						switch(curStep)
+						{
+							case 1408:
+								defaultCamZoom += 0.2;
+								black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+								black.screenCenter();
+								black.alpha = 0;
+								add(black);
+								FlxTween.tween(black, {alpha: 0.6}, 1);
+								makeInvisibleNotes(true);
+							case 1422:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub1'), 0.02, 0.5);
+							case 1436:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub2'), 0.02, 1);
+							case 1458:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub3'), 0.02, 0.7);
+							case 1476:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub4'), 0.02, 1);
+							case 1508:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub5'), 0.02, 1.5);
+							case 1541:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub6'), 0.02, 1);
+							case 1561:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub7'), 0.02, 1);
+							case 1583:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub8'), 0.02, 0.8);
+							case 1608:
+								defaultCamZoom -= 0.2;
+								FlxTween.tween(black, {alpha: 0}, 1);
+								makeInvisibleNotes(false);
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub9'), 0.02, 1);
+							case 1632:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub10'), 0.02, 0.5);
+							case 1646:
+								defaultCamZoom += 0.2;
+								black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+								black.screenCenter();
+								black.alpha = 0;
+								add(black);
+								FlxTween.tween(black, {alpha: 0.6}, 1);
+								makeInvisibleNotes(true);
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub11'), 0.02, 1);
+							case 1664:
+								defaultCamZoom -= 0.2;
+								FlxTween.tween(black, {alpha: 0}, 1);
+								makeInvisibleNotes(false);
+	
+						}
 					}
 		}
 		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)
@@ -5518,6 +5646,8 @@ class PlayState extends MusicBeatState
 		
 		switchDad(char, new FlxPoint(300, 450));
 
+		repositionChar(dad);
+
 		boyfriend.stunned = false;
 	}
 
@@ -5630,6 +5760,8 @@ class PlayState extends MusicBeatState
 
 		dad.color = nightColor;
 		darkLevels.push(curStage);
+
+		switchDad('playrobot-shadow', dad.getPosition());
 	}
 	function changeTristanAnim(time:String)
 	{
@@ -5703,8 +5835,6 @@ class PlayState extends MusicBeatState
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
-
-		repositionChar(dad);
 	}
 	function switchBF(newChar:String, position:FlxPoint)
 	{
