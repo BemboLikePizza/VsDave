@@ -184,6 +184,10 @@ class PauseSubState extends MusicBeatSubstate
 				if (PlayState.SONG.song.toLowerCase() == "exploitation")
 				{
 					Main.toggleFuckedFPS(false);
+					if (PlayState.window != null)
+					{
+						PlayState.window.close();
+					}
 				}
 
 				FlxG.switchState(new MainMenuState());
@@ -209,7 +213,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...amountOfDifficulties)
 		{
-			if (funnyTexts != null)
+			if (funnyTexts.exists)
 			{
 				var difficulty:FlxText = new FlxText(20, (15 + 32) * (i + 2), 0, "", 32);
 				difficulty.text += levelDifficulty.text;
@@ -225,6 +229,10 @@ class PauseSubState extends MusicBeatSubstate
 				difficulty.x = FlxG.width - (difficulty.width + 20);
 
 				FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
+			}
+			else
+			{
+				return;
 			}
 
 		}

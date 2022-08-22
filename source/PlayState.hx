@@ -358,7 +358,7 @@ class PlayState extends MusicBeatState
 	public static var scrollType:String;
 
 	//window stuff
-	var window:Window;
+	public static var window:Window;
 	var expungedScroll = new Sprite();
 	var expungedSpr = new Sprite();
 	var curWindowSize = new FlxPoint();
@@ -3182,6 +3182,11 @@ class PlayState extends MusicBeatState
 			Highscore.saveScore(SONG.song, songScore, storyDifficulty, characteroverride == "none"
 				|| characteroverride == "bf" ? "bf" : characteroverride);
 			#end
+		}
+
+		if (window != null)
+		{
+			window.close();
 		}
 
 		// Song Character Unlocks (Story Mode)
