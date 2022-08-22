@@ -134,7 +134,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
-				barColor = FlxColor.fromRGB(3, 38, 133);
+				barColor = FlxColor.fromString("0x137C9D");
 				
 				nativelyPlayable = true;
 				flipX = true;
@@ -167,7 +167,7 @@ class Character extends FlxSprite
 				globaloffset[0] = -200;
 				globaloffset[1] = -175;
 
-				barColor = FlxColor.fromRGB(49, 176, 209);
+				barColor = FlxColor.fromString("0x7BD6F6");
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -433,7 +433,7 @@ class Character extends FlxSprite
 				
 				loadOffsetFile(curCharacter);
 				
-				barColor = FlxColor.fromRGB(249, 180, 207);
+				barColor = FlxColor.fromString("0xB4F9DE");
 
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
@@ -606,6 +606,23 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				barColor = FlxColor.fromRGB(12, 181, 0);
+				nativelyPlayable = true;
+				flipX = true;
+
+			case 'bambi-letmeout':
+				var tex = Paths.getSparrowAtlas('joke/bambi-letmeout', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('hey', 'hey', 24, false);
+
+				loadOffsetFile('bambi-joke');
+				playAnim('idle');
+
+				barColor = FlxColor.fromString("0x530C10");
 				nativelyPlayable = true;
 				flipX = true;
 
