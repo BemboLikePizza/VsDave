@@ -3789,6 +3789,7 @@ class PlayState extends MusicBeatState
 						{
 							if ((note.noteData % 4) == (lasthitnote % 4))
 							{
+								lasthitnotetime = -999999; //reset the last hit note time
 								continue; //the jacks are too close together
 							}
 						}
