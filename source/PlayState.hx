@@ -370,7 +370,7 @@ class PlayState extends MusicBeatState
 	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
 
-	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh'];
+	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh', 'alright instagram its shoutout time'];
 	
 	override public function create()
 	{
@@ -1971,7 +1971,7 @@ class PlayState extends MusicBeatState
 					trainSpeed = newValue;
 				});
 			case 'supernovae' | 'glitch' | 'master':
-				Application.current.window.title = banbiWindowNames[new FlxRandom().int(0, 5)];
+				Application.current.window.title = banbiWindowNames[new FlxRandom().int(0, 6)];
 			case 'exploitation':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 				blackScreen.cameras = [camHUD];
