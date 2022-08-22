@@ -106,7 +106,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
-				barColor = FlxColor.fromRGB(3, 38, 133);
+				barColor = FlxColor.fromString("0x127798");
 				
 				nativelyPlayable = true;
 				flipX = true;
@@ -391,7 +391,7 @@ class Character extends FlxSprite
 				
 				loadOffsetFile(curCharacter);
 				
-				barColor = FlxColor.fromRGB(15, 95, 255);
+				barColor = FlxColor.fromString("0x128109");
 
 				playAnim('idle');
 			case 'dave-festival-3d':
@@ -405,7 +405,7 @@ class Character extends FlxSprite
 				
 				loadOffsetFile(curCharacter);
 				
-				barColor = FlxColor.fromRGB(249, 180, 207);
+				barColor = FlxColor.fromString("0xB4C1F9");
 
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
@@ -573,6 +573,23 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'right', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('hey', 'hey', 24, false);
+
+				loadOffsetFile(curCharacter);
+				playAnim('idle');
+
+				barColor = FlxColor.fromRGB(12, 181, 0);
+				nativelyPlayable = true;
+				flipX = true;
+
+			case 'bambi-joke-mad':
+				var tex = Paths.getSparrowAtlas('joke/bambi-joke-mad', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('die', 'die', 24, false);
 
 				loadOffsetFile(curCharacter);
 				playAnim('idle');

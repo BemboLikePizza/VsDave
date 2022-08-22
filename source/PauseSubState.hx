@@ -77,7 +77,10 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.antialiasing = true;
 		levelDifficulty.borderSize = 2.5;
 		levelDifficulty.updateHitbox();
-		add(levelDifficulty);
+		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+		{
+			add(levelDifficulty);
+		}
 
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
@@ -181,6 +184,10 @@ class PauseSubState extends MusicBeatSubstate
 				if (PlayState.SONG.song.toLowerCase() == "exploitation")
 				{
 					Main.toggleFuckedFPS(false);
+					if (PlayState.window != null)
+					{
+						PlayState.window.close();
+					}
 				}
 
 				FlxG.switchState(new MainMenuState());
@@ -206,23 +213,28 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...amountOfDifficulties)
 		{
-			var difficulty:FlxText = new FlxText(20, (15 + 32) * (i + 2), 0, "", 32);
-			difficulty.text += levelDifficulty.text;
-			difficulty.scrollFactor.set();
-			difficulty.setFormat(Paths.font('comic.ttf'), 32, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-			difficulty.antialiasing = true;
-			difficulty.borderSize = 2.5;
-			difficulty.updateHitbox();
-			if (funnyTexts != null)
+			if (funnyTexts.exists)
 			{
+				var difficulty:FlxText = new FlxText(20, (15 + 32) * (i + 2), 0, "", 32);
+				difficulty.text += levelDifficulty.text;
+				difficulty.scrollFactor.set();
+				difficulty.setFormat(Paths.font('comic.ttf'), 32, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+				difficulty.antialiasing = true;
+				difficulty.borderSize = 2.5;
+				difficulty.updateHitbox();
 				funnyTexts.add(difficulty);
+
+				difficulty.alpha = 0;
+
+				difficulty.x = FlxG.width - (difficulty.width + 20);
+
+				FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
+			}
+			else
+			{
+				return;
 			}
 
-			difficulty.alpha = 0;
-
-			difficulty.x = FlxG.width - (difficulty.width + 20);
-
-			FlxTween.tween(difficulty, {alpha: 1, y: difficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.05 * i});
 		}
 	}
 	function changeSelection(change:Int = 0):Void
