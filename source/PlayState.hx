@@ -5608,11 +5608,15 @@ class PlayState extends MusicBeatState
 					"YOU LIAR...YOU LIAR!"
 				];
 
-				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
+				var path = CoolSystemStuff.getTempPath() + "/HELLO.txt";
 
 				var randomLine = new FlxRandom().int(0, expungedLines.length);
 				File.saveContent(path, expungedLines[randomLine]);
+				#if windows
 				Sys.command("start " + path);
+				#else
+				Sys.command("xdg-open " + path);
+				#end
 			}
 			#end
 
