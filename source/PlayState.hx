@@ -3073,7 +3073,9 @@ class PlayState extends MusicBeatState
 		{
 			if (expungedWindowMode)
 			{
+				#if windows
 				popupWindow();
+				#end
 			}
 			else
 			{
@@ -5120,7 +5122,9 @@ class PlayState extends MusicBeatState
 						FlxG.camera.shake(0.015, (Conductor.stepCrochet / 1000) * 4);
 					case 1280:
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
+						#if windows
 						popupWindow();
+						#end
 						dadStrums.visible = false;
 				}
 			case 'shredder':
@@ -5968,8 +5972,8 @@ class PlayState extends MusicBeatState
 		
 		window = Application.current.createWindow({
 			 title: "expunged.dat",
-			 width: 1500,
-			 height: 1500,
+			 width: 800,
+			 height: 800,
 			 borderless: true,
 			 alwaysOnTop: true
 			 
