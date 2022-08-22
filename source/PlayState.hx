@@ -363,6 +363,8 @@ class PlayState extends MusicBeatState
 	var expungedSpr = new Sprite();
 	var curWindowSize = new FlxPoint();
 	var expungedWindowMode:Bool = false;
+	var expungedOffset:FlxPoint = new FlxPoint();
+	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
 	
 	override public function create()
@@ -530,7 +532,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'house' | 'insanity' | 'supernovae' | 'warmup':
 					stageCheck = 'house';
-				case 'polygonized':
+				case 'polygonized' | 'master':
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'maze':
 					stageCheck = 'farm';
@@ -1918,7 +1920,7 @@ class PlayState extends MusicBeatState
 					dad.canSing = true;
 					dad.canDance = true;
 				}
-			case 'supernovae' | 'glitch':
+			case 'supernovae' | 'glitch' | 'master':
 				Application.current.window.title = "when you realize you have school this monday";
 				
 				case 'exploitation':
@@ -3020,11 +3022,27 @@ class PlayState extends MusicBeatState
 	  
 			var rect = new Rectangle(dadFrame.frame.x, dadFrame.frame.y, dadFrame.frame.width, dadFrame.frame.height);
 
-			window.width = Std.int(dadFrame.frame.width);
-			window.height = Std.int(dadFrame.frame.height);
 			expungedScroll.scrollRect = rect;
 
-			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX);
+			window.x = Std.int(expungedOffset.x);
+			window.y = Std.int(expungedOffset.y);
+
+			if (!expungedMoving)
+			{
+				var toy = -Math.sin((curStep / 9.5) * 2) * 30 * 5;
+				var tox = -Math.cos((curStep / 9.5)) * 100;
+
+				expungedOffset.x += (tox - expungedOffset.x) / 12;
+				expungedOffset.y += (toy - expungedOffset.y) / 12;
+
+				var screenwidth = Application.current.window.display.bounds.width;
+				var screenheight = Application.current.window.display.bounds.height;
+
+				//center
+				Application.current.window.y = Std.int(((screenheight / 2) - (720 / 2)) + (Math.sin((curStep / 30)) * 80));
+			}
+
+			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX) + 80;
 			expungedScroll.y = (((dadFrame.offset.y) - (dad.offset.y)) * expungedScroll.scaleY);
 		}
 	}
@@ -4664,6 +4682,14 @@ class PlayState extends MusicBeatState
 			case 'insanity':
 				switch (curStep)
 				{
+					case 384 | 1040:
+						defaultCamZoom = 0.9;
+					case 448 | 777 | 1056:
+						defaultCamZoom = 0.8;
+					case 512 | 768:
+						defaultCamZoom = 1;
+					case 640:
+						defaultCamZoom = 1.1;
 					case 660 | 680:
 						FlxG.sound.play(Paths.sound('static'), 0.1);
 						dad.visible = false;
@@ -4911,13 +4937,26 @@ class PlayState extends MusicBeatState
 			case 'polygonized':
 				switch(curStep)
 				{
+					case 128 | 640 | 704 | 1535:
+						defaultCamZoom = 0.9;
+					case 256 | 768 | 1468 | 1596 | 2048 | 2144 | 2428:
+						defaultCamZoom = 0.7;
+					case 688 | 752 | 1279 | 1663 | 2176:
+						defaultCamZoom = 1;
+					case 1019 | 1471 | 1599 | 2064:
+						defaultCamZoom = 0.8;
+					case 1920:
+						defaultCamZoom = 1.1;
+
 					case 1024 | 1312:
+						defaultCamZoom = 1.1;
 						shakeCam = true;
 						camZooming = true;
 
 						switchBF('bf-3d', boyfriend.getPosition());
 						switchGF('gf-3d', gf.getPosition());
 					case 1152 | 1408:
+						defaultCamZoom = 0.9;
 						shakeCam = false;
 						camZooming = false;
 
@@ -5105,9 +5144,9 @@ class PlayState extends MusicBeatState
 			case 'supernovae':
 				switch (curStep)
 				{
-					case 60 | 1420:
+					case 60:
 						dad.playAnim('hey', true);
-					case 64 | 1280:
+					case 64:
 						defaultCamZoom = 1;
 					case 192:
 						defaultCamZoom = 0.9;
@@ -5117,16 +5156,17 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.6;
 					case 448 | 960 | 1344:
 						defaultCamZoom = 0.8;
-					case 896:
+					case 896 | 1152:
 						defaultCamZoom = 1.2;
 					case 1024:
 						defaultCamZoom = 1;
 						shakeCam = true;
-						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
-					case 1152:
-						defaultCamZoom = 1.2;
+						FlxTween.linearMotion(dad, dad.x, dad.y, 25, 50, 15, true);
+
+					case 1280:
+						FlxTween.linearMotion(dad, dad.x, dad.y, 50, 280, 0.6, true);
 						shakeCam = false;
-						
+						defaultCamZoom = 1;
 				}
 			case 'vs-dave-rap':
 				switch(curStep)
@@ -5454,7 +5494,6 @@ class PlayState extends MusicBeatState
 				switch (curBeat)
 				{
 					case 416:
-						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad('dave-annoyed', dad.getPosition());
 				}
 			case 'escape-from-california':
@@ -5570,11 +5609,15 @@ class PlayState extends MusicBeatState
 					"YOU LIAR...YOU LIAR!"
 				];
 
-				var path = Sys.getEnv("TEMP") + "/HELLO.txt";
+				var path = CoolSystemStuff.getTempPath() + "/HELLO.txt";
 
 				var randomLine = new FlxRandom().int(0, expungedLines.length);
 				File.saveContent(path, expungedLines[randomLine]);
+				#if windows
 				Sys.command("start " + path);
+				#else
+				Sys.command("xdg-open " + path);
+				#end
 			}
 			#end
 
@@ -5877,9 +5920,9 @@ class PlayState extends MusicBeatState
 		// PlayState.defaultCamZoom = 0.5;
 		
 		window = Application.current.createWindow({
-			 title: "Expung",
-			 width: 2000,
-			 height: 2000,
+			 title: "expunged.dat",
+			 width: 1500,
+			 height: 1500,
 			 borderless: true,
 			 alwaysOnTop: true
 			 
@@ -5914,23 +5957,34 @@ class PlayState extends MusicBeatState
   
 		FlxG.mouse.useSystemCursor = true;
 
-		expungedScroll.graphics.beginBitmapFill(dad.pixels, m);
-		expungedScroll.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
-		expungedScroll.graphics.endFill();
+		expungedSpr.graphics.beginBitmapFill(dad.pixels, m);
+		expungedSpr.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
+		expungedSpr.graphics.endFill();
+
 		expungedScroll.scrollRect = new Rectangle();
 		window.stage.addChild(expungedScroll);
 		expungedScroll.addChild(expungedSpr);
 		expungedScroll.scaleX = 0.5;
 		expungedScroll.scaleY = 0.5;
 
-		window.x = 100;
-		window.y = Application.current.window.y;
+		expungedOffset.x = Application.current.window.x;
+		expungedOffset.y = Application.current.window.y;
 
 		dad.visible = false;
 		dadStrums.forEach(function(strum:StrumNote)
 		{
 			FlxTween.tween(strum, {alpha: 0}, 1);
 		});
+
+		var windowX = Application.current.window.x + 270;
+
+		FlxTween.tween(expungedOffset, {x: -20}, 2, {ease: FlxEase.elasticOut});
+
+		FlxTween.tween(Application.current.window, {x: windowX}, 3, {ease: FlxEase.elasticOut, onComplete: function(tween:FlxTween)
+		{
+			expungedMoving = false;
+
+		}});
 
 		Application.current.window.onClose.add(function()
 		{
