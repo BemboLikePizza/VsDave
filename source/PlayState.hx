@@ -1917,7 +1917,10 @@ class PlayState extends MusicBeatState
 					dad.canSing = true;
 					dad.canDance = true;
 				}
-			case 'exploitation':
+			case 'supernovae' | 'glitch':
+				Application.current.window.title = "when you realize you have school this monday";
+				
+				case 'exploitation':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 				blackScreen.cameras = [camHUD];
 				blackScreen.screenCenter();
@@ -5098,6 +5101,32 @@ class PlayState extends MusicBeatState
 						switchToNight();
 					case 1151:
 						defaultCamZoom = 1;	
+						
+				}
+			case 'supernovae':
+				switch (curStep)
+				{
+					case 60 | 1420:
+						dad.playAnim('hey', true);
+					case 64 | 1280:
+						defaultCamZoom = 1;
+					case 192:
+						defaultCamZoom = 0.9;
+					case 320 | 768:
+						defaultCamZoom = 1.1;
+					case 444:
+						defaultCamZoom = 0.6;
+					case 448 | 960 | 1344:
+						defaultCamZoom = 0.8;
+					case 896:
+						defaultCamZoom = 1.2;
+					case 1024:
+						defaultCamZoom = 1;
+						shakeCam = true;
+						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
+					case 1152:
+						defaultCamZoom = 1.2;
+						shakeCam = false;
 						
 				}
 			case 'vs-dave-rap':
