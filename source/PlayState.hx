@@ -5963,8 +5963,6 @@ class PlayState extends MusicBeatState
 
 		}});
 
-
-
 		Application.current.window.onClose.add(function()
 		{
 			window.close();
