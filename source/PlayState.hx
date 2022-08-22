@@ -1011,6 +1011,7 @@ class PlayState extends MusicBeatState
 			case 'bot-trot':
 				preload('backgrounds/bedroom/night/bedroom');
 				preload('backgrounds/bedroom/night/baldi');
+				preload('playrobot/playrobot_shadow');
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, FlxG.width, "", 20);

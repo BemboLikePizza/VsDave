@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="just take these.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="down instance 10000" x="0" y="0" width="1776" height="1059"/>
+	<SubTexture name="down instance 10001" x="0" y="0" width="1776" height="1059"/>
+	<SubTexture name="down instance 10002" x="1780" y="0" width="1776" height="1059"/>
+	<SubTexture name="down instance 10003" x="1780" y="0" width="1776" height="1059"/>
+	<SubTexture name="down instance 10004" x="3560" y="0" width="1776" height="1059"/>
+	<SubTexture name="down instance 10005" x="3560" y="0" width="1776" height="1059"/>
+	<SubTexture name="down instance 10006" x="5340" y="0" width="1776" height="1059"/>
+	<SubTexture name="down instance 10007" x="5340" y="0" width="1776" height="1059"/>
+	<SubTexture name="idle instance 10000" x="0" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10001" x="0" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10002" x="1780" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10003" x="1780" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10004" x="3560" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10005" x="3560" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10006" x="5340" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10007" x="5340" y="1063" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10008" x="0" y="2107" width="1776" height="1040"/>
+	<SubTexture name="idle instance 10009" x="0" y="2107" width="1776" height="1040"/>
+	<SubTexture name="left instance 10000" x="1780" y="2107" width="1776" height="1042"/>
+	<SubTexture name="left instance 10001" x="1780" y="2107" width="1776" height="1042"/>
+	<SubTexture name="left instance 10002" x="3560" y="2107" width="1776" height="1042"/>
+	<SubTexture name="left instance 10003" x="3560" y="2107" width="1776" height="1042"/>
+	<SubTexture name="left instance 10004" x="5340" y="2107" width="1776" height="1042"/>
+	<SubTexture name="left instance 10005" x="5340" y="2107" width="1776" height="1042"/>
+	<SubTexture name="left instance 10006" x="0" y="3153" width="1776" height="1042"/>
+	<SubTexture name="left instance 10007" x="0" y="3153" width="1776" height="1042"/>
+	<SubTexture name="right instance 10000" x="1780" y="3153" width="1776" height="1046"/>
+	<SubTexture name="right instance 10001" x="1780" y="3153" width="1776" height="1046"/>
+	<SubTexture name="right instance 10002" x="3560" y="3153" width="1776" height="1046"/>
+	<SubTexture name="right instance 10003" x="3560" y="3153" width="1776" height="1046"/>
+	<SubTexture name="right instance 10004" x="5340" y="3153" width="1776" height="1046"/>
+	<SubTexture name="right instance 10005" x="5340" y="3153" width="1776" height="1046"/>
+	<SubTexture name="right instance 10006" x="0" y="4203" width="1776" height="1046"/>
+	<SubTexture name="right instance 10007" x="0" y="4203" width="1776" height="1046"/>
+	<SubTexture name="up instance 10000" x="1780" y="4203" width="1776" height="1042"/>
+	<SubTexture name="up instance 10001" x="1780" y="4203" width="1776" height="1042"/>
+	<SubTexture name="up instance 10002" x="3560" y="4203" width="1776" height="1042"/>
+	<SubTexture name="up instance 10003" x="3560" y="4203" width="1776" height="1042"/>
+	<SubTexture name="up instance 10004" x="5340" y="4203" width="1776" height="1042"/>
+	<SubTexture name="up instance 10005" x="5340" y="4203" width="1776" height="1042"/>
+	<SubTexture name="up instance 10006" x="0" y="5253" width="1776" height="1042"/>
+	<SubTexture name="up instance 10007" x="0" y="5253" width="1776" height="1042"/>
+</TextureAtlas>

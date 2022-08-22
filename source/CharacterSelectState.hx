@@ -122,7 +122,6 @@ class CharacterSelectState extends MusicBeatState
 	
 	override public function create():Void 
 	{
-
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			if (FlxG.fullscreen)
