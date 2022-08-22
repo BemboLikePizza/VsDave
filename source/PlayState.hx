@@ -1917,7 +1917,7 @@ class PlayState extends MusicBeatState
 					dad.canSing = true;
 					dad.canDance = true;
 				}
-			case 'supernovae' | 'glitch':
+			case 'supernovae' | 'glitch' | 'master':
 				Application.current.window.title = "when you realize you have school this monday";
 				
 				case 'exploitation':
@@ -5106,7 +5106,7 @@ class PlayState extends MusicBeatState
 				{
 					case 60 | 1420:
 						dad.playAnim('hey', true);
-					case 64 | 1280:
+					case 64:
 						defaultCamZoom = 1;
 					case 192:
 						defaultCamZoom = 0.9;
@@ -5121,11 +5121,14 @@ class PlayState extends MusicBeatState
 					case 1024:
 						defaultCamZoom = 1;
 						shakeCam = true;
-						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
+						FlxTween.linearMotion(dad, dad.x, dad.y, 25, 50, 15, true);
 					case 1152:
 						defaultCamZoom = 1.2;
 						shakeCam = false;
-						
+
+					case 1280:
+						FlxTween.linearMotion(dad, dad.x, dad.y, 50, 280, 0.6, true);
+						defaultCamZoom = 1;
 				}
 			case 'vs-dave-rap':
 				switch(curStep)
