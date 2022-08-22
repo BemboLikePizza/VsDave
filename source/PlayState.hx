@@ -777,8 +777,8 @@ class PlayState extends MusicBeatState
 				dad.x -= 200;
 				dad.y -= 400;
 			case 'roof':
-				dad.setPosition(200, 300);
-				boyfriend.setPosition(700, 100);
+				dad.setPosition(135, 270);
+				boyfriend.setPosition(807, 66);
 			case 'farm' | 'farm-night'| 'farm-sunset':
 				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
@@ -1484,7 +1484,7 @@ class PlayState extends MusicBeatState
 			case 'roof':
 				bgZoom = 1;
 				stageName = 'roof';
-				var roof:BGSprite = new BGSprite('roof', -350, 0, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
+				var roof:BGSprite = new BGSprite('roof', -554, -632, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
 				add(roof);
 			case 'bedroom':
 				bgZoom = 1;
