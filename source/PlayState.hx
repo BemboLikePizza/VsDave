@@ -5136,6 +5136,104 @@ class PlayState extends MusicBeatState
 						case 322:
 							FlxG.camera.flash();
 					}
+							case 'memory':
+			    {
+					switch(curStep)
+				    {
+						case 1408:
+							defaultCamZoom += 0.2;
+							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+							black.screenCenter();
+							black.alpha = 0;
+							add(black);
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							makeInvisibleNotes(true);
+						case 1422:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub1'), 0.02, 0.5);
+						case 1436:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub2'), 0.02, 1);
+						case 1458:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub3'), 0.02, 0.7);
+						case 1476:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub4'), 0.02, 1);
+						case 1508:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub5'), 0.02, 1.5);
+						case 1541:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub6'), 0.02, 1);
+						case 1561:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub7'), 0.02, 1);
+						case 1583:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub8'), 0.02, 0.8);
+						case 1608:
+							defaultCamZoom -= 0.2;
+							FlxTween.tween(black, {alpha: 0}, 1);
+							makeInvisibleNotes(false);
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub9'), 0.02, 1);
+						case 1632:
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub10'), 0.02, 0.5);
+						case 1646:
+							defaultCamZoom += 0.2;
+							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+							black.screenCenter();
+							black.alpha = 0;
+							add(black);
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							makeInvisibleNotes(true);
+							subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub11'), 0.02, 1);
+
+					}
+				}
+		    case 'memory':
+					{
+						switch(curStep)
+						{
+							case 1408:
+								defaultCamZoom += 0.2;
+								black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+								black.screenCenter();
+								black.alpha = 0;
+								add(black);
+								FlxTween.tween(black, {alpha: 0.6}, 1);
+								makeInvisibleNotes(true);
+							case 1422:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub1'), 0.02, 0.5);
+							case 1436:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub2'), 0.02, 1);
+							case 1458:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub3'), 0.02, 0.7);
+							case 1476:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub4'), 0.02, 1);
+							case 1508:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub5'), 0.02, 1.5);
+							case 1541:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub6'), 0.02, 1);
+							case 1561:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub7'), 0.02, 1);
+							case 1583:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub8'), 0.02, 0.8);
+							case 1608:
+								defaultCamZoom -= 0.2;
+								FlxTween.tween(black, {alpha: 0}, 1);
+								makeInvisibleNotes(false);
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub9'), 0.02, 1);
+							case 1632:
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub10'), 0.02, 0.5);
+							case 1646:
+								defaultCamZoom += 0.2;
+								black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+								black.screenCenter();
+								black.alpha = 0;
+								add(black);
+								FlxTween.tween(black, {alpha: 0.6}, 1);
+								makeInvisibleNotes(true);
+								subtitleManager.addSubtitle(LanguageManager.getTextString('memory_sub11'), 0.02, 1);
+							case 1664:
+								defaultCamZoom -= 0.2;
+								FlxTween.tween(black, {alpha: 0}, 1);
+								makeInvisibleNotes(false);
+	
+						}
+					}
 		}
 		if (SONG.song.toLowerCase() == 'exploitation' && curStep % 8 == 0)
 		{
