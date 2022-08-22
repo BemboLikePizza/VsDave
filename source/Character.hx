@@ -609,6 +609,23 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 				flipX = true;
 
+			case 'bambi-joke-mad':
+				var tex = Paths.getSparrowAtlas('joke/bambi-joke-mad', 'shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'up', 24, false);
+				animation.addByPrefix('singLEFT', 'left', 24, false);
+				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				animation.addByPrefix('singDOWN', 'down', 24, false);
+				animation.addByPrefix('die', 'die', 24, false);
+
+				loadOffsetFile(curCharacter);
+				playAnim('idle');
+
+				barColor = FlxColor.fromRGB(12, 181, 0);
+				nativelyPlayable = true;
+				flipX = true;
+
 			case 'bambi-shredder':
 				frames = Paths.getSparrowAtlas('festival/bambi_shredder', 'shared');
 				animation.addByPrefix('idle', 'shredder idle', 24, false);

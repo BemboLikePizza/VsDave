@@ -532,7 +532,7 @@ class PlayState extends MusicBeatState
 			{
 				case 'house' | 'insanity' | 'supernovae' | 'warmup':
 					stageCheck = 'house';
-				case 'polygonized' | 'master':
+				case 'polygonized':
 					stageCheck = 'red-void';
 				case 'blocked' | 'corn-theft' | 'maze':
 					stageCheck = 'farm';
@@ -566,6 +566,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'bedroom';
 				case 'escape-from-california':
 					stageCheck = 'desert';
+				case 'master':
+					stageCheck = 'master';
 			}
 		}
 		else
@@ -794,6 +796,10 @@ class PlayState extends MusicBeatState
 			case 'bedroom':
 				dad.setPosition(-460, 40);
 				boyfriend.setPosition(520, 190);
+			case 'master':
+				dad.setPosition(52, -166);
+				boyfriend.setPosition(1152, 311);
+				gf.setPosition(807 + charoffsetx, -22 + charoffsety);
 		}
 
 		switch (SONG.song.toLowerCase())
@@ -1544,6 +1550,19 @@ class PlayState extends MusicBeatState
 				train.updateHitbox();
 				sprites.add(train);
 				add(train);
+			case 'master':
+				bgZoom = 0.4;
+				stageName = 'master';
+
+				var space:BGSprite = new BGSprite('space', -1724, -971, Paths.image('backgrounds/shared/sky_space'), null, 1.2, 1.2);
+				space.setGraphicSize(Std.int(space.width * 10));
+				space.antialiasing = false;
+				sprites.add(space);
+				add(space);
+	
+				var land:BGSprite = new BGSprite('land', 675, 555, Paths.image('backgrounds/dave-house/land'), null, 0.9, 0.9);
+				sprites.add(land);
+				add(land);
 			default:
 				bgZoom = 0.9;
 				stageName = 'stage';
@@ -5167,7 +5186,28 @@ class PlayState extends MusicBeatState
 						FlxTween.linearMotion(dad, dad.x, dad.y, 50, 280, 0.6, true);
 						shakeCam = false;
 						defaultCamZoom = 1;
-				}
+					}
+			case 'master':
+				switch (curStep)
+				{
+					case 128:
+						defaultCamZoom = 0.7;
+					case 252 | 512:
+						defaultCamZoom = 0.4;
+						shakeCam = false;
+					case 256:
+						defaultCamZoom = 0.8;
+					case 380:
+						defaultCamZoom = 0.5;
+					case 384:
+						defaultCamZoom = 1;
+						shakeCam = true;
+					case 508:
+						defaultCamZoom = 1.2;
+					case 560:
+						dad.playAnim('die', true);			
+						FlxG.sound.play(Paths.sound('dead'), 1);
+					}
 			case 'vs-dave-rap':
 				switch(curStep)
 				{
