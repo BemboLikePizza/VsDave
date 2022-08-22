@@ -369,6 +369,8 @@ class PlayState extends MusicBeatState
 	var expungedOffset:FlxPoint = new FlxPoint();
 	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
+
+	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh'];
 	
 	override public function create()
 	{
@@ -1969,7 +1971,7 @@ class PlayState extends MusicBeatState
 					trainSpeed = newValue;
 				});
 			case 'supernovae' | 'glitch' | 'master':
-				Application.current.window.title = "when you realize you have school this monday";
+				Application.current.window.title = banbiWindowNames[new FlxRandom().int(0, 5)];
 			case 'exploitation':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 				blackScreen.cameras = [camHUD];
