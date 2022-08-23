@@ -5645,16 +5645,41 @@ class PlayState extends MusicBeatState
 		{
 			//exploitation stuff
 			case 'exploitation':
+				switch(curStep)
+			    {
+					case 32:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub1'), 0.02, 1);
+					case 56:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub2'), 0.02, 0.8);
+					case 64:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub3'), 0.02, 1);
+					case 85:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub4'), 0.02, 1);
+					case 99:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub5'), 0.02, 0.5);
+					case 105:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub6'), 0.02, 0.5);
+					case 117:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub7'), 0.02, 1);
+					case 512:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub8'), 0.02, 1);
+					case 524:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub9'), 0.02, 1);
+					case 533:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub10'), 0.02, 0.7);
+					case 545:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub11'), 0.02, 1);
+					case 566:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub12'), 0.02, 1);
+					case 1263:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub13'), 0.02, 0.3);
+					case 1270:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub14'), 0.02, 0.3);
+					case 1276:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
+				}
 				switch (curBeat)
 				{
-					case 8:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub1'), 0.02, 1);
-					case 16:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub2'), 0.03, 1);
-					case 22:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub3'), 0.03, 1);
-					case 26:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub4'), 0.03, 1);
 					case 40, 44, 46, 56, 60, 62:
 						switchNoteScroll();
 					case 72, 76, 80, 88, 90, 92:
@@ -5665,12 +5690,6 @@ class PlayState extends MusicBeatState
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 487:
 						modchart = ExploitationModchartType.ScrambledNotes;
-					case 1264:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub5'), 0.03, 1, {subtitleSize: 50});
-					case 1270:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub6'), 0.03, 1, {subtitleSize: 60});
-					case 1276:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub7'), 0.03, 1, {subtitleSize: 60});
 				}
 			case 'polygonized':
 				switch (curBeat)

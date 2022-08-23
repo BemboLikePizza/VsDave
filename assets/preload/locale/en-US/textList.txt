@@ -189,9 +189,20 @@ shred_sub14==That's it!
 
 // Exploitation Subtitles //
 exploit_sub1==The fuck?
-exploit_sub2==Ha ha haaaaaa hoo?
-exploit_sub3==This say you?
-exploit_sub4==Ha ha, ha
+exploit_sub2==Ehhhhhhhhhhhhhhhhhhhhh!!!
+exploit_sub3==Wahahauahahahuehehe!
+exploit_sub4==Fucking phone...
+exploit_sub5==Eoooooooooooooooooo
+exploit_sub6==Seeeiuuuuuuuuuuuuuu
+exploit_sub7==Naaaaaaaaaaaaaaaaaaaaa
+exploit_sub8==Aehehehe...
+exploit_sub9==Oh he...
+exploit_sub10==You are so
+exploit_sub11==get trolled!
+exploit_sub12==Whoopsies...
+exploit_sub13==You lying!
+exploit_sub14==YOU LYING!
+exploit_sub15==A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€
 
 // Escape from California Subtitles //
 california_sub1==Help me! I'm stuck in California!
