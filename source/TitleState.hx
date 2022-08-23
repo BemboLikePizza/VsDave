@@ -323,9 +323,9 @@ class TitleState extends MusicBeatState
 				case 13:
 					addMoreText(awaitingExploitation ? 'Vs. Expunged' : 'VS. Dave');
 				case 14:
-					addMoreText('The Full Mod');
+					addMoreText(!awaitingExploitation  ? 'and Bambi' : 'The Full Mod');
 				case 15:
-					var text:String = !awaitingExploitation  ? 'and Bambi' : 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA';
+					var text:String = !awaitingExploitation  ? 'The Full Mod' : 'HAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA\nHAHAHHAHAHAHAHHAHAHAHAHHAHAHAHAHHAHA';
 					if (awaitingExploitation) FlxG.sound.play(Paths.sound('evilLaugh', 'shared'), 0.7);
 					addMoreText(text);
 				case 16:
