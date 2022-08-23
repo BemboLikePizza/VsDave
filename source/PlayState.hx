@@ -4887,7 +4887,7 @@ class PlayState extends MusicBeatState
 				{
 					case 384 | 1040:
 						defaultCamZoom = 0.9;
-					case 448 | 777 | 1056:
+					case 448 | 1056:
 						defaultCamZoom = 0.8;
 					case 512 | 768:
 						defaultCamZoom = 1;
@@ -4904,6 +4904,10 @@ class PlayState extends MusicBeatState
 						dadmirror.visible = false;
 						curbg.visible = false;
 						iconP2.changeIcon(dad.curCharacter);
+					case 708:
+						defaultCamZoom = 0.8;
+						dad.playAnim('um', true);
+
 					case 1176:
 						FlxG.sound.play(Paths.sound('static'), 0.1);
 						dad.visible = false;

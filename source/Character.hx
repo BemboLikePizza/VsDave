@@ -265,6 +265,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
 				}
 				animation.addByPrefix('scared', 'scared', 24, true);
+				animation.addByPrefix('um', 'um', 24, true);
 	
 				loadOffsetFile(curCharacter);
 				
