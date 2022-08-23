@@ -680,8 +680,10 @@ class PlayState extends MusicBeatState
 		dad = new Character(100, 450, SONG.player2);
 		switch (SONG.song.toLowerCase())
 		{
-			default:
+			case 'insanity':
 				dadmirror = new Character(100, 450, "dave-angey");
+			default:
+				dadmirror = new Character(-999, -999, "bf"); //bfs already loaded
 		}
 		switch (SONG.song.toLowerCase())
 		{
