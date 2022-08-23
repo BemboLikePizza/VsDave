@@ -639,35 +639,34 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxGroup();
 		bfGroup = new FlxGroup();
 
-		add(gfGroup);
-		
-		if (SONG.song.toLowerCase() == 'five-nights')
+		switch (SONG.song.toLowerCase())
 		{
-			add(bfGroup);
+			case 'five-nights':
+				add(gfGroup);
+				add(bfGroup);
 
-			var floor:BGSprite = new BGSprite('frontFloor', -689, 525, Paths.image('backgrounds/office/floor'), null, 1, 1);
-			backgroundSprites.add(floor);
-			add(floor);
-				
-			door = new BGSprite('door', 68, -152, 'backgrounds/office/door', [
-				new Animation('idle', 'doorLOL instance 1', 0, false, [false, false], [11]),
-				new Animation('doorShut', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(22, 12)),
-				new Animation('doorOpen', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(11, 0))
-			], 1, 1, true, true);
-			door.animation.play('idle');
-			backgroundSprites.add(door);
-			add(door);
+				var floor:BGSprite = new BGSprite('frontFloor', -689, 525, Paths.image('backgrounds/office/floor'), null, 1, 1);
+				backgroundSprites.add(floor);
+				add(floor);
 
-			var frontWall:BGSprite = new BGSprite('frontWall', -516, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
-			backgroundSprites.add(frontWall);
-			add(frontWall);
-			
-			add(dadGroup);
-		}
-		else
-		{
-			add(dadGroup);
-			add(bfGroup);
+				door = new BGSprite('door', 68, -152, 'backgrounds/office/door', [
+					new Animation('idle', 'doorLOL instance 1', 0, false, [false, false], [11]),
+					new Animation('doorShut', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(22, 12)),
+					new Animation('doorOpen', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(11, 0))
+				], 1, 1, true, true);
+				door.animation.play('idle');
+				backgroundSprites.add(door);
+				add(door);
+
+				var frontWall:BGSprite = new BGSprite('frontWall', -516, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
+				backgroundSprites.add(frontWall);
+				add(frontWall);
+
+				add(dadGroup);
+			default:
+				add(gfGroup);
+				add(dadGroup);
+				add(bfGroup);
 		}
 
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
@@ -961,9 +960,18 @@ class PlayState extends MusicBeatState
 			songName.cameras = [camHUD];
 		}
 		
-		var healthBarPath = SONG.song.toLowerCase() == 'exploitation' ? Paths.image('ui/HELLthBar') : Paths.image('ui/healthBar');
-		var healthBarPath = SONG.song.toLowerCase() == 'overdrive' ? Paths.image('ui/fnfengine') : Paths.image('ui/healthBar');
-		var healthBarPath = SONG.song.toLowerCase() == 'five-nights' ? Paths.image('ui/fnafengine') : Paths.image('ui/healthBar');
+		var healthBarPath = '';
+		switch (SONG.song.toLowerCase())
+		{
+			case 'exploitation':
+				healthBarPath = Paths.image('ui/HELLthBar');
+			case 'overdrive':
+				healthBarPath = Paths.image('ui/fnfengine');
+			case 'five-nights':
+				healthBarPath = Paths.image('ui/fnafengine');
+			default:
+				healthBarPath = Paths.image('ui/healthBar');
+		}
 
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(healthBarPath);
@@ -1082,7 +1090,7 @@ class PlayState extends MusicBeatState
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, FlxG.width, "", 20);
-		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("ariblk.ttf") : font, 20, FlxColor.WHITE, CENTER);
+		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("ariblk.ttf") : font, 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
 		scoreTxt.antialiasing = true;
@@ -1601,7 +1609,7 @@ class PlayState extends MusicBeatState
 				sprites.add(baldi);
 				add(baldi);
 			case 'office':
-				bgZoom = 1;
+				bgZoom = 0.9;
 				stageName = 'office';
 				
 				var backFloor:BGSprite = new BGSprite('backFloor', -500, -310, Paths.image('backgrounds/office/backFloor'), null, 1, 1);
@@ -3254,7 +3262,7 @@ class PlayState extends MusicBeatState
 
 			switch (dad.curCharacter)
 			{
-				case 'playrobot':
+				case 'playrobot' | 'playrobot-shadow':
 					camFollow.x = dad.getMidpoint().x + 50;
 				case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 					camFollow.y = dad.getMidpoint().y;
@@ -3285,6 +3293,8 @@ class PlayState extends MusicBeatState
 				case 'bambi-3d':
 					camFollow.x = boyfriend.getMidpoint().x - 375;
 					camFollow.y = boyfriend.getMidpoint().y - 550;
+				case 'dave-fnaf':
+					camFollow.x += 100;
 			}
 			dadNoteCamOffset[0] = 0;
 			dadNoteCamOffset[1] = 0;

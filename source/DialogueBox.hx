@@ -58,39 +58,43 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		super();
 		
-		switch (PlayState.SONG.song.toLowerCase())
+		if (PlayState.isStoryMode)
 		{
-			case 'house' | 'insanity' | 'splitathon':
-				FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'polygonized' | 'interdimensional':
-				FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'supernovae' | 'glitch':
-				randomNumber = FlxG.random.int(0, 50);
-				if(randomNumber == 50)
-				{
-					FlxG.sound.playMusic(Paths.music('secret'), 0);
-					FlxG.sound.music.fadeIn(1, 0, 0.8);
-				}
-				else
-				{
-					FlxG.sound.playMusic(Paths.music('dooDooFeces'), 0);
-					FlxG.sound.music.fadeIn(1, 0, 0.8);
-				}
-			case 'blocked' | 'corn-theft' | 'maze':
-				randomNumber = FlxG.random.int(0, 50);
-				if(randomNumber == 50)
-				{
-					FlxG.sound.playMusic(Paths.music('secret'), 0);
-					FlxG.sound.music.fadeIn(1, 0, 0.8);
-				}
-				else
-				{
+			switch (PlayState.SONG.song.toLowerCase())
+			{
+				case 'house' | 'insanity' | 'splitathon':
 					FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
-				}
+				case 'polygonized' | 'interdimensional':
+					FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
+					FlxG.sound.music.fadeIn(1, 0, 0.8);
+				case 'supernovae' | 'glitch':
+					randomNumber = FlxG.random.int(0, 50);
+					if (randomNumber == 50)
+					{
+						FlxG.sound.playMusic(Paths.music('secret'), 0);
+						FlxG.sound.music.fadeIn(1, 0, 0.8);
+					}
+					else
+					{
+						FlxG.sound.playMusic(Paths.music('dooDooFeces'), 0);
+						FlxG.sound.music.fadeIn(1, 0, 0.8);
+					}
+				case 'blocked' | 'corn-theft' | 'maze':
+					randomNumber = FlxG.random.int(0, 50);
+					if (randomNumber == 50)
+					{
+						FlxG.sound.playMusic(Paths.music('secret'), 0);
+						FlxG.sound.music.fadeIn(1, 0, 0.8);
+					}
+					else
+					{
+						FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
+						FlxG.sound.music.fadeIn(1, 0, 0.8);
+					}
+			}
 		}
+		
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
@@ -132,7 +136,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeftCharacter = ['dave', 'normal'];
 			case 'insanity':
 				portraitLeftCharacter = ['dave', 'annoyed'];
-			case 'polygonized' | 'interdimensional':
+			case 'polygonized':
 			case 'interdimensional':
 				portraitLeftCharacter = ['dave', 'festival-3d-scared'];
 			case 'blocked':
