@@ -282,9 +282,6 @@ class Note extends FlxSprite
 			}
 		}
 
-		if (PlayState.scrollType == 'downscroll' && sustainNote)
-			flipY = true;
-
 		if (isSustainNote && prevNote != null)
 		{
 			alphaMult = 0.6;
@@ -292,6 +289,12 @@ class Note extends FlxSprite
 			noteOffset += width / 2;
 
 			animation.play('${notes[noteData]}holdend');
+
+			if (PlayState.scrollType == 'downscroll')
+			{
+				flipY = true;
+				scale.y *= 1.49;
+			}
 
 			updateHitbox();
 

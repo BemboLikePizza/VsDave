@@ -34,7 +34,7 @@ freeplay_finale==FINALE
 freeplay_fucked==YOU'RE FUCKED
 freeplay_lmao==LMAO
 
-freeplay_skipchar==Hold CTRL to Skip Character Selection
+freeplay_skipchar==Segure o CTRL para pular a Seleção de Personagem
 
 // Credits State //
 credits_dev==Desenvolvedores
@@ -181,3 +181,74 @@ exploit_sub1==Mai que porra?
 exploit_sub2==Ha ha haaaaaa hoo?
 exploit_sub3==Isso diz você?
 exploit_sub4==Ha ha, ha
+
+// Cheating Subtitles //
+cheating_sub1==Eu bloquear você.
+cheating_sub2==Você é monstro.
+cheating_sub3==Você arruinar minha vida!
+cheating_sub4==Moldy eu juro por deus eu bloqueio você pra sempre.
+cheating_sub5==Eu vou bloquear.
+cheating_sub6==Você para clicar em amizade...
+cheating_sub7==Jumpman12 eu bloquear você Moldy! 
+cheating_sub8==Auugh auugh
+cheating_sub9==*tagarelice*
+cheating_sub10==Ok, *tagarelice*
+cheating_sub11==Você estúpido.
+cheating_sub12==Uhhh, *tagarelice*
+cheating_sub13==Qual o seu, uhh...
+cheating_sub14==Qual o seu jogo divertidos?
+cheating_sub15==Wh-
+cheating_sub16==Qual seu jogo favoritos?
+cheating_sub17==Qual seu favorito?
+cheating_sub18==Nome dele-
+cheating_sub19==Ele disse...
+cheating_sub20==Jogos mortos.
+cheating_sub21==Pinto!
+cheating_sub22==Jumpman...
+cheating_sub23==Não...
+cheating_sub24==Pinto, heh!
+cheating_sub25==Ô meu deus tá...
+cheating_sub26==Não é engraçado isso é estúpido.
+cheating_sub27==Ohoh!!!
+cheating_sub28==Hehehe! Huhuhuhuh...
+cheating_sub29==Hehehehe...
+cheating_sub30==Huhuhuhuhuhu, hehe!
+
+//Unfairness Subtitles//
+unfairness_sub1==Zoando!
+unfairness_sub2==Eu...
+unfairness_sub3==Desenhei...
+unfairness_sub4==Esse aqui duas horas eu desenhando.
+unfairness_sub5==Olha!
+unfairness_sub6==Eu não tô zoando isso é...
+unfairness_sub7==Verdade porra!
+
+//Vs Dave Rap Subtitles//
+daverap_sub1==VS Dave, é meio poopoo
+daverap_sub2==Me faz lembrar de um doodoo
+daverap_sub3==Oooooh!
+daverap_sub4==Quando penso no Obama
+daverap_sub5==Fortnite
+daverap_sub6==Me faz cagar nas calças
+daverap_sub7==Yeah!
+daverap_sub8==Tropeçei numa banana
+daverap_sub9==Ai!
+daverap_sub10==Dirigindo um calhambeque
+daverap_sub11==Aí sim!
+daverap_sub12==Gordon Freeman é verde
+daverap_sub13==Sub pro Stats45
+daverap_sub14==Yeah!
+daverap_sub15==Meu pau coça, queima que nem Baldi doente
+
+//Memory Subtitles//
+memory_sub1==Bom...
+memory_sub2==Até agora isso foi uma jornada,
+memory_sub3==Mas eu só quero dizer isso:
+memory_sub4==Mesmo que você vá embora para conhecer oponentes novos,
+memory_sub5==Lembre-se de que sempre estarei com você no seu coração,
+memory_sub6==E que eu vou apoiar você no caminho
+memory_sub7==o máximo que eu puder. Mas...
+memory_sub8==Antes que tudo se acabe,
+memory_sub9==Quer cantar só mais uma vez?
+memory_sub10==Yeah!
+memory_sub11==Ótimo! Vamos nessa!

@@ -143,8 +143,8 @@ class DialogueBox extends FlxSpriteGroup
 			case 'maze':
 				portraitLeftCharacter = ['bambi', 'upset'];
 				portraitRightCharacter = ['gf', 'what'];
-			case 'supernovae' | 'glitch':
-				portraitLeftCharacter = ['bambi', 'bevel'];
+			case 'supernovae' | 'glitch' | 'master':
+				portraitLeftCharacter = ['bambi', 'bevel', 'bevelmad'];
 			case 'splitathon':
 				portraitLeftCharacter = ['bambi', 'splitathon'];
 		}
@@ -449,6 +449,8 @@ class DialogueBox extends FlxSpriteGroup
 						portrait.portraitPath = 'dialogue/bambi/bambi_splitathon';
 					case 'bevel':
 						portrait.portraitPath = 'dialogue/bambi/bambi_bevel';
+					case 'bevelmad':
+						portrait.portraitPath = 'dialogue/bambi/bambi_bevel_mad';
 					default:
 						portrait.portraitPath = 'dialogue/bambi/bambi_normal';
 				}

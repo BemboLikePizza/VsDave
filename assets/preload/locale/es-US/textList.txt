@@ -117,7 +117,7 @@ play_accuracy==Precisión:
 // Blocked Subtitles //
 blocked_sub1==Te bloqueo...
 blocked_sub2==Eres un monstruo...
-blocked_sub3==Arruinastes mi vida!
+blocked_sub3==Arruinas mi vida!
 blocked_sub4==Moldy voy a bloquearte en serio
 blocked_sub5==PARA SIEMPRE.
 blocked_sub6==Intento...
@@ -181,3 +181,78 @@ exploit_sub1==Que rayos?
 exploit_sub2==Ha ha haaaaaa hoo?
 exploit_sub3==Este eres tu?
 exploit_sub4==Ja ja, ja
+
+// Escape from California Subtitles //
+california_sub1==Ayudenme, estoy atrapado en California!
+california_sub2==WAAAAAAAAAAAAAAAAAAAAAA!-
+
+// Cheating Subtitles //
+cheating_sub1==Te bloqueo.
+cheating_sub2==Eres un mounstro.
+cheating_sub3==Arruinas mi vida!
+cheating_sub4==Moldy enserio te voy a bloquear para siempre.
+cheating_sub5==Te estoy bloqueando.
+cheating_sub6==Puedes dejar de clickear a amigos...
+cheating_sub7==Jumpman12 te bloqueo Moldy!
+cheating_sub8==Auugh auugh
+cheating_sub9==*sin sentido*
+cheating_sub10==Ok, *sin sentido*
+cheating_sub11==Eres estupido.
+cheating_sub12==Uhhh, *sin sentido*
+cheating_sub13==Cuales son uhhh...
+cheating_sub14==Cuales son tus juegos divertidos?
+cheating_sub15==Cu-
+cheating_sub16==Cual es tu juego favorito?
+cheating_sub17==CUal es tu favorito?
+cheating_sub18==Su nombre...
+cheating_sub19==El dijo...
+cheating_sub20==juegos muertos.
+cheating_sub21==Idiota!
+cheating_sub22==Jumpman...
+cheating_sub23==No...
+cheating_sub24==Idiota, heh!
+cheating_sub25==Dios mio tan...
+cheating_sub26==Esto no es gracioso, es estupido
+cheating_sub27==Ohoh!!!
+cheating_sub28==Hehehe! Huhuhuhuh...
+cheating_sub29==Hehehehe...
+cheating_sub30==Huhuhuhuhuhu, hehe!
+
+//Unfairness Subtitles//
+unfairness_sub1==Mentira!
+unfairness_sub2==Yo...
+unfairness_sub3==Pinte...
+unfairness_sub4==Esto lo pinte por dos horas
+unfairness_sub5==Mira!
+unfairness_sub6==No les miento esto es...
+unfairness_sub7==Jodidamente cierto!
+
+//Vs Dave Rap Subtitles//
+daverap_sub1==VS Dave, es un poco basura
+daverap_sub2==Me recuerda a las heces
+daverap_sub3==Oooooh!
+daverap_sub4==Cuando pienso de Obama
+daverap_sub5==Fortnite
+daverap_sub6==Me dan ganas de tirarme un pedo!
+daverap_sub7==Yeah!
+daverap_sub8==Me resbale con una banana!
+daverap_sub9==Ow!
+daverap_sub10==Conducimos el Jalopy!
+daverap_sub11==Oh si!
+daverap_sub12==Gordon Freeman es verde
+daverap_sub13==Suscribete a Stats45
+daverap_sub14==Yeah!
+daverap_sub15==Me pica el ****, quema como baldi sick.
+
+//Memory Subtitles//
+memory_sub1==Bueno.
+memory_sub2==Hasta ahora esto fue una gran aventura,
+memory_sub3==Pero quiero decir esto.
+memory_sub4==Aunque probablemente vayas a enfrentarte a mejores enemigos,
+memory_sub5==Recuerda que siempre estaré en tu corazón,
+memory_sub6==Y que siempre te apoyaré en el camino
+memory_sub7==tanto como pueda. Pero...
+memory_sub8==antes de que las cosas lleguen a su fin,
+memory_sub9==Quieres terminar este rap conmigo?
+memory_sub10==Yeah!
+memory_sub11==Okay! Hagamoslo!

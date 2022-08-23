@@ -182,7 +182,7 @@ class PlayState extends MusicBeatState
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var dadStrums:FlxTypedGroup<StrumNote>;
 
-	private var camZooming:Bool = false;
+	public static var camZooming:Bool = false;
 	private var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
@@ -370,6 +370,8 @@ class PlayState extends MusicBeatState
 	var expungedOffset:FlxPoint = new FlxPoint();
 	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
+
+	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh', 'alright instagram its shoutout time'];
 	
 	override public function create()
 	{
@@ -619,7 +621,6 @@ class PlayState extends MusicBeatState
 		if (SONG.player1 == 'tb-funny-man')
 		{
 			gfVersion = 'stereo';
-			charoffsetx += 500;
 			charoffsety += 500;
 		}
 
@@ -847,8 +848,8 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'bot-trot':
-				var tv:BGSprite = new BGSprite('tv', -518, 466, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
-				tv.setGraphicSize(Std.int(tv.width * 2));
+				var tv:BGSprite = new BGSprite('tv', -419, 448, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
+				tv.setGraphicSize(Std.int(tv.width * 1.5));
 				tv.updateHitbox();
 
 				backgroundSprites.add(tv);
@@ -1539,39 +1540,41 @@ class PlayState extends MusicBeatState
 				bgZoom = 1;
 				stageName = 'bedroom';
 				
-				var sky:BGSprite = new BGSprite('nightSky', -374, -164, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
-				sky.setGraphicSize(Std.int(sky.width * 1.7));
+				var sky:BGSprite = new BGSprite('nightSky', -287, -122, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
+				sky.setGraphicSize(Std.int(sky.width * 1.5));
 				sky.updateHitbox();
 				sprites.add(sky);
 				add(sky);
 
-				var outside:BGSprite = new BGSprite('outside', -129, -98, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
-				outside.setGraphicSize(Std.int(outside.width * 1.7));
+				var outside:BGSprite = new BGSprite('outside', -65, -64, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
+				outside.setGraphicSize(Std.int(outside.width * 1.5));
 				outside.updateHitbox();
 				sprites.add(outside);
 				add(outside);
 
-				var bedroom:BGSprite = new BGSprite('bedroom', -765, -462, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
-				bedroom.setGraphicSize(Std.int(bedroom.width * 1.7));
+				var bedroom:BGSprite = new BGSprite('bedroom', -419, -267, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
+				bedroom.setGraphicSize(Std.int(bedroom.width * 1.5));
 				bedroom.updateHitbox();
 				sprites.add(bedroom);
 				add(bedroom);
 
 				if (!['tristan', 'tristan-glowing'].contains(formoverride))
 				{
-					tristan = new BGSprite('tristan', -518, -323, 'backgrounds/bedroom/trist', [
-						new Animation('idle', 'day', 24, false, [false, false]),
-						new Animation('idleNight', 'night', 24, false, [false, false])
-					], 1, 1, true, true);
-					changeTristanAnim('day');
-					tristan.setGraphicSize(Std.int(tristan.width * 1.7));
-					tristan.updateHitbox();
-					sprites.add(tristan);
-					add(tristan);
+				tristan = new BGSprite('tristan', 1044, 167, 'backgrounds/bedroom/trist', [
+					new Animation('idle', 'day', 24, false, [false, false]),
+					new Animation('idleNight', 'night', 24, false, [false, false])
+				], 1, 1, true, true);
+				curTristanAnim = 'idle';
+				tristan.animation.play('idle');
+				tristan.setGraphicSize(Std.int(tristan.width * 1.5));
+				tristan.updateHitbox();
+				sprites.add(tristan);
+				add(tristan);
+
 				}
 
-				var baldi:BGSprite = new BGSprite('baldi', 1555, 590, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
-				baldi.setGraphicSize(Std.int(baldi.width * 2));
+				var baldi:BGSprite = new BGSprite('baldi', 1289, 507, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
+				baldi.setGraphicSize(Std.int(baldi.width * 1.5));
 				baldi.updateHitbox();
 				sprites.add(baldi);
 				add(baldi);
@@ -1588,7 +1591,7 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.5;
 				stageName = 'desert';
 
-				var bg:BGSprite = new BGSprite('bg', -600, -300, Paths.image('backgrounds/shared/sky'), null, 0.2, 0.2);
+				var bg:BGSprite = new BGSprite('bg', -700, -400, Paths.image('backgrounds/shared/sky'), null, 0.2, 0.2);
 				sprites.add(bg);
 				add(bg);
 				
@@ -1836,6 +1839,8 @@ class PlayState extends MusicBeatState
 					ready.scrollFactor.set();
 					ready.updateHitbox();
 
+					ready.antialiasing = true;
+
 					ready.screenCenter();
 					add(ready);
 					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
@@ -1856,6 +1861,8 @@ class PlayState extends MusicBeatState
 					set.scrollFactor.set();
 			
 					set.screenCenter();
+
+					set.antialiasing = true;
 					add(set);
 					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
 						ease: FlxEase.cubeInOut,
@@ -1877,6 +1884,8 @@ class PlayState extends MusicBeatState
 					go.updateHitbox();
 
 					go.screenCenter();
+
+					go.antialiasing = true;
 					add(go);
 
 					var sex:Float = 1000;
@@ -2007,7 +2016,7 @@ class PlayState extends MusicBeatState
 					trainSpeed = newValue;
 				});
 			case 'supernovae' | 'glitch' | 'master':
-				Application.current.window.title = "when you realize you have school this monday";
+				Application.current.window.title = banbiWindowNames[new FlxRandom().int(0, 6)];
 			case 'exploitation':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 				blackScreen.cameras = [camHUD];
@@ -2649,7 +2658,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'overdrive':
-				scoreTxt.text = "Score: " + Std.string(songScore);
+				scoreTxt.text = LanguageManager.getTextString('play_score') + Std.string(songScore);
 			case 'exploitation':
 				scoreTxt.text = 
 				"Scor3: " + (songScore * FlxG.random.int(5,9)) + 
@@ -2715,7 +2724,11 @@ class PlayState extends MusicBeatState
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				
+				case 'master':
+					PlayState.SONG = Song.loadFromJson("secret-mod-leak"); // you going to baldi world
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
 				case 'kabunga':
 					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
 					System.exit(0);
@@ -2779,6 +2792,7 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new AnimationDebug(boyfriend.curCharacter));
 		if (FlxG.keys.justPressed.TWO) //Go 10 seconds into the future :O
 		{
+			devBotplay = true;
 			FlxG.sound.music.pause();
 			vocals.pause();
 			boyfriend.stunned = true;
@@ -2816,6 +2830,7 @@ class PlayState extends MusicBeatState
 			vocals.time = Conductor.songPosition;
 			vocals.play();
 			boyfriend.stunned = false;
+			devBotplay = false;
 		}
 		if (FlxG.keys.justPressed.THREE)
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
@@ -3105,7 +3120,9 @@ class PlayState extends MusicBeatState
 		{
 			if (expungedWindowMode)
 			{
+				#if windows
 				popupWindow();
+				#end
 			}
 			else
 			{
@@ -5155,7 +5172,9 @@ class PlayState extends MusicBeatState
 						FlxG.camera.shake(0.015, (Conductor.stepCrochet / 1000) * 4);
 					case 1280:
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
+						#if windows
 						popupWindow();
+						#end
 						dadStrums.visible = false;
 				}
 			case 'shredder':
@@ -5827,6 +5846,8 @@ class PlayState extends MusicBeatState
 				char.y -= 125;
 			case 'playrobot':
 				char.y -= 100;
+			case 'playrobot-shadow':
+				char.x -= 200;
 			case 'nofriend':
 				char.y -= 75;
 		}
@@ -6003,8 +6024,8 @@ class PlayState extends MusicBeatState
 		
 		window = Application.current.createWindow({
 			 title: "expunged.dat",
-			 width: 1500,
-			 height: 1500,
+			 width: 800,
+			 height: 800,
 			 borderless: true,
 			 alwaysOnTop: true
 			 
