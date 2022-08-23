@@ -1802,6 +1802,8 @@ class PlayState extends MusicBeatState
 					ready.scrollFactor.set();
 					ready.updateHitbox();
 
+					ready.antialiasing = true;
+
 					ready.screenCenter();
 					add(ready);
 					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
@@ -1822,6 +1824,8 @@ class PlayState extends MusicBeatState
 					set.scrollFactor.set();
 			
 					set.screenCenter();
+
+					set.antialiasing = true;
 					add(set);
 					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
 						ease: FlxEase.cubeInOut,
@@ -1843,6 +1847,8 @@ class PlayState extends MusicBeatState
 					go.updateHitbox();
 
 					go.screenCenter();
+
+					go.antialiasing = true;
 					add(go);
 
 					var sex:Float = 1000;
