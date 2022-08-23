@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="fnightsThing.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="doorLOL instance 10000" x="0" y="0" width="479" height="693" frameX="0" frameY="-6" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10001" x="484" y="0" width="479" height="673" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10002" x="968" y="0" width="479" height="673" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10003" x="1452" y="0" width="479" height="498" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10004" x="1936" y="0" width="479" height="498" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10005" x="2420" y="0" width="479" height="323" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10006" x="2904" y="0" width="479" height="323" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10007" x="3388" y="0" width="479" height="148" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10008" x="0" y="698" width="479" height="148" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10009" x="484" y="698" width="479" height="23" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10010" x="968" y="698" width="479" height="23" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10011" x="1452" y="698" width="479" height="23" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10012" x="1936" y="698" width="479" height="23" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10013" x="2420" y="698" width="479" height="148" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10014" x="2904" y="698" width="479" height="148" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10015" x="3388" y="698" width="479" height="323" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10016" x="0" y="1026" width="479" height="323" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10017" x="484" y="1026" width="479" height="498" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10018" x="968" y="1026" width="479" height="498" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10019" x="1452" y="1026" width="479" height="673" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10020" x="1936" y="1026" width="479" height="673" frameX="0" frameY="0" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10021" x="2420" y="1026" width="479" height="693" frameX="0" frameY="-6" frameWidth="479" frameHeight="699"/>
+	<SubTexture name="doorLOL instance 10022" x="2904" y="1026" width="479" height="693" frameX="0" frameY="-6" frameWidth="479" frameHeight="699"/>
+</TextureAtlas>

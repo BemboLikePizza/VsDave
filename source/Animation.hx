@@ -1,3 +1,4 @@
+import cpp.abi.Abi;
 using StringTools;
 
 class Animation
@@ -7,8 +8,9 @@ class Animation
    public var frames:Int;
    public var looped:Bool;
    public var flip:Array<Bool>;
+   public var indices:Array<Int>;
 
-	public function new(name:String, prefixName:String, frames:Int, looped:Bool, ?flip:Array<Bool>)
+	public function new(name:String, prefixName:String, frames:Int, looped:Bool, ?flip:Array<Bool>, indices:Array<Int> = null)
 	{
       if (flip == null) 
       {
@@ -19,5 +21,6 @@ class Animation
       this.frames = frames;
       this.looped = looped;
       this.flip = flip;
+      this.indices = indices;
 	}
 }

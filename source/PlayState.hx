@@ -302,6 +302,8 @@ class PlayState extends MusicBeatState
 
 	var place:BGSprite;
 
+	var door:BGSprite;
+
 	var stageCheck:String = 'stage';
 
 	// FUCKING UHH particles
@@ -354,7 +356,6 @@ class PlayState extends MusicBeatState
 	public var guitarSection:Bool;
 	public var dadStrumAmount = 4;
 	public var playerStrumAmount = 4;
-	
 	
 	//explpit
 	var expungedBG:BGSprite;
@@ -621,10 +622,6 @@ class PlayState extends MusicBeatState
 			charoffsetx += 500;
 			charoffsety += 500;
 		}
-		if (formoverride == "bf" || formoverride == "none")
-		{
-			gfVersion = 'none';
-		}
 
 		screenshader.waveAmplitude = 0.5;
 		screenshader.waveFrequency = 1;
@@ -636,8 +633,35 @@ class PlayState extends MusicBeatState
 		bfGroup = new FlxGroup();
 
 		add(gfGroup);
-		add(dadGroup);
-		add(bfGroup);
+		
+		if (SONG.song.toLowerCase() == 'five-nights')
+		{
+			add(bfGroup);
+
+			var floor:BGSprite = new BGSprite('frontFloor', -689, 525, Paths.image('backgrounds/office/floor'), null, 1, 1);
+			backgroundSprites.add(floor);
+			add(floor);
+				
+			door = new BGSprite('door', 68, -152, 'backgrounds/office/door', [
+				new Animation('idle', 'doorLOL instance 1', 0, false, [false, false], [11]),
+				new Animation('doorShut', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(22, 12)),
+				new Animation('doorOpen', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(11, 0))
+			], 1, 1, true, true);
+			door.animation.play('idle');
+			backgroundSprites.add(door);
+			add(door);
+
+			var frontWall:BGSprite = new BGSprite('frontWall', -516, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
+			backgroundSprites.add(frontWall);
+			add(frontWall);
+			
+			add(dadGroup);
+		}
+		else
+		{
+			add(dadGroup);
+			add(bfGroup);
+		}
 
 		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
@@ -812,6 +836,12 @@ class PlayState extends MusicBeatState
 				dad.x -= 160;
 				boyfriend.x -= 100;
 				boyfriend.y -= 50;
+			case 'office':
+				dad.flipX = !dad.flipX;
+				boyfriend.flipX = !boyfriend.flipX;
+
+				dad.setPosition(606, 50);
+				boyfriend.setPosition(86, 100);
 		}
 
 		switch (SONG.song.toLowerCase())
@@ -821,10 +851,8 @@ class PlayState extends MusicBeatState
 				tv.setGraphicSize(Std.int(tv.width * 2));
 				tv.updateHitbox();
 
-				var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bedroom');
-
-				backgroundSprites.insert(members.indexOf(bedroomSpr), tv);
-				insert(members.indexOf(gfGroup), tv);
+				backgroundSprites.add(tv);
+				add(tv);
 		}
 
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
@@ -843,6 +871,7 @@ class PlayState extends MusicBeatState
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
+		
 		if (scrollType == 'downscroll')
 			strumLine.y = FlxG.height - 165;
 
@@ -1546,6 +1575,15 @@ class PlayState extends MusicBeatState
 				baldi.updateHitbox();
 				sprites.add(baldi);
 				add(baldi);
+			case 'office':
+				bgZoom = 0.9;
+				stageName = 'office';
+				
+				var backFloor:BGSprite = new BGSprite('backFloor', -500, -310, Paths.image('backgrounds/office/backFloor'), null, 1, 1);
+				sprites.add(backFloor);
+				add(backFloor);
+
+				//dave is here//
 			case 'desert':
 				bgZoom = 0.5;
 				stageName = 'desert';
@@ -3164,6 +3202,9 @@ class PlayState extends MusicBeatState
 					camFollow.x = dad.getMidpoint().x + 50;
 				case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 					camFollow.y = dad.getMidpoint().y;
+				case 'nofriend':
+					camFollow.x = dad.getMidpoint().x + 50;
+					camFollow.y = dad.getMidpoint().y - 50;
 			}
 
 			if (SONG.song.toLowerCase() == 'warmup')
@@ -5753,7 +5794,7 @@ class PlayState extends MusicBeatState
 	{
 		switch (char.curCharacter)
 		{
-			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf' | 'dave-festival':
+			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-festival' | 'dave-fnaf':
 				char.y -= 150;
 			case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 				char.y -= 400;
@@ -5786,6 +5827,8 @@ class PlayState extends MusicBeatState
 				char.y -= 125;
 			case 'playrobot':
 				char.y -= 100;
+			case 'nofriend':
+				char.y -= 75;
 		}
 	}
 	function updateSpotlight(bfSinging:Bool)

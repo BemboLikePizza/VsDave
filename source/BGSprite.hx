@@ -12,7 +12,7 @@ class BGSprite extends FlxSprite
 		super(posX, posY);
 		
 		this.spriteName = spriteName;
-		var hasAnimations:Bool = !(animations == null);
+		var hasAnimations:Bool = animations != null;
 
 		if (path != '')
 		{
@@ -24,7 +24,14 @@ class BGSprite extends FlxSprite
 					var curAnim = animations[i];
 					if (curAnim != null)
 					{
-						animation.addByPrefix(curAnim.name, curAnim.prefixName, curAnim.frames, curAnim.looped, curAnim.flip[0], curAnim.flip[1]);
+						if (curAnim.indices != null)
+						{
+							animation.addByIndices(curAnim.name, curAnim.prefixName, curAnim.indices, "", curAnim.frames, curAnim.looped, curAnim.flip[0], curAnim.flip[1]);
+						}
+						else
+						{
+							animation.addByPrefix(curAnim.name, curAnim.prefixName, curAnim.frames, curAnim.looped, curAnim.flip[0], curAnim.flip[1]);
+						}
 					}
 				}
 			}

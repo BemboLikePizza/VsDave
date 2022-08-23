@@ -108,7 +108,6 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromString("0x127798");
 				
-				nativelyPlayable = true;
 				flipX = true;
 				
 				playAnim('idle');
@@ -320,6 +319,7 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
+				nativelyPlayable = true;
 				playAnim('idle');
 				
 			case 'dave-splitathon':
