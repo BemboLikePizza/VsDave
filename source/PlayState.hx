@@ -1554,7 +1554,7 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.5;
 				stageName = 'desert';
 
-				var bg:BGSprite = new BGSprite('bg', -600, -300, Paths.image('backgrounds/shared/sky'), null, 0.2, 0.2);
+				var bg:BGSprite = new BGSprite('bg', -700, -400, Paths.image('backgrounds/shared/sky'), null, 0.2, 0.2);
 				sprites.add(bg);
 				add(bg);
 				
