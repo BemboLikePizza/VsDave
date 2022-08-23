@@ -830,16 +830,16 @@ class Character extends FlxSprite
 				tex = Paths.getSparrowAtlas('characters/DONT_GO_SNOOPING_WHERE_YOURE_NOT_SUPPOSED_TO', 'shared');
 				frames = tex;
 
-				animation.addByPrefix('idle', 'idle dance', 24, false);
-				animation.addByPrefix('singUP', 'NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'HEY!!', 24, false);
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY!!', 24, false);
 
 				// animation.addByPrefix('firstDeath', "LOL NO RESTARTING FOR YOU BUCKO", 24, false);
 				// animation.addByPrefix('deathLoop', "YOU GONNA HAVE TO RESTART", 24, true);

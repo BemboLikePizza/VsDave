@@ -620,7 +620,6 @@ class PlayState extends MusicBeatState
 		if (SONG.player1 == 'tb-funny-man')
 		{
 			gfVersion = 'stereo';
-			charoffsetx += 500;
 			charoffsety += 500;
 		}
 		if (formoverride == "bf" || formoverride == "none")
@@ -2687,7 +2686,11 @@ class PlayState extends MusicBeatState
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				
+				case 'master':
+					PlayState.SONG = Song.loadFromJson("secret-mod-leak"); // you going to baldi world
+					shakeCam = false;
+					screenshader.Enabled = false;
+					FlxG.switchState(new PlayState());
 				case 'kabunga':
 					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
 					System.exit(0);
