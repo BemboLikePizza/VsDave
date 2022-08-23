@@ -133,7 +133,8 @@ class DialogueBox extends FlxSpriteGroup
 			case 'insanity':
 				portraitLeftCharacter = ['dave', 'annoyed'];
 			case 'polygonized' | 'interdimensional':
-				portraitLeftCharacter = ['dave', '3d-scared'];
+			case 'interdimensional':
+				portraitLeftCharacter = ['dave', 'festival-3d-scared'];
 			case 'blocked':
 				portraitLeftCharacter = ['bambi', 'annoyed'];
 				portraitRightCharacter = ['gf', 'happy'];
@@ -144,7 +145,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeftCharacter = ['bambi', 'upset'];
 				portraitRightCharacter = ['gf', 'what'];
 			case 'supernovae' | 'glitch' | 'master':
-				portraitLeftCharacter = ['bambi', 'bevel', 'bevelmad'];
+				portraitLeftCharacter = ['bambi', 'bevelmad'];
 			case 'splitathon':
 				portraitLeftCharacter = ['bambi', 'splitathon'];
 		}
@@ -349,6 +350,7 @@ class DialogueBox extends FlxSpriteGroup
 			portraitSprite.x += pushbackAmount;
 			portraitSprite.alpha = 0;
 			
+			FlxTween.cancelTweensOf(portraitSprite);
 			FlxTween.tween(portraitSprite, {x: portraitSprite.x - pushbackAmount, alpha: 1}, 0.2);
 		}
 		else

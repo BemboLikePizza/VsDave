@@ -2016,7 +2016,7 @@ class PlayState extends MusicBeatState
 					trainSpeed = newValue;
 				});
 			case 'supernovae' | 'glitch' | 'master':
-				Application.current.window.title = banbiWindowNames[new FlxRandom().int(0, 6)];
+				Application.current.window.title = banbiWindowNames[new FlxRandom().int(0, banbiWindowNames.length - 1)];
 			case 'exploitation':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 				blackScreen.cameras = [camHUD];
@@ -2724,11 +2724,6 @@ class PlayState extends MusicBeatState
 					screenshader.Enabled = false;
 					FlxG.switchState(new PlayState());
 					return;
-				case 'master':
-					PlayState.SONG = Song.loadFromJson("secret-mod-leak"); // you going to baldi world
-					shakeCam = false;
-					screenshader.Enabled = false;
-					FlxG.switchState(new PlayState());
 				case 'kabunga':
 					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
 					System.exit(0);
@@ -3312,6 +3307,8 @@ class PlayState extends MusicBeatState
 		}
 		switch (SONG.song.toLowerCase())
 		{
+			case 'supernovae' | 'glitch' | 'master':
+				Application.current.window.title = Main.applicationName;
 			case 'exploitation':
 				Application.current.window.title = Main.applicationName;
 				Main.toggleFuckedFPS(false);
