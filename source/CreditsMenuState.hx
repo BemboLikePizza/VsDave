@@ -192,7 +192,7 @@ class CreditsMenuState extends MusicBeatState
       [  
 
       ]),
-      new Person("Sammypigzy", CreditsType.Contributor, "Artist, Bot Trot Main Artist",
+      new Person("SAMMYPIGZY", CreditsType.Contributor, "Artist, Bot Trot Main Artist",
       [  
 
       ]),

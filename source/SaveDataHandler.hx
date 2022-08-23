@@ -49,5 +49,8 @@ class SaveDataHandler
 		
 		if (FlxG.save.data.charactersUnlocked == null)
 			FlxG.save.data.charactersUnlocked = [];
+
+		if (FlxG.save.data.disableFps == null)
+			FlxG.save.data.disableFps = false;
     }
 }

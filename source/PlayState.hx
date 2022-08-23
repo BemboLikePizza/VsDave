@@ -383,8 +383,6 @@ class PlayState extends MusicBeatState
 	{
 		instance = this;	
 
-		inFiveNights = SONG.song.toLowerCase() == "five-nights";
-
 		switch (SONG.song.toLowerCase())
 		{
 			case 'exploitation':
@@ -2556,7 +2554,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
-			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging)
+			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || FlxG.keys.justPressed.SPACE)
 			{
 				changeDoorState(!doorClosed);
 			}
@@ -5245,13 +5243,11 @@ class PlayState extends MusicBeatState
 					case 14, 24:
 						creditsPopup.changeText('Song by EXPUNGED', 'whoAreYou');
 					case 32 | 512:
-						FlxTween.tween(camHUD, {alpha: 0}, 3);
 						FlxTween.tween(boyfriend, {alpha: 0}, 3);
 						FlxTween.tween(gf, {alpha: 0}, 3);
 						defaultCamZoom = FlxG.camera.zoom + 0.3;
 						FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 4);
 					case 128 | 576:
-						FlxTween.tween(camHUD, {alpha: 1}, 0.2);
 						defaultCamZoom = FlxG.camera.zoom - 0.3;
 						FlxTween.tween(boyfriend, {alpha: 1}, 0.2);
 						FlxTween.tween(gf, {alpha: 1}, 0.2);
@@ -6066,7 +6062,6 @@ class PlayState extends MusicBeatState
 				strumLine.y = UPSCROLL_Y;
 				scrollType = 'upscroll';
 		}
-		var i = 0;
 		for (strumNote in strumLineNotes)
 		{
 			FlxTween.angle(strumNote, strumNote.angle, strumNote.angle + 360, 0.4, {ease: FlxEase.expoOut});

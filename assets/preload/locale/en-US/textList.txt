@@ -78,7 +78,11 @@ option_freeplay_cutscenes_on==Freeplay Cutscenes On
 option_noteCamera_on==Camera Movement On Note
 option_noteCamera_off==Normal Camera
 
-cur_language==Change Language
+option_change_langauge==Change Language
+option_disable_fps==Disable FPS & Memory Counter
+option_enable_fps==Disable FPS & Memory Counter
+
+
 en-US==English
 es-US==Spanish
 pt-br==Brazilian-Portuguese

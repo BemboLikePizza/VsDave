@@ -40,20 +40,12 @@ class StoryMenuState extends MusicBeatState
 	
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
 
-	var weekCharacters:Array<Dynamic> = [
-		['empty', 'empty', 'empty'],
-		['empty', 'empty', 'empty'],
-		['empty', 'empty', 'empty'],
-		['empty', 'empty', 'empty'],
-		['empty', 'empty', 'empty'],
-	];
-
 	var weekNames:Array<String> = [
 		LanguageManager.getTextString('story_tutorial'), // tutorial
 		LanguageManager.getTextString('story_daveWeek'), //dave week name
 		LanguageManager.getTextString('story_bambiWeek'), // bambi week name
 		LanguageManager.getTextString('story_finale'), // finale week name
-		LanguageManager.getTextString('story_festivalWeek'), // festival week name
+		LanguageManager.getTextString('story_festivalWeek'), // festival week name 
 	];
 
 	var txtWeekTitle:FlxText;
@@ -81,7 +73,6 @@ class StoryMenuState extends MusicBeatState
 		0xFF00B515, // MISTER BAMBI RETARD
 		0xFF00FFFF, //SPLIT THE THONNNNN
 		0xFF800080, //FESTEVAL
-	
 	];
 	var awaitingExploitation:Bool;
 
@@ -161,7 +152,6 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.color = 0xFFe55777;
 		txtTracklist.antialiasing = true;
 		add(txtTracklist);
-		// add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
 
@@ -211,6 +201,10 @@ class StoryMenuState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			movedBack = true;
 			FlxG.switchState(new MainMenuState());
+		}
+		if (FlxG.keys.justPressed.SEVEN)
+		{
+
 		}
 
 		super.update(elapsed);
