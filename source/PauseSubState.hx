@@ -171,6 +171,8 @@ class PauseSubState extends MusicBeatSubstate
 				PlayState.screenshader.Enabled = false;
 				FlxG.resetState();
 			case "Developer No Miss":
+				PlayState.shakeCam = false;
+				PlayState.camZooming = false;
 				PlayState.devBotplay = !PlayState.devBotplay;
 			case "Exit to menu":
 				funnyTexts.clear();
@@ -190,6 +192,8 @@ class PauseSubState extends MusicBeatSubstate
 					}
 				}
 
+				PlayState.shakeCam = false;
+				PlayState.camZooming = false;
 				FlxG.switchState(new MainMenuState());
 		}
 	}
