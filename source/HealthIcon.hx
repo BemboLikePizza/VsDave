@@ -14,8 +14,8 @@ class HealthIcon extends FlxSprite
 		'bf-pixel',
 		'gf-pixel',
 		'bambi-unfair',
-		'expunged'
-		'nofriend',
+		'expunged',
+		'nofriend'
 	];
 	var char:String;
 	var state:String;
@@ -44,7 +44,7 @@ class HealthIcon extends FlxSprite
 				animation.add(char, [0, 1], 0, false, isPlayer);
 				animation.play(char);
 			}
-		}	
+		}
 	}
 
 	override function update(elapsed:Float)

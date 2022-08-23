@@ -288,7 +288,6 @@ class MainMenuState extends MusicBeatState
 		var pressR:FlxText = new FlxText(FlxG.width, FlxG.height, 0, 'Press R to reset your data', 12);
 		pressR.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		pressR.x -= versionShit.textField.textWidth;
-		pressR.y -= versionShit.textField.textHeight;
 		pressR.antialiasing = true;
 		pressR.alpha = 0;
 		pressR.scrollFactor.set();

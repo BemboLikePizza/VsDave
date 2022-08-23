@@ -167,17 +167,13 @@ class PauseSubState extends MusicBeatSubstate
 			case "Resume":
 				close();
 			case "Restart Song":
-				PlayState.shakeCam = false;
-				PlayState.camZooming = false;
-				PlayState.screenshader.shader.uampmul.value[0] = 0;
-				PlayState.screenshader.Enabled = false;
+				PlayState.resetShader();
+				FlxG.mouse.visible = false;
 				FlxG.resetState();
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
 			case "Exit to menu":
 				funnyTexts.clear();
-				PlayState.screenshader.shader.uampmul.value[0] = 0;
-				PlayState.screenshader.Enabled = false;
 				PlayState.characteroverride = 'none';
 				PlayState.formoverride = 'none';
 
@@ -191,9 +187,8 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.window.close();
 					}
 				}
-
-				PlayState.shakeCam = false;
-				PlayState.camZooming = false;
+				PlayState.resetShader();
+				FlxG.mouse.visible = false;
 				FlxG.switchState(new MainMenuState());
 		}
 	}

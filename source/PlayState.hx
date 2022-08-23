@@ -303,6 +303,9 @@ class PlayState extends MusicBeatState
 	var place:BGSprite;
 
 	var door:BGSprite;
+	var doorButton:BGSprite;
+	var doorClosed:Bool;
+	var doorChanging:Bool;
 
 	var stageCheck:String = 'stage';
 
@@ -607,10 +610,6 @@ class PlayState extends MusicBeatState
 		{
 			gfVersion = SONG.gf;
 		}
-		if (noGFSongs.contains(SONG.song.toLowerCase()) || !(formoverride == "bf" || formoverride == "none"))
-		{
-			gfVersion = 'gf-none';
-		}
 		
 		if (formoverride == "bf-pixel")
 		{
@@ -622,6 +621,11 @@ class PlayState extends MusicBeatState
 		{
 			gfVersion = 'stereo';
 			charoffsety += 500;
+		}
+		
+		if (noGFSongs.contains(SONG.song.toLowerCase()) || !['none', 'bf', 'bf-pixel'].contains(formoverride))
+		{
+			gfVersion = 'gf-none';
 		}
 
 		screenshader.waveAmplitude = 0.5;
@@ -645,7 +649,7 @@ class PlayState extends MusicBeatState
 
 				door = new BGSprite('door', 68, -152, 'backgrounds/office/door', [
 					new Animation('idle', 'doorLOL instance 1', 0, false, [false, false], [11]),
-					new Animation('doorShut', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(22, 12)),
+					new Animation('doorShut', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(22, 11)),
 					new Animation('doorOpen', 'doorLOL instance 1', 24, false, [false, false], CoolUtil.numberArray(11, 0))
 				], 1, 1, true, true);
 				door.animation.play('idle');
@@ -655,6 +659,10 @@ class PlayState extends MusicBeatState
 				var frontWall:BGSprite = new BGSprite('frontWall', -516, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
 				backgroundSprites.add(frontWall);
 				add(frontWall);
+
+				doorButton = new BGSprite('doorButton', 536, 61, Paths.image('fiveNights/btn_doorOpen'), null, 1, 1);
+				backgroundSprites.add(doorButton);
+				add(doorButton);
 
 				add(dadGroup);
 			default:
@@ -2043,6 +2051,8 @@ class PlayState extends MusicBeatState
 				{
 					remove(blackScreen);
 				}});
+			case 'five-nights':
+				FlxG.mouse.visible = true;
 		}
 	}
 
@@ -2522,6 +2532,13 @@ class PlayState extends MusicBeatState
 						}
 				}
 			});
+		}
+		if (SONG.song.toLowerCase() == 'five-nights')
+		{
+			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging)
+			{
+				changeDoorState(!doorClosed);
+			}
 		}
 		
 		var toy = -100 + -Math.sin((curStep / 9.5) * 2) * 30 * 5;
@@ -3323,6 +3340,8 @@ class PlayState extends MusicBeatState
 			case 'exploitation':
 				Application.current.window.title = Main.applicationName;
 				Main.toggleFuckedFPS(false);
+			case 'five-nights':
+				FlxG.mouse.visible = false;
 		}
 		if (isStoryMode)
 		{
@@ -5937,6 +5956,13 @@ class PlayState extends MusicBeatState
 	{
 		return defaultCamZoom;
 	}
+	public static function resetShader()
+	{
+		shakeCam = false;
+		camZooming = false;
+		screenshader.shader.uampmul.value[0] = 0;
+		screenshader.Enabled = false;
+	}
 
 	function sectionStartTime(section:Int):Float
 	{
@@ -6032,6 +6058,26 @@ class PlayState extends MusicBeatState
 				FlxTween.tween(strumNote, {alpha: 1}, 1);
 			}
 		}
+	}
+	function changeDoorState(closed:Bool)
+	{
+		doorClosed = closed;
+		doorChanging = true;
+		FlxG.sound.play(Paths.sound('fiveNights/doorInteract', 'shared'), 1);
+		if (doorClosed)
+		{
+			doorButton.loadGraphic(Paths.image('fiveNights/btn_doorClosed'));
+			door.animation.play('doorShut');
+		}
+		else
+		{
+			doorButton.loadGraphic(Paths.image('fiveNights/btn_doorOpen'));
+			door.animation.play('doorOpen');
+		}
+		door.animation.finishCallback = function(animation:String)
+		{
+			doorChanging = false;
+		}	
 	}
 
 	function popupWindow() {
