@@ -956,6 +956,9 @@ class PlayState extends MusicBeatState
 		}
 		
 		var healthBarPath = SONG.song.toLowerCase() == 'exploitation' ? Paths.image('ui/HELLthBar') : Paths.image('ui/healthBar');
+		var healthBarPath = SONG.song.toLowerCase() == 'overdrive' ? Paths.image('ui/fnfengine') : Paths.image('ui/healthBar');
+		var healthBarPath = SONG.song.toLowerCase() == 'five-nights' ? Paths.image('ui/fnafengine') : Paths.image('ui/healthBar');
+
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(healthBarPath);
 		if (scrollType == 'downscroll')
@@ -1073,7 +1076,7 @@ class PlayState extends MusicBeatState
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, FlxG.width, "", 20);
-		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("opensans.ttf") : font, 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("ariblk.ttf") : font, 20, FlxColor.WHITE, CENTER);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.5;
 		scoreTxt.antialiasing = true;
@@ -1579,7 +1582,7 @@ class PlayState extends MusicBeatState
 				sprites.add(baldi);
 				add(baldi);
 			case 'office':
-				bgZoom = 0.9;
+				bgZoom = 1;
 				stageName = 'office';
 				
 				var backFloor:BGSprite = new BGSprite('backFloor', -500, -310, Paths.image('backgrounds/office/backFloor'), null, 1, 1);
@@ -2658,7 +2661,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'overdrive':
-				scoreTxt.text = LanguageManager.getTextString('play_score') + Std.string(songScore);
+				scoreTxt.text = "score: " + Std.string(songScore);
 			case 'exploitation':
 				scoreTxt.text = 
 				"Scor3: " + (songScore * FlxG.random.int(5,9)) + 
@@ -2787,7 +2790,6 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new AnimationDebug(boyfriend.curCharacter));
 		if (FlxG.keys.justPressed.TWO) //Go 10 seconds into the future :O
 		{
-			devBotplay = true;
 			FlxG.sound.music.pause();
 			vocals.pause();
 			boyfriend.stunned = true;
@@ -2825,7 +2827,6 @@ class PlayState extends MusicBeatState
 			vocals.time = Conductor.songPosition;
 			vocals.play();
 			boyfriend.stunned = false;
-			devBotplay = false;
 		}
 		if (FlxG.keys.justPressed.THREE)
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
@@ -5255,6 +5256,25 @@ class PlayState extends MusicBeatState
 							dad.playAnim('sleeping', true);
 						}
 				}
+			case 'five-nights':
+				switch (curStep)
+				{
+					case 59:
+						switchNoteSide();
+					case 32 | 64 | 192 | 256 | 320 | 448 | 480 | 512 | 576 | 704 | 768 | 832 | 960 | 1024:
+						defaultCamZoom = 1.2;
+					case 48 | 128 | 224 | 288 | 384 | 464 | 496 | 544 | 640 | 736 | 800 | 896 | 976 | 1008 | 1056:
+						defaultCamZoom = 1;
+					case 992:
+						defaultCamZoom = 1.2;
+						FlxTween.tween(camHUD, {alpha: 0}, 1);
+					case 1088:
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						black = new FlxSprite(0, 0).makeGraphic(2560, 1440, FlxColor.BLACK);
+						black.screenCenter();
+						add(black);
+
+				}
 			case 'bot-trot':
 				switch (curStep)
 				{
@@ -5297,6 +5317,7 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 128:
+											switchNoteSide();
 						defaultCamZoom = 0.7;
 					case 252 | 512:
 						defaultCamZoom = 0.4;
