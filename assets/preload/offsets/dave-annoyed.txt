@@ -1,6 +1,7 @@
 scared -21 0
+um 42 11
 idle 0 0
-singDOWN -30 18
+singDOWN 9 8
 singRIGHT -29 3
 singUP -14 22
 singLEFT 16 -3
