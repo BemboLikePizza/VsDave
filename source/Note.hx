@@ -293,7 +293,6 @@ class Note extends FlxSprite
 			if (PlayState.scrollType == 'downscroll')
 			{
 				flipY = true;
-				scale.y *= 1.49;
 			}
 
 			updateHitbox();
