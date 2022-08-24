@@ -8,10 +8,13 @@ introWarningSeen==Olá! Esse mod utiliza shaders que podem ser prejudiciais para
 // Main Menu State //
 main_story==Modo História
 main_freeplay==Modo Livre
+main_freeplay_glitch==MEU JOGO
 main_credits==Créditos
 main_ost==OST
 main_options==Opções
 main_discord==Discord
+main_resetdata==Pressione R para redefinir seus dados
+main_warningdata==Tem certeza de que deseja redefinir todos os seus dados?
 
 // Main Menu Descriptions //
 desc_story==Jogue o modo história para desbloquear novos personagens, e entender a história em si!
@@ -30,7 +33,7 @@ freeplay_personalBest==Rec. Pessoal:
 freeplay_hard==Difícil
 freeplay_normal==Normal
 freeplay_easy==Fácil
-freeplay_finale==FINALE
+freeplay_finale==FINAL
 freeplay_fucked==YOU'RE FUCKED
 freeplay_lmao==LMAO
 
@@ -95,7 +98,7 @@ keybind_preset==Presets de Teclas:
 // Story Mode State // 
 story_track==Faixas
 story_weekScore==Pontuação da Semana:
-story_tutorial==Tutorial
+story_tutorial==Aula de ritmo de Dave!
 story_daveWeek==A Divertida Batalha de Rap Contra Dave!
 story_bambiWeek==O Divertido Labirinto de Milho do Sr. Bambi!
 story_finale==O Final

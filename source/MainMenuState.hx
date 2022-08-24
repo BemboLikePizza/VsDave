@@ -284,9 +284,9 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
-		
-		var pressR:FlxText = new FlxText(FlxG.width, FlxG.height, 0, 'Press R to reset your data', 12);
-		pressR.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+
+		var pressR:FlxText = new FlxText(10, 10, 0, LanguageManager.getTextString("main_resetdata"), 12);
+		pressR.setFormat("Comic Sans MS Bold", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		pressR.x -= versionShit.textField.textWidth;
 		pressR.antialiasing = true;
 		pressR.alpha = 0;
@@ -327,7 +327,7 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				
-				prompt = new Prompt('Are you sure you want to reset all of your save data?', controls);
+				prompt = new Prompt(LanguageManager.getTextString("menu_warningdata"), controls);
 				prompt.canInteract = true;
 				prompt.alpha = 0;
 				canInteract = false;

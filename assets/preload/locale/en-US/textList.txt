@@ -7,7 +7,6 @@ introWarningFirstPlay==Hello! This mod utilizes shaders that may be of disturban
 introWarningSeen==Hello! This mod utilizes shaders that may be of disturbance to some. If you wish to disable these, turn off the Eyesores option in the options menu. Also, Supernovae and Glitch are not meant to be taken seriously and are not composed by me. Supernovae is by ArchWk, and Glitch is by The Boneyard. Press Enter to continue.
 intoWarningExpunged==Coward.
 
-
 // Main Menu State //
 main_story==Story Mode
 main_freeplay==Freeplay
@@ -16,6 +15,8 @@ main_credits==Credits
 main_ost==OST
 main_options==Options
 main_discord==Discord
+main_resetdata==Press R to reset your data
+main_warningdata==Are you sure you want to reset all of your data?
 
 // Main Menu Descriptions //
 desc_story==Play the story mode to unlock new characters, and understand the story!

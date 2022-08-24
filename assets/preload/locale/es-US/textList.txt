@@ -8,10 +8,13 @@ introWarningSeen==Este mod utiliza shaders que le puede resultar perturbador a a
 // Main Menu State //
 main_story==Modo Historia
 main_freeplay==Juego Libre
-main_credits==Creditos
+main_freeplay_glitch==MI JUEGO
+main_credits==Créditos
 main_ost==OST
 main_options==Opciones
 main_discord==Discord
+main_resetdata==Presiona R para restablecer tus datos
+main_warningdata==¿Estás seguro de que quieres restablecer tus datos?
 
 // Main Menu Descriptions //
 desc_story==¡Juega el modo historia para desbloquear nuevos personajes y entender la historia!
@@ -30,7 +33,7 @@ freeplay_personalBest==RECORD PERSONAL:
 freeplay_hard==DIFICIL
 freeplay_normal==NORMAL
 freeplay_easy==FACIL
-freeplay_finale==FINALE
+freeplay_finale==FINAL
 freeplay_fucked==ESTAS EN PELIGRO
 freeplay_lmao==LMAO
 
@@ -45,7 +48,7 @@ credits_specialThanks==Agradecimientos Especiales
 
 // Credits Words //
 supernovae_credit==¡La canción original fue creada por ArchWk!
-glitch_credit==¡La canción original fue creada por DeadShadow and PixelGH!
+glitch_credit==¡La canción original fue creada por DeadShadow y PixelGH!
 mealie_credit==¡La canción original fue creada por Alexander Cooper 19!
 overdrive_credit==¡La canción original fue creada por Top 10 Awesome!
 unfairness_credit==¡Presionar sin notas esta desactivado! JODETE!
@@ -83,23 +86,23 @@ option_noteCamera_on==Camara Dinamica
 option_noteCamera_off==Camara Predefinida
 
 cur_language==Idioma actual
-en-US==Ingles
+en-US==Inglés
 es-US==Español
-pt-br==Brasilero-Portugues
+pt-br==Brasilero-Portugués
 ru-RU==Russian
 
 // Keybind State //
 keybind_tutorial==Seleccione un control y presione una tecla
-keybind_preset==Controles Preestablecidos:
+keybind_preset==Controles por defecto:
 
 // Story Mode State //
 story_track==Canciones
 story_weekScore==Puntuación:
-story_tutorial==Tutorial
-story_daveWeek==La divertida batalla de rap de Dave!
-story_bambiWeek==El diverido laberinto de maiz de Mr. Bambi!
+story_tutorial==¡Clase de ritmo de Dave!
+story_daveWeek==¡La divertida batalla de rap de Dave!
+story_bambiWeek==¡El diverido laberinto de maiz de Mr. Bambi!
 story_finale==El Final
-story_festivalWeek==El festival de maiz de Bambi!
+story_festivalWeek==¡El festival de maiz de Bambi!
 
 // CHARACTER SELECT STATE //
 character_reset==Presiona R para resetear
@@ -178,9 +181,20 @@ shred_sub14==Eso es todo!
 
 // Exploitation Subtitles //
 exploit_sub1==Que rayos?
-exploit_sub2==Ha ha haaaaaa hoo?
-exploit_sub3==Este eres tu?
-exploit_sub4==Ja ja, ja
+exploit_sub2==Ehhhhhhhhhhhhhhhhhhhhh!!!
+exploit_sub3==Wahahauahahahuehehe!
+exploit_sub4==Estupido telefono...
+exploit_sub5==Eoooooooooooooooooo
+exploit_sub6==Seeeiuuuuuuuuuuuuuu
+exploit_sub7==Naaaaaaaaaaaaaaaaaaaaa
+exploit_sub8==Aehehehe...
+exploit_sub9==Oh he...
+exploit_sub10==Tu eres demiasiado
+exploit_sub11==se troleado!
+exploit_sub12==Whoopsies...
+exploit_sub13==Estas mintiendo!
+exploit_sub14==ESTAS MINTIENDO!
+exploit_sub15==A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€
 
 // Escape from California Subtitles //
 california_sub1==Ayudenme, estoy atrapado en California!
