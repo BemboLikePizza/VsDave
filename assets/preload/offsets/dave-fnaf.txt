@@ -1,5 +1,10 @@
 idle 0 0
+huh 0 0
 singRIGHT 78 7
 singDOWN 3 -16
 singLEFT 1 14
 singUP 100 23
+singRIGHTmiss 78 7
+singDOWNmiss 3 -16
+singLEFTmiss 1 14
+singUPmiss 100 23

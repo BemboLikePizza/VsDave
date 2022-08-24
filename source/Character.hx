@@ -311,10 +311,12 @@ class Character extends FlxSprite
 			case 'dave-fnaf':
 				frames = Paths.getSparrowAtlas('fiveNights/dave_fnaf', 'shared');
 				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}0', 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', '$anim miss', 24, false);
+				}
+				animation.addByPrefix('huh', 'huh', 24, true);
 
 				loadOffsetFile(curCharacter);
 
