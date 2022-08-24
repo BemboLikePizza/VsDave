@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Bambi_Festival_Idle.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="bambi idle0000" x="0" y="0" width="338" height="300" frameX="0" frameY="-22" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0001" x="0" y="0" width="338" height="300" frameX="0" frameY="-22" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0002" x="342" y="0" width="337" height="314" frameX="0" frameY="-8" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0003" x="342" y="0" width="337" height="314" frameX="0" frameY="-8" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0004" x="683" y="0" width="332" height="319" frameX="-2" frameY="-3" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0005" x="683" y="0" width="332" height="319" frameX="-2" frameY="-3" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0006" x="0" y="323" width="325" height="321" frameX="-4" frameY="-1" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0007" x="0" y="323" width="325" height="321" frameX="-4" frameY="-1" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0008" x="329" y="323" width="325" height="322" frameX="-3" frameY="0" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0009" x="329" y="323" width="325" height="322" frameX="-3" frameY="0" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0010" x="658" y="323" width="325" height="322" frameX="-2" frameY="0" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0011" x="658" y="323" width="325" height="322" frameX="-2" frameY="0" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0012" x="658" y="323" width="325" height="322" frameX="-2" frameY="0" frameWidth="338" frameHeight="322"/>
+	<SubTexture name="bambi idle0013" x="658" y="323" width="325" height="322" frameX="-2" frameY="0" frameWidth="338" frameHeight="322"/>
+</TextureAtlas>

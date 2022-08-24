@@ -285,7 +285,8 @@ class PlayState extends MusicBeatState
 	var spotLightScaler:Float = 1.3;
 	var lastSinger:Character;
 
-	var crowd:BGSprite;
+	var crowdPeople:FlxTypedGroup<BGSprite> = new FlxTypedGroup<BGSprite>();
+	
 	var interdimensionBG:BGSprite;
 	var currentInterdimensionBG:String;
 	var nimbiLand:BGSprite;
@@ -1326,7 +1327,27 @@ class PlayState extends MusicBeatState
 			case 'festival':
 				bgZoom = 0.7;
 				stageName = 'festival';
-
+				
+				var mainChars:Array<Dynamic> = null;
+				switch (SONG.song.toLowerCase())
+				{
+					case 'shredder':
+						mainChars = [
+							//char name, prefix, size, x, y
+							['dave', 'idle', 0.8, 175, 100],
+							['tristan', 'bop', 0.4, 800, 325]
+						];
+					case 'greetings':
+						mainChars = [
+							['dave', 'idle', 0.8, 175, 100],
+							['bambi', 'bambi idle', 0.9, 700, 350],
+						];
+					case 'interdimensional':
+						mainChars = [
+							['bambi', 'bambi idle', 0.8, 537, 605],
+							['tristan', 'bop', 0.4, 800, 325]
+						];
+				}
 				var bg:BGSprite = new BGSprite('bg', -600, -230, Paths.image('backgrounds/shared/sky_festival'), null, 0.9, 0.9);
 				sprites.add(bg);
 				add(bg);
@@ -1362,12 +1383,25 @@ class PlayState extends MusicBeatState
 				sprites.add(backGrass);
 				add(backGrass);
 				
-				crowd = new BGSprite('crowd', -500, -150, 'backgrounds/festival/crowd', [
+				var crowd = new BGSprite('crowd', -500, -150, 'backgrounds/festival/crowd', [
 					new Animation('idle', 'crowdDance', 24, true, [false, false])
-				], 1, 1, true, true);
+				], 0.85, 0.85, true, true);
 				crowd.animation.play('idle');
 				sprites.add(crowd);
+				crowdPeople.add(crowd);
 				add(crowd);
+				
+				for (i in 0...mainChars.length)
+				{
+					var crowdChar = new BGSprite(mainChars[i][0], mainChars[i][3], mainChars[i][4], 'backgrounds/festival/mainCrowd/${mainChars[i][0]}', [
+						new Animation('idle', mainChars[i][1], 24, false, [false, false], null)
+					], 0.85, 0.85, true, true);
+					crowdChar.setGraphicSize(Std.int(crowdChar.width * mainChars[i][2]));
+					crowdChar.updateHitbox();
+					sprites.add(crowdChar);
+					crowdPeople.add(crowdChar);
+					add(crowdChar);
+				}
 				
 				var frontGrass:BGSprite = new BGSprite('frontGrass', -1300, 600, Paths.image('backgrounds/festival/frontGrass'), null, 1, 1);
 				sprites.add(frontGrass);
@@ -1504,7 +1538,7 @@ class PlayState extends MusicBeatState
 				
 				interdimensionBG = bg;
 
-				for (char in ['ball', 'bimpe', 'maldo', 'memes kids', 'muko', 'ruby man'])
+				for (char in ['ball', 'bimpe', 'maldo', 'memes kids', 'muko', 'ruby man', 'tristan'])
 				{
 					var bgChar = new FlyingBGChar(char, Paths.image('backgrounds/festival/scaredCrowd/$char'));
 					sprites.add(bgChar);
@@ -1819,6 +1853,10 @@ class PlayState extends MusicBeatState
 			dad.dance();
 			gf.dance();
 			boyfriend.playAnim('idle', true);
+			crowdPeople.forEach(function(crowdPerson:BGSprite)
+			{
+				crowdPerson.animation.play('idle', true);
+			});
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			var introSoundAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
@@ -5623,9 +5661,12 @@ class PlayState extends MusicBeatState
 				}
 			}
 		}
-		if (curBeat % 2 == 0 && crowd != null)
+		if (curBeat % 2 == 0)
 		{
-			crowd.animation.play('idle', true);
+			crowdPeople.forEach(function(crowdPerson:BGSprite)
+			{
+				crowdPerson.animation.play('idle', true);
+			});
 		}
 		if (curBeat % 2 == 0 && tristan != null)
 		{
