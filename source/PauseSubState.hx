@@ -168,6 +168,13 @@ class PauseSubState extends MusicBeatSubstate
 				close();
 			case "Restart Song":
 				PlayState.resetShader();
+				if (PlayState.SONG.song.toLowerCase() == "exploitation")
+				{
+					if (PlayState.window != null)
+					{
+						PlayState.window.close();
+					}
+				}
 				FlxG.mouse.visible = false;
 				FlxG.resetState();
 			case "Developer No Miss":
