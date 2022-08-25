@@ -1146,7 +1146,7 @@ class PlayState extends MusicBeatState
 
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
-		if (SONG.song.toLowerCase() == 'blocked')
+		if (SONG.song.toLowerCase() == 'blocked' || SONG.song.toLowerCase() == 'shredder')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
 		}
@@ -4873,9 +4873,11 @@ class PlayState extends MusicBeatState
 					case 320:
 						defaultCamZoom = 0.6;
 						cinematicBars(((Conductor.stepCrochet * 30) / 1000), 400);
+						makeInvisibleNotes(true);
 					case 352:
 						defaultCamZoom = 0.4;
 						FlxG.camera.flash();
+						makeInvisibleNotes(false);
 					case 864:
 						FlxG.camera.flash();
 						charBackdrop.loadGraphic(Paths.image('recursed/bambiScroll'));
@@ -5315,6 +5317,14 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 261:
+						defaultCamZoom += 0.2;
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						makeInvisibleNotes(true);
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub1'), 0.02, 0.3);
 					case 273:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub2'), 0.02, 0.6);
@@ -5338,6 +5348,27 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub11'), 0.02, 0.6, {subtitleSize: 60});
 					case 484:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub12'), 0.02, 0.6, {subtitleSize: 60});
+					case 512:
+						defaultCamZoom -= 0.2;
+						FlxG.camera.flash();
+						FlxTween.tween(black, {alpha: 0}, 1);
+						makeInvisibleNotes(false);
+					case 912:
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						defaultCamZoom += 0.2;
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+					case 928:
+						camHUD.setFilters([]);
+						defaultCamZoom -= 0.2;
+						FlxTween.tween(black, {alpha: 0}, 1);
+					case 944:
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						defaultCamZoom += 0.2;
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+					case 960:
+						camHUD.setFilters([]);
+						defaultCamZoom -= 0.2;
+						FlxTween.tween(black, {alpha: 0}, 1);
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
@@ -5371,6 +5402,38 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 
 						regenerateStaticArrows(0);
+
+						defaultCamZoom += 0.2;
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						makeInvisibleNotes(true);
+					case 1552:
+						camHUD.setFilters([]);
+						defaultCamZoom += 0.1;
+					case 1568:
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						defaultCamZoom += 0.1;
+					case 1584:
+						camHUD.setFilters([]);
+						defaultCamZoom += 0.1;
+					case 1600:
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						defaultCamZoom += 0.1;
+					case 1616:
+						camHUD.setFilters([]);
+						defaultCamZoom += 0.1;
+					case 1632:
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						defaultCamZoom += 0.1;
+					case 1648:
+						FlxTween.tween(black, {alpha: 1}, 1);
+						camHUD.setFilters([]);
+						defaultCamZoom += 0.1;
+					case 1664:
+						defaultCamZoom -= 0.9;
+						FlxG.camera.flash();
+						FlxTween.tween(black, {alpha: 0}, 1);
+						makeInvisibleNotes(false);
 					case 1937:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('shred_sub13'), 0.02, 0.6, {subtitleSize: 60});
 					case 1946:
