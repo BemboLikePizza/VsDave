@@ -1212,7 +1212,7 @@ class PlayState extends MusicBeatState
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
 				}			
-				var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/shared/${skyType}'), null, 0.6, 0.6);
+				var bg:BGSprite = new BGSprite('bg', -600, -300, Paths.image('backgrounds/shared/${skyType}'), null, 0.6, 0.6);
 				sprites.add(bg);
 				add(bg);
 				
@@ -5232,12 +5232,34 @@ class PlayState extends MusicBeatState
 			case 'glitch':
 				switch (curStep)
 				{
+					case 15:
+						dad.playAnim('hey', true);
+					case 16 | 719 | 1167:
+						defaultCamZoom = 1;
+					case 80 | 335 | 588 | 1103:
+						defaultCamZoom = 0.8;
+					case 584 | 1039:
+						defaultCamZoom = 1.2;
+					case 272 | 975:
+						defaultCamZoom = 1.1;
+					case 464:
+						defaultCamZoom = 1;
+						FlxTween.linearMotion(dad, dad.x, dad.y, 25, 50, 20, true);
+					case 848:
+						shakeCam = false;
+						camZooming = false;
+						defaultCamZoom = 1;
 					case 132 | 612 | 740 | 771 | 836:
 						shakeCam = true;
 						camZooming = true;
-					case 144 | 624 | 752 | 784 | 848:
+						defaultCamZoom = 1.2;
+					case 144 | 624 | 752 | 784:
 						shakeCam = false;
 						camZooming = false;
+						defaultCamZoom = 0.8;
+					case 1231:
+						defaultCamZoom = 0.8;
+						FlxTween.linearMotion(dad, dad.x, dad.y, 50, 280, 1, true);
 				}
 			case 'mealie':
 				switch (curStep)
