@@ -4121,7 +4121,12 @@ class PlayState extends MusicBeatState
 				}
 			}
 
-			FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+			if(curSong.toLowerCase() == 'overdrive'){
+				FlxG.sound.play(Paths.sound('bad_disc'), FlxG.random.float(0.1, 0.2));
+			}
+			else{
+				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+			}
 			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 			// FlxG.log.add('played imss note');
 			
