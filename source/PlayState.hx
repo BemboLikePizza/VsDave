@@ -292,14 +292,18 @@ class PlayState extends MusicBeatState
 	var nimbiLand:BGSprite;
 	var nimbiSign:BGSprite;
 	var flyingBgChars:FlxTypedGroup<FlyingBGChar> = new FlxTypedGroup<FlyingBGChar>();
+	public static var isGreetingsCutscene:Bool;
+	var originalPosition:FlxPoint = new FlxPoint();
+	var daveFlying:Bool;
 
 	var tristan:BGSprite;
 	var curTristanAnim:String;
 
-	var sky:BGSprite;
-	var sky2:BGSprite;
 	var desertBG:BGSprite;
 	var desertBG2:BGSprite;
+	var sign:BGSprite;
+	var georgia:BGSprite;
+	var train:BGSprite;
 	var trainSpeed:Float;
 
 	var vcr:VCRDistortionShader;
@@ -758,6 +762,39 @@ class PlayState extends MusicBeatState
 				tweenList.push(gfTween);
 				tweenList.push(bambiTween);
 				tweenList.push(bfTween);
+			case 'escape-from-california':
+				tweenTime = sectionStartTime(52);
+				for (i in 0...backgroundSprites.members.length)
+				{
+					var bgSprite = backgroundSprites.members[i];
+					var tween:FlxTween = null;
+					switch (i)
+					{
+						case 0:
+							tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000);
+						case 1:
+							tween = FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000));
+						case 2:
+							tween = FlxTween.tween(bgSprite, {alpha: 0}, tweenTime / 1000).then(FlxTween.tween(bgSprite, {alpha: 1}, tweenTime / 1000));
+						default:
+							tween = FlxTween.color(bgSprite, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(
+								FlxTween.color(bgSprite, tweenTime / 1000, sunsetColor, nightColor)
+								);
+					}
+					tweenList.push(tween);
+				}
+				var gfTween = FlxTween.color(gf, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(gf, tweenTime / 1000, sunsetColor, nightColor));
+				var bambiTween = FlxTween.color(dad, tweenTime / 1000, FlxColor.WHITE, sunsetColor).then(FlxTween.color(dad, tweenTime / 1000, sunsetColor, nightColor));
+				bfTween = FlxTween.color(boyfriend, tweenTime / 1000, FlxColor.WHITE, sunsetColor, {
+					onComplete: function(tween:FlxTween)
+					{
+						bfTween = FlxTween.color(boyfriend, tweenTime / 1000, sunsetColor, nightColor);
+					}
+				});
+	
+				tweenList.push(gfTween);
+				tweenList.push(bambiTween);
+				tweenList.push(bfTween);
 		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -847,10 +884,10 @@ class PlayState extends MusicBeatState
 				boyfriend.setPosition(1152, 311);
 				gf.setPosition(807 + charoffsetx, -22 + charoffsety);
 			case 'desert':
-				dad.y -= 150;
-				dad.x -= 160;
-				boyfriend.x -= 100;
-				boyfriend.y -= 50;
+				dad.y -= 175;
+				dad.x -= 350;
+				boyfriend.x -= 275;
+				boyfriend.y -= 175;
 			case 'office':
 				dad.flipX = !dad.flipX;
 				boyfriend.flipX = !boyfriend.flipX;
@@ -873,7 +910,7 @@ class PlayState extends MusicBeatState
 		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
 			health = 2;
 
-		var doof:DialogueBox = new DialogueBox(false, dialogue);
+		var doof:DialogueBox = new DialogueBox(false, dialogue, isStoryMode);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
@@ -920,7 +957,6 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
-
 		//char repositioning
 		repositionChar(dad);
 		repositionChar(dadmirror);
@@ -934,7 +970,7 @@ class PlayState extends MusicBeatState
 				font = Paths.font('fnaf.ttf');
 		}
 
-		if (FlxG.save.data.songPosition)
+		if (FlxG.save.data.songPosition && !isGreetingsCutscene)
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
@@ -1038,13 +1074,16 @@ class PlayState extends MusicBeatState
 				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? '' : "- Finale");
 		}
 
-		kadeEngineWatermark = new FlxText(4, textYPos, 0, funkyText, 16);
+		if (!isGreetingsCutscene)
+		{
+			kadeEngineWatermark = new FlxText(4, textYPos, 0, funkyText, 16);
 
-		kadeEngineWatermark.setFormat(font, 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		kadeEngineWatermark.scrollFactor.set();
-		kadeEngineWatermark.borderSize = 1.25;
-		kadeEngineWatermark.antialiasing = true;
-		add(kadeEngineWatermark);
+			kadeEngineWatermark.setFormat(font, 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			kadeEngineWatermark.scrollFactor.set();
+			kadeEngineWatermark.borderSize = 1.25;
+			kadeEngineWatermark.antialiasing = true;
+			add(kadeEngineWatermark);
+		}
 		if (creditsText)
 		{
 			creditsWatermark = new FlxText(4, healthBarBG.y + 50, 0, credits, 16);
@@ -1096,6 +1135,11 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/bedroom/night/bedroom');
 				preload('backgrounds/bedroom/night/baldi');
 				preload('playrobot/playrobot_shadow');
+			case 'escape-from-california':
+				for (spr in ['1500miles', '1000miles', '500miles', 'welcomeToGeorgia', 'georgiaLol'])
+				{
+					preload('california/$spr');
+				}
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, FlxG.width, "", 20);
@@ -1134,8 +1178,14 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
-		songName.cameras = [camHUD];
-		kadeEngineWatermark.cameras = [camHUD];
+		if (songName != null)
+		{
+			songName.cameras = [camHUD];
+		}
+		if (kadeEngineWatermark != null)
+		{
+			kadeEngineWatermark.cameras = [camHUD];
+		}
 		doof.cameras = [camDialogue];
 		
 		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo)
@@ -1281,6 +1331,7 @@ class PlayState extends MusicBeatState
 					sprites.add(nightBG);
 					add(nightBG);
 				}
+
 				var hills:BGSprite = new BGSprite('hills', 0, 50, Paths.image('backgrounds/farm/orangey hills'), null, 0.65, 0.65);
 				hills.setGraphicSize(Std.int(hills.width / 1.2));
 				hills.updateHitbox();
@@ -1324,6 +1375,14 @@ class PlayState extends MusicBeatState
 				add(cornFence2);
 				add(cornBag);
 				add(sign);
+
+				if (SONG.song.toLowerCase() == 'splitathon')
+				{
+					var picnic:BGSprite = new BGSprite('picnic', 1050, 650, Paths.image('backgrounds/farm/picnic_towel_thing', 'shared'), null);
+					sprites.insert(sprites.members.indexOf(cornBag), picnic);
+					picnic.color = variantColor;
+					insert(members.indexOf(cornBag), picnic);
+				}
 			case 'festival':
 				bgZoom = 0.7;
 				stageName = 'festival';
@@ -1333,15 +1392,25 @@ class PlayState extends MusicBeatState
 				{
 					case 'shredder':
 						mainChars = [
-							//char name, prefix, size, x, y
+							//char name, prefix, size, x, y, flip x
 							['dave', 'idle', 0.8, 175, 100],
 							['tristan', 'bop', 0.4, 800, 325]
 						];
 					case 'greetings':
-						mainChars = [
-							['dave', 'idle', 0.8, 175, 100],
-							['bambi', 'bambi idle', 0.9, 700, 350],
-						];
+						if (isGreetingsCutscene)
+						{
+							mainChars = [
+								['bambi', 'bambi idle', 0.8, 537, 605, true],
+								['tristan', 'bop', 0.4, 800, 325]
+							];
+						}
+						else
+						{
+							mainChars = [
+								['dave', 'idle', 0.8, 175, 100],
+								['bambi', 'bambi idle', 0.9, 700, 350, true],
+							];
+						}
 					case 'interdimensional':
 						mainChars = [
 							['bambi', 'bambi idle', 0.8, 537, 605],
@@ -1393,8 +1462,10 @@ class PlayState extends MusicBeatState
 				
 				for (i in 0...mainChars.length)
 				{
+					var flipX = mainChars[i][4] != null ? mainChars[i][4] : false;
+					
 					var crowdChar = new BGSprite(mainChars[i][0], mainChars[i][3], mainChars[i][4], 'backgrounds/festival/mainCrowd/${mainChars[i][0]}', [
-						new Animation('idle', mainChars[i][1], 24, false, [false, false], null)
+						new Animation('idle', mainChars[i][1], 24, false, [flipX, false], null)
 					], 0.85, 0.85, true, true);
 					crowdChar.setGraphicSize(Std.int(crowdChar.width * mainChars[i][2]));
 					crowdChar.updateHitbox();
@@ -1663,23 +1734,44 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.5;
 				stageName = 'desert';
 
-				var bg:BGSprite = new BGSprite('bg', -700, -400, Paths.image('backgrounds/shared/sky'), null, 0.2, 0.2);
+				var bg:BGSprite = new BGSprite('bg', -900, -400, Paths.image('backgrounds/shared/sky'), null, 0.2, 0.2);
+				bg.setGraphicSize(Std.int(bg.width * 2));
+				bg.updateHitbox();
 				sprites.add(bg);
 				add(bg);
+
+				var sunsetBG:BGSprite = new BGSprite('sunsetBG', -900, -400, Paths.image('backgrounds/shared/sky_sunset'), null, 0.2, 0.2);
+				sunsetBG.setGraphicSize(Std.int(sunsetBG.width * 2));
+				sunsetBG.updateHitbox();
+				sunsetBG.alpha = 0;
+				sprites.add(sunsetBG);
+				add(sunsetBG);
 				
-				desertBG = new BGSprite('desert', -786, -400, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
+				var nightBG:BGSprite = new BGSprite('nightBG', -900, -400, Paths.image('backgrounds/shared/sky_night'), null, 0.2, 0.2);
+				nightBG.setGraphicSize(Std.int(nightBG.width * 2));
+				nightBG.updateHitbox();
+				nightBG.alpha = 0;
+				sprites.add(nightBG);
+				add(nightBG);
+				
+				desertBG = new BGSprite('desert', -786, -500, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
 				desertBG.setGraphicSize(Std.int(desertBG.width * 1.2));
 				desertBG.updateHitbox();
 				sprites.add(desertBG);
 				add(desertBG);
 
-				desertBG2 = new BGSprite('desert2', desertBG.x - desertBG.width, 0, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
+				desertBG2 = new BGSprite('desert2', desertBG.x - desertBG.width, desertBG.y, Paths.image('backgrounds/wedcape_from_cali_backlground', 'shared'), null, 1, 1, true);
 				desertBG2.setGraphicSize(Std.int(desertBG2.width * 1.2));
 				desertBG2.updateHitbox();
 				sprites.add(desertBG2);
 				add(desertBG2);
+				
+				sign = new BGSprite('sign', 500, 450, Paths.image('california/leavingCalifornia', 'shared'), null, 1, 1, true);
+				sprites.add(sign);
+				trace(sign.getPosition());
+				add(sign);
 
-				var train = new BGSprite('train', -800, 500, 'california/train', [
+				train = new BGSprite('train', -800, 500, 'california/train', [
 					new Animation('idle', 'trainRide', 24, true, [false, false])
 				], 1, 1, true, true);
 				train.animation.play('idle');
@@ -1845,7 +1937,6 @@ class PlayState extends MusicBeatState
 		startedCountdown = true;
 		Conductor.songPosition = 0;
 		Conductor.songPosition -= Conductor.crochet * 5;
-
 		var swagCounter:Int = 0;
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
@@ -1914,7 +2005,6 @@ class PlayState extends MusicBeatState
 					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
 					ready.updateHitbox();
-
 					ready.antialiasing = true;
 
 					ready.screenCenter();
@@ -1986,19 +2076,22 @@ class PlayState extends MusicBeatState
 						ZoomCam(true);
 					}
 				case 4:
-					creditsPopup = new CreditsPopUp(FlxG.width, 200);
-					creditsPopup.camera = camHUD;
-					creditsPopup.scrollFactor.set();
-					creditsPopup.x = creditsPopup.width * -1;
-					add(creditsPopup);
-
-					FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
+					if (!isGreetingsCutscene)
 					{
-						FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
+						creditsPopup = new CreditsPopUp(FlxG.width, 200);
+						creditsPopup.camera = camHUD;
+						creditsPopup.scrollFactor.set();
+						creditsPopup.x = creditsPopup.width * -1;
+						add(creditsPopup);
+	
+						FlxTween.tween(creditsPopup, {x: 0}, 0.5, {ease: FlxEase.backOut, onComplete: function(tweeen:FlxTween)
 						{
-							creditsPopup.destroy();
-						}, startDelay: 3});
-					}});
+							FlxTween.tween(creditsPopup, {x: creditsPopup.width * -1} , 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
+							{
+								creditsPopup.destroy();
+							}, startDelay: 3});
+						}});
+					}
 			}
 
 			swagCounter += 1;
@@ -2090,6 +2183,7 @@ class PlayState extends MusicBeatState
 				FlxTween.num(0, 30, 2, {}, function(newValue:Float)
 				{
 					trainSpeed = newValue;
+					train.animation.curAnim.frameRate = Std.int(FlxMath.lerp(0, 24, (trainSpeed / 30)));
 				});
 			case 'supernovae' | 'glitch' | 'master':
 				Application.current.window.title = banbiWindowNames[new FlxRandom().int(0, banbiWindowNames.length - 1)];
@@ -2110,6 +2204,20 @@ class PlayState extends MusicBeatState
 				}});
 			case 'five-nights':
 				FlxG.mouse.visible = true;
+			case 'greetings':
+				if (isGreetingsCutscene)
+				{
+					generatedMusic = false;
+					vocals.stop();
+					vocals.volume = 0;
+					FlxG.sound.music.onComplete = null;
+					FlxG.sound.music.stop();
+					for (note in unspawnNotes)
+					{
+						unspawnNotes.remove(note);
+					}
+					greetingsCutscene();
+				}
 		}
 	}
 
@@ -2494,22 +2602,27 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'escape-from-california')
 		{
 			var scrollSpeed = 100;
-			desertBG.x -= trainSpeed * scrollSpeed * elapsed;
+			if (desertBG != null)
+			{
+				desertBG.x -= trainSpeed * scrollSpeed * elapsed;
 			
-			if (desertBG.x <= -(desertBG.width) + (desertBG.width - 1280))
-			{
-				desertBG.x = desertBG.width - 1280;
+				if (desertBG.x <= -(desertBG.width) + (desertBG.width - 1280))
+				{
+					desertBG.x = desertBG.width - 1280;
+				}
+				desertBG2.x = desertBG.x - desertBG.width;
+				desertBG2.y = desertBG.y;
 			}
-			desertBG2.x = desertBG.x - desertBG.width;
-			desertBG2.y = desertBG.y;
-
-			/*sky.x -= 30 * scrollSpeed * elapsed;
-			if (sky.x <= -(sky.width) + (sky.width - 1280))
+			
+			if (sign != null)
 			{
-				sky.x = sky.width - 1280;
+				sign.x -= trainSpeed * scrollSpeed * elapsed;
 			}
-			sky.x = sky.x - sky.width;
-			sky2.y = sky.y;*/
+			if (georgia != null)
+			{
+				georgia.x -= trainSpeed * scrollSpeed * elapsed;
+			}
+			
 		}
 
 		if (SONG.song.toLowerCase() == 'recursed')
@@ -2693,6 +2806,11 @@ class PlayState extends MusicBeatState
 			});
 		}
 		// no more 3d sinning avenue
+		if (daveFlying)
+		{
+			dad.y -= elapsed * 50;
+			dad.angle -= elapsed * 6;
+		}
 		if (tweenList != null && tweenList.length != 0)
 		{
 			for (tween in tweenList)
@@ -3362,6 +3480,11 @@ class PlayState extends MusicBeatState
 				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.sineInOut});
 			}
 		}
+		switch (SONG.song.toLowerCase())
+		{
+			case 'escape-from-california':
+				camFollow.y += 150;
+		}
 	}
 
 
@@ -3512,21 +3635,6 @@ class PlayState extends MusicBeatState
 						};
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
-					case 'interdimensional':
-						canPause = false;
-						FlxG.sound.music.volume = 0;
-						vocals.volume = 0;
-						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
-						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
-						doof.scrollFactor.set();
-						doof.finishThing = function()
-						{
-							FlxG.sound.playMusic(Paths.music('freakyMenu'));
-							FlxG.switchState(new CreditsMenuState());
-						};
-						doof.cameras = [camDialogue];
-						schoolIntro(doof, false);
 					default:
 						FlxG.sound.playMusic(Paths.music('freakyMenu'));
 						FlxG.switchState(new StoryMenuState());
@@ -3572,8 +3680,11 @@ class PlayState extends MusicBeatState
 						doof.finishThing = nextSong;
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
+					case 'greetings':
+						isGreetingsCutscene = true;
+						greetingsCutsceneSetup();
 					case 'interdimensional':
-											canPause = false;
+						canPause = false;
 						FlxG.sound.music.volume = 0;
 						vocals.volume = 0;
 						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
@@ -3600,7 +3711,6 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim('hit', true);
 						STUPDVARIABLETHATSHOULDNTBENEEDED = marcello;
 						new FlxTimer().start(5.5, THROWPHONEMARCELLO);
-
 					default:
 						nextSong();
 				}
@@ -3704,18 +3814,6 @@ class PlayState extends MusicBeatState
 
 	function nextSong()
 	{
-		var difficulty:String = "";
-
-		switch (storyDifficulty)
-		{
-			case 0:
-				difficulty = '-easy';
-			case 2:
-				difficulty = '-hard';
-		}
-
-		trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
-
 		FlxTransitionableState.skipNextTransIn = true;
 		FlxTransitionableState.skipNextTransOut = true;
 		prevCamFollow = camFollow;
@@ -3730,6 +3828,71 @@ class PlayState extends MusicBeatState
 			default:
 				LoadingState.loadAndSwitchState(new PlayState());
 		}
+	}
+	function greetingsCutsceneSetup()
+	{
+		FlxTransitionableState.skipNextTransIn = true;
+		FlxTransitionableState.skipNextTransOut = true;
+		prevCamFollow = camFollow;
+
+		SONG = Song.loadFromJson('greetings');
+		SONG.player2 = 'dave-festival';
+		FlxG.sound.music.stop();
+		
+		LoadingState.loadAndSwitchState(new PlayState());
+	}
+	function greetingsCutscene()
+	{
+		boyfriend.canDance = false;
+		boyfriend.stunned = false;
+		dad.canDance = false;
+		gf.canDance = false;
+
+		boyfriend.playAnim('scared', true);
+		gf.playAnim('scared', true);
+
+		FlxTween.tween(camHUD, {alpha: 0}, 1);
+		FlxG.camera.shake(0.0175, 999);
+		FlxG.sound.playMusic(Paths.sound('rumble', 'shared'), 0.8, true, null);
+		new FlxTimer().start(2, function(timer:FlxTimer)
+		{
+			originalPosition = dad.getPosition();
+			daveFlying = true;
+			
+			new FlxTimer().start(3, function(timer:FlxTimer)
+			{
+				FlxG.sound.play(Paths.sound('transition', 'shared'), 1, false, null, false);
+				FlxG.camera.fade(FlxColor.WHITE, 3, false, function()
+				{
+					daveFlying = false;
+					isGreetingsCutscene = false;
+					dad.setPosition(originalPosition.x, originalPosition.y);
+					camFollow.setPosition(originalPosition.x,originalPosition.y);
+
+					FlxG.camera.stopFX();
+					FlxG.camera.fade(FlxColor.BLACK, 0);
+					
+					FlxG.sound.music.stop();
+					FlxG.sound.music.fadeOut(1.9, 0);
+					vocals.stop();
+
+					canPause = false;
+					hasDialogue = true;
+
+					var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/greetings-cutscene')), false);
+					doof.scrollFactor.set();
+					doof.cameras = [camDialogue];
+					doof.finishThing = function()
+					{
+						new FlxTimer().start(1, function(timer:FlxTimer)
+						{
+							nextSong();
+						});
+					};
+					schoolIntro(doof, false);
+				});
+			});
+		});
 	}
 
 	public function createScorePopUp(daX:Float, daY:Float, autoPos:Bool, daRating:String, daCombo:Int, daStyle:String):Void
@@ -3750,10 +3913,7 @@ class PlayState extends MusicBeatState
 			coolText.screenCenter();
 			coolText.x = FlxG.width * 0.55;
 		}
-
-		var rating:FlxSprite = new FlxSprite();
-
-		rating.loadGraphic(Paths.image("ui/" + assetPath + daRating));
+		var rating = new FlxSprite().loadGraphic(Paths.image("ui/" + assetPath + daRating));
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
@@ -4319,7 +4479,7 @@ class PlayState extends MusicBeatState
 								fuckingDumbassBullshitFuckYou = 'LEFT';
 						}
 					}
-					if(boyfriend.curCharacter == 'bambi-unfair' || boyfriend.curCharacter == 'bambi-3d' || boyfriend.curCharacter == 'expunged')
+					if(boyfriend.curCharacter == 'bambi-3d')
 					{
 						FlxG.camera.shake(0.0075, 0.1);
 						camHUD.shake(0.0045, 0.1);
@@ -5890,6 +6050,36 @@ class PlayState extends MusicBeatState
 							dad.canSing = true;
 							dad.canDance = true;
 						}
+					case 208:
+						changeSign('1500miles');
+					case 400:
+						changeSign('1000miles');
+					case 528:
+						changeSign('500miles');
+					case 712:
+						FlxG.camera.fade(FlxColor.WHITE, (Conductor.crochet * 8) / 1000, false, function()
+						{
+							FlxG.camera.stopFX();
+							FlxG.camera.flash();
+						});
+					case 720:
+						FlxTween.num(trainSpeed, 0, 3, {ease: FlxEase.expoOut}, function(newValue:Float)
+						{
+							trainSpeed = newValue;
+							train.animation.curAnim.frameRate = Std.int(FlxMath.lerp(0, 24, (trainSpeed / 30)));
+						});
+						changeSign('welcomeToGeorgia', new FlxPoint(1000, 450));
+
+						remove(desertBG);
+						remove(desertBG2);
+
+						georgia = new BGSprite('georgia', -600, -300, Paths.image('california/georgiaLol', 'shared'), null, 1, 1, true);
+						georgia.setGraphicSize(Std.int(georgia.width * 4));
+						georgia.updateHitbox();
+						georgia.color = nightColor;
+						backgroundSprites.add(georgia);
+						add(georgia);
+						
 				}
 		}
 		if (shakeCam)
@@ -6087,7 +6277,9 @@ class PlayState extends MusicBeatState
 	{
 		switch (char.curCharacter)
 		{
-			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-festival' | 'dave-fnaf':
+			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
+				char.y -= 150;
+			case 'dave-festival':
 				char.y -= 150;
 			case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 				char.y -= 400;
@@ -6304,6 +6496,18 @@ class PlayState extends MusicBeatState
 		{
 			doorChanging = false;
 		}	
+	}
+	function changeSign(asset:String, ?position:FlxPoint)
+	{
+		sign.loadGraphic(Paths.image('california/$asset', 'shared'));
+		if (position != null)
+		{
+			sign.setPosition(position.x, position.y);
+		}
+		else
+		{
+			sign.setPosition(FlxG.width + sign.width, 450);
+		}
 	}
 
 	function popupWindow() {
