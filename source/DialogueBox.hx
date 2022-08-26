@@ -54,15 +54,15 @@ class DialogueBox extends FlxSpriteGroup
 
 	public static var randomNumber:Int;
 
-	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
+	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>, playMusic:Bool = true)
 	{
 		super();
 		
-		if (PlayState.isStoryMode)
+		if (PlayState.isStoryMode && playMusic)
 		{
 			switch (PlayState.SONG.song.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'splitathon':
+				case 'house' | 'insanity' | 'splitathon' | 'shredder':
 					FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
 					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				case 'polygonized' | 'interdimensional':
@@ -137,8 +137,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'insanity':
 				portraitLeftCharacter = ['dave', 'annoyed'];
 			case 'polygonized':
-			case 'interdimensional':
-				portraitLeftCharacter = ['dave', 'festival-3d-scared'];
+				portraitLeftCharacter = ['dave', '3d-scared'];
 			case 'blocked':
 				portraitLeftCharacter = ['bambi', 'annoyed'];
 				portraitRightCharacter = ['gf', 'happy'];
@@ -152,6 +151,12 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeftCharacter = ['bambi', 'bevelmad'];
 			case 'splitathon':
 				portraitLeftCharacter = ['bambi', 'splitathon'];
+			case 'shredder':
+				portraitLeftCharacter = ['dave', 'festival-happy'];
+			case 'greetings':
+				portraitLeftCharacter = ['dave', 'festival-tired'];
+			case 'interdimensional':
+				portraitLeftCharacter = ['dave', 'festival-3d-scared'];
 		}
 		
 
@@ -327,7 +332,7 @@ class DialogueBox extends FlxSpriteGroup
 						case 'festival-3d-scared':
 							portraitLeft.setPosition(135, 174);
 						case 'festival-tired' | 'festival-exhausted' | 'festival':
-							portraitLeft.setPosition(200, 140);
+							portraitLeft.setPosition(200, 175);
 						default:
 							portraitLeft.setPosition(200, 220);
 					}

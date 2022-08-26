@@ -35,8 +35,6 @@ class StoryMenuState extends MusicBeatState
 		['Splitathon'],
 		['Shredder', 'Greetings', 'Interdimensional', 'Rano']
 	];
-
-	var curDifficulty:Int = 1;
 	
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
 
@@ -230,10 +228,6 @@ class StoryMenuState extends MusicBeatState
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
-			var diffic = "";
-
-			PlayState.storyDifficulty = curDifficulty;
-
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
@@ -245,8 +239,7 @@ class StoryMenuState extends MusicBeatState
 				{
 					case 1:
 						FlxG.sound.music.stop();
-						var video:VideoHandler;
-						video = new VideoHandler();
+						var video:VideoHandler = new VideoHandler();
 						video.finishCallback = function()
 						{
 							LoadingState.loadAndSwitchState(new PlayState(), true);
@@ -273,8 +266,6 @@ class StoryMenuState extends MusicBeatState
 			curWeek = 0;
 		if (curWeek < 0)
 			curWeek = weekData.length - 1;
-
-		curDifficulty = 1;
 		
 		var bullShit:Int = 0;
 		
