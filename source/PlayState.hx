@@ -1963,17 +1963,20 @@ class PlayState extends MusicBeatState
 			introSoundAssets.set('dave', ['dave/intro3_dave', 'dave/intro2_dave', 'dave/intro1_dave', 'dave/introGo_dave']);
 			introSoundAssets.set('bambi', ['bambi/intro3_bambi', 'bambi/intro2_bambi', 'bambi/intro1_bambi', 'bambi/introGo_bambi']);
 			introSoundAssets.set('ex', ['default/intro3', 'default/intro2', 'default/intro1', 'ex/introGo_weird']);
+			introSoundAssets.set('overdriving', ['dave/intro1_dave', 'dave/intro2_dave', 'dave/intro3_dave', 'dave/introGo_dave']);
 
 			switch (SONG.song.toLowerCase())
 			{
 				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' |
-				'memory' | 'overdrive' | 'vs-dave-rap':
+				'memory' | 'vs-dave-rap':
 					soundAssetsAlt = introSoundAssets.get('dave');
 				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' |
 				'shredder' | 'supernovae' | 'unfairness':
 					soundAssetsAlt = introSoundAssets.get('bambi');
 				case 'exploitation':
 					soundAssetsAlt = introSoundAssets.get('ex');
+				case 'overdrive':
+					soundAssetsAlt = introSoundAssets.get('overdriving');	
 				default:
 					soundAssetsAlt = introSoundAssets.get('default');
 			}
