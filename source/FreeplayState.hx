@@ -141,8 +141,8 @@ class FreeplayState extends MusicBeatState
 			translatedCatagory = [
 			LanguageManager.getTextString('freeplay_dave'), 
 			LanguageManager.getTextString('freeplay_joke'),
-			LanguageManager.getTextString('freeplay_terminal'), 
-			LanguageManager.getTextString('freeplay_extra')];
+			LanguageManager.getTextString('freeplay_extra'),
+			LanguageManager.getTextString('freeplay_terminal')];
 		}
 
 		for (i in 0...Catagories.length)
