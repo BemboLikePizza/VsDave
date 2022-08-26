@@ -246,7 +246,7 @@ class StoryMenuState extends MusicBeatState
 						}
 						video.playVideo(Paths.video('daveCutscene'));
 					default:
-						LoadingState.loadAndSwitchState(new CharacterSelectState(), true);
+						LoadingState.loadAndSwitchState(new PlayState(), true);
 					
 				}
 
