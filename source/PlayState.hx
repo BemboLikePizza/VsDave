@@ -414,6 +414,8 @@ class PlayState extends MusicBeatState
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.width * 2, FlxColor.BLACK);
 				blackScreen.scrollFactor.set();
 				add(blackScreen);
+			case 'five-nights':
+				inFiveNights = true;
 		}
 		scrollType = FlxG.save.data.downscroll ? 'downscroll' : 'upscroll';
 
