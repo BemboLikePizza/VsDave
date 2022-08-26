@@ -1402,7 +1402,7 @@ class PlayState extends MusicBeatState
 						if (isGreetingsCutscene)
 						{
 							mainChars = [
-								['bambi', 'bambi idle', 0.8, 537, 605, true],
+								['bambi', 'bambi idle', 0.8, 537, 605],
 								['tristan', 'bop', 0.4, 800, 325]
 							];
 						}
@@ -1410,7 +1410,7 @@ class PlayState extends MusicBeatState
 						{
 							mainChars = [
 								['dave', 'idle', 0.8, 175, 100],
-								['bambi', 'bambi idle', 0.9, 700, 350, true],
+								['bambi', 'bambi idle', 0.9, 700, 350],
 							];
 						}
 					case 'interdimensional':
@@ -1463,11 +1463,9 @@ class PlayState extends MusicBeatState
 				add(crowd);
 				
 				for (i in 0...mainChars.length)
-				{
-					var flipX = mainChars[i][4] != null ? mainChars[i][4] : false;
-					
+				{					
 					var crowdChar = new BGSprite(mainChars[i][0], mainChars[i][3], mainChars[i][4], 'backgrounds/festival/mainCrowd/${mainChars[i][0]}', [
-						new Animation('idle', mainChars[i][1], 24, false, [flipX, false], null)
+						new Animation('idle', mainChars[i][1], 24, false, [false, false], null)
 					], 0.85, 0.85, true, true);
 					crowdChar.setGraphicSize(Std.int(crowdChar.width * mainChars[i][2]));
 					crowdChar.updateHitbox();
