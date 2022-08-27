@@ -5502,11 +5502,34 @@ class PlayState extends MusicBeatState
 						});
 						FlxG.camera.shake(0.015, (Conductor.stepCrochet / 1000) * 4);
 					case 1280:
+						shakeCam = true;
+						FlxG.camera.zoom - 0.2;
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
 						#if windows
 						popupWindow();
 						#end
 						dadStrums.visible = false;
+					case 1311:
+						shakeCam = false;
+						FlxG.camera.zoom + 0.2;	
+					case 1343:
+						shakeCam = true;
+						FlxG.camera.zoom - 0.2;	
+					case 1375:
+						shakeCam = false;
+						FlxG.camera.zoom + 0.2;
+					case 1343:
+						shakeCam = true;
+						FlxG.camera.zoom - 0.2;
+					case 1375:
+						shakeCam = false;
+						FlxG.camera.zoom + 0.2;
+					case 1487:
+						shakeCam = true;
+						FlxG.camera.zoom - 0.2;
+					case 1503:
+						shakeCam = false;
+						FlxG.camera.zoom + 0.2;						
 				}
 			case 'shredder':
 				switch (curStep)
