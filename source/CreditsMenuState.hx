@@ -153,7 +153,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/oxygenboi2000'),
          new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
       ]),
-      new Person("Zmac", CreditsType.Contributor, "3D Backgrounds, Intro text help, YAFN help",
+      new Person("Zmac", CreditsType.Contributor, "3D Backgrounds, Intro text help",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
       ]),
@@ -232,9 +232,9 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/tailsmaster1')
       ]),
       
-      new Person("Bendy", CreditsType.BetaTester, "Beta Tester",
+      new Person("bendygaming_1", CreditsType.BetaTester, "Beta Tester, Moldy super awesome brother",
       [
-         new Social('youtube', 'https://www.youtube.com/channel/UC44WnxbLouBs6USX8loLS5g')
+         new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
       ]),
       
       new Person("vex", CreditsType.BetaTester, "Beta Tester",

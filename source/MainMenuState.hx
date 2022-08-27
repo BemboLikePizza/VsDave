@@ -327,7 +327,7 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				
-				prompt = new Prompt(LanguageManager.getTextString("menu_warningdata"), controls);
+				prompt = new Prompt(LanguageManager.getTextString("main_warningdata"), controls);
 				prompt.canInteract = true;
 				prompt.alpha = 0;
 				canInteract = false;

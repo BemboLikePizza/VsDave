@@ -60,7 +60,7 @@ class StoryMenuState extends MusicBeatState
 
 		if (FlxG.save.data.masterWeekUnlocked)
 		{
-			var weekName = !FlxG.save.data.hasPlayedMasterWeek ? LanguageManager.getTextString('story_masterWeekToPlay') : LanguageManager.getTextString('story_masterweek');
+			var weekName = !FlxG.save.data.hasPlayedMasterWeek ? LanguageManager.getTextString('story_masterWeekToPlay') : LanguageManager.getTextString('story_masterWeek');
 			weeks.push(new Week(
 				['Supernovae', 'Glitch', 'Master'], weekName, 0xFF116E1C));  // MASTERA BAMBI
 		}
