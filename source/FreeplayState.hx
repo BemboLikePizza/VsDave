@@ -256,7 +256,7 @@ class FreeplayState extends MusicBeatState
 			case 'joke':
 				if(FlxG.save.data.hasPlayedMasterWeek)
 				{
-					addWeek(['Supernovae', 'Glitch', 'Master'], 2, ['bambi-joke']);
+					addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);
 				}				
 				if (!FlxG.save.data.terminalFound)
 				{
