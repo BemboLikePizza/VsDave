@@ -101,7 +101,7 @@ story_daveWeek==Dave’s Fun Rapping Battle!
 story_bambiWeek==Mr. Bambi’s Fun Corn Maze!
 story_finale==The Finale
 story_festivalWeek==Bambi’s Corn Festival!
-story_masterWeek==Bambi's Mastery Week!
+story_masterWeek==Bambie's Master Week!
 story_masterWeekToPlay==?????????
 
 // CHARACTER SELECT STATE //

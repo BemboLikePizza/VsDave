@@ -3496,7 +3496,12 @@ class PlayState extends MusicBeatState
 		STUPDVARIABLETHATSHOULDNTBENEEDED.animation.play("throw_phone");
 		new FlxTimer().start(5.5, function(timer:FlxTimer)
 		{ 
-			FlxG.switchState(new FreeplayState());
+			if(isStoryMode) {
+				nextSong();
+			}
+			else {
+				FlxG.switchState(new FreeplayState());
+			}
 		});
 	}
 
