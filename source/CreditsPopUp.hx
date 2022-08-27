@@ -68,7 +68,9 @@ class CreditsPopUp extends FlxSpriteGroup
 				headingPath = {path: 'songHeadings/splitathonHeading', antiAliasing: false, iconOffset: 0};
 			case 4:
 				headingPath = {path: 'songHeadings/festivalHeading', antiAliasing: true, iconOffset: 0};
-			case 8:
+			case 7:
+				headingPath = {path: 'songHeadings/kabungaHeading', antiAliasing: true, iconOffset: 0};
+			case 8 | 6:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0};
 			case 10:
@@ -78,6 +80,8 @@ class CreditsPopUp extends FlxSpriteGroup
 		{
 			case 'polygonized':
 				headingPath = {path: 'songHeadings/3D-daveHeading', antiAliasing: false, iconOffset: 0};
+			case 'supernovae' | 'glitch' | 'master':
+				headingPath = {path: 'songHeadings/bevelHeading', antiAliasing: false, iconOffset: 0};
 		}
 		if (headingPath != null)
 		{

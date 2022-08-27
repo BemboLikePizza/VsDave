@@ -58,7 +58,7 @@ class FreeplayState extends MusicBeatState
 	[
     	0xFF00137F,    // GF but its actually dave!
 		0xFF4965FF,    // DAVE
-		0xFF00B515,    // MISTER BAMBI RETARD
+		0xFF00B515,    // MISTER BAMBI RETARD (thats kinda rude ngl)
 		0xFF00FFFF,    // SPLIT THE THONNNNN
 		0xFF800080,    // FESTIVAL
 		0xFFFF0000,    // TRISTAN
@@ -254,8 +254,10 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-angey', 'dave']);
 			case 'joke':
-				addWeek(['Supernovae', 'Glitch', 'Master'], 2, ['bambi-joke']);
-				
+				if(FlxG.save.data.hasPlayedMasterWeek)
+				{
+					addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);
+				}				
 				if (!FlxG.save.data.terminalFound)
 				{
 					if (FlxG.save.data.cheatingFound)
