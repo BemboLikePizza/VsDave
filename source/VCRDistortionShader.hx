@@ -11,7 +11,7 @@ import openfl.Lib;
 
 class VCRDistortionShader extends FlxShader // https://www.shadertoy.com/view/ldjGzV and https://www.shadertoy.com/view/Ms23DR and https://www.shadertoy.com/view/MsXGD4 and https://www.shadertoy.com/view/Xtccz4
 {
-
+  #if NOT_MACOS
   @:glFragmentSource('
     #pragma header
 
@@ -132,6 +132,7 @@ class VCRDistortionShader extends FlxShader // https://www.shadertoy.com/view/ld
 
     }
   ')
+  #end
   public function new()
   {
     super();

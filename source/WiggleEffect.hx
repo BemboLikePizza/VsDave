@@ -15,6 +15,7 @@ enum WiggleEffectType
 class WiggleEffect
 {
 	public var shader(default, null):WiggleShader = new WiggleShader();
+	#if NOT_MACOS
 	public var effectType(default, set):WiggleEffectType = DREAMY;
 	public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
@@ -57,10 +58,12 @@ class WiggleEffect
 		shader.uWaveAmplitude.value = [waveAmplitude];
 		return v;
 	}
+	#end
 }
 
 class WiggleShader extends FlxShader
 {
+	#if NOT_MACOS
 	@:glFragmentSource('
 		#pragma header
 		//uniform float tx, ty; // x,y waves phase
@@ -126,6 +129,7 @@ class WiggleShader extends FlxShader
 			vec2 uv = sineWave(openfl_TextureCoordv);
 			gl_FragColor = texture2D(bitmap, uv);
 		}')
+	#end
 	public function new()
 	{
 		super();
