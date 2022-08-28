@@ -223,12 +223,10 @@ class DialogueBox extends FlxSpriteGroup
 
 	override function update(elapsed:Float)
 	{
-		#if NOT_MACOS
 		if (curshader != null)
 		{
 			curshader.shader.uTime.value[0] += elapsed;
 		}
-		#end
 		dropText.text = swagDialogue.text;
 
 		if (box.animation.curAnim != null)
@@ -379,15 +377,10 @@ class DialogueBox extends FlxSpriteGroup
 				shad.waveSpeed = 1;
 				shad.shader.uTime.value[0] = new flixel.math.FlxRandom().float(-100000,100000);
 				shad.shader.uampmul.value[0] = 1;*/
-				#if NOT_MACOS
 				PlayState.screenshader.Enabled = true;
-				#end
 			case 'undistort':
-				#if NOT_MACOS
 				PlayState.screenshader.Enabled = false;
-				#end
 			case 'distortbg':
-				#if NOT_MACOS
 				var shad:Shaders.DistortBGEffect = new Shaders.DistortBGEffect();
 				curshader = shad;
 				shad.waveAmplitude = 0.1;
@@ -398,7 +391,6 @@ class DialogueBox extends FlxSpriteGroup
 					portraitLeft.shader = shad.shader;
 					portraitRight.shader = shad.shader;
 				}
-				#end
 			case 'setfont_normal':
 				dropText.font = 'Comic Sans MS Bold';
 				swagDialogue.font = 'Comic Sans MS Bold';

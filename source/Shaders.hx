@@ -2,25 +2,10 @@ package;
 
 import flixel.system.FlxAssets.FlxShader;
 
-/*  VS DAVE AND BAMBI SHADERS IMPLEMENTATION
-    ALL OF THIS CODE WAS WROTE BY MTM101, ERIZUR AND T5MPLER (BUGFIXES)
-
-    If you see a NOT_MACOS flag here is because of the following reason:
-        Apple deprecated OpenGL support back in 2018, leaving it on version 4.1
-        Most shaders here don't support this OpenGL version,
-        We would fix the errors and make it cross-compatible with ALL platforms,
-        but this would take a lot of time and investigation as support for macOS barely exists.
-
-        We are not trying to bully macOS users to "download other os" with this.
-        These are things we are can't fix.
-        Sorry for any inconvenience.
-*/
-
 class GlitchEffect
 {
     public var shader(default,null):GlitchShader = new GlitchShader();
 
-    #if NOT_MACOS
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
@@ -62,14 +47,13 @@ class GlitchEffect
         shader.uWaveAmplitude.value = [waveAmplitude];
         return v;
     }
-    #end
+
 }
 
 class DistortBGEffect
 {
     public var shader(default,null):DistortBGShader = new DistortBGShader();
 
-    #if NOT_MACOS
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
@@ -105,7 +89,7 @@ class DistortBGEffect
         shader.uWaveAmplitude.value = [waveAmplitude];
         return v;
     }
-    #end
+
 }
 
 
@@ -113,7 +97,6 @@ class PulseEffect
 {
     public var shader(default,null):PulseShader = new PulseShader();
 
-    #if NOT_MACOS
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
@@ -159,7 +142,7 @@ class PulseEffect
         shader.uWaveAmplitude.value = [waveAmplitude];
         return v;
     }
-    #end
+
 }
 
 
@@ -173,7 +156,6 @@ class BlockedGlitchEffect
 {
     public var shader(default, null):BlockedGlitchShader = new BlockedGlitchShader();
 
-    #if NOT_MACOS
     public var time(default, set):Float = 0;
     public var resolution(default, set):Float = 0;
     public var colorMultiplier(default, set):Float = 0;
@@ -213,7 +195,6 @@ class BlockedGlitchEffect
         shader.time.value = [value];
         return this.time;
     }
-    #end
 }
 
 class DitherEffect
@@ -228,7 +209,6 @@ class DitherEffect
 
 class GlitchShader extends FlxShader
 {
-    #if NOT_MACOS
     @:glFragmentSource('
     #pragma header
     //uniform float tx, ty; // x,y waves phase
@@ -271,7 +251,6 @@ class GlitchShader extends FlxShader
         vec2 uv = sineWave(openfl_TextureCoordv);
         gl_FragColor = texture2D(bitmap, uv);
     }')
-    #end
 
     public function new()
     {
@@ -281,7 +260,6 @@ class GlitchShader extends FlxShader
 
 class InvertShader extends FlxShader
 {
-    #if NOT_MACOS
     @:glFragmentSource('
     #pragma header
     
@@ -296,7 +274,6 @@ class InvertShader extends FlxShader
         vec2 uv = openfl_TextureCoordv;
         gl_FragColor = sineWave(texture2D(bitmap, uv));
     }')
-    #end
 
     public function new()
     {
@@ -308,7 +285,6 @@ class InvertShader extends FlxShader
 
 class DistortBGShader extends FlxShader
 {
-    #if NOT_MACOS
     @:glFragmentSource('
     #pragma header
     //uniform float tx, ty; // x,y waves phase
@@ -354,7 +330,6 @@ class DistortBGShader extends FlxShader
         vec2 uv = sineWave(openfl_TextureCoordv);
         gl_FragColor = makeBlack(texture2D(bitmap, uv)) + texture2D(bitmap,openfl_TextureCoordv);
     }')
-    #end
 
     public function new()
     {
@@ -365,7 +340,6 @@ class DistortBGShader extends FlxShader
 
 class PulseShader extends FlxShader
 {
-    #if NOT_MACOS
     @:glFragmentSource('
     #pragma header
     uniform float uampmul;
@@ -409,7 +383,6 @@ class PulseShader extends FlxShader
         vec2 uv = openfl_TextureCoordv;
         gl_FragColor = sineWave(texture2D(bitmap, uv),uv);
     }')
-    #end
 
     public function new()
     {
@@ -420,7 +393,7 @@ class PulseShader extends FlxShader
 class BlockedGlitchShader extends FlxShader
 {
     // https://www.shadertoy.com/view/MlVSD3
-    #if NOT_MACOS
+
     @:glFragmentSource('
     #pragma header
 
@@ -450,7 +423,6 @@ class BlockedGlitchShader extends FlxShader
       gl_FragColor.b = texture(bitmap, uv + vec2(offset(64.0, uv) * 0.03, 0.0)).b;
     }
     ')
-    #end
 
     public function new()
     {
@@ -461,7 +433,6 @@ class BlockedGlitchShader extends FlxShader
 class DitherShader extends FlxShader
 {
     // couldn't find a shadertoy link srry http://devlog-martinsh.blogspot.com/2011/03/glsl-8x8-bayer-matrix-dithering.html
-    #if NOT_MACOS
     @:glFragmentSource('
         #pragma header
         #extension GL_ARB_arrays_of_arrays : require
@@ -514,7 +485,6 @@ class DitherShader extends FlxShader
             gl_FragColor = finalRGB;
         }
     ')
-    #end
 
     public function new()
     {
