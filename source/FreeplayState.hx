@@ -119,13 +119,15 @@ class FreeplayState extends MusicBeatState
 			bg.color = FlxColor.multiply(bg.color, FlxColor.fromRGB(50, 50, 50));
 			add(bg);
 			
+			#if NOT_MACOS
 			bgShader = new Shaders.GlitchEffect();
 			bgShader.waveAmplitude = 0.1;
 			bgShader.waveFrequency = 5;
 			bgShader.waveSpeed = 2;
 			
-			defColor = bg.color;
 			bg.shader = bgShader.shader;
+			#end
+			defColor = bg.color;
 		}
 		else
 		{
@@ -413,10 +415,12 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		#if NOT_MACOS
 		if (bgShader != null)
 		{
 			bgShader.shader.uTime.value[0] += elapsed;
 		}
+		#end
 
 		if (InMainFreeplayState)
 		{
