@@ -328,7 +328,7 @@ class StoryMenuState extends MusicBeatState
 				position = new FlxPoint(600, 55);
 		}
 		imageBG.destroy();
-		imageBG = new FlxSprite(position.x, position.y).loadGraphic(path);
+		imageBG = new FlxSprite(position.x, position.y + 1).loadGraphic(path);
 		imageBG.antialiasing = false;
 		imageBG.screenCenter(X);
 		imageBG.active = true;
