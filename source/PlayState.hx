@@ -1075,11 +1075,11 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase())
 		{
 			case "exploitation":
-				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine";
+				funkyText = SONG.song;
 			case 'overdrive':
 				funkyText = '';
 			default:
-				funkyText = SONG.song + " " + (curSong.toLowerCase() != 'splitathon' ? '' : "- Finale");
+				funkyText = SONG.song;
 		}
 
 		if (!isGreetingsCutscene)
