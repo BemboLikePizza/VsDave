@@ -136,7 +136,7 @@ class PlayState extends MusicBeatState
    public var gfPosition:FlxPoint;
 	
 	public var curbg:BGSprite;
-	#if NOT_MACOS
+	#if SHADERS_ENABLED
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
@@ -228,7 +228,7 @@ class PlayState extends MusicBeatState
 	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
 	var fc:Bool = true;
 
-	#if NOT_MACOS
+	#if SHADERS_ENABLED
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	#end
 
@@ -643,7 +643,7 @@ class PlayState extends MusicBeatState
 			gfVersion = 'gf-none';
 		}
 
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		screenshader.waveAmplitude = 0.5;
 		screenshader.waveFrequency = 1;
 		screenshader.waveSpeed = 1;
@@ -1196,7 +1196,7 @@ class PlayState extends MusicBeatState
 		}
 		doof.cameras = [camDialogue];
 		
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo)
 		{
 			
@@ -1881,7 +1881,7 @@ class PlayState extends MusicBeatState
 
 	function voidShader(background:BGSprite)
 	{
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 		testshader.waveAmplitude = 0.1;
 		testshader.waveFrequency = 5;
@@ -2609,7 +2609,7 @@ class PlayState extends MusicBeatState
 		{
 			if (curbg.active) // only the polygonized background is active
 			{
-				#if NOT_MACOS
+				#if SHADERS_ENABLED
 				var shad = cast(curbg.shader, Shaders.GlitchShader);
 				shad.uTime.value[0] += elapsed;
 				#end
@@ -2836,7 +2836,7 @@ class PlayState extends MusicBeatState
 			}
 		}
         
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
 		#end
 		if (shakeCam && eyesoreson)
@@ -2845,7 +2845,7 @@ class PlayState extends MusicBeatState
 			FlxG.camera.shake(0.010, 0.010);
 		}
 
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		screenshader.shader.uTime.value[0] += elapsed;
 		lazychartshader.shader.uTime.value[0] += elapsed;
 		if (blockedShader != null)
@@ -2909,7 +2909,7 @@ class PlayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson("cheating"); // you dun fucked up
 					FlxG.save.data.cheatingFound = true;
 					shakeCam = false;
-					#if NOT_MACOS
+					#if SHADERS_ENABLED
 					screenshader.Enabled = false;
 					#end
 					FlxG.switchState(new PlayState());
@@ -2919,14 +2919,14 @@ class PlayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
 					FlxG.save.data.unfairnessFound = true;
 					shakeCam = false;
-					#if NOT_MACOS
+					#if SHADERS_ENABLED
 					screenshader.Enabled = false;
 					#end
 					FlxG.switchState(new PlayState());
 					return;
 				case 'unfairness':
 					shakeCam = false;
-					#if NOT_MACOS
+					#if SHADERS_ENABLED
 					screenshader.Enabled = false;
 					#end
 					FlxG.switchState(new TerminalState());
@@ -2937,7 +2937,7 @@ class PlayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
 					FlxG.save.data.exbungoFound = true;
 					shakeCam = false;
-					#if NOT_MACOS
+					#if SHADERS_ENABLED
 					screenshader.Enabled = false;
 					#end
 					FlxG.switchState(new PlayState());
@@ -2947,7 +2947,7 @@ class PlayState extends MusicBeatState
 					System.exit(0);
 				default:
 					shakeCam = false;
-					#if NOT_MACOS
+					#if SHADERS_ENABLED
 					screenshader.Enabled = false;
 					#end
 					FlxG.switchState(new ChartingState());
@@ -3128,7 +3128,7 @@ class PlayState extends MusicBeatState
 				vocals.stop();
 				FlxG.sound.music.stop();
 				
-				#if NOT_MACOS
+				#if SHADERS_ENABLED
 				screenshader.shader.uampmul.value[0] = 0;
 				screenshader.Enabled = false;
 				#end
@@ -4924,7 +4924,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(black, {alpha: 0.4}, 1);
 						defaultCamZoom += 0.3;
 					case 1200:
-						#if NOT_MACOS
+						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						FlxTween.tween(black, {alpha: 0.7}, (Conductor.stepCrochet / 1000) * 8);
@@ -5603,7 +5603,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(black, {alpha: 0}, 1);
 						makeInvisibleNotes(false);
 					case 912:
-						#if NOT_MACOS
+						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.2;
@@ -5613,7 +5613,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.2;
 						FlxTween.tween(black, {alpha: 0}, 1);
 					case 944:
-						#if NOT_MACOS
+						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.2;
@@ -5657,7 +5657,7 @@ class PlayState extends MusicBeatState
 						regenerateStaticArrows(0);
 
 						defaultCamZoom += 0.2;
-						#if NOT_MACOS
+						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						FlxTween.tween(black, {alpha: 0.6}, 1);
@@ -5666,7 +5666,7 @@ class PlayState extends MusicBeatState
 						camHUD.setFilters([]);
 						defaultCamZoom += 0.1;
 					case 1568:
-						#if NOT_MACOS
+						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.1;
@@ -5674,7 +5674,7 @@ class PlayState extends MusicBeatState
 						camHUD.setFilters([]);
 						defaultCamZoom += 0.1;
 					case 1600:
-						#if NOT_MACOS
+						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.1;
@@ -5682,7 +5682,7 @@ class PlayState extends MusicBeatState
 						camHUD.setFilters([]);
 						defaultCamZoom += 0.1;
 					case 1632:
-						#if NOT_MACOS
+						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.1;
@@ -5965,7 +5965,7 @@ class PlayState extends MusicBeatState
 		}
 
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		wiggleShit.update(Conductor.crochet);
 		#end
 
@@ -6457,7 +6457,7 @@ class PlayState extends MusicBeatState
 	{
 		shakeCam = false;
 		camZooming = false;
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		screenshader.shader.uampmul.value[0] = 0;
 		screenshader.Enabled = false;
 		#end

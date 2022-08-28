@@ -223,7 +223,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	override function update(elapsed:Float)
 	{
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		if (curshader != null)
 		{
 			curshader.shader.uTime.value[0] += elapsed;
@@ -379,15 +379,15 @@ class DialogueBox extends FlxSpriteGroup
 				shad.waveSpeed = 1;
 				shad.shader.uTime.value[0] = new flixel.math.FlxRandom().float(-100000,100000);
 				shad.shader.uampmul.value[0] = 1;*/
-				#if NOT_MACOS
+				#if SHADERS_ENABLED
 				PlayState.screenshader.Enabled = true;
 				#end
 			case 'undistort':
-				#if NOT_MACOS
+				#if SHADERS_ENABLED
 				PlayState.screenshader.Enabled = false;
 				#end
 			case 'distortbg':
-				#if NOT_MACOS
+				#if SHADERS_ENABLED
 				var shad:Shaders.DistortBGEffect = new Shaders.DistortBGEffect();
 				curshader = shad;
 				shad.waveAmplitude = 0.1;

@@ -4,7 +4,7 @@ import flixel.system.FlxAssets.FlxShader;
 
 class OverlayShader extends FlxShader
 {
-	#if NOT_MACOS
+	#if SHADERS_ENABLED
 	@:glFragmentSource('
 		#pragma header
 		uniform vec4 uBlendColor;

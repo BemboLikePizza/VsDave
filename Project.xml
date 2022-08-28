@@ -35,9 +35,7 @@
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
-	<assets path="assets/preload/videos" rename="assets/videos" include="*mp4" embed='false' />
-	<assets path="assets/preload/videos" exclude="*.mp3" if="web"/>
-	<assets path="assets/preload/videos" exclude="*.ogg" unless="web"/>
+	<assets path="assets/preload/videos" rename="assets/videos" include="*.mp4" embed='false' />
 	<assets path="assets/songs"    library="songs"    exclude="*.ogg" if="web"/>
 	<assets path="assets/songs"    library="songs"    exclude="*.mp3" unless="web"/>
 	<assets path="assets/shared"   library="shared"   exclude="*.ogg" if="web"/>
@@ -46,11 +44,9 @@
 	<assets path='art/readme.txt' rename='PLEASE READ.txt' />
 	<assets path='art/icons' rename='icons' embed='true'/>
 	<assets path="CHANGELOG.md" rename='changelog.txt'/>
-	<assets path="plugins/" rename='' if="windows"/>
-	<assets path="dlls/" rename='' if="windows"/>
 	<assets path="assets/fonts" embed='true'/>
-	
-	<define name="NOT_MACOS" unless="mac"/>
+
+	<define name="SHADERS_ENABLED" unless="mac"/>
 	<define name="PRELOAD_ALL" unless="web" />
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
 	

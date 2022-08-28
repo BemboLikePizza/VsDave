@@ -114,7 +114,7 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('bambi-3d', '3D Bambi', [0, 3, 0, 0], '3D'),
 		])
 	];
-	#if NOT_MACOS
+	#if SHADERS_ENABLED
 	var bgShader:Shaders.GlitchEffect;
 	#end
 	public function new() 
@@ -171,7 +171,7 @@ class CharacterSelectState extends MusicBeatState
 		{
 			bg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
 			
-			#if NOT_MACOS
+			#if SHADERS_ENABLED
 			bgShader = new Shaders.GlitchEffect();
 			bgShader.waveAmplitude = 0.1;
 			bgShader.waveFrequency = 5;
@@ -363,7 +363,7 @@ class CharacterSelectState extends MusicBeatState
 	}
 	override public function update(elapsed:Float):Void 
 	{
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		if (bgShader != null)
 		{
 			bgShader.shader.uTime.value[0] += elapsed;

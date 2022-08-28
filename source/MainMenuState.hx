@@ -155,7 +155,7 @@ class MainMenuState extends MusicBeatState
 			bg.color = FlxColor.multiply(bg.color, FlxColor.fromRGB(50, 50, 50));
 			add(bg);
 			
-			#if NOT_MACOS
+			#if SHADERS_ENABLED
 			voidShader = new Shaders.GlitchEffect();
 			voidShader.waveAmplitude = 0.1;
 			voidShader.waveFrequency = 5;
@@ -171,7 +171,7 @@ class MainMenuState extends MusicBeatState
 			magenta.color = FlxColor.multiply(0xFFfd719b, FlxColor.fromRGB(50, 50, 50));
 			add(magenta);
 
-			#if NOT_MACOS
+			#if SHADERS_ENABLED
 			magenta.shader = voidShader.shader;
 			#end
 		}
@@ -313,7 +313,7 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		#if NOT_MACOS
+		#if SHADERS_ENABLED
 		if (voidShader != null)
 		{
 			voidShader.shader.uTime.value[0] += elapsed;

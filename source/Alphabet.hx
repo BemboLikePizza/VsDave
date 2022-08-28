@@ -361,7 +361,7 @@ class AlphaCharacter extends FlxSprite
 		animation.play(letter);
 		if (invert)
 		{
-			#if NOT_MACOS
+			#if SHADERS_ENABLED
 			this.shader = new InvertShader();
 			#end
 		}

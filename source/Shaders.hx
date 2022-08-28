@@ -5,7 +5,7 @@ import flixel.system.FlxAssets.FlxShader;
 /*  VS DAVE AND BAMBI SHADERS IMPLEMENTATION
     ALL OF THIS CODE WAS WROTE BY MTM101, ERIZUR AND T5MPLER (BUGFIXES)
 
-    If you see a NOT_MACOS flag here is because of the following reason:
+    If you see a SHADERS_ENABLED flag here is because of the following reason:
         Apple deprecated OpenGL support back in 2018, leaving it on version 4.1
         Most shaders here don't support this OpenGL version,
         We would fix the errors and make it cross-compatible with ALL platforms,
@@ -20,7 +20,7 @@ class GlitchEffect
 {
     public var shader(default,null):GlitchShader = new GlitchShader();
 
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
@@ -69,7 +69,7 @@ class DistortBGEffect
 {
     public var shader(default,null):DistortBGShader = new DistortBGShader();
 
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
@@ -113,7 +113,7 @@ class PulseEffect
 {
     public var shader(default,null):PulseShader = new PulseShader();
 
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
@@ -173,7 +173,7 @@ class BlockedGlitchEffect
 {
     public var shader(default, null):BlockedGlitchShader = new BlockedGlitchShader();
 
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     public var time(default, set):Float = 0;
     public var resolution(default, set):Float = 0;
     public var colorMultiplier(default, set):Float = 0;
@@ -228,7 +228,7 @@ class DitherEffect
 
 class GlitchShader extends FlxShader
 {
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     @:glFragmentSource('
     #pragma header
     //uniform float tx, ty; // x,y waves phase
@@ -281,7 +281,7 @@ class GlitchShader extends FlxShader
 
 class InvertShader extends FlxShader
 {
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     @:glFragmentSource('
     #pragma header
     
@@ -308,7 +308,7 @@ class InvertShader extends FlxShader
 
 class DistortBGShader extends FlxShader
 {
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     @:glFragmentSource('
     #pragma header
     //uniform float tx, ty; // x,y waves phase
@@ -365,7 +365,7 @@ class DistortBGShader extends FlxShader
 
 class PulseShader extends FlxShader
 {
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     @:glFragmentSource('
     #pragma header
     uniform float uampmul;
@@ -420,7 +420,7 @@ class PulseShader extends FlxShader
 class BlockedGlitchShader extends FlxShader
 {
     // https://www.shadertoy.com/view/MlVSD3
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     @:glFragmentSource('
     #pragma header
 
@@ -461,7 +461,7 @@ class BlockedGlitchShader extends FlxShader
 class DitherShader extends FlxShader
 {
     // couldn't find a shadertoy link srry http://devlog-martinsh.blogspot.com/2011/03/glsl-8x8-bayer-matrix-dithering.html
-    #if NOT_MACOS
+    #if SHADERS_ENABLED
     @:glFragmentSource('
         #pragma header
         #extension GL_ARB_arrays_of_arrays : require
