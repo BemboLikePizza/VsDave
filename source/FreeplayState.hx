@@ -141,10 +141,15 @@ class FreeplayState extends MusicBeatState
 		{
 			Catagories = ['dave', 'joke', 'extras', 'terminal'];
 			translatedCatagory = [
-			LanguageManager.getTextString('freeplay_dave'), 
+			LanguageManager.getTextString('freeplay_dave'),
 			LanguageManager.getTextString('freeplay_joke'),
 			LanguageManager.getTextString('freeplay_extra'),
 			LanguageManager.getTextString('freeplay_terminal')];
+		}
+		if(!FlxG.save.data.hasPlayedMasterWeek)
+		{
+			Catagories.remove("joke");
+			translatedCatagory.remove(LanguageManager.getTextString('freeplay_joke'));
 		}
 
 		for (i in 0...Catagories.length)
