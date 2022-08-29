@@ -5113,26 +5113,14 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'umWhatIsHappening');
 						addSplitathonChar("dave-splitathon");
-						if (!hasTriggeredDumbshit)
-						{
-							throwThatBitchInThere('dave-splitathon', 'bambi-splitathon');
-						}
 					case 6080:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('dave', 'happy'); 
 						addSplitathonChar("bambi-splitathon");
-						if (!hasTriggeredDumbshit)
-						{
-							throwThatBitchInThere('bambi-splitathon', 'dave-splitathon');
-						}
 					case 8384:
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 						splitathonExpression('bambi', 'yummyCornLol');
 						addSplitathonChar("dave-splitathon");
-						if (!hasTriggeredDumbshit)
-						{
-							throwThatBitchInThere('dave-splitathon', 'bambi-splitathon');
-						}
 					case 4799 | 5823 | 6079 | 8383:
 						hasTriggeredDumbshit = false;
 						updatevels = false;
@@ -6331,7 +6319,7 @@ class PlayState extends MusicBeatState
 			case 'dave':
 				splitathonCharacterExpression = new Character(0, 225, 'dave-splitathon');
 			case 'bambi':
-				splitathonCharacterExpression = new Character(0, 550, 'bambi-splitathon');
+				splitathonCharacterExpression = new Character(0, 580, 'bambi-splitathon');
 		}
 		dadGroup.insert(dadGroup.members.indexOf(dad), splitathonCharacterExpression);
 
