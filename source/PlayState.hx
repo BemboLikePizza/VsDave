@@ -673,11 +673,11 @@ class PlayState extends MusicBeatState
 				backgroundSprites.add(door);
 				add(door);
 
-				var frontWall:BGSprite = new BGSprite('frontWall', -516, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
+				var frontWall:BGSprite = new BGSprite('frontWall', -716, -381, Paths.image('backgrounds/office/frontWall'), null, 1, 1);
 				backgroundSprites.add(frontWall);
 				add(frontWall);
 
-				doorButton = new BGSprite('doorButton', 536, 61, Paths.image('fiveNights/btn_doorOpen'), null, 1, 1);
+				doorButton = new BGSprite('doorButton', 521, 61, Paths.image('fiveNights/btn_doorOpen'), null, 1, 1);
 				backgroundSprites.add(doorButton);
 				add(doorButton);
 
@@ -4926,6 +4926,12 @@ class PlayState extends MusicBeatState
 			case 'corn-theft':
 				switch (curStep)
 				{
+					case 668:
+						defaultCamZoom += 0.1;
+					case 784:
+						defaultCamZoom += 0.1;
+					case 848:
+						defaultCamZoom -= 0.2;
 					case 916:
 						FlxG.camera.flash();
 					case 935:
@@ -6029,10 +6035,19 @@ class PlayState extends MusicBeatState
 				}
 				switch (curBeat)
 				{
-					case 40, 44, 46, 56, 60, 62:
+					case 40, 44, 46, 56, 60, 62, 120, 124:
 						switchNoteScroll();
 					case 72, 76, 80, 88, 90, 92:
 						switchNoteSide();
+					case 112:
+						dadStrums.forEach(function(strum:StrumNote)
+						{
+							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs(2 * strum.ID) + 78 - (78 / 4);
+						});
+						playerStrums.forEach(function(strum:StrumNote)
+						{
+							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs((2 * strum.ID) + 1) + 78 - (78 / 4);
+						});
 					case 143:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 191:
@@ -6044,7 +6059,7 @@ class PlayState extends MusicBeatState
 						});*/
 					case 320:
 						modchart = ExploitationModchartType.None;
-					case 488:
+					case 490:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
 			case 'polygonized':
@@ -6475,6 +6490,9 @@ class PlayState extends MusicBeatState
 		}
 		for (strumNote in strumLineNotes)
 		{
+			FlxTween.cancelTweensOf(strumNote);
+			strumNote.angle = 0;
+			
 			FlxTween.angle(strumNote, strumNote.angle, strumNote.angle + 360, 0.4, {ease: FlxEase.expoOut});
 			FlxTween.tween(strumNote, {y: strumLine.y}, 0.6, {ease: FlxEase.backOut});
 		}
@@ -6659,7 +6677,6 @@ class PlayState extends MusicBeatState
 		FlxTween.tween(Application.current.window, {x: windowX}, 3, {ease: FlxEase.elasticOut, onComplete: function(tween:FlxTween)
 		{
 			expungedMoving = false;
-
 		}});
 
 		Application.current.window.onClose.add(function()
