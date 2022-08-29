@@ -630,7 +630,7 @@ class PlayState extends MusicBeatState
 		{
 			gfVersion = 'gf-pixel';
 			charoffsetx += 300;
-			charoffsety += 300;
+			charoffsety += 280;
 		}
 		if (SONG.player1 == 'tb-funny-man')
 		{
@@ -1560,26 +1560,6 @@ class PlayState extends MusicBeatState
 				sprites.add(expungedBG);
 				add(expungedBG);
 				voidShader(expungedBG);
-
-				/*#if desktop
-					var path = Sys.programPath();
-					path = path.substr(0, CoolSystemStuff.executableFileName().length)
-					var exe_path:String = path + Paths.executable("RunThing");
-					Sys.command(exe_path, [exe_path]); //this will make it run the exe since if you just type a path to an exe as a command it'll run.
-
-					var bgDesktopPath = Sys.getEnv("TEMP") + "\\IAMFORTNITEGAMERHACKER.png";
-					var bytes = sys.io.File.getBytes(bgDesktopPath);
-					var bg:BGSprite = new BGSprite('desktop', -600, -200, '', null, 1, 1, true, true);
-					var data:openfl.display.BitmapData = openfl.display.BitmapData.fromBytes(bytes);
-					var graphic:flixel.graphics.FlxGraphic = flixel.graphics.FlxGraphic.fromBitmapData(data);
-					
-					bg.loadGraphic(graphic);
-					bg.setGraphicSize(Std.int(bg.width * 3));
-					bg.updateHitbox();
-					sprites.add(bg);
-					add(bg);
-				#end*/
-	
 			case 'red-void' | 'green-void' | 'glitchy-void':
 				bgZoom = 0.7;
 
@@ -2356,7 +2336,7 @@ class PlayState extends MusicBeatState
 							strumType = 'top10awesome';
 				}
 			}
-			var babyArrow:StrumNote = new StrumNote(0, strumLine.y, strumType, arrowType);
+			var babyArrow:StrumNote = new StrumNote(0, strumLine.y, strumType, arrowType, player == 1);
 
 			if (!isStoryMode)
 			{
@@ -2368,6 +2348,7 @@ class PlayState extends MusicBeatState
 			babyArrow.x += 78;
 			babyArrow.x += ((FlxG.width / 2) * player);
 			
+			babyArrow.baseX = babyArrow.x;
 			if (player == 1)
 			{
 				playerStrums.add(babyArrow);
@@ -2388,11 +2369,12 @@ class PlayState extends MusicBeatState
 			{
 				arrowType = 2;
 			}
-			var babyArrow:StrumNote = new StrumNote(0, strumLine.y, 'gh', i);
+			var babyArrow:StrumNote = new StrumNote(0, strumLine.y, 'gh', i, false);
 
 			babyArrow.x += Note.swagWidth * Math.abs(i);
 			babyArrow.x += 78;
 			babyArrow.x += ((FlxG.width / 2) * 0);
+			babyArrow.baseX = babyArrow.x;
 			dadStrums.add(babyArrow);
 			strumLineNotes.add(babyArrow);
 		}
@@ -2789,6 +2771,17 @@ class PlayState extends MusicBeatState
 			{
 				case ExploitationModchartType.None:
 					
+				case ExploitationModchartType.Cheating:
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+						spr.x -= Math.sin(elapsedtime) * 1.5;
+					});
+					dadStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+						spr.x += Math.sin(elapsedtime) * 1.5;
+					});
 				case ExploitationModchartType.ScrambledNotes:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
@@ -2918,16 +2911,14 @@ class PlayState extends MusicBeatState
 				case 'cheating':
 					PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
 					FlxG.save.data.unfairnessFound = true;
-					shakeCam = false;
 					#if SHADERS_ENABLED
-					screenshader.Enabled = false;
+					resetShader();
 					#end
 					FlxG.switchState(new PlayState());
 					return;
 				case 'unfairness':
-					shakeCam = false;
 					#if SHADERS_ENABLED
-					screenshader.Enabled = false;
+					resetShader();
 					#end
 					FlxG.switchState(new TerminalState());
 					#if desktop
@@ -2936,9 +2927,8 @@ class PlayState extends MusicBeatState
 				case 'glitch':
 					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
 					FlxG.save.data.exbungoFound = true;
-					shakeCam = false;
 					#if SHADERS_ENABLED
-					screenshader.Enabled = false;
+					resetShader();
 					#end
 					FlxG.switchState(new PlayState());
 					return;
@@ -2946,9 +2936,8 @@ class PlayState extends MusicBeatState
 					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
 					System.exit(0);
 				default:
-					shakeCam = false;
 					#if SHADERS_ENABLED
-					screenshader.Enabled = false;
+					resetShader();
 					#end
 					FlxG.switchState(new ChartingState());
 					#if desktop
@@ -5549,18 +5538,12 @@ class PlayState extends MusicBeatState
 					case 1375:
 						shakeCam = false;
 						FlxG.camera.zoom + 0.2;
-					case 1343:
-						shakeCam = true;
-						FlxG.camera.zoom - 0.2;
-					case 1375:
-						shakeCam = false;
-						FlxG.camera.zoom + 0.2;
 					case 1487:
 						shakeCam = true;
 						FlxG.camera.zoom - 0.2;
 					case 1503:
 						shakeCam = false;
-						FlxG.camera.zoom + 0.2;						
+						FlxG.camera.zoom + 0.2;
 				}
 			case 'shredder':
 				switch (curStep)
@@ -6054,7 +6037,14 @@ class PlayState extends MusicBeatState
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
-					case 487:
+					case 288:
+						/*strumLineNotes.forEach(function(strum:StrumNote)
+						{
+							strum.centerStrum();
+						});*/
+					case 320:
+						modchart = ExploitationModchartType.None;
+					case 488:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
 			case 'polygonized':
@@ -6357,16 +6347,16 @@ class PlayState extends MusicBeatState
 			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
 				char.y -= 150;
 			case 'dave-festival':
-				char.y -= 150;
+				char.y -= 134;
 			case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
 				char.y -= 400;
 			case 'dave-splitathon':
 				char.y -= 175;
-				char.x += 50;
+				char.x -= 50;
 			case 'bambi-splitathon':
-				char.y += 125;
-			case 'bambi-new':
 				char.y += 100;
+			case 'bambi-new':
+				char.y += 80;
 			case 'bambi' | 'bambi-joke':
 				char.y += 50;
 			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
@@ -6683,7 +6673,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; ScrambledNotes;
+	None; Cheating; ScrambledNotes;
 }
 
 enum CharacterFunnyEffect

@@ -111,16 +111,6 @@ class Character extends FlxSprite
 				flipX = true;
 				
 				playAnim('idle');
-			case 'nofriend-death':
-				frames = Paths.getSparrowAtlas('fiveNights/nofriend_Dead', 'shared');
-
-				animation.addByPrefix('firstDeath', "death", 24, false);
-				animation.addByPrefix('deathLoop', "loop", 24, true);
-				animation.addByPrefix('deathConfirm', "hey", 24, false);
-
-				loadOffsetFile(curCharacter);
-
-				playAnim('firstDeath');
 			case 'bf-pixel':
 				frames = Paths.getSparrowAtlas('weeb/bfPixel', 'shared');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
@@ -135,22 +125,17 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 					
-				globaloffset[0] = -200;
-				globaloffset[1] = -175;
+				globaloffset = [-196, -163];
 
 				barColor = FlxColor.fromRGB(49, 176, 209);
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
-				
-				playAnim('idle');
-
-				width -= 100;
-				height -= 100;
 
 				antialiasing = false;
-
 				nativelyPlayable = true;
+				
+				playAnim('idle');
 				flipX = true;
 			case 'bf-pixel-dead':
 				frames = Paths.getSparrowAtlas('weeb/bfPixelsDEAD', 'shared');
@@ -161,14 +146,13 @@ class Character extends FlxSprite
 				
 				loadOffsetFile(curCharacter);
 
-				playAnim('firstDeath');
-				// pixel bullshit
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
+				
 				antialiasing = false;
 				nativelyPlayable = true;
 				flipX = true;
-			
+				playAnim('firstDeath');
 			case 'gf':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('characters/GF_assets', 'shared');
@@ -200,7 +184,7 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromString('#33de39');
 
-				playAnim('danceRight');
+				playAnim('idle');
 			case 'gf-none':
 				frames = Paths.getSparrowAtlas('characters/noGF', 'shared');
 				
