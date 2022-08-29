@@ -175,16 +175,20 @@ class Character extends FlxSprite
 
 				playAnim('danceRight');
 			case 'gf-3d':
-				frames = Paths.getSparrowAtlas('characters/3d_gf', 'shared');
-				
-				animation.addByPrefix('idle', 'idle gf', 24, false);
+				tex = Paths.getSparrowAtlas('characters/3d_gf', 'shared');
+				frames = tex;
+				animation.addByPrefix('danceLeft', 'idle gf', 24, true);
+				animation.addByPrefix('danceRight', 'idle gf', 24, true);
 				animation.addByPrefix('sad', 'gf sad', 24, false);
-
+		
 				loadOffsetFile(curCharacter);
-
+				
 				barColor = FlxColor.fromString('#33de39');
 
-				playAnim('idle');
+				updateHitbox();
+				antialiasing = false;
+						
+				playAnim('danceRight');
 			case 'gf-none':
 				frames = Paths.getSparrowAtlas('characters/noGF', 'shared');
 				
