@@ -6418,7 +6418,8 @@ class PlayState extends MusicBeatState
 		bedroomSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bedroom'));
 		baldiSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/baldi'));
 
-		changeTristanAnim('night');
+		curTristanAnim = 'idleNight';
+		tristan.animation.play('idleNight');
 
 		dad.color = nightColor;
 		darkLevels.push(curStage);
