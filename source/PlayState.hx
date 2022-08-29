@@ -3657,7 +3657,7 @@ class PlayState extends MusicBeatState
 						doof.finishThing = function()
 						{
 							FlxG.sound.playMusic(Paths.music('freakyMenu'));
-							FlxG.switchState(new CreditsMenuState());
+							FlxG.switchState(new StoryMenuState());
 						};
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
