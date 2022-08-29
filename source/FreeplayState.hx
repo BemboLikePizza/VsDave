@@ -146,7 +146,7 @@ class FreeplayState extends MusicBeatState
 			LanguageManager.getTextString('freeplay_extra'),
 			LanguageManager.getTextString('freeplay_terminal')];
 		}
-		if(!FlxG.save.data.hasPlayedMasterWeek)
+		if(!FlxG.save.data.hasPlayedMasterWeek && !FlxG.save.data.exbungoFound && !FlxG.save.data.secretModLeakUnlocked)
 		{
 			Catagories.remove("joke");
 			translatedCatagory.remove(LanguageManager.getTextString('freeplay_joke'));

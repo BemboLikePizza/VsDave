@@ -5777,7 +5777,6 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 128:
-											switchNoteSide();
 						defaultCamZoom = 0.7;
 					case 252 | 512:
 						defaultCamZoom = 0.4;
