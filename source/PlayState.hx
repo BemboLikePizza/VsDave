@@ -6360,8 +6360,8 @@ class PlayState extends MusicBeatState
 			case 'bambi' | 'bambi-joke':
 				char.y += 50;
 			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
-				char.x += 100;
-				char.y -= 10;
+				char.x += 40;
+				char.y -= 5;
 				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
 			case 'bambi-3d':
 				char.x += 200;
