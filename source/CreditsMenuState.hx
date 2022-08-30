@@ -97,6 +97,10 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/RealT5mpler'),
          new Social('souncloud', 'https://soundcloud.com/t5mpler')
       ]),
+      new Person("Zmac", CreditsType.Dev, "3D Backgrounds, Intro text help",
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
+      ]),
       new Person("pointy", CreditsType.Dev, "Artist & Charter",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCRKMTB-VvZlXig4gChk5jtg'),
@@ -129,7 +133,7 @@ class CreditsMenuState extends MusicBeatState
       ]),
       
       // Contributors //
-      new Person("Steph45", CreditsType.Contributor, "Minor programming, Moral support",
+      new Person("Steph45", CreditsType.Contributor, "Minor programming",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
       ]),
@@ -141,7 +145,7 @@ class CreditsMenuState extends MusicBeatState
       [
          
       ]),
-      new Person("Jukebox", CreditsType.BetaTester, "BG Artist",
+      new Person("Jukebox", CreditsType.Contributor, "BG Artist",
       [
          new Social('twitter', 'https://twitter.com/Juk3b0x_'),
          new Social('youtube', 'https://www.youtube.com/channel/UCwA3jnG5cu3toaVCOhc-Tqw'),
@@ -152,10 +156,6 @@ class CreditsMenuState extends MusicBeatState
          new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
          new Social('twitter', 'https://twitter.com/oxygenboi2000'),
          new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
-      ]),
-      new Person("Zmac", CreditsType.Contributor, "3D Backgrounds, Intro text help",
-      [
-         new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
       ]),
       new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie composer & charter, Composer, Beta tester",
       [
@@ -174,7 +174,7 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
       ]),
-      new Person("BombasticHype", CreditsType.Contributor, "Did cutscenes",
+      new Person("BombasticHype", CreditsType.Contributor, "Did a cutscene",
       [  
          new Social ('youtube', 'https://www.youtube.com/c/BombasticHype')
       ]),
@@ -193,6 +193,11 @@ class CreditsMenuState extends MusicBeatState
 
       ]),
       new Person("SAMMYPIGZY", CreditsType.Contributor, "Artist, Bot Trot Main Artist",
+      [  
+
+      ]),
+      
+      new Person("R34LD34L", CreditsType.Contributor, "Composed Bot Trot",
       [  
 
       ]),
@@ -448,7 +453,7 @@ class CreditsMenuState extends MusicBeatState
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
          personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
-         personIcon.antialiasing = true; //WHY DID NO ONE DO THIS
+         personIcon.antialiasing = true;
          add(personIcon);
 
          var creditsTextItem:CreditsText = new CreditsText(textItem, true, personIcon);
