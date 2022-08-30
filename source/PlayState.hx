@@ -576,7 +576,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'exbungo-land';
 				case 'bonus-song' | 'glitch' | 'memory':
 					stageCheck = 'house-night';
-				case 'secret' | 'overdrive':
+				case 'secret':
 					stageCheck = 'house-sunset';
 				case 'vs-dave-rap':
 					stageCheck = 'rapBattle';
@@ -590,6 +590,8 @@ class PlayState extends MusicBeatState
 					stageCheck = 'desert';
 				case 'master':
 					stageCheck = 'master';
+				case 'overdrive':
+					stageCheck = 'overdrive';
 			}
 		}
 		else
@@ -617,7 +619,7 @@ class PlayState extends MusicBeatState
 		var charoffsetx:Float = 0;
 		var charoffsety:Float = 0;
 		
-		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'vs-dave-rap', 'escape-from-california'];
+		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'vs-dave-rap', 'escape-from-california', 'overdrive'];
 
 		
 		if(SONG.gf != null)
@@ -900,6 +902,10 @@ class PlayState extends MusicBeatState
 
 				dad.setPosition(606, 50);
 				boyfriend.setPosition(86, 100);
+			case 'overdrive':
+				dad.setPosition(150, 370);
+				boyfriend.setPosition(600, 370);
+				gf.setPosition(292 + charoffsetx, 29 + charoffsety);
 		}
 
 		switch (SONG.song.toLowerCase())
@@ -1778,6 +1784,13 @@ class PlayState extends MusicBeatState
 				var land:BGSprite = new BGSprite('land', 675, 555, Paths.image('backgrounds/dave-house/land'), null, 0.9, 0.9);
 				sprites.add(land);
 				add(land);
+			case 'overdrive':
+				bgZoom = 0.9;
+				stageName = 'overdrive';
+
+				var stfu:BGSprite = new BGSprite('stfu', -310, -180, Paths.image('backgrounds/stfu'), null, 1, 1);
+				sprites.add(stfu);
+				add(stfu);
 			default:
 				bgZoom = 0.9;
 				stageName = 'stage';
