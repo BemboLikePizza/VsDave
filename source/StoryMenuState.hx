@@ -337,7 +337,7 @@ class StoryMenuState extends MusicBeatState
 
 	function updateText()
 	{
-		txtTracklist.text = "Tracks\n";
+		txtTracklist.text = "Tracks";
 
 		var stringThing:Array<String> = weeks[curWeek].songList;
 

@@ -106,8 +106,15 @@ class CreditsPopUp extends FlxSpriteGroup
 		funnyText.borderSize = 2;
 		funnyText.antialiasing = true;
 		add(funnyText);
-		
-		funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
+
+		if(PlayState.SONG.song.toLowerCase() == "supernovae" || PlayState.SONG.song.toLowerCase() == "glitch" || PlayState.SONG.song.toLowerCase() == "master")
+		{
+			funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + 'MoldyGH'));
+		}
+		else
+		{
+			funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
+		}
 
 		var scaleValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (scaleValues[1] / scaleValues[0])));
