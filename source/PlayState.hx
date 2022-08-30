@@ -4248,7 +4248,8 @@ class PlayState extends MusicBeatState
 
 		if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
 		{
-			if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+			trace(boyfriend.animation.curAnim.name);
+			if ((boyfriend.animation.curAnim.name.startsWith('sing')) && !boyfriend.animation.curAnim.name.endsWith('miss'))
 			{
 				boyfriend.playAnim('idle');
 				
@@ -4311,7 +4312,7 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
 						FlxTween.cancelTweensOf(note.MyStrum);
 						note.MyStrum.alpha = 0.01;
-						FlxTween.tween(note.MyStrum, {alpha: 1}, 11, {ease: FlxEase.expoIn});
+						FlxTween.tween(note.MyStrum, {alpha: 1}, 6, {ease: FlxEase.expoIn});
 						health -= 0.07;
 						updateAccuracy();
 						return;
@@ -6190,7 +6191,7 @@ class PlayState extends MusicBeatState
 
 		if(curBeat % 2 == 0)
 		{
-			if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance && !(boyfriend.animation.curAnim.name == "hit") && !(boyfriend.animation.curAnim.name == "dodge"))
+			if (!boyfriend.animation.curAnim.name.startsWith("sing") && boyfriend.canDance && (boyfriend.animation.curAnim.name == "hit" ? boyfriend.animation.curAnim.finished : true) && (boyfriend.animation.curAnim.name == "dodge" ? boyfriend.animation.curAnim.finished : true))
 			{
 				boyfriend.playAnim('idle', true);
 				if (darkLevels.contains(curStage) && SONG.song.toLowerCase() != "polygonized" && formoverride != 'tristan-golden-glowing')
