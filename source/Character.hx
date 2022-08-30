@@ -1005,7 +1005,7 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-pixel':
+				case 'gf' | 'gf-pixel' | 'gf-3d':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
@@ -1027,7 +1027,7 @@ class Character extends FlxSprite
 		{
 			return; //why wasn't this a thing in the first place
 		}
-		if(AnimName.toLowerCase() == 'idle' && !canDance)
+		if((AnimName.toLowerCase() == 'idle' || AnimName.toLowerCase().startsWith('dance')) && !canDance)
 		{
 			return;
 		}
