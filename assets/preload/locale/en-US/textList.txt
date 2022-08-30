@@ -81,7 +81,7 @@ option_noteCamera_off==Normal Camera
 
 option_change_langauge==Change Language
 option_disable_fps==Disable FPS & Memory Counter
-option_enable_fps==Disable FPS & Memory Counter
+option_enable_fps==Enable FPS & Memory Counter
 
 
 en-US==English

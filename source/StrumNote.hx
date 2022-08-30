@@ -4,7 +4,9 @@ import flixel.FlxSprite;
 
 class StrumNote extends FlxSprite
 {
-   public function new(x:Float, y:Float, type:String, strumID:Int)
+	public var baseX:Float;
+	public var playerStrum:Bool;
+   public function new(x:Float, y:Float, type:String, strumID:Int, playerStrum:Bool)
    {
       super(x, y);
 
@@ -88,5 +90,15 @@ class StrumNote extends FlxSprite
       updateHitbox();
 	  
       scrollFactor.set();
+
+		this.playerStrum = playerStrum;
    }
+	public function resetX()
+	{
+		x = baseX;
+	}
+	public function centerStrum()
+	{
+		x = baseX + 320 * (playerStrum ? -1 : 1) + (78 / 4);
+	}
 }
