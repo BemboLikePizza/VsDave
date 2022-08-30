@@ -1754,7 +1754,6 @@ class PlayState extends MusicBeatState
 				
 				sign = new BGSprite('sign', 500, 450, Paths.image('california/leavingCalifornia', 'shared'), null, 1, 1, true);
 				sprites.add(sign);
-				trace(sign.getPosition());
 				add(sign);
 
 				train = new BGSprite('train', -800, 500, 'california/train', [
@@ -4234,7 +4233,6 @@ class PlayState extends MusicBeatState
 
 		if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
 		{
-			trace(boyfriend.animation.curAnim.name);
 			if ((boyfriend.animation.curAnim.name.startsWith('sing')) && !boyfriend.animation.curAnim.name.endsWith('miss'))
 			{
 				boyfriend.playAnim('idle');
@@ -5479,13 +5477,16 @@ class PlayState extends MusicBeatState
 						creditsPopup.switchHeading({path: 'songHeadings/glitchHeading', antiAliasing: false, animation: 
 						new Animation('glitch', 'glitchHeading', 24, true, [false, false]), iconOffset: 0});
 						
-						creditsPopup.changeText('', '');
+						creditsPopup.changeText('', 'none', false);
 					case 20:
 						creditsPopup.switchHeading({path: 'songHeadings/expungedHeading', antiAliasing: true,
 						animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0});
 
 						creditsPopup.changeText('Song by Oxygen', 'Oxygen');
 					case 14, 24:
+						creditsPopup.switchHeading({path: 'songHeadings/expungedHeading', antiAliasing: true,
+						animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0});
+
 						creditsPopup.changeText('Song by EXPUNGED', 'whoAreYou');
 					case 32 | 512:
 						FlxTween.tween(boyfriend, {alpha: 0}, 3);

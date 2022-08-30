@@ -99,7 +99,7 @@ class CreditsPopUp extends FlxSpriteGroup
 			bg.antialiasing = headingPath.antiAliasing;
 			curHeading = headingPath;
 		}
-		createHeadingText(songCreator);
+		createHeadingText('Song by $songCreator');
 		
 		funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
 		rescaleIcon();
@@ -110,14 +110,12 @@ class CreditsPopUp extends FlxSpriteGroup
 		var yValues = CoolUtil.getMinAndMax(bg.height, funnyText.height);
 		funnyText.y = funnyText.y + ((yValues[0] - yValues[1]) / 2);
 	}
-	public function updateHitboxes()
-	{	
-		rescaleIcon();
-		rescaleBG();
-	}
 	public function switchHeading(newHeading:SongHeading)
 	{
-		remove(bg);
+		if (bg != null)
+		{
+			remove(bg);
+		}
 		bg = new FlxSprite().makeGraphic(400, 50, FlxColor.WHITE);
 		if (newHeading != null)
 		{
@@ -133,28 +131,28 @@ class CreditsPopUp extends FlxSpriteGroup
 				bg.animation.play(info.name);
 			}
 		}
-		add(bg);
 		bg.antialiasing = newHeading.antiAliasing;
 		curHeading = newHeading;
-		updateHitboxes();
+		add(bg);
+		
+		rescaleBG();
 	}
-	public function changeText(newText:String, newIcon:String)
+	public function changeText(newText:String, newIcon:String, rescaleHeading:Bool = true)
 	{
 		createHeadingText(newText);
 		
-		remove(funnyIcon);
-		var iconPath:String = '';
-		if (!FileSystem.exists(Paths.image('songCreators/' + newIcon, 'shared')))
+		if (funnyIcon != null)
 		{
-			iconPath = Paths.image('songCreators/none', 'shared');
+			remove(funnyIcon);
 		}
-		else
-		{
-			iconPath = Paths.image('songCreators/' + newIcon, 'shared');
-		}
-		funnyIcon = new FlxSprite(0, 0, iconPath);
+		funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + newIcon, 'shared'));
 		rescaleIcon();
 		add(funnyIcon);
+
+		if (rescaleHeading)
+		{
+			rescaleBG();
+		}
 	}
 	function createHeadingText(text:String)
 	{
@@ -162,7 +160,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		{
 			remove(funnyText);
 		}
-		funnyText = new FlxText(1, 0, 650, "Song by " + text, 16);
+		funnyText = new FlxText(1, 0, 650, text, 16);
 		funnyText.setFormat('Comic Sans MS Bold', 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		funnyText.borderSize = 2;
 		funnyText.antialiasing = true;

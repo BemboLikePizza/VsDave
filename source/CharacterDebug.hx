@@ -43,7 +43,7 @@ class CharacterDebug extends MusicBeatState
 		gridBG.scrollFactor.set(0.5, 0.5);
 		add(gridBG);
 		
-		if (dadChar == 'gf-pixel')
+		if (['gf-pixel', 'gf-3d'].contains(dadChar))
 		{
 			bf = new Character(0, 0, 'gf');
 			bf.screenCenter();
@@ -87,6 +87,10 @@ class CharacterDebug extends MusicBeatState
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
 			FlxG.switchState(new MainMenuState());
+		}
+		if (FlxG.keys.justPressed.V)
+		{
+			bf.flipX = !bf.flipX;
 		}
 		if (FlxG.keys.justPressed.E)
 			FlxG.camera.zoom += 0.25;
