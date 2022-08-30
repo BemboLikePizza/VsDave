@@ -167,7 +167,8 @@ class PauseSubState extends MusicBeatSubstate
 			case "Resume":
 				close();
 			case "Restart Song":
-				PlayState.resetShader();
+				PlayState.shakeCam = false;
+				PlayState.camZooming = false;
 				if (PlayState.SONG.song.toLowerCase() == "exploitation")
 				{
 					if (PlayState.window != null)
@@ -194,7 +195,8 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.window.close();
 					}
 				}
-				PlayState.resetShader();
+				PlayState.shakeCam = false;
+				PlayState.camZooming = false;
 				FlxG.mouse.visible = false;
 				FlxG.switchState(new MainMenuState());
 		}

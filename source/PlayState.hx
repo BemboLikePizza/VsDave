@@ -415,7 +415,6 @@ class PlayState extends MusicBeatState
 				modchart = ExploitationModchartType.None;
 			case 'recursed':
 				daveBG = MainMenuState.randomizeBG();
-				daveBG = MainMenuState.randomizeBG();
 				bambiBG = MainMenuState.randomizeBG();
 				tristanBG = MainMenuState.randomizeBG();
 			case 'vs-dave-rap':
@@ -858,7 +857,6 @@ class PlayState extends MusicBeatState
 			case 'desktop':
 				dad.x -= 500;
 				dad.y -= 100;
-				boyfriend.y += 200;
 			case 'red-void':
 				dad.x -= 100;
 			case 'interdimension-void':
@@ -978,7 +976,7 @@ class PlayState extends MusicBeatState
 				font = Paths.font('fnaf.ttf');
 		}
 
-		if (FlxG.save.data.songPosition && !isGreetingsCutscene)
+		if (FlxG.save.data.songPosition && !isGreetingsCutscene && SONG.song.toLowerCase() != 'overdrive')
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
@@ -1690,19 +1688,18 @@ class PlayState extends MusicBeatState
 				sprites.add(bedroom);
 				add(bedroom);
 
-				if (!['tristan', 'tristan-glowing'].contains(formoverride))
+				if (!['tristan', 'tristan-golden-glowing'].contains(formoverride))
 				{
-				tristan = new BGSprite('tristan', 1044, 167, 'backgrounds/bedroom/trist', [
-					new Animation('idle', 'day', 24, false, [false, false]),
-					new Animation('idleNight', 'night', 24, false, [false, false])
-				], 1, 1, true, true);
-				curTristanAnim = 'idle';
-				tristan.animation.play('idle');
-				tristan.setGraphicSize(Std.int(tristan.width * 1.5));
-				tristan.updateHitbox();
-				sprites.add(tristan);
-				add(tristan);
-
+					tristan = new BGSprite('tristan', 1044, 167, 'backgrounds/bedroom/trist', [
+						new Animation('idle', 'day', 24, false, [false, false]),
+						new Animation('idleNight', 'night', 24, false, [false, false])
+					], 1, 1, true, true);
+					curTristanAnim = 'idle';
+					tristan.animation.play('idle');
+					tristan.setGraphicSize(Std.int(tristan.width * 1.5));
+					tristan.updateHitbox();
+					sprites.add(tristan);
+					add(tristan);
 				}
 
 				var baldi:BGSprite = new BGSprite('baldi', 1289, 507, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
@@ -5073,11 +5070,9 @@ class PlayState extends MusicBeatState
 					case 320:
 						defaultCamZoom = 0.6;
 						cinematicBars(((Conductor.stepCrochet * 30) / 1000), 400);
-						makeInvisibleNotes(true);
 					case 352:
 						defaultCamZoom = 0.4;
 						FlxG.camera.flash();
-						makeInvisibleNotes(false);
 					case 864:
 						FlxG.camera.flash();
 						charBackdrop.loadGraphic(Paths.image('recursed/bambiScroll'));
@@ -6345,50 +6340,52 @@ class PlayState extends MusicBeatState
 		}
 	}
 	public function repositionChar(char:Character)
-	{
-		switch (char.curCharacter)
 		{
-			case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
-				char.y -= 150;
-			case 'dave-festival':
-				char.y -= 134;
-			case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
-				char.y -= 400;
-			case 'dave-splitathon':
-				char.y -= 175;
-				char.x -= 50;
-			case 'bambi-splitathon':
-				char.y += 100;
-			case 'bambi-new':
-				char.y += 80;
-			case 'bambi' | 'bambi-joke':
-				char.y += 50;
-			case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
-				char.x += 40;
-				char.y -= 5;
-				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
-			case 'bambi-3d':
-				char.x += 200;
-				char.y += 70;
-				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
-			case 'bambi-unfair':
-				char.y -= 260;
-				camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 50);
-			case 'exbungo':
-				char.y -= 300;
-			case 'recurser':
-				char.x = char.isPlayer ? char.x + 500 : char.x - 500;
-			case 'moldy':
-				char.x -= 30;
-				char.y -= 125;
-			case 'playrobot':
-				char.y -= 100;
-			case 'playrobot-shadow':
-				char.x -= 200;
-			case 'nofriend':
-				char.y -= 75;
+			switch (char.curCharacter)
+			{
+				case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
+					char.y -= 150;
+				case 'dave-festival':
+					char.y -= 134;
+				case 'dave-awesome':
+					char.y += 40;
+				case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
+					char.y -= 400;
+				case 'dave-splitathon':
+					char.y -= 175;
+					char.x -= 50;
+				case 'bambi-splitathon':
+					char.y += 100;
+				case 'bambi-new':
+					char.y += 80;
+				case 'bambi' | 'bambi-joke':
+					char.y += 50;
+				case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
+					char.x += 40;
+					char.y -= 5;
+					camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
+				case 'bambi-3d':
+					char.x += 200;
+					char.y += 70;
+					camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
+				case 'bambi-unfair':
+					char.y -= 260;
+					camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 50);
+				case 'exbungo':
+					char.y -= 300;
+				case 'recurser':
+					char.x = char.isPlayer ? char.x + 500 : char.x - 500;
+				case 'moldy':
+					char.x -= 30;
+					char.y -= 125;
+				case 'playrobot':
+					char.y -= 100;
+				case 'playrobot-shadow':
+					char.x -= 200;
+				case 'nofriend':
+					char.y -= 75;
+			}
 		}
-	}
 	function updateSpotlight(bfSinging:Bool)
 	{
 		var curSinger = bfSinging ? boyfriend : dad;

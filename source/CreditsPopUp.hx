@@ -99,65 +99,39 @@ class CreditsPopUp extends FlxSpriteGroup
 			bg.antialiasing = headingPath.antiAliasing;
 			curHeading = headingPath;
 		}
-		var offset = (curHeading == null ? 0 : curHeading.iconOffset);
+		createHeadingText(songCreator);
 		
-		funnyText = new FlxText(1, 0, 650, "Song by " + songCreator, 16);
-		funnyText.setFormat('Comic Sans MS Bold', 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		funnyText.borderSize = 2;
-		funnyText.antialiasing = true;
-		add(funnyText);
-
-		if(PlayState.SONG.song.toLowerCase() == "supernovae" || PlayState.SONG.song.toLowerCase() == "glitch" || PlayState.SONG.song.toLowerCase() == "master")
-		{
-			funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + 'MoldyGH'));
-		}
-		else
-		{
-			funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
-		}
-
-		var scaleValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (scaleValues[1] / scaleValues[0])));
-		funnyIcon.updateHitbox();
-      
-		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.setPosition(funnyText.textField.textWidth + offset, (heightValues[0] - heightValues[1]) / 2);
+		funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
+		rescaleIcon();
 		add(funnyIcon);
 
-		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width)), Std.int(funnyText.height));
-		bg.updateHitbox();
+		rescaleBG();
 
 		var yValues = CoolUtil.getMinAndMax(bg.height, funnyText.height);
 		funnyText.y = funnyText.y + ((yValues[0] - yValues[1]) / 2);
 	}
 	public function updateHitboxes()
-	{
-		var offset = (curHeading == null ? 0 : curHeading.iconOffset);
-		
-		var scaleValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (scaleValues[1] / scaleValues[0])));
-		funnyIcon.updateHitbox();
-
-		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
-		funnyIcon.setPosition(funnyText.textField.textWidth + offset, (heightValues[0] - heightValues[1]) / 2);
-		
-		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width)), Std.int(funnyText.height));
-		bg.updateHitbox();
+	{	
+		rescaleIcon();
+		rescaleBG();
 	}
 	public function switchHeading(newHeading:SongHeading)
 	{
 		remove(bg);
 		bg = new FlxSprite().makeGraphic(400, 50, FlxColor.WHITE);
-		if (newHeading.animation == null)
+		if (newHeading != null)
 		{
-			bg.loadGraphic(Paths.image(newHeading.path));
-		}
-		else
-		{
-			var info = newHeading.animation;
-			bg.frames = Paths.getSparrowAtlas(newHeading.path);
-			bg.animation.addByPrefix(info.name, info.prefixName, info.frames, info.looped, info.flip[0], info.flip[1]);
-			bg.animation.play(info.name);
+			if (newHeading.animation == null)
+			{
+				bg.loadGraphic(Paths.image(newHeading.path));
+			}
+			else
+			{
+				var info = newHeading.animation;
+				bg.frames = Paths.getSparrowAtlas(newHeading.path);
+				bg.animation.addByPrefix(info.name, info.prefixName, info.frames, info.looped, info.flip[0], info.flip[1]);
+				bg.animation.play(info.name);
+			}
 		}
 		add(bg);
 		bg.antialiasing = newHeading.antiAliasing;
@@ -166,15 +140,48 @@ class CreditsPopUp extends FlxSpriteGroup
 	}
 	public function changeText(newText:String, newIcon:String)
 	{
-		funnyText.text = newText;
+		createHeadingText(newText);
+		
+		remove(funnyIcon);
+		var iconPath:String = '';
 		if (!FileSystem.exists(Paths.image('songCreators/' + newIcon, 'shared')))
 		{
-			funnyIcon.loadGraphic(Paths.image('songCreators/none', 'shared'));
+			iconPath = Paths.image('songCreators/none', 'shared');
 		}
 		else
 		{
-			funnyIcon.loadGraphic(Paths.image('songCreators/' + newIcon, 'shared'));
+			iconPath = Paths.image('songCreators/' + newIcon, 'shared');
 		}
-		updateHitboxes();
+		funnyIcon = new FlxSprite(0, 0, iconPath);
+		rescaleIcon();
+		add(funnyIcon);
+	}
+	function createHeadingText(text:String)
+	{
+		if (funnyText != null)
+		{
+			remove(funnyText);
+		}
+		funnyText = new FlxText(1, 0, 650, "Song by " + text, 16);
+		funnyText.setFormat('Comic Sans MS Bold', 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		funnyText.borderSize = 2;
+		funnyText.antialiasing = true;
+		add(funnyText);
+	}
+	public function rescaleIcon()
+	{
+		var offset = (curHeading == null ? 0 : curHeading.iconOffset);
+
+		var scaleValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		funnyIcon.setGraphicSize(Std.int(funnyIcon.height / (scaleValues[1] / scaleValues[0])));
+		funnyIcon.updateHitbox();
+
+		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
+		funnyIcon.setPosition(funnyText.textField.textWidth + offset, (heightValues[0] - heightValues[1]) / 2);
+	}
+	function rescaleBG()
+	{
+		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width)), Std.int(funnyText.height));
+		bg.updateHitbox();
 	}
 }

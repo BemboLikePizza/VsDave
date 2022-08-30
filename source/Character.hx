@@ -31,7 +31,6 @@ class Character extends FlxSprite
 	
 	public var canSing:Bool = true;
 	public var recursedSkin:String = 'bf-recursed';
-	public var positionOffset:FlxPoint = new FlxPoint(0, 0);
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -214,8 +213,7 @@ class Character extends FlxSprite
 				animation.addByIndices('danceLeft', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 				animation.addByIndices('danceRight', 'GF IDLE', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
-				globaloffset[0] = 300;
-				globaloffset[1] = 280;
+				globaloffset = [300, 280];
 				
 				loadOffsetFile(curCharacter);
 
@@ -239,6 +237,7 @@ class Character extends FlxSprite
 	
 				recursedSkin = 'dave-recursed';
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+
 				
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
@@ -270,7 +269,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 	
 				loadOffsetFile(curCharacter);
-				
+								
 				barColor = FlxColor.fromRGB(15, 95, 255);
 	
 				playAnim('idle');
@@ -279,6 +278,7 @@ class Character extends FlxSprite
 				// DAVE SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('dave/characters/Dave_3D', 'shared');
 				frames = tex;
+
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singUP', 'up', 24, false);
 				animation.addByPrefix('singRIGHT', 'right', 24, false);
@@ -342,8 +342,8 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
 				barColor = FlxColor.WHITE;
-
 				playAnim('idle');
+				
 			case 'dave-3d-recursed':
 				frames = Paths.getSparrowAtlas('recursed/characters/Dave_3D_Recursed', 'shared');
 
@@ -360,6 +360,7 @@ class Character extends FlxSprite
 				
 				barColor = FlxColor.WHITE;
 				playAnim('idle');
+
 			case 'dave-death':
 				frames = Paths.getSparrowAtlas('dave/characters/Dave_Dead', 'shared');
 
@@ -503,15 +504,14 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
-				globaloffset[0] = 150 * 1.5;
-				globaloffset[1] = 450 * 1.5; //this is the y
+				globaloffset = [150 * 1.5, 450 * 1.5];
+
 				setGraphicSize(Std.int((width * 1.5) / furiosityScale));
+
 				updateHitbox();
 				antialiasing = false;
 		
 				playAnim('idle');
-			
-
 			case 'bambi-unfair':
 				// BAMBI SHITE ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('expunged/unfair_bambi', 'shared');
@@ -529,8 +529,8 @@ class Character extends FlxSprite
 
 				antialiasing = false;
 				
-				globaloffset[0] = 150 * 1.3;
-				globaloffset[1] = 450 * 1.3; //this is the y
+				globaloffset = [150 * 1.3, 450 * 1.3];
+
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
 
 				playAnim('idle');
@@ -550,8 +550,7 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(82, 15, 15);
 				antialiasing = false;
 				
-				globaloffset[0] = 150 * 0.8;
-				globaloffset[1] = 450 * 0.8; //this is the y
+				globaloffset = [150 * 0.8, 450 * 0.8];
 				
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
@@ -919,6 +918,17 @@ class Character extends FlxSprite
 				for (anim in ['left', 'down', 'up', 'right'])
 				{
 					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				loadOffsetFile(curCharacter);
+				barColor = FlxColor.fromRGB(162, 150, 188);
+				playAnim('idle');
+			case 'dave-awesome':
+				frames = Paths.getSparrowAtlas('dave/characters/dave_awesome', 'shared');
+
+				animation.addByPrefix('idle', 'dave idle', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'dave $anim', 24, false);
 				}
 				loadOffsetFile(curCharacter);
 				barColor = FlxColor.fromRGB(162, 150, 188);

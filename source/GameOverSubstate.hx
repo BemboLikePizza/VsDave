@@ -29,7 +29,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'tb-funny-man':
 				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
 				System.exit(0);
-			case 'dave' | 'dave-recursed':
+			case 'dave' | 'dave-recursed' | 'dave-fnaf':
 				daBf = 'dave-death';
 				deathSuffix = '-dave';
 			case 'tristan':
@@ -97,7 +97,6 @@ class GameOverSubstate extends MusicBeatSubstate
 			{
 				Main.toggleFuckedFPS(false);
 			}
-
 			if (PlayState.isStoryMode)
 				FlxG.switchState(new StoryMenuState());
 			else
