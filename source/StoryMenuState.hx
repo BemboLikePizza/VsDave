@@ -154,6 +154,10 @@ class StoryMenuState extends MusicBeatState
 			awaitingToPlayMasterWeek = false;
 			changeWeek(5 - curWeek);
 		}
+		else
+		{
+			changeWeek(0);
+		}
 
 		super.create();
 	}
