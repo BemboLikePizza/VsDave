@@ -38,6 +38,7 @@ class StoryMenuState extends MusicBeatState
 	var yellowBG:FlxSprite;
 
 	var txtTracklist:FlxText;
+	var txtTrackdeco:FlxText;
 
 	var grpWeekText:FlxTypedGroup<MenuItem>;
 
@@ -116,23 +117,30 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in 0...weeks.length)
 		{
-			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, i);
-			weekThing.y += ((weekThing.height + 20) * i);
-			weekThing.targetY = i;
+			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 80, i);
+			weekThing.x += ((weekThing.width + 20) * i);
+			weekThing.targetX = i;
 			grpWeekText.add(weekThing);
 
-			weekThing.screenCenter(X);
+			//weekThing.screenCenter(X);
 			weekThing.antialiasing = true;
 			// weekThing.updateHitbox();
 		}
 
 		add(yellowBG);
 
-		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 50, 0, LanguageManager.getTextString('story_track'), 28);
+		txtTrackdeco = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 80, 0, LanguageManager.getTextString('story_track').toUpperCase(), 28);
+		txtTrackdeco.alignment = CENTER;
+		txtTrackdeco.font = rankText.font;
+		txtTrackdeco.color = 0xFFe55777;
+		txtTrackdeco.antialiasing = true;
+
+		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, '', 28);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
 		txtTracklist.antialiasing = true;
+		add(txtTrackdeco);
 		add(txtTracklist);
 		add(scoreText);
 		add(txtWeekTitle);
@@ -165,12 +173,12 @@ class StoryMenuState extends MusicBeatState
 		{
 			if (!selectedWeek)
 			{
-				if (controls.UP_P)
+				if (controls.LEFT_P)
 				{
 					changeWeek(-1);
 				}
 
-				if (controls.DOWN_P)
+				if (controls.RIGHT_P)
 				{
 					changeWeek(1);
 				}
@@ -275,8 +283,8 @@ class StoryMenuState extends MusicBeatState
 		
 		for (item in grpWeekText.members)
 		{
-			item.targetY = bullShit - curWeek;
-			if (item.targetY == Std.int(0) && weekUnlocked[curWeek])
+			item.targetX = bullShit - curWeek;
+			if (item.targetX == Std.int(0) && weekUnlocked[curWeek])
 				item.alpha = 1;
 			else
 				item.alpha = 0.6;
@@ -337,7 +345,7 @@ class StoryMenuState extends MusicBeatState
 
 	function updateText()
 	{
-		txtTracklist.text = "Tracks";
+		txtTracklist.text = "";
 
 		var stringThing:Array<String> = weeks[curWeek].songList;
 
@@ -355,6 +363,9 @@ class StoryMenuState extends MusicBeatState
 
 		txtTracklist.screenCenter(X);
 		txtTracklist.x -= FlxG.width * 0.35;
+
+		txtTrackdeco.screenCenter(X);
+		txtTrackdeco.x -= FlxG.width * 0.35;
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek);
