@@ -1,5 +1,6 @@
 package;
 
+import TerminalCheatingState.TerminalText;
 import flixel.graphics.frames.FlxFrame;
 import flixel.graphics.FlxGraphic;
 import flixel.addons.transition.Transition;
@@ -2908,36 +2909,64 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'supernovae':
-					PlayState.SONG = Song.loadFromJson("cheating"); // you dun fucked up
-					FlxG.save.data.cheatingFound = true;
-					shakeCam = false;
-					#if SHADERS_ENABLED
-					screenshader.Enabled = false;
-					#end
-					FlxG.switchState(new PlayState());
+					FlxG.switchState(new TerminalCheatingState([
+						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
+						new TerminalText(200, [['run AntiCheat.dll', 1]])
+					], function()
+					{
+						shakeCam = false;
+						#if SHADERS_ENABLED
+						screenshader.Enabled = false;
+						#end
+
+						PlayState.SONG = Song.loadFromJson("cheating"); // you dun fucked up
+						FlxG.save.data.cheatingFound = true;
+						FlxG.switchState(new PlayState());
+					}));
 					return;
 					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
 				case 'cheating':
-					PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
-					FlxG.save.data.unfairnessFound = true;
-					#if SHADERS_ENABLED
-					resetShader();
-					#end
-					FlxG.switchState(new PlayState());
+					FlxG.switchState(new TerminalCheatingState([
+						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
+						new TerminalText(200, [['run AntiCheat.dll', 1]])
+					], function()
+					{
+						shakeCam = false;
+						#if SHADERS_ENABLED
+						screenshader.Enabled = false;
+						#end
+
+						PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
+						FlxG.save.data.unfairnessFound = true;
+						FlxG.switchState(new PlayState());
+					}));
 					return;
 				case 'unfairness':
-					#if SHADERS_ENABLED
-					resetShader();
-					#end
-					FlxG.switchState(new TerminalState());
+					FlxG.switchState(new TerminalCheatingState([
+						new TerminalText(0, [
+							['bin/plugins/AntiCheat.dll: ', 1],
+							['No argument for function "AntiCheatThree"', 1],
+						]),
+						new TerminalText(100, [['Redirecting to terminal...', 1]])
+					], function()
+					{
+						shakeCam = false;
+						#if SHADERS_ENABLED
+						screenshader.Enabled = false;
+						#end
+
+						FlxG.switchState(new TerminalState());
+					}));
 					#if desktop
 					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
+					return;
 				case 'glitch':
 					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
 					FlxG.save.data.exbungoFound = true;
+					shakeCam = false;
 					#if SHADERS_ENABLED
-					resetShader();
+					screenshader.Enabled = false;
 					#end
 					FlxG.switchState(new PlayState());
 					return;
@@ -5267,12 +5296,12 @@ class PlayState extends MusicBeatState
 				{
 					case 256:
 						defaultCamZoom += 0.2;
-							black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-							black.screenCenter();
-							black.alpha = 0;
-							add(black);
-							FlxTween.tween(black, {alpha: 0.6}, 1);
-							makeInvisibleNotes(true);
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						makeInvisibleNotes(true);
 					case 261:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub1'), 0.02, 0.6);
 					case 284:
@@ -5289,8 +5318,8 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('unfairness_sub7'), 0.02, 1);
 					case 512:
 						defaultCamZoom -= 0.2;
-							FlxTween.tween(black, {alpha: 0}, 1);
-							makeInvisibleNotes(false);
+						FlxTween.tween(black, {alpha: 0}, 1);
+						makeInvisibleNotes(false);
 					case 2560:
 						dadStrums.forEach(function(spr:StrumNote)
 						{
@@ -5720,7 +5749,6 @@ class PlayState extends MusicBeatState
 						black = new FlxSprite(0, 0).makeGraphic(2560, 1440, FlxColor.BLACK);
 						black.screenCenter();
 						add(black);
-
 				}
 			case 'bot-trot':
 				switch (curStep)
@@ -6040,11 +6068,11 @@ class PlayState extends MusicBeatState
 					case 112:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
-							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs(2 * strum.ID) + 78 - (78 / 4);
+							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs(2 * strum.ID) + 78 - (78 / 2);
 						});
 						playerStrums.forEach(function(strum:StrumNote)
 						{
-							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs((2 * strum.ID) + 1) + 78 - (78 / 4);
+							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs((2 * strum.ID) + 1) + 78 - (78 / 2);
 						});
 					case 143:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');

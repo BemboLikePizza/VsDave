@@ -75,6 +75,9 @@ class CreditsPopUp extends FlxSpriteGroup
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0};
 			case 10:
 				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
+			case 11:
+				headingPath = {path: 'songHeadings/californiaHeading', antiAliasing: true,
+				animation: new Animation('california', 'California', 24, true, [false, false]), iconOffset: 0};
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{

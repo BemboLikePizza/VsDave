@@ -15,22 +15,36 @@ class TheFunnySubState extends MusicBeatSubstate
    var toPlayFor:Float = FlxG.random.float(5, 10);
 
    var funnySprite:FlxSprite;
-   var stageSuffix:String;
+   var deathSuffix:String;
    var audioPlayed:Bool;
    var canStart:Bool = false;
 
 	public function new(char:String)
 	{
       super();
+		var daBf:String = '';
 		switch (char)
 		{
 			case 'bf-pixel':
-				stageSuffix = '-pixel';
+				daBf = "bf-pixel-dead";
+				deathSuffix = '-pixel';
+			case 'dave' | 'dave-recursed' | 'dave-fnaf':
+				deathSuffix = '-dave';
+			case 'tristan':
+				deathSuffix = '-tristan';
+			case 'tristan-golden':
+				deathSuffix = '-tristan';
+			case 'bambi-new' | 'bambi-recursed':
+				daBf = 'bambi-death';
+				deathSuffix = '-bambi';
+			case 'nofriend':
+				deathSuffix = '-nofriend';
+
 			default:
-				stageSuffix = '';
+				daBf = char;
 		}
 
-		var loseSound = FlxG.sound.play(Paths.sound('fnf_loss_sfx' + stageSuffix));
+		var loseSound = FlxG.sound.play(Paths.sound('fnf_loss_sfx' + deathSuffix));
       loseSound.onComplete = function()
       {
          var chance = FlxG.random.int(0, 6);
