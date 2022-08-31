@@ -28,7 +28,7 @@ class Subtitle extends FlxTypeText
       sounds = null;
 	  
       setFormat("Comic Sans MS Bold", properties.subtitleSize, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-      antialiasing = false;
+      antialiasing = true;
       borderSize = 2;
 
       screenCenter(properties.screenCenter);
