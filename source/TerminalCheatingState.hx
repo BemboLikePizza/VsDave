@@ -57,13 +57,6 @@ class TerminalCheatingState extends FlxUIState
 
 		super.create();
 	}
-
-   /*new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
-	new TerminalText(200, [['run AntiCheat.dll', 1]])*/
-
-   //get the full text to be typed out
-   //when one of the texts in the array has been fully typed, wait the given delay before continuing
-   //when all texts are finished, wait the given delay and then go onto the next terminal text
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
