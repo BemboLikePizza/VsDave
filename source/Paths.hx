@@ -123,7 +123,7 @@ class Paths
 	
 	inline static public function executable(key:String, ?library:String)
 	{
-		return getPath('executables/$key.exe', BINARY, library);
+		return getPath('executables/$key', BINARY, library);
 	}
 
 	inline static public function chart(key:String, ?library:String)
