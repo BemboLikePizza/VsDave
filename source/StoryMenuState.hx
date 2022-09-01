@@ -124,7 +124,7 @@ class StoryMenuState extends MusicBeatState
 
 			//weekThing.screenCenter(X);
 			weekThing.antialiasing = true;
-			// weekThing.updateHitbox();
+			//weekThing.updateHitbox();
 		}
 
 		add(yellowBG);
