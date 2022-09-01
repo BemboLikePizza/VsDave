@@ -508,6 +508,10 @@ class MainMenuState extends MusicBeatState
 	function resetData()
 	{
 		FlxG.save.erase();
+
+		CharacterSelectState.unlockCharacter('bf');
+		CharacterSelectState.unlockCharacter('bf-pixel');
+
 		FlxG.save.flush();
 		
 		FlxG.save.bind('funkin', 'ninjamuffin99');

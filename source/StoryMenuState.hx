@@ -34,7 +34,6 @@ class StoryMenuState extends MusicBeatState
 
 	var curWeek:Int = 0;
 
-	var imageBG:FlxSprite;
 	var yellowBG:FlxSprite;
 
 	var txtTracklist:FlxText;
@@ -45,15 +44,18 @@ class StoryMenuState extends MusicBeatState
 	var grpLocks:FlxTypedGroup<FlxSprite>;
 	
 	var weeks:Array<Week> = [
-		new Week(['Warmup'], LanguageManager.getTextString('story_tutorial'), 0xFF8A42B7),  // WARMUP
-		new Week(['House', 'Insanity', 'Polygonized'], LanguageManager.getTextString('story_daveWeek'), 0xFF4965FF), // DAVE
-		new Week(['Blocked', 'Corn-Theft', 'Maze'], LanguageManager.getTextString('story_bambiWeek'), 0xFF00B515), // MISTER BAMBI RETARD
-		new Week(['Splitathon'], LanguageManager.getTextString('story_finale'), 0xFF00FFFF), // SPLIT THE THONNNNN
-		new Week(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], LanguageManager.getTextString('story_festivalWeek'), 0xFF800080), // FESTEVAL
+		new Week(['Warmup'], LanguageManager.getTextString('story_tutorial'), 0xFF8A42B7, 'warmup'),  // WARMUP
+		new Week(['House', 'Insanity', 'Polygonized'], LanguageManager.getTextString('story_daveWeek'), 0xFF4965FF, 'DaveHouse'), // DAVE
+		new Week(['Blocked', 'Corn-Theft', 'Maze'], LanguageManager.getTextString('story_bambiWeek'), 0xFF00B515, 'bamboi'), // MISTER BAMBI RETARD
+		new Week(['Splitathon'], LanguageManager.getTextString('story_finale'), 0xFF00FFFF, 'splitathon'), // SPLIT THE THONNNNN
+		new Week(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], LanguageManager.getTextString('story_festivalWeek'), 0xFF800080, 'festival'), // FESTEVAL
 	];
 
 	var awaitingExploitation:Bool;
 	static var awaitingToPlayMasterWeek:Bool;
+
+	var weekBanners:Array<FlxSprite> = new Array<FlxSprite>();
+	var lastSelectedWeek:Int = 0;
 
 	override function create()
 	{
@@ -63,7 +65,8 @@ class StoryMenuState extends MusicBeatState
 		{
 			var weekName = !FlxG.save.data.hasPlayedMasterWeek ? LanguageManager.getTextString('story_masterWeekToPlay') : LanguageManager.getTextString('story_masterWeek');
 			weeks.push(new Week(
-				['Supernovae', 'Glitch', 'Master'], weekName, 0xFF116E1C));  // MASTERA BAMBI
+				['Supernovae', 'Glitch', 'Master'], weekName, 0xFF116E1C, 
+				FlxG.save.data.hasPlayedMasterWeek ? 'masterweek' : 'masterweekquestion'));  // MASTERA BAMBI
 		}
 
 		#if desktop
@@ -100,12 +103,6 @@ class StoryMenuState extends MusicBeatState
 		yellowBG = new FlxSprite(0, 56).makeGraphic(FlxG.width * 2, 400, FlxColor.WHITE);
 		yellowBG.color = weeks[0].weekColor;
 
-		imageBG = new FlxSprite(600, 1000).loadGraphic(Paths.image("blank", "shared"));
-		imageBG.antialiasing = true;
-		imageBG.screenCenter(X);
-		imageBG.active = false;
-		add(imageBG);
-
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
 
@@ -120,11 +117,8 @@ class StoryMenuState extends MusicBeatState
 			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 80, i);
 			weekThing.x += ((weekThing.width + 20) * i);
 			weekThing.targetX = i;
-			grpWeekText.add(weekThing);
-
-			//weekThing.screenCenter(X);
 			weekThing.antialiasing = true;
-			// weekThing.updateHitbox();
+			grpWeekText.add(weekThing);
 		}
 
 		add(yellowBG);
@@ -145,10 +139,20 @@ class StoryMenuState extends MusicBeatState
 		add(scoreText);
 		add(txtWeekTitle);
 
+		for (i in 0...weeks.length)
+		{
+			var weekBanner:FlxSprite = new FlxSprite(600, 56).loadGraphic(Paths.image('weekBanners/${weeks[i].bannerName}'));
+			weekBanner.antialiasing = false;
+			weekBanner.active = true;
+			weekBanner.screenCenter(X);
+			weekBanner.alpha = i == curWeek ? 1 : 0;
+			add(weekBanner);
+
+			weekBanners.push(weekBanner);
+		}
+
 		updateText();
 		
-		imageBgCheck();
-
 		if (awaitingToPlayMasterWeek)
 		{
 			awaitingToPlayMasterWeek = false;
@@ -158,7 +162,6 @@ class StoryMenuState extends MusicBeatState
 		{
 			changeWeek(0);
 		}
-
 		super.create();
 	}
 
@@ -276,6 +279,7 @@ class StoryMenuState extends MusicBeatState
 
 	function changeWeek(change:Int = 0):Void
 	{
+		lastSelectedWeek = curWeek;
 		curWeek += change;
 
 		if (curWeek > weeks.length - 1)
@@ -300,51 +304,21 @@ class StoryMenuState extends MusicBeatState
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 
 		updateText();
-		imageBgCheck();
+		updateWeekBanner();
 	}
 	
 
-	function imageBgCheck()
+	function updateWeekBanner()
 	{
-		var path:String;
-		var position:FlxPoint;
-		switch (curWeek)
+		for (i in 0...weekBanners.length)
 		{
-			case 0:
-				path = Paths.image("weekBanners/warmup");
-				position = new FlxPoint(600, 55);
-			case 1:
-				path = Paths.image("weekBanners/DaveHouse");
-				position = new FlxPoint(600, 55);
-			case 2:
-				path = Paths.image("weekBanners/bamboi");
-				position = new FlxPoint(600, 55);
-			case 3:
-				path = Paths.image("weekBanners/splitathon");
-				position = new FlxPoint(600, 55);
-			case 4:
-				path = Paths.image("weekBanners/festival");
-				position = new FlxPoint(600, 55);
-			case 5:
-				if (FlxG.save.data.hasPlayedMasterWeek)
-				{
-					path = Paths.image("weekBanners/masterweek");
-				}
-				else
-				{
-					path = Paths.image("weekBanners/masterweekquestion");
-				}
-				position = new FlxPoint(600, 55);
-			default:
-				path = Paths.image("blank", "shared");
-				position = new FlxPoint(600, 55);
+			if (![lastSelectedWeek, curWeek].contains(i))
+			{
+				weekBanners[i].alpha = 0;
+			}
 		}
-		imageBG.destroy();
-		imageBG = new FlxSprite(position.x, position.y + 1).loadGraphic(path);
-		imageBG.antialiasing = false;
-		imageBG.screenCenter(X);
-		imageBG.active = true;
-		add(imageBG);
+		FlxTween.tween(weekBanners[lastSelectedWeek], {alpha: 0}, 0.1);
+		FlxTween.tween(weekBanners[curWeek], {alpha: 1}, 0.1);
 	}
 
 	function updateText()
@@ -381,11 +355,13 @@ class Week
 	public var songList:Array<String>;
 	public var weekName:String;
 	public var weekColor:FlxColor;
+	public var bannerName:String;
 
-	public function new(songList:Array<String>, weekName:String, weekColor:FlxColor)
+	public function new(songList:Array<String>, weekName:String, weekColor:FlxColor, bannerName:String)
 	{
 		this.songList = songList;
 		this.weekName = weekName;
 		this.weekColor = weekColor;
+		this.bannerName = bannerName;
 	}
 }
