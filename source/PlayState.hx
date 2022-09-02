@@ -584,7 +584,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'rapBattle';
 				case 'recursed':
 					stageCheck = 'freeplay';
-				case 'secret-mod-leak':
+				case 'roofs':
 					stageCheck = 'roof';
 				case 'bot-trot':
 					stageCheck = 'bedroom';
@@ -619,7 +619,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'vs-dave-rap', 'escape-from-california', 'overdrive'];
+		var noGFSongs = ['memory', 'five-nights', 'roofs', 'bot-trot', 'vs-dave-rap', 'escape-from-california', 'overdrive'];
 		
 		if(SONG.gf != null)
 		{

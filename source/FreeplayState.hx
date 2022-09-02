@@ -279,7 +279,7 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.exbungoFound)
 					addWeek(['Kabunga'], 6, ['exbungo']);
 				if (FlxG.save.data.secretModLeakUnlocked)
-					addWeek(['Secret-Mod-Leak'], 7, ['baldi']);
+					addWeek(['Roofs'], 7, ['baldi']);
 			case 'extras':
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);

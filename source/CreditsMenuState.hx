@@ -151,18 +151,18 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCwA3jnG5cu3toaVCOhc-Tqw'),
       ]),
       
-      new Person("Oxygen", CreditsType.Contributor, "Composer, Beta Tester",
+      new Person("Oxygen", CreditsType.Contributor, "Composer",
       [
          new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
          new Social('twitter', 'https://twitter.com/oxygenboi2000'),
          new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
       ]),
-      new Person("Alexander Cooper 19", CreditsType.Contributor, "Mealie composer & charter, Composer, Beta tester",
+      new Person("Alexander Cooper 19", CreditsType.Contributor, "Composer, Charter",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
          new Social('twitter', 'https://twitter.com/Zander_cooper19')
       ]),
-      new Person("Aadsta", CreditsType.Contributor, "Composer, BG Artist, Beta Tester",
+      new Person("Aadsta", CreditsType.Contributor, "Composer, BG Artist",
       [
          new Social('twitter', 'https://twitter.com/FullNameDeTrain')
       ]),
@@ -170,11 +170,11 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('twitter', 'https://twitter.com/FullNameDeTrain')
       ]),
-      new Person("Top 10 Awesome", CreditsType.Contributor, "Overdrive composer, funny guy",
+      new Person("Top 10 Awesome", CreditsType.Contributor, "Composer, Funny Guy",
       [
          new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
       ]),
-      new Person("BombasticHype", CreditsType.Contributor, "Did a cutscene",
+      new Person("BombasticHype", CreditsType.Contributor, "Did a House cutscene",
       [  
          new Social ('youtube', 'https://www.youtube.com/c/BombasticHype')
       ]),
@@ -183,39 +183,44 @@ class CreditsMenuState extends MusicBeatState
          new Social ('youtube', 'https://youtube.com/c/RubysArt_'),
          new Social ('twitter', 'https://twitter.com/RubysArt_')
       ]),
-      new Person("Lancey", CreditsType.Contributor, "Made a menu background",
+      new Person("Lancey", CreditsType.Contributor, "Menu BG Artist",
       [  
          new Social('youtube', 'https://youtube.com/c/Lancey170'),
          new Social('twitter', 'https://twitter.com/Lancey170')
       ]),
-      new Person("Paraso", CreditsType.Contributor, "Main Menu BG Artist",
+      new Person("Paraso", CreditsType.Contributor, "Menu BG Artist",
       [  
 
       ]),
-      new Person("SAMMYPIGZY", CreditsType.Contributor, "Artist, Bot Trot Main Artist",
-      [  
-
-      ]),
-      
-      new Person("R34LD34L", CreditsType.Contributor, "Composed Bot Trot",
+      new Person("SAMMYPIGZY", CreditsType.Contributor, "Artist",
       [  
 
       ]),
       
-      new Person("Devianator", CreditsType.Contributor, "Beta Tester, and helping with Credits icons",
+      new Person("R34LD34L", CreditsType.Contributor, "Composer",
+      [  
+
+      ]),
+      
+      new Person("Devianator", CreditsType.Contributor, "Help with Credits icons",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCcaYOWO98UIsJ54t_aV6JHw'),
          new Social('twitter', 'https://twitter.com/devianator404')
       ]),
       
-      new Person("sk0rbias", CreditsType.Contributor, "Credits & Menu icons & general art concepts",
+      new Person("sk0rbias", CreditsType.Contributor, "Menu Artist",
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
          new Social('twitter', 'https://twitter.com/sk0rbias')
       ]),
-      new Person("Your mom", CreditsType.Contributor, "Made Vs Dave Rap, totally.",
+      new Person("Your mom", CreditsType.Contributor, "Composed Vs Dave Rap, totally.",
       [  
          new Social('youtube', 'https://www.youtube.com/channel/UCeYxPL7ClfwXOOrpbtqJ13g'),
+      ]),
+
+      new Person("sibottle", CreditsType.Contributor, "Composer",
+      [  
+         new Social('youtube', 'https://www.youtube.com/channel/UCqFkjwmaYlnVXwLMw3_AXLA'),
       ]),
 
       // Beta Testers //
@@ -331,7 +336,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitch', 'https://www.twitch.tv/vanquiler'),
          new Social('roblox', 'https://www.roblox.com/users/1505830747')
       ]),
-      new Person("Villezen", CreditsType.BetaTester, "Beta Tester & Supporter",
+      new Person("Villezen", CreditsType.BetaTester, "Beta Tester, Supporter",
       [
          new Social('youtube', 'https://www.youtube.com/c/Villezen')
       ]),

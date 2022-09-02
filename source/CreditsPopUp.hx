@@ -36,8 +36,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'warmup' | 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'splitathon' | 'shredder' | 'greetings' |
-				'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'kabunga' | 'roots' | 'secret' |
-				'secret-mod-leak' | 'unfairness' | 'rano' | 'master':
+				'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'kabunga' | 'secret'	 | 'unfairness' | 'rano' | 'master':
 				songCreator = 'MoldyGH';
 			case 'exploitation':
 				songCreator = 'Oxygen';
@@ -57,6 +56,8 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'Ruby';
 			case 'bot-trot':
 				songCreator = 'TH3R34LD34L';
+			case 'roofs':
+				songCreator = 'sibottle';
 		}
 		switch (PlayState.storyWeek)
 		{
@@ -73,7 +74,7 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 6:
 				headingPath = {path: 'songHeadings/kabungaHeading', antiAliasing: true, iconOffset: 0};
 			case 7:
-				headingPath = {path: 'songHeadings/secretLeakHeading', antiAliasing: true, iconOffset: 0};
+				headingPath = {path: 'songHeadings/secretLeakHeading', antiAliasing: true, iconOffset: 3};
 			case 8:
 				headingPath = {path: 'songHeadings/tristanHeading', antiAliasing: true, iconOffset: 0};
 			/*case 9:
