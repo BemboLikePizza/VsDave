@@ -1079,7 +1079,7 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase())
 		{
 			case "exploitation":
-				funkyText = SONG.song; //there is no ENGINE text so having it say [EXPUNGED] ENGINE doesnt make sense anymore
+				funkyText = SONG.song + ' FUCKED - [EXPUNGED] ENGINE';
 			case 'overdrive':
 				funkyText = '';
 			default:
