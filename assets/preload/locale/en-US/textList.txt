@@ -281,3 +281,17 @@ memory_sub8==Before things come to an end,
 memory_sub9==Wanna settle this rap with me?
 memory_sub10==Yeah!
 memory_sub11==Awesome! Let's do it!
+
+//Vs Dave Rap Two Subtitles//
+daveraptwo_sub1==Dave is the name
+daveraptwo_sub2==Play my game
+daveraptwo_sub3==I am Dave and I have a mod
+daveraptwo_sub4==I am Dave and I am god
+daveraptwo_sub5==My weewee itches (yum)
+daveraptwo_sub6==3.0
+daveraptwo_sub7==Vs Dave, I am gay
+daveraptwo_sub8==Mr. Bambi loves break the phone (ha)
+daveraptwo_sub9==Dive going gamestop with buy game Xbox
+daveraptwo_sub10==Go play the mod Vs Dave and Bambi 3.0
+daveraptwo_sub11==Out now on GameBanana!
+daveraptwo_sub12==Yum.

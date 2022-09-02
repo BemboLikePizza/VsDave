@@ -291,6 +291,10 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Overdrive'], 13, ['dave']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Memory', 'Vs-Dave-Rap'], 1, ['dave', 'dave-cool']);
+				if(FlxG.save.data.vsDaveRapTwoFound)
+				{
+					addWeek(['Vs-Dave-Rap-Two'], 1, ['dave-cool']);
+				}
 			case 'terminal':
 				if (FlxG.save.data.cheatingFound)
 					addWeek(['Cheating'], 14, ['bambi-3d']);

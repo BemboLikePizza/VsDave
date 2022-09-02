@@ -419,7 +419,7 @@ class PlayState extends MusicBeatState
 				daveBG = MainMenuState.randomizeBG();
 				bambiBG = MainMenuState.randomizeBG();
 				tristanBG = MainMenuState.randomizeBG();
-			case 'vs-dave-rap':
+			case 'vs-dave-rap' | 'vs-dave-rap-two':
 				blackScreen = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.width * 2, FlxColor.BLACK);
 				blackScreen.scrollFactor.set();
 				add(blackScreen);
@@ -580,7 +580,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'house-night';
 				case 'secret':
 					stageCheck = 'house-sunset';
-				case 'vs-dave-rap':
+				case 'vs-dave-rap' | 'vs-dave-rap-two':
 					stageCheck = 'rapBattle';
 				case 'recursed':
 					stageCheck = 'freeplay';
@@ -619,7 +619,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'roofs', 'bot-trot', 'vs-dave-rap', 'escape-from-california', 'overdrive'];
+		var noGFSongs = ['memory', 'five-nights', 'roofs', 'bot-trot', 'vs-dave-rap', 'vs-dave-rap-two', 'escape-from-california', 'overdrive'];
 		
 		if(SONG.gf != null)
 		{
@@ -1967,7 +1967,7 @@ class PlayState extends MusicBeatState
 			switch (SONG.song.toLowerCase())
 			{
 				case 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'interdimensional' | 'five-nights' |
-				'memory' | 'vs-dave-rap':
+				'memory' | 'vs-dave-rap' | 'vs-dave-rap-two':
 					soundAssetsAlt = introSoundAssets.get('dave');
 				case 'blocked' | 'cheating' | 'corn-theft' | 'glitch' | 'maze' | 'mealie' | 'secret' |
 				'shredder' | 'supernovae' | 'unfairness':
@@ -2199,7 +2199,7 @@ class PlayState extends MusicBeatState
 					
 				Application.current.window.title = "[DATA EXPUNGED]";
 				Application.current.window.setIcon(lime.graphics.Image.fromFile("art/icons/iconAAAA.png"));
-			case 'vs-dave-rap':
+			case 'vs-dave-rap' | 'vs-dave-rap-two':
 				FlxTween.tween(blackScreen, {alpha: 0}, 3, {onComplete: function(tween:FlxTween)
 				{
 					remove(blackScreen);
@@ -2971,6 +2971,17 @@ class PlayState extends MusicBeatState
 				case 'kabunga':
 					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
 					System.exit(0);
+				case 'vs-dave-rap':
+				{
+					PlayState.SONG = Song.loadFromJson("vs-dave-rap-two");
+					FlxG.save.data.vsDaveRapTwoFound = true;
+					shakeCam = false;
+					#if SHADERS_ENABLED
+					screenshader.Enabled = false;
+					#end
+					FlxG.switchState(new PlayState());
+					return;
+				}
 				default:
 					#if SHADERS_ENABLED
 					resetShader();
@@ -5879,6 +5890,37 @@ class PlayState extends MusicBeatState
 						case 322:
 							FlxG.camera.flash();
 					}
+		    case 'vs-dave-rap-two':
+				switch(curStep)
+			    {
+					case 62:
+						FlxG.camera.flash();
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub1'), 0.02, 0.5);
+					case 79:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub2'), 0.02, 0.3);
+					case 88:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub3'), 0.02, 1.5);
+					case 112:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub4'), 0.02, 1.5);
+					case 140:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub5'), 0.02, 1);
+					case 168:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub6'), 0.02, 0.7);
+					case 179:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub7'), 0.02, 0.7);
+					case 194:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub8'), 0.02, 1.5);
+					case 222:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub9'), 0.02, 2);
+					case 256:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub10'), 0.02, 2);	
+					case 291:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub11'), 0.02, 1);
+					case 342:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('daveraptwo_sub12'), 0.02, 1);
+					case 351:
+						FlxG.camera.flash();
+				}
 			case 'memory':
 				switch (curStep)
 				{

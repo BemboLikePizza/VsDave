@@ -67,7 +67,7 @@ class DiscordClient
 			details: 'NO LEAKS',
 			state: 'NO LEAKS',
 			largeImageKey: 'icon_logo',
-			largeImageText: "Vs Dave & Bambi'",
+			largeImageText: "Vs Dave & Bambi",
 			smallImageKey : 'NO LEAKS',
 			// Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp : Std.int(startTimestamp / 1000),

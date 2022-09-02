@@ -48,7 +48,7 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'Top 10 Awesome';
 			case 'supernovae':
 				songCreator = 'ArchWk\nRemix by MoldyGH';
-			case 'vs-dave-rap':
+			case 'vs-dave-rap' | 'vs-dave-rap-two':
 				songCreator = 'Your mom';
 			case 'recursed':
 				songCreator = 'Aadsta';
