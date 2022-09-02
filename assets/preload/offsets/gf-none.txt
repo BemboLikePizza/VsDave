@@ -1,5 +1,5 @@
-danceLeft 0 400
-danceRight 0 400
+danceLeft 0 0
+danceRight 0 0
 singUP 0 0
 singRIGHT 0 0
 singLEFT 0 0
