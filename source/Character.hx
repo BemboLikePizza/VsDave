@@ -483,6 +483,9 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromRGB(14, 174, 44);
 
+				setGraphicSize(Std.int((width * 2) / furiosityScale));
+				antialiasing = false;
+
 				playAnim('idle');
 
 			case 'bambi-splitathon':

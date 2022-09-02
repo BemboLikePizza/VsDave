@@ -619,7 +619,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'roofs', 'bot-trot', 'vs-dave-rap', 'vs-dave-rap-two', 'escape-from-california', 'overdrive'];
+		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'vs-dave-rap', 'vs-dave-rap-two', 'escape-from-california', 'overdrive'];
 		
 		if(SONG.gf != null)
 		{
@@ -861,8 +861,9 @@ class PlayState extends MusicBeatState
 				dad.x -= 200;
 				dad.y -= 100;
 			case 'roof':
-				dad.setPosition(135, 270);
-				boyfriend.setPosition(807, 66);
+				dad.setPosition(-3, 467);
+				boyfriend.setPosition(859, 343);
+				gf.setPosition(232, -1);
 			case 'farm' | 'farm-night'| 'farm-sunset':
 				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
@@ -1667,9 +1668,11 @@ class PlayState extends MusicBeatState
 
 				initAlphabet(daveSongs);
 			case 'roof':
-				bgZoom = 1;
+				bgZoom = 0.8;
 				stageName = 'roof';
-				var roof:BGSprite = new BGSprite('roof', -554, -632, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
+				var roof:BGSprite = new BGSprite('roof', -584, -397, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
+				roof.setGraphicSize(Std.int(roof.width * 2));
+				roof.antialiasing = false;
 				add(roof);
 			case 'bedroom':
 				bgZoom = 1;

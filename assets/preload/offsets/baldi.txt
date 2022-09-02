@@ -1,5 +1,5 @@
 Idle 0 0
-singLEFT 117 0
-singUP 100 97
-singDOWN 42 -25
-singRIGHT 66 0
+singLEFT 237, 0
+singUP 204, 184
+singDOWN 87 -58
+singRIGHT 126 0
