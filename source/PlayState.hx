@@ -2713,7 +2713,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
-			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || FlxG.keys.justPressed.SPACE)
+			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || FlxG.keys.justPressed.SPACE && !doorChanging)
 			{
 				changeDoorState(!doorClosed);
 			}
