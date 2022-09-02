@@ -864,6 +864,9 @@ class PlayState extends MusicBeatState
 				dad.setPosition(-3, 467);
 				boyfriend.setPosition(859, 343);
 				gf.setPosition(232, -1);
+			case 'rapBattle':
+				dad.setPosition(169, 191);
+				boyfriend.setPosition(706, 291);
 			case 'farm' | 'farm-night'| 'farm-sunset':
 				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
@@ -1627,10 +1630,10 @@ class PlayState extends MusicBeatState
 				
 				voidShader(bg);
 			case 'rapBattle':
-				bgZoom = 1.2;
+				bgZoom = 1;
 				stageName = 'rapLand';
 
-				var bg:BGSprite = new BGSprite('rapBG', -100, -100, Paths.image('backgrounds/rapBattle'), null);
+				var bg:BGSprite = new BGSprite('rapBG', -640, -360, Paths.image('backgrounds/rapBattle'), null);
 				sprites.add(bg);
 				add(bg);
 			case 'freeplay':
