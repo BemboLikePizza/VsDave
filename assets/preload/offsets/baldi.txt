@@ -1,4 +1,4 @@
-idle 0 0
+Idle 0 0
 singLEFT 0 0
 singUP 23 36
 singDOWN 22 -72

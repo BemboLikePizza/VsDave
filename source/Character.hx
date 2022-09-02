@@ -473,7 +473,7 @@ class Character extends FlxSprite
 				playAnim('firstDeath');
 			case 'baldi':
 				frames = Paths.getSparrowAtlas('characters/BaldiInRoof', 'shared');
-				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singUP', 'up', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
