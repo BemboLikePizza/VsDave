@@ -36,7 +36,7 @@ class SelectLanguageState extends MusicBeatState
       bg.color = langaugeList[curLanguageSelected].langaugeColor;
       add(bg);
 
-      selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, 0, "Please Select A Language", 45);
+      selectLanguage = new FlxText(0, (FlxG.height / 2) - 300, FlxG.width, "Please Select A Language", 45);
       selectLanguage.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       selectLanguage.antialiasing = true;
       selectLanguage.borderSize = 2;
@@ -47,7 +47,7 @@ class SelectLanguageState extends MusicBeatState
       {
          var currentLangauge = langaugeList[i];
 
-         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, 0, currentLangauge.langaugeName, 25);
+         var langaugeText:FlxText = new FlxText(0, (FlxG.height / 2 - 150) + i * 75, FlxG.width, currentLangauge.langaugeName, 25);
          langaugeText.screenCenter(X);
          langaugeText.setFormat("Comic Sans MS Bold", 25, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
          langaugeText.antialiasing = true;
@@ -55,7 +55,7 @@ class SelectLanguageState extends MusicBeatState
 
          var flag:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('languages/' + currentLangauge.langaugeName));
          flag.x = langaugeText.x + langaugeText.width + flag.width / 2;
-         
+
          var yValues = CoolUtil.getMinAndMax(flag.height, langaugeText.height);
          flag.y = langaugeText.y + ((yValues[0] - yValues[1]) / 2);
          add(flag);

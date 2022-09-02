@@ -129,17 +129,19 @@ class StoryMenuState extends MusicBeatState
 
 		add(yellowBG);
 
-		txtTrackdeco = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 80, 0, LanguageManager.getTextString('story_track').toUpperCase(), 28);
+		txtTrackdeco = new FlxText(0, yellowBG.x + yellowBG.height + 50, FlxG.width, LanguageManager.getTextString('story_track').toUpperCase(), 28);
 		txtTrackdeco.alignment = CENTER;
 		txtTrackdeco.font = rankText.font;
 		txtTrackdeco.color = 0xFFe55777;
 		txtTrackdeco.antialiasing = true;
+		txtTrackdeco.screenCenter(X);
 
-		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, '', 28);
+		txtTracklist = new FlxText(0, yellowBG.x + yellowBG.height + 80, FlxG.width, '', 28);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
 		txtTracklist.antialiasing = true;
+		txtTracklist.screenCenter(X);
 		add(txtTrackdeco);
 		add(txtTracklist);
 		add(scoreText);
@@ -360,16 +362,13 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in stringThing)
 		{
-			txtTracklist.text += "\n" + i;
+			//txtTracklist.text += " - " + i;
+
 		}
 
-		txtTracklist.text = txtTracklist.text += "\n";
+		txtTracklist.text = stringThing.join(' - ');
 
-		txtTracklist.screenCenter(X);
-		txtTracklist.x -= FlxG.width * 0.35;
-
-		txtTrackdeco.screenCenter(X);
-		txtTrackdeco.x -= FlxG.width * 0.35;
+		//txtTracklist.text = txtTracklist.text += " - ";
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek);
