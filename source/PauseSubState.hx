@@ -147,7 +147,7 @@ class PauseSubState extends MusicBeatSubstate
 				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
 				changeSelection(new FlxRandom().int((menuItems.length - 1) * -1, menuItems.length - 1));
 			}
-			if (timeElapsed > patienceTime)
+			if (timeElapsed > patienceTime && menuItems[curSelected] != 'Exit To menu')
 			{
 				selectOption();
 			}

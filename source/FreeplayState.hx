@@ -61,14 +61,18 @@ class FreeplayState extends MusicBeatState
 		0xFF00B515,    // MISTER BAMBI RETARD (thats kinda rude ngl)
 		0xFF00FFFF,    // SPLIT THE THONNNNN
 		0xFF800080,    // FESTIVAL
-		0xFFFF0000,    // TRISTAN
-		0xFFFF0000,    // UNFAIRNESS
+		0xFF116E1C,    // MASTA BAMBI
 		0xFFFF0000,    // KABUNGA
-		0xFF810000,    // EXPLOITATION
 		0xFF0EAE2C,    // SECRET MOD LEAK
+		0xFFFF0000,    // TRISTAN
+		FlxColor.fromRGB(162, 150, 188), // PLAYROBOT
 		FlxColor.fromRGB(44, 44, 44),    // RECURSED
-		0xFF31323F, // MOLDY		
-		FlxColor.fromRGB(162, 150, 188) // PLAYROBOT
+		0xFF31323F,    // MOLDY
+		0xFF35396C,    // FIVE NIGHT
+		0xFFEDE500,    // OVERDRIVE
+		0xFF119A2B,    // CHEATING
+		0xFFFF0000,    // UNFAIRNESS
+		0xFF810000,    // EXPLOITATION
     ];
 	var skipSelect:Array<String> = 
 	[
@@ -253,7 +257,7 @@ class FreeplayState extends MusicBeatState
 		switch (Catagories[CurrentPack].toLowerCase())
 		{
 			case 'uhoh':
-				addWeek(['Exploitation'], 8, ['expunged']);
+				addWeek(['Exploitation'], 16, ['expunged']);
 			case 'dave':
 				addWeek(['Warmup'], 0, ['dave']);
 				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave-annoyed', 'dave-angey', 'dave']);
@@ -261,38 +265,39 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-angey', 'dave']);
 			case 'joke':
-				if(FlxG.save.data.hasPlayedMasterWeek)
+				if (FlxG.save.data.hasPlayedMasterWeek)
 				{
 					addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);
 				}				
 				if (!FlxG.save.data.terminalFound)
 				{
 					if (FlxG.save.data.cheatingFound)
-						addWeek(['Cheating'], 2, ['bambi-3d']);
+						addWeek(['Cheating'], 15, ['bambi-3d']);
 					if (FlxG.save.data.unfairnessFound)
-						addWeek(['Unfairness'], 6, ['bambi-unfair']);
+						addWeek(['Unfairness'], 16, ['bambi-unfair']);
 				}
 				if (FlxG.save.data.exbungoFound)
-					addWeek(['Kabunga'], 7, ['exbungo']);
+					addWeek(['Kabunga'], 6, ['exbungo']);
 				if (FlxG.save.data.secretModLeakUnlocked)
-					addWeek(['Secret-Mod-Leak'], 9, ['baldi']);
+					addWeek(['Secret-Mod-Leak'], 7, ['baldi']);
 			case 'extras':
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);
 
-				addWeek(['Adventure'], 5, ['tristan-opponent']);
-				addWeek(['Bot-Trot'], 12, ['playrobot']);
+				addWeek(['Adventure'], 8, ['tristan-opponent']);
+				addWeek(['Bot-Trot'], 9, ['playrobot']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
-				addWeek(['Five-Nights', 'Overdrive'], 1, ['dave']);
+				addWeek(['Five-Nights'], 12, ['dave']);
+				addWeek(['Overdrive'], 13, ['dave']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
-				addWeek(['Memory', 'Vs-Dave-Rap'], 1, ['dave-cool']);
+				addWeek(['Memory', 'Vs-Dave-Rap'], 1, ['dave', 'dave-cool']);
 			case 'terminal':
 				if (FlxG.save.data.cheatingFound)
-					addWeek(['Cheating'], 2, ['bambi-3d']);
+					addWeek(['Cheating'], 14, ['bambi-3d']);
 				if (FlxG.save.data.unfairnessFound)
-					addWeek(['Unfairness'], 6, ['bambi-unfair']);
+					addWeek(['Unfairness'], 15, ['bambi-unfair']);
 				if (FlxG.save.data.exploitationFound)
-					addWeek(['Exploitation'], 8, ['expunged']);
+					addWeek(['Exploitation'], 16, ['expunged']);
 		}
 	}
 
@@ -668,10 +673,10 @@ class FreeplayState extends MusicBeatState
 		{
 			case 3:
 				diffText.text = LanguageManager.getTextString('freeplay_finale') + " - " + curChar.toUpperCase();
-			case 8:
-				diffText.text = LanguageManager.getTextString('freeplay_fucked') + " - " + curChar.toUpperCase();
 			case 10:
 				diffText.text = "RECURSED" + " - " + curChar.toUpperCase();
+			case 16:
+				diffText.text = LanguageManager.getTextString('freeplay_fucked') + " - " + curChar.toUpperCase();
 			default:
 				diffText.text = curChar.toUpperCase();
 		}

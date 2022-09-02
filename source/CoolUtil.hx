@@ -29,7 +29,7 @@ class CoolUtil
 		{
 			case 3:
 				return 'FINALE';
-			case 8:
+			case 16:
 				return exploitationDifficulties[new FlxRandom().int(0, exploitationDifficulties.length - 1)];
 			default:
 				return difficultyArray[PlayState.storyDifficulty];

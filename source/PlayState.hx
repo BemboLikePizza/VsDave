@@ -137,6 +137,7 @@ class PlayState extends MusicBeatState
    public var gfPosition:FlxPoint;
 	
 	public var curbg:BGSprite;
+	public var pre3dSkin:String;
 	#if SHADERS_ENABLED
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
@@ -391,7 +392,7 @@ class PlayState extends MusicBeatState
 	
 	override public function create()
 	{
-		instance = this;	
+		instance = this;
 
 		switch (SONG.song.toLowerCase())
 		{
@@ -617,27 +618,20 @@ class PlayState extends MusicBeatState
 				}
 		}
 		var gfVersion:String = 'gf';
-		var charoffsetx:Float = 0;
-		var charoffsety:Float = 0;
 		
 		var noGFSongs = ['memory', 'five-nights', 'secret-mod-leak', 'bot-trot', 'vs-dave-rap', 'escape-from-california', 'overdrive'];
-
 		
 		if(SONG.gf != null)
 		{
 			gfVersion = SONG.gf;
 		}
-		
 		if (formoverride == "bf-pixel")
 		{
 			gfVersion = 'gf-pixel';
-			charoffsetx += 300;
-			charoffsety += 280;
 		}
 		if (SONG.player1 == 'tb-funny-man')
 		{
 			gfVersion = 'stereo';
-			charoffsety += 500;
 		}
 		
 		if (noGFSongs.contains(SONG.song.toLowerCase()) || !['none', 'bf', 'bf-pixel'].contains(formoverride))
@@ -656,9 +650,9 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxGroup();
 		bfGroup = new FlxGroup();
 
-		switch (SONG.song.toLowerCase())
+		switch (stageCheck)
 		{
-			case 'five-nights':
+			case 'office':
 				add(gfGroup);
 				add(bfGroup);
 
@@ -690,7 +684,7 @@ class PlayState extends MusicBeatState
 				add(bfGroup);
 		}
 
-		gf = new Character(400 + charoffsetx, 130 + charoffsety, gfVersion);
+		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
 		if (gfVersion == 'gf-none')
@@ -703,8 +697,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'insanity':
 				dadmirror = new Character(100, 450, "dave-angey");
-			default:
-				dadmirror = new Character(-999, -999, "bf"); //bfs already loaded
+				dadmirror.visible = false;
 		}
 		switch (SONG.song.toLowerCase())
 		{
@@ -820,7 +813,6 @@ class PlayState extends MusicBeatState
 					tweenCamIn();
 				}
 		}
-		dadmirror.visible = false;
 
 		if (formoverride == "none" || formoverride == "bf" || formoverride == SONG.player1)
 		{
@@ -852,7 +844,10 @@ class PlayState extends MusicBeatState
 
 		gfGroup.add(gf);
 		dadGroup.add(dad);
-		dadGroup.add(dadmirror);
+		if (dadmirror != null)
+		{
+			dadGroup.add(dadmirror);
+		}
 		bfGroup.add(boyfriend);
 
 		switch (stageCheck)
@@ -865,9 +860,6 @@ class PlayState extends MusicBeatState
 			case 'interdimension-void':
 				dad.x -= 200;
 				dad.y -= 100;
-			case 'green-void':
-				dad.x -= 200;
-				dad.y -= 400;
 			case 'roof':
 				dad.setPosition(135, 270);
 				boyfriend.setPosition(807, 66);
@@ -875,13 +867,16 @@ class PlayState extends MusicBeatState
 				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
 				dad.setPosition(50, 270);
-				dadmirror.setPosition(dad.x - 150, dad.y);
+				if (dadmirror != null)
+				{
+					dadmirror.setPosition(dad.x - 150, dad.y);
+				}
 				boyfriend.setPosition(843, 270);
-				gf.setPosition(230 + charoffsetx, -60 + charoffsety);
+				gf.setPosition(230, -60);
 			case 'backyard':
 				dad.setPosition(50, 300);
 				boyfriend.setPosition(790, 300);
-				gf.setPosition(500 + charoffsetx, -100 + charoffsety);
+				gf.setPosition(500, -100);
 			case 'festival':
 				gf.x -= 200;
 				boyfriend.x -= 200;
@@ -891,7 +886,7 @@ class PlayState extends MusicBeatState
 			case 'master':
 				dad.setPosition(52, -166);
 				boyfriend.setPosition(1152, 311);
-				gf.setPosition(807 + charoffsetx, -22 + charoffsety);
+				gf.setPosition(807, -22);
 			case 'desert':
 				dad.y -= 175;
 				dad.x -= 350;
@@ -906,12 +901,12 @@ class PlayState extends MusicBeatState
 			case 'overdrive':
 				dad.setPosition(150, 370);
 				boyfriend.setPosition(600, 370);
-				gf.setPosition(292 + charoffsetx, 29 + charoffsety);
+				gf.setPosition(292, 29);
 		}
 
-		switch (SONG.song.toLowerCase())
+		switch (stageCheck)
 		{
-			case 'bot-trot':
+			case 'bedroom':
 				var tv:BGSprite = new BGSprite('tv', -419, 448, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
 				tv.setGraphicSize(Std.int(tv.width * 1.5));
 				tv.updateHitbox();
@@ -972,8 +967,12 @@ class PlayState extends MusicBeatState
 
 		//char repositioning
 		repositionChar(dad);
-		repositionChar(dadmirror);
+		if (dadmirror != null)
+		{
+			repositionChar(dadmirror);
+		}
 		repositionChar(boyfriend);
+		repositionChar(gf);
 
 		var font:String = Paths.font("comic.ttf");
 	
@@ -1204,7 +1203,6 @@ class PlayState extends MusicBeatState
 		#if SHADERS_ENABLED
 		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo)
 		{
-			
 			lazychartshader.waveAmplitude = 0.03;
 			lazychartshader.waveFrequency = 5;
 			lazychartshader.waveSpeed = 1;
@@ -3287,7 +3285,10 @@ class PlayState extends MusicBeatState
 								}
 							}
 							dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
-							dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
+							if (dadmirror != null)
+							{
+								dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
+							}
 					}
 					cameraMoveOnNote(daNote.originalType, 'dad');
 					
@@ -3501,6 +3502,9 @@ class PlayState extends MusicBeatState
 				case 'nofriend':
 					camFollow.x = dad.getMidpoint().x + 50;
 					camFollow.y = dad.getMidpoint().y - 50;
+				case 'bambi-3d':
+					camFollow.x = dad.getMidpoint().x;
+					camFollow.y -= 50;
 			}
 
 			if (SONG.song.toLowerCase() == 'warmup')
@@ -3520,6 +3524,9 @@ class PlayState extends MusicBeatState
 
 			switch(boyfriend.curCharacter)
 			{
+				case 'bf-pixel':
+					camFollow.x = boyfriend.getMidpoint().x - 200;
+					camFollow.y = boyfriend.getMidpoint().y - 225;
 				case 'dave-angey':
 					camFollow.y = boyfriend.getMidpoint().y;
 				case 'bambi-3d':
@@ -3606,6 +3613,7 @@ class PlayState extends MusicBeatState
 			case 'supernovae' | 'glitch' | 'master':
 				Application.current.window.title = Main.applicationName;
 			case 'exploitation':
+				FlxG.save.data.exploitationState = '';
 				Application.current.window.title = Main.applicationName;
 				Main.toggleFuckedFPS(false);
 			case 'five-nights':
@@ -4664,7 +4672,8 @@ class PlayState extends MusicBeatState
 		var boyfriendPos = boyfriend.getPosition();
 		preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
 		bfGroup.remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.recursedSkin);
+		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.skins.get('recursed'));
+		
 		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
 		{
 			iconP1.changeIcon(boyfriend.curCharacter);
@@ -5056,23 +5065,26 @@ class PlayState extends MusicBeatState
 					case 908:
 						FlxTween.tween(black, {alpha: 1}, (Conductor.stepCrochet / 1000) * 4);
 					case 912:
-						spotLightPart = true;
-						defaultCamZoom -= 0.1;
-						FlxG.camera.flash(FlxColor.WHITE, 0.5);
-
-						spotLight = new FlxSprite().loadGraphic(Paths.image('spotLight'));
-						spotLight.blend = BlendMode.ADD;
-						spotLight.setGraphicSize(Std.int(spotLight.width * (dad.frameWidth / spotLight.width) * spotLightScaler));
-						spotLight.updateHitbox();
-						spotLight.alpha = 0;
-						add(spotLight);
-
-						spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y + dad.frameHeight / 2 - (spotLight.height));
-
-						updateSpotlight(false);
-						
-						FlxTween.tween(black, {alpha: 0.6}, 1);
-						FlxTween.tween(spotLight, {alpha: 1}, 1);
+						if (!spotLightPart)
+						{
+							spotLightPart = true;
+							defaultCamZoom -= 0.1;
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+	
+							spotLight = new FlxSprite().loadGraphic(Paths.image('spotLight'));
+							spotLight.blend = BlendMode.ADD;
+							spotLight.setGraphicSize(Std.int(spotLight.width * (dad.frameWidth / spotLight.width) * spotLightScaler));
+							spotLight.updateHitbox();
+							spotLight.alpha = 0;
+							add(spotLight);
+	
+							spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y + dad.frameHeight / 2 - (spotLight.height));
+	
+							updateSpotlight(false);
+							
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							FlxTween.tween(spotLight, {alpha: 1}, 1);
+						}
 					case 1168:
 						spotLightPart = false;
 						FlxTween.tween(spotLight, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
@@ -5271,7 +5283,7 @@ class PlayState extends MusicBeatState
 
 						canFloat = false;
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						switchDad('dave-festival', dad.getPosition());
+						switchDad('dave-festival', dad.getPosition(), false);
 
 						regenerateStaticArrows(0);
 						
@@ -5283,7 +5295,8 @@ class PlayState extends MusicBeatState
 							FlxTween.color(boyfriend, 0.6, boyfriend.color, color);
 						}
 						FlxTween.color(gf, 0.6, gf.color, color);
-						FlxTween.linearMotion(dad, dad.x, dad.y, 350, 260, 0.6, true);
+
+						FlxTween.linearMotion(dad, dad.x, dad.y, 100 + dad.globalOffset[0], 450 + dad.globalOffset[1], 0.6, true);
 						
 						boyfriend.canDance = false;
 						gf.canDance = false;
@@ -5440,17 +5453,31 @@ class PlayState extends MusicBeatState
 						shakeCam = true;
 						camZooming = true;
 
-						switchBF('bf-3d', boyfriend.getPosition());
-						switchGF('gf-3d', gf.getPosition());
+						pre3dSkin = boyfriend.curCharacter;
+						for (char in [boyfriend, gf])
+						{
+							if (char.skins.exists('3d'))
+							{
+								if (char == boyfriend)
+								{
+									switchBF(char.skins.get('3d'), char.getPosition());
+								}
+								else if (char == gf)
+								{
+									switchGF(char.skins.get('3d'), char.getPosition());
+								}
+							}
+						}
 					case 1152 | 1408:
 						defaultCamZoom = 0.9;
 						shakeCam = false;
 						camZooming = false;
 
-						var bfSkin = formoverride == "none" || formoverride == "bf" ? SONG.player1 : formoverride;
-						var gfSkin = formoverride == 'none' || formoverride == 'bf' ? 'gf' : 'gf-none';
-						switchBF(bfSkin, boyfriend.getPosition());
-						switchGF(gfSkin, gf.getPosition());
+						if (boyfriend.curCharacter != pre3dSkin)
+						{
+							switchBF(pre3dSkin, boyfriend.getPosition());
+							switchGF(boyfriend.skins.get('gfSkin'), gf.getPosition());
+						}
 				}
 			case 'glitch':
 				switch (curStep)
@@ -5965,12 +5992,18 @@ class PlayState extends MusicBeatState
 			{
 				case 'warmup':
 					dad.dance();
-					dadmirror.dance();
+					if (dadmirror != null)
+					{
+						dadmirror.dance();
+					}
 				default:
 					if (dad.holdTimer <= 0 && curBeat % 2 == 0)
 					{
 						dad.dance();
-						dadmirror.dance();
+						if (dadmirror != null)
+						{
+							dadmirror.dance();
+						}
 
 						dadNoteCamOffset[0] = 0;
 						dadNoteCamOffset[1] = 0;
@@ -6109,7 +6142,7 @@ class PlayState extends MusicBeatState
 						canFloat = false;
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 
-						switchDad('dave', dad.getPosition());
+						switchDad('dave', dad.getPosition(), false);
 
 						FlxTween.color(dad, 0.6, dad.color, nightColor);
 						if (formoverride != 'tristan-golden-glowing')
@@ -6117,8 +6150,14 @@ class PlayState extends MusicBeatState
 							FlxTween.color(boyfriend, 0.6, boyfriend.color, nightColor);
 						}
 						FlxTween.color(gf, 0.6, gf.color, nightColor);
-						FlxTween.linearMotion(dad, dad.x, dad.y, 50, boyfriend.y, 0.6, true);
 
+						dad.setPosition(50, 270);
+						boyfriend.setPosition(843, 270);
+						gf.setPosition(230, -60);
+						for (char in [dad, boyfriend, gf])
+						{
+							repositionChar(char);
+						}
 						regenerateStaticArrows(0);
 				}
 			case 'memory':
@@ -6382,52 +6421,10 @@ class PlayState extends MusicBeatState
 		}
 	}
 	public function repositionChar(char:Character)
-		{
-			switch (char.curCharacter)
-			{
-				case 'dave' | 'dave-annoyed' | 'dave-cool' | 'dave-fnaf':
-					char.y -= 150;
-				case 'dave-festival':
-					char.y -= 134;
-				case 'dave-awesome':
-					char.y += 40;
-				case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
-					char.y -= 400;
-				case 'dave-splitathon':
-					char.y -= 175;
-					char.x -= 50;
-				case 'bambi-splitathon':
-					char.y += 100;
-				case 'bambi-new':
-					char.y += 80;
-				case 'bambi' | 'bambi-joke':
-					char.y += 50;
-				case 'tristan' | 'tristan-golden' | 'tristan-golden-glowing':
-					char.x += 40;
-					char.y -= 5;
-					camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
-				case 'bambi-3d':
-					char.x += 200;
-					char.y += 70;
-					camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 150);
-				case 'bambi-unfair':
-					char.y -= 260;
-					camFollow.setPosition(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y + 50);
-				case 'exbungo':
-					char.y -= 300;
-				case 'recurser':
-					char.x = char.isPlayer ? char.x + 500 : char.x - 500;
-				case 'moldy':
-					char.x -= 30;
-					char.y -= 125;
-				case 'playrobot':
-					char.y -= 100;
-				case 'playrobot-shadow':
-					char.x -= 200;
-				case 'nofriend':
-					char.y -= 75;
-			}
-		}
+	{
+		char.x += char.globalOffset[0];
+		char.y += char.globalOffset[1];
+	}
 	function updateSpotlight(bfSinging:Bool)
 	{
 		var curSinger = bfSinging ? boyfriend : dad;
@@ -6444,7 +6441,7 @@ class PlayState extends MusicBeatState
 				case 'bf-pixel':
 					positionOffset.y = -225;
 			}
-			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x - curSinger.globaloffset[0], curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y - curSinger.globaloffset[1]);
+			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x - curSinger.globalOffset[0], curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y - curSinger.globalOffset[1]);
 			
 			FlxTween.tween(spotLight, {x: targetPosition.x, y: targetPosition.y}, 0.66, {ease: FlxEase.expoOut});
 			lastSinger = curSinger;
@@ -6538,8 +6535,13 @@ class PlayState extends MusicBeatState
 		}
 		switchSide = !switchSide;
 	}
-	function switchDad(newChar:String, position:FlxPoint)
+	function switchDad(newChar:String, position:FlxPoint, reposition:Bool = true)
 	{
+		if (reposition)
+		{
+			position.x -= dad.globalOffset[0];
+			position.y -= dad.globalOffset[1];
+		}
 		dadGroup.remove(dad);
 		dad = new Character(position.x, position.y, newChar, false);
 		dadGroup.add(dad);
@@ -6549,9 +6551,19 @@ class PlayState extends MusicBeatState
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		dad.color = getBackgroundColor(curStage);
+
+		if (reposition)
+		{
+			repositionChar(dad);
+		}
 	}
-	function switchBF(newChar:String, position:FlxPoint)
+	function switchBF(newChar:String, position:FlxPoint, reposition:Bool = true)
 	{
+		if (reposition)
+		{
+			position.x -= boyfriend.globalOffset[0];
+			position.y -= boyfriend.globalOffset[1];
+		}
 		bfGroup.remove(boyfriend);
 		boyfriend = new Boyfriend(position.x, position.y, newChar);
 		bfGroup.add(boyfriend);
@@ -6562,16 +6574,27 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 		boyfriend.color = getBackgroundColor(curStage);
 
-		repositionChar(boyfriend);
+		if (reposition)
+		{
+			repositionChar(boyfriend);
+		}
 	}
-	function switchGF(newChar:String, position:FlxPoint)
+	function switchGF(newChar:String, position:FlxPoint, reposition:Bool = true)
 	{
+		if (reposition)
+		{
+			position.x -= gf.globalOffset[0];
+			position.y -= gf.globalOffset[1];
+		}
 		gfGroup.remove(gf);
 		gf = new Character(position.x, position.y, newChar);
 		gfGroup.add(gf);
 		gf.color = getBackgroundColor(curStage);
 
-		repositionChar(gf);
+		if (reposition)
+		{
+			repositionChar(gf);
+		}
 	}
 
 	function makeInvisibleNotes(invisible:Bool)
