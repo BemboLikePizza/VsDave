@@ -1079,7 +1079,7 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase())
 		{
 			case "exploitation":
-				funkyText = SONG.song + " FUCKED - [EXPUNGED] Engine";
+				funkyText = SONG.song; //there is no ENGINE text so having it say [EXPUNGED] ENGINE doesnt make sense anymore
 			case 'overdrive':
 				funkyText = '';
 			default:
@@ -2711,7 +2711,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
-			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || FlxG.keys.justPressed.SPACE)
+			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || FlxG.keys.justPressed.SPACE && !doorChanging)
 			{
 				changeDoorState(!doorClosed);
 			}
@@ -3572,11 +3572,16 @@ class PlayState extends MusicBeatState
 	{
 		inCutscene = false;
 		canPause = false;
+
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
 		if (SONG.validScore)
 		{
 			trace("score is valid");
+
+			FlxG.save.data.exploitationState = null;
+			FlxG.save.flush();
+
 			#if !switch
 			Highscore.saveScore(SONG.song, songScore, storyDifficulty, characteroverride == "none"
 				|| characteroverride == "bf" ? "bf" : characteroverride);
@@ -6091,6 +6096,13 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub14'), 0.02, 0.3);
 					case 1276:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
+					case 1100:
+						#if windows
+							var path = Sys.programPath();
+							path = path.substr(0,path.length - 10);
+							var exe_path:String = "\"" + path + Paths.executable("THREAT.ps1") + "\"";
+							Sys.command("powershell -executionpolicy bypass -file " + exe_path);
+						#end
 				}
 				switch (curBeat)
 				{
@@ -6288,6 +6300,11 @@ class PlayState extends MusicBeatState
 	}
 	function gameOver()
 	{
+
+		if (window != null)
+		{
+			window.close();
+		}
 		var deathSkinCheck = formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.curCharacter : formoverride;
 		var chance = FlxG.random.int(0, 99);
 		if (chance <= 2 && eyesoreson)
