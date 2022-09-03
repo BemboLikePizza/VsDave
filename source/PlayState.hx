@@ -476,6 +476,10 @@ class PlayState extends MusicBeatState
 
 		localFunny = globalFunny;
 		globalFunny = CharacterFunnyEffect.None;
+		if (localFunny != CharacterFunnyEffect.None)
+		{
+			SONG.validScore = false;
+		}
 
 		// Updating Discord Rich Presence.
 		#if desktop
@@ -2917,7 +2921,9 @@ class PlayState extends MusicBeatState
 				case 'supernovae':
 					FlxG.switchState(new TerminalCheatingState([
 						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
-						new TerminalText(200, [['run AntiCheat.dll', 1]])
+						new TerminalText(200, [['run AntiCheat.dll', 0.5]]),
+						new TerminalText(200, [['ERROR: File currently being used by another process. Retrying in 3...', 3]]),
+						new TerminalText(200, [['File no longer in use, running AntiCheat.dll..', 2]]),
 					], function()
 					{
 						shakeCam = false;
@@ -2934,7 +2940,7 @@ class PlayState extends MusicBeatState
 				case 'cheating':
 					FlxG.switchState(new TerminalCheatingState([
 						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
-						new TerminalText(200, [['run AntiCheat.dll', 1]])
+						new TerminalText(200, [['run AntiCheat.dll', 3]]),
 					], function()
 					{
 						shakeCam = false;
