@@ -42,6 +42,12 @@ freeplay_fucked==YOU'RE FUCKED
 
 freeplay_skipChar==Hold CTRL To Skip Character Selection
 
+// Pause State //
+pause_resume==Resume
+pause_restart==Restart Song
+pause_exit==Exit To Menu
+pause_nomiss==Developer No Miss
+
 // Options State //
 option_change_keybinds==Change Keybinds
 
@@ -300,7 +306,7 @@ credit_MoldyGH==Director, Creator, Programmer, Musician, Main Developer
 credit_MissingTextureMan101==Secondary Developer and Programmer
 credit_rapparep lol==Main Artist
 credit_TheBuilderXD==Secondary Artist
-credit_Erizur==New Main Menu Programmer, Week Icon Artist & Spanish Translator
+credit_Erizur==New Main Menu Programmer, Artist & Spanish Translator
 credit_T5mpler==Programmer & Assistor
 credit_Zmac==3D Backgrounds, Intro text help
 credit_pointy==Artist & Charter

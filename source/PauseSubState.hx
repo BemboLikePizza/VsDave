@@ -21,9 +21,11 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	#if debug
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Exit to menu'];
+	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_nomiss'), LanguageManager.getTextString('pause_exit')];
+	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Exit to menu'];
 	#else
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_exit')];
+	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
 	#end
 	var curSelected:Int = 0;
 
@@ -147,7 +149,7 @@ class PauseSubState extends MusicBeatSubstate
 				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
 				changeSelection(new FlxRandom().int((menuItems.length - 1) * -1, menuItems.length - 1));
 			}
-			if (timeElapsed > patienceTime && menuItems[curSelected] != 'Exit To menu')
+			if (timeElapsed > patienceTime && optionStuff[curSelected] != 'Exit to menu')
 			{
 				selectOption();
 			}
@@ -160,15 +162,15 @@ class PauseSubState extends MusicBeatSubstate
 	}
 	function selectOption()
 	{
-		var daSelected:String = menuItems[curSelected];
+		var daSelected:String = optionStuff[curSelected];
 
 		switch (daSelected)
 		{
 			case "Resume":
 				close();
 			case "Restart Song":
-				PlayState.shakeCam = false;
-				PlayState.camZooming = false;
+				PlayState.instance.shakeCam = false;
+				PlayState.instance.camZooming = false;
 				if (PlayState.SONG.song.toLowerCase() == "exploitation")
 				{
 					if (PlayState.window != null)
@@ -195,8 +197,8 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.window.close();
 					}
 				}
-				PlayState.shakeCam = false;
-				PlayState.camZooming = false;
+				PlayState.instance.shakeCam = false;
+				PlayState.instance.camZooming = false;
 				FlxG.mouse.visible = false;
 				FlxG.switchState(new MainMenuState());
 		}

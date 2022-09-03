@@ -536,7 +536,7 @@ class CharacterSelectState extends MusicBeatState
 		{
 			case 'dave':
 				char.y += 50;
-			cas 'bambi-new':
+			case 'bambi-new':
 				char.x -= 80;
 			case 'dave-angey':
 				char.y += 150;
