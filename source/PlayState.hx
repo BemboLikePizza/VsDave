@@ -4582,6 +4582,7 @@ class PlayState extends MusicBeatState
 					var hitAnimation:Bool = boyfriend.animation.getByName("dodge") != null;
 					var heyAnimation:Bool = boyfriend.animation.getByName("hey") != null;
 					boyfriend.playAnim(hitAnimation ? 'dodge' : (heyAnimation ? 'hey' : 'singUPmiss'), true);
+					gf.playAnim('cheer', true);
 					if (note.health != 2)
 					{
 						dad.playAnim('singSmash', true);
@@ -5096,6 +5097,7 @@ class PlayState extends MusicBeatState
 							spotLight.setGraphicSize(Std.int(spotLight.width * (dad.frameWidth / spotLight.width) * spotLightScaler));
 							spotLight.updateHitbox();
 							spotLight.alpha = 0;
+							spotLight.origin.set(spotLight.origin.x,spotLight.origin.y - (spotLight.frameHeight / 2));
 							add(spotLight);
 	
 							spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y + dad.frameHeight / 2 - (spotLight.height));
@@ -6008,6 +6010,24 @@ class PlayState extends MusicBeatState
 	{
 		super.beatHit();
 
+		if (spotLightPart && spotLight.exists && curBeat % 3 == 0)
+		{
+			if (spotLight != null)
+			{
+				FlxTween.cancelTweensOf(spotLight);
+				if (spotLight.health != 3)
+				{
+					FlxTween.tween(spotLight, {angle: 2}, (Conductor.crochet / 1000) * 3, {ease: FlxEase.expoInOut});
+					spotLight.health = 3;
+				}
+				else
+				{
+					FlxTween.tween(spotLight, {angle: -2}, (Conductor.crochet / 1000) * 3, {ease: FlxEase.expoInOut});
+					spotLight.health = 1;
+				}
+			}
+		}
+
 		var currentSection = SONG.notes[Std.int(curStep / 16)];
 		if (!UsingNewCam)
 		{
@@ -6494,19 +6514,27 @@ class PlayState extends MusicBeatState
 
 		if (lastSinger != curSinger)
 		{
-			var positionOffset:FlxPoint = new FlxPoint();
+			if (bfSinging)
+			{
+				gf.playAnim("singRIGHT", true);
+			}
+			else
+			{
+				gf.playAnim("singLEFT", true);
+			}
+			var positionOffset:FlxPoint = new FlxPoint(0,-150);
 
 			switch (curSinger.curCharacter)
 			{
 				case 'bambi-new':
 					positionOffset.x = -25;
-					positionOffset.y = -50;
+					positionOffset.y += -70;
 				case 'bf-pixel':
-					positionOffset.y = -225;
+					positionOffset.y += -225;
 			}
 			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x - curSinger.globalOffset[0], curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y - curSinger.globalOffset[1]);
 			
-			FlxTween.tween(spotLight, {x: targetPosition.x, y: targetPosition.y}, 0.66, {ease: FlxEase.expoOut});
+			FlxTween.tween(spotLight, {x: targetPosition.x, y: targetPosition.y}, 0.66, {ease: FlxEase.circOut});
 			lastSinger = curSinger;
 		}
 	}
