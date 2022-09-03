@@ -2920,10 +2920,10 @@ class PlayState extends MusicBeatState
 			{
 				case 'supernovae':
 					FlxG.switchState(new TerminalCheatingState([
-						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
-						new TerminalText(200, [['run AntiCheat.dll', 0.5]]),
-						new TerminalText(200, [['ERROR: File currently being used by another process. Retrying in 3...', 3]]),
-						new TerminalText(200, [['File no longer in use, running AntiCheat.dll..', 2]]),
+						new TerminalText(0, [[LanguageManager.getTextString('terminal_trans_cheating1'), 1], [LanguageManager.getTextString('terminal_trans_cheating2'), 1],]),
+						new TerminalText(200, [[LanguageManager.getTextString('terminal_trans_cheating3'), 0.5]]),
+						new TerminalText(200, [[LanguageManager.getTextString('terminal_trans_cheating4'), 3]]),
+						new TerminalText(200, [[LanguageManager.getTextString('terminal_trans_cheating5'), 2]]),
 					], function()
 					{
 						shakeCam = false;
@@ -2939,8 +2939,8 @@ class PlayState extends MusicBeatState
 					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
 				case 'cheating':
 					FlxG.switchState(new TerminalCheatingState([
-						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
-						new TerminalText(200, [['run AntiCheat.dll', 3]]),
+						new TerminalText(0, [[LanguageManager.getTextString('terminal_trans_cheating1'), 1], [LanguageManager.getTextString('terminal_trans_cheating2'), 1],]),
+						new TerminalText(200, [[LanguageManager.getTextString('terminal_trans_cheating3'), 3]]),
 					], function()
 					{
 						shakeCam = false;
@@ -2956,10 +2956,10 @@ class PlayState extends MusicBeatState
 				case 'unfairness':
 					FlxG.switchState(new TerminalCheatingState([
 						new TerminalText(0, [
-							['bin/plugins/AntiCheat.dll: ', 1],
-							['No argument for function "AntiCheatThree"', 1],
+							[LanguageManager.getTextString('terminal_trans_unfairness1'), 1],
+							[LanguageManager.getTextString('terminal_trans_unfairness2'), 1],
 						]),
-						new TerminalText(100, [['Redirecting to terminal...', 1]])
+						new TerminalText(100, [[LanguageManager.getTextString('terminal_trans_unfairness3'), 1]])
 					], function()
 					{
 						shakeCam = false;
@@ -6170,8 +6170,6 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub13'), 0.02, 0.3);
 					case 1270:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub14'), 0.02, 0.3);
-					case 1276:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
 					case 1100:
 						#if windows
 							var path = Sys.programPath();

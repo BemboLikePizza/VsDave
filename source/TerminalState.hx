@@ -82,7 +82,7 @@ class TerminalState extends FlxState
 		displayText.antialiasing = false;
         FlxG.sound.music.stop();
 
-        CommandList.push(new TerminalCommand("help", "Displays this menu.", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("help", LanguageManager.getTextString('terminal_help'), function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text
             var helpText:String = "";
@@ -93,12 +93,12 @@ class TerminalState extends FlxState
             UpdateText("\n" + helpText);
         }));
 
-        CommandList.push(new TerminalCommand("characters", "Shows the list of characters.", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("characters", LanguageManager.getTextString('terminal_characters'), function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text
             UpdateText("\ndave.dat\nbambi.dat\ntristan.dat\nexpunged.dat\nexbungo.dat\nrecurser.dat");
         }));
-        CommandList.push(new TerminalCommand("admin", "Shows the admin list, use grant to grant rights.", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("admin", LanguageManager.getTextString('terminal_admin'), function(arguments:Array<String>)
         {
             if (arguments.length == 0)
             {
