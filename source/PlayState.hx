@@ -187,7 +187,7 @@ class PlayState extends MusicBeatState
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var dadStrums:FlxTypedGroup<StrumNote>;
 
-	public static var camZooming:Bool = false;
+	public var camZooming:Bool = false; //why was this static.
 	private var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
@@ -209,7 +209,7 @@ class PlayState extends MusicBeatState
 	private var healthBar:FlxBar;
 
 	private var generatedMusic:Bool = false;
-	public static var shakeCam:Bool = false;
+	public var shakeCam:Bool = false; //WHY THE HELL WAS THIS STATIC
 	private var startingSong:Bool = false;
 
 	public var TwentySixKey:Bool = false;
@@ -393,6 +393,8 @@ class PlayState extends MusicBeatState
 	override public function create()
 	{
 		instance = this;
+
+		resetShader();
 
 		switch (SONG.song.toLowerCase())
 		{
@@ -6546,8 +6548,8 @@ class PlayState extends MusicBeatState
 	}
 	public static function resetShader()
 	{
-		shakeCam = false;
-		camZooming = false;
+		PlayState.instance.shakeCam = false;
+		PlayState.instance.camZooming = false;
 		#if SHADERS_ENABLED
 		screenshader.shader.uampmul.value[0] = 0;
 		screenshader.Enabled = false;
