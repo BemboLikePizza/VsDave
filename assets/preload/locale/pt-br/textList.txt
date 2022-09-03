@@ -39,6 +39,12 @@ freeplay_lmao==LMAO
 
 freeplay_skipchar==Segure o CTRL para pular a Seleção de Personagem
 
+// Pause State //
+pause_resume==Resume
+pause_restart==Restart Song
+pause_exit==Exit to menu
+pause_nomiss==Developer No Miss
+
 // Credits State //
 credits_dev==Desenvolvedores
 credits_translator==Tradutores

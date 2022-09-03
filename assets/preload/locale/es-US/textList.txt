@@ -38,7 +38,13 @@ freeplay_finale==FINAL
 freeplay_fucked==ESTAS EN PELIGRO
 freeplay_lmao==LMAO
 
-freeplay_skipchar==Mantén CTRL para saltarse la Seleción de Personaje
+freeplay_skipChar==Mantén CTRL para saltarse la Seleción de Personaje
+
+// Pause State //
+pause_resume==Continuar
+pause_restart==Reiniciar Cancion
+pause_exit==Salir al menu
+pause_nomiss==Deshabilitar Fallos
 
 // Credits Words //
 supernovae_credit==¡La canción original fue creada por ArchWk!
