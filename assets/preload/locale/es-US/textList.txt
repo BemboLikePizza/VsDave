@@ -28,6 +28,7 @@ desc_discord==¡Unete al servidor oficial de Vs. Dave and Bambi!
 freeplay_dave==Dave
 freeplay_joke==Broma
 freeplay_extra==Extra
+freeplay_terminal==Consola
 
 freeplay_personalBest==RECORD PERSONAL:
 freeplay_hard==DIFICIL
@@ -38,13 +39,6 @@ freeplay_fucked==ESTAS EN PELIGRO
 freeplay_lmao==LMAO
 
 freeplay_skipchar==Mantén CTRL para saltarse la Seleción de Personaje
-
-// Credits State //
-credits_dev==Desarolladores
-credits_translator==Traductores
-credits_contributor==Colaboradores
-credits_betaTester==Beta Testers
-credits_specialThanks==Agradecimientos Especiales
 
 // Credits Words //
 supernovae_credit==¡La canción original fue creada por ArchWk!
@@ -59,8 +53,8 @@ kabunga_credit==OH DIOS MIO ACABO DE DESINFLARME
 // Options State // (pt-br, ru-RU, option_noteCamera_on, option_noteCamera_off)
 option_change_keybinds==Cambiar Teclas
 
-option_ghostTapping_on==Presionar sin notas
-option_ghostTapping_off==No presionar sin notas
+option_ghostTapping_on==Ghost Tapping
+option_ghostTapping_off==Sin Ghost Tapping
 
 option_downscroll==Notas para abajo
 option_upscroll==Notas para arriba
@@ -85,7 +79,10 @@ option_freeplay_cutscenes_on==Escenas en Juego Libre Activado
 option_noteCamera_on==Camara Dinamica
 option_noteCamera_off==Camara Predefinida
 
-cur_language==Idioma actual
+option_change_langauge==Cambiar Idioma
+option_disable_fps==No mostrar FPS y Memoria
+option_enable_fps==Mostrar FPS y Memoria
+
 en-US==Inglés
 es-US==Español
 pt-br==Brasilero-Portugués
@@ -270,3 +267,91 @@ memory_sub8==antes de que las cosas lleguen a su fin,
 memory_sub9==Quieres terminar este rap conmigo?
 memory_sub10==Yeah!
 memory_sub11==Okay! Hagamoslo!
+
+//Vs Dave Rap Two Subtitles//
+daveraptwo_sub1==Dave es el nombre
+daveraptwo_sub2==Juega mi juego
+daveraptwo_sub3==Yo soy dave y tengo un mod
+daveraptwo_sub4==Yo soy dave y soy dios
+daveraptwo_sub5==Me pica la salchicha (yum)
+daveraptwo_sub6==3.0
+daveraptwo_sub7==Vs Dave, soy gay
+daveraptwo_sub8==A Mr. Bambi le gusta romper el telefono (ha)
+daveraptwo_sub9==Dive va a gamestop para comprar juego de Xbox
+daveraptwo_sub10==Juega el mod Vs Dave and Bambi 3.0
+daveraptwo_sub11==Disponible en GameBanana!
+daveraptwo_sub12==Yum.
+
+// Credits State //
+credits_dev==Desarolladores
+credits_translator==Traductores
+credits_contributor==Colaboradores
+credits_betaTester==Beta Testers
+credits_specialThanks==Agradecimientos Especiales
+
+//Developers 
+credit_MoldyGH==Director, Creador, Programador, Compositor, Desarollador Principal
+credit_MissingTextureMan101==Segundo Desarollador y Programador
+credit_rapparep lol==Artista Principal
+credit_TheBuilderXD==Artista Secundario
+credit_Erizur==Programador del nuevo menú, Artista y Traductor al Español
+credit_T5mpler==Programador y Asistente
+credit_Zmac==Fondos en 3D, Ayuda con el texto de inicio
+credit_pointy==Artista y Charter
+credit_Billy Bobbo==Apoyo moral e ideas
+
+//Translators
+credit_dani==Traductor al Español
+credit_Aizakku==Traductor al Portugués-Brasilero
+credit_Soulegal==Traductor al Portugués-Brasilero
+
+//contributors
+credit_Steph45==Codigo adicional
+credit_evdial==Bambi Week Main Artist
+credit_wugalex==BG Artist
+credit_Jukebox==BG Artist
+credit_Oxygen==Composer
+credit_Alexander Cooper 19==Composer, Charter
+credit_Aadsta==Composer, BG Artist
+credit_Project Tea==Charter
+credit_Top 10 Awesome==Composer, Funny Guy
+credit_BombasticHype==Did a House cutscene
+credit_Ruby==Adventure Song
+credit_Lancey==Menu BG Artist
+credit_Paraso==Menu BG Artist
+credit_SAMMYPIGZY==Artist
+credit_R34LD34L==Composer
+credit_Devianator==Help with Credits icons
+credit_sk0rbias==Menu Artist
+credit_Your mom==Composed Vs Dave Rap, totally.
+credit_sibottle==Composer
+
+//Beta Testers
+credit_letsy==Beta Tester
+credit_wildy==Beta Tester
+credit_peejeada==Beta Tester & Supporter
+credit_bendygaming_1==Beta Tester, Moldy super awesome brother
+credit_vex==Beta Tester
+credit_xml==Beta Tester
+credit_ztgds==Minor programming help, Beta Tester
+credit_ashtonyes==Beta Tester
+credit_Silver Escaper==Beta Tester
+credit_TrustVVorthy==Beta Tester
+credit_Gorbini==Beta Tester
+credit_Log Man==Beta Tester
+credit_Mooncakeez==Beta Tester
+credit_Foxnap==Beta Tester
+credit_nihilistt==Beta Tester
+credit_mantis==Beta Tester
+credit_ArturSef==Beta Tester
+credit_normal==Beta Tester
+credit_Rendurse==Beta Tester
+credit_Lordryan1999==Beta Tester
+credit_Vanquiler==Beta Tester
+credit_Villezen==Beta Tester
+credit_TecheVent==Beta Tester
+credit_emiko==Beta Tester
+credit_Cotiles==Beta Tester
+
+//Special Thanks
+credit_Golden Apple Team==Made a great fanmade mod, huge motivator for 3.0
