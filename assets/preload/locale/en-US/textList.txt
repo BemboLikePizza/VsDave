@@ -42,14 +42,6 @@ freeplay_fucked==YOU'RE FUCKED
 
 freeplay_skipChar==Hold CTRL To Skip Character Selection
 
-// Credits State //
-credits_dev==Developers
-credits_translator==Translators
-credits_contributor==Contributors
-credits_betaTester==Beta Testers
-credits_specialThanks==Special Thanks
-
-
 // Options State //
 option_change_keybinds==Change Keybinds
 
@@ -295,3 +287,77 @@ daveraptwo_sub9==Dive going gamestop with buy game Xbox
 daveraptwo_sub10==Go play the mod Vs Dave and Bambi 3.0
 daveraptwo_sub11==Out now on GameBanana!
 daveraptwo_sub12==Yum.
+
+// Credits State //
+credits_dev==Developers
+credits_translator==Translators
+credits_contributor==Contributors
+credits_betaTester==Beta Testers
+credits_specialThanks==Special Thanks
+
+//developers 
+credit_MoldyGH==Director, Creator, Programmer, Musician, Main Developer
+credit_MissingTextureMan101==Secondary Developer and Programmer
+credit_rapparep lol==Main Artist
+credit_TheBuilderXD==Secondary Artist
+credit_Erizur==New Main Menu Programmer, Week Icon Artist & Spanish Translator
+credit_T5mpler==Programmer & Assistor
+credit_Zmac==3D Backgrounds, Intro text help
+credit_pointy==Artist & Charter
+credit_Billy Bobbo==Moral Support & Idea Suggesting
+
+//translators
+credit_dani==Spanish Translator
+credit_Aizakku==Portguese-Brazillian Translator
+credit_Soulegal==Portguese-Brazillian Translator
+
+//contributors
+credit_Steph45==Minor programming
+credit_evdial==Bambi Week Main Artist
+credit_wugalex==BG Artist
+credit_Jukebox==BG Artist
+credit_Oxygen==Composer
+credit_Alexander Cooper 19==Composer, Charter
+credit_Aadsta==Composer, BG Artist
+credit_Project Tea==Charter
+credit_Top 10 Awesome==Composer, Funny Guy
+credit_BombasticHype==Did a House cutscene
+credit_Ruby==Adventure Song
+credit_Lancey==Menu BG Artist
+credit_Paraso==Menu BG Artist
+credit_SAMMYPIGZY==Artist
+credit_R34LD34L==Composer
+credit_Devianator==Help with Credits icons
+credit_sk0rbias==Menu Artist
+credit_Your mom==Composed Vs Dave Rap, totally.
+credit_sibottle==Composer
+
+//Beta Testers
+credit_letsy==Beta Tester
+credit_wildy==Beta Tester
+credit_peejeada==Beta Tester & Supporter
+credit_bendygaming_1==Beta Tester, Moldy super awesome brother
+credit_vex==Beta Tester
+credit_xml==Beta Tester
+credit_ztgds==Minor programming help, Beta Tester
+credit_ashtonyes==Beta Tester
+credit_Silver Escaper==Beta Tester
+credit_TrustVVorthy==Beta Tester
+credit_Gorbini==Beta Tester
+credit_Log Man==Beta Tester
+credit_Mooncakeez==Beta Tester
+credit_Foxnap==Beta Tester
+credit_nihilistt==Beta Tester
+credit_mantis==Beta Tester
+credit_ArturSef==Beta Tester
+credit_norma==Beta Tester
+credit_Rendurse==Beta Tester
+credit_Lordryan1999==Beta Tester
+credit_Vanquiler==Beta Tester
+credit_Villezen==Beta Tester
+credit_TecheVent==Beta Tester
+credit_emiko==Beta Tester
+credit_Cotiles==Beta Tester
+
+//Special Thanks
+credit_Golden Apple Team==Made a great fanmade mod, huge motivator for 3.0
