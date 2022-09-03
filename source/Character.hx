@@ -91,7 +91,7 @@ class Character extends FlxSprite
 				}
 				loadOffsetFile(curCharacter);
 
-				globalOffset = [-20, -150];
+				globalOffset = [-85, -272];
 				barColor = FlxColor.fromRGB(49, 176, 209);
 
 				playAnim('idle');
@@ -192,7 +192,7 @@ class Character extends FlxSprite
 		
 				loadOffsetFile(curCharacter);
 				
-				globalOffset = [0, -60];
+				globalOffset = [-50, -160];
 				
 				barColor = FlxColor.fromString('#33de39');
 
@@ -246,7 +246,7 @@ class Character extends FlxSprite
 				}
 				animation.addByPrefix('hey', 'hey', 24, false);
 	
-				globalOffset = [0, -150];
+				globalOffset = [0, -170];
 
 				skins.set('recursed', 'dave-recursed');
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
@@ -265,7 +265,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'scared', 24, true);
 				animation.addByPrefix('um', 'um', 24, true);
 	
-				globalOffset = [0, -150];
+				globalOffset = [0, -170];
 
 				loadOffsetFile(curCharacter);
 				
@@ -281,7 +281,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'down', 24, false);
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 	
-				globalOffset = [0, -150];
+				globalOffset = [0, -170];
 
 				loadOffsetFile(curCharacter);
 								
@@ -300,7 +300,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'left', 24, false);
 		
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
-				globalOffset = [0, -400];
+				
+				globalOffset = [-140, -380];
 				
 				barColor = FlxColor.fromRGB(249, 180, 207);
 
@@ -321,7 +322,7 @@ class Character extends FlxSprite
 				}
 				animation.addByPrefix('huh', 'huh', 24, true);
 
-				globalOffset = [0, -150];
+				globalOffset = [0, -170];
 
 				loadOffsetFile(curCharacter);
 
@@ -342,7 +343,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('happy', 'happy', 24, true);
 
 				loadOffsetFile(curCharacter);
-				globalOffset = [-175, -50];
+				globalOffset = [0, -180];
 
 				barColor = FlxColor.fromRGB(15, 95, 255);
 
@@ -401,7 +402,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('sleepIdle', 'sleepy', 24, false);
 				animation.addByPrefix('sleeping', 'sleeping', 24, true);
 				
-				globalOffset = [0, -134];
+				globalOffset = [-10, -230];
 
 				loadOffsetFile(curCharacter);
 				
@@ -418,7 +419,7 @@ class Character extends FlxSprite
 				}
 				loadOffsetFile(curCharacter);
 				
-				globalOffset = [0, -400];
+				globalOffset = [-240, -450];
 				
 				barColor = FlxColor.fromString("0xB4C1F9");
 
@@ -442,7 +443,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [0, 80];				
+				globalOffset = [90, 80];				
 				skins.set('recursed', 'bambi-recursed');
 
 				playAnim('idle');
@@ -490,6 +491,7 @@ class Character extends FlxSprite
 
 			case 'bambi-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Bambi', 'shared');
+				
 				animation.addByPrefix('idle', 'splitathon idle', 24, true);
 				animation.addByPrefix('singDOWN', 'splitathon down', 24, false);
 				animation.addByPrefix('singUP', 'splitathon up', 24, false);
@@ -500,7 +502,7 @@ class Character extends FlxSprite
 							
 				loadOffsetFile(curCharacter);
 
-				globalOffset = [0, 100];
+				globalOffset = [30, 118];
 				
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
@@ -593,7 +595,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
-				globalOffset = [0, 50];
+				globalOffset = [70, 52];
 
 				barColor = FlxColor.fromRGB(12, 181, 0);
 				nativelyPlayable = true;
@@ -643,7 +645,7 @@ class Character extends FlxSprite
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
-				globalOffset = [40, -5];
+				globalOffset = [-15, 20];
 
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				nativelyPlayable = true;
@@ -663,6 +665,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				
+				globalOffset = [-15, 20];
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				
@@ -696,7 +700,7 @@ class Character extends FlxSprite
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [40, -5];
+				globalOffset = [-15, 20];
 
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				skins.set('recursed', 'tristan-recursed');
@@ -738,7 +742,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hit', 'BF hit', 24, false);
 		
 				loadOffsetFile(curCharacter +  (isPlayer ? '-playable' : ''));
-				globalOffset = [40, -5];
+				globalOffset = [-15, 20];
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
 					
@@ -757,6 +761,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
+				globalOffset = [-15, 20];
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				
