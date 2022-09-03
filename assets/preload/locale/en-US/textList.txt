@@ -350,7 +350,7 @@ credit_Foxnap==Beta Tester
 credit_nihilistt==Beta Tester
 credit_mantis==Beta Tester
 credit_ArturSef==Beta Tester
-credit_norma==Beta Tester
+credit_normal==Beta Tester
 credit_Rendurse==Beta Tester
 credit_Lordryan1999==Beta Tester
 credit_Vanquiler==Beta Tester

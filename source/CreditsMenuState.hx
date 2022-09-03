@@ -247,36 +247,36 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
       ]),
       
-      new Person("", CreditsType.BetaTester,
+      new Person("vex", CreditsType.BetaTester,
       [
          new Social('twitter', 'https://twitter.com/vex________')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("xml", CreditsType.BetaTester,
       [
          new Social('twitter', 'https://twitter.com/vex________')
       ]),
       
-      new Person("", CreditsType.BetaTester,
+      new Person("ztgds", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCUmuZE0RPjvUhB036T6omfQ')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("ashtonyes", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCQkB-JEx7OGdOUxPzcgUkkQ')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("Silver Escaper", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCP9McVE9T5K3pzum48-m6Tg'),
          new Social('roblox', 'https://www.roblox.com/users/2546405173/profile'),
          new Social('discord', 'Silver Escaper#8220')
       ]),
 
-      new Person("", CreditsType.BetaTester,
+      new Person("TrustVVorthy", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC_lJmvYgeAwzcYaeYXlZ7vg')
       ]),
       
-      new Person("", CreditsType.BetaTester,
+      new Person("Gorbini", CreditsType.BetaTester,
       [
          new Social("youtube", 'https://www.youtube.com/channel/UC1u46mYMoecfO04dm-9Djjg')
       ]),
@@ -287,12 +287,12 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCnGg-cLnXuQNfSzIq6xF8hw'),
       ]),
 
-      new Person("", CreditsType.BetaTester, 
+      new Person("Mooncakeez", CreditsType.BetaTester, 
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC6lOrY3AkmXWFpaLHwlP-5A')
       ]),
       
-      new Person("", CreditsType.BetaTester,
+      new Person("Foxnap", CreditsType.BetaTester,
       [
          new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
          new Social('twitter', 'https://twitter.com/Foxnap2')
@@ -304,57 +304,57 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
       ]),
 
-      new Person("", CreditsType.BetaTester,
+      new Person("mantis", CreditsType.BetaTester,
       [
          new Social('discord', 'mantis#6969')
       ]),
       
-      new Person("", CreditsType.BetaTester, 
+      new Person("ArturSef", CreditsType.BetaTester, 
       [  
          new Social('gamebanana', 'https://gamebanana.com/members/1766076')
       ]),
       
-      new Person("", CreditsType.BetaTester,
+      new Person("normal", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
          new Social('roblox', 'https://www.roblox.com/users/1368920745')
       ]),
 
-      new Person("", CreditsType.BetaTester,
+      new Person("Rendurse", CreditsType.BetaTester,
       [
          new Social('twitter', 'https://twitter.com/RendurseDev')
       ]),
 
-      new Person("", CreditsType.BetaTester,
+      new Person("Lordryan1999", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
          new Social('twitter', 'https://twitter.com/lr1999_baldi')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("Vanquiler", CreditsType.BetaTester,
       [
          new Social('discord', 'Vanquiler#3026'),
          new Social('twitch', 'https://www.twitch.tv/vanquiler'),
          new Social('roblox', 'https://www.roblox.com/users/1505830747')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("Villezen", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/c/Villezen')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("TecheVent", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/c/Villezen')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("emiko", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC3mIybwSekVs5VEJSe2yjog')
       ]),
-      new Person("", CreditsType.BetaTester,
+      new Person("Cotiles", CreditsType.BetaTester,
       [
          new Social('twitter', 'https://twitter.com/Ctiles1'),
          new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
       ]),
 	  // Special Thanks // 
-     new Person("", CreditsType.SpecialThanks,
+     new Person("Golden Apple Team", CreditsType.SpecialThanks,
       [
          new Social('gamebanana', 'https://gamebanana.com/mods/343129')
       ])
