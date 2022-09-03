@@ -800,6 +800,11 @@ class PlayState extends MusicBeatState
 				tweenList.push(gfTween);
 				tweenList.push(bambiTween);
 				tweenList.push(bfTween);
+				
+				for (tween in tweenList)
+				{
+					tween.active = false;
+				}
 		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -2149,6 +2154,10 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 			vocals.play();
+		}
+		for (tween in tweenList)
+		{
+			tween.active = true;
 		}
 
 		#if desktop
