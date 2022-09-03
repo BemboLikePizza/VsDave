@@ -903,9 +903,8 @@ class PlayState extends MusicBeatState
 				dad.setPosition(606, 50);
 				boyfriend.setPosition(86, 100);
 			case 'overdrive':
-				dad.setPosition(150, 370);
-				boyfriend.setPosition(600, 370);
-				gf.setPosition(292, 29);
+				dad.setPosition(244.15, 437);
+				boyfriend.setPosition(837, 363);
 		}
 
 		switch (stageCheck)
@@ -1034,7 +1033,6 @@ class PlayState extends MusicBeatState
 				healthBarPath = Paths.image('ui/healthBar');
 		}
 
-
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(healthBarPath);
 		if (scrollType == 'downscroll')
 			healthBarBG.y = 50;
@@ -1056,10 +1054,6 @@ class PlayState extends MusicBeatState
 				credits = LanguageManager.getTextString('supernovae_credit');
 			case 'glitch':
 				credits = LanguageManager.getTextString('glitch_credit');
-			case 'mealie' | 'memory':
-				credits = LanguageManager.getTextString('mealie_credit');
-			case 'overdrive':
-				credits = LanguageManager.getTextString('overdrive_credit');
 			case 'unfairness':
 				credits = LanguageManager.getTextString('unfairness_credit');
 			case 'cheating':
@@ -1790,10 +1784,10 @@ class PlayState extends MusicBeatState
 				sprites.add(land);
 				add(land);
 			case 'overdrive':
-				bgZoom = 0.9;
+				bgZoom = 0.8;
 				stageName = 'overdrive';
 
-				var stfu:BGSprite = new BGSprite('stfu', -310, -180, Paths.image('backgrounds/stfu'), null, 1, 1);
+				var stfu:BGSprite = new BGSprite('stfu', -583, -383, Paths.image('backgrounds/stfu'), null, 1, 1);
 				sprites.add(stfu);
 				add(stfu);
 			default:
@@ -1960,6 +1954,8 @@ class PlayState extends MusicBeatState
 
 			if (SONG.song.toLowerCase() == "exploitation")
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
+			if (SONG.song.toLowerCase() == "overdrive")
+				introAssets.set('default', ['ui/spr_start_sprites_0', "ui/spr_start_sprites_1", "ui/spr_start_sprites_2"]);
 			else
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
 
