@@ -46,7 +46,7 @@ class CharacterDebug extends MusicBeatState
 		if (['gf-pixel', 'gf-3d'].contains(dadChar))
 		{
 			bf = new Character(0, 0, 'gf');
-			bf.screenCenter();
+			bf.setPosition(FlxG.width / 2, FlxG.height / 2);
 			bf.debugMode = true;
 			bf.alpha = 0.3;
 			add(bf);
@@ -54,20 +54,19 @@ class CharacterDebug extends MusicBeatState
 		else
 		{
 			bf = new Boyfriend(0, 0);
-			bf.screenCenter();
+			bf.setPosition(FlxG.width / 2, FlxG.height / 2);
 			bf.debugMode = true;
 			bf.alpha = 0.3;
 			add(bf);
 		}
 		
 		dad = new Character(bf.x, bf.y, dadChar);
-		dad.screenCenter();
+		dad.setPosition(FlxG.width / 2, FlxG.height / 2);
 		dad.debugMode = true;
 		dad.flipX = false;
 		add(dad);
 		
-		camFollow = new FlxObject(0, 0, 2, 2);
-		camFollow.screenCenter();
+		camFollow = new FlxObject(bf.x, bf.y, 2, 2);
 		add(camFollow);
 
 		FlxG.camera.follow(camFollow);
@@ -137,12 +136,19 @@ class CharacterDebug extends MusicBeatState
 			dad.y -= 100 * elapsed;
 			updateText();
 		}
+		if (FlxG.keys.justPressed.F)
+		{
+			bf.flipX = false;
+		}
+		if (FlxG.keys.justPressed.G)
+		{
+			bf.flipX = true;
+		}
 		super.update(elapsed);
 	}
 	function updateText()
 	{
 		var dadPosition = dad.getPosition();
-		var dadScreenCenter = new FlxPoint((FlxG.width - dad.width) / 2, (FlxG.height - dad.height) / 2);
-		offsetText.text = "Dad position: " + dadPosition + "\nDad screen center position: " + dadScreenCenter;
+		offsetText.text = "Dad position: " + dadPosition + "\nBoyfriend position position: " + bf.getPosition();
 	}
 }

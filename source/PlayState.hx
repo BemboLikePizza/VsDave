@@ -800,6 +800,11 @@ class PlayState extends MusicBeatState
 				tweenList.push(gfTween);
 				tweenList.push(bambiTween);
 				tweenList.push(bfTween);
+				
+				for (tween in tweenList)
+				{
+					tween.active = false;
+				}
 		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -856,11 +861,6 @@ class PlayState extends MusicBeatState
 		{
 			case 'desktop':
 				dad.x -= 500;
-				dad.y -= 100;
-			case 'red-void':
-				dad.x -= 100;
-			case 'interdimension-void':
-				dad.x -= 200;
 				dad.y -= 100;
 			case 'roof':
 				dad.setPosition(-3, 467);
@@ -2154,6 +2154,10 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 			vocals.play();
+		}
+		for (tween in tweenList)
+		{
+			tween.active = true;
 		}
 
 		#if desktop
@@ -6460,8 +6464,7 @@ class PlayState extends MusicBeatState
 	{
 		boyfriend.stunned = true; //hopefully this stun stuff should prevent BF from randomly missing a note
 		
-		switchDad(char, new FlxPoint(300, 450));
-
+		switchDad(char, new FlxPoint(300, 450), false);
 		repositionChar(dad);
 
 		boyfriend.stunned = false;

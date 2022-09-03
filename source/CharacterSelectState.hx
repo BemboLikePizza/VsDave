@@ -88,6 +88,7 @@ class CharacterSelectState extends MusicBeatState
 	var noteMsTexts:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 
 	var arrows:Array<FlxSprite> = [];
+	var basePosition:FlxPoint;
 	
 	public var characters:Array<CharacterInSelect> = 
 	[
@@ -217,6 +218,8 @@ class CharacterSelectState extends MusicBeatState
 		char.cameras = [camHUD];
 		char.screenCenter();
 		add(char);
+
+		basePosition = char.getPosition();
 
 		strummies = new FlxTypedGroup<FlxSprite>();
 		strummies.cameras = [camHUD];
@@ -523,30 +526,25 @@ class CharacterSelectState extends MusicBeatState
 		currentSelectedCharacter = newSelectedCharacter;
 		characterText.text = currentSelectedCharacter.forms[curForm].polishedName;
 		char.destroy();
-		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, currentSelectedCharacter.forms[curForm].name);
+		char = new Boyfriend(basePosition.x, basePosition.y, currentSelectedCharacter.forms[curForm].name);
 		char.cameras = [camHUD];
-		char.screenCenter();
 
+		char.x += char.globalOffset[0];
+		char.y += char.globalOffset[1];
+		
 		switch (char.curCharacter)
 		{
-			case 'bf-pixel':
-				
 			case 'dave':
-				char.y -= 90;
-				char.x -= 10;
+				char.y += 50;
 			case 'bambi-new':
-				char.y += 20;
-				char.x -= 50;
+				char.x -= 80;
 			case 'dave-angey':
-				char.y -= 145;
-				char.x -= 100;
-			case 'tristan' | 'tristan-golden':
-				char.y += 0;
-				char.x -= 70;
+				char.y += 150;
 			case 'bambi-3d':
-				char.x += 200;
-				char.y += 300;
+				char.x -= 150;
+				char.y += 100;
 		}
+		
 		insert(members.indexOf(strummies), char);
 		funnyIconMan.changeIcon(char.curCharacter);
 		funnyIconMan.color = FlxColor.WHITE;
