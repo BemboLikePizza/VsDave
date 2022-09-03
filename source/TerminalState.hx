@@ -93,7 +93,7 @@ class TerminalState extends FlxState
             {
                 UpdatePreviousText(false); //resets the text
                 UpdateText("\n" + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'User354378')
-                 + "\nTo add extra users, add the grant parameter and the name.\nNOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.");
+                 + "\nTo add extra users, add the grant parameter and the name.\n(Example: admin grant expungo.dat)\nNOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.");
                 return;
             }
             else if (arguments.length != 2)
@@ -274,7 +274,7 @@ class TerminalState extends FlxState
 class TerminalCommand
 {
     public var commandName:String = "undefined";
-    public var commandHelp:String = "if you see this you are very homosexual and dumb.";
+    public var commandHelp:String = "if you see this you are very homosexual and dumb."; //hey im not homosexual. kinda mean ngl
     public var FuncToCall:Dynamic;
 
     public function new(name:String, help:String, func:Dynamic)
