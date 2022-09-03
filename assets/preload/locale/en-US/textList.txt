@@ -125,28 +125,6 @@ cheating_credit==Notes are scrambled! FUCK YOU!
 exploitation_credit==You won't survive
 kabunga_credit==OH MY GOD I JUST DEFLATED
 
-// Terminal Transition Text //
-//Cheating//
-terminal_trans_cheating1==Warning: 
-terminal_trans_cheating2==Chart Editor access detected
-terminal_trans_cheating3==run AntiCheat.dll
-terminal_trans_cheating4==ERROR: File currently being used by another process. Retrying in 3...
-terminal_trans_cheating5==File no longer in use, running AntiCheat.dll...
-
-//Unfairness//
-terminal_trans_unfairness1==bin/plugins/AntiCheat.dll: 
-terminal_trans_unfairness2==No argument for function "AntiCheatThree"
-terminal_trans_unfairness3==Redirecting to terminal...
-
-//Terminal//
-terminal_help==Displays this menu.
-terminal_characters==Shows the list of characters.
-terminal_admin==Shows the admin list, use grant to grant rights.
-
-terminal_helpadmin_1==To add extra users, add the grant parameter and the name.
-terminal_helpadmin_2==(Example: admin grant expungo.dat)
-terminal_helpadmin_3==NOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.
-
 //SUBTITLES
 // Blocked Subtitles //
 blocked_sub1==I block you...
@@ -225,6 +203,7 @@ exploit_sub11==get trolled!
 exploit_sub12==Whoopsies...
 exploit_sub13==You lying!
 exploit_sub14==YOU LYING!
+exploit_sub15==A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€
 
 // Escape from California Subtitles //
 california_sub1==Help me! I'm stuck in California!
