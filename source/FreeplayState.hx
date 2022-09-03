@@ -263,7 +263,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave-annoyed', 'dave-angey', 'dave']);
 				addWeek(['Blocked', 'Corn-Theft', 'Maze'], 2, ['bambi-new', 'bambi-new', 'bambi-new']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
-				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-angey', 'dave']);
+				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-festival-3d', 'dave-festival']);
 			case 'joke':
 				if (FlxG.save.data.hasPlayedMasterWeek)
 				{

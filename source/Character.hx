@@ -406,7 +406,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 				
-				barColor = FlxColor.fromString("0x128109");
+				barColor = FlxColor.fromString("0x198200");
 
 				playAnim('idle');
 			case 'dave-festival-3d':
