@@ -23,7 +23,7 @@ class TerminalState extends FlxState
     //if you ingore this message and use it anyway, atleast give credit.
 
     public var curCommand:String = "";
-    public var previousText:String = "> ";
+    public var previousText:String = "Vs Dave Developer Console[Version 1.0.00001.1234]\nAll Rights Reserved.\n> ";
     public var displayText:FlxText;
     var expungedActivated:Bool = false;
     public var CommandList:Array<TerminalCommand> = new Array<TerminalCommand>();
@@ -42,7 +42,12 @@ class TerminalState extends FlxState
         "seven",
         "eight",
         "nine",
-        "zero"
+        "zero",
+        "shift",
+        "semicolon",
+        "alt",
+        "lbracket",
+        "rbracket"
     ];
 
     var formattedSymbols:Array<String> =
@@ -58,7 +63,12 @@ class TerminalState extends FlxState
         "7",
         "8",
         "9",
-        "0"
+        "0",
+        "",
+        ";",
+        "",
+        "[",
+        "]"
     ];
     public var backspaceHeldFor:Float;
 
@@ -67,7 +77,8 @@ class TerminalState extends FlxState
     {
         Main.fps.visible = false;
         displayText = new FlxText(0, 0, FlxG.width, previousText, 32);
-		displayText.setFormat(Paths.font("consola.ttf"), 16);
+		displayText.setFormat(Paths.font("PixelOperator-Bold.ttf"), 16);
+        displayText.size *= 2;
 		displayText.antialiasing = false;
         FlxG.sound.music.stop();
 
@@ -148,6 +159,14 @@ class TerminalState extends FlxState
                 }
             }
         }));
+
+        CommandList.push(new TerminalCommand("clear", "Clears the screen.", function(arguments:Array<String>)
+        {
+            previousText = "> ";
+            UpdateText("");
+        }));
+
+
         add(displayText);
     }
 
@@ -161,6 +180,27 @@ class TerminalState extends FlxState
         previousText = displayText.text + (reset ? "\n> " : "");
         displayText.text = previousText;
         curCommand = "";
+        var finalthing:String = "";
+        var splits:Array<String> = displayText.text.split("\n");
+        if (splits.length <= 23)
+        {
+            return;
+        }
+        var split_end:Int = Math.round(Math.max(splits.length - 23,0));
+        for (i in split_end...splits.length)
+        {
+            var split:String = splits[i];
+            if (split == "")
+            {
+                finalthing = finalthing + "\n";
+            }
+            else
+            {
+                finalthing = finalthing + split + (i < (splits.length - 1) ? "\n" : "");
+            }
+        }
+        previousText = finalthing;
+        displayText.text = finalthing;
     }
 
     override public function update(elapsed:Float):Void
@@ -173,15 +213,22 @@ class TerminalState extends FlxState
 
         if (keyJustPressed == FlxKey.ENTER)
         {
+            var calledFunc:Bool = false;
             var arguments:Array<String> = curCommand.split(" ");
             for (v in CommandList)
             {
                 if (v.commandName == arguments[0]) //argument 0 should be the actual command at the moment
                 {
                     arguments.shift();
+                    calledFunc = true;
                     v.FuncToCall(arguments);
                     break;
                 }
+            }
+            if (!calledFunc)
+            {
+                UpdatePreviousText(false); //resets the text
+                UpdateText("\nUnknown command \"" + arguments[0] + "\"");
             }
             UpdatePreviousText(true);
             return;
