@@ -524,6 +524,8 @@ class CharacterSelectState extends MusicBeatState
 		characterText.text = currentSelectedCharacter.forms[curForm].polishedName;
 		char.destroy();
 		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, currentSelectedCharacter.forms[curForm].name);
+		char.cameras = [camHUD];
+		char.screenCenter();
 
 		switch (char.curCharacter)
 		{
