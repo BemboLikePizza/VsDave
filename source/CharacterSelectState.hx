@@ -524,11 +524,11 @@ class CharacterSelectState extends MusicBeatState
 		characterText.text = currentSelectedCharacter.forms[curForm].polishedName;
 		char.destroy();
 		char = new Boyfriend(FlxG.width / 2, FlxG.height / 2, currentSelectedCharacter.forms[curForm].name);
-		char.screenCenter();
-		char.cameras = [camHUD];
 
 		switch (char.curCharacter)
 		{
+			case 'bf-pixel':
+				
 			case 'dave':
 				char.y -= 90;
 				char.x -= 10;
@@ -539,11 +539,11 @@ class CharacterSelectState extends MusicBeatState
 				char.y -= 145;
 				char.x -= 100;
 			case 'tristan' | 'tristan-golden':
-				char.y += 35;
-				char.x -= 40;
+				char.y += 0;
+				char.x -= 70;
 			case 'bambi-3d':
-				char.x += 350;
-				char.y += 600;
+				char.x += 200;
+				char.y += 300;
 		}
 		insert(members.indexOf(strummies), char);
 		funnyIconMan.changeIcon(char.curCharacter);
