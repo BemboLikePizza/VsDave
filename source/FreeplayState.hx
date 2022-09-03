@@ -69,7 +69,7 @@ class FreeplayState extends MusicBeatState
 		FlxColor.fromRGB(44, 44, 44),    // RECURSED
 		0xFF31323F,    // MOLDY
 		0xFF35396C,    // FIVE NIGHT
-		0xFFEDE500,    // OVERDRIVE
+		0xFF0162F5,    // OVERDRIVE
 		0xFF119A2B,    // CHEATING
 		0xFFFF0000,    // UNFAIRNESS
 		0xFF810000,    // EXPLOITATION
@@ -288,7 +288,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Bot-Trot'], 9, ['playrobot']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
 				addWeek(['Five-Nights'], 12, ['dave']);
-				addWeek(['Overdrive'], 13, ['dave']);
+				addWeek(['Overdrive'], 13, ['dave-awesome']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
 				addWeek(['Memory', 'Vs-Dave-Rap'], 1, ['dave', 'dave-cool']);
 				if(FlxG.save.data.vsDaveRapTwoFound)

@@ -81,13 +81,15 @@ class CreditsPopUp extends FlxSpriteGroup
 				headingPath = {path: 'songHeadings/playbotHeading', antiAliasing: true, iconOffset: 0};*/
 			case 10:
 				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
+			case 13:
+				headingPath = {path: 'songHeadings/fnfengeading', antiAliasing: false, iconOffset: 0};
 			case 11:
 				headingPath = {path: 'songHeadings/californiaHeading', antiAliasing: true,
 				animation: new Animation('california', 'California', 24, true, [false, false]), iconOffset: 0};
 			case 16:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
 				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0};
-				//stuff that needs headings: five nights, overdrive, cheating, unfairness, 
+				//stuff that needs headings: five nights, cheating, unfairness, 
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{
