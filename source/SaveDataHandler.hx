@@ -42,7 +42,7 @@ class SaveDataHandler
 			FlxG.save.data.offset = 0;
 
 		if (FlxG.save.data.selfAwareness == null)
-			FlxG.save.data.selfAwareness = false;
+			FlxG.save.data.selfAwareness = true;
 		
 		if (FlxG.save.data.wasInCharSelect == null)
 			FlxG.save.data.wasInCharSelect = false;

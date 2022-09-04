@@ -53,9 +53,13 @@ class CreditsMenuState extends MusicBeatState
    var creditsTypeString:String = '';
    var translatedCreditsType:String = '';
 
+   var StupidCameraFollow:FlxObject = new FlxObject();
+
    var curSocialMediaSelected:Int = 0;
    var socialButtons:Array<SocialButton> = new Array<SocialButton>();
    var hasSocialMedia:Bool = true;
+
+   public var DoFunnyScroll:Bool = false;
    
    var peopleInCredits:Array<Person> = 
    [
@@ -379,16 +383,28 @@ class CreditsMenuState extends MusicBeatState
       selectedFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       selectedFormat.borderSize = 2;
       selectedFormat.borderQuality = 2;
-      
-      bg.loadGraphic(MainMenuState.randomizeBG());
-		bg.color = FlxColor.LIME;
-      bg.scrollFactor.set();
-		add(bg);
+
+      if (!DoFunnyScroll)
+      {
+         bg.loadGraphic(MainMenuState.randomizeBG());
+         bg.color = FlxColor.LIME;
+         bg.scrollFactor.set();
+         add(bg);
 
 
-		overlay.color = FlxColor.LIME;
-      overlay.scrollFactor.set();
-		add(overlay);
+         overlay.color = FlxColor.LIME;
+         overlay.scrollFactor.set();
+         add(overlay);
+      }
+      else
+      {
+         FlxG.sound.playMusic(Paths.music('creditsTheme'));
+         //PLACEHOLDER.
+         bg.loadGraphic(MainMenuState.randomizeBG());
+         bg.color = FlxColor.GRAY;
+         bg.scrollFactor.set();
+         add(bg);
+      }
       
       var developers:Array<Person> = new Array<Person>();
       var translators:Array<Person> = new Array<Person>();
@@ -443,6 +459,11 @@ class CreditsMenuState extends MusicBeatState
             personIcon.loadGraphic(Paths.image('credits/titles/' + creditsTypeString));
             personIcon.antialiasing = true;
             add(personIcon);
+            personIcon.visible = !DoFunnyScroll;
+            if (DoFunnyScroll)
+            {
+               titleText.color = FlxColor.PURPLE;
+            }
 
             var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
             creditsTextGroup.push(creditsTextTitleText);
@@ -460,6 +481,8 @@ class CreditsMenuState extends MusicBeatState
          personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
          personIcon.antialiasing = true;
          add(personIcon);
+
+         personIcon.visible = !DoFunnyScroll;
 
          var creditsTextItem:CreditsText = new CreditsText(textItem, true, personIcon);
 
@@ -482,6 +505,28 @@ class CreditsMenuState extends MusicBeatState
          var scaledY = FlxMath.remapToRange(creditsText.selectionId, 0, 1, 0, 1.5);
          creditsText.text.y = scaledY * 75 + (FlxG.height * 0.5);
       }
+
+      StupidCameraFollow.x = menuItems[0].text.x;
+      StupidCameraFollow.y = menuItems[0].text.y - 460; //so close yet so far from having the offset be 420 :(
+      //(FlxG.sound.music.length / 1000) - 15
+      FlxTween.tween(StupidCameraFollow, {y : (menuItems[menuItems.length - 1].text.y + 440)}, (FlxG.sound.music.length / 1000) - 15.5, {ease: FlxEase.linear, onComplete: function(tween:FlxTween)
+      {
+         var logoBl:FlxSprite = new FlxSprite(StupidCameraFollow.x, StupidCameraFollow.y);
+         logoBl.frames = Paths.getSparrowAtlas('ui/logoBumpin');
+         logoBl.antialiasing = true;
+         logoBl.alpha = 0;
+         logoBl.x -= logoBl.width / 2;
+         logoBl.y -= logoBl.height / 2;
+         add(logoBl);
+         FlxTween.tween(logoBl, {alpha: 1}, 5.6, {ease: FlxEase.quadIn, onComplete: function(tween:FlxTween)
+         {
+            new FlxTimer().start((FlxG.sound.music.length / 1000) - (FlxG.sound.music.time / 1000), function(timer:FlxTimer)
+            {
+               FlxG.sound.playMusic(Paths.music('freakyMenuCalm'));
+               FlxG.switchState(new MainMenuState());
+            });
+         }});
+      }});
 		super.create();
 	}
    
@@ -492,6 +537,16 @@ class CreditsMenuState extends MusicBeatState
 		var downPressed = controls.DOWN_P;
 		var back = controls.BACK;
 		var accept = controls.ACCEPT;
+      if (DoFunnyScroll)
+      {
+         FlxG.camera.follow(StupidCameraFollow, 0.1);
+         super.update(elapsed);
+         if (back)
+         {
+            FlxG.switchState(new MainMenuState());
+         }
+         return;
+      }
       switch (state)
       {
          case State.SelectingName:
