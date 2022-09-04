@@ -250,7 +250,9 @@ class StoryMenuState extends MusicBeatState
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				PlayState.characteroverride = "none";
+				PlayState.formoverride = "none";
 				PlayState.curmult = [1, 1, 1, 1];
+				
 				switch (PlayState.storyWeek)
 				{
 					case 1:
