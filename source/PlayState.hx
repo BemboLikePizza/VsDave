@@ -2795,11 +2795,13 @@ class PlayState extends MusicBeatState
 				case ExploitationModchartType.Cheating:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = spr.baseX + (Math.sin(elapsedtime * (spr.ID + 1) / 0.4)) * -(FlxG.width / 2);
+						spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+						spr.x -= Math.sin(elapsedtime) * 1.2;
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = spr.baseX + (Math.sin(elapsedtime * (spr.ID + 1) * 2)) * (FlxG.width / 2);
+						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
+						spr.x += Math.sin(elapsedtime) * 1.2;
 					});
 				case ExploitationModchartType.ScrambledNotes:
 					playerStrums.forEach(function(spr:StrumNote)
@@ -6203,6 +6205,15 @@ class PlayState extends MusicBeatState
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating;
+					case 160:
+						dadStrums.forEach(function(strum:StrumNote)
+						{
+							strum.x = strum.baseX;
+						});
+						playerStrums.forEach(function(strum:StrumNote)
+						{
+							strum.x = strum.baseX;
+						});
 					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 288:
