@@ -1,6 +1,4 @@
 package;
-
-import flixel.text.FlxBitmapText;
 #if desktop
 import cpp.abi.Abi;
 #end
