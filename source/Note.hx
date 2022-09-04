@@ -96,14 +96,20 @@ class Note extends FlxSprite
 		var dadNoteType = PlayState.instance.getDadSkin('noteType');
 		var bfNoteType = PlayState.instance.getBFSkin('noteType');
 
-		if ((dadNoteType == '3D' && !musthit || bfNoteType == '3D' && musthit && musthit) ||
+		if (noteStyle == "shape")
+		{
+			notePathLol = 'notes/NOTE_assets_Shape';
+		}
+		else if (noteStyle == "phone")
+		{
+			notePathLol = 'notes/NOTE_phone';
+		}
+		else if ((dadNoteType == '3D' && !musthit || bfNoteType == '3D' && musthit && musthit) ||
 			(dadNoteType == '3D' || bfNoteType =='3D' && musthit) && (this.strumTime / 50) % 20 > 10)
 		{
 			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
 		}
-		else if (noteStyle == "phone")
-			notePathLol = 'notes/NOTE_phone';
 		else if (PlayState.SONG.song.toLowerCase() == "overdrive")
 			notePathLol = 'notes/OMGtop10awesomehi';
 		else if (dadNoteType == 'recursed' && !musthit || bfNoteType == 'recursed' && !musthit)
@@ -145,6 +151,24 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
+			
+			case 'shape':
+				frames = Paths.getSparrowAtlas(notePathLol, 'shared');
+
+				animation.addByPrefix('greenScroll', 'green0');
+				animation.addByPrefix('redScroll', 'red0');
+				animation.addByPrefix('blueScroll', 'blue0');
+				animation.addByPrefix('purpleScroll', 'purple0');
+		
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
+
+				setGraphicSize(Std.int(width * noteSize));
+				updateHitbox();
+				antialiasing = false;
+				noteOffset = 8;
 
 			case 'text':
 				frames = Paths.getSparrowAtlas('ui/alphabet');
@@ -307,6 +331,16 @@ class Note extends FlxSprite
 				prevNote.updateHitbox();
 			}
 		}
+
+		if (noteData == 2 && noteStyle == 'shape')
+		{
+			noteOffset += 10;
+		}
+		else if (noteData == 1 && noteStyle == 'shape')
+		{
+			noteOffset += 4;
+		}
+
 	}
 
 	override function update(elapsed:Float)

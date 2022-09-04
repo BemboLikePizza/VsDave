@@ -32,6 +32,7 @@ enum abstract Action(String) to String from String
 	var PAUSE = "pause";
 	var RESET = "reset";
 	var CHEAT = "cheat";
+	var KEY5 = "key5";
 }
 #else
 @:enum
@@ -79,6 +80,7 @@ enum Control
 	BACK;
 	PAUSE;
 	CHEAT;
+	KEY5;
 }
 
 enum KeyboardScheme
@@ -114,6 +116,7 @@ class Controls extends FlxActionSet
 	var _pause = new FlxActionDigital(Action.PAUSE);
 	var _reset = new FlxActionDigital(Action.RESET);
 	var _cheat = new FlxActionDigital(Action.CHEAT);
+	var _key5 = new FlxActionDigital(Action.KEY5);
 
 	#if (haxe >= "4.0.0")
 	var byName:Map<String, FlxActionDigital> = [];
@@ -204,6 +207,11 @@ class Controls extends FlxActionSet
 	inline function get_RESET()
 		return _reset.check();
 
+	public var KEY5(get, never):Bool;
+
+	inline function get_KEY5()
+		return _key5.check();
+
 	public var CHEAT(get, never):Bool;
 
 	inline function get_CHEAT()
@@ -231,6 +239,7 @@ class Controls extends FlxActionSet
 		add(_pause);
 		add(_reset);
 		add(_cheat);
+		add(_key5);
 
 		for (action in digitalActions)
 			byName[action.name] = action;
@@ -313,6 +322,7 @@ class Controls extends FlxActionSet
 			case PAUSE: _pause;
 			case RESET: _reset;
 			case CHEAT: _cheat;
+			case KEY5: _key5;
 		}
 	}
 
@@ -358,6 +368,8 @@ class Controls extends FlxActionSet
 				func(_reset, JUST_PRESSED);
 			case CHEAT:
 				func(_cheat, JUST_PRESSED);
+			case KEY5:
+				func(_key5, PRESSED);
 		}
 	}
 
@@ -508,8 +520,11 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, [R, DELETE]);
+				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
 
 			case Duo(false):
+				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
+
 			case Duo(true):
 				inline bindKeys(Control.UP, [W, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
@@ -519,6 +534,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.RESET, [R, DELETE]);
+				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
 			case None: // nothing
 			case Custom:
 				inline bindKeys(Control.UP, KeybindPrefs.keybinds.get('up'));
@@ -529,6 +545,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, KeybindPrefs.keybinds.get('reset'));
+				inline bindKeys(Control.KEY5, KeybindPrefs.keybinds.get('key5'));
 			case Askl:
 				inline bindKeys(Control.UP, [K, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
@@ -538,6 +555,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, [R, DELETE]);
+				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
 			case ZxCommaDot:
 				inline bindKeys(Control.UP, [FlxKey.COMMA, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [X, FlxKey.DOWN]);
@@ -547,6 +565,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.PAUSE, [ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, [R, DELETE]);
+				inline bindKeys(Control.KEY5, [SPACE, SHIFT]);
 		}
 	}
 	public static function stringControlToControl(control:String):Control
@@ -571,6 +590,8 @@ class Controls extends FlxActionSet
 				return Control.CHEAT;
 			case 'pause':
 				return Control.PAUSE;
+			case 'key5':
+				return Control.KEY5;
 			default:
 				return null;
 		}
@@ -638,6 +659,7 @@ class Controls extends FlxActionSet
 		addGamepadLiteral(id, [
 			Control.ACCEPT => [A],
 			Control.BACK => [B],
+			Control.KEY5 => [LEFT_STICK_CLICK],
 			Control.UP => [DPAD_UP, LEFT_STICK_DIGITAL_UP],
 			Control.DOWN => [DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN],
 			Control.LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT],

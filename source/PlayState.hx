@@ -2724,7 +2724,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
-			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || FlxG.keys.justPressed.SPACE && !doorChanging)
+			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || controls.KEY5 && !doorChanging)
 			{
 				changeDoorState(!doorClosed);
 			}
@@ -4269,6 +4269,16 @@ class PlayState extends MusicBeatState
 								continue; //the jacks are too close together
 							}
 						}
+						if (note.noteStyle == 'shape' && !controls.KEY5)
+						{
+							FlxG.sound.play(Paths.sound('ANGRY'), FlxG.random.float(0.2, 0.3));
+							continue;
+						}
+						else if (note.noteStyle != 'shape' && controls.KEY5)
+						{
+							FlxG.sound.play(Paths.sound('ANGRY'), FlxG.random.float(0.2, 0.3));
+							continue;
+						}
 						lasthitnote = note.noteData;
 						lasthitnotetime = note.strumTime;
 						goodNoteHit(note);
@@ -5622,6 +5632,7 @@ class PlayState extends MusicBeatState
 						FlxG.camera.zoom - 0.2;
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
 						#if windows
+						//suck my dick psych engine porters.
 						popupWindow();
 						#end
 						dadStrums.visible = false;

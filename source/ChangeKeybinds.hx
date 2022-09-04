@@ -48,6 +48,7 @@ class ChangeKeybinds extends MusicBeatState
 		new ControlUI('Up', 'up'),
 		new ControlUI('Right', 'right'),
 		new ControlUI('Reset', 'reset'),
+		new ControlUI('Key5', 'key5'),
 	];
 
 	var currentUIControl:ControlUI;

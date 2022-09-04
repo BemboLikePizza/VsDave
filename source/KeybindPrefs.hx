@@ -13,11 +13,12 @@ class KeybindPrefs
 		'up'		   => [W, UP],
 		'right'	   => [D, RIGHT],
 		'accept'		=> [SPACE, ENTER],
+		'key5'		=> [SPACE, SHIFT],
 		'back'	   => [BACKSPACE, ESCAPE],
 		'pause'		=> [ENTER, ESCAPE],
 		'reset'		=> [R, DELETE]
 	];
-	public static var controlNames:Array<String> = ['left', 'down', 'up', 'right', 'accept', 'back', 'pause', 'reset'];
+	public static var controlNames:Array<String> = ['left', 'down', 'up', 'right', 'key5', 'accept', 'back', 'pause', 'reset'];
 
 	public static function saveControls()
 	{
@@ -33,6 +34,10 @@ class KeybindPrefs
 		if (controlsSave != null && controlsSave.data.keybinds != null)
 		{
 			var funnyKeybinds:Map<String, Array<FlxKey>> = controlsSave.data.keybinds;
+			if (!funnyKeybinds.exists("key5"))
+			{
+				funnyKeybinds.set("key5",defaultKeybinds.get("key5"));
+			}
 			setKeybinds(funnyKeybinds);
 		}
 		else
