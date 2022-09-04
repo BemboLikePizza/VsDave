@@ -165,6 +165,11 @@ class Note extends FlxSprite
 				animation.addByPrefix('redhold', 'red hold piece');
 				animation.addByPrefix('bluehold', 'blue hold piece');
 
+				animation.addByPrefix('purpleholdend', 'purple hold piece');
+				animation.addByPrefix('greenholdend', 'green hold piece');
+				animation.addByPrefix('redholdend', 'red hold piece');
+				animation.addByPrefix('blueholdend', 'blue hold piece');
+
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = false;
@@ -339,6 +344,12 @@ class Note extends FlxSprite
 		else if (noteData == 1 && noteStyle == 'shape')
 		{
 			noteOffset += 4;
+		}
+
+		if (noteStyle == 'shape' && isSustainNote)
+		{
+			alphaMult = 1;
+			noteOffset += (width / 2);
 		}
 
 	}

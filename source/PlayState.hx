@@ -188,6 +188,10 @@ class PlayState extends MusicBeatState
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var dadStrums:FlxTypedGroup<StrumNote>;
 
+	private var noteLimbo:Note;
+
+	private var noteLimboFrames:Int;
+
 	public var camZooming:Bool = false; //why was this static.
 	private var curSong:String = "";
 
@@ -2309,7 +2313,7 @@ class PlayState extends MusicBeatState
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
 					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true,
-						gottaHitNote, false, isGuitarSection);
+						gottaHitNote, daNoteStyle, false, isGuitarSection);
 					sustainNote.originalType = OGNoteDat;
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
@@ -4201,6 +4205,8 @@ class PlayState extends MusicBeatState
 		var down = controls.DOWN;
 		var left = controls.LEFT;
 
+		var key5 = controls.KEY5;
+
 		var upP = controls.UP_P;
 		var rightP = controls.RIGHT_P;
 		var downP = controls.DOWN_P;
@@ -4213,6 +4219,51 @@ class PlayState extends MusicBeatState
 
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 		var releaseArray:Array<Bool> = [leftR, downR, upR, rightR];
+
+		if (noteLimbo != null)
+		{
+			if (noteLimbo.exists)
+			{
+				if (noteLimbo.wasGoodHit)
+				{
+					if (key5 && noteLimbo.noteStyle == 'shape')
+					{
+						goodNoteHit(noteLimbo);
+						if (noteLimbo.wasGoodHit)
+						{
+							noteLimbo.kill();
+							notes.remove(noteLimbo, true);
+							noteLimbo.destroy();
+						}
+						noteLimbo = null;
+					}
+					else if (!key5 && noteLimbo.noteStyle != 'shape')
+					{
+						goodNoteHit(noteLimbo);
+						if (noteLimbo.wasGoodHit)
+						{
+							noteLimbo.kill();
+							notes.remove(noteLimbo, true);
+							noteLimbo.destroy();
+						}
+						noteLimbo = null;
+					}
+				}
+				else
+				{
+					noteLimbo = null;
+				}
+			}
+		}
+
+		if (noteLimboFrames != 0)
+		{
+			noteLimboFrames--;
+		}
+		else
+		{
+			noteLimbo = null;
+		}
 
 		// FlxG.watch.addQuick('asdfa', upP);
 		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
@@ -4271,14 +4322,18 @@ class PlayState extends MusicBeatState
 								continue; //the jacks are too close together
 							}
 						}
-						if (note.noteStyle == 'shape' && !controls.KEY5)
+						if (note.noteStyle == 'shape' && !key5)
 						{
-							FlxG.sound.play(Paths.sound('ANGRY'), FlxG.random.float(0.2, 0.3));
+							//FlxG.sound.play(Paths.sound('ANGRY'), FlxG.random.float(0.2, 0.3));
+							noteLimbo = note;
+							noteLimboFrames = 8; //note limbo, the place where notes that could've been hit go.
 							continue;
 						}
-						else if (note.noteStyle != 'shape' && controls.KEY5)
+						else if (note.noteStyle != 'shape' && key5)
 						{
-							FlxG.sound.play(Paths.sound('ANGRY'), FlxG.random.float(0.2, 0.3));
+							//FlxG.sound.play(Paths.sound('ANGRY'), FlxG.random.float(0.2, 0.3));
+							noteLimbo = note;
+							noteLimboFrames = 8;
 							continue;
 						}
 						lasthitnote = note.noteData;
@@ -4307,21 +4362,24 @@ class PlayState extends MusicBeatState
 			{
 				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 				{
-					switch (daNote.noteData)
+					if ((daNote.noteStyle == 'shape' && key5) || (daNote.noteStyle != 'shape' && !key5))
 					{
-						// NOTES YOU ARE HOLDING
-						case 2:
-							if (up || upHold)
-								goodNoteHit(daNote);
-						case 3:
-							if (right || rightHold)
-								goodNoteHit(daNote);
-						case 1:
-							if (down || downHold)
-								goodNoteHit(daNote);
-						case 0:
-							if (left || leftHold)
-								goodNoteHit(daNote);
+						switch (daNote.noteData)
+						{
+							// NOTES YOU ARE HOLDING
+							case 2:
+								if (up || upHold)
+									goodNoteHit(daNote);
+							case 3:
+								if (right || rightHold)
+									goodNoteHit(daNote);
+							case 1:
+								if (down || downHold)
+									goodNoteHit(daNote);
+							case 0:
+								if (left || leftHold)
+									goodNoteHit(daNote);
+						}
 					}
 				}
 			});
