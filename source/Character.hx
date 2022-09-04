@@ -43,6 +43,7 @@ class Character extends FlxSprite
 		skins.set('normal', curCharacter);
 		skins.set('recursed', 'bf-recursed');
 		skins.set('gfSkin', 'gf-none');
+		skins.set('noteType', 'normal');
 		
 		antialiasing = true;
 
@@ -90,6 +91,8 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);	
 				}
 				loadOffsetFile(curCharacter);
+				
+				skins.set('noteType', '3D');
 
 				globalOffset = [-85, -272];
 				barColor = FlxColor.fromRGB(49, 176, 209);
@@ -312,7 +315,8 @@ class Character extends FlxSprite
 				antialiasing = false;
 
 				skins.set('recursed', 'dave-3d-recursed');
-						
+				skins.set('noteType', '3D');
+
 				playAnim('idle');
 			case 'dave-fnaf':
 				frames = Paths.getSparrowAtlas('fiveNights/dave_fnaf', 'shared');
@@ -374,6 +378,8 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}', 24, false);
 				}
 
+				skins.set('noteType', '3D');
+
 				globalOffset = [0, -400];
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
@@ -420,6 +426,8 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
 				}
 				loadOffsetFile(curCharacter);
+
+				skins.set('noteType', '3D');
 				
 				globalOffset = [-240, -450];
 				
@@ -537,6 +545,8 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
+				skins.set('noteType', '3D');
+
 				globalOffset = [0, -350];
 
 				setGraphicSize(Std.int((width * 1.5) / furiosityScale));
@@ -557,12 +567,10 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(178, 7, 7);
 
 				loadOffsetFile(curCharacter);
-				playAnim('idle');
-
+				
+				skins.set('noteType', '3D');
 				antialiasing = false;
 				
-				//globaloffset = [150 * 1.3, 450 * 1.3];
-
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
 
 				playAnim('idle');
@@ -576,15 +584,19 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'Left', 24, false);
 		
 				loadOffsetFile(curCharacter);
-				playAnim('idle');
+				
 
 				barColor = FlxColor.fromRGB(82, 15, 15);
 				antialiasing = false;
+
+				skins.set('noteType', '3D');
 				
 				globalOffset = [0, -350];
 				
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
+				
+				playAnim('idle');
 			case 'bambi-joke':
 				frames = Paths.getSparrowAtlas('joke/bambi-joke', 'shared');
 
@@ -781,6 +793,8 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
+				skins.set('noteType', '3D');
+
 				globalOffset = [0, -300];
 				
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
@@ -790,8 +804,6 @@ class Character extends FlxSprite
 
 				nativelyPlayable = true;	
 				flipX = true;
-
-				
 	
 				antialiasing = false;
 
@@ -808,6 +820,8 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(44, 44, 44);
 
 				loadOffsetFile(curCharacter);
+
+				skins.set('noteType', 'recursed');
 
 				playAnim('idle');
 			case 'bf-recursed':

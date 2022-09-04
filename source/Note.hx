@@ -45,9 +45,7 @@ class Note extends FlxSprite
 
 	public var originalType = 0;
 
-	public var MyStrum:FlxSprite;
-
-	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed'];
+	public var MyStrum:StrumNote;
 
 	public var noteStyle:String = 'normal';
 
@@ -95,9 +93,11 @@ class Note extends FlxSprite
 		var notePathLol:String = '';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 
-		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1)
-				|| CharactersWith3D.contains(PlayState.characteroverride) || CharactersWith3D.contains(PlayState.formoverride)) && musthit))
-				|| ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
+		var dadNoteType = PlayState.instance.getDadSkin('noteType');
+		var bfNoteType = PlayState.instance.getBFSkin('noteType');
+
+		if ((dadNoteType == '3D' && !musthit || bfNoteType == '3D' && musthit && musthit) ||
+			(dadNoteType == '3D' || bfNoteType =='3D' && musthit) && (this.strumTime / 50) % 20 > 10)
 		{
 			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
@@ -106,7 +106,7 @@ class Note extends FlxSprite
 			notePathLol = 'notes/NOTE_phone';
 		else if (PlayState.SONG.song.toLowerCase() == "overdrive")
 			notePathLol = 'notes/OMGtop10awesomehi';
-		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
+		else if (dadNoteType == 'recursed' && !musthit || bfNoteType == 'recursed' && !musthit)
 		{
 			this.noteStyle = 'recursed';
 			notePathLol = 'notes/NOTE_recursed';
@@ -303,7 +303,7 @@ class Note extends FlxSprite
 			{
 				prevNote.animation.play('${notes[prevNote.noteData]}hold');
 
-				prevNote.scale.y *= (Conductor.stepCrochet / 100) * 1.49 * PlayState.SONG.speed;
+				prevNote.scale.y *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 1.5;
 				prevNote.updateHitbox();
 			}
 		}
@@ -349,7 +349,7 @@ class Note extends FlxSprite
 			alphaMult = 0.3;
 		}
 	}
-	public function GoToStrum(strum:FlxSprite)
+	public function GoToStrum(strum:StrumNote)
 	{
 		x = strum.x + noteOffset;
 		alpha = strum.alpha * alphaMult;
@@ -365,7 +365,7 @@ class Note extends FlxSprite
 		var state:PlayState = cast(FlxG.state, PlayState);
 		if (musthit)
 		{
-			state.playerStrums.forEach(function(spr:FlxSprite)
+			state.playerStrums.forEach(function(spr:StrumNote)
 			{
 				if (spr.ID == notetolookfor)
 				{
@@ -377,7 +377,7 @@ class Note extends FlxSprite
 		}
 		else
 		{
-			state.dadStrums.forEach(function(spr:FlxSprite)
+			state.dadStrums.forEach(function(spr:StrumNote)
 			{
 				if (spr.ID == notetolookfor)
 				{

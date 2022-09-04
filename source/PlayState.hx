@@ -1279,7 +1279,7 @@ class PlayState extends MusicBeatState
 					case 'house-sunset':
 						stageName = 'daveHouse_sunset';
 						skyType = 'sky_sunset';
-				}			
+				}
 				var bg:BGSprite = new BGSprite('bg', -600, -300, Paths.image('backgrounds/shared/${skyType}'), null, 0.6, 0.6);
 				sprites.add(bg);
 				add(bg);
@@ -2794,13 +2794,11 @@ class PlayState extends MusicBeatState
 				case ExploitationModchartType.Cheating:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-						spr.x -= Math.sin(elapsedtime) * 1.5;
+						spr.x = spr.baseX + (Math.sin(elapsedtime * (spr.ID + 1) / 0.4)) * -(FlxG.width / 2);
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-						spr.x += Math.sin(elapsedtime) * 1.5;
+						spr.x = spr.baseX + (Math.sin(elapsedtime * (spr.ID + 1) * 2)) * (FlxG.width / 2);
 					});
 				case ExploitationModchartType.ScrambledNotes:
 					playerStrums.forEach(function(spr:StrumNote)
@@ -3945,6 +3943,7 @@ class PlayState extends MusicBeatState
 	}
 	function greetingsCutscene()
 	{
+		canPause = false;
 		boyfriend.canDance = false;
 		boyfriend.stunned = false;
 		dad.canDance = false;
@@ -6197,6 +6196,8 @@ class PlayState extends MusicBeatState
 						});
 					case 143:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
+					case 144:
+						modchart = ExploitationModchartType.Cheating;
 					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 288:
@@ -6582,6 +6583,14 @@ class PlayState extends MusicBeatState
 	public function getCamZoom():Float
 	{
 		return defaultCamZoom;
+	}
+	public function getDadSkin(skinToSearch:String)
+	{
+		return dad.skins.get(skinToSearch);
+	}
+	public function getBFSkin(skinToSearch:String)
+	{
+		return boyfriend.skins.get(skinToSearch);
 	}
 	public static function resetShader()
 	{
