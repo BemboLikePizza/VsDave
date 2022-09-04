@@ -10,8 +10,8 @@ internal,maze,bambi,good
 internal,splitathon,the-duo,good
 internal,shredder,bambi,good
 internal,greetings,tristan,good
-internal,interdimensional,dave-angey,good
-internal,rano,dave,good
+internal,interdimensional,dave-festival-3d,good
+internal,rano,dave-festival,good
 internal,supernovae,bambi-joke,good
 internal,glitch,bambi-joke,good
 internal,master,bambi-joke,good

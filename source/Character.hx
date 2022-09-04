@@ -116,6 +116,8 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromString("0x127798");
 				
 				flipX = true;
+
+				antialiasing = false;
 				
 				playAnim('idle');
 			case 'bf-pixel':
