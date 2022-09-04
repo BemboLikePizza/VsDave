@@ -192,7 +192,7 @@ class CreditsPopUp extends FlxSpriteGroup
 	}
 	function rescaleBG()
 	{
-		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width)), Std.int(funnyText.height));
+		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width + 0.5)), Std.int(funnyText.height + 0.5));
 		bg.updateHitbox();
 	}
 }
