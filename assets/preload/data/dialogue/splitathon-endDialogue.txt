@@ -4,19 +4,20 @@
 :tristan:But the game was really fun!
 :tristan:You press these number buttons, and sometimes they would say certain things.
 :tristan:911 was a little scary though
-:dave,annoyed:SON YOU CALLED THE COPS!?
+:dave,shocked:SON YOU CALLED THE COPS!?
 :bf,upset:Boop!?
 :bambi,splitathon:WHY YOU DO THAT??
 :tristan:Wait that's what it was?
-:dave,annoyed:Yes! and you know what, you are grounded!
+:dave,shocked:Yes!
+:dave,post-maze:You know what, Tristan! You are GROUNDED!
 :generic:Tristan starts crying
 :tristan,sad:But dad! I didn't know!
-:dave,annoyed:I don't care Tristan! Those are real people, I could've got in lots of trouble!
-:dave,annoyed:Give me the phone now.
+:dave,post-maze:I don't care Tristan! Those are real people, I could've got in lots of trouble!
+:dave,post-maze:Give me the phone now.
 :tristan,sad:But daaaaad-
 :dave,annoyed:Give me the phone!
 :generic:Tristan hands Dave the phone.
-:dave,annoyed:Ugh, sorry about that.
+:dave,post-maze:Ugh, sorry about that.
 :dave:Anyways, I think me and Tristan are gonna go home now, Bambi, do you want to come with us?
 :bambi,splitathon:No thanks, I'm gonna sleep in the barn.
 :dave:Ok.
