@@ -1,5 +1,6 @@
 package;
 
+import CreditsMenuState.CreditsText;
 import TerminalCheatingState.TerminalText;
 import flixel.graphics.frames.FlxFrame;
 import flixel.graphics.FlxGraphic;
@@ -3737,6 +3738,10 @@ class PlayState extends MusicBeatState
 						};
 						doof.cameras = [camDialogue];
 						schoolIntro(doof, false);
+					case 'rano':
+						var menu:CreditsMenuState = new CreditsMenuState();
+						menu.DoFunnyScroll = true;
+						FlxG.switchState(menu);
 					default:
 						FlxG.sound.playMusic(Paths.music('freakyMenu'));
 						FlxG.switchState(new StoryMenuState());
