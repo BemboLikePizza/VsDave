@@ -1,5 +1,4 @@
 package;
-
 #if desktop
 import cpp.abi.Abi;
 #end
@@ -379,7 +378,9 @@ class CreditsMenuState extends MusicBeatState
       selectedPersonGroup.cameras = [selectPersonCam];
 
       state = State.SelectingName;
-      defaultFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
+      defaultFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+      defaultFormat.borderSize = 2;
+      defaultFormat.borderQuality = 2;
       selectedFormat = new FlxText().setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
       selectedFormat.borderSize = 2;
       selectedFormat.borderQuality = 2;
@@ -695,6 +696,7 @@ class CreditsMenuState extends MusicBeatState
       {
 		   currentText.setFormat(selectedFormat.font, selectedFormat.size, selectedFormat.color, selectedFormat.alignment, selectedFormat.borderStyle, 
             selectedFormat.borderColor);
+         currentText.color = FlxColor.YELLOW;
          currentText.borderSize = selectedFormat.borderSize;
          currentText.borderQuality = selectedFormat.borderQuality;
       }
@@ -705,6 +707,7 @@ class CreditsMenuState extends MusicBeatState
             continue;
          }
 			var currentText:FlxText = menuItems[i].text;
+         currentText.color = FlxColor.WHITE;
 			currentText.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle,
 				defaultFormat.borderColor);
 			currentText.screenCenter(X);
