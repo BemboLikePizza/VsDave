@@ -360,7 +360,10 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
       ]),
 	  // Special Thanks //
-     new Person("You!", CreditsType.SpecialThanks);
+      new Person("You!", CreditsType.Contributor,
+      [
+         
+      ]),
    ];
 
 	override function create()
