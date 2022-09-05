@@ -356,7 +356,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/Ctiles1'),
          new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
       ]),
-	  // Special Thanks // 
+	  // Special Thanks //
      new Person("Golden Apple Team", CreditsType.SpecialThanks,
       [
          new Social('gamebanana', 'https://gamebanana.com/mods/343129')
