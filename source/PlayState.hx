@@ -5793,6 +5793,11 @@ class PlayState extends MusicBeatState
 						camHUD.setFilters([]);
 						defaultCamZoom -= 0.2;
 						FlxTween.tween(black, {alpha: 0}, 1);
+					case 992:
+						dadStrums.forEach(function(spr:StrumNote)
+						{
+							FlxTween.tween(spr, {alpha: 0}, 1);
+						});
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
@@ -5814,9 +5819,31 @@ class PlayState extends MusicBeatState
 						});
 						generateGhNotes(0);
 
+						dadStrums.forEach(function(spr:StrumNote)
+						{
+							spr.centerStrum();
+						});
+						playerStrums.forEach(function(spr:StrumNote)
+						{
+							spr.centerStrum();
+							spr.alpha = 0;
+						});
+					case 1276:
+						dadStrums.forEach(function(spr:StrumNote)
+						{
+							FlxTween.tween(spr, {alpha: 0}, (Conductor.stepCrochet / 1000) * 2);
+						});
+						playerStrums.forEach(function(spr:StrumNote)
+						{
+							FlxTween.tween(spr, {alpha: 1}, (Conductor.stepCrochet / 1000) * 2);
+						});
 					case 1536:
 						FlxTween.tween(black, {alpha: 1}, 0.5, {onComplete: function(tween:FlxTween)
 						{
+							strumLineNotes.forEach(function(spr:StrumNote)
+							{
+								spr.x = spr.baseX;
+							});
 							switchDad('bambi-new', dad.getPosition());
 							FlxTween.tween(black, {alpha: 0}, 0.5, {onComplete: function(tween:FlxTween)
 							{
@@ -6686,14 +6713,6 @@ class PlayState extends MusicBeatState
 	public function getCamZoom():Float
 	{
 		return defaultCamZoom;
-	}
-	public function getDadSkin(skinToSearch:String)
-	{
-		return dad.skins.get(skinToSearch);
-	}
-	public function getBFSkin(skinToSearch:String)
-	{
-		return boyfriend.skins.get(skinToSearch);
 	}
 	public static function resetShader()
 	{
