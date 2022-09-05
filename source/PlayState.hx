@@ -1092,7 +1092,7 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase())
 		{
 			case "exploitation":
-				funkyText = SONG.song; //who undid this.
+				funkyText = SONG.song + " - FUCKED";
 			case 'overdrive':
 				funkyText = '';
 			default:
