@@ -77,25 +77,37 @@ class CreditsPopUp extends FlxSpriteGroup
 				headingPath = {path: 'songHeadings/secretLeakHeading', antiAliasing: true, iconOffset: 3};
 			case 8:
 				headingPath = {path: 'songHeadings/tristanHeading', antiAliasing: true, iconOffset: 0};
-			/*case 9:
-				headingPath = {path: 'songHeadings/playbotHeading', antiAliasing: true, iconOffset: 0};*/
+			case 9:
+				headingPath = {path: 'songHeadings/botHeading', antiAliasing: true, iconOffset: 0};
 			case 10:
 				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
-			case 13:
-				headingPath = {path: 'songHeadings/fnfengeading', antiAliasing: false, iconOffset: 0};
 			case 11:
 				headingPath = {path: 'songHeadings/californiaHeading', antiAliasing: true,
 				animation: new Animation('california', 'California', 24, true, [false, false]), iconOffset: 0};
+			case 12:
+				headingPath = {path: 'songHeadings/fnafHeading', antiAliasing: true, iconOffset: 0};
+			case 13:
+				headingPath = {path: 'songHeadings/fnfengeading', antiAliasing: false, iconOffset: 0};
+			case 14:
+				headingPath = {path: 'songHeadings/cheatingHeading', antiAliasing: true,
+				animation: new Animation('cheating', 'Cheating', 24, true, [false, false]), iconOffset: 0};
+			case 15:
+				headingPath = {path: 'songHeadings/unfairHeading', antiAliasing: true,
+				animation: new Animation('unfair', 'Unfairness', 24, true, [false, false]), iconOffset: 0};
 			case 16:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
-				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0};
-				//stuff that needs headings: five nights, cheating, unfairness, 
+				animation: new Animation('scramble', 'Scramble', 24, true, [false, false]), iconOffset: 0};
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'polygonized' | 'interdimensional':
 				headingPath = {path: 'songHeadings/3D-daveHeading', antiAliasing: false, iconOffset: 0};				
 		}
+		if (PlayState.recursedStaticWeek)
+		{
+			headingPath = {path: 'songHeadings/somethingHeading', antiAliasing: false, iconOffset: 0};
+		}
+
 		if (headingPath != null)
 		{
 			if (headingPath.animation == null)

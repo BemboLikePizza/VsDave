@@ -55,5 +55,8 @@ class SaveDataHandler
 		
 		if (FlxG.save.data.masterWeekUnlocked == null)
 			FlxG.save.data.masterWeekUnlocked = false;
+
+		if (FlxG.save.data.enteredTerminalCheatingState == null)
+			FlxG.save.data.enteredTerminalCheatingState = false;
     }
 }

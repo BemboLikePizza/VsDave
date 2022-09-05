@@ -182,6 +182,8 @@ class PlayState extends MusicBeatState
 	public var sunsetColor:FlxColor = FlxColor.fromRGB(255, 143, 178);
 
 	private static var prevCamFollow:FlxObject;
+	public static var recursedStaticWeek:Bool;
+	
 
 	private var strumLine:FlxSprite;
 	private var strumLineNotes:FlxTypedGroup<StrumNote>;
@@ -2937,6 +2939,7 @@ class PlayState extends MusicBeatState
 						#end
 
 						PlayState.SONG = Song.loadFromJson("cheating"); // you dun fucked up
+						PlayState.storyWeek = 14;
 						FlxG.save.data.cheatingFound = true;
 						FlxG.switchState(new PlayState());
 					}));
@@ -2954,6 +2957,7 @@ class PlayState extends MusicBeatState
 						#end
 
 						PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
+						PlayState.storyWeek = 15;
 						FlxG.save.data.unfairnessFound = true;
 						FlxG.switchState(new PlayState());
 					}));
@@ -3602,6 +3606,11 @@ class PlayState extends MusicBeatState
 	{
 		inCutscene = false;
 		canPause = false;
+
+		if (recursedStaticWeek)
+		{
+			recursedStaticWeek = false;
+		}
 
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
