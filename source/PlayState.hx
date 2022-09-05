@@ -2826,6 +2826,18 @@ class PlayState extends MusicBeatState
 						spr.y += Math.cos(elapsedtime - 1) * 40;
 						spr.x -= 80;
 					});
+
+				case ExploitationModchartType.Cyclone:
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+					});
+					dadStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+					});
 			}
 		}
 		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
@@ -2929,7 +2941,7 @@ class PlayState extends MusicBeatState
 					FlxG.switchState(new TerminalCheatingState([
 						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
 						new TerminalText(200, [['run AntiCheat.dll', 0.5]]),
-						new TerminalText(200, [['ERROR: File currently being used by another process. Retrying in 3...', 3]]),
+						new TerminalText(0, [['ERROR: File currently being used by another process. Retrying in 3...', 3]]),
 						new TerminalText(200, [['File no longer in use, running AntiCheat.dll..', 2]]),
 					], function()
 					{
@@ -6294,11 +6306,8 @@ class PlayState extends MusicBeatState
 						});
 					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
-					case 288:
-						/*strumLineNotes.forEach(function(strum:StrumNote)
-						{
-							strum.centerStrum();
-						});*/
+					case 212:
+						modchart = ExploitationModchartType.Cyclone;
 					case 320:
 						modchart = ExploitationModchartType.None;
 					case 490:
@@ -6925,7 +6934,7 @@ class PlayState extends MusicBeatState
 			FlxTween.tween(strum, {alpha: 0}, 1);
 		});
 
-		var windowX = Application.current.window.x + 270;
+		var windowX = Application.current.window.x + ((Application.current.window.display.bounds.width) * 0.25);
 
 		FlxTween.tween(expungedOffset, {x: -20}, 2, {ease: FlxEase.elasticOut});
 
@@ -6945,7 +6954,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; ScrambledNotes;
+	None; Cheating; ScrambledNotes; Cyclone;
 }
 
 enum CharacterFunnyEffect
