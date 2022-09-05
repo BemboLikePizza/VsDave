@@ -920,7 +920,7 @@ class Character extends FlxSprite
 
 				animation.addByPrefix('idle', 'bump', 24, false);
 
-				globalOffset = [500, 0];
+				globalOffset = [500, 500];
 
 				loadOffsetFile(curCharacter);
 					
