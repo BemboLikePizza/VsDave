@@ -87,7 +87,7 @@ class Note extends FlxSprite
 		}		
 		if ((guitarSection && inCharter && noteData < 5) || (guitarSection))
 		{
-			notes = ['purple', 'blue', 'yellow', 'green', 'red'];
+			notes = ['green', 'red', 'yellow', 'blue', 'orange'];
 		}
 
 		var notePathLol:String = '';
@@ -201,25 +201,25 @@ class Note extends FlxSprite
 				noteOffset = -(width - 78);
 
 			case 'guitarHero':
-				frames = Paths.getSparrowAtlas('notes/NOTE_gh', 'shared');
+				frames = Paths.getSparrowAtlas('notes/NOTEGH_assets', 'shared');
 
-				animation.addByPrefix('greenScroll', 'green alone');
-				animation.addByPrefix('redScroll', 'red alone');
-				animation.addByPrefix('blueScroll', 'blue alone');
-				animation.addByPrefix('purpleScroll', 'purple alone');
-				animation.addByPrefix('yellowScroll', 'purple alone');
+				animation.addByPrefix('greenScroll', 'A Note');
+				animation.addByPrefix('redScroll', 'B Note');
+				animation.addByPrefix('yellowScroll', 'C Note');
+				animation.addByPrefix('blueScroll', 'D Note');
+				animation.addByPrefix('orangeScroll', 'E Note');
 
-				animation.addByPrefix('purpleholdend', 'purple tail');
-				animation.addByPrefix('greenholdend', 'green tail');
-				animation.addByPrefix('redholdend', 'red tail');
-				animation.addByPrefix('blueholdend', 'blue tail');
-				animation.addByPrefix('yellowholdend', 'purple tail');
+				animation.addByPrefix('greenholdend', 'A Hold End');
+				animation.addByPrefix('redholdend', 'B Hold End');
+				animation.addByPrefix('yellowholdend', 'C Hold End');
+				animation.addByPrefix('blueholdend', 'D Hold End');
+				animation.addByPrefix('orangeholdend', 'E Hold End');
 		
-				animation.addByPrefix('purplehold', 'purple hold');
-				animation.addByPrefix('greenhold', 'green hold');
-				animation.addByPrefix('redhold', 'red hold');
-				animation.addByPrefix('bluehold', 'blue hold');
-				animation.addByPrefix('yellowhold', 'purple hold');
+				animation.addByPrefix('greenhold', 'A Hold Piece');
+				animation.addByPrefix('redhold', 'B Hold Piece');
+				animation.addByPrefix('yellowhold', 'C Hold Piece');
+				animation.addByPrefix('bluehold', 'D Hold Piece');
+				animation.addByPrefix('orangehold', 'E Hold Piece');
 
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
