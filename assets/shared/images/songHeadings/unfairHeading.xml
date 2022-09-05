@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Unfairness.png">
+	<!-- Created with Adobe Animate version 19.2.0.405 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Unfairness0000" x="56" y="56" width="401" height="50"/>
+	<SubTexture name="Unfairness0001" x="557" y="56" width="401" height="50"/>
+	<SubTexture name="Unfairness0002" x="1058" y="56" width="401" height="50"/>
+	<SubTexture name="Unfairness0003" x="56" y="206" width="401" height="50"/>
+	<SubTexture name="Unfairness0004" x="557" y="206" width="401" height="50"/>
+	<SubTexture name="Unfairness0005" x="1058" y="206" width="401" height="50"/>
+	<SubTexture name="Unfairness0006" x="56" y="356" width="401" height="50"/>
+	<SubTexture name="Unfairness0007" x="557" y="356" width="401" height="50"/>
+	<SubTexture name="Unfairness0008" x="1058" y="356" width="401" height="50"/>
+	<SubTexture name="Unfairness0009" x="56" y="506" width="401" height="50"/>
+	<SubTexture name="Unfairness0010" x="557" y="506" width="401" height="50"/>
+	<SubTexture name="Unfairness0011" x="1058" y="506" width="401" height="50"/>
+	<SubTexture name="Unfairness0012" x="56" y="656" width="401" height="50"/>
+	<SubTexture name="Unfairness0013" x="557" y="656" width="401" height="50"/>
+	<SubTexture name="Unfairness0014" x="1058" y="656" width="401" height="50"/>
+	<SubTexture name="Unfairness0015" x="56" y="806" width="401" height="50"/>
+	<SubTexture name="Unfairness0016" x="557" y="806" width="401" height="50"/>
+	<SubTexture name="Unfairness0017" x="1058" y="806" width="401" height="50"/>
+	<SubTexture name="Unfairness0018" x="56" y="956" width="401" height="50"/>
+	<SubTexture name="Unfairness0019" x="557" y="956" width="401" height="50"/>
+	<SubTexture name="Unfairness0020" x="1058" y="956" width="401" height="50"/>
+	<SubTexture name="Unfairness0021" x="1058" y="956" width="401" height="50"/>
+	<SubTexture name="Unfairness0022" x="56" y="1106" width="401" height="50"/>
+	<SubTexture name="Unfairness0023" x="557" y="1106" width="401" height="50"/>
+	<SubTexture name="Unfairness0024" x="1058" y="1106" width="401" height="50"/>
+	<SubTexture name="Unfairness0025" x="56" y="1256" width="401" height="50"/>
+	<SubTexture name="Unfairness0026" x="557" y="1256" width="401" height="50"/>
+	<SubTexture name="Unfairness0027" x="1058" y="1256" width="401" height="50"/>
+	<SubTexture name="Unfairness0028" x="56" y="1406" width="401" height="50"/>
+	<SubTexture name="Unfairness0029" x="557" y="1406" width="401" height="50"/>
+	<SubTexture name="Unfairness0030" x="1058" y="1406" width="401" height="50"/>
+	<SubTexture name="Unfairness0031" x="56" y="1556" width="401" height="50"/>
+	<SubTexture name="Unfairness0032" x="557" y="1556" width="401" height="50"/>
+	<SubTexture name="Unfairness0033" x="1058" y="1556" width="401" height="50"/>
+	<SubTexture name="Unfairness0034" x="56" y="1706" width="401" height="50"/>
+	<SubTexture name="Unfairness0035" x="557" y="1706" width="401" height="50"/>
+	<SubTexture name="Unfairness0036" x="1058" y="1706" width="401" height="50"/>
+	<SubTexture name="Unfairness0037" x="56" y="1856" width="401" height="50"/>
+	<SubTexture name="Unfairness0038" x="557" y="1856" width="401" height="50"/>
+	<SubTexture name="Unfairness0039" x="1058" y="1856" width="401" height="50"/>
+	<SubTexture name="Unfairness0040" x="56" y="2006" width="401" height="50"/>
+</TextureAtlas>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="BowserSoup.png">
+	<!-- Created with Adobe Animate version 19.2.0.405 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Scramble0000" x="56" y="56" width="401" height="50"/>
+	<SubTexture name="Scramble0001" x="557" y="56" width="401" height="50"/>
+	<SubTexture name="Scramble0002" x="1058" y="56" width="401" height="50"/>
+	<SubTexture name="Scramble0003" x="56" y="206" width="401" height="50"/>
+	<SubTexture name="Scramble0004" x="557" y="206" width="401" height="50"/>
+	<SubTexture name="Scramble0005" x="1058" y="206" width="401" height="50"/>
+	<SubTexture name="Scramble0006" x="56" y="356" width="401" height="50"/>
+	<SubTexture name="Scramble0007" x="557" y="356" width="401" height="50"/>
+	<SubTexture name="Scramble0008" x="1058" y="356" width="401" height="50"/>
+	<SubTexture name="Scramble0009" x="56" y="506" width="401" height="50"/>
+	<SubTexture name="Scramble0010" x="557" y="506" width="401" height="50"/>
+	<SubTexture name="Scramble0011" x="1058" y="506" width="401" height="50"/>
+	<SubTexture name="Scramble0012" x="56" y="656" width="401" height="50"/>
+	<SubTexture name="Scramble0013" x="557" y="656" width="401" height="50"/>
+	<SubTexture name="Scramble0014" x="1058" y="656" width="401" height="50"/>
+	<SubTexture name="Scramble0015" x="56" y="806" width="401" height="50"/>
+	<SubTexture name="Scramble0016" x="557" y="806" width="401" height="50"/>
+	<SubTexture name="Scramble0017" x="1058" y="806" width="401" height="50"/>
+	<SubTexture name="Scramble0018" x="56" y="956" width="401" height="50"/>
+	<SubTexture name="Scramble0019" x="557" y="956" width="401" height="50"/>
+</TextureAtlas>

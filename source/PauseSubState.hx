@@ -183,6 +183,7 @@ class PauseSubState extends MusicBeatSubstate
 				funnyTexts.clear();
 				PlayState.characteroverride = 'none';
 				PlayState.formoverride = 'none';
+				PlayState.recursedStaticWeek = false;
 
 				Application.current.window.title = Main.applicationName;
 

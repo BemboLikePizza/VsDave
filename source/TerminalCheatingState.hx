@@ -29,6 +29,11 @@ class TerminalCheatingState extends FlxUIState
    }
    override function create()
 	{
+      if (!FlxG.save.data.enteredTerminalCheatingState)
+      {
+         FlxG.save.data.enteredTerminalCheatingState = true;
+         FlxG.save.flush();
+      }
       FlxG.sound.music.onComplete = null;
       FlxG.sound.music.fadeOut(1, 0, function(tween:FlxTween)
       {
@@ -59,6 +64,11 @@ class TerminalCheatingState extends FlxUIState
 	}
 	override function update(elapsed:Float)
 	{
+      if (FlxG.keys.justPressed.ENTER && FlxG.save.data.enteredTerminalCheatingState)
+      {
+         FlxG.camera.setFilters([]);
+			onCommandsComplete();
+      }
 		super.update(elapsed);
 	}
    function continueTerminalText()

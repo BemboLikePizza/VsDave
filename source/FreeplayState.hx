@@ -848,6 +848,10 @@ class FreeplayState extends MusicBeatState
 			});
 		});
 	}
+	static function getSongWeek(song:String)
+	{
+		
+	}
 }
 
 class SongMetadata

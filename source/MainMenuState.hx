@@ -329,6 +329,10 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.switchState(new TerminalState());
 			}
+			if (FlxG.keys.justPressed.EIGHT)
+			{
+				FlxG.switchState(new ChartingState());
+			}
 			if (FlxG.keys.justPressed.R)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -509,9 +513,6 @@ class MainMenuState extends MusicBeatState
 	{
 		FlxG.save.erase();
 
-		CharacterSelectState.unlockCharacter('bf');
-		CharacterSelectState.unlockCharacter('bf-pixel');
-
 		FlxG.save.flush();
 		
 		FlxG.save.bind('funkin', 'ninjamuffin99');
@@ -522,6 +523,9 @@ class MainMenuState extends MusicBeatState
 		Highscore.load();
 		
 		CoolUtil.init();
+
+		CharacterSelectState.unlockCharacter('bf');
+		CharacterSelectState.unlockCharacter('bf-pixel');
 
 		FlxG.switchState(new StartStateSelector());
 	}
