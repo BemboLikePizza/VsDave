@@ -73,7 +73,9 @@ class CreditsMenuState extends MusicBeatState
       new Person("MissingTextureMan101", CreditsType.Dev,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
-         new Social('twitter', 'https://twitter.com/OfficialMTM101')
+         new Social('twitter', 'https://twitter.com/OfficialMTM101'),
+         new Social('twitch', 'https://www.twitch.tv/missingtextureman101'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1665049')
       ]),
       
       new Person("rapparep lol", CreditsType.Dev,
@@ -356,7 +358,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/Ctiles1'),
          new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
       ]),
-	  // Special Thanks // 
+	  // Special Thanks //
      new Person("Golden Apple Team", CreditsType.SpecialThanks,
       [
          new Social('gamebanana', 'https://gamebanana.com/mods/343129')
@@ -509,25 +511,28 @@ class CreditsMenuState extends MusicBeatState
 
       StupidCameraFollow.x = menuItems[0].text.x;
       StupidCameraFollow.y = menuItems[0].text.y - 460; //so close yet so far from having the offset be 420 :(
-      //(FlxG.sound.music.length / 1000) - 15
-      FlxTween.tween(StupidCameraFollow, {y : (menuItems[menuItems.length - 1].text.y + 440)}, (FlxG.sound.music.length / 1000) - 15.5, {ease: FlxEase.linear, onComplete: function(tween:FlxTween)
+      if (DoFunnyScroll)
       {
-         var logoBl:FlxSprite = new FlxSprite(StupidCameraFollow.x, StupidCameraFollow.y);
-         logoBl.frames = Paths.getSparrowAtlas('ui/logoBumpin');
-         logoBl.antialiasing = true;
-         logoBl.alpha = 0;
-         logoBl.x -= logoBl.width / 2;
-         logoBl.y -= logoBl.height / 2;
-         add(logoBl);
-         FlxTween.tween(logoBl, {alpha: 1}, 5.6, {ease: FlxEase.quadIn, onComplete: function(tween:FlxTween)
+         //(FlxG.sound.music.length / 1000) - 15
+         FlxTween.tween(StupidCameraFollow, {y : (menuItems[menuItems.length - 1].text.y + 440)}, (FlxG.sound.music.length / 1000) - 10.5, {ease: FlxEase.linear, onComplete: function(tween:FlxTween)
          {
-            new FlxTimer().start((FlxG.sound.music.length / 1000) - (FlxG.sound.music.time / 1000), function(timer:FlxTimer)
+            var logoBl:FlxSprite = new FlxSprite(StupidCameraFollow.x, StupidCameraFollow.y);
+            logoBl.frames = Paths.getSparrowAtlas('ui/logoBumpin');
+            logoBl.antialiasing = true;
+            logoBl.alpha = 0;
+            logoBl.x -= logoBl.width / 2;
+            logoBl.y -= logoBl.height / 2;
+            add(logoBl);
+            FlxTween.tween(logoBl, {alpha: 1}, 5.6, {ease: FlxEase.quadIn, onComplete: function(tween:FlxTween)
             {
-               FlxG.sound.playMusic(Paths.music('freakyMenuCalm'));
-               FlxG.switchState(new StoryMenuState());
-            });
+               new FlxTimer().start((FlxG.sound.music.length / 1000) - (FlxG.sound.music.time / 1000), function(timer:FlxTimer)
+               {
+                  FlxG.sound.playMusic(Paths.music('freakyMenuCalm'));
+                  FlxG.switchState(new StoryMenuState());
+               });
+            }});
          }});
-      }});
+      }
 		super.create();
 	}
    
@@ -691,6 +696,10 @@ class CreditsMenuState extends MusicBeatState
 
    function updateText(index:Int)
    {
+      if (DoFunnyScroll)
+      {
+         return;
+      }
       var currentText:FlxText = menuItems[index].text;
       if (menuItems[index].menuItem)
       {

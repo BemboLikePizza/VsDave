@@ -20,7 +20,7 @@ class StrumNote extends FlxSprite
          case 'top10awesome':
             frames = Paths.getSparrowAtlas('notes/OMGtop10awesomehi');
          case 'gh':
-            frames = Paths.getSparrowAtlas('notes/NOTE_gh');
+            frames = Paths.getSparrowAtlas('notes/NOTEGH_assets');
          default:
             frames = Paths.getSparrowAtlas('notes/NOTE_assets');
       }

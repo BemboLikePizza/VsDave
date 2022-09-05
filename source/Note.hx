@@ -195,7 +195,7 @@ class Note extends FlxSprite
 				noteOffset = -(width - 78);
 
 			case 'guitarHero':
-				frames = Paths.getSparrowAtlas('notes/NOTE_gh', 'shared');
+				frames = Paths.getSparrowAtlas('notes/NOTEGH_assets', 'shared');
 
 				animation.addByPrefix('greenScroll', 'A Note');
 				animation.addByPrefix('greenhold', 'A Hold Piece');

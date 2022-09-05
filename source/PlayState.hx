@@ -208,6 +208,8 @@ class PlayState extends MusicBeatState
 	private var totalPlayed:Int = 0;
 	private var ss:Bool = false;
 
+	private var windowSteadyX:Float;
+
 	public static var eyesoreson = true;
 
 	private var STUPDVARIABLETHATSHOULDNTBENEEDED:FlxSprite;
@@ -1090,7 +1092,7 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase())
 		{
 			case "exploitation":
-				funkyText = SONG.song + ' FUCKED - [EXPUNGED] ENGINE';
+				funkyText = SONG.song; //who undid this.
 			case 'overdrive':
 				funkyText = '';
 			default:
@@ -2798,17 +2800,31 @@ class PlayState extends MusicBeatState
 			{
 				case ExploitationModchartType.None:
 					
-				case ExploitationModchartType.Cheating:
+				case ExploitationModchartType.Cheating: //This actually doesn't properly loop but since this modchart doesn't last too long it should be fine.
 					playerStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-						spr.x -= Math.sin(elapsedtime) * 1.2;
+						spr.x += Math.sin(elapsedtime) * ((spr.ID % 3) == 0 ? 1 : -1);
+						spr.x -= Math.sin(elapsedtime) * ((spr.ID / 3) + 1.2);
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
-						spr.x += Math.sin(elapsedtime) * 1.2;
+						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 3) == 0 ? 1 : -1);
+						spr.x += Math.sin(elapsedtime) * ((spr.ID / 3) + 1.2);
 					});
+
+				case ExploitationModchartType.Unfairness: //unfairnesses mod chart with a few changes to keep it interesting
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						//0.8 is a speed modifier. its there simply because i thought the og modchart was a bit too hard.
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 2))) * 0.8) * 250);
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 0.5))) * 0.8) * 250);
+					});
+					dadStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 0.5)) * 2) * 0.8) * 250);
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 2)) * 2) * 0.8) * 250);
+					});
+
 				case ExploitationModchartType.ScrambledNotes:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
@@ -3482,7 +3498,10 @@ class PlayState extends MusicBeatState
 				var screenheight = Application.current.window.display.bounds.height;
 
 				//center
-				Application.current.window.y = Std.int(((screenheight / 2) - (720 / 2)) + (Math.sin((curStep / 30)) * 80));
+				Application.current.window.y = Math.round(((screenheight / 2) - (720 / 2)) + (Math.sin((curStep / 30)) * 80));
+				Application.current.window.x = Std.int(windowSteadyX);
+				Application.current.window.width = 1280;
+				Application.current.window.height = 720;
 			}
 
 			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX) + 80;
@@ -4035,7 +4054,9 @@ class PlayState extends MusicBeatState
 		switch (daStyle)
 		{
 			case '3D':
-			  assetPath = '3D/';
+			  	assetPath = '3D/';
+			case 'shape':
+				assetPath = '3D/';
 		}
 
 		var placement:String = Std.string(daCombo);
@@ -6333,8 +6354,10 @@ class PlayState extends MusicBeatState
 						});
 					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
+					case 192: //While we're here, lets bring back a familiar modchart
+						modchart = ExploitationModchartType.Unfairness;
 					case 212:
-						modchart = ExploitationModchartType.Cyclone;
+						//modchart = ExploitationModchartType.Cyclone;
 					case 320:
 						modchart = ExploitationModchartType.None;
 					case 490:
@@ -6953,7 +6976,11 @@ class PlayState extends MusicBeatState
 			FlxTween.tween(strum, {alpha: 0}, 1);
 		});
 
-		var windowX = Application.current.window.x + ((Application.current.window.display.bounds.width) * 0.25);
+
+		var windowX = Application.current.window.x + ((Application.current.window.display.bounds.width) * 0.140625);
+
+		windowSteadyX = windowX;
+
 
 		FlxTween.tween(expungedOffset, {x: -20}, 2, {ease: FlxEase.elasticOut});
 
@@ -6973,7 +7000,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; ScrambledNotes; Cyclone;
+	None; Cheating; ScrambledNotes; Cyclone; Unfairness;
 }
 
 enum CharacterFunnyEffect

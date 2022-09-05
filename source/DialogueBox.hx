@@ -96,7 +96,7 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		
 
-		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
+		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFF8A9AF5);
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
 		add(bgFade);
@@ -334,9 +334,7 @@ class DialogueBox extends FlxSpriteGroup
 						case 'festival-3d-scared':
 							portraitLeft.setPosition(135, 174);
 						case 'festival-tired' | 'festival-exhausted' | 'festival':
-							portraitLeft.setPosition(200, 175);
-						case 'shocked':
-							portraitLeft.setPosition(200, 220);		
+							portraitLeft.setPosition(200, 175);		
 						default:
 							portraitLeft.setPosition(200, 220);	
 					}
@@ -408,7 +406,7 @@ class DialogueBox extends FlxSpriteGroup
 				dropText.font = Paths.font("barcode.ttf");
 				swagDialogue.font = Paths.font("barcode.ttf");
 			case 'to_black':
-				FlxTween.tween(blackScreen, {alpha:1}, 0.25);
+				FlxTween.tween(blackScreen, {alpha:1}, 0.25); 	
 		}
 	}
 	function generatePortrait(portraitSprite:FlxSprite, portrait:Portrait)
@@ -457,7 +455,11 @@ class DialogueBox extends FlxSpriteGroup
 					case 'festival-3d-scared':
 						portrait.portraitPath = 'dialogue/dave/dave_3d_festival';
 					case 'shocked':
-						portrait.portraitPath = 'dialogue/dave/dave_shocked';	
+						portrait.portraitPath = 'dialogue/dave/dave_shocked';
+					case 'erm':
+						portrait.portraitPath = 'dialogue/dave/dave_erm';
+					case 'furious':
+						portrait.portraitPath = 'dialogue/dave/dave_furious';			
 					default:
 						portrait.portraitPath = 'dialogue/dave/dave_happy';
 				}
