@@ -73,7 +73,9 @@ class CreditsMenuState extends MusicBeatState
       new Person("MissingTextureMan101", CreditsType.Dev,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
-         new Social('twitter', 'https://twitter.com/OfficialMTM101')
+         new Social('twitter', 'https://twitter.com/OfficialMTM101'),
+         new Social('twitch', 'https://www.twitch.tv/missingtextureman101'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1665049')
       ]),
       
       new Person("rapparep lol", CreditsType.Dev,
@@ -512,7 +514,7 @@ class CreditsMenuState extends MusicBeatState
       if (DoFunnyScroll)
       {
          //(FlxG.sound.music.length / 1000) - 15
-         FlxTween.tween(StupidCameraFollow, {y : (menuItems[menuItems.length - 1].text.y + 440)}, (FlxG.sound.music.length / 1000) - 15.5, {ease: FlxEase.linear, onComplete: function(tween:FlxTween)
+         FlxTween.tween(StupidCameraFollow, {y : (menuItems[menuItems.length - 1].text.y + 440)}, (FlxG.sound.music.length / 1000) - 10.5, {ease: FlxEase.linear, onComplete: function(tween:FlxTween)
          {
             var logoBl:FlxSprite = new FlxSprite(StupidCameraFollow.x, StupidCameraFollow.y);
             logoBl.frames = Paths.getSparrowAtlas('ui/logoBumpin');
@@ -694,6 +696,10 @@ class CreditsMenuState extends MusicBeatState
 
    function updateText(index:Int)
    {
+      if (DoFunnyScroll)
+      {
+         return;
+      }
       var currentText:FlxText = menuItems[index].text;
       if (menuItems[index].menuItem)
       {
