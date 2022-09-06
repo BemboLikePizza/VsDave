@@ -28,12 +28,12 @@ class StrumNote extends FlxSprite
       switch (type)
       {
          case 'gh':
-            animation.addByPrefix('green', 'A Strum');
-            animation.addByPrefix('red', 'B Strum');
-            animation.addByPrefix('yellow', 'C Strum');
+				animation.addByPrefix('green', 'A Strum');
+				animation.addByPrefix('red', 'B Strum');
+				animation.addByPrefix('yellow', 'C Strum');
             animation.addByPrefix('blue', 'D Strum');
             animation.addByPrefix('orange', 'E Strum');
-
+            
 				switch (Math.abs(strumID))
 				{
 					case 0:
@@ -99,6 +99,6 @@ class StrumNote extends FlxSprite
 	}
 	public function centerStrum()
 	{
-		x = baseX + 320 * (playerStrum ? -1 : 1) + (78 / 4);
+		x = baseX + 320 * (playerStrum ? -1 : 1) + (78 / (playerStrum ? PlayState.instance.playerStrumAmount : PlayState.instance.dadStrumAmount));
 	}
 }

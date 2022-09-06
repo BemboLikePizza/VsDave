@@ -334,9 +334,7 @@ class DialogueBox extends FlxSpriteGroup
 						case 'festival-3d-scared':
 							portraitLeft.setPosition(135, 174);
 						case 'festival-tired' | 'festival-exhausted' | 'festival':
-							portraitLeft.setPosition(200, 175);
-						case 'shocked':
-							portraitLeft.setPosition(200, 220);		
+							portraitLeft.setPosition(200, 175);		
 						default:
 							portraitLeft.setPosition(200, 220);	
 					}
@@ -457,7 +455,11 @@ class DialogueBox extends FlxSpriteGroup
 					case 'festival-3d-scared':
 						portrait.portraitPath = 'dialogue/dave/dave_3d_festival';
 					case 'shocked':
-						portrait.portraitPath = 'dialogue/dave/dave_shocked';	
+						portrait.portraitPath = 'dialogue/dave/dave_shocked';
+					case 'erm':
+						portrait.portraitPath = 'dialogue/dave/dave_erm';
+					case 'furious':
+						portrait.portraitPath = 'dialogue/dave/dave_furious';			
 					default:
 						portrait.portraitPath = 'dialogue/dave/dave_happy';
 				}

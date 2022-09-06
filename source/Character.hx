@@ -43,7 +43,6 @@ class Character extends FlxSprite
 		skins.set('normal', curCharacter);
 		skins.set('recursed', 'bf-recursed');
 		skins.set('gfSkin', 'gf-none');
-		skins.set('noteType', 'normal');
 		
 		antialiasing = true;
 
@@ -92,8 +91,6 @@ class Character extends FlxSprite
 				}
 				loadOffsetFile(curCharacter);
 				
-				skins.set('noteType', '3D');
-
 				globalOffset = [-85, -272];
 				barColor = FlxColor.fromRGB(49, 176, 209);
 
@@ -315,7 +312,6 @@ class Character extends FlxSprite
 				antialiasing = false;
 
 				skins.set('recursed', 'dave-3d-recursed');
-				skins.set('noteType', '3D');
 
 				playAnim('idle');
 			case 'dave-fnaf':
@@ -378,7 +374,6 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}', 24, false);
 				}
 
-				skins.set('noteType', '3D');
 
 				globalOffset = [0, -400];
 
@@ -427,7 +422,6 @@ class Character extends FlxSprite
 				}
 				loadOffsetFile(curCharacter);
 
-				skins.set('noteType', '3D');
 				
 				globalOffset = [-240, -450];
 				
@@ -545,8 +539,6 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
-				skins.set('noteType', '3D');
-
 				globalOffset = [0, -350];
 
 				setGraphicSize(Std.int((width * 1.5) / furiosityScale));
@@ -568,7 +560,6 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 				
-				skins.set('noteType', '3D');
 				antialiasing = false;
 				
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
@@ -588,8 +579,6 @@ class Character extends FlxSprite
 
 				barColor = FlxColor.fromRGB(82, 15, 15);
 				antialiasing = false;
-
-				skins.set('noteType', '3D');
 				
 				globalOffset = [0, -350];
 				
@@ -793,8 +782,6 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
-				skins.set('noteType', '3D');
-
 				globalOffset = [0, -300];
 				
 				setGraphicSize(Std.int((width * 1.3) / furiosityScale));
@@ -820,8 +807,6 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(44, 44, 44);
 
 				loadOffsetFile(curCharacter);
-
-				skins.set('noteType', 'recursed');
 
 				playAnim('idle');
 			case 'bf-recursed':
@@ -935,7 +920,7 @@ class Character extends FlxSprite
 
 				animation.addByPrefix('idle', 'bump', 24, false);
 
-				globalOffset = [500, 0];
+				globalOffset = [500, 500];
 
 				loadOffsetFile(curCharacter);
 					

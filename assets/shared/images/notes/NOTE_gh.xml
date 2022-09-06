@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NOTEGH_assets.png">
+	<!-- Created with Adobe Animate version 21.0.2.37893 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	
+	<!-- Aadsta here again :3 GH/CH strums, engine offset version (originally frame offset for confirms was 73, is now 92 -->
+	
+	<!-- ABCDE Order Key: Green, Red, Yellow, Blue, Orange -->
+	
+	<SubTexture name="A Confirm0000" x="2510" y="0" width="300" height="301" pivotX="150" pivotY="150" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0001" x="2510" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0002" x="2810" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0003" x="2810" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0004" x="3110" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0005" x="3110" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0006" x="3410" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0007" x="3410" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Confirm0008" x="3710" y="0" width="300" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Hold End0000" x="4010" y="0" width="51" height="64" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="A Hold Piece0000" x="4061" y="0" width="51" height="44" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="A Note0000" x="4112" y="0" width="300" height="301" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Press0000" x="4412" y="0" width="300" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="A Strum0000" x="4712" y="0" width="300" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+
+	<SubTexture name="B Confirm0000" x="7522" y="0" width="301" height="301" pivotX="150" pivotY="150" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0001" x="7522" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0002" x="7823" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0003" x="7823" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0004" x="0" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0005" x="0" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0006" x="301" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0007" x="301" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Confirm0008" x="602" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Hold End0000" x="903" y="301" width="51" height="64" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="B Hold Piece0000" x="954" y="301" width="51" height="44" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="B Note0000" x="1005" y="301" width="300" height="301" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Press0000" x="1305" y="301" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="B Strum0000" x="1606" y="301" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0000" x="1907" y="301" width="301" height="301" pivotX="150" pivotY="150" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	
+	<SubTexture name="C Confirm0001" x="1907" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0002" x="2208" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0003" x="2208" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0004" x="2509" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0005" x="2509" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0006" x="2810" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0007" x="2810" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Confirm0008" x="3111" y="301" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Hold End0000" x="3412" y="301" width="51" height="64" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="C Hold Piece0000" x="3463" y="301" width="51" height="44" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="C Note0000" x="3514" y="301" width="301" height="301" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Press0000" x="3815" y="301" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="C Strum0000" x="4116" y="301" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	
+	<SubTexture name="D Confirm0000" x="0" y="0" width="301" height="301" pivotX="150" pivotY="150" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0001" x="0" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0002" x="301" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0003" x="301" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0004" x="602" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0005" x="602" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0006" x="903" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0007" x="903" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Confirm0008" x="1204" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Hold End000" x="1505" y="0" width="51" height="64" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="D Hold Piece0000" x="1556" y="0" width="51" height="44" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="44"/>
+	<SubTexture name="D Note0000" x="1607" y="0" width="301" height="301" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Press0000" x="1908" y="0" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="D Strum0000" x="2209" y="0" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	
+	<SubTexture name="E Confirm0000" x="5012" y="0" width="301" height="301" pivotX="150" pivotY="150" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0001" x="5012" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0002" x="5313" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0003" x="5313" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0004" x="5614" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0005" x="5614" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0006" x="5915" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0007" x="5915" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Confirm0008" x="6216" y="0" width="301" height="301" frameX="92" frameY="92"  frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Hold End0000" x="6517" y="0" width="51" height="64" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="E Hold Piece0000" x="6568" y="0" width="51" height="44" pivotX="0" pivotY="0" frameX="69" frameY="0" frameWidth="51" frameHeight="64"/>
+	<SubTexture name="E Note0000" x="6619" y="0" width="301" height="301" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Press0000" x="6920" y="0" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+	<SubTexture name="E Strum0000" x="7221" y="0" width="301" height="300" pivotX="150" pivotY="150" frameX="73" frameY="73" frameWidth="300" frameHeight="300"/>
+</TextureAtlas>

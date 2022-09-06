@@ -79,7 +79,7 @@ class CreditsPopUp extends FlxSpriteGroup
 				headingPath = {path: 'songHeadings/tristanHeading', antiAliasing: true, iconOffset: 0};
 			case 9:
 				headingPath = {path: 'songHeadings/botHeading', antiAliasing: true,
-				animation: new Animation('bot', 'Bot trot', 24, true, [false, false]), iconOffset: 0};
+				animation: new Animation('botTrot', 'Bot trot', 24, true, [false, false]), iconOffset: 0};
 			case 10:
 				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
 			case 11:

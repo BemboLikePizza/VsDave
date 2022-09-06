@@ -35,6 +35,8 @@ class Note extends FlxSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 
+	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d'];
+
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
 	public static var GREEN_NOTE:Int = 2;
@@ -93,26 +95,18 @@ class Note extends FlxSprite
 		var notePathLol:String = '';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 
-		var dadNoteType = PlayState.instance.getDadSkin('noteType');
-		var bfNoteType = PlayState.instance.getBFSkin('noteType');
-
-		if (noteStyle == "shape")
-		{
-			notePathLol = 'notes/NOTE_assets_Shape';
-		}
-		else if (noteStyle == "phone")
-		{
-			notePathLol = 'notes/NOTE_phone';
-		}
-		else if ((dadNoteType == '3D' && !musthit || bfNoteType == '3D' && musthit && musthit) ||
-			(dadNoteType == '3D' || bfNoteType =='3D' && musthit) && (this.strumTime / 50) % 20 > 10)
+		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1)
+				|| CharactersWith3D.contains(PlayState.characteroverride) || CharactersWith3D.contains(PlayState.formoverride)) && musthit))
+				|| ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
 		{
 			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
 		}
+		else if (noteStyle == "phone")
+			notePathLol = 'notes/NOTE_phone';
 		else if (PlayState.SONG.song.toLowerCase() == "overdrive")
 			notePathLol = 'notes/OMGtop10awesomehi';
-		else if (dadNoteType == 'recursed' && !musthit || bfNoteType == 'recursed' && !musthit)
+		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
 		{
 			this.noteStyle = 'recursed';
 			notePathLol = 'notes/NOTE_recursed';
@@ -204,22 +198,25 @@ class Note extends FlxSprite
 				frames = Paths.getSparrowAtlas('notes/NOTEGH_assets', 'shared');
 
 				animation.addByPrefix('greenScroll', 'A Note');
-				animation.addByPrefix('redScroll', 'B Note');
-				animation.addByPrefix('yellowScroll', 'C Note');
-				animation.addByPrefix('blueScroll', 'D Note');
-				animation.addByPrefix('orangeScroll', 'E Note');
-
-				animation.addByPrefix('greenholdend', 'A Hold End');
-				animation.addByPrefix('redholdend', 'B Hold End');
-				animation.addByPrefix('yellowholdend', 'C Hold End');
-				animation.addByPrefix('blueholdend', 'D Hold End');
-				animation.addByPrefix('orangeholdend', 'E Hold End');
-		
 				animation.addByPrefix('greenhold', 'A Hold Piece');
+				animation.addByPrefix('greenholdend', 'A Hold End');
+
+
+				animation.addByPrefix('redScroll', 'B Note');
 				animation.addByPrefix('redhold', 'B Hold Piece');
+				animation.addByPrefix('redholdend', 'B Hold End');
+
+				animation.addByPrefix('yellowScroll', 'C Note');
 				animation.addByPrefix('yellowhold', 'C Hold Piece');
+				animation.addByPrefix('yellowholdend', 'C Hold End');
+
+				animation.addByPrefix('blueScroll', 'D Note');
 				animation.addByPrefix('bluehold', 'D Hold Piece');
+				animation.addByPrefix('blueholdend', 'D Hold End');
+
+				animation.addByPrefix('orangeScroll', 'E Note');
 				animation.addByPrefix('orangehold', 'E Hold Piece');
+				animation.addByPrefix('orangeholdend', 'E Hold End');
 
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();

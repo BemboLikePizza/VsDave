@@ -199,7 +199,8 @@ class CreditsMenuState extends MusicBeatState
       ]),
       new Person("SAMMYPIGZY", CreditsType.Contributor,
       [  
-
+         new Social('youtube', 'https://www.youtube.com/channel/UCVbNlXsQ-9WA2WcN8u2se_Q'),
+         new Social('twitter', 'https://twitter.com/TH3_R34L_D34L')
       ]),
       
       new Person("R34LD34L", CreditsType.Contributor,
@@ -359,10 +360,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
       ]),
 	  // Special Thanks //
-     new Person("Golden Apple Team", CreditsType.SpecialThanks,
-      [
-         new Social('gamebanana', 'https://gamebanana.com/mods/343129')
-      ])
+     new Person("You!", CreditsType.SpecialThanks, [])
    ];
 
 	override function create()
