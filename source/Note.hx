@@ -104,6 +104,8 @@ class Note extends FlxSprite
 		}
 		else if (noteStyle == "phone")
 			notePathLol = 'notes/NOTE_phone';
+		else if (noteStyle == "shape")
+			notePathLol = 'notes/NOTE_assets_Shape';
 		else if (PlayState.SONG.song.toLowerCase() == "overdrive")
 			notePathLol = 'notes/OMGtop10awesomehi';
 		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
