@@ -26,6 +26,7 @@ class Character extends FlxSprite
 	public var nativelyPlayable:Bool = false;
 
 	public var globalOffset:Array<Float> = new Array<Float>();
+	public var offsetScale:Float = 1;
 	
 	public var barColor:FlxColor;
 	
@@ -447,7 +448,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [90, 80];				
+				globalOffset = [90, 80];			
 				skins.set('recursed', 'bambi-recursed');
 
 				playAnim('idle');
@@ -633,7 +634,7 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(37, 191, 55);
 				loadOffsetFile(curCharacter);
 				
-				globalOffset = [0, 80];
+				globalOffset = [90, 80];
 			case 'tristan':
 				frames = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
 				
@@ -1093,7 +1094,7 @@ class Character extends FlxSprite
 		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))
 		{
-			offset.set((daOffset[0]), (daOffset[1]));
+			offset.set(daOffset[0] * offsetScale, daOffset[1] * offsetScale);
 		}
 		
 		else

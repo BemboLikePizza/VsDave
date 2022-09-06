@@ -99,6 +99,6 @@ class StrumNote extends FlxSprite
 	}
 	public function centerStrum()
 	{
-		x = baseX + 320 * (playerStrum ? -1 : 1) + (78 / (playerStrum ? PlayState.instance.playerStrumAmount : PlayState.instance.dadStrumAmount));
+		x = baseX + 320 * (playerStrum ? -1 : 1) + (78 / 4);
 	}
 }

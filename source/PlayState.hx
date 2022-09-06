@@ -254,6 +254,7 @@ class PlayState extends MusicBeatState
 	public static var campaignScore:Int = 0;
 
 	var defaultCamZoom:Float = 1.05;
+	var lockCam:Bool;
 	
 	public static var daPixelZoom:Float = 6;
 
@@ -310,6 +311,13 @@ class PlayState extends MusicBeatState
 	public static var isGreetingsCutscene:Bool;
 	var originalPosition:FlxPoint = new FlxPoint();
 	var daveFlying:Bool;
+
+	var highway:FlxSprite;
+	var bambiSpot:FlxSprite;
+	var bfSpot:FlxSprite;
+	var originalBFScale:FlxPoint;
+	var originBambiPos:FlxPoint;
+	var originBFPos:FlxPoint;
 
 	var tristan:BGSprite;
 	var curTristanAnim:String;
@@ -1131,6 +1139,10 @@ class PlayState extends MusicBeatState
 				preload('spotLight');
 			case 'shredder':
 				preload('festival/bambi_shredder');
+				for (asset in ['bambi_spot', 'boyfriend_spot', 'ch_highway'])
+				{
+					preload('festival/shredder/${asset}');
+				}
 			case 'interdimensional':
 				preload('backgrounds/void/interdimensions/interdimensionVoid');
 				preload('backgrounds/void/interdimensions/spike');
@@ -3553,68 +3565,71 @@ class PlayState extends MusicBeatState
 				return;
 			}
 		}
-		if (focusondad)
+		if (!lockCam)
 		{
-			camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
-			// camFollow.setPosition(lucky.getMidpoint().x - 120, lucky.getMidpoint().y + 210);
-
-			switch (dad.curCharacter)
+			if (focusondad)
 			{
-				case 'playrobot' | 'playrobot-shadow':
-					camFollow.x = dad.getMidpoint().x + 50;
-				case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
-					camFollow.y = dad.getMidpoint().y;
-				case 'nofriend':
-					camFollow.x = dad.getMidpoint().x + 50;
-					camFollow.y = dad.getMidpoint().y - 50;
-				case 'bambi-3d':
-					camFollow.x = dad.getMidpoint().x;
-					camFollow.y -= 50;
-			}
+				camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
+				// camFollow.setPosition(lucky.getMidpoint().x - 120, lucky.getMidpoint().y + 210);
 
-			if (SONG.song.toLowerCase() == 'warmup')
+				switch (dad.curCharacter)
+				{
+					case 'playrobot' | 'playrobot-shadow':
+						camFollow.x = dad.getMidpoint().x + 50;
+					case 'dave-angey' | 'dave-festival-3d' | 'dave-3d-recursed':
+						camFollow.y = dad.getMidpoint().y;
+					case 'nofriend':
+						camFollow.x = dad.getMidpoint().x + 50;
+						camFollow.y = dad.getMidpoint().y - 50;
+					case 'bambi-3d':
+						camFollow.x = dad.getMidpoint().x;
+						camFollow.y -= 50;
+				}
+
+				if (SONG.song.toLowerCase() == 'warmup')
+				{
+					tweenCamIn();
+				}
+
+				bfNoteCamOffset[0] = 0;
+				bfNoteCamOffset[1] = 0;
+
+				camFollow.x += dadNoteCamOffset[0];
+				camFollow.y += dadNoteCamOffset[1];
+			}
+			else
 			{
-				tweenCamIn();
+				camFollow.setPosition(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
+	
+				switch(boyfriend.curCharacter)
+				{
+					case 'bf-pixel':
+						camFollow.x = boyfriend.getMidpoint().x - 200;
+						camFollow.y = boyfriend.getMidpoint().y - 225;
+					case 'dave-angey':
+						camFollow.y = boyfriend.getMidpoint().y;
+					case 'bambi-3d':
+						camFollow.x = boyfriend.getMidpoint().x - 375;
+						camFollow.y = boyfriend.getMidpoint().y - 550;
+					case 'dave-fnaf':
+						camFollow.x += 100;
 			}
+				dadNoteCamOffset[0] = 0;
+				dadNoteCamOffset[1] = 0;
 
-			bfNoteCamOffset[0] = 0;
-			bfNoteCamOffset[1] = 0;
+				camFollow.x += bfNoteCamOffset[0];
+				camFollow.y += bfNoteCamOffset[1];
 
-			camFollow.x += dadNoteCamOffset[0];
-			camFollow.y += dadNoteCamOffset[1];
-		}
-		else
-		{
-			camFollow.setPosition(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
-
-			switch(boyfriend.curCharacter)
+				if (SONG.song.toLowerCase() == 'warmup')
+				{
+					FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.sineInOut});
+				}
+			}
+			switch (SONG.song.toLowerCase())
 			{
-				case 'bf-pixel':
-					camFollow.x = boyfriend.getMidpoint().x - 200;
-					camFollow.y = boyfriend.getMidpoint().y - 225;
-				case 'dave-angey':
-					camFollow.y = boyfriend.getMidpoint().y;
-				case 'bambi-3d':
-					camFollow.x = boyfriend.getMidpoint().x - 375;
-					camFollow.y = boyfriend.getMidpoint().y - 550;
-				case 'dave-fnaf':
-					camFollow.x += 100;
+				case 'escape-from-california':
+					camFollow.y += 150;
 			}
-			dadNoteCamOffset[0] = 0;
-			dadNoteCamOffset[1] = 0;
-
-			camFollow.x += bfNoteCamOffset[0];
-			camFollow.y += bfNoteCamOffset[1];
-
-			if (SONG.song.toLowerCase() == 'warmup')
-			{
-				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.sineInOut});
-			}
-		}
-		switch (SONG.song.toLowerCase())
-		{
-			case 'escape-from-california':
-				camFollow.y += 150;
 		}
 	}
 
@@ -5825,18 +5840,64 @@ class PlayState extends MusicBeatState
 					case 1024:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 
-						black = new FlxSprite(0, 0).makeGraphic(2560, 1440, FlxColor.BLACK);
+						dadStrums.forEach(function(spr:StrumNote)
+						{
+							spr.alpha = 1;
+						});
+						
+						lockCam = true;
+						
+						originalBFScale = boyfriend.scale.copyTo(originalBFScale);
+						originBFPos = boyfriend.getPosition();
+						originBambiPos = dad.getPosition();
+
+						dad.cameras = [camHUD];
+						dad.scale.set(dad.scale.x * 0.55, dad.scale.y * 0.55);
+						dad.updateHitbox();
+						dad.offsetScale = 0.55;
+						dad.scrollFactor.set();
+						dad.setPosition(-21, -10);
+
+						bambiSpot = new FlxSprite(34, 151).loadGraphic(Paths.image('festival/shredder/bambi_spot'));
+						bambiSpot.scrollFactor.set();
+						bambiSpot.blend = BlendMode.ADD;
+						bambiSpot.cameras = [camHUD];
+						insert(members.indexOf(dadGroup), bambiSpot);
+
+						boyfriend.cameras = [camHUD];
+						boyfriend.scale.set(boyfriend.scale.x * 0.45, boyfriend.scale.y * 0.45);
+						boyfriend.updateHitbox();
+						boyfriend.offsetScale = 0.45;
+						boyfriend.scrollFactor.set();
+						boyfriend.setPosition(930, 201);
+						boyfriend.alpha = 0;
+
+						bfSpot = new FlxSprite(995, 381).loadGraphic(Paths.image('festival/shredder/boyfriend_spot'));
+						bfSpot.scrollFactor.set();
+						bfSpot.blend = BlendMode.ADD;
+						bfSpot.cameras = [camHUD];
+						bfSpot.alpha = 0;
+						insert(members.indexOf(bfGroup), bfSpot);
+
+						highway = new FlxSprite().loadGraphic(Paths.image('festival/shredder/ch_highway'));
+						highway.setGraphicSize(Std.int(highway.width * (670 / highway.width)), Std.int(highway.height * (1340 / highway.height)));
+						highway.updateHitbox();
+						highway.cameras = [camHUD];
+						highway.screenCenter();
+						highway.scrollFactor.set();
+						insert(members.indexOf(strumLineNotes), highway);
+
+						black = new FlxSprite().makeGraphic(2560, 1440, FlxColor.BLACK);
 						black.screenCenter();
-						black.alpha = 0.4;
-						add(black);
-						defaultCamZoom += 0.2;
+						black.scrollFactor.set();
+						black.alpha = 0.9;
+						insert(members.indexOf(highway), black);
 
 						dadStrums.forEach(function(spr:StrumNote)
 						{
 							dadStrums.remove(spr);
 							strumLineNotes.remove(spr);
 							remove(spr);
-							spr.destroy();
 						});
 						generateGhNotes(0);
 
@@ -5858,21 +5919,37 @@ class PlayState extends MusicBeatState
 						{
 							FlxTween.tween(spr, {alpha: 1}, (Conductor.stepCrochet / 1000) * 2);
 						});
+					case 1280:
+						FlxTween.tween(boyfriend, {alpha: 1}, 1);
+						FlxTween.tween(bfSpot, {alpha: 1}, 1);
 					case 1536:
-						FlxTween.tween(black, {alpha: 1}, 0.5, {onComplete: function(tween:FlxTween)
+						var blackFront = new FlxSprite(0, 0).makeGraphic(2560, 1440, FlxColor.BLACK);
+						blackFront.screenCenter();
+						blackFront.alpha = 0;
+						blackFront.cameras = [camHUD];
+						add(blackFront);
+						FlxTween.tween(blackFront, {alpha: 1}, 0.5, {onComplete: function(tween:FlxTween)
 						{
+							lockCam = false;
 							strumLineNotes.forEach(function(spr:StrumNote)
 							{
 								spr.x = spr.baseX;
 							});
-							switchDad('bambi-new', dad.getPosition());
-							FlxTween.tween(black, {alpha: 0}, 0.5, {onComplete: function(tween:FlxTween)
-							{
-								remove(black);
-							}});
-						}});
-						defaultCamZoom -= 0.2;
+							switchDad('bambi-new', originBambiPos, false);
 
+							boyfriend.cameras = dad.cameras;
+							boyfriend.scale.set(originalBFScale.x, originalBFScale.y);
+							boyfriend.updateHitbox();
+							boyfriend.offsetScale = 1;
+							boyfriend.scrollFactor.set(1, 1);
+							boyfriend.setPosition(originBFPos.x, originBFPos.y);
+							
+							for (hudElement in [black, blackFront, bambiSpot, bfSpot, highway])
+							{
+								remove(hudElement);
+							}
+							FlxTween.tween(blackFront, {alpha: 0}, 0.5);
+						}});
 						regenerateStaticArrows(0);
 
 						defaultCamZoom += 0.2;
