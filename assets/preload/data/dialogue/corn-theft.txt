@@ -1,10 +1,10 @@
 :bambi,annoyed: Oh my focking god!
 :generic: INCOMING CALL FROM: DAVE
 :bambi,confused: Huh? Hello?
-:dave,phone: Hey Bambi, it's Dave..
+:dave,phone: Hey Bambi, it's Dave...
 :bambi,confused: Why you tryna calling me?
 :dave,phone: Is there a chance you are currently fighting two equally as short "Trespassers" over corn right now?
-:bambi,annoyed: Yes.. Justifiably!
+:bambi,annoyed: Yes... Justifiably!
 :dave,phone: Bambi. They aren't trespassing.
 :bambi,confused: What?
 :dave,phone: I literally told you beforehand I was planning on having a picnic with the two!

@@ -1,31 +1,10 @@
-:bambi,upset:Mi telefono...
-:bambi,upset:Miren lo que han hecho!
-:bambi,annoyed:No saben en lo que me acaban de meter!
-:bambi,annoyed:Ustedes dos van a morir!
-:gf,what:Uh?
-:generic: LLAMADA ENTRANTE DE: DAVE
-:dave,confused: Bambi! te compré ese teléfono hace 3 horas!
-:bambi,annoyed: ROMPI MI TELEFONO!
-:bambi,annoyed: YA QUE QUIEREN ROBARSE MAIZ!
-:dave,confused: Que?
-:bf,confused: Beep.
-:dave,confused: Ya te explique, solo los invite a tu granja como manera de disculparme por casi destruir el mundo, no estan invandiendo tu granja.
-:bambi: What?
-:dave,confused: Puedes dejar de molestarlos?
-:bambi,upset: Estas mintiendo? ¡Mentiroso!
-:dave,confused: No, te prometo que no te estoy mintiendo Bambi.
-:bambi,annoyed: NO, ESTAS MINTIENDO!!
-:generic: HANG UP
-:bambi,annoyed: Eso es todo, eso es todo!
-:bf: Beep boop bap skdoop
-:bambi,annoyed: Ustedes dos se van a morir!
-:bambi,annoyed: No me importa si estoy cansado, no me importa si estoy aburrido.
-:bambi,annoyed: Estaré aquí todo el día y acabaré contigo!
-:bambi,upset: Una cancion mas y... si tu ganas, y-yo, uhh..
-:bf,confused: Beep?
-:bambi,upset: Supongo que podriamos llamarlo un empate.
-:bambi: Estas preparado?
-:bf,ready: Bess
-:bambi: ENTONCES VAMOS IDIOTA!
-:gf,what: ...
-:gf,what: Supongo que añadire esta a la lista de las últimas canciones difíciles que hice...
+:bambi,upset: Mi telefono...
+:bambi,upset: ¡Miren lo que ustedes dos hicieron!
+:bambi,annoyed: ¡No saben en que problema me han metido!
+:bambi,annoyed: ¡Los dos van a morir!
+:gf,what: No creo que quieras intentar eso.
+:bambi,annoyed: Eso es todo.. ¡Eso es todo!
+:bambi,upset: Una cancion más... Si ganan, Y- Yo, uhh..
+:bambi,upset: Creo que iré a dormir despúes de esto...
+:gf,what: Voy a asumir que gritar por casi 6 minutos seguidos puede ser demasiado agotador.
+:bambi,annoyed: No lo es!

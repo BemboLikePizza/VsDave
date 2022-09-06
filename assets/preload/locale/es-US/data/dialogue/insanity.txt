@@ -1,5 +1,5 @@
-:dave:Wow! eres bueno en esto..
-:bf: skdoo bep
-:dave,annoyed:Hmph. Vamos de nuevo, no crees?
-:bf,ready:Beep
-:dave,annoyed:Bien entonces!
+:dave:¡Guau! Eres realmente bueno en esto...
+:bf: skido bip
+:dave,annoyed:Hmph. Comencemos de nuevo, ¿No crees?
+:bf,ready:Bop
+:dave,annoyed:¡Entendido!

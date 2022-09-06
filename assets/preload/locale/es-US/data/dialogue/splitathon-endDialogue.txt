@@ -1,0 +1,38 @@
+:tristan:¡Papa! Creo que el teléfono de Bambi está roto, solo hay una pantalla negra.
+:bambi,splitathon:QUE, PORQUE JUGABAS CON MI TELÉFONO
+:dave,splitathon:Tristan, no deberías de haber jugado con el teléfono de Bambi sin su permiso.
+:tristan:¡Pero el juego estaba demasiado divertido!
+:tristan:Presionabas estos botones con numeros y algunas veces dirían ciertas cosas.
+:tristan:Pero el 911 fue un poco espeluznante.
+:dave,annoyed:¿¡HIJO LLAMASTES A LA POLICÍA!?
+:bf,upset:¿¡Boop!?
+:bambi,splitathon:¿¿PORQUE HARÍAS ESO??
+:tristan:Espera, ¿Eso era lo que hacía?
+:dave,annoyed:¡Sí! y ¿sabes qué?, ¡Estás castigado!
+:generic:Tristan se pone a llorar.
+:tristan,sad:¡Pero papá! ¡Yo no sabía!
+:dave,annoyed:¡No me importa Tristan! Esas eran personas reales, ¡Me podría haber metido en muchos problemas!
+:gf,confused:Espera, ¿como estarías en problemas?
+:dave,erm:Ummmmmmmmmmmmmm...
+:dave,post-maze:Tristan, dame el teléfono ahora.
+:tristan,sad:Pero papá-
+:dave,annoyed:¡Dame el teléfono!
+:generic:Tristan le da el teléfono a Dave.
+:dave,annoyed:Ugh, perdoname por eso.
+:dave:De todos modos, Creo que yo y Tristan nos iremos a casa, Bambi, ¿quieres venir con nosotros?
+:bambi,splitathon:No gracias, voy a dormir en el granero.
+:dave:Ok.
+:dave:También, BF, tengo que decirte algo antes de irme.
+:bf,confused:¿Bep?
+:dave:Yo y Bambi vamos a hacer un festival, ¿Deseas participar?
+:bf:Yeah!
+:dave:Okay, ven a la granja de Bambi la próxima semana y te diré que tienes que hacer.
+:bf:Bo Be
+:dave:Entonces, ¡Los veo a los dos luego!
+:bf:Ba Bai
+:gf:¡Hasta luego!
+:generic:BF y GF se van de la granja.
+:dave:Adiós Bambi.
+:bambi,splitathon:Nos vemos luego.
+:generic:Dave y Tristan se van de la granja.
+to_black:generic:Fin... por ahora.

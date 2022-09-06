@@ -1,0 +1,3 @@
+:dave,festival-exhausted:Bueno, deberiamos de hacer otra cosa por ahora... 
+to_black:generic:El festival continúa por unas horas mas hasta que acaba y Dave y los demás se van a casa.
+:generic:A pesar de eso BF y GF aparecen antes que Dave regrese a casa para una canción final.

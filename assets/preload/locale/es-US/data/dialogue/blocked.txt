@@ -1,9 +1,13 @@
-:gf,happy: Fue muy amable de parte de Dave invitarnos a un picnic en una granja después de casi matarnos y casi destruir el mundo.
-:bf: Beephoo boopsa basphedi!
-:bambi,annoyed: Quien esta ahi?
-:bf,confused: Beep?
-:bambi,annoyed: Hey! Estas tratando de robarte mi maiz?
-:bf,confused: Bo beep ber-
-:bambi,annoyed: VOY A BLOQUEARTE DE MI GRANJA! que no vuelvas nunca mas, sucia basura de rodeo.
-:bf,confused: Bop?
-:gf,what: Aqui vamos de nuevo...
+:gf,happy: Que tan buena persona es Dave, que nos esta invitando a esta granja para un picnic.
+:gf,happy: Creo que esto compensa que casi nos mata con toda esa tontería en 3D.
+:bf: Skibbido.
+:gf,happy: Espero que ningún granjero enano con poco temperamento aparezca entre nosotros!
+:gf,happy: Especialmente uno con la suposición de que estamos robando su maíz...
+:bambi,annoyed: ¿¿Quien está ahí??
+:bf,confused: ¿Beep?
+:gf,what: Mierda.
+:bambi,annoyed: ¡Oigan! ¿Están intentando robar mi maíz?
+:bf,confused: Bip boop er-
+:bambi,annoyed: ¡VOY A BLOQUEARTE DE MI GRANJA! No volverán nunca pedazos de chatarra en desuso.
+:bf,confused: ¿Bep?
+:gf,what: Solo empieza con esto Boyfriend.
