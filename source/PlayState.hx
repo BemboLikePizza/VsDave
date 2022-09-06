@@ -2811,6 +2811,40 @@ class PlayState extends MusicBeatState
 			switch (modchart)
 			{
 				case ExploitationModchartType.None:
+
+				case ExploitationModchartType.Jitterwave:
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						if (spr.ID == 1)
+						{
+							spr.x = playerStrums.members[2].baseX;
+						}
+						else if (spr.ID == 2)
+						{
+							spr.x = playerStrums.members[1].baseX;
+						}
+						else
+						{
+							spr.x = spr.baseX;
+						}
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + ((Math.sin((elapsedtime + spr.ID) * (((curBeat % 6) + 1) * 0.6))) * 100);
+					});
+					dadStrums.forEach(function(spr:StrumNote)
+					{
+						if (spr.ID == 1)
+						{
+							spr.x = dadStrums.members[2].baseX;
+						}
+						else if (spr.ID == 2)
+						{
+							spr.x = dadStrums.members[1].baseX;
+						}
+						else
+						{
+							spr.x = spr.baseX;
+						}
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + ((Math.sin((elapsedtime + spr.ID) * (((curBeat % 6) + 1) * 0.6))) * 100);
+					});
 					
 				case ExploitationModchartType.Cheating: //This actually doesn't properly loop but since this modchart doesn't last too long it should be fine.
 					playerStrums.forEach(function(spr:StrumNote)
@@ -2828,13 +2862,13 @@ class PlayState extends MusicBeatState
 					playerStrums.forEach(function(spr:StrumNote)
 					{
 						//0.8 is a speed modifier. its there simply because i thought the og modchart was a bit too hard.
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 2))) * 0.8) * 250);
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 0.5))) * 0.8) * 250);
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 2))) * 0.6) * 250);
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 0.5))) * 0.6) * 250);
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 0.5)) * 2) * 0.8) * 250);
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 2)) * 2) * 0.8) * 250);
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 0.5)) * 2) * 0.6) * 250);
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 2)) * 2) * 0.6) * 250);
 					});
 
 				case ExploitationModchartType.ScrambledNotes:
@@ -6403,6 +6437,8 @@ class PlayState extends MusicBeatState
 				}
 				switch (curBeat)
 				{
+					case 223:
+						modchart = ExploitationModchartType.Jitterwave;
 					case 40, 44, 46, 56, 60, 62, 120, 124:
 						switchNoteScroll();
 					case 72, 76, 80, 88, 90, 92:
@@ -7077,7 +7113,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; ScrambledNotes; Cyclone; Unfairness;
+	None; Cheating; ScrambledNotes; Cyclone; Unfairness; Jitterwave;
 }
 
 enum CharacterFunnyEffect
