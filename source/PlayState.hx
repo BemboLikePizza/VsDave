@@ -928,6 +928,11 @@ class PlayState extends MusicBeatState
 			case 'overdrive':
 				dad.setPosition(244.15, 437);
 				boyfriend.setPosition(837, 363);
+			case 'red-void':
+				if (funnyFloatyBoys.contains(dad.curCharacter))
+				{
+					dad.y -= 70;
+				}
 		}
 
 		switch (stageCheck)
@@ -3748,7 +3753,7 @@ class PlayState extends MusicBeatState
 			campaignScore += songScore;
 
 			var completedSongs:Array<String> = [];
-			var mustCompleteSongs:Array<String> = ['House', 'Insanity', 'Polygonized', 'Blocked', 'Corn-Theft', 'Maze', 'Splitathon'];
+			var mustCompleteSongs:Array<String> = ['House', 'Insanity', 'Polygonized', 'Blocked', 'Corn-Theft', 'Maze', 'Splitathon', 'Shredder', 'Greetings', 'Interdimensional', 'Rano'];
 			var allSongsCompleted:Bool = true;
 			if (FlxG.save.data.songsCompleted == null)
 			{
@@ -4296,7 +4301,7 @@ class PlayState extends MusicBeatState
 		var down = controls.DOWN;
 		var left = controls.LEFT;
 
-		var key5 = controls.KEY5;
+		var key5 = controls.KEY5 && (SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'interdimensional');
 
 		var upP = controls.UP_P;
 		var rightP = controls.RIGHT_P;

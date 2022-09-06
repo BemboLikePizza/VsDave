@@ -144,7 +144,7 @@ class Note extends FlxSprite
 	
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
-				antialiasing = true;
+				antialiasing = noteStyle != '3D';
 			
 			case 'shape':
 				frames = Paths.getSparrowAtlas(notePathLol, 'shared');
