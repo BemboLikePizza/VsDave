@@ -528,7 +528,6 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camTransition);
 
 		FlxCamera.defaultCameras = [camGame];
-		Transition.nextCamera = camTransition; 
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -1278,7 +1277,8 @@ class PlayState extends MusicBeatState
 
 		super.create();
 
-		Transition.nextCamera = camTransition;
+		//Transition.nextCamera = camTransition;
+		Transition.nextCamera = camHUD;
 	}
 	
 	public function createBackgroundSprites(bgName:String, revertedBG:Bool):FlxTypedGroup<BGSprite>
