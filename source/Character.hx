@@ -633,6 +633,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singMIDDLE', 'shredder forward', 24, false);
 				animation.addByPrefix('singUP', 'shredder up', 24, false);
 				animation.addByPrefix('singRIGHT', 'shredder right', 24, false);
+				animation.addByPrefix('singMIDDLE', 'shredder forward', 24, false);
 				animation.addByPrefix('takeOut', 'shredder take out', 24, false);
 
 				barColor = FlxColor.fromRGB(37, 191, 55);

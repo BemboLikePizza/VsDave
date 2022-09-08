@@ -1,9 +1,9 @@
-:bambi,bevel:Porque me estas llamando ?
-:bf,confused:Beep
+:bambi,bevel:¿Porque me llamas?
+:bf,confused:Bip
 :bambi,bevel:No entiendo
-:bambi,bevel:Habla Brazil
+:bambi,bevel:Habla brasilero
 :bf,confused:Boop beep skdoop
-:bambi,bevel:Te voy a bloquear porque me andas llamando
-:bambi,bevel:Tengamos una batalla de rap
-:bambi,bevel:Tu pierdes = block
-:bambi,bevel:TB ella pierde tu vas a perder
+:bambi,bevel:Te bloqueo porque me estás llamando
+:bambi,bevel:Tengamos batalla de rap
+:bambi,bevel:Pierdes = bloquear
+:bambi,bevel:TB ella perdio tu perderás

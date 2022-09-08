@@ -11,9 +11,6 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
-#if polymod
-import polymod.format.ParseRules.TargetSignatureElement;
-#end
 import PlayState;
 
 using StringTools;
@@ -104,6 +101,8 @@ class Note extends FlxSprite
 		}
 		else if (noteStyle == "phone")
 			notePathLol = 'notes/NOTE_phone';
+		else if (noteStyle == "shape")
+			notePathLol = 'notes/NOTE_assets_Shape';
 		else if (PlayState.SONG.song.toLowerCase() == "overdrive")
 			notePathLol = 'notes/OMGtop10awesomehi';
 		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
@@ -144,7 +143,7 @@ class Note extends FlxSprite
 	
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
-				antialiasing = true;
+				antialiasing = noteStyle != '3D';
 			
 			case 'shape':
 				frames = Paths.getSparrowAtlas(notePathLol, 'shared');

@@ -1,6 +1,6 @@
 :tristan:Dad! I think Bambi's phone is broken, it's just a black screen.
 :bambi,splitathon:WHAT, WHY YOU PLAYING WITH MY PHONE
-:dave,post-maze:Tristan, you shouldn't be playing on Bambi's phone without his permission
+:dave,post-maze:Tristan, you shouldn't be playing on Bambi's phone without his permission.
 :tristan:But the game was really fun!
 :tristan:You press these number buttons, and sometimes they would say certain things.
 :tristan:911 was a little scary though
@@ -10,7 +10,7 @@
 :tristan:Wait that's what it was?
 :dave,shocked:Yes!
 :dave,post-maze:You know what, Tristan! You are GROUNDED!
-:generic:Tristan starts crying
+:generic:Tristan starts crying.
 :tristan,sad:But dad! I didn't know!
 :dave,post-maze:I don't care Tristan! Those are real people, I could've got in lots of trouble!
 :gf,confused:Wait, how would you get in trouble?
@@ -34,6 +34,6 @@
 :gf:Seeya!
 :generic:BF and GF leave the farm.
 :dave:Bye Bambi
-:bambi,splitathon:see you later
-:generic:Dave and Tristan leave the farm
+:bambi,splitathon:See you later.
+:generic:Dave and Tristan leave the farm.
 to_black:generic:The End... for now.

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project>
+<project xmlns="http://lime.openfl.org/project/1.0.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
+
 	<!-- _________________________ Application Settings _________________________ -->
 
 	<app title="Friday Night Funkin' | VS. Dave and Bambi 3.0" file="VsDave" packageName="dnbteam.daveandbambi" package="dnbteam.daveandbambi" main="Main" version="3.0.0" company="dnbteam"/>
@@ -68,7 +69,6 @@
 	<haxelib name="actuate" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="faxe" if='switch'/>
-	<haxelib name="polymod"/>
 	<haxelib name="hxCodec" if="desktop || android" />
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
@@ -76,9 +76,7 @@
 
 	<setenv name="next"/>
 
-	#if desktop
 	<haxelib name="discord_rpc" if="desktop"/>
-	#end
 
 	<!-- _________________________________ Custom _______________________________ -->
 

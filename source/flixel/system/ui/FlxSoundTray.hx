@@ -135,7 +135,7 @@ class FlxSoundTray extends Sprite
 	{
 		if (!Silent)
 		{
-			var sound = FlxAssets.getSound("flixel/sounds/beep");
+			var sound = Paths.sound("clicky", "shared");
 			if (sound != null)
 				FlxG.sound.load(sound).play();
 		}

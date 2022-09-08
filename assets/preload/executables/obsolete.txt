@@ -1,2 +1,1 @@
-there used to be stuff here but its obsolete now.
-TODO: delete executables folder and all code referencing it.
+we used to have executables here but we don't anymore (RIP).
