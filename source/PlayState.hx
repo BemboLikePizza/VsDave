@@ -296,6 +296,7 @@ class PlayState extends MusicBeatState
 
 
 	//bg stuff
+	var baldi:BGSprite;
 	var spotLight:FlxSprite;
 	var spotLightPart:Bool;
 	var spotLightScaler:Float = 1.3;
@@ -1160,6 +1161,8 @@ class PlayState extends MusicBeatState
 				{
 					case 'dave':
 						preload('recursed/characters/Dave_Recursed');
+					case 'bambi-new':
+						preload('recursed/characters/Bambi_Recursed');
 					case 'tb-funny-man':
 						preload('recursed/characters/STOP_LOOKING_AT_THE_FILES');
 					case 'tristan' | 'tristan-golden':
@@ -1418,6 +1421,14 @@ class PlayState extends MusicBeatState
 				add(cornFence2);
 				add(cornBag);
 				add(sign);
+
+				if (['blocked', 'corn-theft', 'maze'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, 4) == 0)
+				{
+					FlxG.mouse.visible = true;
+					baldi = new BGSprite('baldi', 0, 250, Paths.image('backgrounds/farm/baldo', 'shared'), null);
+					sprites.add(baldi);
+					add(baldi);
+				}
 
 				if (SONG.song.toLowerCase() == 'splitathon')
 				{
@@ -2753,6 +2764,15 @@ class PlayState extends MusicBeatState
 				changeDoorState(!doorClosed);
 			}
 		}
+		if (baldi != null)
+		{
+			if (FlxG.mouse.overlaps(baldi) && FlxG.mouse.justPressed)
+			{
+				isStoryMode = false;
+				storyPlaylist = [];
+				FlxG.switchState(new MathGameState());
+			}
+		}
 		
 		var toy = -100 + -Math.sin((curStep / 9.5) * 2) * 30 * 5;
 		var tox = -330 -Math.cos((curStep / 9.5)) * 100;
@@ -3644,6 +3664,8 @@ class PlayState extends MusicBeatState
 					case 'bf-pixel':
 						camFollow.x = boyfriend.getMidpoint().x - 200;
 						camFollow.y = boyfriend.getMidpoint().y - 225;
+					case 'bf-3d':
+						camFollow.y += 100;
 					case 'dave-angey':
 						camFollow.y = boyfriend.getMidpoint().y;
 					case 'bambi-3d':
@@ -3690,7 +3712,10 @@ class PlayState extends MusicBeatState
 	{
 		inCutscene = false;
 		canPause = false;
-
+		if (MathGameState.failedGame)
+		{
+			MathGameState.failedGame = false;
+		}
 		if (recursedStaticWeek)
 		{
 			recursedStaticWeek = false;

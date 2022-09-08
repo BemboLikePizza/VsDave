@@ -180,6 +180,10 @@ class PauseSubState extends MusicBeatSubstate
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
 			case "Exit to menu":
+				if (MathGameState.failedGame)
+				{
+					MathGameState.failedGame = false;
+				}
 				funnyTexts.clear();
 				PlayState.characteroverride = 'none';
 				PlayState.formoverride = 'none';

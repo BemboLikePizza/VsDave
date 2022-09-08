@@ -184,6 +184,8 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 
+				skins.set('3d', 'gf-3d');
+
 				barColor = FlxColor.fromString('#33de39');
 
 				playAnim('danceRight');
@@ -624,11 +626,14 @@ class Character extends FlxSprite
 
 			case 'bambi-shredder':
 				frames = Paths.getSparrowAtlas('festival/bambi_shredder', 'shared');
+				
 				animation.addByPrefix('idle', 'shredder idle', 24, false);
 				animation.addByPrefix('singLEFT', 'shredder left', 24, false);
 				animation.addByPrefix('singDOWN', 'shredder down', 24, false);
+				animation.addByPrefix('singMIDDLE', 'shredder forward', 24, false);
 				animation.addByPrefix('singUP', 'shredder up', 24, false);
 				animation.addByPrefix('singRIGHT', 'shredder right', 24, false);
+				animation.addByPrefix('singMIDDLE', 'shredder forward', 24, false);
 				animation.addByPrefix('takeOut', 'shredder take out', 24, false);
 
 				barColor = FlxColor.fromRGB(37, 191, 55);

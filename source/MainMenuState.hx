@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxSpriteGroup;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.addons.effects.chainable.FlxShakeEffect;
@@ -305,6 +306,7 @@ class MainMenuState extends MusicBeatState
 		});
 
 		// NG.core.calls.event.logEvent('swag').send();
+		
 
 		super.create();
 	}
@@ -325,10 +327,6 @@ class MainMenuState extends MusicBeatState
 		}
 		if (canInteract)
 		{
-			if (FlxG.keys.justPressed.SEVEN)
-			{
-				FlxG.switchState(new TerminalState());
-			}
 			if (FlxG.keys.justPressed.EIGHT)
 			{
 				FlxG.switchState(new ChartingState());
