@@ -865,12 +865,7 @@ class ChartingState extends MusicBeatState
 			PlayState.SONG = _song;
 			FlxG.sound.music.stop();
 			vocals.stop();
-
-			if (PlayState.SONG.song.toLowerCase() == 'roofs' && !FlxG.save.data.roofsUnlocked)
-			{
-				FlxG.save.data.roofsUnlocked = true;
-				FlxG.save.flush();
-			}
+			
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
 
