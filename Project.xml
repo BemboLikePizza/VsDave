@@ -69,7 +69,6 @@
 	<haxelib name="actuate" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="faxe" if='switch'/>
-	<haxelib name="polymod"/>
 	<haxelib name="hxCodec" if="desktop || android" />
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
@@ -77,9 +76,7 @@
 
 	<setenv name="next"/>
 
-	#if desktop
 	<haxelib name="discord_rpc" if="desktop"/>
-	#end
 
 	<!-- _________________________________ Custom _______________________________ -->
 
