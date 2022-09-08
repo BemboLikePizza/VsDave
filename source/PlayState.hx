@@ -1277,8 +1277,7 @@ class PlayState extends MusicBeatState
 
 		super.create();
 
-		//Transition.nextCamera = camTransition;
-		Transition.nextCamera = camHUD;
+		Transition.nextCamera = camTransition;
 	}
 	
 	public function createBackgroundSprites(bgName:String, revertedBG:Bool):FlxTypedGroup<BGSprite>
