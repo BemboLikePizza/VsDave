@@ -272,13 +272,13 @@ class FreeplayState extends MusicBeatState
 				if (!FlxG.save.data.terminalFound)
 				{
 					if (FlxG.save.data.cheatingFound)
-						addWeek(['Cheating'], 15, ['bambi-3d']);
+						addWeek(['Cheating'], 14, ['bambi-3d']);
 					if (FlxG.save.data.unfairnessFound)
-						addWeek(['Unfairness'], 16, ['bambi-unfair']);
+						addWeek(['Unfairness'], 15, ['bambi-unfair']);
 				}
 				if (FlxG.save.data.exbungoFound)
 					addWeek(['Kabunga'], 6, ['exbungo']);
-				if (FlxG.save.data.secretModLeakUnlocked)
+				if (FlxG.save.data.roofsUnlocked)
 					addWeek(['Roofs'], 7, ['baldi']);
 			case 'extras':
 				if (FlxG.save.data.recursedUnlocked)
@@ -631,19 +631,6 @@ class FreeplayState extends MusicBeatState
 					LoadingState.loadAndSwitchState(new CharacterSelectState());
 				}
 			}
-			/*for (song in grpSongs.members)
-			{
-				var ratio = 0.16 / (openfl.Lib.application.window.frameRate / 60);
-				var songWidth = getTrueSongTextWidth(song);
-				
-				song.x = FlxMath.lerp(song.x, ((FlxG.width - songWidth) / 2) + (song.targetY), ratio);
-				song.y = FlxMath.lerp(song.y, (FlxG.height * song.groupY) + Math.abs(song.targetY * 100), ratio);
-
-				var widthThingy:Float = 0;
-				target Y 0 is at center
-				target Y < 0 is at bottom, and is subtracted based on the width of the last object, (or +1)
-				target Y > 0's x is added based on the width of the last object (or, - 1)
-			}*/
 		}
 
 		if (FlxG.sound.music.volume < 0.7)

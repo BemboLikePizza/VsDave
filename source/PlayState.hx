@@ -1422,10 +1422,11 @@ class PlayState extends MusicBeatState
 				add(cornBag);
 				add(sign);
 
-				if (['blocked', 'corn-theft', 'maze'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, 4) == 0)
+				if (['blocked', 'corn-theft', 'maze', 'mealie'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, 4) == 0)
 				{
 					FlxG.mouse.visible = true;
 					baldi = new BGSprite('baldi', 0, 250, Paths.image('backgrounds/farm/baldo', 'shared'), null);
+					baldi.color = variantColor;
 					sprites.add(baldi);
 					add(baldi);
 				}
