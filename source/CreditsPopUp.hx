@@ -127,7 +127,13 @@ class CreditsPopUp extends FlxSpriteGroup
 		}
 		createHeadingText('Song by $songCreator');
 		
-		funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
+		switch (PlayState.SONG.song.toLowerCase())
+		{
+			case 'supernovae' | 'glitch':
+				funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/MoldyGH'));
+			default:
+				funnyIcon = new FlxSprite(0, 0, Paths.image('songCreators/' + songCreator));
+		}
 		rescaleIcon();
 		add(funnyIcon);
 

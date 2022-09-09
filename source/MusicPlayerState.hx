@@ -60,6 +60,41 @@ class MusicPlayerState extends MusicBeatState
                 songs.push(new PlaySongMetadata(splitstring[1], splitstring[0] == "external", splitstring[2],splitstring[3] == "bad",false));
             }
         }
+        // someone out there could definitely make a way better version of this. if so please do
+        if(FlxG.save.data.hasPlayedMasterWeek)
+        {
+            songs.push(new PlaySongMetadata('supernovae', false, 'bambi-joke', false, true));
+            songs.push(new PlaySongMetadata('glitch', false, 'bambi-joke', false, true));
+            songs.push(new PlaySongMetadata('master', false, 'bambi-joke', true, true));
+        }
+        if(FlxG.save.data.cheatingFound)
+        {
+            songs.push(new PlaySongMetadata('cheating', false, 'bambi-3d', false, true));
+        }
+        if(FlxG.save.data.unfairnessFound)
+        {
+            songs.push(new PlaySongMetadata('unfairness', false, 'bambi-unfair', false, true));       
+        }
+        if(FlxG.save.data.exploitationFound)
+        {
+            songs.push(new PlaySongMetadata('exploitation', false, 'expunged', false, true));   
+        }
+        if(FlxG.save.data.exbungoFound)
+        {
+            songs.push(new PlaySongMetadata('kabunga', false, 'exbungo', false, true));   
+        }
+        if(FlxG.save.data.roofsUnlocked)
+        {
+            songs.push(new PlaySongMetadata('roofs', false, 'baldi', false, true));
+        }
+        if(FlxG.save.data.recursedUnlocked)
+        {
+            songs.push(new PlaySongMetadata('recursed', false, 'recurser', false, true));
+        }
+        if(FlxG.save.data.vsDaveRapTwoFound)
+        {
+            songs.push(new PlaySongMetadata('vs-dave-rap-two', false, 'dave-cool', false, true));
+        }
 
         bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/Aadsta'));
         bg.loadGraphic(MainMenuState.randomizeBG());
