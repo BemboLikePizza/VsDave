@@ -2817,10 +2817,9 @@ class PlayState extends MusicBeatState
 		{
 			gf.y += (Math.sin(elapsedtime) * 0.2);
 		}
-		
 		if ((SONG.song.toLowerCase() == 'cheating' || localFunny == CharacterFunnyEffect.Dave) && !inCutscene) // fuck you
 		{
-			playerStrums.forEach(function(spr:StrumNote)
+			playerStrums.forEach(function(spr:StrumNote)                                               
 			{
 				spr.x += Math.sin(elapsedtime) * ((spr.ID % 2) == 0 ? 1 : -1);
 				spr.x -= Math.sin(elapsedtime) * 1.5;
@@ -5933,7 +5932,7 @@ class PlayState extends MusicBeatState
 						boyfriend.updateHitbox();
 						boyfriend.offsetScale = 0.45;
 						boyfriend.scrollFactor.set();
-						boyfriend.setPosition(930, 201);
+						boyfriend.setPosition(930 + boyfriend.globalOffset[0] * boyfriend.offsetScale, 201 + boyfriend.globalOffset[1] * boyfriend.offsetScale);
 						boyfriend.alpha = 0;
 
 						bfSpot = new FlxSprite(995, 381).loadGraphic(Paths.image('festival/shredder/boyfriend_spot'));

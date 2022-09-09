@@ -89,7 +89,7 @@ class Note extends FlxSprite
 			notes = ['green', 'red', 'yellow', 'blue', 'orange'];
 		}
 
-		var notePathLol:String = '';
+		var notePathLol:String = 'notes/NOTE_assets';
 		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
 
 		if (((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1)
@@ -99,20 +99,24 @@ class Note extends FlxSprite
 			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
 		}
-		else if (noteStyle == "phone")
-			notePathLol = 'notes/NOTE_phone';
-		else if (noteStyle == "shape")
-			notePathLol = 'notes/NOTE_assets_Shape';
-		else if (PlayState.SONG.song.toLowerCase() == "overdrive")
-			notePathLol = 'notes/OMGtop10awesomehi';
-		else if (PlayState.SONG.song.toLowerCase() == 'recursed' && !musthit)
+		switch (noteStyle)
 		{
-			this.noteStyle = 'recursed';
-			notePathLol = 'notes/NOTE_recursed';
+			case 'phone':
+				notePathLol = 'notes/NOTE_phone';
+			case 'shape':
+				notePathLol = 'notes/NOTE_assets_Shape';
 		}
-		else
-			notePathLol = 'notes/NOTE_assets';
-
+		switch (PlayState.SONG.song.toLowerCase())
+		{
+			case 'overdrive':
+				notePathLol = 'notes/OMGtop10awesomehi';
+			case 'recursed':
+				if (!musthit)
+				{
+					this.noteStyle = 'recursed';
+					notePathLol = 'notes/NOTE_recursed';
+				}
+		}
 		if (PlayState.SONG.song.toLowerCase() == 'recursed' && (musthit && (this.strumTime / 50) % 20 > 12) && !isSustainNote)
 		{
 			this.noteStyle = 'text';

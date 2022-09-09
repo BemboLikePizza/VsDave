@@ -450,7 +450,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [90, 80];			
+				globalOffset = [37, 90];
 				skins.set('recursed', 'bambi-recursed');
 
 				playAnim('idle');
@@ -639,7 +639,7 @@ class Character extends FlxSprite
 				barColor = FlxColor.fromRGB(37, 191, 55);
 				loadOffsetFile(curCharacter);
 				
-				globalOffset = [90, 80];
+				globalOffset = [37, 90];
 			case 'tristan':
 				frames = Paths.getSparrowAtlas('dave/TRISTAN', 'shared');
 				
