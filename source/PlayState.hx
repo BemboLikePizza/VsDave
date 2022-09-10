@@ -3042,7 +3042,6 @@ class PlayState extends MusicBeatState
 						FlxG.switchState(new PlayState());
 					}));
 					return;
-					// FlxG.switchState(new VideoState('assets/videos/fortnite/fortniteballs.webm', new CrasherState()));
 				case 'cheating':
 					FlxG.switchState(new TerminalCheatingState([
 						new TerminalText(0, [['Warning: ', 1], ['Chart Editor access detected', 1],]),
