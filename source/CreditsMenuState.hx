@@ -525,7 +525,7 @@ class CreditsMenuState extends MusicBeatState
             {
                new FlxTimer().start((FlxG.sound.music.length / 1000) - (FlxG.sound.music.time / 1000), function(timer:FlxTimer)
                {
-                  FlxG.sound.playMusic(Paths.music('freakyMenuCalm'));
+                  FlxG.sound.playMusic(Paths.music('theend'));
                   FlxG.switchState(new StoryMenuState());
                });
             }});
