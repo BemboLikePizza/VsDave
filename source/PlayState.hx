@@ -908,8 +908,8 @@ class PlayState extends MusicBeatState
 				gf.x -= 200;
 				boyfriend.x -= 200;
 			case 'bedroom':
-				dad.setPosition(-460, 40);
-				boyfriend.setPosition(520, 190);
+				dad.setPosition(-210, -302);
+				boyfriend.setPosition(605, -92);
 			case 'master':
 				dad.setPosition(52, -166);
 				boyfriend.setPosition(1152, 311);
@@ -938,10 +938,7 @@ class PlayState extends MusicBeatState
 		switch (stageCheck)
 		{
 			case 'bedroom':
-				var tv:BGSprite = new BGSprite('tv', -419, 448, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
-				tv.setGraphicSize(Std.int(tv.width * 1.5));
-				tv.updateHitbox();
-
+				var tv:BGSprite = new BGSprite('tv', -701, 74, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
 				backgroundSprites.add(tv);
 				add(tv);
 		}
@@ -1175,9 +1172,10 @@ class PlayState extends MusicBeatState
 			case 'exploitation':
 				preload('ui/glitch/glitchSwitch');
 				preload('backgrounds/cheating/cheater GLITCH');
+				preload('backgrounds/void/glitchyBG');
 			case 'bot-trot':
-				preload('backgrounds/bedroom/night/bedroom');
-				preload('backgrounds/bedroom/night/baldi');
+				preload('backgrounds/bedroom/night/bed');
+				preload('backgrounds/bedroom/night/bg');
 				preload('playrobot/playrobot_shadow');
 			case 'escape-from-california':
 				for (spr in ['1500miles', '1000miles', '500miles', 'welcomeToGeorgia', 'georgiaLol'])
@@ -1715,44 +1713,18 @@ class PlayState extends MusicBeatState
 				roof.antialiasing = false;
 				add(roof);
 			case 'bedroom':
-				bgZoom = 1;
+				bgZoom = 0.8;
 				stageName = 'bedroom';
 				
-				var sky:BGSprite = new BGSprite('nightSky', -287, -122, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
-				sky.setGraphicSize(Std.int(sky.width * 1.5));
-				sky.updateHitbox();
+				var sky:BGSprite = new BGSprite('nightSky', -289, -463, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
 				sprites.add(sky);
 				add(sky);
 
-				var outside:BGSprite = new BGSprite('outside', -65, -64, Paths.image('backgrounds/bedroom/outside', 'shared'), null, 1, 1, true);
-				outside.setGraphicSize(Std.int(outside.width * 1.5));
-				outside.updateHitbox();
-				sprites.add(outside);
-				add(outside);
+				var bg:BGSprite = new BGSprite('bg', -683, -880, Paths.image('backgrounds/bedroom/bg', 'shared'), null, 1, 1, true);
+				sprites.add(bg);
+				add(bg);
 
-				var bedroom:BGSprite = new BGSprite('bedroom', -419, -267, Paths.image('backgrounds/bedroom/bedroom', 'shared'), null, 1, 1, true);
-				bedroom.setGraphicSize(Std.int(bedroom.width * 1.5));
-				bedroom.updateHitbox();
-				sprites.add(bedroom);
-				add(bedroom);
-
-				if (!['tristan', 'tristan-golden-glowing'].contains(formoverride))
-				{
-					tristan = new BGSprite('tristan', 1044, 167, 'backgrounds/bedroom/trist', [
-						new Animation('idle', 'day', 24, false, [false, false]),
-						new Animation('idleNight', 'night', 24, false, [false, false])
-					], 1, 1, true, true);
-					curTristanAnim = 'idle';
-					tristan.animation.play('idle');
-					tristan.setGraphicSize(Std.int(tristan.width * 1.5));
-					tristan.updateHitbox();
-					sprites.add(tristan);
-					add(tristan);
-				}
-
-				var baldi:BGSprite = new BGSprite('baldi', 1289, 507, Paths.image('backgrounds/bedroom/badil', 'shared'), null, 1, 1, true);
-				baldi.setGraphicSize(Std.int(baldi.width * 1.5));
-				baldi.updateHitbox();
+				var baldi:BGSprite = new BGSprite('baldi', 789, -90, Paths.image('backgrounds/bedroom/bed', 'shared'), null, 1, 1, true);
 				sprites.add(baldi);
 				add(baldi);
 			case 'office':
@@ -2138,6 +2110,18 @@ class PlayState extends MusicBeatState
 								creditsPopup.destroy();
 							}, startDelay: 3});
 						}});
+					}
+					if (['polygonized', 'interdimensional'].contains(SONG.song.toLowerCase()))
+					{
+						/*var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image('ui/shapeNoteWarning', 'shared'));
+						shapeNoteWarning.x += shapeNoteWarning.width;
+						shapeNoteWarning.cameras = [camHUD];
+						shapeNoteWarning.scrollFactor.set();
+						shapeNoteWarning.alpha = 0;
+						add(shapeNoteWarning);
+						
+						FlxTween.tween(shapeNoteWarning, {y: 400}, 1, {ease: FlxEase.elasticInOut});
+						FlxTween.tween(shapeNoteWarning, {alpha: 1}, 1);*/
 					}
 			}
 
@@ -2870,7 +2854,7 @@ class PlayState extends MusicBeatState
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + ((Math.sin((elapsedtime + spr.ID) * (((curBeat % 6) + 1) * 0.6))) * 100);
 					});
 					
-				case ExploitationModchartType.Cheating: //This actually doesn't properly loop but since this modchart doesn't last too long it should be fine.
+				case ExploitationModchartType.Cheating:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
 						spr.x += Math.sin(elapsedtime) * ((spr.ID % 3) == 0 ? 1 : -1);
@@ -2881,20 +2865,29 @@ class PlayState extends MusicBeatState
 						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 3) == 0 ? 1 : -1);
 						spr.x += Math.sin(elapsedtime) * ((spr.ID / 3) + 1.2);
 					});
-
 				case ExploitationModchartType.Unfairness: //unfairnesses mod chart with a few changes to keep it interesting
 					playerStrums.forEach(function(spr:StrumNote)
 					{
 						//0.8 is a speed modifier. its there simply because i thought the og modchart was a bit too hard.
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 2))) * 0.6) * 250);
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 0.5))) * 0.6) * 250);
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 2))) * 0.8) * 250);
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 0.5))) * 0.8) * 250);
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
 						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 0.5)) * 2) * 0.6) * 250);
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 2)) * 2) * 0.6) * 250);
 					});
-
+				case ExploitationModchartType.Figure8:
+					playerStrums.forEach(function(spr:FlxSprite)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * 3) * (FlxG.height * 0.2));
+					});
+					dadStrums.forEach(function(spr:FlxSprite)
+					{
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(elapsedtime + spr.ID + 1) * (FlxG.width * 0.4));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((elapsedtime + spr.ID) * -3) * (FlxG.height * 0.2));
+					});
 				case ExploitationModchartType.ScrambledNotes:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
@@ -5115,6 +5108,10 @@ class PlayState extends MusicBeatState
 					expungedBG.loadGraphic(Paths.image('backgrounds/void/creepyRoom', 'shared'));
 					expungedBG.setPosition(0, 200);
 					expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
+				case 'unfair':
+					expungedBG.setPosition(0, 200);
+					expungedBG.loadGraphic(Paths.image('backgrounds/void/glitchyBG'));
+					expungedBG.setGraphicSize(Std.int(expungedBG.width * 3));
 			}
 			remove(glitch);
 		});
@@ -6456,18 +6453,16 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub14'), 0.02, 0.3);
 					case 1276:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
-					case 1100:
+					/*case 1100:
 						#if windows
 							var path = Sys.programPath();
 							path = path.substr(0,path.length - 10);
 							var exe_path:String = "\"" + path + Paths.executable("THREAT.ps1") + "\"";
 							Sys.command("powershell -executionpolicy bypass -file " + exe_path);
-						#end
+						#end*/
 				}
 				switch (curBeat)
 				{
-					case 223:
-						modchart = ExploitationModchartType.Jitterwave;
 					case 40, 44, 46, 56, 60, 62, 120, 124:
 						switchNoteScroll();
 					case 72, 76, 80, 88, 90, 92:
@@ -6475,34 +6470,74 @@ class PlayState extends MusicBeatState
 					case 112:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
-							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs(2 * strum.ID) + 78 - (78 / 2);
+							var targetPosition = (FlxG.width / 8) + Note.swagWidth * Math.abs(2 * strum.ID) + 78 - (78 / 2);
+							FlxTween.cancelTweensOf(strum);
+							strum.angle = 0;
+			
+							FlxTween.angle(strum, strum.angle, strum.angle + 360, 0.2, {ease: FlxEase.circOut});
+							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
+							
 						});
 						playerStrums.forEach(function(strum:StrumNote)
 						{
-							strum.x = (FlxG.width / 8) + Note.swagWidth * Math.abs((2 * strum.ID) + 1) + 78 - (78 / 2);
+							var targetPosition = (FlxG.width / 8) + Note.swagWidth * Math.abs((2 * strum.ID) + 1) + 78 - (78 / 2);
+							
+							FlxTween.cancelTweensOf(strum);
+							strum.angle = 0;
+			
+							FlxTween.angle(strum, strum.angle, strum.angle + 360, 0.2, {ease: FlxEase.circOut});
+							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
 						});
 					case 143:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 144:
-						modchart = ExploitationModchartType.Cheating;
+						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
 					case 160:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
-							strum.x = strum.baseX;
+							strum.resetX();
 						});
 						playerStrums.forEach(function(strum:StrumNote)
 						{
-							strum.x = strum.baseX;
+							strum.resetX();
 						});
 					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
-					case 192: //While we're here, lets bring back a familiar modchart
-						modchart = ExploitationModchartType.Unfairness;
-					case 212:
-						//modchart = ExploitationModchartType.Cyclone;
-					case 320:
+					case 192:
+						dadStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
+						playerStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
 						modchart = ExploitationModchartType.None;
-					case 490:
+					case 224:
+						modchart = ExploitationModchartType.Jitterwave;
+					case 255:
+						swapGlitch(Conductor.crochet / 1000, 'unfair');
+					case 256:
+						modchart = ExploitationModchartType.Unfairness;
+					case 287:
+						swapGlitch(Conductor.crochet / 1000, 'expunged');
+					case 288:
+						dadStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
+						playerStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
+						modchart = ExploitationModchartType.None;
+					case 455:
+						swapGlitch(Conductor.crochet / 1000, 'cheating');
+					case 456:
+						modchart = ExploitationModchartType.Cheating;
+					case 486:
+						swapGlitch(Conductor.crochet / 1000, 'expunged');
+					case 488:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
 			case 'polygonized':
@@ -6845,35 +6880,16 @@ class PlayState extends MusicBeatState
 	}
 	function switchToNight()
 	{
-		var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bedroom');
+		var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bg');
 		var baldiSpr = BGSprite.getBGSprite(backgroundSprites, 'baldi');
 
-		bedroomSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bedroom'));
-		baldiSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/baldi'));
-
-		curTristanAnim = 'idleNight';
-		tristan.animation.play('idleNight');
+		bedroomSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bg'));
+		baldiSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bed'));
 
 		dad.color = nightColor;
 		darkLevels.push(curStage);
 
-		switchDad('playrobot-shadow', dad.getPosition());
-	}
-	function changeTristanAnim(time:String)
-	{
-		if (tristan != null)
-		{
-			switch (time)
-			{
-				case 'day':
-					curTristanAnim = 'idleNight';
-					tristan.animation.play('idleNight');
-				case 'night':
-					curTristanAnim = 'idle';
-					tristan.animation.play('idle');
-			}
-		}
-		
+		//switchDad('playrobot-shadow', dad.getPosition());
 	}
 	public function getCamZoom():Float
 	{
@@ -7142,7 +7158,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; ScrambledNotes; Cyclone; Unfairness; Jitterwave;
+	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; 
 }
 
 enum CharacterFunnyEffect
