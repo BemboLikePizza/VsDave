@@ -76,6 +76,8 @@ class TitleState extends MusicBeatState
 		
 		CoolUtil.init();
 
+		Main.fps.visible = !FlxG.save.data.disableFps;
+
 		if (FlxG.save.data.weekUnlocked != null)
 		{
 			// FIX LATER!!!

@@ -6093,6 +6093,7 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 896:
+						FlxG.camera.flash();
 						FlxG.sound.play(Paths.sound('lightswitch'), 1);
 						defaultCamZoom = 1.2;
 						switchToNight();
