@@ -3004,7 +3004,17 @@ class PlayState extends MusicBeatState
 				FlxG.switchState(new GitarooPause());
 			}
 			else
+			{
+				playerStrums.forEach(function(note:StrumNote)
+				{
+					FlxTween.completeTweensOf(note);
+				});
+				dadStrums.forEach(function(note:StrumNote)
+				{
+					FlxTween.completeTweensOf(note);
+				});
 				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
 		}
 
 		if (FlxG.keys.justPressed.SEVEN)
