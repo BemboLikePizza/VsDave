@@ -896,10 +896,10 @@ class PlayState extends MusicBeatState
 				dad.setPosition(50, 270);
 				if (dadmirror != null)
 				{
-					dadmirror.setPosition(dad.x - 150, dad.y);
+					dadmirror.setPosition(dad.x - 50, dad.y);
 				}
 				boyfriend.setPosition(843, 270);
-				gf.setPosition(230, -60);
+				gf.setPosition(300, -60);
 			case 'backyard':
 				dad.setPosition(50, 300);
 				boyfriend.setPosition(790, 300);
@@ -2113,15 +2113,25 @@ class PlayState extends MusicBeatState
 					}
 					if (['polygonized', 'interdimensional'].contains(SONG.song.toLowerCase()))
 					{
-						/*var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image('ui/shapeNoteWarning', 'shared'));
-						shapeNoteWarning.x += shapeNoteWarning.width;
+						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image('ui/shapeNoteWarning', 'shared'));
 						shapeNoteWarning.cameras = [camHUD];
 						shapeNoteWarning.scrollFactor.set();
+						shapeNoteWarning.antialiasing = false;
 						shapeNoteWarning.alpha = 0;
 						add(shapeNoteWarning);
 						
-						FlxTween.tween(shapeNoteWarning, {y: 400}, 1, {ease: FlxEase.elasticInOut});
-						FlxTween.tween(shapeNoteWarning, {alpha: 1}, 1);*/
+						FlxTween.tween(shapeNoteWarning, {alpha: 1}, 1);
+						FlxTween.tween(shapeNoteWarning, {y: 450}, 1, {ease: FlxEase.backOut, onComplete: function(tween:FlxTween)
+						{
+							new FlxTimer().start(3, function(timer:FlxTimer)
+							{
+								FlxTween.tween(shapeNoteWarning, {alpha: 0}, 1);
+								FlxTween.tween(shapeNoteWarning, {y: FlxG.height * 2}, 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
+								{
+									remove(shapeNoteWarning);
+								}});
+							});
+						}});
 					}
 			}
 

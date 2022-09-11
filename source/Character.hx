@@ -851,7 +851,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('firstDeath', 'BF dies', 24, false);
 				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
 				animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
-				animation.addByPrefix('scared', 'BF idle shaking', 24, false);
+				animation.addByPrefix('scared', 'BF idle shaking', 24, false); 
 
 				flipX = true;
 				barColor = FlxColor.WHITE;
@@ -957,7 +957,7 @@ class Character extends FlxSprite
 				}
 				loadOffsetFile(curCharacter);
 				
-				globalOffset = [0, -100];
+				globalOffset = [-350, -200];
 
 				barColor = FlxColor.fromRGB(162, 150, 188);
 				playAnim('idle');
