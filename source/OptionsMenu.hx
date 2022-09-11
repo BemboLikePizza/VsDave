@@ -29,6 +29,9 @@ class OptionsMenu extends MusicBeatState
 	private var grpControls:FlxTypedGroup<Alphabet>;
 	var versionShit:FlxText;
 
+	var bgShader:Shaders.GlitchEffect;
+	var awaitingExploitation:Bool;
+
 	var languages:Array<Language> = new Array<Language>();
 	var currentLanguage:Int = 0;
 	var curLanguage:String = LanguageManager.save.data.language;
@@ -38,6 +41,34 @@ class OptionsMenu extends MusicBeatState
 		DiscordClient.changePresence("In the Options Menu", null);
 		#end
 		var menuBG:FlxSprite = new FlxSprite();
+
+		awaitingExploitation = (FlxG.save.data.exploitationState == 'awaiting');
+
+		if (awaitingExploitation)
+		{
+			menuBG = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
+			menuBG.scrollFactor.set();
+			menuBG.antialiasing = false;
+			add(menuBG);
+			
+			#if SHADERS_ENABLED
+			bgShader = new Shaders.GlitchEffect();
+			bgShader.waveAmplitude = 0.1;
+			bgShader.waveFrequency = 5;
+			bgShader.waveSpeed = 2;
+			
+			menuBG.shader = bgShader.shader;
+			#end
+		}
+		else
+		{
+			menuBG.color = 0xFFea71fd;
+			menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
+			menuBG.updateHitbox();
+			menuBG.antialiasing = true;
+			menuBG.loadGraphic(MainMenuState.randomizeBG());
+			add(menuBG);
+		}
 		
 		
 		languages = LanguageManager.getLanguages();
@@ -48,19 +79,13 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll'))
 			+ "\n" + (FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off'))
 			+ "\n" + (FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')) 
-			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
+			+ "\n" + (FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
 			+ "\n" + (FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
 			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
 			+ "\n" + LanguageManager.getTextString('option_change_langauge')
 			+ "\n" + (FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'))
 			);
-		menuBG.color = 0xFFea71fd;
-		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
-		menuBG.updateHitbox();
-		menuBG.antialiasing = true;
-		menuBG.loadGraphic(MainMenuState.randomizeBG());
-		add(menuBG);
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
@@ -87,6 +112,13 @@ class OptionsMenu extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		#if SHADERS_ENABLED
+		if (bgShader != null)
+		{
+			bgShader.shader.uTime.value[0] += elapsed;
+		}
+		#end
 
 		if (controls.BACK)
 		{
