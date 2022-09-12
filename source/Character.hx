@@ -509,7 +509,7 @@ class Character extends FlxSprite
 							
 				loadOffsetFile(curCharacter);
 
-				globalOffset = [30, 118];
+				globalOffset = [30, 85];
 				
 				barColor = FlxColor.fromRGB(37, 191, 55);
 
@@ -957,8 +957,6 @@ class Character extends FlxSprite
 				}
 				loadOffsetFile(curCharacter);
 				
-				globalOffset = [-350, -200];
-
 				barColor = FlxColor.fromRGB(162, 150, 188);
 				playAnim('idle');
 			case 'playrobot-shadow':
@@ -971,8 +969,6 @@ class Character extends FlxSprite
 				}
 				loadOffsetFile(curCharacter);
 				
-				globalOffset = [-200, 0];
-
 				barColor = FlxColor.fromRGB(162, 150, 188);
 				playAnim('idle');
 			case 'dave-awesome':

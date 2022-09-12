@@ -34,7 +34,7 @@ class MathGameState extends MusicBeatState
    var sign:Int;
    var solution:Float;
    var operat:String;
-   var endState:String;
+   var endState:String = '';
    public var endDelay:Float;
    public static var failedGame:Bool;
 
@@ -100,18 +100,18 @@ class MathGameState extends MusicBeatState
       {
          var button = new MathButton(buttonStuff[i][1], buttonStuff[i][2], buttonStuff[i][0], function()
          {
-            if (endState != '')
+			switch (buttonStuff[i][0])
             {
-               switch (buttonStuff[i][0])
-               {
-                  case 'OK':
-                     checkAnswer();
-                  case 'C':
-                     inputField.text = '';
-                  default:
-                     inputField.text += buttonStuff[i][0];
-               }
-            }
+				case 'OK':
+					if (endState == '')
+					{
+						checkAnswer();
+					}
+				case 'C':
+					inputField.text = '';
+				default:
+					inputField.text += buttonStuff[i][0];
+			}
          });
          button.loadGraphic(Paths.image('math/buttons/${buttonStuff[i][0]}', 'shared'));
          button.setGraphicSize(Std.int(button.width * 1.22));
@@ -144,7 +144,10 @@ class MathGameState extends MusicBeatState
          switch (keyID)
          {
             case FlxKey.ENTER:
-               checkAnswer();
+				if (endState == '')
+				{
+					checkAnswer();
+				}
             case FlxKey.BACKSPACE:
 					if (inputField.text.length > 0)
 					{
@@ -315,7 +318,6 @@ class MathGameState extends MusicBeatState
    function queueAudio(sound:MathSound)
    {
       audioQueue.push(sound);
-      trace(audioQueue.indexOf(sound));
    }
    function clearQueue()
    {

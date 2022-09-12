@@ -613,6 +613,10 @@ class FreeplayState extends MusicBeatState
 				FlxG.sound.music.fadeOut(1, 0);
 				PlayState.SONG = Song.loadFromJson(songs[curSelected].songName.toLowerCase());
 				PlayState.isStoryMode = false;
+
+				PlayState.characteroverride = "none";
+				PlayState.formoverride = "none";
+				PlayState.curmult = [1, 1, 1, 1];
 	
 				PlayState.storyWeek = songs[curSelected].week;
 				

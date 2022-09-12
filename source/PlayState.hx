@@ -120,7 +120,7 @@ class PlayState extends MusicBeatState
 	public var bfGroup:FlxGroup;
 	public var gfGroup:FlxGroup;
 
-	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness'];
+	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'bedroomNight'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
 	public var stupidx:Float = 0;
@@ -821,11 +821,11 @@ class PlayState extends MusicBeatState
 				tweenList.push(gfTween);
 				tweenList.push(bambiTween);
 				tweenList.push(bfTween);
-				
-				for (tween in tweenList)
-				{
-					tween.active = false;
-				}
+			
+		}
+		for (tween in tweenList)
+		{
+			tween.active = false;
 		}
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
@@ -908,8 +908,8 @@ class PlayState extends MusicBeatState
 				gf.x -= 200;
 				boyfriend.x -= 200;
 			case 'bedroom':
-				dad.setPosition(-210, -302);
-				boyfriend.setPosition(605, -92);
+				dad.setPosition(-254, 577);
+				boyfriend.setPosition(607, 786);
 			case 'master':
 				dad.setPosition(52, -166);
 				boyfriend.setPosition(1152, 311);
@@ -938,7 +938,13 @@ class PlayState extends MusicBeatState
 		switch (stageCheck)
 		{
 			case 'bedroom':
-				var tv:BGSprite = new BGSprite('tv', -701, 74, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
+				if (FlxG.random.int(0, 99) == 0)
+				{
+					var ruby:BGSprite = new BGSprite('ruby', -697, 0, Paths.image('backgrounds/bedroom/ruby', 'shared'), null, 1, 1, true);
+					backgroundSprites.add(ruby);
+					add(ruby);	
+				}
+				var tv:BGSprite = new BGSprite('tv', -697, 955, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
 				backgroundSprites.add(tv);
 				add(tv);
 		}
@@ -1716,15 +1722,15 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.8;
 				stageName = 'bedroom';
 				
-				var sky:BGSprite = new BGSprite('nightSky', -289, -463, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
+				var sky:BGSprite = new BGSprite('nightSky', -285, 418, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
 				sprites.add(sky);
 				add(sky);
 
-				var bg:BGSprite = new BGSprite('bg', -683, -880, Paths.image('backgrounds/bedroom/bg', 'shared'), null, 1, 1, true);
+				var bg:BGSprite = new BGSprite('bg', -687, 0, Paths.image('backgrounds/bedroom/bg', 'shared'), null, 1, 1, true);
 				sprites.add(bg);
 				add(bg);
 
-				var baldi:BGSprite = new BGSprite('baldi', 789, -90, Paths.image('backgrounds/bedroom/bed', 'shared'), null, 1, 1, true);
+				var baldi:BGSprite = new BGSprite('baldi', 788, 788, Paths.image('backgrounds/bedroom/bed', 'shared'), null, 1, 1, true);
 				sprites.add(baldi);
 				add(baldi);
 			case 'office':
@@ -1734,8 +1740,6 @@ class PlayState extends MusicBeatState
 				var backFloor:BGSprite = new BGSprite('backFloor', -500, -310, Paths.image('backgrounds/office/backFloor'), null, 1, 1);
 				sprites.add(backFloor);
 				add(backFloor);
-
-				//dave is here//
 			case 'desert':
 				bgZoom = 0.5;
 				stageName = 'desert';
@@ -1838,7 +1842,7 @@ class PlayState extends MusicBeatState
 		var variantColor:FlxColor = FlxColor.WHITE;
 		switch (stage)
 		{
-			case 'bambiFarmNight' | 'daveHouse_night' | 'backyard':
+			case 'bambiFarmNight' | 'daveHouse_night' | 'backyard' | 'bedroomNight':
 				variantColor = nightColor;
 			case 'bambiFarmSunset' | 'daveHouse_sunset':
 				variantColor = sunsetColor;
@@ -2123,7 +2127,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(shapeNoteWarning, {alpha: 1}, 1);
 						FlxTween.tween(shapeNoteWarning, {y: 450}, 1, {ease: FlxEase.backOut, onComplete: function(tween:FlxTween)
 						{
-							new FlxTimer().start(3, function(timer:FlxTimer)
+							new FlxTimer().start(2, function(timer:FlxTimer)
 							{
 								FlxTween.tween(shapeNoteWarning, {alpha: 0}, 1);
 								FlxTween.tween(shapeNoteWarning, {y: FlxG.height * 2}, 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
@@ -6104,7 +6108,7 @@ class PlayState extends MusicBeatState
 				{
 					case 896:
 						FlxG.sound.play(Paths.sound('lightswitch'), 1);
-						defaultCamZoom = 1.2;
+						defaultCamZoom = 1.1;
 						switchToNight();
 					case 1151:
 						defaultCamZoom = 1;	
@@ -6891,14 +6895,18 @@ class PlayState extends MusicBeatState
 	{
 		var bedroomSpr = BGSprite.getBGSprite(backgroundSprites, 'bg');
 		var baldiSpr = BGSprite.getBGSprite(backgroundSprites, 'baldi');
+		var rubySpr = BGSprite.getBGSprite(backgroundSprites, 'ruby');
 
 		bedroomSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bg'));
 		baldiSpr.loadGraphic(Paths.image('backgrounds/bedroom/night/bed'));
+		if (rubySpr != null)
+		{
+			rubySpr.loadGraphic(Paths.image('backgrounds/bedroom/night/ruby'));
+		}
+		curStage = 'bedroomNight';
 
-		dad.color = nightColor;
-		darkLevels.push(curStage);
-
-		//switchDad('playrobot-shadow', dad.getPosition());
+		switchDad('playrobot-shadow', dad.getPosition());
+		boyfriend.color = getBackgroundColor(curStage);
 	}
 	public function getCamZoom():Float
 	{
