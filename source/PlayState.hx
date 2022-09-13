@@ -719,7 +719,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'insanity':
-				dadmirror = new Character(100, 450, "dave-angey");
+				dadmirror = new Character(100, 200, "dave-angey");
 				dadmirror.visible = false;
 		}
 		switch (SONG.song.toLowerCase())
@@ -928,6 +928,10 @@ class PlayState extends MusicBeatState
 			case 'overdrive':
 				dad.setPosition(244.15, 437);
 				boyfriend.setPosition(837, 363);
+			case 'exbungo-land':
+				dad.setPosition(298, 131);
+				boyfriend.setPosition(1332, 513);
+				gf.setPosition(756, 206);
 			case 'red-void':
 				if (funnyFloatyBoys.contains(dad.curCharacter))
 				{
@@ -1657,15 +1661,16 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.7;
 				stageName = 'kabunga';
 				
-				var bg:BGSprite = new BGSprite('bg', -850, -350, Paths.image('backgrounds/void/exbongo/Exbongo'), null, 1, 1, true, true);
+				var bg:BGSprite = new BGSprite('bg', -320, -160, Paths.image('backgrounds/void/exbongo/Exbongo'), null, 1, 1, true, true);
+				bg.setGraphicSize(Std.int(bg.width * 1.5));
 				sprites.add(bg);
 				add(bg);
 
-				var circle:BGSprite = new BGSprite('circle', 100, 300, Paths.image('backgrounds/void/exbongo/Circle'), null);
+				var circle:BGSprite = new BGSprite('circle', -30, 550, Paths.image('backgrounds/void/exbongo/Circle'), null);
 				sprites.add(circle);	
 				add(circle);
 
-				place = new BGSprite('place', 200, -200, Paths.image('backgrounds/void/exbongo/Place'), null);
+				place = new BGSprite('place', 860, -15, Paths.image('backgrounds/void/exbongo/Place'), null);
 				sprites.add(place);	
 				add(place);
 				
