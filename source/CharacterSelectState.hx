@@ -266,7 +266,7 @@ class CharacterSelectState extends MusicBeatState
 		updateIconPosition();
 		add(funnyIconMan);
 
-		var tutorialThing:FlxSprite = new FlxSprite(-150, -50).loadGraphic(Paths.image('ui/charSelectGuide'));
+		var tutorialThing:FlxSprite = new FlxSprite(-110, -30).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
