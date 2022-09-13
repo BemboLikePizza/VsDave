@@ -3689,7 +3689,7 @@ class PlayState extends MusicBeatState
 						camFollow.y = boyfriend.getMidpoint().y;
 					case 'bambi-3d':
 						camFollow.x = boyfriend.getMidpoint().x - 375;
-						camFollow.y = boyfriend.getMidpoint().y - 550;
+						camFollow.y = boyfriend.getMidpoint().y - 200;
 					case 'dave-fnaf':
 						camFollow.x += 100;
 			}
@@ -4793,11 +4793,6 @@ class PlayState extends MusicBeatState
 							case 'RIGHT':
 								fuckingDumbassBullshitFuckYou = 'LEFT';
 						}
-					}
-					if(boyfriend.curCharacter == 'bambi-3d')
-					{
-						FlxG.camera.shake(0.0075, 0.1);
-						camHUD.shake(0.0045, 0.1);
 					}
 					boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
 
