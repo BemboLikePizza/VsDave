@@ -302,6 +302,8 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Unfairness'], 15, ['bambi-unfair']);
 				if (FlxG.save.data.exploitationFound)
 					addWeek(['Exploitation'], 16, ['expunged']);
+
+				addWeek(['Enter Terminal'], 17, ['terminal']);
 		}
 	}
 
@@ -610,29 +612,35 @@ class FreeplayState extends MusicBeatState
 			}
 			if (accepted && canInteract)
 			{
-				FlxG.sound.music.fadeOut(1, 0);
-				PlayState.SONG = Song.loadFromJson(songs[curSelected].songName.toLowerCase());
-				PlayState.isStoryMode = false;
-
-				PlayState.characteroverride = "none";
-				PlayState.formoverride = "none";
-				PlayState.curmult = [1, 1, 1, 1];
-	
-				PlayState.storyWeek = songs[curSelected].week;
-				
-				packTransitionDone = false;
-				if ((FlxG.keys.pressed.CONTROL || skipSelect.contains(PlayState.SONG.song.toLowerCase())) && PlayState.SONG.song.toLowerCase() != 'exploitation')
+				switch (songs[curSelected].songName)
 				{
-					LoadingState.loadAndSwitchState(new PlayState());
-				}
-				else
-				{
-					if (!FlxG.save.data.wasInCharSelect)
-					{
-						FlxG.save.data.wasInCharSelect = true;
-						FlxG.save.flush();
-					}
-					LoadingState.loadAndSwitchState(new CharacterSelectState());
+					case 'Enter Terminal':
+						FlxG.switchState(new TerminalState());
+					default:
+						FlxG.sound.music.fadeOut(1, 0);
+						PlayState.SONG = Song.loadFromJson(songs[curSelected].songName.toLowerCase());
+						PlayState.isStoryMode = false;
+		
+						PlayState.characteroverride = "none";
+						PlayState.formoverride = "none";
+						PlayState.curmult = [1, 1, 1, 1];
+			
+						PlayState.storyWeek = songs[curSelected].week;
+						
+						packTransitionDone = false;
+						if ((FlxG.keys.pressed.CONTROL || skipSelect.contains(PlayState.SONG.song.toLowerCase())) && PlayState.SONG.song.toLowerCase() != 'exploitation')
+						{
+							LoadingState.loadAndSwitchState(new PlayState());
+						}
+						else
+						{
+							if (!FlxG.save.data.wasInCharSelect)
+							{
+								FlxG.save.data.wasInCharSelect = true;
+								FlxG.save.flush();
+							}
+							LoadingState.loadAndSwitchState(new CharacterSelectState());
+						}
 				}
 			}
 		}
@@ -723,11 +731,14 @@ class FreeplayState extends MusicBeatState
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName);
 		#end
-
-		#if PRELOAD_ALL
-		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
-		#end
-
+		
+		if (songs[curSelected].songName != 'Enter Terminal')
+		{
+			#if PRELOAD_ALL
+			FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
+			#end
+		}
+		
 		var bullShit:Int = 0;
 
 		for (i in 0...iconArray.length)
