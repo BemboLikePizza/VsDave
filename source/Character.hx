@@ -166,6 +166,15 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 				flipX = true;
 				playAnim('firstDeath');
+			case 'generic-death':
+				frames = Paths.getSparrowAtlas('ui/lose', 'shared');
+				animation.addByPrefix('firstDeath', "lose... instance 1", 24, false);
+				animation.addByPrefix('deathLoop', "still", 24, true);
+				animation.addByPrefix('deathConfirm', "still", 24, false);
+				
+				loadOffsetFile(curCharacter);
+				flipX = true;
+				playAnim('firstDeath');
 			case 'gf':
 				// GIRLFRIEND CODE
 				frames = Paths.getSparrowAtlas('characters/GF_assets', 'shared');

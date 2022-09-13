@@ -29,7 +29,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'tb-funny-man':
 				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
 				System.exit(0);
-			case 'dave' | 'dave-recursed' | 'dave-fnaf':
+			case 'dave' | 'dave-recursed':
 				daBf = 'dave-death';
 				deathSuffix = '-dave';
 			case 'tristan':
@@ -44,6 +44,9 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'nofriend':
 				daBf = 'nofriend-death';
 				deathSuffix = '-nofriend';
+			case 'bambi-3d' | 'dave-angey' | 'dave-3d-recursed' | 'dave-fnaf':
+				daBf = 'generic-death';
+				deathSuffix = '-generic';
 
 			default:
 				daBf = char;
