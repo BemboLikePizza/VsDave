@@ -29,4 +29,5 @@
 	<SubTexture name="lose... instance 10024" x="788" y="605" width="783" height="179" frameX="0" frameY="-316" frameWidth="799" frameHeight="513"/>
 	<SubTexture name="lose... instance 10025" x="788" y="605" width="783" height="179" frameX="0" frameY="-316" frameWidth="799" frameHeight="513"/>
 	<SubTexture name="lose... instance 10026" x="788" y="605" width="783" height="179" frameX="0" frameY="-316" frameWidth="799" frameHeight="513"/>
+	<SubTexture name="still0000" x="788" y="605" width="783" height="179" frameX="0" frameY="-316" frameWidth="799" frameHeight="513"/>
 </TextureAtlas>

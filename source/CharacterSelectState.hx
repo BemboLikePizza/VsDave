@@ -266,7 +266,7 @@ class CharacterSelectState extends MusicBeatState
 		updateIconPosition();
 		add(funnyIconMan);
 
-		var tutorialThing:FlxSprite = new FlxSprite(-150, -50).loadGraphic(Paths.image('ui/charSelectGuide'));
+		var tutorialThing:FlxSprite = new FlxSprite(-110, -30).loadGraphic(Paths.image('ui/charSelectGuide'));
 		tutorialThing.setGraphicSize(Std.int(tutorialThing.width * 1.5));
 		tutorialThing.antialiasing = true;
 		tutorialThing.cameras = [camHUD];
@@ -537,9 +537,9 @@ class CharacterSelectState extends MusicBeatState
 			case 'dave':
 				char.y += 50;
 			case 'bambi-new':
-				char.x -= 80;
+				char.x -= 30;
 			case 'dave-angey':
-				char.y += 150;
+				char.y += 200;
 			case 'bambi-3d':
 				char.x -= 150;
 				char.y += 100;
