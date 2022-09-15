@@ -1,3 +1,5 @@
+import flixel.math.FlxMath;
+import flixel.group.FlxGroup;
 import sys.io.File;
 import lime.app.Application;
 import flixel.tweens.FlxTween;
@@ -16,7 +18,7 @@ using StringTools;
 import PlayState; //why the hell did this work LMAO.
 
 
-class TerminalState extends FlxState
+class TerminalState extends MusicBeatState
 {
 
     //dont just yoink this code and use it in your own mod. this includes you, psych engine porters.
@@ -70,8 +72,9 @@ class TerminalState extends FlxState
         "[",
         "]"
     ];
-    public var backspaceHeldFor:Float;
-
+    public var fakeDisplayGroup:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
+    public var expungedTimer:FlxTimer;
+    var curExpungedAlpha:Float = 0;
 
     override public function create():Void 
     {
@@ -88,7 +91,10 @@ class TerminalState extends FlxState
             var helpText:String = "";
             for (v in CommandList)
             {
-                helpText += (v.commandName + " - " + v.commandHelp + "\n");
+                if (v.showInHelp)
+                {
+                    helpText += (v.commandName + " - " + v.commandHelp + "\n");
+                }
             }
             UpdateText("\n" + helpText);
         }));
@@ -127,7 +133,7 @@ class TerminalState extends FlxState
                             PlayState.globalFunny = CharacterFunnyEffect.Dave;
                             PlayState.SONG = Song.loadFromJson("house");
                             PlayState.SONG.validScore = false;
-                            Main.fps.visible = true;
+                            Main.fps.visible = !FlxG.save.data.disableFps;
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "exbungo.dat":
                             UpdatePreviousText(false); //resets the text
@@ -138,7 +144,7 @@ class TerminalState extends FlxState
                             PlayState.SONG = Song.loadFromJson(funny[funnylol]);
                             PlayState.SONG.validScore = false;
                             PlayState.SONG.player2 = "exbungo";
-                            Main.fps.visible = true;
+                            Main.fps.visible = !FlxG.save.data.disableFps;
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "bambi.dat":
                             UpdatePreviousText(false); //resets the text
@@ -159,15 +165,19 @@ class TerminalState extends FlxState
                 }
             }
         }));
-
         CommandList.push(new TerminalCommand("clear", "Clears the screen.", function(arguments:Array<String>)
         {
             previousText = "> ";
             UpdateText("");
         }));
-
+        CommandList.push(new TerminalCommand("secret mod leak", "No providing such leaks", function(arguments:Array<String>)
+        {
+            FlxG.switchState(new MathGameState());
+        }, false, true));
 
         add(displayText);
+
+        super.create();
     }
 
     public function UpdateText(val:String)
@@ -203,10 +213,20 @@ class TerminalState extends FlxState
         displayText.text = finalthing;
     }
 
-    override public function update(elapsed:Float):Void
+    override function update(elapsed:Float):Void
     {
+        super.update(elapsed);
+        
         if (expungedActivated)
         {
+            curExpungedAlpha = Math.min(curExpungedAlpha + elapsed, 1);
+            if (fakeDisplayGroup.exists && fakeDisplayGroup != null)
+            {
+                for (text in fakeDisplayGroup.members)
+                {
+                    text.alpha = curExpungedAlpha;
+                }
+            }
             return;
         }
         var keyJustPressed:FlxKey = cast(FlxG.keys.firstJustPressed(), FlxKey);
@@ -217,7 +237,7 @@ class TerminalState extends FlxState
             var arguments:Array<String> = curCommand.split(" ");
             for (v in CommandList)
             {
-                if (v.commandName == arguments[0]) //argument 0 should be the actual command at the moment
+                if (v.commandName == arguments[0] || (v.commandName == curCommand && v.oneCommand)) //argument 0 should be the actual command at the moment
                 {
                     arguments.shift();
                     calledFunc = true;
@@ -265,39 +285,68 @@ class TerminalState extends FlxState
         }
         if (FlxG.keys.justPressed.ESCAPE)
         {
-            Main.fps.visible = true;
+            Main.fps.visible = !FlxG.save.data.disableFps;
             FlxG.switchState(new MainMenuState());
         }
     }
 
     function expungedReignStarts()
     {
-        var amountofText:Int = Std.int(FlxG.height / displayText.height) + 100;
-
-        for (i in 0...amountofText)
-        {
-            new FlxTimer().start(1, function(timer:FlxTimer)
-            {
-                var expungedLines:Array<String> = ['TAKING OVER....', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START"];
-                var fakeDisplay:FlxText = new FlxText(0, i * (displayText.height), FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
-                add(fakeDisplay);
-                FlxG.camera.follow(fakeDisplay, 1);
-            });
-        }
-
-        var glitch = new BGSprite('glitch', 0, 0, 'ui/glitch/glitch3', [
-            new Animation('glitchScreen', 'glitch 3', 15, true, [false, false])
-        ], 0, 0, true, true);
+        var glitch = new FlxSprite(0, 0);
+        glitch.frames = Paths.getSparrowAtlas('ui/glitch/glitch');
+        glitch.animation.addByPrefix('glitchScreen', 'glitch', 40);
+        glitch.animation.play('glitchScreen');
         glitch.setGraphicSize(FlxG.width, FlxG.height);
         glitch.updateHitbox();
-		glitch.screenCenter();
-		glitch.animation.play('glitchScreen');
-		add(glitch);
+        glitch.screenCenter();
+        glitch.scrollFactor.set();
+        glitch.antialiasing = false;
+        add(glitch);
+
+        add(fakeDisplayGroup);
+        
+        var expungedLines:Array<String> = ['TAKING OVER....', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START", '[DATA EXPUNGED]'];
+        var i:Int = 0;
+        var camFollow = new FlxObject(FlxG.width / 2, -FlxG.height / 2, 1, 1);
+        
+        FlxG.camera.follow(camFollow, 1);
+
+        expungedActivated = true;
+        expungedTimer = new FlxTimer().start(FlxG.elapsed * 2, function(timer:FlxTimer)
+        {
+            var lastFakeDisplay = fakeDisplayGroup.members[i - 1];
+            var fakeDisplay:FlxText = new FlxText(0, 0, FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
+            fakeDisplay.setFormat(Paths.font("PixelOperator-Bold.ttf"), 16);
+            fakeDisplay.size *= 2;
+            fakeDisplay.antialiasing = false;
+
+            var yValue:Float = lastFakeDisplay == null ? displayText.y + displayText.textField.textHeight : lastFakeDisplay.y + lastFakeDisplay.textField.textHeight;
+            fakeDisplay.y = yValue;
+            fakeDisplayGroup.add(fakeDisplay);
+            if (fakeDisplay.y > FlxG.height)
+            {
+                camFollow.y = fakeDisplay.y - FlxG.height / 2;
+            }
+            i++;
+        }, FlxMath.MAX_VALUE_INT);
         
         FlxG.sound.music.stop();
         FlxG.sound.play(Paths.sound("expungedGrantedAccess", "preload"), function()
         {
-            FlxTween.tween(glitch, {alpha: 0}, 5);
+            FlxTween.tween(glitch, {alpha: 0}, 1);
+            expungedTimer.cancel();
+            fakeDisplayGroup.clear();
+
+            var eye = new FlxSprite(0, 0).loadGraphic(Paths.image('mainMenu/eye'));
+			eye.screenCenter();
+			eye.antialiasing = false;
+            eye.alpha = 0;
+			add(eye);
+
+            FlxTween.tween(eye, {alpha: 1}, 1, {onComplete: function(tween:FlxTween)
+            {
+                FlxTween.tween(eye, {alpha: 0}, 1);
+            }});
 			FlxG.sound.play(Paths.sound('iTrollYou', 'shared'), function()
 			{
 				new FlxTimer().start(1, function(timer:FlxTimer)
@@ -323,12 +372,16 @@ class TerminalCommand
     public var commandName:String = "undefined";
     public var commandHelp:String = "if you see this you are very homosexual and dumb."; //hey im not homosexual. kinda mean ngl
     public var FuncToCall:Dynamic;
+    public var showInHelp:Bool;
+    public var oneCommand:Bool;
 
-    public function new(name:String, help:String, func:Dynamic)
+    public function new(name:String, help:String, func:Dynamic, showInHelp = true, oneCommand:Bool = false)
     {
         commandName = name;
         commandHelp = help;
         FuncToCall = func;
+        this.showInHelp = showInHelp;
+        this.oneCommand = oneCommand;
     }
 
 }

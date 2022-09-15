@@ -2828,6 +2828,19 @@ class PlayState extends MusicBeatState
 				spr.x += Math.sin(elapsedtime) * 1.5;
 			});
 		}
+		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
+		{
+			playerStrums.forEach(function(spr:StrumNote)
+			{
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID))) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID))) * 300);
+			});
+			dadStrums.forEach(function(spr:StrumNote)
+			{
+				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * 2) * 300);
+				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
+			});
+		}
 		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene && mcStarted) // fuck you
 		{
 			switch (modchart)
@@ -2932,19 +2945,6 @@ class PlayState extends MusicBeatState
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
 					});
 			}
-		}
-		if (SONG.song.toLowerCase() == 'unfairness' && !inCutscene) // fuck you x2
-		{
-			playerStrums.forEach(function(spr:StrumNote)
-			{
-				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID))) * 300);
-				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID))) * 300);
-			});
-			dadStrums.forEach(function(spr:StrumNote)
-			{
-				spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((elapsedtime + (spr.ID)) * 2) * 300);
-				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
-			});
 		}
 		// no more 3d sinning avenue
 		if (daveFlying)
@@ -3590,7 +3590,14 @@ class PlayState extends MusicBeatState
 				Application.current.window.height = 720;
 			}
 
-			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX) + 80;
+			if (lastFrame.name != dadFrame.name)
+			{
+				expungedSpr.graphics.clear();
+				generateWindowSprite();
+				lastFrame = dadFrame;
+			}
+
+			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX);
 			expungedScroll.y = (((dadFrame.offset.y) - (dad.offset.y)) * expungedScroll.scaleY);
 		}
 	}
@@ -6519,15 +6526,6 @@ class PlayState extends MusicBeatState
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
-					case 160:
-						dadStrums.forEach(function(strum:StrumNote)
-						{
-							strum.resetX();
-						});
-						playerStrums.forEach(function(strum:StrumNote)
-						{
-							strum.resetX();
-						});
 					case 191:
 						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 192:
@@ -6563,7 +6561,7 @@ class PlayState extends MusicBeatState
 					case 456:
 						modchart = ExploitationModchartType.Cheating;
 					case 486:
-						swapGlitch(Conductor.crochet / 1000, 'expunged');
+						swapGlitch((Conductor.crochet / 1000) * 2, 'expunged');
 					case 488:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
@@ -7092,7 +7090,8 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function popupWindow() {
+	function popupWindow()
+	{
 		var display = Application.current.window.display.currentMode;
 
 		var screenwidth = Application.current.window.display.bounds.width;
@@ -7101,20 +7100,19 @@ class PlayState extends MusicBeatState
 		var expungedXoffset = 0;
 		var expungedYoffset = 0;
 
-		//center
+		// center
 		Application.current.window.x = Std.int((screenwidth / 2) - (1280 / 2));
 		Application.current.window.y = Std.int((screenheight / 2) - (720 / 2));
 		Application.current.window.width = 1280;
 		Application.current.window.height = 720;
 		// PlayState.defaultCamZoom = 0.5;
-		
+
 		window = Application.current.createWindow({
-			 title: "expunged.dat",
-			 width: 800,
-			 height: 800,
-			 borderless: true,
-			 alwaysOnTop: true
-			 
+			title: "expunged.dat",
+			width: 800,
+			height: 800,
+			borderless: true,
+			alwaysOnTop: true
 		});
 
 		window.stage.color = 0x00010101;
@@ -7126,29 +7124,25 @@ class PlayState extends MusicBeatState
 		WindowsUtil.getWindowsTransparent();
 		#end
 
-		//FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
-		
+		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
+
 		/*var bg = Paths.image("holyshit").bitmap;
-		var spr = new Sprite();
-		
-		
-		spr.graphics.beginBitmapFill(bg, m);
-		spr.graphics.drawRect(0, 0, bg.width, bg.height);
-		spr.graphics.endFill();
-		window.stage.addChild(spr);*/
+			var spr = new Sprite();
+
+
+			spr.graphics.beginBitmapFill(bg, m);
+			spr.graphics.drawRect(0, 0, bg.width, bg.height);
+			spr.graphics.endFill();
+			window.stage.addChild(spr); */
 
 		var m = new Matrix();
 
-		m.translate(0,120);
-
 		dad.x = 0;
 		dad.y = 0;
-  
+
 		FlxG.mouse.useSystemCursor = true;
 
-		expungedSpr.graphics.beginBitmapFill(dad.pixels, m);
-		expungedSpr.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
-		expungedSpr.graphics.endFill();
+		generateWindowSprite();
 
 		expungedScroll.scrollRect = new Rectangle();
 		window.stage.addChild(expungedScroll);
@@ -7165,18 +7159,19 @@ class PlayState extends MusicBeatState
 			FlxTween.tween(strum, {alpha: 0}, 1);
 		});
 
-
 		var windowX = Application.current.window.x + ((Application.current.window.display.bounds.width) * 0.140625);
 
 		windowSteadyX = windowX;
 
-
 		FlxTween.tween(expungedOffset, {x: -20}, 2, {ease: FlxEase.elasticOut});
 
-		FlxTween.tween(Application.current.window, {x: windowX}, 3, {ease: FlxEase.elasticOut, onComplete: function(tween:FlxTween)
-		{
-			expungedMoving = false;
-		}});
+		FlxTween.tween(Application.current.window, {x: windowX}, 3, {
+			ease: FlxEase.elasticOut,
+			onComplete: function(tween:FlxTween)
+			{
+				expungedMoving = false;
+			}
+		});
 
 		Application.current.window.onClose.add(function()
 		{
@@ -7185,7 +7180,19 @@ class PlayState extends MusicBeatState
 
 		Application.current.window.focus();
 		expungedWindowMode = true;
-  }
+
+		@:privateAccess
+		lastFrame = dad._frame;
+	}
+
+	function generateWindowSprite()
+	{
+		var m = new Matrix();
+		expungedSpr.graphics.beginBitmapFill(dad.pixels, m);
+		expungedSpr.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
+		expungedSpr.graphics.endFill();
+	}
+	
 }
 enum ExploitationModchartType
 {

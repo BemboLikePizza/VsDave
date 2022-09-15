@@ -47,6 +47,7 @@ class TitleState extends MusicBeatState
 	var fun:Int;
 	var awaitingExploitation:Bool;
 	var eye:FlxSprite;
+	var loopEyeTween:FlxTween;
 
 	override public function create():Void
 	{		
@@ -153,12 +154,16 @@ class TitleState extends MusicBeatState
 			eye = new FlxSprite(0, 0).loadGraphic(Paths.image('mainMenu/eye'));
 			eye.screenCenter();
 			eye.antialiasing = false;
+			eye.alpha = 0;
 			add(eye);
 
-			FlxTween.tween(eye, {alpha: 0}, Conductor.crochet, {onComplete: function(tween:FlxTween)
+			loopEyeTween = FlxTween.tween(eye, {alpha: 1}, 1, {onComplete: function(tween:FlxTween)
 			{
-				FlxTween.tween(eye, {alpha: 1}, Conductor.crochet);
-			}, type: LOOPING});
+				FlxTween.tween(eye, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
+				{
+					loopEyeTween.start();
+				}});
+			}});
 		}
 		
 		if (!awaitingExploitation)

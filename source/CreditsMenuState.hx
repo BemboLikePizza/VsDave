@@ -268,7 +268,8 @@ class CreditsMenuState extends MusicBeatState
       ]),
       new Person("ashtonyes", CreditsType.BetaTester,
       [
-         new Social('youtube', 'https://www.youtube.com/channel/UCQkB-JEx7OGdOUxPzcgUkkQ')
+         new Social('youtube', 'https://www.youtube.com/channel/UCQkB-JEx7OGdOUxPzcgUkkQ'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1943292')
       ]),
       new Person("Silver Escaper", CreditsType.BetaTester,
       [
