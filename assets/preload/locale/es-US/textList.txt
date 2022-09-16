@@ -4,6 +4,7 @@ Presiona Enter para empezar
 // OUTDATED SUBSTATE //
 introWarningFirstPlay==Hola! Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, presiona N, al contrario, presiona Y. Puedes cambiar esto en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard"
 introWarningSeen==Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, desactiva la opcion de "Efectos" en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard" Presiona Enter para continuar.
+intoWarningExpunged==Cobarde.
 
 // Main Menu State //
 main_story==Modo Historia
@@ -106,6 +107,8 @@ story_daveWeek==¡La divertida batalla de rap de Dave!
 story_bambiWeek==¡El diverido laberinto de maiz de Mr. Bambi!
 story_finale==El Final
 story_festivalWeek==¡El festival de maiz de Bambi!
+story_masterWeek==¡La semana de maestros de Bambi!
+story_masterWeekToPlay==?????????
 
 // CHARACTER SELECT STATE //
 character_reset==Presiona R para resetear
@@ -313,33 +316,33 @@ credit_Soulegal==Traductor al Portugués-Brasilero
 
 //contributors
 credit_Steph45==Codigo adicional
-credit_evdial==Bambi Week Main Artist
-credit_wugalex==BG Artist
-credit_Jukebox==BG Artist
-credit_Oxygen==Composer
-credit_Alexander Cooper 19==Composer, Charter
-credit_Aadsta==Composer, BG Artist
+credit_evdial==Artista principal de la semana de Bambi
+credit_wugalex==Artista de fondo del menú
+credit_Jukebox==Artista de fondo del menú
+credit_Oxygen==Compositor
+credit_Alexander Cooper 19==Compositor, Charter
+credit_Aadsta==Compositor, Artista de fondo del menú
 credit_Project Tea==Charter
-credit_Top 10 Awesome==Composer, Funny Guy
-credit_BombasticHype==Did a House cutscene
-credit_Ruby==Adventure Song
-credit_Lancey==Menu BG Artist
-credit_Paraso==Menu BG Artist
-credit_SAMMYPIGZY==Artist
-credit_R34LD34L==Composer
-credit_Devianator==Help with Credits icons
-credit_sk0rbias==Menu Artist
-credit_Your mom==Composed Vs Dave Rap, totally.
-credit_sibottle==Composer
+credit_Top 10 Awesome==Compositor, Persona graciosa
+credit_BombasticHype==Hizo una escena de House
+credit_Ruby==Compositor de Adventure
+credit_Lancey==Artista de fondo del menú
+credit_Paraso==Artista de fondo del menú
+credit_SAMMYPIGZY==Artista
+credit_R34LD34L==Compositor
+credit_Devianator==Ayuda con iconos de creditos
+credit_sk0rbias==Artista de menús
+credit_Your mom==Compuso Vs Dave Rap, totalmente.
+credit_sibottle==Compositor
 
 //Beta Testers
 credit_letsy==Beta Tester
 credit_wildy==Beta Tester
-credit_peejeada==Beta Tester & Supporter
-credit_bendygaming_1==Beta Tester, Moldy super awesome brother
+credit_peejeada==Beta Tester y Apoyo
+credit_bendygaming_1==Beta Tester, El asombroso hermano de Moldy
 credit_vex==Beta Tester
 credit_xml==Beta Tester
-credit_ztgds==Minor programming help, Beta Tester
+credit_ztgds==Codigo adicional, Beta Tester
 credit_ashtonyes==Beta Tester
 credit_Silver Escaper==Beta Tester
 credit_TrustVVorthy==Beta Tester
@@ -360,4 +363,4 @@ credit_emiko==Beta Tester
 credit_Cotiles==Beta Tester
 
 //Special Thanks
-credit_Golden Apple Team==Made a great fanmade mod, huge motivator for 3.0
+credit_You!==Por jugar el mod y contribuir a la masiva comunidad que creamos.
