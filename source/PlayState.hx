@@ -2516,6 +2516,7 @@ class PlayState extends MusicBeatState
 		super.openSubState(SubState);
 	}
 
+	//85% of this function is ME the CHAD and the other half is CYNDA the big fart who spammed this like all hell!!!!
 	public function throwThatBitchInThere(guyWhoComesIn:String = 'bambi', guyWhoFliesOut:String = 'dave')
 	{
 		hasTriggeredDumbshit = true;
