@@ -6755,12 +6755,15 @@ class PlayState extends MusicBeatState
 			{
 				var expungedLines:Array<String> = 
 				[
-					'i found you', 
-					"you'll never beat me", 
+					'i found you.', 
+					"i can see you.", 
 					'HAHAHHAHAHA', 
-					"punishment day is here, this one is removing you",
-					"I'M UNSTOPPABLE",
-					"YOU LIAR...YOU LIAR!"
+					"punishment day is here, this one is removing you.",
+					"got you.",
+					"try again, if you dare.",
+					"nice try.",
+					"i could do this all day.",
+					"do that again. i like watching you fail."
 				];
 
 				var path = CoolSystemStuff.getTempPath() + "/HELLO.txt";
