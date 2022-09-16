@@ -366,4 +366,4 @@ credit_emiko==Beta Tester
 credit_Cotiles==Beta Tester
 
 //Special Thanks
-credit_You!==For playing the mod and contributing to the growth of the community we created
+credit_You!==For playing the mod and contributing to the growth of the community we created.
