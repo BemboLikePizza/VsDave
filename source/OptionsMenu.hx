@@ -81,7 +81,6 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')) 
 			+ "\n" + (FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
-			+ "\n" + (FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off'))
 			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
 			+ "\n" + LanguageManager.getTextString('option_change_langauge')
 			+ "\n" + (FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'))
@@ -171,15 +170,12 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
 					updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
 				case 7:
-					FlxG.save.data.freeplayCuts = !FlxG.save.data.freeplayCuts;
-					updateGroupControls((FlxG.save.data.freeplayCuts ? LanguageManager.getTextString('option_freeplay_cutscenes_on') : LanguageManager.getTextString('option_freeplay_cutscenes_off')), 7, 'Vertical');
-				case 8:
 					FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
 					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
-				case 9:
+				case 8:
 					updateGroupControls(LanguageManager.getTextString('option_change_langauge'), 9, 'Vertical');
 					FlxG.switchState(new ChangeLanguageState());
-				case 10:
+				case 9:
 					FlxG.save.data.disableFps = !FlxG.save.data.disableFps;
 					Main.fps.visible = !FlxG.save.data.disableFps;
 					updateGroupControls(FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'), 10, 'Vertical');

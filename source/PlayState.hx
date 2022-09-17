@@ -958,9 +958,6 @@ class PlayState extends MusicBeatState
 				add(tv);
 		}
 
-		if(SONG.song.toLowerCase() == "unfairness" || PlayState.SONG.song.toLowerCase() == 'exploitation')
-			health = 2;
-
 		var doof:DialogueBox = new DialogueBox(false, dialogue, isStoryMode);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
@@ -3994,91 +3991,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			if(FlxG.save.data.freeplayCuts)
-			{
-				switch (SONG.song.toLowerCase())
-				{
-					case 'glitch':
-						canPause = false;
-						FlxG.sound.music.volume = 0;
-						vocals.volume = 0;
-						var marcello:FlxSprite = new FlxSprite(dad.x, dad.y);
-						marcello.flipX = true;
-						add(marcello);
-						marcello.antialiasing = true;
-						marcello.color = 0xFF878787;
-						dad.visible = false;
-						boyfriend.stunned = true;
-						marcello.frames = Paths.getSparrowAtlas('joke/cutscene');
-						marcello.animation.addByPrefix('throw_phone', 'bambi0', 24, false);
-						FlxG.sound.play(Paths.sound('break_phone'), 1, false, null, true);
-						boyfriend.playAnim('hit', true);
-						STUPDVARIABLETHATSHOULDNTBENEEDED = marcello;
-						new FlxTimer().start(5.5, THROWPHONEMARCELLO);
-					case 'insanity':
-						canPause = false;
-						FlxG.sound.music.volume = 0;
-						vocals.volume = 0;
-						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
-						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/insanity-endDialogue')));
-						doof.scrollFactor.set();
-						doof.finishThing = function()
-						{
-							FlxG.switchState(new FreeplayState());
-						}
-						doof.cameras = [camDialogue];
-						schoolIntro(doof, false);
-					case 'maze':
-						canPause = false;
-						FlxG.sound.music.volume = 0;
-						vocals.volume = 0;
-						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
-						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/maze-endDialogue')));
-						doof.scrollFactor.set();
-						doof.finishThing = function()
-						{
-							FlxG.switchState(new FreeplayState());
-						}
-						doof.cameras = [camDialogue];
-						schoolIntro(doof, false);
-					case 'splitathon':
-						canPause = false;
-						FlxG.sound.music.volume = 0;
-						vocals.volume = 0;
-						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
-						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
-						doof.scrollFactor.set();
-						doof.finishThing = function()
-						{
-							FlxG.switchState(new FreeplayState());
-						}
-						doof.cameras = [camDialogue];
-						schoolIntro(doof, false);
-					case 'interdimensional':
-						canPause = false;
-						FlxG.sound.music.volume = 0;
-						vocals.volume = 0;
-						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
-						boyfriend.stunned = true;
-						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')));
-						doof.scrollFactor.set();
-						doof.finishThing = function()
-						{
-							FlxG.switchState(new FreeplayState());
-						}
-						doof.cameras = [camDialogue];
-						schoolIntro(doof, false);
-					default:
-						FlxG.switchState(new FreeplayState());
-				}
-			}
-			else
-			{
-				FlxG.switchState(new FreeplayState());
-			}
+			FlxG.switchState(new FreeplayState());
 			if(FlxTransitionableState.skipNextTransIn)
 			{
 				Transition.nextCamera = null;

@@ -79,6 +79,7 @@ class TerminalState extends MusicBeatState
     override public function create():Void 
     {
         Main.fps.visible = false;
+        PlayState.isStoryMode = false;
         displayText = new FlxText(0, 0, FlxG.width, previousText, 32);
 		displayText.setFormat(Paths.font("PixelOperator-Bold.ttf"), 16);
         displayText.size *= 2;
