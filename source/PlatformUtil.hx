@@ -1,9 +1,21 @@
 package;
 
+/*
+    VS DAVE WINDOWS/LINUX/MACOS UTIL
+    You can use this code while you give credit to it.
+    65% of the code written by chromasen
+    35% of the code written by Erizur (cross-platform and extra windows utils)
+
+    Windows: You need the Windows SDK (any version) to compile.
+    Linux: TODO
+    macOS: TODO
+*/
+
 #if windows
 @:cppFileCode('#include <stdlib.h>
 #include <stdio.h>
 #include <windows.h>
+#include <winuser.h>
 #include <dwmapi.h>
 #include <strsafe.h>
 #include <shellapi.h>
@@ -13,7 +25,7 @@ package;
 #pragma comment(lib, "Dwmapi")
 #pragma comment(lib, "Shell32.lib")')
 #end
-class WindowsUtil
+class PlatformUtil
 {
     #if windows
 	@:functionCode('
@@ -25,7 +37,7 @@ class WindowsUtil
         }
     ')
     #end
-	static public function getWindowsTransparent(res:Int = 0)
+	static public function getWindowsTransparent(res:Int = 0)   // Only works on windows, otherwise returns 0!
 	{
 		return res;
 	}
@@ -62,7 +74,24 @@ class WindowsUtil
         return Shell_NotifyIcon(NIM_MODIFY, &m_NID);
     ')
     #end
-    static public function sendWindowsNotification(title:String = "", desc:String = "", res:Int = 0)
+    static public function sendWindowsNotification(title:String = "", desc:String = "", res:Int = 0)    // TODO: Linux (found out how to do it so ill do it soon)
+    {
+        return res;
+    }
+
+    #if windows
+    @:functionCode('
+        LPCSTR lwDesc = desc.c_str();
+
+        res = MessageBox(
+            NULL,
+            lwDesc,
+            NULL,
+            MB_OK
+        );
+    ')
+    #end
+    static public function sendFakeMsgBox(desc:String = "", res:Int = 0)    // TODO: Linux and macOS (will do soon)
     {
         return res;
     }
@@ -77,7 +106,7 @@ class WindowsUtil
         }
     ')
     #end
-	static public function getWindowsbackward(res:Int = 0)
+	static public function getWindowsbackward(res:Int = 0)  // Only works on windows, otherwise returns 0!
 	{
 		return res;
 	}
@@ -90,23 +119,7 @@ class WindowsUtil
         SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, (PVOID)p.c_str(), SPIF_UPDATEINIFILE);
     ')
     #end
-    static public function updateWallpaper() {
+    static public function updateWallpaper() {  // Only works on windows, otherwise returns 0!
         return null;
     }
 }
-
-/**@:functionCode('
-([DllImport("user32.dll", EntryPoint="SetWindowLongPtr")]
-  private static extern IntPtr
-SetWindowLongPtr64(IntPtr, hWnd, int nIndex, IntPtr dwNewLong);
-
-[DllImport("user32.dll")]   
-public static extern bool
-setLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
-void main()
-{
-  SetWindowLong32(_windown.Handle, -20, 0x00080000);
-
-    SetLayeredWindowAttributes(_window.Handle, 0, 0, 0x00000001);
-}
-')**/

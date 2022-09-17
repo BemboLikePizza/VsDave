@@ -6490,7 +6490,7 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
 					case 1100:
 						#if windows
-							WindowsUtil.sendWindowsNotification("Virus & threat protection", "Potential threat detected: expunged.dat");
+							PlatformUtil.sendWindowsNotification("Virus & threat protection", "Potential threat detected: expunged.dat");
 						#end
 				}
 				switch (curBeat)
@@ -7122,7 +7122,7 @@ class PlayState extends MusicBeatState
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
 		#if windows
-		WindowsUtil.getWindowsTransparent();
+		PlatformUtil.getWindowsTransparent();
 		#end
 
 		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});

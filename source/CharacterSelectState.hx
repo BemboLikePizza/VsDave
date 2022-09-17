@@ -587,10 +587,7 @@ class CharacterSelectState extends MusicBeatState
 			FlxG.fullscreen = false;
 			FlxG.sound.play(Paths.sound('error'), 0.9);
 
-			var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
-			File.saveContent(path, 'x=msgbox("Null Object Reference", 0+0, "Error")');
-
-			Sys.command('start $path');
+			PlatformUtil.sendFakeMsgBox("Null Object Reference");
 		}
 		if (FlxTransitionableState.skipNextTransIn)
 		{
