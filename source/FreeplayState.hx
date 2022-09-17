@@ -150,11 +150,6 @@ class FreeplayState extends MusicBeatState
 			LanguageManager.getTextString('freeplay_extra'),
 			LanguageManager.getTextString('freeplay_terminal')];
 		}
-		if(!FlxG.save.data.hasPlayedMasterWeek && !FlxG.save.data.exbungoFound && !FlxG.save.data.secretModLeakUnlocked)
-		{
-			Catagories.remove("joke");
-			translatedCatagory.remove(LanguageManager.getTextString('freeplay_joke'));
-		}
 
 		for (i in 0...Catagories.length)
 		{
@@ -278,8 +273,12 @@ class FreeplayState extends MusicBeatState
 				}
 				if (FlxG.save.data.exbungoFound)
 					addWeek(['Kabunga'], 6, ['exbungo']);
-				if (FlxG.save.data.roofsUnlocked)
-					addWeek(['Roofs'], 7, ['baldi']);
+				
+			    addWeek(['Vs-Dave-Rap'], 1, ['dave-cool']);
+				if(FlxG.save.data.vsDaveRapTwoFound)
+				{
+					addWeek(['Vs-Dave-Rap-Two'], 1, ['dave-cool']);
+				}
 			case 'extras':
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);
@@ -288,13 +287,11 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Bot-Trot'], 9, ['playrobot']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
 				addWeek(['Five-Nights'], 12, ['dave']);
+				if (FlxG.save.data.roofsUnlocked)
+					addWeek(['Roofs'], 7, ['baldi']);
 				addWeek(['Overdrive'], 13, ['dave-awesome']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
-				addWeek(['Memory', 'Vs-Dave-Rap'], 1, ['dave', 'dave-cool']);
-				if(FlxG.save.data.vsDaveRapTwoFound)
-				{
-					addWeek(['Vs-Dave-Rap-Two'], 1, ['dave-cool']);
-				}
+				addWeek(['Memory'], 1, ['dave']);
 			case 'terminal':
 				if (FlxG.save.data.cheatingFound)
 					addWeek(['Cheating'], 14, ['bambi-3d']);
