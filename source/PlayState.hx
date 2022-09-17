@@ -499,6 +499,11 @@ class PlayState extends MusicBeatState
 			SONG.validScore = false;
 		}
 
+		if (localFunny == CharacterFunnyEffect.Tristan)
+		{
+			SONG.player2 = "tristan-opponent";
+		}
+
 		// Updating Discord Rich Presence.
 		#if desktop
 		DiscordClient.changePresence(detailsText
@@ -2285,7 +2290,7 @@ class PlayState extends MusicBeatState
 		curSong = songData.song;
 
 		if (SONG.needsVoices)
-			vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
+			vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song, localFunny == CharacterFunnyEffect.Tristan ? "-Tristan" : ""));
 		else
 			vocals = new FlxSound();
 
@@ -2375,14 +2380,19 @@ class PlayState extends MusicBeatState
 
 	private function generateStaticArrows(player:Int, regenerate:Bool = false):Void
 	{
+		var note_order:Array<Int> = [0,1,2,3];
+		if (localFunny == CharacterFunnyEffect.Bambi)
+		{
+			note_order = [2,2,2,2];
+		}
+		else if (localFunny == CharacterFunnyEffect.Tristan)
+		{
+			note_order = [0,3,2,1];
+		}
 		for (i in 0...4)
 		{
-			var arrowType:Int = i;
+			var arrowType:Int = note_order[i];
 			var strumType:String = '';
-			if (localFunny == CharacterFunnyEffect.Bambi)
-			{
-				arrowType = 2;
-			}
 			if (funnyFloatyBoys.contains(dad.curCharacter) && player == 0 || funnyFloatyBoys.contains(boyfriend.curCharacter) && player == 1)
 			{
 				strumType = '3D';
@@ -3630,7 +3640,12 @@ class PlayState extends MusicBeatState
 	function yFromNoteStrumTime(note:Note, strumLine:FlxSprite, downScroll:Bool):Float
 	{
 		var change = downScroll ? -1 : 1;
-		return strumLine.y - (Conductor.songPosition - note.strumTime) * (change * 0.45 * FlxMath.roundDecimal(SONG.speed * note.LocalScrollSpeed, 2));
+		var speed:Float = SONG.speed;
+		if (localFunny == CharacterFunnyEffect.Tristan)
+		{
+			speed += (Math.sin(elapsedtime / 5)) * 1;
+		}
+		return strumLine.y - (Conductor.songPosition - note.strumTime) * (change * 0.45 * FlxMath.roundDecimal(speed * note.LocalScrollSpeed, 2));
 	}
 	function ZoomCam(focusondad:Bool):Void
 	{

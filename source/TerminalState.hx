@@ -135,6 +135,14 @@ class TerminalState extends MusicBeatState
                             PlayState.SONG.validScore = false;
                             Main.fps.visible = !FlxG.save.data.disableFps;
                             LoadingState.loadAndSwitchState(new PlayState());
+                        case "tristan.dat":
+                            UpdatePreviousText(false); //resets the text
+                            UpdateText("\nLoading...");
+                            PlayState.globalFunny = CharacterFunnyEffect.Tristan;
+                            PlayState.SONG = Song.loadFromJson("house");
+                            PlayState.SONG.validScore = false;
+                            Main.fps.visible = !FlxG.save.data.disableFps;
+                            LoadingState.loadAndSwitchState(new PlayState());
                         case "exbungo.dat":
                             UpdatePreviousText(false); //resets the text
                             UpdateText("\nLoading...");
