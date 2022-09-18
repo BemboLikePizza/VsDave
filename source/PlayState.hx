@@ -3486,7 +3486,7 @@ class PlayState extends MusicBeatState
 						case 'cheating':
 							health -= healthtolower;
 						case 'unfairness':
-							health -= (healthtolower / 5);
+							health -= (healthtolower / 8);
 						case 'five-nights':
 							if ((health - 0.023) > 0)
 							{
