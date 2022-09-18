@@ -255,7 +255,7 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Exploitation'], 16, ['expunged']);
 			case 'dave':
 				addWeek(['Warmup'], 0, ['dave']);
-				addWeek(['House', 'Insanity', 'Polygonized', 'Bonus-Song'], 1, ['dave', 'dave-annoyed', 'dave-angey', 'dave']);
+				addWeek(['House', 'Insanity', 'Polygonized'], 1, ['dave', 'dave-annoyed', 'dave-angey']);
 				addWeek(['Blocked', 'Corn-Theft', 'Maze'], 2, ['bambi-new', 'bambi-new', 'bambi-new']);
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-festival-3d', 'dave-festival']);
@@ -280,6 +280,7 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Vs-Dave-Rap-Two'], 1, ['dave-cool']);
 				}
 			case 'extras':
+				addWeek(['Bonus-Song'], 1, ['dave']);
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);
 
