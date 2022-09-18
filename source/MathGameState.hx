@@ -239,7 +239,11 @@ class MathGameState extends MusicBeatState
 
       if (curBeat % 2 == 0 && !failedGame)
       {
-         FlxG.camera.zoom += 0.01;
+         //t5 you'll probably re-enable this and i wont be mad at you
+         //but please atleast hear me out on why this shouldn't be here
+         //i think it'd be REALLY funny if we WENT all out with the YCTP, maybe we could even change the window name to say "Baldi's Basics In Education and Learning"
+         //so obviously we should make the YCTP as accurate as possible.
+         //FlxG.camera.zoom += 0.01;
       }
       
    }
