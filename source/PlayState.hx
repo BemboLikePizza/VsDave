@@ -6417,9 +6417,7 @@ class PlayState extends MusicBeatState
 					case 1276:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
 					case 1100:
-						#if windows
-							PlatformUtil.sendWindowsNotification("Virus & threat protection", "Potential threat detected: expunged.dat");
-						#end
+						PlatformUtil.sendWindowsNotification("Virus & threat protection", "Potential threat detected: expunged.dat");
 				}
 				switch (curBeat)
 				{

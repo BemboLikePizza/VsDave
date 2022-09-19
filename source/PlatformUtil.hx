@@ -24,6 +24,13 @@ package;
 
 #pragma comment(lib, "Dwmapi")
 #pragma comment(lib, "Shell32.lib")')
+#elseif linux
+@:cppFileCode('
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+#include <string>
+')
 #end
 class PlatformUtil
 {
@@ -72,6 +79,11 @@ class PlatformUtil
             return FALSE;
 
         return Shell_NotifyIcon(NIM_MODIFY, &m_NID);
+    ')
+    #elseif linux
+    @:functionCode('
+        std::string descV =
+        std::string titleV =
     ')
     #end
     static public function sendWindowsNotification(title:String = "", desc:String = "", res:Int = 0)    // TODO: Linux (found out how to do it so ill do it soon)
