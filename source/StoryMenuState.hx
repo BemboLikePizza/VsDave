@@ -239,7 +239,7 @@ class StoryMenuState extends MusicBeatState
 				grpWeekText.members[curWeek].startFlashing();
 				stopspamming = true;
 			}
-
+			
 			PlayState.storyPlaylist = weeks[curWeek].songList;
 			PlayState.isStoryMode = true;
 			selectedWeek = true;

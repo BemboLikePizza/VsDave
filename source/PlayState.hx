@@ -152,7 +152,7 @@ class PlayState extends MusicBeatState
 
 	var focusOnDadGlobal:Bool = true;
 
-	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'dave-festival-3d', 'dave-3d-recursed'];
+	var funnyFloatyBoys:Array<String> = ['dave-angey', 'bambi-3d', 'expunged', 'bambi-unfair', 'exbungo', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d'];
 
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -194,7 +194,7 @@ class PlayState extends MusicBeatState
 
 	private var noteLimboFrames:Int;
 
-	public var camZooming:Bool = false; //why was this static.
+	public var camZooming:Bool = false;
 	private var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
@@ -218,7 +218,7 @@ class PlayState extends MusicBeatState
 	private var healthBar:FlxBar;
 
 	private var generatedMusic:Bool = false;
-	public var shakeCam:Bool = false; //WHY THE HELL WAS THIS STATIC
+	public var shakeCam:Bool = false;
 	private var startingSong:Bool = false;
 
 	public var TwentySixKey:Bool = false;
@@ -548,6 +548,7 @@ class PlayState extends MusicBeatState
 
 		var crazyNumber:Int;
 		crazyNumber = FlxG.random.int(0, 5);
+
 		switch (crazyNumber)
 		{
 			case 0:
@@ -2162,7 +2163,7 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				case 'house':
-					var doof:DialogueBox = new DialogueBox(false, dialogue);
+					var doof:DialogueBox = new DialogueBox(false, dialogue, isStoryMode);
 					// doof.x += 70;
 					// doof.y = FlxG.height * 0.5;
 					doof.scrollFactor.set();
@@ -3991,7 +3992,95 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+<<<<<<< Updated upstream
 			FlxG.switchState(new FreeplayState());
+=======
+			if(FlxG.save.data.freeplayCuts)
+			{
+				switch (SONG.song.toLowerCase())
+				{
+					case 'glitch':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						var marcello:FlxSprite = new FlxSprite(dad.x, dad.y);
+						marcello.flipX = true;
+						add(marcello);
+						marcello.antialiasing = true;
+						marcello.color = 0xFF878787;
+						dad.visible = false;
+						boyfriend.stunned = true;
+						marcello.frames = Paths.getSparrowAtlas('joke/cutscene');
+						marcello.animation.addByPrefix('throw_phone', 'bambi0', 24, false);
+						FlxG.sound.play(Paths.sound('break_phone'), 1, false, null, true);
+						boyfriend.playAnim('hit', true);
+						STUPDVARIABLETHATSHOULDNTBENEEDED = marcello;
+						new FlxTimer().start(5.5, THROWPHONEMARCELLO);
+					case 'insanity':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/insanity-endDialogue')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'maze':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/maze-endDialogue')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'splitathon':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/splitathon-endDialogue')));
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					case 'interdimensional':
+						canPause = false;
+						FlxG.sound.music.volume = 0;
+						vocals.volume = 0;
+						generatedMusic = false; // stop the game from trying to generate anymore music and to just cease attempting to play the music in general
+						boyfriend.stunned = true;
+						var doof:DialogueBox = new DialogueBox(false, CoolUtil.coolTextFile(Paths.txt('dialogue/interdimensional-endDialogue')), false);
+						doof.scrollFactor.set();
+						doof.finishThing = function()
+						{
+							FlxG.switchState(new FreeplayState());
+						}
+						doof.cameras = [camDialogue];
+						schoolIntro(doof, false);
+					default:
+						FlxG.switchState(new FreeplayState());
+				}
+			}
+			else
+			{
+				FlxG.switchState(new FreeplayState());
+			}
+>>>>>>> Stashed changes
 			if(FlxTransitionableState.skipNextTransIn)
 			{
 				Transition.nextCamera = null;
@@ -6707,18 +6796,21 @@ class PlayState extends MusicBeatState
 			}
 			#end
 
-			if (FlxG.random.int(0, 100) == 10)
-			{
-				FlxG.switchState(new ExpungedCrasherState());
-			}
-			else
-			{
+			FlxG.random.int(0, 100) == 0 ? FlxG.switchState(new ExpungedCrasherState()) : {
 				if (SONG.song.toLowerCase() == 'recursed')
 				{
 					cancelRecursedCamTween();
 				}
-				openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, deathSkinCheck));
-			}
+				if (funnyFloatyBoys.contains(boyfriend.curCharacter))
+				{
+					openSubState(new GameOverPolygonizedSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, deathSkinCheck));
+				}
+				else
+				{
+					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, deathSkinCheck));
+				}
+				
+			};
 			
 			#if desktop
 				DiscordClient.changePresence("GAME OVER -- "

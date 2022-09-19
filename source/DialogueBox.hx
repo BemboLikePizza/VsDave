@@ -58,41 +58,37 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		super();
 		
-		if (PlayState.isStoryMode && playMusic)
+		if (playMusic)
 		{
 			switch (PlayState.SONG.song.toLowerCase())
 			{
 				case 'house' | 'insanity' | 'splitathon' | 'shredder':
 					FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
-					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				case 'polygonized' | 'interdimensional':
 					FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
-					FlxG.sound.music.fadeIn(1, 0, 0.8);
 				case 'supernovae' | 'glitch':
 					randomNumber = FlxG.random.int(0, 50);
 					if (randomNumber == 50)
 					{
 						FlxG.sound.playMusic(Paths.music('secret'), 0);
-						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 					else
 					{
 						FlxG.sound.playMusic(Paths.music('dooDooFeces'), 0);
-						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 				case 'blocked' | 'corn-theft' | 'maze':
 					randomNumber = FlxG.random.int(0, 50);
 					if (randomNumber == 50)
 					{
 						FlxG.sound.playMusic(Paths.music('secret'), 0);
-						FlxG.sound.music.fadeIn(1, 0, 0.8);
 					}
 					else
 					{
 						FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
-						FlxG.sound.music.fadeIn(1, 0, 0.8);
+						
 					}
 			}
+			FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
 		
 

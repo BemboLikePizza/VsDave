@@ -44,7 +44,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'nofriend':
 				daBf = 'nofriend-death';
 				deathSuffix = '-nofriend';
-			case 'bambi-3d' | 'dave-angey' | 'dave-3d-recursed' | 'dave-fnaf':
+			case 'dave-fnaf':
 				daBf = 'generic-death';
 				deathSuffix = '-generic';
 
@@ -72,7 +72,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		add(camFollow);
 
 		FlxG.sound.play(Paths.sound('death/fnf_loss_sfx' + deathSuffix));
-		Conductor.changeBPM(100);
+		Conductor.changeBPM(105);
 
 		// FlxG.camera.followLerp = 1;
 		// FlxG.camera.focusOn(FlxPoint.get(FlxG.width / 2, FlxG.height / 2));
