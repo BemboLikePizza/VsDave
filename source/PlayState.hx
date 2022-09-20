@@ -1016,11 +1016,13 @@ class PlayState extends MusicBeatState
 		repositionChar(gf);
 
 		var font:String = Paths.font("comic.ttf");
+		var fontScaler:Int = 1;
 	
 		switch (SONG.song.toLowerCase())
 		{
 			case 'five-nights':
 				font = Paths.font('fnaf.ttf');
+				fontScaler = 2;
 		}
 
 		if (FlxG.save.data.songPosition && !isGreetingsCutscene && SONG.song.toLowerCase() != 'overdrive')
@@ -1040,9 +1042,9 @@ class PlayState extends MusicBeatState
 			insert(members.indexOf(songPosBG), songPosBar);
 			
 			songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
-			songName.setFormat(font, 32, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			songName.setFormat(font, 32 * fontScaler, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
-			songName.borderSize = 2.5;
+			songName.borderSize = 2.5 * fontScaler;
 			songName.antialiasing = true;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
@@ -1115,7 +1117,7 @@ class PlayState extends MusicBeatState
 		switch(SONG.song.toLowerCase())
 		{
 			case "exploitation":
-				funkyText = SONG.song; //who undid this.
+				funkyText = SONG.song;
 			case 'overdrive':
 				funkyText = '';
 			default:
@@ -1126,18 +1128,18 @@ class PlayState extends MusicBeatState
 		{
 			kadeEngineWatermark = new FlxText(4, textYPos, 0, funkyText, 16);
 
-			kadeEngineWatermark.setFormat(font, 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			kadeEngineWatermark.setFormat(font, 16 * fontScaler, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			kadeEngineWatermark.scrollFactor.set();
-			kadeEngineWatermark.borderSize = 1.25;
+			kadeEngineWatermark.borderSize = 1.25 * fontScaler;
 			kadeEngineWatermark.antialiasing = true;
 			add(kadeEngineWatermark);
 		}
 		if (creditsText)
 		{
 			creditsWatermark = new FlxText(4, healthBarBG.y + 50, 0, credits, 16);
-			creditsWatermark.setFormat(font, 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			creditsWatermark.setFormat(font, 16 * fontScaler, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			creditsWatermark.scrollFactor.set();
-			creditsWatermark.borderSize = 1.25;
+			creditsWatermark.borderSize = 1.25 * fontScaler;
 			creditsWatermark.antialiasing = true;
 			add(creditsWatermark);
 			creditsWatermark.cameras = [camHUD];
@@ -1198,9 +1200,9 @@ class PlayState extends MusicBeatState
 		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 150, healthBarBG.y + 40, FlxG.width, "", 20);
-		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("ariblk.ttf") : font, 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("ariblk.ttf") : font, 20 * fontScaler, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
-		scoreTxt.borderSize = 1.5;
+		scoreTxt.borderSize = 1.5 * fontScaler;
 		scoreTxt.antialiasing = true;
 		scoreTxt.screenCenter(X);
 		add(scoreTxt);
@@ -1225,7 +1227,6 @@ class PlayState extends MusicBeatState
 			iconP2.y = healthBar.y - (iconP2.height / 2);
 			add(iconP2);
 		}
-
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
@@ -1233,10 +1234,6 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
-		if (songName != null)
-		{
-			songName.cameras = [camHUD];
-		}
 		if (kadeEngineWatermark != null)
 		{
 			kadeEngineWatermark.cameras = [camHUD];
@@ -6083,8 +6080,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 1.1;
 						switchToNight();
 					case 1151:
-						defaultCamZoom = 1;	
-						
+						defaultCamZoom = 0.8;
 				}
 			case 'supernovae':
 				switch (curStep)
@@ -6869,7 +6865,7 @@ class PlayState extends MusicBeatState
 		}
 		curStage = 'bedroomNight';
 
-		switchDad('playrobot-shadow', dad.getPosition());
+		switchDad('playrobot-shadow', dad.getPosition(), true, false);
 		boyfriend.color = getBackgroundColor(curStage);
 	}
 	public function getCamZoom():Float
@@ -6928,7 +6924,7 @@ class PlayState extends MusicBeatState
 		}
 		switchSide = !switchSide;
 	}
-	function switchDad(newChar:String, position:FlxPoint, reposition:Bool = true)
+	function switchDad(newChar:String, position:FlxPoint, reposition:Bool = true, updateColor:Bool = true)
 	{
 		if (reposition)
 		{
@@ -6943,14 +6939,17 @@ class PlayState extends MusicBeatState
 			iconP2.changeIcon(dad.curCharacter);
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
-		dad.color = getBackgroundColor(curStage);
-
+		
+		if (updateColor)
+		{
+			dad.color = getBackgroundColor(curStage);
+		}
 		if (reposition)
 		{
 			repositionChar(dad);
 		}
 	}
-	function switchBF(newChar:String, position:FlxPoint, reposition:Bool = true)
+	function switchBF(newChar:String, position:FlxPoint, reposition:Bool = true, updateColor:Bool = true)
 	{
 		if (reposition)
 		{
@@ -6965,14 +6964,17 @@ class PlayState extends MusicBeatState
 			iconP1.changeIcon(boyfriend.curCharacter);
 		}
 		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
-		boyfriend.color = getBackgroundColor(curStage);
-
+		
+		if (updateColor)
+		{
+			boyfriend.color = getBackgroundColor(curStage);
+		}
 		if (reposition)
 		{
 			repositionChar(boyfriend);
 		}
 	}
-	function switchGF(newChar:String, position:FlxPoint, reposition:Bool = true)
+	function switchGF(newChar:String, position:FlxPoint, reposition:Bool = true, updateColor:Bool = true)
 	{
 		if (reposition)
 		{
@@ -6982,8 +6984,11 @@ class PlayState extends MusicBeatState
 		gfGroup.remove(gf);
 		gf = new Character(position.x, position.y, newChar);
 		gfGroup.add(gf);
-		gf.color = getBackgroundColor(curStage);
-
+		
+		if (updateColor)
+		{
+			gf.color = getBackgroundColor(curStage);
+		}
 		if (reposition)
 		{
 			repositionChar(gf);
