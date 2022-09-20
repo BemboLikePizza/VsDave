@@ -233,7 +233,7 @@ class PlayState extends MusicBeatState
 	private var camTransition:FlxCamera;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
-	public var hasDialogue:Bool = true;
+	public var hasDialogue:Bool = false;
 	
 	var notestuffs:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
@@ -573,6 +573,7 @@ class PlayState extends MusicBeatState
 		if (FileSystem.exists(Paths.txt('dialogue/${SONG.song.toLowerCase()}')))
 		{
 			dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/${SONG.song.toLowerCase()}'));
+			hasDialogue = true;
 		}
 		else
 		{
