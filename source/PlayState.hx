@@ -437,9 +437,6 @@ class PlayState extends MusicBeatState
 				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
-				#if t5mpler_mode
-					SONG.song.player2 = "baldi";
-				#end
 			case 'recursed':
 				daveBG = MainMenuState.randomizeBG();
 				bambiBG = MainMenuState.randomizeBG();
