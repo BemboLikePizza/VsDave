@@ -233,7 +233,7 @@ class PlayState extends MusicBeatState
 	private var camTransition:FlxCamera;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
-	public var hasDialogue:Bool = true;
+	public var hasDialogue:Bool = false;
 	
 	var notestuffs:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
@@ -412,6 +412,8 @@ class PlayState extends MusicBeatState
 	{
 		instance = this;
 
+		paused = false;
+
 		resetShader();
 
 		switch (SONG.song.toLowerCase())
@@ -573,6 +575,7 @@ class PlayState extends MusicBeatState
 		if (FileSystem.exists(Paths.txt('dialogue/${SONG.song.toLowerCase()}')))
 		{
 			dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/${SONG.song.toLowerCase()}'));
+			hasDialogue = true;
 		}
 		else
 		{
@@ -1430,7 +1433,7 @@ class PlayState extends MusicBeatState
 				add(cornBag);
 				add(sign);
 
-				if (['blocked', 'corn-theft', 'maze', 'mealie'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, 4) == 0)
+				if (['blocked', 'corn-theft', 'maze', 'mealie'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, isStoryMode ? 200 : 6) == 0)
 				{
 					FlxG.mouse.visible = true;
 					baldi = new BGSprite('baldi', 0, 250, Paths.image('backgrounds/farm/baldo', 'shared'), null);
@@ -1480,32 +1483,32 @@ class PlayState extends MusicBeatState
 							['tristan', 'bop', 0.4, 800, 325]
 						];
 				}
-				var bg:BGSprite = new BGSprite('bg', -600, -230, Paths.image('backgrounds/shared/sky_festival'), null, 0.9, 0.9);
+				var bg:BGSprite = new BGSprite('bg', -600, -230, Paths.image('backgrounds/shared/sky_festival'), null, 0.6, 0.6);
 				sprites.add(bg);
 				add(bg);
 
-				var flatGrass:BGSprite = new BGSprite('flatGrass', 800, -100, Paths.image('backgrounds/festival/gm_flatgrass'), null, 0.85, 0.85);
+				var flatGrass:BGSprite = new BGSprite('flatGrass', 800, -100, Paths.image('backgrounds/festival/gm_flatgrass'), null, 0.7, 0.7);
 				sprites.add(flatGrass);
 				add(flatGrass);
 
-				var farmHouse:BGSprite = new BGSprite('farmHouse', -300, -150, Paths.image('backgrounds/festival/farmHouse'), null, 0.85, 0.85);
+				var farmHouse:BGSprite = new BGSprite('farmHouse', -300, -150, Paths.image('backgrounds/festival/farmHouse'), null, 0.7, 0.7);
 				sprites.add(farmHouse);
 				add(farmHouse);
 				
-				var hills:BGSprite = new BGSprite('hills', -1000, -100, Paths.image('backgrounds/festival/hills'), null, 0.85, 0.85);
+				var hills:BGSprite = new BGSprite('hills', -1000, -100, Paths.image('backgrounds/festival/hills'), null, 0.7, 0.7);
 				sprites.add(hills);
 				add(hills);
 
 				var corn:BGSprite = new BGSprite('corn', -1000, 120, 'backgrounds/festival/corn', [
 					new Animation('corn', 'idle', 5, true, [false, false])
-				], 0.9, 0.9, true, true);
+				], 0.85, 0.85, true, true);
 				corn.animation.play('corn');
 				sprites.add(corn);
 				add(corn);
 
 				var cornGlow:BGSprite = new BGSprite('cornGlow', -1000, 120, 'backgrounds/festival/cornGlow', [
 					new Animation('cornGlow', 'idle', 5, true, [false, false])
-				], 0.9, 0.9, true, true);
+				], 0.85, 0.85, true, true);
 				cornGlow.blend = BlendMode.ADD;
 				cornGlow.animation.play('cornGlow');
 				sprites.add(cornGlow);
@@ -1551,44 +1554,44 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.7;
 				stageName = 'backyard';
 
-				var festivalSky:BGSprite = new BGSprite('bg', -600, -400, Paths.image('backgrounds/shared/sky_festival'), null, 0.9, 0.9);
+				var festivalSky:BGSprite = new BGSprite('bg', -600, -400, Paths.image('backgrounds/shared/sky_festival'), null, 0.6, 0.6);
 				sprites.add(festivalSky);
 				add(festivalSky);
 
 				if (SONG.song.toLowerCase() == 'rano')
 				{
-					var sunriseBG:BGSprite = new BGSprite('sunriseBG', -600, -400, Paths.image('backgrounds/shared/sky_sunrise'), null, 0.9, 0.9);
+					var sunriseBG:BGSprite = new BGSprite('sunriseBG', -600, -400, Paths.image('backgrounds/shared/sky_sunrise'), null, 0.6, 0.6);
 					sunriseBG.alpha = 0;
 					sprites.add(sunriseBG);
 					add(sunriseBG);
 
-					var skyBG:BGSprite = new BGSprite('bg', -600, -400, Paths.image('backgrounds/shared/sky'), null, 0.9, 0.9);
+					var skyBG:BGSprite = new BGSprite('bg', -600, -400, Paths.image('backgrounds/shared/sky'), null, 0.6, 0.6);
 					skyBG.alpha = 0;
 					sprites.add(skyBG);
 					add(skyBG);
 				}
 
-				var hills:BGSprite = new BGSprite('hills', -1330, -432, Paths.image('backgrounds/backyard/hills', 'shared'), null, 1, 1, true);
+				var hills:BGSprite = new BGSprite('hills', -1330, -432, Paths.image('backgrounds/backyard/hills', 'shared'), null, 0.75, 0.75, true);
 				sprites.add(hills);
 				add(hills);
 
-				var grass:BGSprite = new BGSprite('grass', -800, 150, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, 1, 1, true);
+				var grass:BGSprite = new BGSprite('grass', -800, 150, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, true);
 				sprites.add(grass);
 				add(grass);
 
-				var gates:BGSprite = new BGSprite('gates', 564, -33, Paths.image('backgrounds/backyard/gates', 'shared'), null, 1, 1, true);
+				var gates:BGSprite = new BGSprite('gates', 564, -33, Paths.image('backgrounds/backyard/gates', 'shared'), null, 0.9, 0.9, true);
 				sprites.add(gates);
 				add(gates);
 				
-				var bear:BGSprite = new BGSprite('bear', -1035, -710, Paths.image('backgrounds/backyard/bearDude', 'shared'), null, 1, 1, true);
+				var bear:BGSprite = new BGSprite('bear', -1035, -710, Paths.image('backgrounds/backyard/bearDude', 'shared'), null, 0.95, 0.95, true);
 				sprites.add(bear);
 				add(bear);
 
-				var house:BGSprite = new BGSprite('house', -1025, -323, Paths.image('backgrounds/backyard/house', 'shared'), null, 1, 1, true);
+				var house:BGSprite = new BGSprite('house', -1025, -323, Paths.image('backgrounds/backyard/house', 'shared'), null, 0.95, 0.95, true);
 				sprites.add(house);
 				add(house);
 
-				var grill:BGSprite = new BGSprite('grill', -489, 452, Paths.image('backgrounds/backyard/grill', 'shared'), null, 1, 1, true);
+				var grill:BGSprite = new BGSprite('grill', -489, 452, Paths.image('backgrounds/backyard/grill', 'shared'), null, 0.95, 0.95, true);
 				sprites.add(grill);
 				add(grill);
 
@@ -3484,7 +3487,9 @@ class PlayState extends MusicBeatState
 						case 'cheating':
 							health -= healthtolower;
 						case 'unfairness':
-							health -= (healthtolower / 5);
+							health -= (healthtolower / 3);
+						case 'exploitation':
+							health += (FlxEase.backInOut(health / 15.7)) - 0.002;
 						case 'five-nights':
 							if ((health - 0.023) > 0)
 							{
@@ -3559,9 +3564,7 @@ class PlayState extends MusicBeatState
 		{
 			if (expungedWindowMode)
 			{
-				#if windows
 				popupWindow();
-				#end
 			}
 			else
 			{
@@ -4318,6 +4321,53 @@ class PlayState extends MusicBeatState
 
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 		var releaseArray:Array<Bool> = [leftR, downR, upR, rightR];
+
+		#if botplay
+
+		var BOTPLAY_pressed_anything = false;
+
+		notes.forEachAlive(function(daNote:Note)
+		{
+			if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit && daNote.finishedGenerating)
+			{
+				if (daNote.strumTime <= Conductor.songPosition)
+				{
+					BOTPLAY_pressed_anything = true;
+					if (!daNote.isSustainNote)
+					{
+						controlArray[daNote.noteData % 4] = true;
+						switch (daNote.noteData % 4)
+						{
+							case 0:
+								leftP = true;
+							case 1:
+								downP = true;
+							case 2:
+								upP = true;
+							case 3:
+								rightP = true;
+						}
+					}
+					switch (daNote.noteData % 4)
+					{
+						case 0:
+							left = true;
+						case 1:
+							down = true;
+						case 2:
+							up = true;
+						case 3:
+							right = true;
+					}
+				}
+			}
+		});
+		if (!BOTPLAY_pressed_anything)
+		{
+			releaseArray = [true, true, true, true];
+		}
+
+		#end
 
 		if (noteLimbo != null)
 		{
@@ -5789,10 +5839,8 @@ class PlayState extends MusicBeatState
 						shakeCam = true;
 						FlxG.camera.zoom - 0.2;
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
-						#if windows
 						//suck my dick psych engine porters.
 						popupWindow();
-						#end
 						dadStrums.visible = false;
 					case 1311:
 						shakeCam = false;
@@ -6465,11 +6513,11 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
 						});
 					case 143:
-						swapGlitch(Conductor.crochet / 1000, 'cheating');
+						swapGlitch(Conductor.crochet / 3000, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
 					case 191:
-						swapGlitch(Conductor.crochet / 1000, 'expunged');
+						swapGlitch(Conductor.crochet / 3000, 'expunged');
 					case 192:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6483,11 +6531,11 @@ class PlayState extends MusicBeatState
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
-						swapGlitch(Conductor.crochet / 1000, 'unfair');
+						swapGlitch(Conductor.crochet / 3000, 'unfair');
 					case 256:
 						modchart = ExploitationModchartType.Unfairness;
 					case 287:
-						swapGlitch(Conductor.crochet / 1000, 'expunged');
+						swapGlitch(Conductor.crochet / 3000, 'expunged');
 					case 288:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6499,11 +6547,11 @@ class PlayState extends MusicBeatState
 						});
 						modchart = ExploitationModchartType.None;
 					case 455:
-						swapGlitch(Conductor.crochet / 1000, 'cheating');
+						swapGlitch(Conductor.crochet / 3000, 'cheating');
 					case 456:
 						modchart = ExploitationModchartType.Cheating;
 					case 486:
-						swapGlitch((Conductor.crochet / 1000) * 2, 'expunged');
+						swapGlitch((Conductor.crochet / 3000) * 2, 'expunged');
 					case 488:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
@@ -7077,9 +7125,8 @@ class PlayState extends MusicBeatState
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
-		#if windows
 		PlatformUtil.getWindowsTransparent();
-		#end
+		trace('BRAP');
 
 		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 
