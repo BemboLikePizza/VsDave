@@ -30,6 +30,9 @@ package;
 #include <stdio.h>
 #include <iostream>
 #include <string>
+
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 ')
 #end
 class PlatformUtil
@@ -41,6 +44,28 @@ class PlatformUtil
         if (res)
         {
             SetLayeredWindowAttributes(hWnd, RGB(1, 1, 1), 0, LWA_COLORKEY);
+        }
+    ')
+    #end
+    #if linux
+    @:functionCode('
+        Display *d = XOpenDisplay(0);
+        Window window;
+        int revert;
+        unsigned long valuemask;
+        
+        if(d)
+        {
+            XVisualInfo vinfo;
+            XGetInputFocus(d, &window, &revert);
+            XMatchVisualInfo(d, DefaultScreen(d), 32, DirectColor, &vinfo);
+
+            XSetWindowAttributes attr;
+            attr.colormap = XCreateColormap(d, window, vinfo.visual, AllocNone);
+            attr.border_pixel = 0;
+            attr.background_pixel = 0;
+            valuemask = CWBackPixel | CWBorderPixel;
+            XChangeWindowAttributes(d, window, valuemask, &attr);
         }
     ')
     #end
@@ -82,8 +107,9 @@ class PlatformUtil
     ')
     #elseif linux
     @:functionCode('
-        std::string descV =
-        std::string titleV =
+        std::string descV = desc.c_str();
+        std::string titleV = title.c_str();
+        std::string cmd = "notify-send -u normal ";
     ')
     #end
     static public function sendWindowsNotification(title:String = "", desc:String = "", res:Int = 0)    // TODO: Linux (found out how to do it so ill do it soon)
