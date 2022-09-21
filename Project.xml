@@ -80,5 +80,10 @@
 
 	<!-- _________________________________ Custom _______________________________ -->
 
-	<icon path="art/icons/dave.png" />	
+	<icon path="art/icons/dave.png" />
+
+	<!-- ________________________ Import Linux Stuff _____________________________ -->
+	<target id="haxe" tool="linker" if="linux">
+		<lib name="/usr/lib64/libX11.so" if="HXCPP_M64" />
+	</target>
 </project>
