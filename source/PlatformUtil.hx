@@ -46,8 +46,7 @@ class PlatformUtil
             SetLayeredWindowAttributes(hWnd, RGB(1, 1, 1), 0, LWA_COLORKEY);
         }
     ')
-    #end
-    #if linux
+    #elseif linux
     @:functionCode('
         Display *d = XOpenDisplay(0);
         Window window;
