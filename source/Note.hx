@@ -68,6 +68,8 @@ class Note extends FlxSprite
 		this.originalType = noteData;
 		this.guitarSection = guitarSection;
 		this.noteData = noteData;
+
+		alpha = 0;
 		
 		x += 78;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?

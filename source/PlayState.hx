@@ -412,6 +412,8 @@ class PlayState extends MusicBeatState
 	{
 		instance = this;
 
+		paused = false;
+
 		resetShader();
 
 		switch (SONG.song.toLowerCase())
@@ -435,6 +437,9 @@ class PlayState extends MusicBeatState
 				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
+				#if t5mpler_mode
+					SONG.song.player2 = "baldi";
+				#end
 			case 'recursed':
 				daveBG = MainMenuState.randomizeBG();
 				bambiBG = MainMenuState.randomizeBG();
@@ -3485,7 +3490,9 @@ class PlayState extends MusicBeatState
 						case 'cheating':
 							health -= healthtolower;
 						case 'unfairness':
-							health -= (healthtolower / 5);
+							health -= (healthtolower / 3);
+						case 'exploitation':
+							health += (FlxEase.backInOut(health / 15.7)) - 0.002;
 						case 'five-nights':
 							if ((health - 0.023) > 0)
 							{
@@ -3561,7 +3568,7 @@ class PlayState extends MusicBeatState
 			if (expungedWindowMode)
 			{
 				#if windows
-				popupWindow();
+					popupWindow();
 				#end
 			}
 			else
@@ -4319,6 +4326,53 @@ class PlayState extends MusicBeatState
 
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 		var releaseArray:Array<Bool> = [leftR, downR, upR, rightR];
+
+		#if botplay
+
+		var BOTPLAY_pressed_anything = false;
+
+		notes.forEachAlive(function(daNote:Note)
+		{
+			if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit && daNote.finishedGenerating)
+			{
+				if (daNote.strumTime <= Conductor.songPosition)
+				{
+					BOTPLAY_pressed_anything = true;
+					if (!daNote.isSustainNote)
+					{
+						controlArray[daNote.noteData % 4] = true;
+						switch (daNote.noteData % 4)
+						{
+							case 0:
+								leftP = true;
+							case 1:
+								downP = true;
+							case 2:
+								upP = true;
+							case 3:
+								rightP = true;
+						}
+					}
+					switch (daNote.noteData % 4)
+					{
+						case 0:
+							left = true;
+						case 1:
+							down = true;
+						case 2:
+							up = true;
+						case 3:
+							right = true;
+					}
+				}
+			}
+		});
+		if (!BOTPLAY_pressed_anything)
+		{
+			releaseArray = [true, true, true, true];
+		}
+
+		#end
 
 		if (noteLimbo != null)
 		{
@@ -6466,11 +6520,11 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
 						});
 					case 143:
-						swapGlitch(Conductor.crochet / 1000, 'cheating');
+						swapGlitch(Conductor.crochet / 3000, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
 					case 191:
-						swapGlitch(Conductor.crochet / 1000, 'expunged');
+						swapGlitch(Conductor.crochet / 3000, 'expunged');
 					case 192:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6484,11 +6538,11 @@ class PlayState extends MusicBeatState
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
-						swapGlitch(Conductor.crochet / 1000, 'unfair');
+						swapGlitch(Conductor.crochet / 3000, 'unfair');
 					case 256:
 						modchart = ExploitationModchartType.Unfairness;
 					case 287:
-						swapGlitch(Conductor.crochet / 1000, 'expunged');
+						swapGlitch(Conductor.crochet / 3000, 'expunged');
 					case 288:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6500,11 +6554,11 @@ class PlayState extends MusicBeatState
 						});
 						modchart = ExploitationModchartType.None;
 					case 455:
-						swapGlitch(Conductor.crochet / 1000, 'cheating');
+						swapGlitch(Conductor.crochet / 3000, 'cheating');
 					case 456:
 						modchart = ExploitationModchartType.Cheating;
 					case 486:
-						swapGlitch((Conductor.crochet / 1000) * 2, 'expunged');
+						swapGlitch((Conductor.crochet / 3000) * 2, 'expunged');
 					case 488:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
