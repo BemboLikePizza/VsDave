@@ -433,7 +433,10 @@ class PlayState extends MusicBeatState
 				}
 				Main.toggleFuckedFPS(true);
 
-				FlxG.save.data.exploitationState = 'playing';
+				if (FlxG.save.data.exploitationState != null)
+				{
+					FlxG.save.data.exploitationState = 'playing';
+				}
 				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
