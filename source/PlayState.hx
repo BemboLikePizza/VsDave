@@ -433,7 +433,10 @@ class PlayState extends MusicBeatState
 				}
 				Main.toggleFuckedFPS(true);
 
-				FlxG.save.data.exploitationState = 'playing';
+				if (FlxG.save.data.exploitationState != null)
+				{
+					FlxG.save.data.exploitationState = 'playing';
+				}
 				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
@@ -7136,7 +7139,11 @@ class PlayState extends MusicBeatState
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
 		PlatformUtil.getWindowsTransparent();
+		#if linux
+		//testing stuff
+		window.stage.color = null;
 		trace('BRAP');
+		#end
 
 		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 
