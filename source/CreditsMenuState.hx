@@ -456,17 +456,19 @@ class CreditsMenuState extends MusicBeatState
             titleText.antialiasing = true;
             titleText.screenCenter(X);
             titleText.scrollFactor.set(0, 1);
-
-            var personIcon:PersonIcon = new PersonIcon(titleText);
-            personIcon.loadGraphic(Paths.image('credits/titles/' + creditsTypeString));
-            personIcon.antialiasing = true;
-            add(personIcon);
-            personIcon.visible = !DoFunnyScroll;
             if (DoFunnyScroll)
             {
                titleText.color = FlxColor.PURPLE;
             }
 
+            var personIcon:PersonIcon = new PersonIcon(titleText);
+            personIcon.loadGraphic(Paths.image('credits/titles/' + creditsTypeString));
+            personIcon.setGraphicSize(150);
+            personIcon.updateHitbox();
+            personIcon.visible = !DoFunnyScroll;
+            personIcon.antialiasing = true;
+            add(personIcon);
+            
             var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
             creditsTextGroup.push(creditsTextTitleText);
             add(titleText);
@@ -477,7 +479,6 @@ class CreditsMenuState extends MusicBeatState
          textItem.screenCenter(X);
          textItem.antialiasing = true;
          textItem.scrollFactor.set(0, 1);
-
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
          personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
