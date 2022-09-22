@@ -5841,6 +5841,16 @@ class PlayState extends MusicBeatState
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
 						//suck my dick psych engine porters.
 						popupWindow();
+						
+						dadStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
+						playerStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
+						
 						dadStrums.visible = false;
 					case 1311:
 						shakeCam = false;
@@ -5857,6 +5867,9 @@ class PlayState extends MusicBeatState
 					case 1503:
 						shakeCam = false;
 						FlxG.camera.zoom + 0.2;
+					case 1536:
+						//revert back
+						window.close();
 				}
 			case 'shredder':
 				switch (curStep)
@@ -6513,11 +6526,11 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
 						});
 					case 143:
-						swapGlitch(Conductor.crochet / 3000, 'cheating');
+						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
 					case 191:
-						swapGlitch(Conductor.crochet / 3000, 'expunged');
+						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 192:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6531,11 +6544,11 @@ class PlayState extends MusicBeatState
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
-						swapGlitch(Conductor.crochet / 3000, 'unfair');
+						swapGlitch(Conductor.crochet / 1000, 'unfair');
 					case 256:
 						modchart = ExploitationModchartType.Unfairness;
 					case 287:
-						swapGlitch(Conductor.crochet / 3000, 'expunged');
+						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 288:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6547,11 +6560,11 @@ class PlayState extends MusicBeatState
 						});
 						modchart = ExploitationModchartType.None;
 					case 455:
-						swapGlitch(Conductor.crochet / 3000, 'cheating');
+						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 456:
 						modchart = ExploitationModchartType.Cheating;
 					case 486:
-						swapGlitch((Conductor.crochet / 3000) * 2, 'expunged');
+						swapGlitch((Conductor.crochet / 1000) * 2, 'expunged');
 					case 488:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
@@ -7101,9 +7114,6 @@ class PlayState extends MusicBeatState
 
 		var screenwidth = Application.current.window.display.bounds.width;
 		var screenheight = Application.current.window.display.bounds.height;
-
-		var expungedXoffset = 0;
-		var expungedYoffset = 0;
 
 		// center
 		Application.current.window.x = Std.int((screenwidth / 2) - (1280 / 2));
