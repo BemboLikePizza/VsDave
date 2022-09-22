@@ -83,7 +83,7 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 			}, 
 			onComplete: function(tween:FlxTween)
 			{
-				polygonizedText = new FlxText(0, 0, FlxG.width, "You've been Polygonized!", 32);
+				polygonizedText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_polygonized'), 32);
 				polygonizedText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 				polygonizedText.borderSize = 2.5;
 				polygonizedText.antialiasing = true;
@@ -104,7 +104,7 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 				{
 					FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
 
-					restartText = new FlxText(0, 0, FlxG.width, "Restart?", 32);
+					restartText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_restart'), 32);
 					restartText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 					restartText.borderSize = 2.5;
 					restartText.antialiasing = true;
