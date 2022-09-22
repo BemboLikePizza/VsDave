@@ -33,6 +33,7 @@ package;
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <X11/Xatom.h>
 ')
 #end
 class PlatformUtil
@@ -52,19 +53,14 @@ class PlatformUtil
         Window window;
         int revert;
         unsigned long valuemask;
+        uint32_t opacity = 0xC0000000;
         
         if(d)
         {
-            XVisualInfo vinfo;
             XGetInputFocus(d, &window, &revert);
-            XMatchVisualInfo(d, DefaultScreen(d), 32, DirectColor, &vinfo);
-
-            XSetWindowAttributes attr;
-            attr.colormap = XCreateColormap(d, window, vinfo.visual, AllocNone);
-            attr.border_pixel = 0;
-            attr.background_pixel = 0;
-            valuemask = CWBackPixel | CWBorderPixel;
-            XChangeWindowAttributes(d, window, valuemask, &attr);
+            printf("window is %d");
+            Atom atom = XInternAtom(d, "_NET_WM_WINDOW_OPACITY", False);
+            XChangeProperty(d, window, atom, XA_CARDINAL, 32, PropModeReplace, (unsigned char *)&opacity, 1);
         }
     ')
     #end

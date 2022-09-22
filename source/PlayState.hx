@@ -7123,13 +7123,17 @@ class PlayState extends MusicBeatState
 			alwaysOnTop: true
 		});
 
-		window.stage.color = 0x00010101;
+		window.stage.color = 0xC0000000;
 		@:privateAccess
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
 		PlatformUtil.getWindowsTransparent();
+		#if linux
+		//testing stuff
+		window.stage.color = null;
 		trace('BRAP');
+		#end
 
 		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 
