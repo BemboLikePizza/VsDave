@@ -7123,7 +7123,7 @@ class PlayState extends MusicBeatState
 			alwaysOnTop: true
 		});
 
-		window.stage.color = 0xC0000000;
+		window.stage.color = 0x00010101;
 		@:privateAccess
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
