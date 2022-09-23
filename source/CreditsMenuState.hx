@@ -453,8 +453,8 @@ class CreditsMenuState extends MusicBeatState
             titleText.setFormat("Comic Sans MS Bold", 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
             titleText.borderSize = 3;
             titleText.borderQuality = 3;
-            titleText.antialiasing = true;
             titleText.screenCenter(X);
+			titleText.antialiasing = true;
             titleText.scrollFactor.set(0, 1);
             if (DoFunnyScroll)
             {
@@ -466,7 +466,6 @@ class CreditsMenuState extends MusicBeatState
             personIcon.setGraphicSize(150);
             personIcon.updateHitbox();
             personIcon.visible = !DoFunnyScroll;
-            personIcon.antialiasing = true;
             add(personIcon);
             
             var creditsTextTitleText = new CreditsText(titleText, false, personIcon);
@@ -477,12 +476,13 @@ class CreditsMenuState extends MusicBeatState
          var textItem:FlxText = new FlxText(0, i * 50, 0, currentPerson.name, 32);
          textItem.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle, defaultFormat.borderColor);
          textItem.screenCenter(X);
-         textItem.antialiasing = true;
+		 textItem.antialiasing = true;
          textItem.scrollFactor.set(0, 1);
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
          personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
-         personIcon.antialiasing = true;
+		 personIcon.setGraphicSize(150);
+		 personIcon.updateHitbox();
          add(personIcon);
 
          personIcon.visible = !DoFunnyScroll;
@@ -763,16 +763,16 @@ class CreditsMenuState extends MusicBeatState
       personName.setFormat(selectedFormat.font, selectedFormat.size, selectedFormat.color, selectedFormat.alignment, selectedFormat.borderStyle, selectedFormat.borderColor);
       personName.screenCenter(X);
       personName.updateHitbox();
+	  textItem.antialiasing = true;
       personName.scrollFactor.set();
-      personName.antialiasing = true;
       personName.active = false;
       
       var credits:FlxText = new FlxText(0, personName.y + 50, FlxG.width / 1.25, LanguageManager.getTextString('credit_${selectedPerson.name}'), 25);
       credits.setFormat(selectedFormat.font, selectedFormat.size, selectedFormat.color, selectedFormat.alignment, selectedFormat.borderStyle, selectedFormat.borderColor);
       credits.screenCenter(X);
       credits.updateHitbox();
+	  credits.antialiasing = true;
       credits.scrollFactor.set();
-      credits.antialiasing = true;
       credits.active = false;
 
       blackBg.alpha = 0;
@@ -807,7 +807,6 @@ class CreditsMenuState extends MusicBeatState
          socialGraphic.screenCenter(X);
          socialGraphic.scrollFactor.set();
          socialGraphic.active = false;
-         socialGraphic.antialiasing = true;
          socialGraphic.alpha = 0;
          add(socialGraphic);
 
@@ -819,8 +818,8 @@ class CreditsMenuState extends MusicBeatState
             discordText.alpha = 0;
             discordText.updateHitbox();
             discordText.scrollFactor.set();
+			discordText.antialiasing = true;
             discordText.active = false;
-            discordText.antialiasing = true;
             add(discordText);
             FlxTween.tween(discordText, { alpha: 1 }, fadeTime);
             selectedPersonGroup.add(discordText);
