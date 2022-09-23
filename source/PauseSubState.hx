@@ -21,11 +21,11 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	#if debug
-	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_nomiss'), LanguageManager.getTextString('pause_exit')];
-	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Exit to menu'];
+	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_nomiss'), LanguageManager.getTextString('pause_changecharacter'), LanguageManager.getTextString('pause_exit')];
+	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Change Character', 'Exit to menu'];
 	#else
-	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_exit')];
-	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_changecharacter'), LanguageManager.getTextString('pause_exit')];
+	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Change Character', 'Exit to menu'];
 	#end
 	var curSelected:Int = 0;
 
@@ -180,6 +180,30 @@ class PauseSubState extends MusicBeatSubstate
 				}
 				FlxG.mouse.visible = false;
 				FlxG.resetState();
+			case "Change Character":
+				if (MathGameState.failedGame)
+					{
+						MathGameState.failedGame = false;
+					}
+					funnyTexts.clear();
+					PlayState.characteroverride = 'none';
+					PlayState.formoverride = 'none';
+					PlayState.recursedStaticWeek = false;
+	
+					Application.current.window.title = Main.applicationName;
+	
+					if (PlayState.SONG.song.toLowerCase() == "exploitation")
+					{
+						Main.toggleFuckedFPS(false);
+						if (PlayState.window != null)
+						{
+							PlayState.window.close();
+						}
+					}
+					PlayState.instance.shakeCam = false;
+					PlayState.instance.camZooming = false;
+					FlxG.mouse.visible = false;
+					FlxG.switchState(new CharacterSelectState());	
 			case "Developer No Miss":
 				PlayState.devBotplay = !PlayState.devBotplay;
 			case "Exit to menu":

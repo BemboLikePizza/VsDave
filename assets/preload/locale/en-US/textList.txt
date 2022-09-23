@@ -45,6 +45,7 @@ freeplay_skipChar==Hold CTRL To Skip Character Selection
 // Pause State //
 pause_resume==Resume
 pause_restart==Restart Song
+pause_changecharacter==Change Character
 pause_exit==Exit To Menu
 pause_nomiss==Developer No Miss
 

@@ -32,7 +32,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'dave' | 'dave-recursed':
 				daBf = 'dave-death';
 				deathSuffix = '-dave';
-			case 'tristan':
+			case 'tristan' | 'tristan-recursed':
 				daBf = 'tristan-death';
 				deathSuffix = '-tristan';
 			case 'tristan-golden':
