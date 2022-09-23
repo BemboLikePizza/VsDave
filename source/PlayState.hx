@@ -161,8 +161,8 @@ class PlayState extends MusicBeatState
 
 	var boyfriendOldIcon:String = 'bf-old';
 
-	private var vocals:FlxSound;
-	private var exbungo_funny:FlxSound;
+	public var vocals:FlxSound;
+	public var exbungo_funny:FlxSound;
 
 	private var dad:Character;
 	private var dadmirror:Character;

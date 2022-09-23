@@ -763,7 +763,7 @@ class CreditsMenuState extends MusicBeatState
       personName.setFormat(selectedFormat.font, selectedFormat.size, selectedFormat.color, selectedFormat.alignment, selectedFormat.borderStyle, selectedFormat.borderColor);
       personName.screenCenter(X);
       personName.updateHitbox();
-	  textItem.antialiasing = true;
+	  personName.antialiasing = true;
       personName.scrollFactor.set();
       personName.active = false;
       

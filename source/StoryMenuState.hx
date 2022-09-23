@@ -209,7 +209,7 @@ class StoryMenuState extends MusicBeatState
 		{
 			FlxG.sound.music.fadeOut(1, 0);
 			FlxG.camera.shake(0.02, 5.1);
-			FlxG.camera.fade(FlxColor.WHITE,5.05,false, function()
+			FlxG.camera.fade(FlxColor.WHITE, 5.05, false, function()
 			{
 				FlxG.save.data.masterWeekUnlocked = true;
 				FlxG.save.data.hasPlayedMasterWeek = false;

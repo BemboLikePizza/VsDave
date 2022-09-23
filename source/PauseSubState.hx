@@ -166,6 +166,9 @@ class PauseSubState extends MusicBeatSubstate
 			case "Resume":
 				close();
 			case "Restart Song":
+				FlxG.sound.music.volume = 0;
+				PlayState.instance.vocals.volume = 0;
+
 				PlayState.instance.shakeCam = false;
 				PlayState.instance.camZooming = false;
 				if (PlayState.SONG.song.toLowerCase() == "exploitation")
@@ -232,7 +235,7 @@ class PauseSubState extends MusicBeatSubstate
 				difficulty.scrollFactor.set();
 				difficulty.setFormat(Paths.font('comic.ttf'), 32, FlxColor.WHITE, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 				difficulty.antialiasing = true;
-				difficulty.borderSize = 2.5;
+				difficulty.borderSize = 2;
 				difficulty.updateHitbox();
 				funnyTexts.add(difficulty);
 
