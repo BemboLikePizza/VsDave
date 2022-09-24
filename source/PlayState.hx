@@ -6503,10 +6503,54 @@ class PlayState extends MusicBeatState
 				}
 				switch (curBeat)
 				{
-					case 40, 44, 46, 56, 60, 62, 120, 124:
+					//case 40, 44, 46, 56, 60, 62, 120, 124:
+					//	switchNoteScroll();
+					//early exploitation modchart where its just flipping sides more like exploitation midchart
+					//anyway these functions work basically where its the players notes than the opponents and the order you put the values 0-7 determine the order the notes move to
+					case 40:
+						switchNotePositions([6,7,5,4,3,2,0,1]);
+						switchNoteScroll(false);
+					case 44:
+						switchNotePositions([0,1,3,2,4,5,7,6]);
+					case 46:
+						switchNotePositions([6,7,5,4,3,2,0,1]);
+						switchNoteScroll(false);
+					case 56:
+						switchNotePositions([1,3,2,0,5,7,6,4]);
+					case 60:
+						switchNotePositions([4,6,7,5,0,2,3,1]);
+						switchNoteScroll(false);
+					case 62:
+						switchNotePositions([7,1,0,2,3,5,4,6]);
+						switchNoteScroll(false);
+					case 120:
+						switchNotePositions([3,2,1,0,7,6,5,4]);
 						switchNoteScroll();
-					case 72, 76, 80, 88, 90, 92:
+					case 124:
+						switchNotePositions([0,2,3,1,4,6,7,5]);
+						switchNoteScroll();
+					
+					//case 72, 76, 80, 88, 90, 92:
+					//	switchNoteSide();
+
+					case 72:
+						switchNotePositions([6,7,2,3,4,5,0,1]);
+
+					case 76:
+						switchNotePositions([6,7,4,5,2,3,0,1]);
+
+					case 80:
+						switchNotePositions([1,0,2,4,3,5,7,6]);
+
+					case 88:
+						switchNotePositions([4,2,0,1,6,7,5,3]);
+					
+					case 90:
 						switchNoteSide();
+					
+					case 92:
+						switchNoteSide();
+
 					case 112:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6956,7 +7000,7 @@ class PlayState extends MusicBeatState
 		}
 		return daPos;
 	}
-	function switchNoteScroll()
+	function switchNoteScroll(cancelTweens:Bool = true)
 	{
 		switch (scrollType)
 		{
@@ -6969,13 +7013,17 @@ class PlayState extends MusicBeatState
 		}
 		for (strumNote in strumLineNotes)
 		{
-			FlxTween.cancelTweensOf(strumNote);
+			if (cancelTweens)
+			{
+				FlxTween.cancelTweensOf(strumNote);
+			}
 			strumNote.angle = 0;
 			
 			FlxTween.angle(strumNote, strumNote.angle, strumNote.angle + 360, 0.4, {ease: FlxEase.expoOut});
 			FlxTween.tween(strumNote, {y: strumLine.y}, 0.6, {ease: FlxEase.backOut});
 		}
 	}
+
 	function switchNoteSide()
 	{
 		for (i in 0...4)
@@ -6988,6 +7036,31 @@ class PlayState extends MusicBeatState
 		}
 		switchSide = !switchSide;
 	}
+
+	function switchNotePositions(order:Array<Int>)
+	{
+		var positions:Array<Float> = [];
+		for (i in 0...4)
+		{
+			var curNote = playerStrums.members[i];
+			positions.push(curNote.baseX);
+		}
+		for (i in 0...4)
+		{
+			var curNote = dadStrums.members[i];
+			positions.push(curNote.baseX);
+		}
+		for (i in 0...4)
+		{
+			var curOpponentNote = dadStrums.members[i];
+			var curPlayerNote = playerStrums.members[i];
+
+			FlxTween.tween(curOpponentNote, {x: positions[order[i + 4]]}, 0.6, {ease: FlxEase.expoOut, startDelay: 0.01 * i});
+			FlxTween.tween(curPlayerNote, {x: positions[order[i]]}, 0.6, {ease: FlxEase.expoOut, startDelay: 0.01 * i});
+		}
+		switchSide = !switchSide;
+	}
+
 	function switchDad(newChar:String, position:FlxPoint, reposition:Bool = true, updateColor:Bool = true)
 	{
 		if (reposition)

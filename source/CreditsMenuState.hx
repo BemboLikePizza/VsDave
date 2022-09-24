@@ -476,7 +476,7 @@ class CreditsMenuState extends MusicBeatState
          var textItem:FlxText = new FlxText(0, i * 50, 0, currentPerson.name, 32);
          textItem.setFormat(defaultFormat.font, defaultFormat.size, defaultFormat.color, defaultFormat.alignment, defaultFormat.borderStyle, defaultFormat.borderColor);
          textItem.screenCenter(X);
-		 textItem.antialiasing = true;
+		   textItem.antialiasing = true;
          textItem.scrollFactor.set(0, 1);
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
@@ -763,7 +763,7 @@ class CreditsMenuState extends MusicBeatState
       personName.setFormat(selectedFormat.font, selectedFormat.size, selectedFormat.color, selectedFormat.alignment, selectedFormat.borderStyle, selectedFormat.borderColor);
       personName.screenCenter(X);
       personName.updateHitbox();
-	  textItem.antialiasing = true;
+	   personName.antialiasing = true;
       personName.scrollFactor.set();
       personName.active = false;
       
