@@ -3440,24 +3440,22 @@ class PlayState extends MusicBeatState
 						case 'phone':
 							dad.playAnim('singSmash', true);
 						default:
-							//'LEFT', 'DOWN', 'UP', 'RIGHT'
-							var fuckingDumbassBullshitFuckYou:String;
 							var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-							fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(daNote.originalType)) % dadStrumAmount];
-							if(dad.nativelyPlayable)
+							var noteToPlay:String = noteTypes[Math.round(Math.abs(daNote.originalType)) % dadStrumAmount];
+							if (dad.nativelyPlayable)
 							{
-								switch(noteTypes[daNote.originalType % dadStrumAmount])
+								switch (noteToPlay)
 								{
 									case 'LEFT':
-										fuckingDumbassBullshitFuckYou = 'RIGHT';
+										noteToPlay = 'RIGHT';
 									case 'RIGHT':
-										fuckingDumbassBullshitFuckYou = 'LEFT';
+										noteToPlay = 'LEFT';
 								}
 							}
-							dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
+							dad.playAnim('sing' + noteToPlay + altAnim, true);
 							if (dadmirror != null)
 							{
-								dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
+								dadmirror.playAnim('sing' + noteToPlay + altAnim, true);
 							}
 					}
 					cameraMoveOnNote(daNote.originalType, 'dad');
@@ -4604,7 +4602,6 @@ class PlayState extends MusicBeatState
 					case 'text':
 						recursedNoteMiss();
 					case 'phone':
-						FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 						var hitAnimation:Bool = boyfriend.animation.getByName("hit") != null;
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
 						FlxTween.cancelTweensOf(note.MyStrum);
@@ -4615,56 +4612,42 @@ class PlayState extends MusicBeatState
 						return;
 				}
 			}
+			var deathSound:FlxSound = new FlxSound();
+			switch (curSong.toLowerCase())
+			{
+				case 'overdrive':
+					deathSound.loadEmbedded(Paths.sound('bad_disc'));
+				case 'vs-dave-rap' | 'vs-dave-rap-two':
+					deathSound.loadEmbedded(Paths.sound('deathbell'));
+				default:
+					deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
+			}
+			deathSound.volume = FlxG.random.float(0.1, 0.2);
+			deathSound.play();
 
-			if(curSong.toLowerCase() == 'overdrive'){
-				FlxG.sound.play(Paths.sound('bad_disc'), FlxG.random.float(0.1, 0.2));
-			}
-						if(curSong.toLowerCase() == 'vs-dave-rap'){
-				FlxG.sound.play(Paths.sound('deathbell'), FlxG.random.float(0.1, 0.2));
-			}
-			else{
-				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-			}
 			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 			// FlxG.log.add('played imss note');
 			
-			if (boyfriend.animation.getByName("singLEFTmiss") != null)
+			var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+			var noteToPlay:String = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
+			if (!boyfriend.nativelyPlayable)
 			{
-				var fuckingDumbassBullshitFuckYou:String;
-				var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-
-				fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
-				if(!boyfriend.nativelyPlayable)
+				switch (noteToPlay)
 				{
-					switch(noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount])
-					{
-						case 'LEFT':
-							fuckingDumbassBullshitFuckYou = 'RIGHT';
-						case 'RIGHT':
-							fuckingDumbassBullshitFuckYou = 'LEFT';
-					}
+					case 'LEFT':
+						noteToPlay = 'RIGHT';
+					case 'RIGHT':
+						noteToPlay = 'LEFT';
 				}
-				boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou + "miss", true);
+			}
+			if (boyfriend.animation.getByName('sing${noteToPlay}miss') != null)
+			{
+				boyfriend.playAnim('sing' + noteToPlay + "miss", true);
 			}
 			else
 			{
 				boyfriend.color = 0xFF000084;
-				//'LEFT', 'DOWN', 'UP', 'RIGHT'
-				var fuckingDumbassBullshitFuckYou:String;
-				var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-
-				fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
-				if(!boyfriend.nativelyPlayable)
-				{
-					switch(noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount])
-					{
-						case 'LEFT':
-							fuckingDumbassBullshitFuckYou = 'RIGHT';
-						case 'RIGHT':
-							fuckingDumbassBullshitFuckYou = 'LEFT';
-					}
-				}
-				boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
+				boyfriend.playAnim('sing' + noteToPlay, true);
 			}
 			updateAccuracy();
 		}

@@ -100,19 +100,15 @@ class Character extends FlxSprite
 				nativelyPlayable = true;
 				flipX = true;
 
-				case 'bf-cool':
+			case 'bf-cool':
 				frames = Paths.getSparrowAtlas('characters/Cool_BF', 'shared');
 				
 				animation.addByPrefix('idle', 'BFIdle', 24, false);
-				animation.addByPrefix('singUP', 'BFUp', 24, false);
-				animation.addByPrefix('singLEFT', 'BFLeft', 24, false);
-				animation.addByPrefix('singRIGHT', 'BFRight', 24, false);
-				animation.addByPrefix('singDOWN', 'BFDown', 24, false);
-				animation.addByPrefix('singUPmiss', 'Dead', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'Dead', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'Dead', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'Dead', 24, false);
-
+				for (anim in ['Left', 'Down', 'Up', 'Right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'BFUp', 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'Dead', 24, false);
+				}
 				loadOffsetFile(curCharacter);
 
 				skins.set('gfSkin', 'gf-cool');
@@ -1101,7 +1097,7 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-pixel' | 'gf-3d':
+				case 'gf' | 'gf-pixel' | 'gf-3d' | 'gf-cool':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
