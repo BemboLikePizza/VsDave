@@ -161,8 +161,8 @@ class PlayState extends MusicBeatState
 
 	var boyfriendOldIcon:String = 'bf-old';
 
-	private var vocals:FlxSound;
-	private var exbungo_funny:FlxSound;
+	public var vocals:FlxSound;
+	public var exbungo_funny:FlxSound;
 
 	private var dad:Character;
 	private var dadmirror:Character;
@@ -1578,11 +1578,11 @@ class PlayState extends MusicBeatState
 				sprites.add(hills);
 				add(hills);
 
-				var grass:BGSprite = new BGSprite('grass', -800, 150, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, true);
+				var grass:BGSprite = new BGSprite('grass', -800, 150, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, 1, 1, true);
 				sprites.add(grass);
 				add(grass);
 
-				var gates:BGSprite = new BGSprite('gates', 564, -33, Paths.image('backgrounds/backyard/gates', 'shared'), null, 0.9, 0.9, true);
+				var gates:BGSprite = new BGSprite('gates', 564, -33, Paths.image('backgrounds/backyard/gates', 'shared'), null, 1, 1, true);
 				sprites.add(gates);
 				add(gates);
 				
@@ -4923,6 +4923,9 @@ class PlayState extends MusicBeatState
 
 		var boyfriendPos = boyfriend.getPosition();
 		preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
+		if (SONG.player1 == 'tb-funny-man') {
+			preRecursedSkin = 'tb-funny-man';
+		}
 		bfGroup.remove(boyfriend);
 		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.skins.get('recursed'));
 		

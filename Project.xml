@@ -49,7 +49,6 @@
 	<define name="SHADERS_ENABLED" unless="mac"/>
 	<define name="PRELOAD_ALL" unless="web" />
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
-	<haxedef name="botplay"/>
 	
 	<section if="PRELOAD_ALL">
 		<library name="songs"    preload="true" />

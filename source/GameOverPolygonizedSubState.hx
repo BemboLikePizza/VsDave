@@ -50,6 +50,7 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 		bg.antialiasing = false;
 		bg.color = FlxColor.multiply(bg.color, FlxColor.fromRGB(50, 50, 50));
 		bg.alpha = 0;
+		bg.setGraphicSize(Std.int(bg.width * 1.5));
 		add(bg);
 		
 		#if SHADERS_ENABLED
