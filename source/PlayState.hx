@@ -3572,7 +3572,9 @@ class PlayState extends MusicBeatState
 		{
 			if (expungedWindowMode)
 			{
+				#if windows
 				popupWindow();
+				#end
 			}
 			else
 			{
@@ -5854,7 +5856,9 @@ class PlayState extends MusicBeatState
 						FlxG.camera.zoom - 0.2;
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
 						//suck my dick psych engine porters.
+						#if windows
 						popupWindow();
+						#end
 						
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -7222,12 +7226,13 @@ class PlayState extends MusicBeatState
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
-		PlatformUtil.getWindowsTransparent();
 		#if linux
 		//testing stuff
-		window.stage.color = null;
+		window.stage.color = 0xff000000;
 		trace('BRAP');
 		#end
+		PlatformUtil.getWindowsTransparent();
+		
 
 		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 

@@ -30,10 +30,6 @@ package;
 #include <stdio.h>
 #include <iostream>
 #include <string>
-
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/Xatom.h>
 ')
 #end
 class PlatformUtil
@@ -48,21 +44,24 @@ class PlatformUtil
         }
     ')
     #elseif linux
+    /*
+    REQUIRES IMPORTING X11 LIBRARIES (Xlib, Xutil, Xatom) to run, even tho it doesnt work
     @:functionCode('
-        Display *d = XOpenDisplay(0);
-        Window window;
+        Display* display = XOpenDisplay(NULL);
+        Window wnd;
+        Atom property = XInternAtom(display, "_NET_WM_WINDOW_OPACITY", False);
         int revert;
-        unsigned long valuemask;
-        uint32_t opacity = 0xC0000000;
         
-        if(d)
+        if(property != None)
         {
-            XGetInputFocus(d, &window, &revert);
-            printf("window is %d");
-            Atom atom = XInternAtom(d, "_NET_WM_WINDOW_OPACITY", False);
-            XChangeProperty(d, window, atom, XA_CARDINAL, 32, PropModeReplace, (unsigned char *)&opacity, 1);
+            XGetInputFocus(display, &wnd, &revert);
+            unsigned long opacity = (0xff000000 / 0xffffffff) * 50;
+            XChangeProperty(display, wnd, property, XA_CARDINAL, 32, PropModeReplace, (unsigned char*)&opacity, 1);
+            XFlush(display);
         }
+        XCloseDisplay(display);
     ')
+    */
     #end
 	static public function getWindowsTransparent(res:Int = 0)   // Only works on windows, otherwise returns 0!
 	{
