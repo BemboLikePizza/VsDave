@@ -106,7 +106,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('idle', 'BFIdle', 24, false);
 				for (anim in ['Left', 'Down', 'Up', 'Right'])
 				{
-					animation.addByPrefix('sing${anim.toUpperCase()}', 'BFUp', 24, false);
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'BF${anim}', 24, false);
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'Dead', 24, false);
 				}
 				loadOffsetFile(curCharacter);
@@ -243,6 +243,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('sad', 'f', 24, false);
 		
 				loadOffsetFile(curCharacter);
+				
+				skins.set('3d', 'gf-3d');
+
+				barColor = FlxColor.fromString('#33de39');
 				
 				updateHitbox();						
 				playAnim('danceRight');
