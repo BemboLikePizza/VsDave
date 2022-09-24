@@ -101,9 +101,12 @@ class PlatformUtil
     ')
     #elseif linux
     @:functionCode('
-        std::string descV = desc.c_str();
-        std::string titleV = title.c_str();
-        std::string cmd = "notify-send -u normal " + "\"" + titleV + "\"" + "\"" + descV + "\"";
+        std::string cmd = "notify-send -u normal \'";
+        cmd += title.c_str();
+        cmd += "\' \'";
+        cmd += desc.c_str();
+        cmd += "\'";
+        system(cmd.c_str());
     ')
     #end
     static public function sendWindowsNotification(title:String = "", desc:String = "", res:Int = 0)    // TODO: Linux (found out how to do it so ill do it soon)

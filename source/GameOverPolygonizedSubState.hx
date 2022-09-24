@@ -127,7 +127,9 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
+		#if SHADERS_ENABLED
 		voidShader.shader.uTime.value[0] += elapsed;
+		#end
 
 		if (controls.ACCEPT)
 		{
