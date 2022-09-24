@@ -5847,7 +5847,9 @@ class PlayState extends MusicBeatState
 						FlxG.camera.zoom + 0.2;
 					case 1536:
 						//revert back
+						#if windows
 						window.close();
+						#end
 				}
 			case 'shredder':
 				switch (curStep)
@@ -6757,11 +6759,12 @@ class PlayState extends MusicBeatState
 	}
 	function gameOver()
 	{
-
+		#if windows
 		if (window != null)
 		{
 			window.close();
 		}
+		#end
 		var deathSkinCheck = formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.curCharacter : formoverride;
 		var chance = FlxG.random.int(0, 99);
 		if (chance <= 2 && eyesoreson)
