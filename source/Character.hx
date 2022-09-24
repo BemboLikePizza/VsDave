@@ -99,6 +99,32 @@ class Character extends FlxSprite
 				antialiasing = false;
 				nativelyPlayable = true;
 				flipX = true;
+
+				case 'bf-cool':
+				frames = Paths.getSparrowAtlas('characters/Cool_BF', 'shared');
+				
+				animation.addByPrefix('idle', 'BFIdle', 24, false);
+				animation.addByPrefix('singUP', 'BFUp', 24, false);
+				animation.addByPrefix('singLEFT', 'BFLeft', 24, false);
+				animation.addByPrefix('singRIGHT', 'BFRight', 24, false);
+				animation.addByPrefix('singDOWN', 'BFDown', 24, false);
+				animation.addByPrefix('singUPmiss', 'Dead', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'Dead', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'Dead', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'Dead', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				skins.set('gfSkin', 'gf-cool');
+				skins.set('3d', 'bf-3d');
+
+				barColor = FlxColor.fromRGB(49, 176, 209);
+
+				playAnim('idle');
+
+				nativelyPlayable = true;
+
+				flipX = true;
 			case 'nofriend':
 				frames = Paths.getSparrowAtlas('fiveNights/nofriend', 'shared');
 
@@ -213,6 +239,16 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 						
+				playAnim('danceRight');
+			case 'gf-cool':
+				frames = Paths.getSparrowAtlas('characters/Cool_GF', 'shared');
+				animation.addByPrefix('danceLeft', 'left', 24, true);
+				animation.addByPrefix('danceRight', 'right', 24, true);
+				animation.addByPrefix('sad', 'f', 24, false);
+		
+				loadOffsetFile(curCharacter);
+				
+				updateHitbox();						
 				playAnim('danceRight');
 			case 'gf-none':
 				frames = Paths.getSparrowAtlas('characters/noGF', 'shared');
