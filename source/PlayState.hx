@@ -654,7 +654,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'vs-dave-rap', 'vs-dave-rap-two', 'escape-from-california', 'overdrive'];
+		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'escape-from-california', 'overdrive'];
 		
 		if(SONG.gf != null)
 		{
@@ -663,6 +663,10 @@ class PlayState extends MusicBeatState
 		if (formoverride == "bf-pixel")
 		{
 			gfVersion = 'gf-pixel';
+		}
+		if (SONG.player1 == 'bf-cool')
+		{
+			gfVersion = 'gf-cool';
 		}
 		if (SONG.player1 == 'tb-funny-man')
 		{
@@ -900,8 +904,9 @@ class PlayState extends MusicBeatState
 				boyfriend.setPosition(859, 343);
 				gf.setPosition(232, -1);
 			case 'rapBattle':
-				dad.setPosition(169, 191);
-				boyfriend.setPosition(706, 291);
+				dad.setPosition(430, 240);
+				boyfriend.setPosition(1039, 263);
+				gf.setPosition(756, 194);
 			case 'farm' | 'farm-night'| 'farm-sunset':
 				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
@@ -3567,7 +3572,9 @@ class PlayState extends MusicBeatState
 		{
 			if (expungedWindowMode)
 			{
+				#if windows
 				popupWindow();
+				#end
 			}
 			else
 			{
@@ -4611,6 +4618,9 @@ class PlayState extends MusicBeatState
 
 			if(curSong.toLowerCase() == 'overdrive'){
 				FlxG.sound.play(Paths.sound('bad_disc'), FlxG.random.float(0.1, 0.2));
+			}
+						if(curSong.toLowerCase() == 'vs-dave-rap'){
+				FlxG.sound.play(Paths.sound('deathbell'), FlxG.random.float(0.1, 0.2));
 			}
 			else{
 				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
@@ -5823,7 +5833,9 @@ class PlayState extends MusicBeatState
 						FlxG.camera.zoom - 0.2;
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
 						//suck my dick psych engine porters.
+						#if windows
 						popupWindow();
+						#end
 						
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -7191,12 +7203,13 @@ class PlayState extends MusicBeatState
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
-		PlatformUtil.getWindowsTransparent();
 		#if linux
 		//testing stuff
-		window.stage.color = null;
+		window.stage.color = 0xff000000;
 		trace('BRAP');
 		#end
+		PlatformUtil.getWindowsTransparent();
+		
 
 		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 
