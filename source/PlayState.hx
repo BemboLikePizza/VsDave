@@ -4920,24 +4920,10 @@ class PlayState extends MusicBeatState
 					}});
 				}
 		}
-
-		var boyfriendPos = boyfriend.getPosition();
-		preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
-		if (SONG.player1 == 'tb-funny-man') {
-			preRecursedSkin = 'tb-funny-man';
-		}
-		bfGroup.remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.skins.get('recursed'));
-		
-		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
-		{
-			iconP1.changeIcon(boyfriend.curCharacter);
-		}
+		preRecursedSkin = (formoverride != 'none' && boyfriend.curCharacter == formoverride ? formoverride : boyfriend.curCharacter);
+		switchBF(boyfriend.skins.get('recursed'), boyfriend.getPosition());
 		bfGroup.add(boyfriend);
-		addRecursedUI();
-
-		healthBar.createFilledBar(dad.barColor, FlxColor.WHITE);
-		
+		addRecursedUI();		
 	}
 	function addRecursedUI()
 	{
@@ -4996,17 +4982,8 @@ class PlayState extends MusicBeatState
 			recursedUI.remove(element);
 			remove(element);
 		}
-		var boyfriendPos = boyfriend.getPosition();
-		bfGroup.remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, preRecursedSkin);
-		if (iconP1.getChar() != boyfriend.curCharacter)
-		{
-			iconP1.changeIcon(boyfriend.curCharacter);
-		}
-		bfGroup.add(boyfriend);
-
+		switchBF(preRecursedSkin, boyfriend.getPosition());
 		health = preRecursedHealth;
-		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 	}
 	function initAlphabet(songList:Array<String>)
 	{
