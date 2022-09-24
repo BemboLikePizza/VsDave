@@ -322,7 +322,7 @@ class TerminalState extends MusicBeatState
 
         add(fakeDisplayGroup);
         
-        var expungedLines:Array<String> = ['TAKING OVER....', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START", '[DATA EXPUNGED]'];
+        var expungedLines:Array<String> = ['TAKING OVER....', 'ATTEMPTING TO HIJACKING ADMIN OVERRIDE...', 'THIS REALM IS MINE', "DON'T YOU UNDERSTAND? THIS IS MY WORLD NOW.", "I WIN, YOU LOSE.", "GAME OVER.", "THIS IS IT.", "FUCK YOU!", "I HAVE THE PLOT ARMOR NOW!!", "AHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH", "EXPUNGED'S REIGN SHALL START", '[DATA EXPUNGED]'];
         var i:Int = 0;
         var camFollow = new FlxObject(FlxG.width / 2, -FlxG.height / 2, 1, 1);
         
