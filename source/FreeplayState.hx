@@ -76,7 +76,9 @@ class FreeplayState extends MusicBeatState
     ];
 	var skipSelect:Array<String> = 
 	[
-		'five-nights'
+		'five-nights',
+		'vs-dave-rap',
+		'vs-dave-rap-two'
 	];
 
 	private var camFollow:FlxObject;

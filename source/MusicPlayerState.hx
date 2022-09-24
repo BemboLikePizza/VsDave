@@ -60,40 +60,34 @@ class MusicPlayerState extends MusicBeatState
                 songs.push(new PlaySongMetadata(splitstring[1], splitstring[0] == "external", splitstring[2],splitstring[3] == "bad",false));
             }
         }
-        // someone out there could definitely make a way better version of this. if so please do
-        if(FlxG.save.data.hasPlayedMasterWeek)
+        var secretSongs:Array<Dynamic> = [
+            ['supernovae', 'bambi-joke'], ['glitch', 'bambi-joke'], ['master', 'bambi-joke', true],
+            ['cheating', 'bambi-3d'], ['unfairness', 'bambi-unfair'], ['exploitation', 'expunged'],
+            ['kabunga', 'exbungo'],
+            ['roofs', 'baldi'],
+            ['recursed', 'recurser'],
+            ['vs-dave-rap-two', 'dave-cool'],  
+        ];
+        for (i in 0...secretSongs.length)
         {
-            songs.push(new PlaySongMetadata('supernovae', false, 'bambi-joke', false, true));
-            songs.push(new PlaySongMetadata('glitch', false, 'bambi-joke', false, true));
-            songs.push(new PlaySongMetadata('master', false, 'bambi-joke', true, true));
-        }
-        if(FlxG.save.data.cheatingFound)
-        {
-            songs.push(new PlaySongMetadata('cheating', false, 'bambi-3d', false, true));
-        }
-        if(FlxG.save.data.unfairnessFound)
-        {
-            songs.push(new PlaySongMetadata('unfairness', false, 'bambi-unfair', false, true));       
-        }
-        if(FlxG.save.data.exploitationFound)
-        {
-            songs.push(new PlaySongMetadata('exploitation', false, 'expunged', false, true));   
-        }
-        if(FlxG.save.data.exbungoFound)
-        {
-            songs.push(new PlaySongMetadata('kabunga', false, 'exbungo', false, true));   
-        }
-        if(FlxG.save.data.roofsUnlocked)
-        {
-            songs.push(new PlaySongMetadata('roofs', false, 'baldi', false, true));
-        }
-        if(FlxG.save.data.recursedUnlocked)
-        {
-            songs.push(new PlaySongMetadata('recursed', false, 'recurser', false, true));
-        }
-        if(FlxG.save.data.vsDaveRapTwoFound)
-        {
-            songs.push(new PlaySongMetadata('vs-dave-rap-two', false, 'dave-cool', false, true));
+            var unlockSong = false;
+            unlockSong = switch (secretSongs[i][0].toLowerCase())
+            {
+                case 'supernovae', 'glitch', 'master': FlxG.save.data.hasPlayedMasterWeek;
+                case 'cheating':  FlxG.save.data.cheatingFound;
+                case 'unfairness': FlxG.save.data.unfairnessFound;
+                case 'exploitation': FlxG.save.data.exploitationFound;
+                case 'kabunga': FlxG.save.data.exbungoFound;
+                case 'roofs': FlxG.save.data.roofsUnlocked;
+                case 'recursed': FlxG.save.data.recursedUnlocked;
+                case 'vs-dave-rap-two': FlxG.save.data.vsDaveRapTwoFound;
+                default: false;
+            }
+            if (unlockSong)
+            {
+                var bad = secretSongs[i][2] != null ? secretSongs[i][2] : false;
+                songs.push(new PlaySongMetadata(secretSongs[i][0], false, secretSongs[i][1], bad, true));
+            }
         }
 
         bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/Aadsta'));
