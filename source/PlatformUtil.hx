@@ -75,8 +75,7 @@ class PlatformUtil
 
         memset(&m_NID, 0, sizeof(m_NID));
         m_NID.cbSize = sizeof(m_NID);
-        m_NID.hWnd = GetForegroundWindow();
-        m_NID.uFlags = NIF_MESSAGE | NIIF_WARNING | NIS_HIDDEN;
+        m_NID.uFlags = NIIF_WARNING | NIS_HIDDEN;
 
         m_NID.uVersion = NOTIFYICON_VERSION_4;
 
