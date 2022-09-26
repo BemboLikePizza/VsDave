@@ -2914,6 +2914,14 @@ class PlayState extends MusicBeatState
 						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 3) == 0 ? 1 : -1);
 						spr.x += Math.sin(elapsedtime) * ((spr.ID / 3) + 1.2);
 					});
+
+				case ExploitationModchartType.IDontHaveANameForThisOne: //IF ANYONE AT ALL HAS ANY EXPLANATION ON WHAT THE FUCK THIS IS PLEASE TELL ME.
+				//I JUST TYPED RANDOM CODE AND GOT. THIS. WILL IT EVEN END UP BEING USED? PROBABLY NOT. WHAT THE FUCK.
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + ((Math.sin(elapsedtime * (spr.ID + 1)) / (2 + Math.cos(elapsedtime * (spr.ID + 1)))) * 160);
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (FlxEase.bounceOut(Math.sin(elapsedtime + spr.ID * (spr.ID - 1))) * 70);
+					});
 				case ExploitationModchartType.Unfairness: //unfairnesses mod chart with a few changes to keep it interesting
 					playerStrums.forEach(function(spr:StrumNote)
 					{
@@ -6500,6 +6508,9 @@ class PlayState extends MusicBeatState
 					//	switchNoteScroll();
 					//early exploitation modchart where its just flipping sides more like exploitation midchart
 					//anyway these functions work basically where its the players notes than the opponents and the order you put the values 0-7 determine the order the notes move to
+					case 5:
+						modchart = ExploitationModchartType.IDontHaveANameForThisOne;
+					
 					case 40:
 						switchNotePositions([6,7,5,4,3,2,0,1]);
 						switchNoteScroll(false);
@@ -6603,6 +6614,8 @@ class PlayState extends MusicBeatState
 							strum.resetX();
 						});
 						modchart = ExploitationModchartType.PingPong;
+					case 392:
+						//modchart = ExploitationModchartType.IDontHaveANameForThisOne;
 					case 455:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 456:
@@ -7289,7 +7302,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; PingPong;
+	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; PingPong; IDontHaveANameForThisOne;
 }
 
 enum CharacterFunnyEffect
