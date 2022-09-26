@@ -69,16 +69,15 @@ class Note extends FlxSprite
 		this.guitarSection = guitarSection;
 		this.noteData = noteData;
 
-		alpha = 0;
-		
 		x += 78;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
 		y -= 2000;
-		if (inCharter)
-			this.strumTime = strumTime;
-		else 
+		
+		inCharter ? this.strumTime = strumTime : {
 			this.strumTime = Math.round(strumTime);
-
+			alpha = 0;
+		}
+		
 		if (this.strumTime < 0)
 			this.strumTime = 0;
 

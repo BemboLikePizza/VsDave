@@ -161,8 +161,8 @@ class PlayState extends MusicBeatState
 
 	var boyfriendOldIcon:String = 'bf-old';
 
-	private var vocals:FlxSound;
-	private var exbungo_funny:FlxSound;
+	public var vocals:FlxSound;
+	public var exbungo_funny:FlxSound;
 
 	private var dad:Character;
 	private var dadmirror:Character;
@@ -654,7 +654,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'vs-dave-rap', 'vs-dave-rap-two', 'escape-from-california', 'overdrive'];
+		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'escape-from-california', 'overdrive'];
 		
 		if(SONG.gf != null)
 		{
@@ -663,6 +663,10 @@ class PlayState extends MusicBeatState
 		if (formoverride == "bf-pixel")
 		{
 			gfVersion = 'gf-pixel';
+		}
+		if (SONG.player1 == 'bf-cool')
+		{
+			gfVersion = 'gf-cool';
 		}
 		if (SONG.player1 == 'tb-funny-man')
 		{
@@ -900,8 +904,9 @@ class PlayState extends MusicBeatState
 				boyfriend.setPosition(859, 343);
 				gf.setPosition(232, -1);
 			case 'rapBattle':
-				dad.setPosition(169, 191);
-				boyfriend.setPosition(706, 291);
+				dad.setPosition(430, 240);
+				boyfriend.setPosition(1039, 263);
+				gf.setPosition(756, 194);
 			case 'farm' | 'farm-night'| 'farm-sunset':
 				dad.x += 200;
 			case 'house' | 'house-night' | 'house-sunset':
@@ -1578,11 +1583,11 @@ class PlayState extends MusicBeatState
 				sprites.add(hills);
 				add(hills);
 
-				var grass:BGSprite = new BGSprite('grass', -800, 150, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, true);
+				var grass:BGSprite = new BGSprite('grass', -800, 150, Paths.image('backgrounds/backyard/supergrass', 'shared'), null, 1, 1, true);
 				sprites.add(grass);
 				add(grass);
 
-				var gates:BGSprite = new BGSprite('gates', 564, -33, Paths.image('backgrounds/backyard/gates', 'shared'), null, 0.9, 0.9, true);
+				var gates:BGSprite = new BGSprite('gates', 564, -33, Paths.image('backgrounds/backyard/gates', 'shared'), null, 1, 1, true);
 				sprites.add(gates);
 				add(gates);
 				
@@ -2921,6 +2926,26 @@ class PlayState extends MusicBeatState
 						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 0.5)) * 2) * 0.6) * 250);
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 2)) * 2) * 0.6) * 250);
 					});
+
+				case ExploitationModchartType.PingPong:
+					var xx = (FlxG.width / 2.4) + (Math.sin(elapsedtime * 1.2) * 400);
+					var yy = (FlxG.height / 2) + (Math.sin(elapsedtime * 1.5) * 200) - 50;
+					var xx2 = (FlxG.width / 2.4) + (Math.cos(elapsedtime) * 400);
+					var yy2 = (FlxG.height / 2) + (Math.cos(elapsedtime * 1.4) * 200) - 50;
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = (xx + (spr.width / 2)) - (spr.ID == 0 || spr.ID == 2 ? spr.width : spr.ID == 1 || spr.ID == 3 ? -spr.width : 0);
+						spr.y = (yy + (spr.height / 2)) - (spr.ID <= 1 ? 0 : spr.height);
+						spr.x += Math.sin((elapsedtime + (spr.ID * 3)) / 3) * spr.width;
+					});
+					dadStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = (xx2 + (spr.width / 2)) - (spr.ID == 0 || spr.ID == 2 ? spr.width : spr.ID == 1 || spr.ID == 3 ? -spr.width : 0);
+						spr.y = (yy2 + (spr.height / 2)) - (spr.ID <= 1 ? 0 : spr.height);
+						spr.x += Math.sin((elapsedtime + (spr.ID * 3)) / 3) * spr.width;
+
+					});
+
 				case ExploitationModchartType.Figure8:
 					playerStrums.forEach(function(spr:FlxSprite)
 					{
@@ -2953,13 +2978,13 @@ class PlayState extends MusicBeatState
 				case ExploitationModchartType.Cyclone:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
 					});
 			}
 		}
@@ -3435,24 +3460,22 @@ class PlayState extends MusicBeatState
 						case 'phone':
 							dad.playAnim('singSmash', true);
 						default:
-							//'LEFT', 'DOWN', 'UP', 'RIGHT'
-							var fuckingDumbassBullshitFuckYou:String;
 							var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-							fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(daNote.originalType)) % dadStrumAmount];
-							if(dad.nativelyPlayable)
+							var noteToPlay:String = noteTypes[Math.round(Math.abs(daNote.originalType)) % dadStrumAmount];
+							if (dad.nativelyPlayable)
 							{
-								switch(noteTypes[daNote.originalType % dadStrumAmount])
+								switch (noteToPlay)
 								{
 									case 'LEFT':
-										fuckingDumbassBullshitFuckYou = 'RIGHT';
+										noteToPlay = 'RIGHT';
 									case 'RIGHT':
-										fuckingDumbassBullshitFuckYou = 'LEFT';
+										noteToPlay = 'LEFT';
 								}
 							}
-							dad.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
+							dad.playAnim('sing' + noteToPlay + altAnim, true);
 							if (dadmirror != null)
 							{
-								dadmirror.playAnim('sing' + fuckingDumbassBullshitFuckYou + altAnim, true);
+								dadmirror.playAnim('sing' + noteToPlay + altAnim, true);
 							}
 					}
 					cameraMoveOnNote(daNote.originalType, 'dad');
@@ -3567,7 +3590,9 @@ class PlayState extends MusicBeatState
 		{
 			if (expungedWindowMode)
 			{
+				#if windows
 				popupWindow();
+				#end
 			}
 			else
 			{
@@ -4597,7 +4622,6 @@ class PlayState extends MusicBeatState
 					case 'text':
 						recursedNoteMiss();
 					case 'phone':
-						FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 						var hitAnimation:Bool = boyfriend.animation.getByName("hit") != null;
 						boyfriend.playAnim(hitAnimation ? 'hit' : 'singRIGHTmiss', true);
 						FlxTween.cancelTweensOf(note.MyStrum);
@@ -4608,53 +4632,42 @@ class PlayState extends MusicBeatState
 						return;
 				}
 			}
+			var deathSound:FlxSound = new FlxSound();
+			switch (curSong.toLowerCase())
+			{
+				case 'overdrive':
+					deathSound.loadEmbedded(Paths.sound('bad_disc'));
+				case 'vs-dave-rap' | 'vs-dave-rap-two':
+					deathSound.loadEmbedded(Paths.sound('deathbell'));
+				default:
+					deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
+			}
+			deathSound.volume = FlxG.random.float(0.1, 0.2);
+			deathSound.play();
 
-			if(curSong.toLowerCase() == 'overdrive'){
-				FlxG.sound.play(Paths.sound('bad_disc'), FlxG.random.float(0.1, 0.2));
-			}
-			else{
-				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-			}
 			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 			// FlxG.log.add('played imss note');
 			
-			if (boyfriend.animation.getByName("singLEFTmiss") != null)
+			var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
+			var noteToPlay:String = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
+			if (!boyfriend.nativelyPlayable)
 			{
-				var fuckingDumbassBullshitFuckYou:String;
-				var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-
-				fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
-				if(!boyfriend.nativelyPlayable)
+				switch (noteToPlay)
 				{
-					switch(noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount])
-					{
-						case 'LEFT':
-							fuckingDumbassBullshitFuckYou = 'RIGHT';
-						case 'RIGHT':
-							fuckingDumbassBullshitFuckYou = 'LEFT';
-					}
+					case 'LEFT':
+						noteToPlay = 'RIGHT';
+					case 'RIGHT':
+						noteToPlay = 'LEFT';
 				}
-				boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou + "miss", true);
+			}
+			if (boyfriend.animation.getByName('sing${noteToPlay}miss') != null)
+			{
+				boyfriend.playAnim('sing' + noteToPlay + "miss", true);
 			}
 			else
 			{
 				boyfriend.color = 0xFF000084;
-				//'LEFT', 'DOWN', 'UP', 'RIGHT'
-				var fuckingDumbassBullshitFuckYou:String;
-				var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
-
-				fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount];
-				if(!boyfriend.nativelyPlayable)
-				{
-					switch(noteTypes[Math.round(Math.abs(direction)) % playerStrumAmount])
-					{
-						case 'LEFT':
-							fuckingDumbassBullshitFuckYou = 'RIGHT';
-						case 'RIGHT':
-							fuckingDumbassBullshitFuckYou = 'LEFT';
-					}
-				}
-				boyfriend.playAnim('sing' + fuckingDumbassBullshitFuckYou, true);
+				boyfriend.playAnim('sing' + noteToPlay, true);
 			}
 			updateAccuracy();
 		}
@@ -4920,21 +4933,10 @@ class PlayState extends MusicBeatState
 					}});
 				}
 		}
-
-		var boyfriendPos = boyfriend.getPosition();
-		preRecursedSkin = (formoverride != 'none' ? formoverride : boyfriend.curCharacter);
-		bfGroup.remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, boyfriend.skins.get('recursed'));
-		
-		if (FileSystem.exists(Paths.image('ui/iconGrid/' + boyfriend.curCharacter, 'preload')))
-		{
-			iconP1.changeIcon(boyfriend.curCharacter);
-		}
+		preRecursedSkin = (formoverride != 'none' && boyfriend.curCharacter == formoverride ? formoverride : boyfriend.curCharacter);
+		switchBF(boyfriend.skins.get('recursed'), boyfriend.getPosition());
 		bfGroup.add(boyfriend);
-		addRecursedUI();
-
-		healthBar.createFilledBar(dad.barColor, FlxColor.WHITE);
-		
+		addRecursedUI();		
 	}
 	function addRecursedUI()
 	{
@@ -4993,17 +4995,8 @@ class PlayState extends MusicBeatState
 			recursedUI.remove(element);
 			remove(element);
 		}
-		var boyfriendPos = boyfriend.getPosition();
-		bfGroup.remove(boyfriend);
-		boyfriend = new Boyfriend(boyfriendPos.x, boyfriendPos.y, preRecursedSkin);
-		if (iconP1.getChar() != boyfriend.curCharacter)
-		{
-			iconP1.changeIcon(boyfriend.curCharacter);
-		}
-		bfGroup.add(boyfriend);
-
+		switchBF(preRecursedSkin, boyfriend.getPosition());
 		health = preRecursedHealth;
-		healthBar.createFilledBar(dad.barColor, boyfriend.barColor);
 	}
 	function initAlphabet(songList:Array<String>)
 	{
@@ -5843,7 +5836,20 @@ class PlayState extends MusicBeatState
 						FlxG.camera.zoom - 0.2;
 						curWindowSize = new FlxPoint(Application.current.window.width, Application.current.window.height);
 						//suck my dick psych engine porters.
+						#if windows
 						popupWindow();
+						modchart = ExploitationModchartType.Figure8;
+						#end
+						
+						dadStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
+						playerStrums.forEach(function(strum:StrumNote)
+						{
+							strum.resetX();
+						});
+						
 						dadStrums.visible = false;
 					case 1311:
 						shakeCam = false;
@@ -6490,10 +6496,58 @@ class PlayState extends MusicBeatState
 				}
 				switch (curBeat)
 				{
-					case 40, 44, 46, 56, 60, 62, 120, 124:
+					//case 40, 44, 46, 56, 60, 62, 120, 124:
+					//	switchNoteScroll();
+					//early exploitation modchart where its just flipping sides more like exploitation midchart
+					//anyway these functions work basically where its the players notes than the opponents and the order you put the values 0-7 determine the order the notes move to
+					case 40:
+						switchNotePositions([6,7,5,4,3,2,0,1]);
+						switchNoteScroll(false);
+					case 44:
+						switchNotePositions([0,1,3,2,4,5,7,6]);
+					case 46:
+						switchNotePositions([6,7,5,4,3,2,0,1]);
+						switchNoteScroll(false);
+					case 56:
+						switchNotePositions([1,3,2,0,5,7,6,4]);
+					case 60:
+						switchNotePositions([4,6,7,5,0,2,3,1]);
+						switchNoteScroll(false);
+					case 62:
+						switchNotePositions([7,1,0,2,3,5,4,6]);
+						switchNoteScroll(false);
+					case 120:
+						switchNotePositions([3,2,1,0,7,6,5,4]);
 						switchNoteScroll();
-					case 72, 76, 80, 88, 90, 92:
+					case 124:
+						switchNotePositions([0,2,3,1,4,6,7,5]);
+						switchNoteScroll();
+					
+					//case 72, 76, 80, 88, 90, 92:
+					//	switchNoteSide();
+
+					case 72:
+						switchNotePositions([6,7,2,3,4,5,0,1]);
+
+					case 76:
+						switchNotePositions([6,7,4,5,2,3,0,1]);
+
+					case 80:
+						switchNotePositions([1,0,2,4,3,5,7,6]);
+
+					case 88:
+						switchNotePositions([4,2,0,1,6,7,5,3]);
+					
+					//case 72, 76, 80, 88, 90, 92:
+					//	switchNoteSide();
+
+					
+					case 90:
 						switchNoteSide();
+					
+					case 92:
+						switchNoteSide();
+
 					case 112:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6516,11 +6570,11 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
 						});
 					case 143:
-						swapGlitch(Conductor.crochet / 3000, 'cheating');
+						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
 					case 191:
-						swapGlitch(Conductor.crochet / 3000, 'expunged');
+						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 192:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6530,15 +6584,15 @@ class PlayState extends MusicBeatState
 						{
 							strum.resetX();
 						});
-						modchart = ExploitationModchartType.None;
+						modchart = ExploitationModchartType.Cyclone;
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
-						swapGlitch(Conductor.crochet / 3000, 'unfair');
+						swapGlitch(Conductor.crochet / 1000, 'unfair');
 					case 256:
 						modchart = ExploitationModchartType.Unfairness;
 					case 287:
-						swapGlitch(Conductor.crochet / 3000, 'expunged');
+						swapGlitch(Conductor.crochet / 1000, 'expunged');
 					case 288:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6548,13 +6602,13 @@ class PlayState extends MusicBeatState
 						{
 							strum.resetX();
 						});
-						modchart = ExploitationModchartType.None;
+						modchart = ExploitationModchartType.PingPong;
 					case 455:
-						swapGlitch(Conductor.crochet / 3000, 'cheating');
+						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 456:
 						modchart = ExploitationModchartType.Cheating;
 					case 486:
-						swapGlitch((Conductor.crochet / 3000) * 2, 'expunged');
+						swapGlitch((Conductor.crochet / 1000) * 2, 'expunged');
 					case 488:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
@@ -6725,11 +6779,12 @@ class PlayState extends MusicBeatState
 	}
 	function gameOver()
 	{
-
+		#if windows
 		if (window != null)
 		{
 			window.close();
 		}
+		#end
 		var deathSkinCheck = formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.curCharacter : formoverride;
 		var chance = FlxG.random.int(0, 99);
 		if (chance <= 2 && eyesoreson)
@@ -6943,7 +6998,7 @@ class PlayState extends MusicBeatState
 		}
 		return daPos;
 	}
-	function switchNoteScroll()
+	function switchNoteScroll(cancelTweens:Bool = true)
 	{
 		switch (scrollType)
 		{
@@ -6956,13 +7011,17 @@ class PlayState extends MusicBeatState
 		}
 		for (strumNote in strumLineNotes)
 		{
-			FlxTween.cancelTweensOf(strumNote);
+			if (cancelTweens)
+			{
+				FlxTween.cancelTweensOf(strumNote);
+			}
 			strumNote.angle = 0;
 			
 			FlxTween.angle(strumNote, strumNote.angle, strumNote.angle + 360, 0.4, {ease: FlxEase.expoOut});
 			FlxTween.tween(strumNote, {y: strumLine.y}, 0.6, {ease: FlxEase.backOut});
 		}
 	}
+
 	function switchNoteSide()
 	{
 		for (i in 0...4)
@@ -6975,6 +7034,31 @@ class PlayState extends MusicBeatState
 		}
 		switchSide = !switchSide;
 	}
+
+	function switchNotePositions(order:Array<Int>)
+	{
+		var positions:Array<Float> = [];
+		for (i in 0...4)
+		{
+			var curNote = playerStrums.members[i];
+			positions.push(curNote.baseX);
+		}
+		for (i in 0...4)
+		{
+			var curNote = dadStrums.members[i];
+			positions.push(curNote.baseX);
+		}
+		for (i in 0...4)
+		{
+			var curOpponentNote = dadStrums.members[i];
+			var curPlayerNote = playerStrums.members[i];
+
+			FlxTween.tween(curOpponentNote, {x: positions[order[i + 4]]}, 0.6, {ease: FlxEase.expoOut, startDelay: 0.01 * i});
+			FlxTween.tween(curPlayerNote, {x: positions[order[i]]}, 0.6, {ease: FlxEase.expoOut, startDelay: 0.01 * i});
+		}
+		switchSide = !switchSide;
+	}
+
 	function switchDad(newChar:String, position:FlxPoint, reposition:Bool = true, updateColor:Bool = true)
 	{
 		if (reposition)
@@ -7105,9 +7189,6 @@ class PlayState extends MusicBeatState
 		var screenwidth = Application.current.window.display.bounds.width;
 		var screenheight = Application.current.window.display.bounds.height;
 
-		var expungedXoffset = 0;
-		var expungedYoffset = 0;
-
 		// center
 		Application.current.window.x = Std.int((screenwidth / 2) - (1280 / 2));
 		Application.current.window.y = Std.int((screenheight / 2) - (720 / 2));
@@ -7128,12 +7209,13 @@ class PlayState extends MusicBeatState
 		window.stage.addEventListener("keyDown", FlxG.keys.onKeyDown);
 		@:privateAccess
 		window.stage.addEventListener("keyUp", FlxG.keys.onKeyUp);
-		PlatformUtil.getWindowsTransparent();
 		#if linux
 		//testing stuff
-		window.stage.color = null;
+		window.stage.color = 0xff000000;
 		trace('BRAP');
 		#end
+		PlatformUtil.getWindowsTransparent();
+		
 
 		// FlxTween.tween(window, {x: 0}, 1, {ease: FlxEase.cubeOut});
 
@@ -7207,7 +7289,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; 
+	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; PingPong;
 }
 
 enum CharacterFunnyEffect

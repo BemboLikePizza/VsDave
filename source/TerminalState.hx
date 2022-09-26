@@ -103,7 +103,7 @@ class TerminalState extends MusicBeatState
         CommandList.push(new TerminalCommand("characters", "Shows the list of characters.", function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text
-            UpdateText("\ndave.dat\nbambi.dat\ntristan.dat\nexpunged.dat\nexbungo.dat\nrecurser.dat");
+            UpdateText("\ndave.dat\nbambi.dat\ntristan.dat\nexpunged.dat\nexbungo.dat\nrecurser.dat\nmoldy.dat");
         }));
         CommandList.push(new TerminalCommand("admin", "Shows the admin list, use grant to grant rights.", function(arguments:Array<String>)
         {
@@ -169,6 +169,14 @@ class TerminalState extends MusicBeatState
                             new FlxTimer().start(3, function(timer:FlxTimer)
                             {   
                                 expungedReignStarts();
+                            });
+                        case "moldy.dat":
+                            UpdatePreviousText(false); //resets the text
+                            UpdateText("\nyou know what? im gonna close the game so you can watch my baldi's basics playthrough...");
+                            new FlxTimer().start(2, function(timer:FlxTimer)
+                            {   
+                                fancyOpenURL("https://www.youtube.com/watch?v=azMGySH8fK8");
+                                System.exit(0);
                             });
                     }
                 }
@@ -314,7 +322,7 @@ class TerminalState extends MusicBeatState
 
         add(fakeDisplayGroup);
         
-        var expungedLines:Array<String> = ['TAKING OVER....', 'HIJACKING SYSTEM....', "EXPUNGED'S REIGN SHALL START", '[DATA EXPUNGED]'];
+        var expungedLines:Array<String> = ['TAKING OVER....', 'ATTEMPTING TO HIJACKING ADMIN OVERRIDE...', 'THIS REALM IS MINE', "DON'T YOU UNDERSTAND? THIS IS MY WORLD NOW.", "I WIN, YOU LOSE.", "GAME OVER.", "THIS IS IT.", "FUCK YOU!", "I HAVE THE PLOT ARMOR NOW!!", "AHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH", "EXPUNGED'S REIGN SHALL START", '[DATA EXPUNGED]'];
         var i:Int = 0;
         var camFollow = new FlxObject(FlxG.width / 2, -FlxG.height / 2, 1, 1);
         
