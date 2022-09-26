@@ -2926,6 +2926,26 @@ class PlayState extends MusicBeatState
 						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 0.5)) * 2) * 0.6) * 250);
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 2)) * 2) * 0.6) * 250);
 					});
+
+				case ExploitationModchartType.PingPong:
+					var xx = (FlxG.width / 2.4) + (Math.sin(elapsedtime * 1.2) * 400);
+					var yy = (FlxG.height / 2) + (Math.sin(elapsedtime * 1.5) * 200) - 50;
+					var xx2 = (FlxG.width / 2.4) + (Math.cos(elapsedtime) * 400);
+					var yy2 = (FlxG.height / 2) + (Math.cos(elapsedtime * 1.4) * 200) - 50;
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = (xx + (spr.width / 2)) - (spr.ID == 0 || spr.ID == 2 ? spr.width : spr.ID == 1 || spr.ID == 3 ? -spr.width : 0);
+						spr.y = (yy + (spr.height / 2)) - (spr.ID <= 1 ? 0 : spr.height);
+						spr.x += Math.sin((elapsedtime + (spr.ID * 3)) / 3) * spr.width;
+					});
+					dadStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = (xx2 + (spr.width / 2)) - (spr.ID == 0 || spr.ID == 2 ? spr.width : spr.ID == 1 || spr.ID == 3 ? -spr.width : 0);
+						spr.y = (yy2 + (spr.height / 2)) - (spr.ID <= 1 ? 0 : spr.height);
+						spr.x += Math.sin((elapsedtime + (spr.ID * 3)) / 3) * spr.width;
+
+					});
+
 				case ExploitationModchartType.Figure8:
 					playerStrums.forEach(function(spr:FlxSprite)
 					{
@@ -2958,13 +2978,13 @@ class PlayState extends MusicBeatState
 				case ExploitationModchartType.Cyclone:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
 					});
 			}
 		}
@@ -5818,6 +5838,7 @@ class PlayState extends MusicBeatState
 						//suck my dick psych engine porters.
 						#if windows
 						popupWindow();
+						modchart = ExploitationModchartType.Figure8;
 						#end
 						
 						dadStrums.forEach(function(strum:StrumNote)
@@ -5845,11 +5866,6 @@ class PlayState extends MusicBeatState
 					case 1503:
 						shakeCam = false;
 						FlxG.camera.zoom + 0.2;
-					case 1536:
-						//revert back
-						#if windows
-						window.close();
-						#end
 				}
 			case 'shredder':
 				switch (curStep)
@@ -6522,6 +6538,10 @@ class PlayState extends MusicBeatState
 					case 88:
 						switchNotePositions([4,2,0,1,6,7,5,3]);
 					
+					//case 72, 76, 80, 88, 90, 92:
+					//	switchNoteSide();
+
+					
 					case 90:
 						switchNoteSide();
 					
@@ -6564,7 +6584,7 @@ class PlayState extends MusicBeatState
 						{
 							strum.resetX();
 						});
-						modchart = ExploitationModchartType.None;
+						modchart = ExploitationModchartType.Cyclone;
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
@@ -6582,7 +6602,7 @@ class PlayState extends MusicBeatState
 						{
 							strum.resetX();
 						});
-						modchart = ExploitationModchartType.None;
+						modchart = ExploitationModchartType.PingPong;
 					case 455:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 456:
@@ -7269,7 +7289,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; 
+	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; PingPong;
 }
 
 enum CharacterFunnyEffect
