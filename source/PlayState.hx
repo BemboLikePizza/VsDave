@@ -2920,6 +2920,14 @@ class PlayState extends MusicBeatState
 						spr.x -= Math.sin(elapsedtime) * ((spr.ID % 3) == 0 ? 1 : -1);
 						spr.x += Math.sin(elapsedtime) * ((spr.ID / 3) + 1.2);
 					});
+
+				case ExploitationModchartType.IDontHaveANameForThisOne: //IF ANYONE AT ALL HAS ANY EXPLANATION ON WHAT THE FUCK THIS IS PLEASE TELL ME.
+				//I JUST TYPED RANDOM CODE AND GOT. THIS. WILL IT EVEN END UP BEING USED? PROBABLY NOT. WHAT THE FUCK.
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + ((Math.sin(elapsedtime * (spr.ID + 1)) / (2 + Math.cos(elapsedtime * (spr.ID + 1)))) * 160);
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (FlxEase.bounceOut(Math.sin(elapsedtime + spr.ID * (spr.ID - 1))) * 70);
+					});
 				case ExploitationModchartType.Unfairness: //unfairnesses mod chart with a few changes to keep it interesting
 					playerStrums.forEach(function(spr:StrumNote)
 					{
@@ -2932,6 +2940,26 @@ class PlayState extends MusicBeatState
 						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin(((elapsedtime + (spr.ID * 0.5)) * 2) * 0.6) * 250);
 						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos(((elapsedtime + (spr.ID * 2)) * 2) * 0.6) * 250);
 					});
+
+				case ExploitationModchartType.PingPong:
+					var xx = (FlxG.width / 2.4) + (Math.sin(elapsedtime * 1.2) * 400);
+					var yy = (FlxG.height / 2) + (Math.sin(elapsedtime * 1.5) * 200) - 50;
+					var xx2 = (FlxG.width / 2.4) + (Math.cos(elapsedtime) * 400);
+					var yy2 = (FlxG.height / 2) + (Math.cos(elapsedtime * 1.4) * 200) - 50;
+					playerStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = (xx + (spr.width / 2)) - (spr.ID == 0 || spr.ID == 2 ? spr.width : spr.ID == 1 || spr.ID == 3 ? -spr.width : 0);
+						spr.y = (yy + (spr.height / 2)) - (spr.ID <= 1 ? 0 : spr.height);
+						spr.x += Math.sin((elapsedtime + (spr.ID * 3)) / 3) * spr.width;
+					});
+					dadStrums.forEach(function(spr:StrumNote)
+					{
+						spr.x = (xx2 + (spr.width / 2)) - (spr.ID == 0 || spr.ID == 2 ? spr.width : spr.ID == 1 || spr.ID == 3 ? -spr.width : 0);
+						spr.y = (yy2 + (spr.height / 2)) - (spr.ID <= 1 ? 0 : spr.height);
+						spr.x += Math.sin((elapsedtime + (spr.ID * 3)) / 3) * spr.width;
+
+					});
+
 				case ExploitationModchartType.Figure8:
 					playerStrums.forEach(function(spr:FlxSprite)
 					{
@@ -2964,13 +2992,13 @@ class PlayState extends MusicBeatState
 				case ExploitationModchartType.Cyclone:
 					playerStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
 					});
 					dadStrums.forEach(function(spr:StrumNote)
 					{
-						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
-						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.4)) * (50 * (spr.ID + 1)));
+						spr.x = ((FlxG.width / 2) - (spr.width / 2)) + (Math.cos((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
+						spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.sin((spr.ID + 1) * (elapsedtime * 0.3)) * (65 * (spr.ID + 1)));
 					});
 			}
 		}
@@ -5824,6 +5852,7 @@ class PlayState extends MusicBeatState
 						//suck my dick psych engine porters.
 						#if windows
 						popupWindow();
+						modchart = ExploitationModchartType.Figure8;
 						#end
 						
 						dadStrums.forEach(function(strum:StrumNote)
@@ -5851,11 +5880,6 @@ class PlayState extends MusicBeatState
 					case 1503:
 						shakeCam = false;
 						FlxG.camera.zoom + 0.2;
-					case 1536:
-						//revert back
-						#if windows
-						window.close();
-						#end
 				}
 			case 'shredder':
 				switch (curStep)
@@ -6490,6 +6514,7 @@ class PlayState extends MusicBeatState
 					//	switchNoteScroll();
 					//early exploitation modchart where its just flipping sides more like exploitation midchart
 					//anyway these functions work basically where its the players notes than the opponents and the order you put the values 0-7 determine the order the notes move to
+					
 					case 40:
 						switchNotePositions([6,7,5,4,3,2,0,1]);
 						switchNoteScroll(false);
@@ -6527,6 +6552,10 @@ class PlayState extends MusicBeatState
 
 					case 88:
 						switchNotePositions([4,2,0,1,6,7,5,3]);
+					
+					//case 72, 76, 80, 88, 90, 92:
+					//	switchNoteSide();
+
 					
 					case 90:
 						switchNoteSide();
@@ -6570,7 +6599,7 @@ class PlayState extends MusicBeatState
 						{
 							strum.resetX();
 						});
-						modchart = ExploitationModchartType.None;
+						modchart = ExploitationModchartType.Cyclone;
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
@@ -6588,7 +6617,9 @@ class PlayState extends MusicBeatState
 						{
 							strum.resetX();
 						});
-						modchart = ExploitationModchartType.None;
+						modchart = ExploitationModchartType.PingPong;
+					case 392:
+						//modchart = ExploitationModchartType.IDontHaveANameForThisOne;
 					case 455:
 						swapGlitch(Conductor.crochet / 1000, 'cheating');
 					case 456:
@@ -6652,7 +6683,7 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub1'), 0.02, 1.5);
 					case 14:
 					    subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub2'), 0.04, 0.3, {subtitleSize: 60});
-						FlxG.camera.fade(FlxColor.WHITE, 0.8, false, function()
+						FlxG.camera.fade(FlxColor.WHITE, 0.6, false, function()
 						{
 							FlxG.camera.fade(FlxColor.WHITE, 0, true);
 						});
@@ -7275,7 +7306,7 @@ class PlayState extends MusicBeatState
 }
 enum ExploitationModchartType
 {
-	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; 
+	None; Cheating; Figure8; ScrambledNotes; Cyclone; Unfairness; Jitterwave; PingPong; IDontHaveANameForThisOne;
 }
 
 enum CharacterFunnyEffect
