@@ -1396,10 +1396,12 @@ class PlayState extends MusicBeatState
 					sprites.add(nightBG);
 					add(nightBG);
 				}
-
-				var hills:BGSprite = new BGSprite('hills', 0, 50, Paths.image('backgrounds/farm/orangey hills'), null, 0.65, 0.65);
-				hills.setGraphicSize(Std.int(hills.width / 1.2));
-				hills.updateHitbox();
+				var flatgrass:BGSprite = new BGSprite('flatgrass', 350, 75, Paths.image('backgrounds/farm/gm_flatgrass'), null, 0.65, 0.65);
+				flatgrass.setGraphicSize(Std.int(flatgrass.width * 0.34));
+				flatgrass.updateHitbox();
+				sprites.add(flatgrass);
+				
+				var hills:BGSprite = new BGSprite('hills', -173, 100, Paths.image('backgrounds/farm/orangey hills'), null, 0.65, 0.65);
 				sprites.add(hills);
 				
 				var farmHouse:BGSprite = new BGSprite('farmHouse', 100, 125, Paths.image('backgrounds/farm/funfarmhouse', 'shared'), null, 0.7, 0.7);
@@ -1425,6 +1427,7 @@ class PlayState extends MusicBeatState
 
 				var variantColor:FlxColor = getBackgroundColor(stageName);
 				
+				flatgrass.color = variantColor;
 				hills.color = variantColor;
 				farmHouse.color = variantColor;
 				grassLand.color = variantColor;
@@ -1432,7 +1435,8 @@ class PlayState extends MusicBeatState
 				cornFence2.color = variantColor;
 				cornBag.color = variantColor;
 				sign.color = variantColor;
-
+				
+				add(flatgrass);
 				add(hills);
 				add(farmHouse);
 				add(grassLand);
@@ -1441,13 +1445,15 @@ class PlayState extends MusicBeatState
 				add(cornBag);
 				add(sign);
 
-				if (['blocked', 'corn-theft', 'maze', 'mealie'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, isStoryMode ? 200 : 6) == 0)
+				if (['blocked', 'corn-theft', 'maze', 'mealie'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, 4) == 0)
 				{
 					FlxG.mouse.visible = true;
-					baldi = new BGSprite('baldi', 0, 250, Paths.image('backgrounds/farm/baldo', 'shared'), null);
+					baldi = new BGSprite('baldi', 400, 110, Paths.image('backgrounds/farm/baldo', 'shared'), null, 0.65, 0.65);
+					baldi.setGraphicSize(Std.int(baldi.width * 0.31));
+					baldi.updateHitbox();
 					baldi.color = variantColor;
-					sprites.add(baldi);
-					add(baldi);
+					sprites.insert(members.indexOf(hills), baldi);
+					insert(members.indexOf(hills), baldi);
 				}
 
 				if (SONG.song.toLowerCase() == 'splitathon')
@@ -2421,7 +2427,7 @@ class PlayState extends MusicBeatState
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 			}
 			babyArrow.x += Note.swagWidth * Math.abs(i);
-			babyArrow.x += 78;
+			babyArrow.x += 97;
 			babyArrow.x += ((FlxG.width / 2) * player);
 			
 			babyArrow.baseX = babyArrow.x;
@@ -3612,7 +3618,7 @@ class PlayState extends MusicBeatState
 				Application.current.window.height = 720;
 			}
 
-			if (lastFrame.name != dadFrame.name)
+			if (lastFrame != null && dadFrame != null && lastFrame.name != dadFrame.name)
 			{
 				expungedSpr.graphics.clear();
 				generateWindowSprite();

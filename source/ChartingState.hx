@@ -103,7 +103,7 @@ class ChartingState extends MusicBeatState
 	
 	var guitarPart:Bool = false;
 
-	var noteTypes = ['normal', 'phone', 'shape'];
+	var noteTypes = ['normal', 'phone', 'phone-alt', 'shape'];
 	var curNoteType:Int;
 
 	override function create()

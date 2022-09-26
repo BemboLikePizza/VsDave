@@ -489,6 +489,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', 'bambi $anim', 24, false);
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'miss $anim', 24, false);
 				}
+				animation.addByPrefix('hey', 'bambi look', 24, false);
 				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
 				
 				barColor = FlxColor.fromRGB(37, 191, 55);
@@ -544,14 +545,13 @@ class Character extends FlxSprite
 			case 'bambi-splitathon':
 				frames = Paths.getSparrowAtlas('splitathon/Splitathon_Bambi', 'shared');
 				
-				animation.addByPrefix('idle', 'splitathon idle', 24, true);
-				animation.addByPrefix('singDOWN', 'splitathon down', 24, false);
-				animation.addByPrefix('singUP', 'splitathon up', 24, false);
-				animation.addByPrefix('singLEFT', 'splitathon left', 24, false);
-				animation.addByPrefix('singRIGHT', 'splitathon right', 24, false);
+				animation.addByPrefix('idle', 'splitathon idle0', 24, true);
 				animation.addByPrefix('yummyCornLol', 'splitathon corn', 24, true);
-				animation.addByPrefix('umWhatIsHappening', 'confused Idle', 24, true);
-							
+				animation.addByPrefix('umWhatIsHappening', 'splitathon idle 2', 24, true);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'splitathon $anim', 24, false);
+				}
 				loadOffsetFile(curCharacter);
 
 				globalOffset = [30, 85];
@@ -561,19 +561,33 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'bambi-angey':
-				frames = Paths.getSparrowAtlas('bambi/bambimaddddd', 'shared');
-				animation.addByPrefix('idle', 'idle', 24, true);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
+				frames = Paths.getSparrowAtlas('bambi/Angry_Bambi', 'shared');
 
+				animation.addByPrefix('idle', 'a_bambi idle', 24, true);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'a_bambi $anim', 24, false);
+				}
 				barColor = FlxColor.fromRGB(37, 191, 55);
-
+				globalOffset = [37, 90];
+				
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
-	
+			case 'bambi-angey-old':
+				frames = Paths.getSparrowAtlas('bambi/bambimaddddd', 'shared');
+
+				animation.addByPrefix('idle', 'idle', 24, true);
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+				}
+				barColor = FlxColor.fromRGB(37, 191, 55);
+				globalOffset = [37, 90];
+				
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
 			case 'bambi-3d':
 				// BAMBI SHITE ANIMATION LOADING CODE
 				frames = Paths.getSparrowAtlas('expunged/Cheating', 'shared');

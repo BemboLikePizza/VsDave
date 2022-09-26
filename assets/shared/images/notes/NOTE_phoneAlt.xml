@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NOTE_phoneAlt.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="blue alt0000" x="0" y="0" width="102" height="158"/>
+	<SubTexture name="blue hold end0000" x="107" y="0" width="50" height="64"/>
+	<SubTexture name="blue hold piece0000" x="162" y="0" width="50" height="44"/>
+	<SubTexture name="green alt0000" x="217" y="0" width="102" height="158"/>
+	<SubTexture name="green hold end0000" x="324" y="0" width="50" height="64"/>
+	<SubTexture name="green hold piece0000" x="379" y="0" width="50" height="44"/>
+	<SubTexture name="pruple end hold0000" x="434" y="0" width="50" height="64"/>
+	<SubTexture name="purple alt0000" x="0" y="163" width="158" height="103"/>
+	<SubTexture name="purple hold piece0000" x="163" y="163" width="50" height="44"/>
+	<SubTexture name="red alt0000" x="218" y="163" width="158" height="103"/>
+	<SubTexture name="red hold end0000" x="381" y="163" width="50" height="64"/>
+	<SubTexture name="red hold piece0000" x="436" y="163" width="50" height="44"/>
+</TextureAtlas>
