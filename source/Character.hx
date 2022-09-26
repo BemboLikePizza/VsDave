@@ -353,7 +353,7 @@ class Character extends FlxSprite
 				
 				globalOffset = [-140, -380];
 				
-				barColor = FlxColor.fromRGB(249, 180, 207);
+				barColor = FlxColor.fromRGB(130, 47, 42);
 
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
@@ -473,7 +473,7 @@ class Character extends FlxSprite
 				
 				globalOffset = [-240, -450];
 				
-				barColor = FlxColor.fromString("0xB4C1F9");
+				barColor = FlxColor.fromString("0x619BC1");
 
 				setGraphicSize(Std.int((width * 0.8) / furiosityScale));
 				updateHitbox();
