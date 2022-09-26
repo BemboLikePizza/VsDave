@@ -6508,8 +6508,6 @@ class PlayState extends MusicBeatState
 					//	switchNoteScroll();
 					//early exploitation modchart where its just flipping sides more like exploitation midchart
 					//anyway these functions work basically where its the players notes than the opponents and the order you put the values 0-7 determine the order the notes move to
-					case 5:
-						modchart = ExploitationModchartType.IDontHaveANameForThisOne;
 					
 					case 40:
 						switchNotePositions([6,7,5,4,3,2,0,1]);
