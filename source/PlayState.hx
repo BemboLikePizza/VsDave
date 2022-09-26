@@ -6679,7 +6679,7 @@ class PlayState extends MusicBeatState
 						subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub1'), 0.02, 1.5);
 					case 14:
 					    subtitleManager.addSubtitle(LanguageManager.getTextString('california_sub2'), 0.04, 0.3, {subtitleSize: 60});
-						FlxG.camera.fade(FlxColor.WHITE, 0.8, false, function()
+						FlxG.camera.fade(FlxColor.WHITE, 0.6, false, function()
 						{
 							FlxG.camera.fade(FlxColor.WHITE, 0, true);
 						});
