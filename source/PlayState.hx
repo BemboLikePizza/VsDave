@@ -1700,6 +1700,8 @@ class PlayState extends MusicBeatState
 				sprites.add(bg);
 				add(bg);
 			case 'freeplay':
+				/*don't remove the thunder stuff T5 allowed me to keep it*/
+
 				bgZoom = 0.4;
 				stageName = 'freeplay';
 				
@@ -1733,6 +1735,8 @@ class PlayState extends MusicBeatState
 				add(charBackdrop);
 
 				initAlphabet(daveSongs);
+
+
 			case 'roof':
 				bgZoom = 0.8;
 				stageName = 'roof';
@@ -4925,7 +4929,7 @@ class PlayState extends MusicBeatState
 			case 'bambi-3d':
 				gameOver();
 				return;
-			case 'tristan-golden':
+			case 'tristan-golden' | 'tristan-golden-glowing':
 				FlxG.sound.play(Paths.sound('recursed/boom', 'shared'), 1.5, false);
 				for (i in 0...15)
 				{
@@ -4946,6 +4950,10 @@ class PlayState extends MusicBeatState
 					{
 						remove(goldenPiece);
 					}});
+
+					if (boyfriend.curCharacter == 'tristan-golden-glowing') {
+						boyfriend.color = nightColor;
+					}
 				}
 		}
 		preRecursedSkin = (formoverride != 'none' && boyfriend.curCharacter == formoverride ? formoverride : boyfriend.curCharacter);
@@ -5123,6 +5131,14 @@ class PlayState extends MusicBeatState
 			});
 		}});
 	}
+	function lightningStrikeShit():Void
+	{
+		FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2), 1);
+		FlxG.camera.flash(FlxColor.WHITE, 0.75);
+	
+		lightningStrikeBeat = curBeat;
+		lightningOffset = FlxG.random.int(8, 24);
+	}		
 	function swapGlitch(glitchTime:Float, toBackground:String)
 	{
 		//hey t5 if you make the static fade in and out, can you use the sounds i made? they are in preload
@@ -6400,9 +6416,17 @@ class PlayState extends MusicBeatState
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
 
+	var lastBeatHit:Int = -1;
+
 	override function beatHit()
 	{
 		super.beatHit();
+
+		if (curStage == 'freeplay' && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
+		{
+			lightningStrikeShit();
+		}
+		lastBeatHit = curBeat;
 
 		if (spotLightPart && spotLight.exists && curBeat % 3 == 0)
 		{
