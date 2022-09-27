@@ -276,6 +276,9 @@ class FreeplayState extends MusicBeatState
 				if (FlxG.save.data.exbungoFound)
 					addWeek(['Kabunga'], 6, ['exbungo']);
 				
+				if (FlxG.save.data.roofsUnlocked)
+					addWeek(['Roofs'], 7, ['baldi']);
+
 			    addWeek(['Vs-Dave-Rap'], 1, ['dave-cool']);
 				if(FlxG.save.data.vsDaveRapTwoFound)
 				{
@@ -283,18 +286,16 @@ class FreeplayState extends MusicBeatState
 				}
 			case 'extras':
 				addWeek(['Bonus-Song'], 1, ['dave']);
+				addWeek(['Indignancy'], 2, ['bambi-angey']);
 				if (FlxG.save.data.recursedUnlocked)
 					addWeek(['Recursed'], 10, ['recurser']);
 
-				addWeek(['Adventure'], 8, ['tristan-opponent']);
 				addWeek(['Bot-Trot'], 9, ['playrobot']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
 				addWeek(['Five-Nights'], 12, ['dave']);
-				if (FlxG.save.data.roofsUnlocked)
-					addWeek(['Roofs'], 7, ['baldi']);
+				addWeek(['Adventure'], 8, ['tristan-opponent']);
 				addWeek(['Overdrive'], 13, ['dave-awesome']);
 				addWeek(['Mealie'], 2, ['bambi-loser']);
-				addWeek(['Indignancy'], 2, ['bambi-angey']);
 				addWeek(['Memory'], 1, ['dave']);
 			case 'terminal':
 				if (FlxG.save.data.cheatingFound)
@@ -728,13 +729,13 @@ class FreeplayState extends MusicBeatState
 
 		if (diffText != null)
 			updateDifficultyText();
-
-		#if !switch
-		intendedScore = Highscore.getScore(songs[curSelected].songName);
-		#end
 		
 		if (songs[curSelected].songName != 'Enter Terminal')
 		{
+			#if !switch
+			intendedScore = Highscore.getScore(songs[curSelected].songName);
+			#end
+
 			#if PRELOAD_ALL
 			FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
 			#end

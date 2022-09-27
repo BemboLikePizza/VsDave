@@ -489,6 +489,10 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', 'bambi $anim', 24, false);
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'miss $anim', 24, false);
 				}
+				for (anim in ['left', 'right'])
+				{
+					animation.addByPrefix('sing${anim.toUpperCase()}-alt', 'bambi alt $anim', 24, false);
+				}
 				animation.addByPrefix('hey', 'bambi look', 24, false);
 				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
 				
@@ -568,6 +572,10 @@ class Character extends FlxSprite
 				{
 					animation.addByPrefix('sing${anim.toUpperCase()}', 'a_bambi $anim', 24, false);
 				}
+				animation.addByPrefix('singSmash', 'a_bambi phone', 24, false);
+				animation.addByPrefix('throw', 'a_bambi throw', 24, false);
+				animation.addByPrefix('scream', 'a_bambi scream', 24, false);
+				
 				barColor = FlxColor.fromRGB(37, 191, 55);
 				globalOffset = [37, 90];
 				

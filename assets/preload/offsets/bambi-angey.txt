@@ -1,5 +1,8 @@
 idle 0 0
-singLEFT 0 0
-singDOWN 0 0
-singUP 0 20
-singRIGHT 0 0
+singDOWN 2 -27
+singRIGHT 15 3
+singSmash 78 82
+singUP 21 43
+singLEFT 94 -6
+throw 158 26
+scream 21 33

@@ -113,15 +113,15 @@ class Note extends FlxSprite
 			case 'overdrive':
 				notePathLol = 'notes/OMGtop10awesomehi';
 			case 'recursed':
-				if (!musthit)
-				{
+				musthit ? {
+					if ((this.strumTime / 50) % 20 > 12 && !isSustainNote)
+					{
+						this.noteStyle = 'text';
+					}
+				} : {
 					this.noteStyle = 'recursed';
 					notePathLol = 'notes/NOTE_recursed';
 				}
-		}
-		if (PlayState.SONG.song.toLowerCase() == 'recursed' && (musthit && (this.strumTime / 50) % 20 > 12) && !isSustainNote)
-		{
-			this.noteStyle = 'text';
 		}
 		if (guitarSection)
 		{
