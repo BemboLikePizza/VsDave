@@ -811,6 +811,7 @@ class Character extends FlxSprite
 				globalOffset = [-15, 20];
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
+				skins.set('recursed', 'tristan-recursed');
 					
 				playAnim('idle');
 	
