@@ -239,6 +239,12 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.window.close();
 					}
 				}
+
+				if (FlxG.save.data.exploitationState == 'playing')
+				{
+					Sys.exit(0);
+				}
+
 				PlayState.instance.shakeCam = false;
 				PlayState.instance.camZooming = false;
 				FlxG.mouse.visible = false;
