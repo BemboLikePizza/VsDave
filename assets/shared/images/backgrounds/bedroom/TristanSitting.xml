@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="TristanSitting.png">
+<SubTexture name="daytime0000" x="0" y="0" width="403" height="516" frameX="-1" frameY="-8" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0001" x="0" y="0" width="403" height="516" frameX="-1" frameY="-8" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0002" x="403" y="0" width="403" height="516" frameX="0" frameY="-8" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0003" x="403" y="0" width="403" height="516" frameX="0" frameY="-8" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0004" x="806" y="0" width="392" height="522" frameX="-10" frameY="-2" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0005" x="806" y="0" width="392" height="522" frameX="-10" frameY="-2" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0006" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0007" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0008" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0009" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0010" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0011" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0012" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0013" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="daytime0014" x="0" y="522" width="387" height="524" frameX="-14" frameY="0" frameWidth="398" frameHeight="518" />
+<SubTexture name="nighttime0000" x="387" y="522" width="436" height="516" frameX="-1" frameY="-8" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0001" x="387" y="522" width="436" height="516" frameX="-1" frameY="-8" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0002" x="823" y="522" width="439" height="517" frameX="0" frameY="-7" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0003" x="823" y="522" width="439" height="517" frameX="0" frameY="-7" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0004" x="0" y="1046" width="435" height="522" frameX="-10" frameY="-2" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0005" x="0" y="1046" width="435" height="522" frameX="-10" frameY="-2" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0006" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0007" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0008" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0009" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0010" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0011" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0012" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0013" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+<SubTexture name="nighttime0014" x="435" y="1046" width="435" height="524" frameX="-14" frameY="0" frameWidth="443" frameHeight="518" />
+</TextureAtlas>

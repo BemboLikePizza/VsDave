@@ -355,6 +355,7 @@ class PlayState extends MusicBeatState
 	var daveSongs:Array<String> = ['House', 'Insanity', 'Polygonized', 'Bonus Song'];
 	var bambiSongs:Array<String> = ['Blocked', 'Corn-Theft', 'Maze', 'Mealie'];
 	var tristanSongs:Array<String> = ['Adventure', 'Vs-Tristan'];
+	var tristanInBotTrot:BGSprite; 
 
 	var missedRecursedLetterCount:Int = 0;
 	var recursedCovers:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
@@ -962,7 +963,7 @@ class PlayState extends MusicBeatState
 					backgroundSprites.add(ruby);
 					add(ruby);	
 				}
-				var tv:BGSprite = new BGSprite('tv', -697, 955, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1, 1, true);
+				var tv:BGSprite = new BGSprite('tv', -697, 955, Paths.image('backgrounds/bedroom/tv', 'shared'), null, 1.2, 1.2, true);
 				backgroundSprites.add(tv);
 				add(tv);
 		}
@@ -1748,7 +1749,7 @@ class PlayState extends MusicBeatState
 				bgZoom = 0.8;
 				stageName = 'bedroom';
 				
-				var sky:BGSprite = new BGSprite('nightSky', -285, 418, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 1, 1, true);
+				var sky:BGSprite = new BGSprite('nightSky', -285, 318, Paths.image('backgrounds/bedroom/sky', 'shared'), null, 0.8, 0.8, true);
 				sprites.add(sky);
 				add(sky);
 
@@ -1759,6 +1760,17 @@ class PlayState extends MusicBeatState
 				var baldi:BGSprite = new BGSprite('baldi', 788, 788, Paths.image('backgrounds/bedroom/bed', 'shared'), null, 1, 1, true);
 				sprites.add(baldi);
 				add(baldi);
+
+				tristanInBotTrot = new BGSprite('tristan', 888, 688, 'backgrounds/bedroom/TristanSitting', [
+					new Animation('idle', 'daytime', 24, true, [false, false]),
+					new Animation('idleNight', 'nighttime', 24, true, [false, false])
+				], 1, 1, true, true);
+				tristanInBotTrot.setGraphicSize(Std.int(tristanInBotTrot.width * 0.8));
+				tristanInBotTrot.animation.play('idle');
+				add(tristanInBotTrot);
+				if (formoverride == 'tristan' || formoverride == 'tristan-golden' || formoverride == 'tristan-golden-glowing') {
+					remove(tristanInBotTrot);	
+			    }
 			case 'office':
 				bgZoom = 0.9;
 				stageName = 'office';
@@ -7045,7 +7057,16 @@ class PlayState extends MusicBeatState
 		curStage = 'bedroomNight';
 
 		switchDad('playrobot-shadow', dad.getPosition(), true, false);
-		boyfriend.color = getBackgroundColor(curStage);
+		tristanInBotTrot.animation.play('idleNight');
+		
+		if (formoverride != 'tristan-golden') {
+		    boyfriend.color = getBackgroundColor(curStage);
+		}
+
+		if (formoverride == 'tristan-golden' || formoverride == 'tristan-golden-glowing') {
+			boyfriend.color = FlxColor.WHITE;
+            switchBF('tristan-golden-glowing', boyfriend.getPosition(), true, true);
+		}
 	}
 	public function getCamZoom():Float
 	{
