@@ -3844,6 +3844,7 @@ class PlayState extends MusicBeatState
 		if (window != null)
 		{
 			window.close();
+			window = null;
 		}
 
 		// Song Character Unlocks (Story Mode)
