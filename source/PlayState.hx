@@ -5968,8 +5968,6 @@ class PlayState extends MusicBeatState
 							Application.current.window.width,
 							Application.current.window.height
 						];
-						expungedBG.loadGraphic(Paths.image('backgrounds/void/exploit/broken_expunged_chain', 'shared'));
-						expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
 
 						#if windows
 						popupWindow();
@@ -6670,7 +6668,7 @@ class PlayState extends MusicBeatState
 					case 1276:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
 					case 1100:
-						PlatformUtil.sendWindowsNotification("Virus & threat protection", "Potential threat detected: expunged.dat");
+						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Potential threat detected: expunged.dat");
 				}
 				switch (curBeat)
 				{
