@@ -3233,10 +3233,13 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.8)),Std.int(FlxMath.lerp(150, iconP1.height, 0.8)));
+		var thingy = 0.88; //(144 / Main.fps.currentFPS) * 0.88;
+		//still gotta make this fps consistent crap
+
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, thingy)),Std.int(FlxMath.lerp(150, iconP1.height, thingy)));
 		iconP1.updateHitbox();
 
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.8)),Std.int(FlxMath.lerp(150, iconP2.height, 0.8)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, thingy)),Std.int(FlxMath.lerp(150, iconP2.height, thingy)));
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
@@ -6116,19 +6119,20 @@ class PlayState extends MusicBeatState
 						bambiSpot.cameras = [camHUD];
 						insert(members.indexOf(dadGroup), bambiSpot);
 
-						boyfriend.cameras = [camHUD];
-						boyfriend.scale.set(boyfriend.scale.x * 0.45, boyfriend.scale.y * 0.45);
-						boyfriend.updateHitbox();
-						boyfriend.offsetScale = 0.45;
-						boyfriend.scrollFactor.set();
-						boyfriend.setPosition(930 + boyfriend.globalOffset[0] * boyfriend.offsetScale, 201 + boyfriend.globalOffset[1] * boyfriend.offsetScale);
-						boyfriend.alpha = 0;
-
 						bfSpot = new FlxSprite(995, 381).loadGraphic(Paths.image('festival/shredder/boyfriend_spot'));
 						bfSpot.scrollFactor.set();
 						bfSpot.blend = BlendMode.ADD;
 						bfSpot.cameras = [camHUD];
 						bfSpot.alpha = 0;
+
+						boyfriend.cameras = [camHUD];
+						boyfriend.scale.set(boyfriend.scale.x * 0.45, boyfriend.scale.y * 0.45);
+						boyfriend.updateHitbox();
+						boyfriend.offsetScale = 0.45;
+						boyfriend.scrollFactor.set();
+						boyfriend.setPosition((bfSpot.x - (boyfriend.width / 3.25)) + boyfriend.globalOffset[0] * boyfriend.offsetScale, (bfSpot.y - (boyfriend.height * 1.1)) + boyfriend.globalOffset[1] * boyfriend.offsetScale);
+						boyfriend.alpha = 0;
+
 						insert(members.indexOf(bfGroup), bfSpot);
 
 						highway = new FlxSprite().loadGraphic(Paths.image('festival/shredder/ch_highway'));
