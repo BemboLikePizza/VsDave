@@ -254,6 +254,8 @@ class CharacterSelectState extends MusicBeatState
 		resetText.fieldWidth = FlxG.height;
 		resetText.x -= resetText.textField.textWidth;
 		resetText.y -= resetText.textField.textHeight;
+		resetText.x += FlxG.width * (1 - camHUD.zoom);
+		resetText.y += FlxG.height * (1 - camHUD.zoom);
 		resetText.borderSize = 3;
 		resetText.cameras = [camHUD];
 		resetText.antialiasing = true;

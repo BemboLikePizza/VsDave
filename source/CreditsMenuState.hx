@@ -252,7 +252,10 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
       ]),
-      
+      new Person("YourAverageMental", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
+      ]),
       new Person("vex", CreditsType.BetaTester,
       [
          new Social('twitter', 'https://twitter.com/vex________')
@@ -454,7 +457,7 @@ class CreditsMenuState extends MusicBeatState
             titleText.borderSize = 3;
             titleText.borderQuality = 3;
             titleText.screenCenter(X);
-			titleText.antialiasing = true;
+            titleText.antialiasing = true;
             titleText.scrollFactor.set(0, 1);
             if (DoFunnyScroll)
             {
@@ -481,8 +484,8 @@ class CreditsMenuState extends MusicBeatState
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
          personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
-		 personIcon.setGraphicSize(150);
-		 personIcon.updateHitbox();
+         personIcon.setGraphicSize(150);
+         personIcon.updateHitbox();
          add(personIcon);
 
          personIcon.visible = !DoFunnyScroll;

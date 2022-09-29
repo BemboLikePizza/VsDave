@@ -74,7 +74,7 @@ class FreeplayState extends MusicBeatState
 		0xFFFF0000,    // UNFAIRNESS
 		0xFF810000,    // EXPLOITATION
     ];
-	var skipSelect:Array<String> = 
+	public static var skipSelect:Array<String> = 
 	[
 		'five-nights',
 		'vs-dave-rap',
@@ -320,7 +320,7 @@ class FreeplayState extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
-			songText.itemType = 'Classic'; // til i get new freeplay menu properly working (it's much harder to do than i thought waaaa)
+			songText.itemType = 'Classic';
 			songText.targetY = i;
 			songText.scrollFactor.set();
 			songText.alpha = 0;
@@ -379,7 +379,7 @@ class FreeplayState extends MusicBeatState
 			grpSongs.members[song].unlockY = true;
 
 			// item.targetY = bullShit - curSelected;
-			FlxTween.tween(grpSongs.members[song], {y: song, alpha: 1}, 0.5, {ease: FlxEase.expoInOut, onComplete: function(twn:FlxTween)
+			FlxTween.tween(grpSongs.members[song], {y: song, alpha: song == curSelected ? 1 : 0.6}, 0.5, {ease: FlxEase.expoInOut, onComplete: function(twn:FlxTween)
 			{
 				grpSongs.members[song].unlockY = false;
 

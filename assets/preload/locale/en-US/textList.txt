@@ -43,11 +43,11 @@ freeplay_fucked==YOU'RE FUCKED
 freeplay_skipChar==Hold CTRL To Skip Character Selection
 
 // Pause State //
-pause_resume==Resume
-pause_restart==Restart Song
-pause_changecharacter==Change Character
-pause_exit==Exit To Menu
-pause_nomiss==Developer No Miss
+pause_Resume==Resume
+pause_Restart Song==Restart Song
+pause_Change Character==Change Character
+pause_Exit to menu==Exit To Menu
+pause_Developer No Miss==Developer No Miss
 
 // Options State //
 option_change_keybinds==Change Keybinds
@@ -115,6 +115,7 @@ play_easy==EASY
 play_score==Score:
 play_miss==Misses:
 play_accuracy==Accuracy:
+fnaf_retry==Retry?
 
 // Credits Words //
 supernovae_credit==Original Song made by ArchWk!
@@ -348,6 +349,7 @@ credit_letsy==Beta Tester
 credit_wildy==Beta Tester
 credit_peejeada==Beta Tester & Supporter
 credit_bendygaming_1==Beta Tester, Moldy super awesome brother
+credit_YourAverageMental==Beta Tester
 credit_vex==Beta Tester
 credit_xml==Beta Tester
 credit_ztgds==Minor programming help, Beta Tester

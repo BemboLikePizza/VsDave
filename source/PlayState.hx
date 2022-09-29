@@ -338,7 +338,7 @@ class PlayState extends MusicBeatState
 	var stageCheck:String = 'stage';
 
 	// FUCKING UHH particles
-	var _emitter:FlxEmitter;
+	var emitter:FlxEmitter;
 	var smashPhone:Array<Int> = new Array<Int>();
 
 	//recursed
@@ -402,6 +402,9 @@ class PlayState extends MusicBeatState
 	var expungedOffset:FlxPoint = new FlxPoint();
 	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
+
+	//indignancy
+	var vignette:FlxSprite;
 
 	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh', 'alright instagram its shoutout time'];
 	
@@ -2293,6 +2296,14 @@ class PlayState extends MusicBeatState
 					}
 					greetingsCutscene();
 				}
+			case 'indignancy':
+				/*vignette = new FlxSprite().loadGraphic(Paths.image('vignette'));
+				vignette.screenCenter();
+				vignette.scrollFactor.set();
+				vignette.cameras = [camHUD];
+				vignette.alpha = 0;
+				add(vignette);
+				FlxTween.tween(vignette, {alpha: 0.7}, 1);*/
 		}
 	}
 
@@ -2431,7 +2442,7 @@ class PlayState extends MusicBeatState
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
 			}
 			babyArrow.x += Note.swagWidth * Math.abs(i);
-			babyArrow.x += 97;
+			babyArrow.x += 78 + 78 / playerStrumAmount;
 			babyArrow.x += ((FlxG.width / 2) * player);
 			
 			babyArrow.baseX = babyArrow.x;
@@ -2459,7 +2470,6 @@ class PlayState extends MusicBeatState
 
 			babyArrow.x += Note.swagWidth * Math.abs(i);
 			babyArrow.x += 78;
-			babyArrow.x += ((FlxG.width / 2) * 0);
 			babyArrow.baseX = babyArrow.x;
 			dadStrums.add(babyArrow);
 			strumLineNotes.add(babyArrow);
@@ -2793,6 +2803,10 @@ class PlayState extends MusicBeatState
 			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || controls.KEY5 && !doorChanging)
 			{
 				changeDoorState(!doorClosed);
+			}
+			if (dad.curCharacter == 'nofriend' && dad.animation.curAnim.name == 'attack' && dad.animation.curAnim.finished)
+			{
+
 			}
 		}
 		if (baldi != null)
@@ -3244,6 +3258,10 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.FOUR)
 		{
 			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\nCAMERA POSITION: ${camFollow.getPosition()}');
+		}
+		if (FlxG.keys.justPressed.ALT)
+		{
+			health = 0;
 		}
 		if (FlxG.keys.justPressed.FIVE)
 		{
@@ -4892,8 +4910,8 @@ class PlayState extends MusicBeatState
 		{
 			missedRecursedLetterCount++;
 			var recursedCover = new FlxSprite().loadGraphic(Paths.image('recursed/recursedX'));
-			recursedCover.x = (boyfriend.x + (boyfriend.width / 2)) + new FlxRandom().float(-recursedCover.width, recursedCover.width);
-			recursedCover.y = (boyfriend.y + (boyfriend.height / 2)) + new FlxRandom().float(-recursedCover.height, recursedCover.height) / 2;
+			recursedCover.x = (boyfriend.x + (boyfriend.width / 2) - boyfriend.globalOffset[0]) + new FlxRandom().float(-recursedCover.width, recursedCover.width);
+			recursedCover.y = (boyfriend.y + (boyfriend.height / 2) - boyfriend.globalOffset[1]) + new FlxRandom().float(-recursedCover.height, recursedCover.height) / 2;
 
 			recursedCover.angle = new FlxRandom().float(0, 180);
 			
@@ -5131,14 +5149,6 @@ class PlayState extends MusicBeatState
 			});
 		}});
 	}
-	function lightningStrikeShit():Void
-	{
-		FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2), 1);
-		FlxG.camera.flash(FlxColor.WHITE, 0.75);
-	
-		lightningStrikeBeat = curBeat;
-		lightningOffset = FlxG.random.int(8, 24);
-	}		
 	function swapGlitch(glitchTime:Float, toBackground:String)
 	{
 		//hey t5 if you make the static fade in and out, can you use the sounds i made? they are in preload
@@ -5820,7 +5830,6 @@ class PlayState extends MusicBeatState
 			case 'indignancy':
 				switch (curStep)
 				{
-					//1616 - 1632
 					case 1622:
 						dad.canDance = false;
 						dad.playAnim('scream', true);
@@ -5885,12 +5894,12 @@ class PlayState extends MusicBeatState
 							Application.current.window.width,
 							Application.current.window.height
 						];
-						trace(windowProperties);
+						expungedBG.loadGraphic(Paths.image('backgrounds/void/exploit/broken_expunged_chain', 'shared'));
+						expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
+
 						#if windows
 						popupWindow();
 						#end
-						expungedBG.loadGraphic(Paths.image('backgrounds/void/exploit/broken_expunged_chain', 'shared'));
-						expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
 						
 						modchart = ExploitationModchartType.Figure8;
 						dadStrums.forEach(function(strum:StrumNote)
@@ -6016,6 +6025,19 @@ class PlayState extends MusicBeatState
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
+						dadStrums.forEach(function(spr:StrumNote)
+						{
+							dadStrums.remove(spr);
+							strumLineNotes.remove(spr);
+							remove(spr);
+						});
+						generateGhNotes(0);
+
+						dadStrums.forEach(function(spr:StrumNote)
+						{
+							spr.centerStrum();
+						});
+
 					case 1024:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 
@@ -6072,18 +6094,6 @@ class PlayState extends MusicBeatState
 						black.alpha = 0.9;
 						insert(members.indexOf(highway), black);
 
-						dadStrums.forEach(function(spr:StrumNote)
-						{
-							dadStrums.remove(spr);
-							strumLineNotes.remove(spr);
-							remove(spr);
-						});
-						generateGhNotes(0);
-
-						dadStrums.forEach(function(spr:StrumNote)
-						{
-							spr.centerStrum();
-						});
 						playerStrums.forEach(function(spr:StrumNote)
 						{
 							spr.centerStrum();
@@ -6413,20 +6423,10 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	var lightningStrikeBeat:Int = 0;
-	var lightningOffset:Int = 8;
-
-	var lastBeatHit:Int = -1;
-
 	override function beatHit()
 	{
 		super.beatHit();
 
-		if (curStage == 'freeplay' && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
-		{
-			lightningStrikeShit();
-		}
-		lastBeatHit = curBeat;
 
 		if (spotLightPart && spotLight.exists && curBeat % 3 == 0)
 		{
@@ -6904,11 +6904,13 @@ class PlayState extends MusicBeatState
 			}
 			#end
 
-			FlxG.random.int(0, 100) == 0 ? FlxG.switchState(new ExpungedCrasherState()) : {
-				if (SONG.song.toLowerCase() == 'recursed')
-				{
-					cancelRecursedCamTween();
-				}
+			if (SONG.song.toLowerCase() == 'recursed')
+			{
+				cancelRecursedCamTween();
+			}
+			
+			if (!inFiveNights)
+			{
 				if (funnyFloatyBoys.contains(boyfriend.curCharacter))
 				{
 					openSubState(new GameOverPolygonizedSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, deathSkinCheck));
@@ -6917,9 +6919,11 @@ class PlayState extends MusicBeatState
 				{
 					openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, deathSkinCheck));
 				}
-				
-			};
-			
+			}
+			else
+			{
+				openSubState(new GameOverFNAF());
+			}
 			#if desktop
 				DiscordClient.changePresence("GAME OVER -- "
 				+ SONG.song
@@ -7126,7 +7130,7 @@ class PlayState extends MusicBeatState
 			var curOpponentNote = dadStrums.members[i];
 			var curPlayerNote = playerStrums.members[i];
 
-			FlxTween.tween(curOpponentNote, {x: positions[order[i + 4]]}, 0.6, {ease: FlxEase.expoOut, startDelay: 0.01 * i});
+			FlxTween.tween(curOpponentNote, {x: positions[order[i + playerStrumAmount]]}, 0.6, {ease: FlxEase.expoOut, startDelay: 0.01 * i});
 			FlxTween.tween(curPlayerNote, {x: positions[order[i]]}, 0.6, {ease: FlxEase.expoOut, startDelay: 0.01 * i});
 		}
 		switchSide = !switchSide;
@@ -7265,7 +7269,6 @@ class PlayState extends MusicBeatState
 		Application.current.window.y = Std.int((screenheight / 2) - (720 / 2));
 		Application.current.window.width = 1280;
 		Application.current.window.height = 720;
-		// PlayState.defaultCamZoom = 0.5;
 
 		window = Application.current.createWindow({
 			title: "expunged.dat",

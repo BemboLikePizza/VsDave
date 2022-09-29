@@ -31,6 +31,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		bg = new FlxSprite().makeGraphic(400, 50, FlxColor.WHITE);
 		add(bg);
 		var songCreator:String = '';
+		var songCreatorIcon:String = '';
 		var headingPath:SongHeading = null;
 
 		switch (PlayState.SONG.song.toLowerCase())
@@ -44,10 +45,12 @@ class CreditsPopUp extends FlxSpriteGroup
 				songCreator = 'Alexander Cooper 19';
 			case 'glitch':
 				songCreator = 'DeadShadow & PixelGH\nRemix by MoldyGH';
+				songCreatorIcon = 'DeadShadow & PixelGH';
 			case 'overdrive':
 				songCreator = 'Top 10 Awesome';
 			case 'supernovae':
 				songCreator = 'ArchWk\nRemix by MoldyGH';
+				songCreatorIcon = 'ArchWk';
 			case 'vs-dave-rap' | 'vs-dave-rap-two':
 				songCreator = 'Your mom';
 			case 'recursed':
@@ -97,7 +100,7 @@ class CreditsPopUp extends FlxSpriteGroup
 				animation: new Animation('unfair', 'Unfairness', 24, true, [false, false]), iconOffset: 0};
 			case 16:
 				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
-				animation: new Animation('scramble', 'Scramble', 24, true, [false, false]), iconOffset: 0};
+				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0};
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{
@@ -125,7 +128,7 @@ class CreditsPopUp extends FlxSpriteGroup
 			bg.antialiasing = headingPath.antiAliasing;
 			curHeading = headingPath;
 		}
-		createHeadingText('Song by $songCreator');
+		createHeadingText('Song by ${songCreatorIcon != '' ? songCreatorIcon : songCreator}');
 		
 		switch (PlayState.SONG.song.toLowerCase())
 		{

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="nofriendJumpscare.png">
+	<!-- Created with Adobe Animate version 21.0.2.37893 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="jumpscare0000" x="0" y="0" width="1280" height="720" pivotX="640" pivotY="360"/>
+	<SubTexture name="jumpscare0001" x="1280" y="0" width="1280" height="720"/>
+	<SubTexture name="jumpscare0002" x="2560" y="0" width="1280" height="720"/>
+	<SubTexture name="jumpscare0003" x="3840" y="0" width="1280" height="720"/>
+	<SubTexture name="jumpscare0004" x="5120" y="0" width="1280" height="720"/>
+	<SubTexture name="jumpscare0005" x="6400" y="0" width="1280" height="720"/>
+	<SubTexture name="jumpscare0006" x="0" y="720" width="1280" height="720"/>
+	<SubTexture name="jumpscare0007" x="1280" y="720" width="1280" height="720"/>
+	<SubTexture name="jumpscare0008" x="2560" y="720" width="1280" height="720"/>
+	<SubTexture name="jumpscare0009" x="3840" y="720" width="1280" height="720"/>
+	<SubTexture name="jumpscare0010" x="5120" y="720" width="1280" height="720"/>
+	<SubTexture name="jumpscare0011" x="6400" y="720" width="1280" height="720"/>
+	<SubTexture name="jumpscare0012" x="0" y="1440" width="1280" height="720"/>
+	<SubTexture name="jumpscare0013" x="1280" y="1440" width="1280" height="720"/>
+	<SubTexture name="jumpscare0014" x="2560" y="1440" width="1280" height="720"/>
+	<SubTexture name="jumpscare0015" x="3840" y="1440" width="1280" height="720"/>
+	<SubTexture name="jumpscare0016" x="5120" y="1440" width="1280" height="720"/>
+	<SubTexture name="jumpscare0017" x="6400" y="1440" width="1280" height="720"/>
+	<SubTexture name="jumpscare0018" x="0" y="2160" width="1280" height="720"/>
+	<SubTexture name="jumpscare0019" x="0" y="2160" width="1280" height="720"/>
+</TextureAtlas>

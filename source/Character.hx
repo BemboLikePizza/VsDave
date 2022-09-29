@@ -131,7 +131,10 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'miss $anim', 24, false);
 				}
 				animation.addByPrefix('hey', 'hey', 24, false);
-
+				
+				animation.addByIndices('attack', 'jumpscare', CoolUtil.numberArray(23, 0), '', 24, false);
+				animation.addByIndices('fail', 'jumpscare', CoolUtil.numberArray(24, 44), '', 24, false);
+				
 				loadOffsetFile(curCharacter);
 				
 				globalOffset = [0, -75];
@@ -722,7 +725,7 @@ class Character extends FlxSprite
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
-				globalOffset = [-15, 20];
+				globalOffset = [-35, -30];
 
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				nativelyPlayable = true;
@@ -743,7 +746,7 @@ class Character extends FlxSprite
 				
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [-15, 20];
+				globalOffset = [-35, -30];
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				
@@ -778,7 +781,7 @@ class Character extends FlxSprite
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [-15, 20];
+				globalOffset = [-35, -30];
 
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				skins.set('recursed', 'tristan-recursed');
@@ -814,9 +817,9 @@ class Character extends FlxSprite
 
 				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
-		
-				loadOffsetFile(curCharacter +  (isPlayer ? '-playable' : ''));
-				globalOffset = [-15, 20];
+						
+				loadOffsetFile(curCharacter);
+				globalOffset = [-35, -30];
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				skins.set('recursed', 'tristan-recursed');

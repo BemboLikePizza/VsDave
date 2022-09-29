@@ -21,11 +21,20 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	#if debug
-	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_nomiss'), LanguageManager.getTextString('pause_changecharacter'), LanguageManager.getTextString('pause_exit')];
-	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Developer No Miss', 'Change Character', 'Exit to menu'];
+	var menuItems:Array<PauseOption> = [
+		new PauseOption('Resume'),
+		new PauseOption('Restart Song'),
+		new PauseOption('Change Character'),
+		new PauseOption('Developer No Miss'),
+		new PauseOption('Exit to menu')
+	];
 	#else
-	var menuItems:Array<String> = [LanguageManager.getTextString('pause_resume'), LanguageManager.getTextString('pause_restart'), LanguageManager.getTextString('pause_changecharacter'), LanguageManager.getTextString('pause_exit')];
-	var optionStuff:Array<String> = ['Resume', 'Restart Song', 'Change Character', 'Exit to menu'];
+	var menuItems:Array<PauseOption> = [
+		new PauseOption('Resume'),
+		new PauseOption('Restart Song'),
+		new PauseOption('Change Character'),
+		new PauseOption('Exit to menu')
+	];
 	#end
 	var curSelected:Int = 0;
 
@@ -102,13 +111,17 @@ class PauseSubState extends MusicBeatSubstate
 					doALittleTrolling(levelDifficulty);
 			}
 		}});
+		if (FreeplayState.skipSelect.contains(PlayState.SONG.song.toLowerCase()))
+		{
+			menuItems.remove(PauseOption.getOption(menuItems, 'Change Character'));
+		}
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
 
 		for (i in 0...menuItems.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, LanguageManager.getTextString('pause_${menuItems[i].optionName}'), true, false);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpMenuShit.add(songText);
@@ -159,7 +172,7 @@ class PauseSubState extends MusicBeatSubstate
 	}
 	function selectOption()
 	{
-		var daSelected:String = optionStuff[curSelected];
+		var daSelected:String = menuItems[curSelected].optionName;
 
 		switch (daSelected)
 		{
@@ -301,5 +314,26 @@ class PauseSubState extends MusicBeatSubstate
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+	}
+}
+class PauseOption
+{
+	public var optionName:String;
+
+	public function new(optionName:String)
+	{
+		this.optionName = optionName;
+	}
+	
+	public static function getOption(list:Array<PauseOption>, optionName:String):PauseOption
+	{
+		for (option in list)
+		{
+			if (option.optionName == optionName)
+			{
+				return option;
+			}
+		}
+		return null;
 	}
 }
