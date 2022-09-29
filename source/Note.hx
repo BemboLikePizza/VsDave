@@ -226,7 +226,7 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
-			case 'phone':
+			case 'phone' | 'phone-alt':
 				frames = Paths.getSparrowAtlas('notes/NOTE_phone', 'shared');
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
@@ -234,31 +234,6 @@ class Note extends FlxSprite
 				animation.addByPrefix('purpleScroll', 'purple0');
 
 				LocalScrollSpeed = 1.08;
-				
-				setGraphicSize(Std.int(width * noteSize));
-				updateHitbox();
-				antialiasing = true;
-				
-				//x -= (width - 78);
-				//TODO: make this MATH.
-				noteOffset = 20;
-			case 'phone-alt':
-				frames = Paths.getSparrowAtlas('notes/NOTE_phoneAlt', 'shared');
-				animation.addByPrefix('greenScroll', 'green alt');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('greenholdend', 'green hold end');
-
-				animation.addByPrefix('redScroll', 'red alt');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('redholdend', 'red hold end');
-				
-				animation.addByPrefix('blueScroll', 'blue alt');
-				animation.addByPrefix('bluehold', 'blue hold piece');
-				animation.addByPrefix('blueholdend', 'blue hold end');
-
-				animation.addByPrefix('purpleScroll', 'purple alt');
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('purpleend', 'pruple end hold');
 				
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
