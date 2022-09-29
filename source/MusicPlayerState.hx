@@ -87,7 +87,7 @@ class MusicPlayerState extends MusicBeatState
             {
                 var bad = secretSongs[i][2] != null ? secretSongs[i][2] : false;
                 songs.push(new PlaySongMetadata(secretSongs[i][0], false, secretSongs[i][1], bad, true));
-                if (songName != 'vs-dave-rap' && songName != 'vs-dave-rap-two')
+                if (secretSongs[i][0] != 'vs-dave-rap' && secretSongs[i][0] != 'vs-dave-rap-two')
                 {
                     songs.push(new PlaySongMetadata(secretSongs[i][0], false, secretSongs[i][1], bad, false));
                 }
