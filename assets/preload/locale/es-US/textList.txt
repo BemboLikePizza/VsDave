@@ -37,7 +37,6 @@ freeplay_normal==NORMAL
 freeplay_easy==FACIL
 freeplay_finale==FINAL
 freeplay_fucked==ESTAS EN PELIGRO
-freeplay_lmao==LMAO
 
 freeplay_skipChar==Mantén CTRL para saltarse la Seleción de Personaje
 
@@ -46,6 +45,13 @@ pause_resume==Continuar
 pause_restart==Reiniciar Cancion
 pause_exit==Salir al menu
 pause_nomiss==Deshabilitar Fallos
+pause_Change Character==Change Character
+
+pause_Resume==Continuar
+pause_Restart Song==Reiniciar Cancion
+pause_Change Character==Cambiar Personaje
+pause_Exit to menu==Salir al menú
+pause_Developer No Miss==Deshabilitar Fallos
 
 // Credits Words //
 supernovae_credit==¡La canción original fue creada por ArchWk!
@@ -84,7 +90,7 @@ option_freeplay_cutscenes_off==Escenas en Juego Libre Desactivado
 option_freeplay_cutscenes_on==Escenas en Juego Libre Activado
 
 option_noteCamera_on==Camara Dinamica
-option_noteCamera_off==Camara Predefinida
+option_noteCamera_off==Camara Normal
 
 option_change_langauge==Cambiar Idioma
 option_disable_fps==No mostrar FPS y Memoria
@@ -290,6 +296,16 @@ daveraptwo_sub9==Dive va a gamestop para comprar juego de Xbox
 daveraptwo_sub10==Juega el mod Vs Dave and Bambi 3.0
 daveraptwo_sub11==Disponible en GameBanana!
 daveraptwo_sub12==Yum.
+
+//Indignancy (screwed 2) Subtitles//
+indignancy_sub1==Matame, quiero morir
+indignancy_sub2==Expulsame, porfavor senpai
+indignancy_sub3==Me expulsaronnnnn
+indignancy_sub4==Me voy a ir.
+indignancy_sub5==AuuuuuuAAAAAAAAAAAAAAA-
+
+3d_gameOver_polygonized==¡Has sido poligonizado!
+3d_gameOver_restart==¿Reiniciar?
 
 // Credits State //
 credits_dev==Desarolladores
