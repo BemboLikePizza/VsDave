@@ -539,6 +539,7 @@ class CreditsMenuState extends MusicBeatState
    
 	override function update(elapsed:Float)
    {
+
       var fadeTimer:Float = 0.08;
       var upPressed = controls.UP_P;
 		var downPressed = controls.DOWN_P;
