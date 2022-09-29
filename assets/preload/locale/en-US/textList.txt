@@ -70,7 +70,7 @@ option_selfAwareness_off==Self Awareness Disabled
 option_hitsound_on==Hitsounds On
 option_hitsound_off==Hitsounds Off
 
-option_fpsCap==FPS Cap:
+option_fpsCap==FPS Cap
 
 option_freeplay_cutscenes_off==Freeplay Cutscenes Off
 option_freeplay_cutscenes_on==Freeplay Cutscenes On
@@ -301,7 +301,7 @@ indignancy_sub1==Kill me, I want to die
 indignancy_sub2==Kick me, please senpai
 indignancy_sub3==Kicked meeeeeee
 indignancy_sub4==I going to leave.
-indignancy_sub5==AuuuuuuAAAAAAAAAAAAAAA
+indignancy_sub5==AuuuuuuAAAAAAAAAAAAAAA-
 
 3d_gameOver_polygonized==You've been Polygonized!
 3d_gameOver_restart==Restart?

@@ -5971,8 +5971,6 @@ class PlayState extends MusicBeatState
 							Application.current.window.width,
 							Application.current.window.height
 						];
-						expungedBG.loadGraphic(Paths.image('backgrounds/void/exploit/broken_expunged_chain', 'shared'));
-						expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
 
 						#if windows
 						popupWindow();
@@ -6007,7 +6005,7 @@ class PlayState extends MusicBeatState
 						shakeCam = false;
 						FlxG.camera.zoom += 0.2;
 					case 1536:
-						//no revert back. it fixes nothing and is LAME.
+						//no revert back yet. it fixes nothing and is LAME.
 						
 						expungedBG.loadGraphic(Paths.image('backgrounds/void/exploit/creepyRoom', 'shared'));
 						expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
@@ -6102,18 +6100,6 @@ class PlayState extends MusicBeatState
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
-						dadStrums.forEach(function(spr:StrumNote)
-						{
-							dadStrums.remove(spr);
-							strumLineNotes.remove(spr);
-							remove(spr);
-						});
-						generateGhNotes(0);
-
-						dadStrums.forEach(function(spr:StrumNote)
-						{
-							spr.centerStrum();
-						});
 
 					case 1024:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
@@ -6184,6 +6170,7 @@ class PlayState extends MusicBeatState
 							remove(spr);
 						});
 						generateGhNotes(0);
+						
 
 						dadStrums.forEach(function(spr:StrumNote)
 						{
@@ -6684,7 +6671,7 @@ class PlayState extends MusicBeatState
 					case 1276:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('exploit_sub15'), 0.02, 0.3);
 					case 1100:
-						PlatformUtil.sendWindowsNotification("Virus & threat protection", "Potential threat detected: expunged.dat");
+						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Potential threat detected: expunged.dat");
 				}
 				switch (curBeat)
 				{

@@ -60,7 +60,7 @@ class PauseSubState extends MusicBeatSubstate
 				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
 			case "exploitation":
 				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast-ohno'), true, true);
-				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
+				expungedSelectWaitTime = new FlxRandom().float(2, 7);
 				patienceTime = new FlxRandom().float(15, 30);
 		}
 		
@@ -173,7 +173,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 			else
 			{
-				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
+				expungedSelectWaitTime = new FlxRandom().float(2, 7);
 				changeSelection(new FlxRandom().int((menuItems.length - 1) * -1, menuItems.length - 1));
 			}
 		}
