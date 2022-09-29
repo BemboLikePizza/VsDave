@@ -3701,7 +3701,7 @@ class PlayState extends MusicBeatState
 				lastFrame = dadFrame;
 			}
 
-			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX);
+			expungedScroll.x = (((dadFrame.offset.x) - (dad.offset.x)) * expungedScroll.scaleX) + 80; //this breaks all other characters but i dont give a shit.
 			expungedScroll.y = (((dadFrame.offset.y) - (dad.offset.y)) * expungedScroll.scaleY);
 		}
 	}
@@ -7397,7 +7397,10 @@ class PlayState extends MusicBeatState
 
 		Application.current.window.onClose.add(function()
 		{
-			window.close();
+			if (window != null)
+			{
+				window.close();
+			}
 		}, false, 100);
 
 		Application.current.window.focus();
