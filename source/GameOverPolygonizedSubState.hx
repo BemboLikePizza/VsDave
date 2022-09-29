@@ -30,19 +30,25 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float,char:String)
 	{
 		super();
+		
+		var sheetInfo:String = '';
 		switch (char)
 		{
-			case 'dave-recursed' | 'dave-angey' | 'dave-3d-recursed':
+			case 'dave-angey' | 'dave-3d-recursed':
 				deathSuffix = '-dave';
 				bgSuffix = 'void/redsky';
 			case 'bambi-3d':
 				deathSuffix = '-bambi';
 				bgSuffix = 'cheating/cheater';
 		}
-		switch (PlayState.SONG.song.toLowerCase())
+		switch (char)
 		{
-			case 'exploitation':
-				stageSuffix = '-ohno';
+			case 'dave-angey':
+				sheetInfo = 'dave/characters/Dave_3D_Dead';
+			case 'bambi-3d':
+				sheetInfo = 'expunged/Bambi_3D_Death';
+			case 'dave-3d-recursed':
+				sheetInfo = 'recursed/characters/Dave_3D_Recursed_Dead';
 		}
 
 		bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/$bgSuffix', 'shared'));
@@ -75,52 +81,65 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 
 		FlxG.camera.follow(camFollow, LOCKON, 0.01);
 
-		FlxTween.tween(bf, {alpha: 0, 'scale.x': 0, 'scale.y': 0}, 2, {
+		FlxTween.tween(bf, {alpha: 0, 'scale.x': 0, 'scale.y': 0}, 2, { 
 			ease: FlxEase.expoInOut, 
 			onUpdate: function(tween:FlxTween)
 			{
-				bf.angle += FlxG.elapsed * 200;
+				bf.angle += FlxG.elapsed * 250;
 				bf.centerOrigin();
-			}, 
+			},
 			onComplete: function(tween:FlxTween)
 			{
-				polygonizedText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_polygonized'), 32);
-				polygonizedText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				polygonizedText.borderSize = 2.5;
-				polygonizedText.antialiasing = true;
-				polygonizedText.screenCenter();
-				polygonizedText.scrollFactor.set();
-				polygonizedText.scale.set();
-				add(polygonizedText);
-
-				FlxTween.tween(polygonizedText, {'scale.x': 1, 'scale.y': 1}, 1, {
-					ease: FlxEase.backOut, 
-					onUpdate: function(tween:FlxTween)
-					{
-						polygonizedText.centerOrigin();
-					}
-				});
-
-				FlxG.sound.play(Paths.sound('trumpet', 'shared'), 1, false, null, function()
+				var charDeath = new FlxSprite();
+				charDeath.frames = Paths.getSparrowAtlas(sheetInfo);
+				charDeath.animation.addByPrefix('death', 'dead', 24, false);
+				charDeath.scrollFactor.set();
+				charDeath.antialiasing = false;
+				charDeath.screenCenter();
+				charDeath.animation.play('death');
+				charDeath.animation.finishCallback = function(anim:String)
 				{
-					FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+					remove(charDeath);
+					polygonizedText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_polygonized'), 32);
+					polygonizedText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					polygonizedText.borderSize = 2.5;
+					polygonizedText.antialiasing = true;
+					polygonizedText.screenCenter();
+					polygonizedText.scrollFactor.set();
+					polygonizedText.scale.set();
+					add(polygonizedText);
 
-					restartText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_restart'), 32);
-					restartText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-					restartText.borderSize = 2.5;
-					restartText.antialiasing = true;
-					restartText.screenCenter();
-					restartText.y += 300;
-					restartText.scrollFactor.set();
-					restartText.alpha = 0;
-					add(restartText);
+					FlxTween.tween(polygonizedText, {'scale.x': 1, 'scale.y': 1}, 1, {
+						ease: FlxEase.backOut,
+						onUpdate: function(tween:FlxTween)
+						{
+							polygonizedText.centerOrigin();
+						}
+					});
 
-					FlxTween.tween(polygonizedText, {y: polygonizedText.y - 300}, 1, {ease: FlxEase.expoOut});
-					
-					FlxTween.tween(bg, {alpha: 0.6}, 1);
-					FlxTween.tween(restartText, {alpha: 1}, 1);
-				});
-			}});
+					FlxG.sound.play(Paths.sound('trumpet', 'shared'), 1, false, null, function()
+					{
+						FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+
+						restartText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_restart'), 32);
+						restartText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+						restartText.borderSize = 2.5;
+						restartText.antialiasing = true;
+						restartText.screenCenter();
+						restartText.y += 300;
+						restartText.scrollFactor.set();
+						restartText.alpha = 0;
+						add(restartText);
+
+						FlxTween.tween(polygonizedText, {y: polygonizedText.y - 300}, 1, {ease: FlxEase.expoOut});
+
+						FlxTween.tween(bg, {alpha: 0.6}, 1);
+						FlxTween.tween(restartText, {alpha: 1}, 1);
+					});
+				}
+			}
+		});
+
 	}
 
 	override function update(elapsed:Float)

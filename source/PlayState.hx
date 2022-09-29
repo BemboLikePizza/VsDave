@@ -942,7 +942,7 @@ class PlayState extends MusicBeatState
 				boyfriend.flipX = !boyfriend.flipX;
 
 				dad.setPosition(606, 50);
-				boyfriend.setPosition(86, 100);
+				boyfriend.setPosition(-114, 100);
 			case 'overdrive':
 				dad.setPosition(244.15, 437);
 				boyfriend.setPosition(837, 363);
@@ -1705,8 +1705,6 @@ class PlayState extends MusicBeatState
 				sprites.add(bg);
 				add(bg);
 			case 'freeplay':
-				/*don't remove the thunder stuff T5 allowed me to keep it*/
-
 				bgZoom = 0.4;
 				stageName = 'freeplay';
 				
@@ -1740,8 +1738,6 @@ class PlayState extends MusicBeatState
 				add(charBackdrop);
 
 				initAlphabet(daveSongs);
-
-
 			case 'roof':
 				bgZoom = 0.8;
 				stageName = 'roof';
@@ -2819,7 +2815,18 @@ class PlayState extends MusicBeatState
 			}
 			if (dad.curCharacter == 'nofriend' && dad.animation.curAnim.name == 'attack' && dad.animation.curAnim.finished)
 			{
-
+				doorClosed ? {
+					var slam = new FlxSound().loadEmbedded(Paths.sound('fiveNights/slam'));
+					slam.play();
+					dad.playAnim('fail', true);
+					dad.animation.finishCallback = function(animation:String)
+					{
+						dad.canDance = true;
+						dad.canSing = true;
+					};
+				} : {
+					health = 0;
+				}
 			}
 		}
 		if (baldi != null)
@@ -3302,10 +3309,6 @@ class PlayState extends MusicBeatState
 		{
 			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\nCAMERA POSITION: ${camFollow.getPosition()}');
 		}
-		if (FlxG.keys.justPressed.ALT)
-		{
-			health = 0;
-		}
 		if (FlxG.keys.justPressed.FIVE)
 		{
 			FlxG.switchState(new CharacterDebug(dad.curCharacter));
@@ -3428,11 +3431,6 @@ class PlayState extends MusicBeatState
 				#end
 			}
 
-			if(shakeCam)
-			{
-				CharacterSelectState.unlockCharacter('bambi-3d');
-			}
-
 			if (!shakeCam)
 			{
 				if(!perfectMode)
@@ -3442,6 +3440,7 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				CharacterSelectState.unlockCharacter('bambi-3d');
 				if (isStoryMode)
 				{
 					switch (SONG.song.toLowerCase())
@@ -3450,7 +3449,7 @@ class PlayState extends MusicBeatState
 							FlxG.openURL("https://www.youtube.com/watch?v=eTJOdgDzD64");
 							System.exit(0);
 						default:
-							if(shakeCam)
+							if (shakeCam)
 							{
 								CharacterSelectState.unlockCharacter('bambi-3d');
 							}
@@ -3459,7 +3458,7 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					if(!perfectMode)
+					if (!perfectMode)
 					{
 						if(shakeCam)
 						{
@@ -3519,8 +3518,12 @@ class PlayState extends MusicBeatState
 
 					if (currentSection != null)
 					{
+						if (daNote.noteStyle == 'phone-alt')
+						{
+							altAnim = '-alt';
+						}
 						if (currentSection.altAnim)
-							if (SONG.song.toLowerCase() != "cheating" || daNote.noteStyle == 'phone-alt')
+							if (SONG.song.toLowerCase() != "cheating")
 							{
 								altAnim = '-alt';
 							}
@@ -7179,6 +7182,14 @@ class PlayState extends MusicBeatState
 			boyfriend.color = FlxColor.WHITE;
             switchBF('tristan-golden-glowing', boyfriend.getPosition(), true, true);
 		}
+	}
+	function nofriendAttack()
+	{
+		dad.canDance = false;
+		dad.canSing = false;
+		dad.playAnim('attack', true);
+		var runSfx = new FlxSound().loadEmbedded(Paths.soundRandom('fiveNights/run', 1, 2, 'shared'));
+		runSfx.play();
 	}
 	public function getCamZoom():Float
 	{

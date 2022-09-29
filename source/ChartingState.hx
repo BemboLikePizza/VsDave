@@ -1179,6 +1179,7 @@ class ChartingState extends MusicBeatState
 		
 		var gridWidth = guitarPart ? 9 : 8;
 		remove(gridBG);
+		trace(_song.notes[curSection].lengthInSteps);
 		gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, GRID_SIZE * gridWidth, GRID_SIZE * _song.notes[curSection].lengthInSteps);
       add(gridBG);
 
