@@ -5,10 +5,12 @@ import flixel.FlxSprite;
 class StrumNote extends FlxSprite
 {
 	public var baseX:Float;
+	public var baseY:Float;
 	public var playerStrum:Bool;
    public function new(x:Float, y:Float, type:String, strumID:Int, playerStrum:Bool)
    {
       super(x, y);
+	  baseY = y;
 
 	  ID = strumID;
 
@@ -92,10 +94,14 @@ class StrumNote extends FlxSprite
       scrollFactor.set();
 
 		this.playerStrum = playerStrum;
-   }
+   	}
 	public function resetX()
 	{
 		x = baseX;
+	}
+	public function resetY()
+	{
+		y = baseY;
 	}
 	public function centerStrum()
 	{

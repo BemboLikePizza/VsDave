@@ -451,6 +451,7 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
 				}
 				animation.addByPrefix('sleepIdle', 'sleepy', 24, false);
+				animation.addByPrefix('scared', 'bruh', 24, false);
 				animation.addByPrefix('sleeping', 'sleeping', 24, true);
 				
 				globalOffset = [-10, -230];
