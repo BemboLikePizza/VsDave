@@ -53,9 +53,9 @@ class MusicPlayerState extends MusicBeatState
         {
             var splitstring:Array<String> = initSonglist[i].split(",");
 
-            songs.push(new PlaySongMetadata(splitstring[1], splitstring[0] == "external", splitstring[2],splitstring[3] == "bad",true));
+            songs.push(new PlaySongMetadata(splitstring[1], splitstring[0] == "external", splitstring[2],splitstring[3] == "bad",splitstring[1] != 'vs-dave-rap'));
 
-            if (splitstring[0] != "external") //remove this later
+            if (splitstring[0] != "external" && splitstring[1] != 'vs-dave-rap') //remove this later
             {
                 songs.push(new PlaySongMetadata(splitstring[1], splitstring[0] == "external", splitstring[2],splitstring[3] == "bad",false));
             }
@@ -86,8 +86,8 @@ class MusicPlayerState extends MusicBeatState
             if (unlockSong)
             {
                 var bad = secretSongs[i][2] != null ? secretSongs[i][2] : false;
-                songs.push(new PlaySongMetadata(secretSongs[i][0], false, secretSongs[i][1], bad, true));
-                if (secretSongs[i][0] != 'vs-dave-rap' && secretSongs[i][0] != 'vs-dave-rap-two')
+                songs.push(new PlaySongMetadata(secretSongs[i][0], false, secretSongs[i][1], bad, secretSongs[i][0] != 'vs-dave-rap-two'));
+                if (secretSongs[i][0] != 'vs-dave-rap-two')
                 {
                     songs.push(new PlaySongMetadata(secretSongs[i][0], false, secretSongs[i][1], bad, false));
                 }
@@ -108,7 +108,7 @@ class MusicPlayerState extends MusicBeatState
 
         for (i in 0...songs.length)
         {
-            var songText:Alphabet = new Alphabet(0, 0, songs[i].songName + (songs[i].hasVocals ? "" : "-Inst"), true, false);
+            var songText:Alphabet = new Alphabet(0, 0, songs[i].songName + (songs[i].hasVocals ? "" : ((songs[i].songName != 'vs-dave-rap-two' && songs[i].songName != 'vs-dave-rap') ? "-Inst" : "")), true, false);
             songText.isMenuItem = true;
             songText.targetY = i;
             grpSongs.add(songText);
