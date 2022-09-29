@@ -6099,18 +6099,6 @@ class PlayState extends MusicBeatState
 					case 1008:
 						switchDad('bambi-shredder', dad.getPosition());
 						dad.playAnim('takeOut', true);
-						dadStrums.forEach(function(spr:StrumNote)
-						{
-							dadStrums.remove(spr);
-							strumLineNotes.remove(spr);
-							remove(spr);
-						});
-						generateGhNotes(0);
-
-						dadStrums.forEach(function(spr:StrumNote)
-						{
-							spr.centerStrum();
-						});
 
 					case 1024:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
@@ -6181,6 +6169,7 @@ class PlayState extends MusicBeatState
 							remove(spr);
 						});
 						generateGhNotes(0);
+						
 
 						dadStrums.forEach(function(spr:StrumNote)
 						{

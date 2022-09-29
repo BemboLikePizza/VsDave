@@ -554,7 +554,9 @@ class CreditsMenuState extends MusicBeatState
          super.update(elapsed);
          if (back)
          {
-            FlxG.switchState(new MainMenuState());
+            //make sure they get the epic song no matter what
+            FlxG.sound.playMusic(Paths.music('theend'));
+            FlxG.switchState(new StoryMenuState());
          }
          return;
       }
