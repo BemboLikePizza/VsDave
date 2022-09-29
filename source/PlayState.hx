@@ -941,8 +941,8 @@ class PlayState extends MusicBeatState
 				dad.flipX = !dad.flipX;
 				boyfriend.flipX = !boyfriend.flipX;
 
-				dad.setPosition(606, 50);
-				boyfriend.setPosition(-114, 100);
+				dad.setPosition(406, 50);
+				boyfriend.setPosition(86, 100);
 			case 'overdrive':
 				dad.setPosition(244.15, 437);
 				boyfriend.setPosition(837, 363);
