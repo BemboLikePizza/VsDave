@@ -481,11 +481,12 @@ class CreditsMenuState extends MusicBeatState
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
          personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
-		 personIcon.setGraphicSize(150);
-		 personIcon.updateHitbox();
+         personIcon.setGraphicSize(150);
+         personIcon.updateHitbox();
          add(personIcon);
 
          personIcon.visible = !DoFunnyScroll;
+         personIcon.antialiasing = true;
 
          var creditsTextItem:CreditsText = new CreditsText(textItem, true, personIcon);
 
