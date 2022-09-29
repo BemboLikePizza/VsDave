@@ -2339,7 +2339,7 @@ class PlayState extends MusicBeatState
 		{
 			var sectionCount = noteData.indexOf(section);
 
-			var isGuitarSection = (sectionCount >= 64 && sectionCount < 80) && SONG.song.toLowerCase() == 'shredder';
+			var isGuitarSection = (sectionCount >= 64 && sectionCount < 80) && SONG.song.toLowerCase() == 'shredder'; //wtf
 
 			var coolSection:Int = Std.int(section.lengthInSteps / 4);
 
@@ -6074,7 +6074,7 @@ class PlayState extends MusicBeatState
 						FlxTween.tween(black, {alpha: 0.6}, 1);
 					case 960:
 						camHUD.setFilters([]);
-						defaultCamZoom -= 0.2;
+						defaultCamZoom = 1.05; //incase somehow the zoom stuff gets skipped.
 						FlxTween.tween(black, {alpha: 0}, 1);
 					case 992:
 						dadStrums.forEach(function(spr:StrumNote)
@@ -6086,6 +6086,11 @@ class PlayState extends MusicBeatState
 						dad.playAnim('takeOut', true);
 					case 1024:
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+
+						playerStrums.forEach(function(spr:StrumNote)
+						{
+							FlxTween.cancelTweensOf(spr);
+						});
 
 						dadStrums.forEach(function(spr:StrumNote)
 						{
@@ -6151,6 +6156,7 @@ class PlayState extends MusicBeatState
 						dadStrums.forEach(function(spr:StrumNote)
 						{
 							spr.centerStrum();
+							spr.x -= (spr.width / 4);
 						});
 						playerStrums.forEach(function(spr:StrumNote)
 						{
@@ -6611,6 +6617,13 @@ class PlayState extends MusicBeatState
 			var curSection = SONG.notes.indexOf(currentSection);
 			guitarSection = curSection >= 64 && curSection < 80;
 			dadStrumAmount = guitarSection ? 5 : 4;
+			if (guitarSection)
+			{
+				notes.forEachAlive(function(daNote:Note)
+				{
+					daNote.MyStrum = null;
+				});
+			}
 		}
 		switch (curSong.toLowerCase())
 		{
