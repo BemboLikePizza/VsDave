@@ -5868,14 +5868,37 @@ class PlayState extends MusicBeatState
 			case 'indignancy':
 				switch (curStep)
 				{
-					//1616 - 1632
+					//1616-1632 (just keeping this here in case t5 needs it for some reason)
+					case 1216:
+						defaultCamZoom += 0.2;
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						makeInvisibleNotes(true);
+					case 1217:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub1'), 0.02, 2);
+					case 1262:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub2'), 0.02, 1.5);
+					case 1292:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub3'), 0.02, 1);
+					case 1330:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub4'), 0.02, 0.5);
+				    case 1344:
+						defaultCamZoom -= 0.2;
+						FlxTween.tween(black, {alpha: 0}, 1);
+						makeInvisibleNotes(false);
 					case 1622:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub5'), 0.02, 0.3);
 						dad.canDance = false;
 						dad.playAnim('scream', true);
 						dad.animation.finishCallback = function(animation:String)
 						{
 							dad.canDance = true;
 						}
+					case 1632:
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 				}
 			case 'exploitation':
 				switch(curStep)

@@ -295,6 +295,13 @@ daveraptwo_sub10==Go play the mod Vs Dave and Bambi 3.0
 daveraptwo_sub11==Out now on GameBanana!
 daveraptwo_sub12==Yum.
 
+//Indignancy (screwed 2) Subtitles//
+indignancy_sub1==Kill me, I want to die
+indignancy_sub2==Kick me, please senpai
+indignancy_sub3==Kicked meeeeeee
+indignancy_sub4==I going to leave.
+indignancy_sub5==AuuuuuuAAAAAAAAAAAAAAA
+
 3d_gameOver_polygonized==You've been Polygonized!
 3d_gameOver_restart==Restart?
 
