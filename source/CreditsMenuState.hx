@@ -489,6 +489,7 @@ class CreditsMenuState extends MusicBeatState
          add(personIcon);
 
          personIcon.visible = !DoFunnyScroll;
+         personIcon.antialiasing = true;
 
          var creditsTextItem:CreditsText = new CreditsText(textItem, true, personIcon);
 
@@ -541,6 +542,7 @@ class CreditsMenuState extends MusicBeatState
    
 	override function update(elapsed:Float)
    {
+
       var fadeTimer:Float = 0.08;
       var upPressed = controls.UP_P;
 		var downPressed = controls.DOWN_P;

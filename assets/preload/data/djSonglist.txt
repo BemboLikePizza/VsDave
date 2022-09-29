@@ -3,7 +3,6 @@ internal,house,dave,good
 internal,insanity,dave,bad
 external,im-angey,dave-angey,bad
 internal,polygonized,dave-angey,bad
-internal,bonus-song,dave,good
 internal,blocked,bambi,bad
 internal,corn-theft,bambi,bad
 internal,maze,bambi,good
@@ -12,6 +11,8 @@ internal,shredder,bambi,good
 internal,greetings,tristan,good
 internal,interdimensional,dave-festival-3d,good
 internal,rano,dave-festival,good
+internal,bonus-song,dave,good
+internal,indignancy,bambi-angey,good
 internal,adventure,tristan,good
 internal,bot-trot,playrobot,good
 internal,escape-from-california,moldy,good

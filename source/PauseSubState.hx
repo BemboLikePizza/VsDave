@@ -14,11 +14,13 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import flixel.addons.display.FlxBackdrop;
 import lime.app.Application;
 
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
+	var bg:FlxBackdrop;
 
 	#if debug
 	var menuItems:Array<PauseOption> = [
@@ -55,7 +57,7 @@ class PauseSubState extends MusicBeatSubstate
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			default:
-				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);	
+				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
 			case "exploitation":
 				pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast-ohno'), true, true);
 				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
@@ -67,9 +69,15 @@ class PauseSubState extends MusicBeatSubstate
 
 		FlxG.sound.list.add(pauseMusic);
 
-		var bg:FlxSprite = new FlxSprite();
-		bg.makeGraphic(FlxG.width + 1, FlxG.height + 1, FlxColor.BLACK);
+		var backBg:FlxSprite = new FlxSprite();
+		backBg.makeGraphic(FlxG.width + 1, FlxG.height + 1, FlxColor.BLACK);
+		backBg.alpha = 0;
+		backBg.scrollFactor.set();
+		add(backBg);
+
+		bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), 1, 1, true, true, 1, 1);
 		bg.alpha = 0;
+		bg.antialiasing = true;
 		bg.scrollFactor.set();
 		add(bg);
 
@@ -100,6 +108,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.x = FlxG.width - (levelInfo.width + 20);
 		levelDifficulty.x = FlxG.width - (levelDifficulty.width + 20);
 
+		FlxTween.tween(backBg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5,
@@ -134,6 +143,10 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
+		var scrollSpeed:Float = 50;
+      	bg.x -= scrollSpeed * elapsed;
+      	bg.y -= scrollSpeed * elapsed;
+
 		timeElapsed += elapsed;
 		if (pauseMusic.volume < 0.75)
 			pauseMusic.volume += 0.01 * elapsed;
@@ -239,6 +252,12 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.window.close();
 					}
 				}
+
+				if (FlxG.save.data.exploitationState == 'playing')
+				{
+					Sys.exit(0);
+				}
+
 				PlayState.instance.shakeCam = false;
 				PlayState.instance.camZooming = false;
 				FlxG.mouse.visible = false;
