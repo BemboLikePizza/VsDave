@@ -6002,7 +6002,7 @@ class PlayState extends MusicBeatState
 						shakeCam = false;
 						FlxG.camera.zoom += 0.2;
 					case 1536:
-						//no revert back. it fixes nothing and is LAME.
+						//no revert back yet. it fixes nothing and is LAME.
 						
 						expungedBG.loadGraphic(Paths.image('backgrounds/void/exploit/creepyRoom', 'shared'));
 						expungedBG.setGraphicSize(Std.int(expungedBG.width * 2));
