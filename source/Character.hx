@@ -133,7 +133,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'hey', 24, false);
 				
 				animation.addByIndices('attack', 'jumpscare', CoolUtil.numberArray(23, 0), '', 24, false);
-				animation.addByIndices('fail', 'jumpscare', CoolUtil.numberArray(24, 44), '', 24, false);
+				animation.addByIndices('fail', 'jumpscare', CoolUtil.numberArray(44, 24), '', 24, false);
 				
 				loadOffsetFile(curCharacter);
 				

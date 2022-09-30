@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Doom_Impending.png">
+	<!-- Created with Adobe Flash CS6 version 12.0.0.481 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="logo bumpin0000" x="30" y="30" width="796" height="608"/>
+	<SubTexture name="logo bumpin0001" x="829" y="30" width="796" height="608"/>
+	<SubTexture name="logo bumpin0002" x="1628" y="30" width="796" height="608"/>
+	<SubTexture name="logo bumpin0003" x="2427" y="30" width="796" height="608"/>
+	<SubTexture name="logo bumpin0004" x="3226" y="30" width="796" height="608"/>
+	<SubTexture name="logo bumpin0005" x="30" y="641" width="796" height="608"/>
+	<SubTexture name="logo bumpin0006" x="829" y="641" width="796" height="608"/>
+	<SubTexture name="logo bumpin0007" x="1628" y="641" width="796" height="608"/>
+	<SubTexture name="logo bumpin0008" x="2427" y="641" width="796" height="608"/>
+	<SubTexture name="logo bumpin0009" x="3226" y="641" width="796" height="608"/>
+	<SubTexture name="logo bumpin0010" x="30" y="1252" width="796" height="608"/>
+	<SubTexture name="logo bumpin0011" x="829" y="1252" width="796" height="608"/>
+	<SubTexture name="logo bumpin0012" x="1628" y="1252" width="796" height="608"/>
+	<SubTexture name="logo bumpin0013" x="2427" y="1252" width="796" height="608"/>
+	<SubTexture name="logo bumpin0014" x="3226" y="1252" width="796" height="608"/>
+</TextureAtlas>

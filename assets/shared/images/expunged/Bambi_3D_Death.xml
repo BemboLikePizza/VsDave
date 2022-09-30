@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Dave_3D_Dead.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dead0000" x="0" y="0" width="758" height="843" frameX="-458" frameY="-319" frameWidth="1615" frameHeight="1605"/>
+	<SubTexture name="dead0001" x="762" y="0" width="955" height="1021" frameX="-360" frameY="-230" frameWidth="1615" frameHeight="1605"/>
+	<SubTexture name="dead0002" x="1721" y="0" width="1111" height="1111" frameX="-252" frameY="-247" frameWidth="1615" frameHeight="1605"/>
+	<SubTexture name="dead0003" x="2836" y="0" width="1011" height="933" frameX="-302" frameY="-336" frameWidth="1615" frameHeight="1605"/>
+	<SubTexture name="dead0004" x="0" y="1115" width="1615" height="1605"/>
+	<SubTexture name="dead0005" x="1619" y="1115" width="473" height="523" frameX="-571" frameY="-541" frameWidth="1615" frameHeight="1605"/>
+	<SubTexture name="dead0006" x="2096" y="1115" width="0" height="0" frameX="-807" frameY="-802" frameWidth="1615" frameHeight="1605"/>
+</TextureAtlas>
