@@ -260,7 +260,7 @@ class StoryMenuState extends MusicBeatState
 						var video:VideoHandler = new VideoHandler();
 						video.finishCallback = function()
 						{
-							LoadingState.loadAndSwitchState(new CharacterSelectState(), true);
+							LoadingState.loadAndSwitchState(new PlayState(), true);
 						}
 						video.playVideo(Paths.video('daveCutscene'));
 					case 5:
@@ -269,9 +269,9 @@ class StoryMenuState extends MusicBeatState
 							FlxG.save.data.hasPlayedMasterWeek = true;
 							FlxG.save.flush();
 						}
-						LoadingState.loadAndSwitchState(new CharacterSelectState(), true);
+						LoadingState.loadAndSwitchState(new PlayState(), true);
 					default:
-						LoadingState.loadAndSwitchState(new CharacterSelectState(), true);
+						LoadingState.loadAndSwitchState(new PlayState(), true);
 				}
 			});
 		}

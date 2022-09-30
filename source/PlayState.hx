@@ -1051,7 +1051,7 @@ class PlayState extends MusicBeatState
 				fontScaler = 2;
 		}
 
-		if (FlxG.save.data.songPosition && !isGreetingsCutscene && ['five-nights', 'overdrive'].contains(SONG.song.toLowerCase()))
+		if (FlxG.save.data.songPosition && !isGreetingsCutscene && !['five-nights', 'overdrive'].contains(SONG.song.toLowerCase()))
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
