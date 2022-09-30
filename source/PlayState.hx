@@ -3781,7 +3781,15 @@ class PlayState extends MusicBeatState
 		{
 			speed += (Math.sin(elapsedtime / 5)) * 1;
 		}
-		return strumLine.y - (Conductor.songPosition - note.strumTime) * (change * 0.45 * FlxMath.roundDecimal(speed * note.LocalScrollSpeed, 2));
+		var val:Float = strumLine.y - (Conductor.songPosition - note.strumTime) * (change * 0.45 * FlxMath.roundDecimal(speed * note.LocalScrollSpeed, 2));
+		if (note.isSustainNote && downScroll && note.animation != null)
+		{
+			if (note.animation.curAnim.name.endsWith('end'))
+			{
+				val += (note.height * 2);
+			}
+		}
+		return val;
 	}
 	function ZoomCam(focusondad:Bool):Void
 	{

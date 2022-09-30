@@ -22,22 +22,13 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 	var bg:FlxBackdrop;
 
-	#if debug
 	var menuItems:Array<PauseOption> = [
 		new PauseOption('Resume'),
 		new PauseOption('Restart Song'),
-		new PauseOption('Change Character'),
+		//new PauseOption('Change Character'),
 		new PauseOption('No Miss Mode'),
 		new PauseOption('Exit to menu')
 	];
-	#else
-	var menuItems:Array<PauseOption> = [
-		new PauseOption('Resume'),
-		new PauseOption('Restart Song'),
-		new PauseOption('Change Character'),
-		new PauseOption('Exit to menu')
-	];
-	#end
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
