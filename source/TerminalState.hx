@@ -345,16 +345,19 @@ class TerminalState extends MusicBeatState
 
     function expungedReignStarts()
     {
-        var glitch = new FlxSprite(0, 0);
-        glitch.frames = Paths.getSparrowAtlas('ui/glitch/glitch');
-        glitch.animation.addByPrefix('glitchScreen', 'glitch', 40);
-        glitch.animation.play('glitchScreen');
-        glitch.setGraphicSize(FlxG.width, FlxG.height);
-        glitch.updateHitbox();
-        glitch.screenCenter();
-        glitch.scrollFactor.set();
-        glitch.antialiasing = false;
-        add(glitch);
+            var glitch = new FlxSprite(0, 0);
+            glitch.frames = Paths.getSparrowAtlas('ui/glitch/glitch');
+            glitch.animation.addByPrefix('glitchScreen', 'glitch', 40);
+            glitch.animation.play('glitchScreen');
+            glitch.setGraphicSize(FlxG.width, FlxG.height);
+            glitch.updateHitbox();
+            glitch.screenCenter();
+            glitch.scrollFactor.set();
+            glitch.antialiasing = false;
+            if (FlxG.save.data.eyesores)
+            {
+                add(glitch);
+            }
 
         add(fakeDisplayGroup);
         
@@ -372,7 +375,7 @@ class TerminalState extends MusicBeatState
         FlxG.camera.follow(camFollow, 1);
 
         expungedActivated = true;
-        expungedTimer = new FlxTimer().start(FlxG.elapsed * 2, function(timer:FlxTimer)
+        expungedTimer = new FlxTimer().start(FlxG.elapsed * 2, function(timer:FlxTimer) //t5 make this get slowed down when eyesores is off
         {
             var lastFakeDisplay = fakeDisplayGroup.members[i - 1];
             var fakeDisplay:FlxText = new FlxText(0, 0, FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);

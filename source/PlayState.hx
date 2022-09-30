@@ -3128,9 +3128,9 @@ class PlayState extends MusicBeatState
 				scoreTxt.text = "score: " + Std.string(songScore);
 			case 'exploitation':
 				scoreTxt.text = 
-				"Scor3: " + (songScore * FlxG.random.int(5,9)) + 
-				" | M1ss3s: " + (misses * FlxG.random.int(5,9)) + 
-				" | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(5,9)) + "% ";
+				"Scor3: " + (songScore * FlxG.random.int(1,9)) + 
+				" | M1ss3s: " + (misses * FlxG.random.int(1,9)) + 
+				" | Accuracy: " + (truncateFloat(accuracy, 2) * FlxG.random.int(1,9)) + "% ";
 			default:
 				scoreTxt.text = 
 				LanguageManager.getTextString('play_score') + Std.string(songScore) + " | " + 
@@ -5231,7 +5231,10 @@ class PlayState extends MusicBeatState
 		glitch.setGraphicSize(FlxG.width, FlxG.height);
 		glitch.updateHitbox();
 		glitch.screenCenter();
-		glitch.animation.play('glitch');
+		if (FlxG.save.data.eyesores)
+		{
+			glitch.animation.play('glitch');
+		}
 		add(glitch);
 
 		new FlxTimer().start(glitchTime, function(timer:FlxTimer)
@@ -6044,9 +6047,12 @@ class PlayState extends MusicBeatState
 							window.close();
 							expungedWindowMode = false;
 							window = null;
+							FlxTween.tween(Application.current.window, {x: windowProperties[0], y: windowProperties[1], width: windowProperties[2], height: windowProperties[3]}, 1, {ease: FlxEase.circInOut});
+							FlxTween.tween(iconP2, {alpha: 0}, 1, {ease: FlxEase.bounceOut});
 						}
-						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Threat expunged.dat succesfully contained.");
 						#end
+					case 2081:
+						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Threat expunged.dat succesfully contained.");
 				}
 			case 'shredder':
 				switch (curStep)
@@ -6730,7 +6736,7 @@ class PlayState extends MusicBeatState
 						dadStrums.forEach(function(strum:StrumNote)
 						{
 							var targetPosition = (FlxG.width / 8) + Note.swagWidth * Math.abs(2 * strum.ID) + 78 - (78 / 2);
-							FlxTween.cancelTweensOf(strum);
+							FlxTween.completeTweensOf(strum);
 							strum.angle = 0;
 			
 							FlxTween.angle(strum, strum.angle, strum.angle + 360, 0.2, {ease: FlxEase.circOut});
@@ -6741,7 +6747,7 @@ class PlayState extends MusicBeatState
 						{
 							var targetPosition = (FlxG.width / 8) + Note.swagWidth * Math.abs((2 * strum.ID) + 1) + 78 - (78 / 2);
 							
-							FlxTween.cancelTweensOf(strum);
+							FlxTween.completeTweensOf(strum);
 							strum.angle = 0;
 			
 							FlxTween.angle(strum, strum.angle, strum.angle + 360, 0.2, {ease: FlxEase.circOut});
@@ -6766,7 +6772,7 @@ class PlayState extends MusicBeatState
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
-						swapGlitch(Conductor.crochet / 1500, 'unfair');
+						swapGlitch(Conductor.crochet / 4000, 'unfair');
 					case 256:
 						modchart = ExploitationModchartType.Unfairness;
 					case 287:
@@ -6807,7 +6813,7 @@ class PlayState extends MusicBeatState
 					case 480:
 						switchNotePositions([2,3,6,0,5,7,4,1]);
 					case 486:
-						swapGlitch((Conductor.crochet / 1500) * 2, 'expunged');
+						swapGlitch((Conductor.crochet / 4000) * 2, 'expunged');
 					case 487:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
@@ -7237,7 +7243,7 @@ class PlayState extends MusicBeatState
 		{
 			if (cancelTweens)
 			{
-				FlxTween.cancelTweensOf(strumNote);
+				FlxTween.completeTweensOf(strumNote);
 			}
 			strumNote.angle = 0;
 			
