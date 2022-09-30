@@ -123,7 +123,7 @@ class PlayState extends MusicBeatState
 	public var bfGroup:FlxGroup;
 	public var gfGroup:FlxGroup;
 
-	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'bedroomNight'];
+	public static var darkLevels:Array<String> = ['bambiFarmNight', 'daveHouse_night', 'unfairness', 'bedroomNight', 'backyard'];
 	public var sunsetLevels:Array<String> = ['bambiFarmSunset', 'daveHouse_Sunset'];
 
 	public var stupidx:Float = 0;
@@ -412,6 +412,13 @@ class PlayState extends MusicBeatState
 
 	//indignancy
 	var vignette:FlxSprite;
+	
+	//five night
+	var time:FlxText;
+	var times:Array<Int> = [12, 1, 2, 3, 4, 5, 6];
+	var night:FlxText;
+	var powerLeft:Float;
+	var powerMeter:FlxSprite;
 
 	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh', 'alright instagram its shoutout time'];
 
@@ -1044,7 +1051,7 @@ class PlayState extends MusicBeatState
 				fontScaler = 2;
 		}
 
-		if (FlxG.save.data.songPosition && !isGreetingsCutscene && SONG.song.toLowerCase() != 'overdrive')
+		if (FlxG.save.data.songPosition && !isGreetingsCutscene && ['five-nights', 'overdrive'].contains(SONG.song.toLowerCase()))
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
@@ -1077,6 +1084,22 @@ class PlayState extends MusicBeatState
 			songPosBG.cameras = [camHUD];
 			songPosBar.cameras = [camHUD];
 			songName.cameras = [camHUD];
+		}
+		if (inFiveNights)
+		{
+			time = new FlxText(1175, 24, 0, '12 AM', 60);
+			time.setFormat(Paths.font('fnaf.ttf'), 60, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			time.scrollFactor.set();
+			time.antialiasing = false;
+			time.cameras = [camHUD];
+			add(time);
+
+			night = new FlxText(1175, 70, 0, 'Night 7', 34);
+			night.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			night.scrollFactor.set();
+			night.antialiasing = false;
+			night.cameras = [camHUD];
+			add(night);
 		}
 		
 		var healthBarPath = '';
@@ -2821,9 +2844,15 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
+			if (time != null)
+			{
+				var curTime = Std.int(Math.min(Math.floor(FlxG.sound.music.time / 1000 / (((Conductor.stepCrochet / 1000) * 1088) / times.length - 1)), times.length));
+				time.text = times[curTime] + ' AM';
+			}
 			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || controls.KEY5 && !doorChanging)
 			{
 				changeDoorState(!doorClosed);
+				trace(doorClosed);
 			}
 			if (dad.curCharacter == 'nofriend' && dad.animation.curAnim.name == 'attack' && dad.animation.curAnim.finished)
 			{
@@ -2835,6 +2864,7 @@ class PlayState extends MusicBeatState
 					{
 						dad.canDance = true;
 						dad.canSing = true;
+						dad.playAnim('idle');
 					};
 				} : {
 					health = 0;
@@ -3186,6 +3216,7 @@ class PlayState extends MusicBeatState
 						screenshader.Enabled = false;
 						#end
 
+						isStoryMode = false;
 						PlayState.SONG = Song.loadFromJson("cheating"); // you dun fucked up
 						isStoryMode = false;
 						PlayState.storyWeek = 14;
@@ -3199,6 +3230,9 @@ class PlayState extends MusicBeatState
 						new TerminalText(200, [['run AntiCheat.dll', 3]]),
 					], function()
 					{
+						isStoryMode = false;
+						storyPlaylist = [];
+						
 						shakeCam = false;
 						#if SHADERS_ENABLED
 						screenshader.Enabled = false;
@@ -3219,6 +3253,9 @@ class PlayState extends MusicBeatState
 						new TerminalText(100, [['Redirecting to terminal...', 1]])
 					], function()
 					{
+						isStoryMode = false;
+						storyPlaylist = [];
+						
 						shakeCam = false;
 						#if SHADERS_ENABLED
 						screenshader.Enabled = false;
@@ -3233,6 +3270,9 @@ class PlayState extends MusicBeatState
 				case 'exploitation':
 					health = 0;
 				case 'glitch':
+					isStoryMode = false;
+					storyPlaylist = [];
+					
 					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
 					isStoryMode = false;
 					FlxG.save.data.exbungoFound = true;
@@ -3623,6 +3663,12 @@ class PlayState extends MusicBeatState
 							{
 								health += ((FlxEase.backInOut(health / 16.5)) * (curBeat <= 160 ? 0.25 : 1)) - 0.002; //some training wheels cuz rapparep say mod too hard
 							}
+						case 'mealie':
+							if (curBeat >= 464 && curBeat <= 592) {
+								health -= (healthtolower / 1.5);
+							}
+						case 'indignancy':
+							health -= healthtolower;	
 						case 'five-nights':
 							if ((health - 0.023) > 0)
 							{
@@ -3891,6 +3937,7 @@ class PlayState extends MusicBeatState
 		new FlxTimer().start(5.5, function(timer:FlxTimer)
 		{ 
 			if(isStoryMode) {
+				FlxG.sound.music.stop();
 				nextSong();
 			}
 			else {
@@ -5958,6 +6005,7 @@ class PlayState extends MusicBeatState
 						makeInvisibleNotes(false);
 					case 1622:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub5'), 0.02, 0.3);
+						
 						dad.canDance = false;
 						dad.playAnim('scream', true);
 						dad.animation.finishCallback = function(animation:String)
@@ -6128,22 +6176,16 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash();
 						FlxTween.tween(black, {alpha: 0}, 1);
 						makeInvisibleNotes(false);
-					case 912:
+					case 784 | 816 | 912 | 944:
 						#if SHADERS_ENABLED
 						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.2;
 						FlxTween.tween(black, {alpha: 0.6}, 1);
-					case 928:
+					case 800 | 832 | 928:
 						camHUD.setFilters([]);
 						defaultCamZoom -= 0.2;
 						FlxTween.tween(black, {alpha: 0}, 1);
-					case 944:
-						#if SHADERS_ENABLED
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
-						#end
-						defaultCamZoom += 0.2;
-						FlxTween.tween(black, {alpha: 0.6}, 1);
 					case 960:
 						camHUD.setFilters([]);
 						defaultCamZoom = 0.7;
@@ -6344,12 +6386,10 @@ class PlayState extends MusicBeatState
 			case 'five-nights':
 				switch (curStep)
 				{
-					case 59:
+					case 60:
 						switchNoteSide();
-					case 32 | 64 | 192 | 256 | 320 | 448 | 480 | 512 | 576 | 704 | 768 | 832 | 960 | 1024:
-						defaultCamZoom = 1.2;
-					case 48 | 128 | 224 | 288 | 384 | 464 | 496 | 544 | 640 | 736 | 800 | 896 | 976 | 1008 | 1056:
-						defaultCamZoom = 1;
+					case 64 | 320 | 480 | 576 | 704 | 832 | 1024:
+						nofriendAttack();
 					case 992:
 						defaultCamZoom = 1.2;
 						FlxTween.tween(camHUD, {alpha: 0}, 1);
@@ -6357,7 +6397,20 @@ class PlayState extends MusicBeatState
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						black = new FlxSprite(0, 0).makeGraphic(2560, 1440, FlxColor.BLACK);
 						black.screenCenter();
+						black.scrollFactor.set();
+						black.cameras = [camHUD];
 						add(black);
+						
+						var sixAM:FlxText = new FlxText(0, 0, 0, "6 AM", 90);
+						sixAM.setFormat(Paths.font('fnaf.ttf'), 90, FlxColor.WHITE, CENTER);
+						sixAM.antialiasing = false;
+						sixAM.scrollFactor.set();
+						sixAM.screenCenter();
+						sixAM.cameras = [camHUD];
+						add(sixAM);
+						
+						var crowdSmall = new FlxSound().loadEmbedded(Paths.sound('fiveNights/CROWD_SMALL_CHIL_EC049202', 'shared'));
+						crowdSmall.play();
 				}
 			case 'bot-trot':
 				switch (curStep)

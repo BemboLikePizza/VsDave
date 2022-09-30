@@ -256,9 +256,8 @@ class Note extends FlxSprite
 				updateHitbox();
 				antialiasing = true;
 				
-				//x -= (width - 78);
-				//TODO: make this MATH.
-				noteOffset = 20;
+				noteOffset -= (width - 78);
+
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
 		if (isInState('PlayState'))
