@@ -501,6 +501,7 @@ class PlayState extends MusicBeatState
 		// String for when the game is paused
 		detailsPausedText = "Paused - " + detailsText;
 
+
 		curStage = "";
 
 		localFunny = globalFunny;
@@ -1287,6 +1288,8 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				if (FlxG.sound.music != null)
+					FlxG.sound.music.stop();
 				startCountdown();
 			}
 		}
