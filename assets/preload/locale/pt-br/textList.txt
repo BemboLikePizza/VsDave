@@ -92,6 +92,10 @@ option_freeplay_cutscenes_on==Cutscenes no Modo Livre On
 option_noteCamera_on==Movimento de Câmera por Pose
 option_noteCamera_off==Câmera Normal
 
+option_change_langauge==Mudar idioma
+option_disable_fps==Não mostra FPS e memória
+option_enable_fps==Mostrar FPS e Memória
+
 cur_language==Idioma Atual
 en-US==Inglês
 es-US==Espanhol
