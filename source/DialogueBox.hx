@@ -232,7 +232,9 @@ class DialogueBox extends FlxSpriteGroup
 			case 'bambi':
 				swagDialogue.sounds = [FlxG.sound.load(Paths.soundRandom('dialogue/bambDialogue', 1, 3), 0.6)];
 			case 'tristan':
-				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/trisDialogue'), 0.9)];		
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/trisDialogue'), 0.9)];
+			case 'bf':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/bfDialogue'), 0.6)];		
 			default:
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/pixelText'), 0.6)];	
 		}
