@@ -1409,7 +1409,7 @@ class PlayState extends MusicBeatState
 					add(nightBG);
 					if (isStoryMode)
 					{
-						health -= 0.2;
+						health -= 0.2; //BAMBI HE HIT You WIth PHONE22@!! DO You WANT PHONE PHIONE PHONJAWM NKSDGVJNKBDSBJNIKGJHSKN
 					}
 				}
 				var flatgrass:BGSprite = new BGSprite('flatgrass', 350, 75, Paths.image('backgrounds/farm/gm_flatgrass'), null, 0.65, 0.65);
@@ -6195,6 +6195,7 @@ class PlayState extends MusicBeatState
 						{
 							spr.centerStrum();
 							spr.alpha = 0;
+							spr.x += (spr.width / 4);
 						});
 					case 1276:
 						dadStrums.forEach(function(spr:StrumNote)
