@@ -200,7 +200,7 @@ class PlayState extends MusicBeatState
 	private var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
-	private var health:Float = 1;
+	public var health:Float = 1;
 	private var combo:Int = 0;
 
 	public static var misses:Int = 0;
@@ -3230,6 +3230,8 @@ class PlayState extends MusicBeatState
 					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
 					return;
+				case 'exploitation':
+					health = 0;
 				case 'glitch':
 					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
 					isStoryMode = false;

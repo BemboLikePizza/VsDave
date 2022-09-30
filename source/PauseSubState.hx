@@ -159,10 +159,18 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (upP)
 		{
+			if (expungedSelectWaitTime <= 2)
+			{
+				expungedSelectWaitTime = 2;
+			}
 			changeSelection(-1);
 		}
 		if (downP)
 		{
+			if (expungedSelectWaitTime <= 2)
+			{
+				expungedSelectWaitTime = 2;
+			}
 			changeSelection(1);
 		}
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation' && this.exists && PauseSubState != null)
@@ -232,6 +240,11 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.switchState(new CharacterSelectState());	
 			case "No Miss Mode":
 				PlayState.instance.noMiss = !PlayState.instance.noMiss;
+				if (PlayState.SONG.song.toLowerCase() == 'exploitation' || PlayState.SONG.song.toLowerCase() == 'cheating' || PlayState.SONG.song.toLowerCase() == 'unfairness')
+				{
+					PlayState.instance.health = 0;
+					close();
+				}
 			case "Exit to menu":
 				if (MathGameState.failedGame)
 				{
