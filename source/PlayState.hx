@@ -3605,7 +3605,7 @@ class PlayState extends MusicBeatState
 						case 'exploitation':
 							if (((health + (FlxEase.backInOut(health / 16.5)) - 0.002) >= 0) && !(curBeat >= 320 && curBeat <= 330))
 							{
-								health += (FlxEase.backInOut(health / 16.5)) - 0.002;
+								health += ((FlxEase.backInOut(health / 16.5)) * (curBeat <= 160 ? 0.25 : 1)) - 0.002;
 							}
 						case 'five-nights':
 							if ((health - 0.023) > 0)
@@ -6973,7 +6973,10 @@ class PlayState extends MusicBeatState
 		if (window != null)
 		{
 			window.close();
+			//x,y, width, height
+			FlxTween.tween(Application.current.window, {x: windowProperties[0], y: windowProperties[1], width: windowProperties[2], height: windowProperties[3]}, 2, {ease: FlxEase.bounceOut});
 			expungedWindowMode = false;
+
 		}
 		#end
 		var deathSkinCheck = formoverride == "bf" || formoverride == "none" ? SONG.player1 : isRecursed ? boyfriend.curCharacter : formoverride;
