@@ -111,6 +111,9 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
+
+	public var ExpungedWindowCenterPos:FlxPoint = new FlxPoint(0,0);
+
 	public var dadCombo:Int = 0;
 	public static var globalFunny:CharacterFunnyEffect = CharacterFunnyEffect.None;
 
@@ -145,6 +148,8 @@ class PlayState extends MusicBeatState
 	public var UsingNewCam:Bool = false;
 
 	public var elapsedtime:Float = 0;
+
+	public var elapsedexpungedtime:Float = 0;
 
 	var focusOnDadGlobal:Bool = true;
 
@@ -3702,17 +3707,20 @@ class PlayState extends MusicBeatState
 
 			if (!expungedMoving)
 			{
-				var toy = -Math.sin((curStep / 9.5) * 2) * 30 * 5;
-				var tox = -Math.cos((curStep / 9.5)) * 100;
-
-				expungedOffset.x += (tox - expungedOffset.x) / 12;
-				expungedOffset.y += (toy - expungedOffset.y) / 12;
+				elapsedexpungedtime += elapsed * 9;
 
 				var screenwidth = Application.current.window.display.bounds.width;
 				var screenheight = Application.current.window.display.bounds.height;
 
+				var toy = ((-Math.sin((elapsedexpungedtime / 9.5) * 2) * 30 * 5.1) / 1080) * screenheight;
+				var tox = ((-Math.cos((elapsedexpungedtime / 9.5)) * 100) / 1980) * screenwidth;
+
+				expungedOffset.x = ExpungedWindowCenterPos.x + tox;
+				expungedOffset.y = ExpungedWindowCenterPos.y + toy;
+
+
 				//center
-				Application.current.window.y = Math.round(((screenheight / 2) - (720 / 2)) + (Math.sin((curStep / 30)) * 80));
+				Application.current.window.y = Math.round(((screenheight / 2) - (720 / 2)) + (Math.sin((elapsedexpungedtime / 30)) * 80));
 				Application.current.window.x = Std.int(windowSteadyX);
 				Application.current.window.width = 1280;
 				Application.current.window.height = 720;
@@ -6731,11 +6739,11 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
 						});
 					case 143:
-						swapGlitch(Conductor.crochet / 1000, 'cheating');
+						swapGlitch(Conductor.crochet / 4000, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
 					case 191:
-						swapGlitch(Conductor.crochet / 1000, 'expunged');
+						swapGlitch(Conductor.crochet / 4000, 'expunged');
 					case 192:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6749,11 +6757,11 @@ class PlayState extends MusicBeatState
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
-						swapGlitch(Conductor.crochet / 1000, 'unfair');
+						swapGlitch(Conductor.crochet / 4000, 'unfair');
 					case 256:
 						modchart = ExploitationModchartType.Unfairness;
 					case 287:
-						swapGlitch(Conductor.crochet / 1000, 'chains');
+						swapGlitch(Conductor.crochet / 4000, 'chains');
 					case 288:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6765,7 +6773,7 @@ class PlayState extends MusicBeatState
 						});
 						modchart = ExploitationModchartType.PingPong;
 					case 455:
-						swapGlitch(Conductor.crochet / 1000, 'cheating-2');
+						swapGlitch(Conductor.crochet / 4000, 'cheating-2');
 						modchart = ExploitationModchartType.None;
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6790,7 +6798,7 @@ class PlayState extends MusicBeatState
 					case 480:
 						switchNotePositions([2,3,6,0,5,7,4,1]);
 					case 486:
-						swapGlitch((Conductor.crochet / 1000) * 2, 'expunged');
+						swapGlitch((Conductor.crochet / 4000) * 2, 'expunged');
 					case 487:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
@@ -7442,10 +7450,12 @@ class PlayState extends MusicBeatState
 
 		FlxTween.tween(expungedOffset, {x: -20}, 2, {ease: FlxEase.elasticOut});
 
-		FlxTween.tween(Application.current.window, {x: windowX}, 3, {
+		FlxTween.tween(Application.current.window, {x: windowX}, 2.2, {
 			ease: FlxEase.elasticOut,
 			onComplete: function(tween:FlxTween)
 			{
+				ExpungedWindowCenterPos.x = expungedOffset.x;
+				ExpungedWindowCenterPos.y = expungedOffset.y;
 				expungedMoving = false;
 			}
 		});
