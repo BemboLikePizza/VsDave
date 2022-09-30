@@ -96,6 +96,8 @@ class SelectLanguageState extends MusicBeatState
             FlxFlicker.flicker(currentLanguageText, 1.1, 0.07, true, true, function(flick:FlxFlicker)
 				{
 					FlxG.switchState(new TitleState());
+               FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);			
+			      FlxG.sound.music.fadeIn(4, 0, 0.7);
 				});
 			}
 			if (controls.UP_P)

@@ -513,11 +513,28 @@ class MainMenuState extends MusicBeatState
 	}
 	function resetData()
 	{
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+
+		FlxG.save.erase();
+
+		FlxG.save.flush();
+
+		FlxG.save.bind('controls', 'ninjamuffin99');
+
+		FlxG.save.erase();
+
+		FlxG.save.flush();
+
+		FlxG.save.bind('language', 'ninjamuffin99');
+
 		FlxG.save.erase();
 
 		FlxG.save.flush();
 		
 		FlxG.save.bind('funkin', 'ninjamuffin99');
+
+		Highscore.songScores = new Map();
+		Highscore.songChars = new Map();
 
 		SaveDataHandler.initSave();
 		LanguageManager.init();
