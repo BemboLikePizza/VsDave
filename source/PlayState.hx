@@ -1407,6 +1407,10 @@ class PlayState extends MusicBeatState
 					nightBG.alpha = 0;
 					sprites.add(nightBG);
 					add(nightBG);
+					if (isStoryMode)
+					{
+						health -= 0.2;
+					}
 				}
 				var flatgrass:BGSprite = new BGSprite('flatgrass', 350, 75, Paths.image('backgrounds/farm/gm_flatgrass'), null, 0.65, 0.65);
 				flatgrass.setGraphicSize(Std.int(flatgrass.width * 0.34));
