@@ -229,6 +229,11 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCqFkjwmaYlnVXwLMw3_AXLA'),
       ]),
 
+      new Person("chromasen", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCgGk4oZt3We-ktkEOV9HY1Q'),
+      ]),
+
       // Beta Testers //
       new Person("letsy", CreditsType.BetaTester,
       [
@@ -466,8 +471,6 @@ class CreditsMenuState extends MusicBeatState
 
             var personIcon:PersonIcon = new PersonIcon(titleText);
             personIcon.loadGraphic(Paths.image('credits/titles/' + creditsTypeString));
-            personIcon.setGraphicSize(150);
-            personIcon.updateHitbox();
             personIcon.visible = !DoFunnyScroll;
             add(personIcon);
             
@@ -484,8 +487,6 @@ class CreditsMenuState extends MusicBeatState
 
          var personIcon:PersonIcon = new PersonIcon(textItem);
          personIcon.loadGraphic(Paths.image('credits/icons/' + creditsTypeString + '/' + currentPerson.name));
-         personIcon.setGraphicSize(150);
-         personIcon.updateHitbox();
          add(personIcon);
 
          personIcon.visible = !DoFunnyScroll;

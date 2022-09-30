@@ -1,0 +1,39 @@
+:tristan:Pai! Acho que o celular do Bambi quebrou, tá preso numa tela escura agora.
+:bambi,splitathon:QUE, POR QUE VOCE JOGANDO NO MEU CELULAR
+:dave,post-maze:Tristan, você não deveria estar brincando no celular do Bambi sem a permissão dele.
+:tristan:Mas o jogo era tão divertido!
+:tristan:Você aperta esses números, e algumas vezes eles diriam certas coisas.
+:tristan:Só teve esse 190 que me deu medo
+:dave,shocked:VOCÊ LIGOU PRA POLÍCIA!?
+:bf,upset:Boop!?
+:bambi,splitathon:POR QUE TU FEZ ISSO??
+:tristan:Pera, era a polícia?
+:dave,shocked:Sim!
+:dave,post-maze:Tudo bem, Tristan! Você está DE CASTIGO!
+:generic:Tristan começa a chorar.
+:tristan,sad:Mas pai! Eu não sabia!
+:dave,post-maze:Eu não ligo Tristan! Essas são pessoas de verdade, eu poderia ter me metido em encrenca!
+:gf,confused:Espera, de que forma você estaria encrencado?
+:dave,erm:Ummmmmmmmmmmmmm...
+:dave,post-maze:Tristan, me dê o celular agora.
+:tristan,sad:Mas paaai-
+:dave,furious:Me dê o celular!
+:generic:Tristan dá o celular para Dave.
+:dave,post-maze:Ugh, perdão por isso.
+:dave:Enfim, acho que eu e o Tristan vamos pra casa agora, Bambi, você quer vir conosco?
+:bambi,splitathon:Não, eu dormir no sítio.
+:dave:Certo.
+:dave:Aliás BF, preciso te contar algo antes de nós sairmos.
+:bf,confused:Bep?
+:dave:Eu e o Bambi estamos fazendo um festival, você quer participar nele?
+:bf:Yeah!
+:dave:Beleza, venha pra fazenda do Bambi na próxima semana e eu vou te dizer o que fazer lá.
+:bf:Bo Be
+:dave:Legal, vejo vocês lá!
+:bf:By By
+:gf:Seeya!
+:generic:BF e GF saem da fazenda.
+:dave:Até mais Bambi!
+:bambi,splitathon:Tchau.
+:generic:Dave e Tristan saem da fazenda.
+to_black:generic:Fim... por enquanto.

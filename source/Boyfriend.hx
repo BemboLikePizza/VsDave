@@ -13,15 +13,7 @@ class Boyfriend extends Character
 
 	public function new(x:Float, y:Float, ?char:String = 'bf')
 	{
-		switch (char)
-		{
-			case "dave":
-				super(x, y - 40, char, true);
-			case 'dave-angey':
-				super(x, y - 225, char, true);
-			default:
-				super(x, y, char, true);
-		}
+		super(x, y, char, true);
 	}
 
 	override function update(elapsed:Float)
