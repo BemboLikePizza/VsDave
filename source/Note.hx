@@ -244,6 +244,7 @@ class Note extends FlxSprite
 				noteOffset = 20;
 			case 'phone-alt':
 				frames = Paths.getSparrowAtlas('notes/NOTE_phoneAlt', 'shared');
+				
 				animation.addByPrefix('greenScroll', 'green alt');
 				animation.addByPrefix('greenhold', 'green hold piece');
 				animation.addByPrefix('greenholdend', 'green hold end');
@@ -258,15 +259,14 @@ class Note extends FlxSprite
 
 				animation.addByPrefix('purpleScroll', 'purple alt');
 				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('purpleend', 'pruple end hold');
+				animation.addByPrefix('purpleholdend', 'pruple end hold');
 				
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
 				
-				//x -= (width - 78);
-				//TODO: make this MATH.
-				noteOffset = 20;
+				noteOffset -= (width - 78);
+
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
 		if (isInState('PlayState'))

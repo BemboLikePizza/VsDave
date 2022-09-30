@@ -424,9 +424,7 @@ class Character extends FlxSprite
 				{
 					animation.addByPrefix('sing${anim.toUpperCase()}', '${anim}', 24, false);
 				}
-
-
-				globalOffset = [0, -400];
+				globalOffset = [-140, -380];
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
@@ -473,7 +471,6 @@ class Character extends FlxSprite
 					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
 				}
 				loadOffsetFile(curCharacter);
-
 				
 				globalOffset = [-240, -450];
 				
@@ -497,7 +494,7 @@ class Character extends FlxSprite
 				{
 					animation.addByPrefix('sing${anim.toUpperCase()}-alt', 'bambi alt $anim', 24, false);
 				}
-				animation.addByPrefix('hey', 'bambi look', 24, false);
+				animation.addByPrefix('hey', 'bambi hey', 24, false);
 				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
 				
 				barColor = FlxColor.fromRGB(37, 191, 55);
@@ -840,7 +837,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
-				globalOffset = [-15, 20];
+				globalOffset = [-35, -30];
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				

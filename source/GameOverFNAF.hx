@@ -18,7 +18,6 @@ class GameOverFNAF extends MusicBeatSubstate
 {
 	var camFollow:FlxObject;
 	var retryText:FlxText;
-	var canInteract = false;
 
 	public function new()
 	{
@@ -62,22 +61,12 @@ class GameOverFNAF extends MusicBeatSubstate
 			staticBG.animation.play('static');
 			add(staticBG);
 
+			remove(jumpscare);
+			
 			new FlxTimer().start(2, function(timer:FlxTimer)
 			{
-				retryText = new FlxText(0, 0, 0, LanguageManager.getTextString('fnaf_retry'), 40);
-				retryText.setFormat(Paths.font('fnaf.ttf'), 80, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-				retryText.borderSize = 3;
-				retryText.antialiasing = true;
-				retryText.scrollFactor.set();
-				retryText.screenCenter();
-				//retryText.alpha = 0;
-				add(retryText);
-				canInteract = true;
-
-				FlxTween.tween(retryText, {alpha: 1}, 1);
+				endBullshit();
 			});
-
-			remove(jumpscare);
 		}
 	}
 
@@ -85,24 +74,15 @@ class GameOverFNAF extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
-		if (canInteract)
+		if (controls.BACK)
 		{
-			if (controls.ACCEPT)
-			{
-				endBullshit();
-			}
-
-			if (controls.BACK)
-			{
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
-				FlxG.switchState(new FreeplayState());
-			}
+			FlxG.sound.music.stop();
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			FlxG.switchState(new FreeplayState());
 		}
 	}
 	function endBullshit():Void
 	{
-		canInteract = false;
-		FlxG.camera.flash();
 		FlxFlicker.flicker(retryText, 1, 0.06, false, true);
 		FlxG.sound.play(Paths.sound('confirmMenu'));
 		new FlxTimer().start(0.7, function(tmr:FlxTimer)
