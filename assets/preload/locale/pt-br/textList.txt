@@ -104,12 +104,15 @@ keybind_preset==Presets de Teclas:
 
 // Story Mode State // 
 story_track==Faixas
-story_weekScore==Pontuação da Semana:
+story_weekScore==Pontuação:
 story_tutorial==Aula de ritmo de Dave!
 story_daveWeek==A Divertida Batalha de Rap Contra Dave!
 story_bambiWeek==O Divertido Labirinto de Milho do Sr. Bambi!
 story_finale==O Final
 story_festivalWeek==O Festival de Milho do Bambi!
+story_masterWeek==Semana do Mestre Bambi!
+story_masterWeekToPlay==?????????
+
 
 // CHARACTER SELECT STATE //
 character_reset==Pressione R para Reiniciar
@@ -293,15 +296,14 @@ daveraptwo_sub10==Jogue o mod Vs Dave and Bambi 3.0
 daveraptwo_sub11==Disponível no GameBanana!
 daveraptwo_sub12==Yum.
 
-//Indignancy (screwed 2) Subtitles//
-indignancy_sub1==Kill me, I want to die
-indignancy_sub2==Kick me, please senpai
-indignancy_sub3==Kicked meeeeeee
-indignancy_sub4==I going to leave.
+indignancy_sub1==Me mata, eu quero morrer carai
+indignancy_sub2==Me chuta, por favor senpai
+indignancy_sub3==Me chutoooou
+indignancy_sub4==Eu sair daqui.
 indignancy_sub5==AuuuuuuAAAAAAAAAAAAAAA
 
-3d_gameOver_polygonized==You've been Polygonized!
-3d_gameOver_restart==Restart?
+3d_gameOver_polygonized==Você foi Poligonizado!
+3d_gameOver_restart==Tentar de novo?
 
 //developers 
 credit_MoldyGH==Diretor, Criador, Programador, Compositor, Desenvolvedor Principal
