@@ -1753,7 +1753,7 @@ class PlayState extends MusicBeatState
 			case 'roof':
 				bgZoom = 0.8;
 				stageName = 'roof';
-				var roof:BGSprite = new BGSprite('roof', -584, -397, Paths.image('backgrounds/roof', 'shared'), null, 1, 1, true);
+				var roof:BGSprite = new BGSprite('roof', -584, -397, Paths.image('backgrounds/gm_house5', 'shared'), null, 1, 1, true);
 				roof.setGraphicSize(Std.int(roof.width * 2));
 				roof.antialiasing = false;
 				add(roof);
