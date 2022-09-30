@@ -83,7 +83,6 @@ class GameOverFNAF extends MusicBeatSubstate
 	}
 	function endBullshit():Void
 	{
-		FlxFlicker.flicker(retryText, 1, 0.06, false, true);
 		FlxG.sound.play(Paths.sound('confirmMenu'));
 		new FlxTimer().start(0.7, function(tmr:FlxTimer)
 		{

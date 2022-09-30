@@ -415,7 +415,7 @@ class PlayState extends MusicBeatState
 	
 	//five night
 	var time:FlxText;
-	var times:Array<Int> = [12, 1, 2, 3, 4, 5, 6];
+	var times:Array<Int> = [12, 1, 2, 3, 4, 5];
 	var night:FlxText;
 	var powerLeft:Float;
 	var powerMeter:FlxSprite;
@@ -1051,7 +1051,7 @@ class PlayState extends MusicBeatState
 				fontScaler = 2;
 		}
 
-		if (FlxG.save.data.songPosition && !isGreetingsCutscene && ['five-nights', 'overdrive'].contains(SONG.song.toLowerCase()))
+		if (FlxG.save.data.songPosition && !isGreetingsCutscene && !['five-nights', 'overdrive'].contains(SONG.song.toLowerCase()))
 		{
 			var yPos = scrollType == 'downscroll' ? FlxG.height * 0.9 + 20 : strumLine.y - 20;
 
@@ -2864,7 +2864,6 @@ class PlayState extends MusicBeatState
 					{
 						dad.canDance = true;
 						dad.canSing = true;
-						dad.playAnim('idle');
 					};
 				} : {
 					health = 0;
@@ -4475,11 +4474,7 @@ class PlayState extends MusicBeatState
 			songScore += score;
 		}
 
-		if (inFiveNights)
-		{
-			createScorePopUp(-20,-70, false, daRating,combo,note.noteStyle);
-		}
-		else
+		if (!inFiveNights)
 		{
 			createScorePopUp(0,0, true, daRating,combo,note.noteStyle);
 		}
@@ -4506,6 +4501,11 @@ class PlayState extends MusicBeatState
 		var left = controls.LEFT;
 
 		var key5 = controls.KEY5 && (SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'interdimensional');
+
+		playerStrums.forEach(function(strum:StrumNote)
+		{
+			strum.pressingKey5 = key5;
+		});
 
 		var upP = controls.UP_P;
 		var rightP = controls.RIGHT_P;
@@ -5952,24 +5952,50 @@ class PlayState extends MusicBeatState
 				{
 					case 659:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub1'), 0.02, 0.6);
-					case 1194:
+					case 1183:
+						defaultCamZoom += 0.2;
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						makeInvisibleNotes(true);
+					case 1193:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub2'), 0.02, 0.6);
+					case 1208:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub3'), 0.02, 1.5);
+					case 1228:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 1);
+					case 1242:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 1);
+					case 1257:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub6'), 0.02, 0.5);
+					case 1266:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub7'), 0.02, 1.5);
+					case 1289:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub8'), 0.02, 2);
+					case 1344:
+						defaultCamZoom -= 0.2;
+						FlxTween.tween(black, {alpha: 0}, 1);
+						makeInvisibleNotes(false);
+					case 1584:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub15'), 0.02, 1);
 					case 1751:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub3'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub9'), 0.02, 0.6);
 					case 1770:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub10'), 0.02, 0.6);
 					case 1776:
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad(FlxG.random.int(0, 999) == 0 ? 'bambi-angey-old' : 'bambi-angey', dad.getPosition());
 						dad.color = nightColor;
 					case 1800:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub11'), 0.02, 0.6);
 					case 1810:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub6'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub12'), 0.02, 0.6);
 					case 1843:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub7'), 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub13'), 0.02, 1, {subtitleSize: 60});
 					case 2418:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub8'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub14'), 0.02, 0.6);				
 				}
 			case 'indignancy':
 				switch (curStep)
