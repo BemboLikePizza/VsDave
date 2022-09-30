@@ -168,14 +168,21 @@ maze_sub11==Você me bullying?
 maze_sub12==Nunca mais volte.
 
 // Mealie Subtitles //
-mealie_sub1==Eu vou te bloquear!
-mealie_sub2==Eu quero você outro
-mealie_sub3==Ah oh eu vou quebrar meu
-mealie_sub4==Celular!
-mealie_sub5==É isso que você queria?
-mealie_sub6==um celular?
-mealie_sub7==PUTA MERDA!
-mealie_sub8==Seu mentiroso Moldy!
+mealie_sub1==Eu bloquear você!
+mealie_sub2==Eu ir sua casa
+mealie_sub3==e eu vou te CAIR
+mealie_sub4==A cama sua-
+mealie_sub5==Sua casa!
+mealie_sub6==Isaac...
+mealie_sub7==Cala a boca.
+mealie_sub8==Para usar a porra do...
+mealie_sub9==Ah oh eu vou quebrar o meu
+mealie_sub10==CELULAR!
+mealie_sub11==Você ia queria-
+mealie_sub12==a porra do celular?
+mealie_sub13==PUTA MERDA!
+mealie_sub14==Seu mentiroso Moldy!
+mealie_sub15==Vai pro inferno!
 
 // Shredder Subtitles //
 shred_sub1==Ai meu deus...
