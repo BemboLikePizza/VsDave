@@ -779,7 +779,7 @@ class Character extends FlxSprite
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [-35, -30];
+				globalOffset = [-35, -35];
 
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				skins.set('recursed', 'tristan-recursed');
@@ -817,7 +817,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 						
 				loadOffsetFile(curCharacter);
-				globalOffset = [-35, -30];
+				globalOffset = [-35, -35];
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				skins.set('recursed', 'tristan-recursed');

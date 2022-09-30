@@ -19,6 +19,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import openfl.Assets;
+import lime.app.Application;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -148,6 +149,7 @@ class TitleState extends MusicBeatState
 		else
 		{
 			logoBl.frames = Paths.getSparrowAtlas('ui/logoBumpinExpunged');
+			Application.current.window.title = "Friday Night Funkin' | VS. EXPUNGED";
 		}
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);

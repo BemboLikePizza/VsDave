@@ -171,14 +171,14 @@ class OptionsMenu extends MusicBeatState
 					updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
 				case 7:
 					FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
-					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
+					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 7, 'Vertical');
 				case 8:
-					updateGroupControls(LanguageManager.getTextString('option_change_langauge'), 9, 'Vertical');
+					updateGroupControls(LanguageManager.getTextString('option_change_langauge'), 8, 'Vertical');
 					FlxG.switchState(new ChangeLanguageState());
 				case 9:
 					FlxG.save.data.disableFps = !FlxG.save.data.disableFps;
 					Main.fps.visible = !FlxG.save.data.disableFps;
-					updateGroupControls(FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'), 10, 'Vertical');
+					updateGroupControls(FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'), 9, 'Vertical');
 			}
 		}
 	}

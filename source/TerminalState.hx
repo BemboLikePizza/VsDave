@@ -25,12 +25,12 @@ class TerminalState extends MusicBeatState
     //if you ingore this message and use it anyway, atleast give credit.
 
     public var curCommand:String = "";
-    public var previousText:String = "Vs Dave Developer Console[Version 1.0.00001.1234]\nAll Rights Reserved.\n> ";
+    public var previousText:String = LanguageManager.getTerminalString("term_introduction");
     public var displayText:FlxText;
     var expungedActivated:Bool = false;
     public var CommandList:Array<TerminalCommand> = new Array<TerminalCommand>();
 
-    // cuzsie was too lazy to finish this lol.
+    // [BAD PERSON] was too lazy to finish this lol.
     var unformattedSymbols:Array<String> =
     [
         "period",
@@ -76,7 +76,7 @@ class TerminalState extends MusicBeatState
     public var expungedTimer:FlxTimer;
     var curExpungedAlpha:Float = 0;
 
-    override public function create():Void 
+    override public function create():Void
     {
         Main.fps.visible = false;
         PlayState.isStoryMode = false;
@@ -86,7 +86,7 @@ class TerminalState extends MusicBeatState
 		displayText.antialiasing = false;
         FlxG.sound.music.stop();
 
-        CommandList.push(new TerminalCommand("help", "Displays this menu.", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("help", LanguageManager.getTerminalString("term_help_ins"), function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text
             var helpText:String = "";
@@ -100,24 +100,24 @@ class TerminalState extends MusicBeatState
             UpdateText("\n" + helpText);
         }));
 
-        CommandList.push(new TerminalCommand("characters", "Shows the list of characters.", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("characters", LanguageManager.getTerminalString("term_char_ins"), function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text
             UpdateText("\ndave.dat\nbambi.dat\ntristan.dat\nexpunged.dat\nexbungo.dat\nrecurser.dat\nmoldy.dat");
         }));
-        CommandList.push(new TerminalCommand("admin", "Shows the admin list, use grant to grant rights.", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("admin", LanguageManager.getTerminalString("term_admin_ins"), function(arguments:Array<String>)
         {
             if (arguments.length == 0)
             {
                 UpdatePreviousText(false); //resets the text
                 UpdateText("\n" + (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'User354378')
-                 + "\nTo add extra users, add the grant parameter and the name.\n(Example: admin grant expungo.dat)\nNOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.");
+                 + LanguageManager.getTerminalString("term_admlist_ins"));
                 return;
             }
             else if (arguments.length != 2)
             {
                 UpdatePreviousText(false); //resets the text
-                UpdateText("\nNo version of the \"admin\" command takes " + arguments.length + " parameter(s).");
+                UpdateText(LanguageManager.getTerminalString("term_admin_error1") + " " + arguments.length + LanguageManager.getTerminalString("term_admin_error2"));
             }
             else
             {
@@ -127,10 +127,10 @@ class TerminalState extends MusicBeatState
                     {
                         default:
                             UpdatePreviousText(false); //resets the text
-                            UpdateText("\n" + arguments[1] + " is not a valid user or character.");
+                            UpdateText("\n" + arguments[1] + LanguageManager.getTerminalString("term_grant_error1"));
                         case "dave.dat":
                             UpdatePreviousText(false); //resets the text
-                            UpdateText("\nLoading...");
+                            UpdateText(LanguageManager.getTerminalString("term_loading"));
                             PlayState.globalFunny = CharacterFunnyEffect.Dave;
                             PlayState.SONG = Song.loadFromJson("house");
                             PlayState.SONG.validScore = false;
@@ -138,7 +138,7 @@ class TerminalState extends MusicBeatState
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "tristan.dat":
                             UpdatePreviousText(false); //resets the text
-                            UpdateText("\nLoading...");
+                            UpdateText(LanguageManager.getTerminalString("term_loading"));
                             PlayState.globalFunny = CharacterFunnyEffect.Tristan;
                             PlayState.SONG = Song.loadFromJson("house");
                             PlayState.SONG.validScore = false;
@@ -146,7 +146,7 @@ class TerminalState extends MusicBeatState
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "exbungo.dat":
                             UpdatePreviousText(false); //resets the text
-                            UpdateText("\nLoading...");
+                            UpdateText(LanguageManager.getTerminalString("term_loading"));
                             PlayState.globalFunny = CharacterFunnyEffect.Exbungo;
                             var funny:Array<String> = ["house","insanity","polygonized","five-nights","splitathon","shredder"];
                             var funnylol:Int = FlxG.random.int(0, funny.length - 1);
@@ -157,14 +157,14 @@ class TerminalState extends MusicBeatState
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "bambi.dat":
                             UpdatePreviousText(false); //resets the text
-                            UpdateText("\nLoading...");
+                            UpdateText(LanguageManager.getTerminalString("term_loading"));
                             PlayState.globalFunny = CharacterFunnyEffect.Bambi;
                             PlayState.SONG = Song.loadFromJson('shredder');
                             PlayState.SONG.validScore = false;
                             LoadingState.loadAndSwitchState(new PlayState());
                         case "expunged.dat":
                             UpdatePreviousText(false); //resets the text
-                            UpdateText("\nLoading...");
+                            UpdateText(LanguageManager.getTerminalString("term_loading"));
                             expungedActivated = true;
                             new FlxTimer().start(3, function(timer:FlxTimer)
                             {   
@@ -172,9 +172,9 @@ class TerminalState extends MusicBeatState
                             });
                         case "moldy.dat":
                             UpdatePreviousText(false); //resets the text
-                            UpdateText("\nyou know what? im gonna close the game so you can watch my baldi's basics playthrough...");
+                            UpdateText(LanguageManager.getTerminalString("term_moldy_error"));
                             new FlxTimer().start(2, function(timer:FlxTimer)
-                            {   
+                            {
                                 fancyOpenURL("https://www.youtube.com/watch?v=azMGySH8fK8");
                                 System.exit(0);
                             });
@@ -182,12 +182,48 @@ class TerminalState extends MusicBeatState
                 }
             }
         }));
-        CommandList.push(new TerminalCommand("clear", "Clears the screen.", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("clear", LanguageManager.getTerminalString("term_clear_ins"), function(arguments:Array<String>)
         {
             previousText = "> ";
             UpdateText("");
         }));
-        CommandList.push(new TerminalCommand("secret mod leak", "No providing such leaks", function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("texts", LanguageManager.getTerminalString("term_texts_ins"), function(arguments:Array<String>)
+        {
+            UpdatePreviousText(false); //resets the text
+            var tx = "";
+            switch (arguments[0])
+            {
+                default:
+                    tx = "File not found.";
+                case "dave":
+                    tx = "Forever lost and adrift.\nTrying to change his destiny.\nDespite this, it pulls him by a lead.\nIt doesn't matter to him though.\nHe has a child to feed.";
+                case "bambi":
+                    tx = "A forgotten god.\nThe truth will never be known.\nThe extent of his powers won't ever unfold.";
+                case "tristan":
+                    tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
+                case "expunged":
+                    tx = "The End. They weren't created by a beast. \nThey were created by the one who wanted power the leeeeeeeeeeee \n[DATA DELETED]\n[FUCK YOU!]";
+                case "exbungo":
+                    tx = "I don't have a poem this guy is just fat and ugly as fuck.";
+                case "recurser":
+                    tx = "The final counter-measure.";
+                case "1":
+                    tx = "LOG 1\nHello. I'm currently writing this from in my lab.\nThis entry will probably be short.\nTristan is only 3 and will wake up soon.\nBut this is mostly just to test things. Bye.";
+                case "2":
+                    tx = "[DATA CORRUPTED]";
+                case "3":
+                    tx = "[DATA CORRUPTED]";
+                case "4":
+                    tx = "LOG 4\nI'm currently working on studying interdimensional dislocation.\nThere has to be a root cause. Some trigger.\nI hope there aren't any long term side effects.";
+                case "6":
+                    tx = "LOG 6\nMy interdimensional dislocation appears to be caused by mass amount of stress.\nHow strange.\nMaybe I could isolate this effect.";
+                case "boyfriend":
+                    tx = "LOG -1:\nBeep skeedoop bop! Skeep leep. Skadeep!";
+                
+            }
+            UpdateText("\n" + tx);
+        }));
+        CommandList.push(new TerminalCommand("welcometobaldis", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
         {
             FlxG.switchState(new MathGameState());
         }, false, true));
@@ -265,7 +301,7 @@ class TerminalState extends MusicBeatState
             if (!calledFunc)
             {
                 UpdatePreviousText(false); //resets the text
-                UpdateText("\nUnknown command \"" + arguments[0] + "\"");
+                UpdateText(LanguageManager.getTerminalString("term_unknown") + arguments[0] + "\"");
             }
             UpdatePreviousText(true);
             return;
@@ -309,16 +345,19 @@ class TerminalState extends MusicBeatState
 
     function expungedReignStarts()
     {
-        var glitch = new FlxSprite(0, 0);
-        glitch.frames = Paths.getSparrowAtlas('ui/glitch/glitch');
-        glitch.animation.addByPrefix('glitchScreen', 'glitch', 40);
-        glitch.animation.play('glitchScreen');
-        glitch.setGraphicSize(FlxG.width, FlxG.height);
-        glitch.updateHitbox();
-        glitch.screenCenter();
-        glitch.scrollFactor.set();
-        glitch.antialiasing = false;
-        add(glitch);
+            var glitch = new FlxSprite(0, 0);
+            glitch.frames = Paths.getSparrowAtlas('ui/glitch/glitch');
+            glitch.animation.addByPrefix('glitchScreen', 'glitch', 40);
+            glitch.animation.play('glitchScreen');
+            glitch.setGraphicSize(FlxG.width, FlxG.height);
+            glitch.updateHitbox();
+            glitch.screenCenter();
+            glitch.scrollFactor.set();
+            glitch.antialiasing = false;
+            if (FlxG.save.data.eyesores)
+            {
+                add(glitch);
+            }
 
         add(fakeDisplayGroup);
         
@@ -336,7 +375,7 @@ class TerminalState extends MusicBeatState
         FlxG.camera.follow(camFollow, 1);
 
         expungedActivated = true;
-        expungedTimer = new FlxTimer().start(FlxG.elapsed * 2, function(timer:FlxTimer)
+        expungedTimer = new FlxTimer().start(FlxG.elapsed * 2, function(timer:FlxTimer) //t5 make this get slowed down when eyesores is off
         {
             var lastFakeDisplay = fakeDisplayGroup.members[i - 1];
             var fakeDisplay:FlxText = new FlxText(0, 0, FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
@@ -381,7 +420,7 @@ class TerminalState extends MusicBeatState
 
 					var programPath:String = Sys.programPath();
 					var textPath = programPath.substr(0, programPath.length - CoolSystemStuff.executableFileName().length) + "help me.txt";
-                    
+
 					File.saveContent(textPath, "you don't know what you're getting yourself into\n don't open the game for your own risk");
 					System.exit(0);
 				});

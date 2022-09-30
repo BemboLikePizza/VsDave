@@ -226,40 +226,31 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
-			case 'phone':
-				frames = Paths.getSparrowAtlas('notes/NOTE_phone', 'shared');
+			case 'phone' | 'phone-alt': //'notes/NOTE_assets'
+				if (!isSustainNote)
+				{
+					frames = Paths.getSparrowAtlas('notes/NOTE_phone', 'shared');
+				}
+				else
+				{
+					frames = Paths.getSparrowAtlas('notes/NOTE_assets', 'shared');
+				}
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
 				animation.addByPrefix('blueScroll', 'blue0');
 				animation.addByPrefix('purpleScroll', 'purple0');
 
-				LocalScrollSpeed = 1.08;
-				
-				setGraphicSize(Std.int(width * noteSize));
-				updateHitbox();
-				antialiasing = true;
-				
-				//x -= (width - 78);
-				//TODO: make this MATH.
-				noteOffset = 20;
-			case 'phone-alt':
-				frames = Paths.getSparrowAtlas('notes/NOTE_phoneAlt', 'shared');
-				
-				animation.addByPrefix('greenScroll', 'green alt');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('greenholdend', 'green hold end');
-
-				animation.addByPrefix('redScroll', 'red alt');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('redholdend', 'red hold end');
-				
-				animation.addByPrefix('blueScroll', 'blue alt');
-				animation.addByPrefix('bluehold', 'blue hold piece');
-				animation.addByPrefix('blueholdend', 'blue hold end');
-
-				animation.addByPrefix('purpleScroll', 'purple alt');
-				animation.addByPrefix('purplehold', 'purple hold piece');
 				animation.addByPrefix('purpleholdend', 'pruple end hold');
+				animation.addByPrefix('greenholdend', 'green hold end');
+				animation.addByPrefix('redholdend', 'red hold end');
+				animation.addByPrefix('blueholdend', 'blue hold end');
+		
+				animation.addByPrefix('purplehold', 'purple hold piece');
+				animation.addByPrefix('greenhold', 'green hold piece');
+				animation.addByPrefix('redhold', 'red hold piece');
+				animation.addByPrefix('bluehold', 'blue hold piece');
+
+				LocalScrollSpeed = 1.08;
 				
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();

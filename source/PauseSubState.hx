@@ -22,22 +22,13 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 	var bg:FlxBackdrop;
 
-	#if debug
 	var menuItems:Array<PauseOption> = [
 		new PauseOption('Resume'),
 		new PauseOption('Restart Song'),
-		new PauseOption('Change Character'),
-		new PauseOption('Developer No Miss'),
+		//new PauseOption('Change Character'),
+		new PauseOption('No Miss Mode'),
 		new PauseOption('Exit to menu')
 	];
-	#else
-	var menuItems:Array<PauseOption> = [
-		new PauseOption('Resume'),
-		new PauseOption('Restart Song'),
-		new PauseOption('Change Character'),
-		new PauseOption('Exit to menu')
-	];
-	#end
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
@@ -159,10 +150,18 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (upP)
 		{
+			if (expungedSelectWaitTime <= 2)
+			{
+				expungedSelectWaitTime = 2;
+			}
 			changeSelection(-1);
 		}
 		if (downP)
 		{
+			if (expungedSelectWaitTime <= 2)
+			{
+				expungedSelectWaitTime = 2;
+			}
 			changeSelection(1);
 		}
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation' && this.exists && PauseSubState != null)
@@ -230,8 +229,13 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.camZooming = false;
 					FlxG.mouse.visible = false;
 					FlxG.switchState(new CharacterSelectState());	
-			case "Developer No Miss":
-				PlayState.devBotplay = !PlayState.devBotplay;
+			case "No Miss Mode":
+				PlayState.instance.noMiss = !PlayState.instance.noMiss;
+				if (PlayState.SONG.song.toLowerCase() == 'exploitation' || PlayState.SONG.song.toLowerCase() == 'cheating' || PlayState.SONG.song.toLowerCase() == 'unfairness')
+				{
+					PlayState.instance.health = 0;
+					close();
+				}
 			case "Exit to menu":
 				if (MathGameState.failedGame)
 				{

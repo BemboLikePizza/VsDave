@@ -1,0 +1,19 @@
+// Introduction //
+term_introduction==Consola de Desarollo de Vs Dave[Version 1.0.00001.1234]:linebreak:Todos los derechos reservados.:linebreak:>
+
+// Command Instructions //
+term_help_ins==Muestra este menú.
+term_char_ins==Muestra la lista de personajes.
+term_admin_ins==Muestra la lista de administradores, usa grant para dar permisos.
+term_admlist_ins==:linebreak:Para añadir usuarios extra, usa el parámetro grant y el nombre.:linebreak:(Ejemplo: admin grant expungo.dat):linebreak:NOTA: AÑADIENDO PERSONAJES COMO ADMINIS. PUEDE CAUSAR PROBLEMAS.
+term_clear_ins==Limpia la pantalla.
+term_leak_ins==No daremos las filtraciones.
+
+// Errors and argument outputs //
+term_loading==:linebreak:Cargando
+term_unknown==:linebreak:Comando desconocido: :addquote:
+
+term_admin_error1==:linebreak:Ninguna versión del comando :addquote:admin:addquote: toma
+term_admin_error2== parámetro(s).
+term_grant_error1== no es un usuario o personaje valido.
+term_moldy_error==:linebreak:sabes que? cerraré el juego para que veas mi gameplay de baldi's basics...

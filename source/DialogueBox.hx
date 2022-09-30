@@ -64,7 +64,7 @@ class DialogueBox extends FlxSpriteGroup
 			{
 				case 'house' | 'insanity' | 'splitathon' | 'shredder':
 					FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
-				case 'polygonized' | 'interdimensional':
+				case 'polygonized' | 'interdimensional' | 'master':
 					FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
 				case 'supernovae' | 'glitch':
 					randomNumber = FlxG.random.int(0, 50);
@@ -85,8 +85,9 @@ class DialogueBox extends FlxSpriteGroup
 					else
 					{
 						FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
-						
 					}
+				default:
+					FlxG.sound.music.stop();
 			}
 			FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
@@ -231,7 +232,11 @@ class DialogueBox extends FlxSpriteGroup
 			case 'bambi':
 				swagDialogue.sounds = [FlxG.sound.load(Paths.soundRandom('dialogue/bambDialogue', 1, 3), 0.6)];
 			case 'tristan':
-				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/trisDialogue'), 0.9)];		
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/trisDialogue'), 0.9)];
+			case 'bf':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/bfDialogue'), 0.6)];		
+			case 'gf':
+				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/gfDialogue'), 0.6)];	
 			default:
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/pixelText'), 0.6)];	
 		}

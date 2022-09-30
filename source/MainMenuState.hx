@@ -513,11 +513,28 @@ class MainMenuState extends MusicBeatState
 	}
 	function resetData()
 	{
+		FlxG.save.bind('funkin', 'ninjamuffin99');
+
+		FlxG.save.erase();
+
+		FlxG.save.flush();
+
+		FlxG.save.bind('controls', 'ninjamuffin99');
+
+		FlxG.save.erase();
+
+		FlxG.save.flush();
+
+		FlxG.save.bind('language', 'ninjamuffin99');
+
 		FlxG.save.erase();
 
 		FlxG.save.flush();
 		
 		FlxG.save.bind('funkin', 'ninjamuffin99');
+
+		Highscore.songScores = new Map();
+		Highscore.songChars = new Map();
 
 		SaveDataHandler.initSave();
 		LanguageManager.init();
@@ -587,6 +604,7 @@ class Prompt extends FlxSpriteGroup
 	{
 		var leftP = controls.LEFT_P;
 		var rightP = controls.RIGHT_P;
+		var enter = controls.ACCEPT;
 
 		if (leftP)
 		{
@@ -607,7 +625,13 @@ class Prompt extends FlxSpriteGroup
 				curSelected = 0;
 			}
 			updateText();
-		}/*
+		}
+		if (enter)
+		{
+			select(texts[curSelected]);
+		}
+		
+		/*
 		if (FlxG.mouse.overlaps(noText) && curSelected != texts.indexOf(noText))
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'));
