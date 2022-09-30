@@ -167,13 +167,20 @@ maze_sub12==Nunca regreses de nuevo.
 
 // Mealie Subtitles //
 mealie_sub1==Te voy a bloquear!
-mealie_sub2==Quiero que tu...
-mealie_sub3==Yo voy a romper mi
-mealie_sub4==Celular!
-mealie_sub5==Esto es lo que querias?
-mealie_sub6==el telefono?
-mealie_sub7==DIOS MIO!
-mealie_sub8==Eres un mentiroso Moldy!
+mealie_sub2==Voy a tu casa
+mealie_sub3==Y te haré CAER
+mealie_sub4==La casa tu-
+mealie_sub5==Tu casa!
+mealie_sub6==Isaac...
+mealie_sub7==Cierra tu boca.
+mealie_sub8==Deja de usar el maldito...
+mealie_sub9==Ah oh voy a romper mi
+mealie_sub10==CELULAR!
+mealie_sub11==Eso es lo que querías?
+mealie_sub12==el telefono?
+mealie_sub13==DIOS MIO!
+mealie_sub14==Eres un maldito mentiroso Moldy!
+mealie_sub15==Vete al infierno!
 
 // Shredder Subtitles //
 shred_sub1==Oh dios mio...
