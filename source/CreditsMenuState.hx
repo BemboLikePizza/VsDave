@@ -229,6 +229,11 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://www.youtube.com/channel/UCqFkjwmaYlnVXwLMw3_AXLA'),
       ]),
 
+      new Person("chromasen", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCgGk4oZt3We-ktkEOV9HY1Q'),
+      ]),
+
       // Beta Testers //
       new Person("letsy", CreditsType.BetaTester,
       [
