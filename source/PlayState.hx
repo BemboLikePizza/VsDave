@@ -3623,6 +3623,12 @@ class PlayState extends MusicBeatState
 							{
 								health += ((FlxEase.backInOut(health / 16.5)) * (curBeat <= 160 ? 0.25 : 1)) - 0.002; //some training wheels cuz rapparep say mod too hard
 							}
+						case 'mealie':
+							if (curBeat >= 464 && curBeat <= 592) {
+								health -= (healthtolower / 1.5);
+							}
+						case 'indignancy':
+							health -= healthtolower;	
 						case 'five-nights':
 							if ((health - 0.023) > 0)
 							{
@@ -5958,6 +5964,7 @@ class PlayState extends MusicBeatState
 						makeInvisibleNotes(false);
 					case 1622:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub5'), 0.02, 0.3);
+						
 						dad.canDance = false;
 						dad.playAnim('scream', true);
 						dad.animation.finishCallback = function(animation:String)
