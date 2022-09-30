@@ -235,7 +235,7 @@ class DialogueBox extends FlxSpriteGroup
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/trisDialogue'), 0.9)];
 			case 'bf':
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/bfDialogue'), 0.6)];		
-			case 'bf':
+			case 'gf':
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/gfDialogue'), 0.6)];	
 			default:
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dialogue/pixelText'), 0.6)];	
