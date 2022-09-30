@@ -8,6 +8,7 @@ using StringTools;
 class LanguageManager
 {
    public static var currentLocaleList:Array<String>;
+   public static var currentTerminalList:Array<String>; // terminal locale
    public static var save:FlxSave;
 
    public static function initSave()
@@ -18,6 +19,7 @@ class LanguageManager
    public static function init()
    {
       LanguageManager.currentLocaleList = CoolUtil.coolTextFile(Paths.file('locale/' + LanguageManager.save.data.language + '/textList.txt', TEXT, 'preload'));
+      LanguageManager.currentTerminalList = CoolUtil.coolTextFile(Paths.file('locale/' + LanguageManager.save.data.language + '/terminalList.txt', TEXT, 'preload'));
    }
 
    public static function languageFromPathName(pathName:String):Language
@@ -57,6 +59,33 @@ class LanguageManager
          return returnedString;
       }
    }
+   public static function getTerminalString(stringName:String):String
+      {
+         var returnedString:String = '';
+         for (i in 0...currentTerminalList.length)
+         {
+            var currentValue = currentTerminalList[i].trim().split('==');
+            if (currentValue[0] != stringName)
+            {
+               continue;
+            }
+            else
+            {
+               returnedString = currentValue[1];
+            }
+         }
+         if (returnedString == '')
+         {
+            return stringName;
+         }
+         else
+         {
+            // replace the linebreaks and bruh before returning!
+            returnedString = returnedString.replace(':linebreak:', '\n');
+            returnedString = returnedString.replace(':addquote:', '\"');
+            return returnedString;
+         }
+      }
    public static function getLanguages():Array<Language>
    {
       var languages:Array<Language> = new Array<Language>();
