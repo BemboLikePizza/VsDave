@@ -3186,6 +3186,7 @@ class PlayState extends MusicBeatState
 						#end
 
 						PlayState.SONG = Song.loadFromJson("cheating"); // you dun fucked up
+						isStoryMode = false;
 						PlayState.storyWeek = 14;
 						FlxG.save.data.cheatingFound = true;
 						FlxG.switchState(new PlayState());
@@ -3230,6 +3231,7 @@ class PlayState extends MusicBeatState
 					return;
 				case 'glitch':
 					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
+					isStoryMode = false;
 					FlxG.save.data.exbungoFound = true;
 					shakeCam = false;
 					#if SHADERS_ENABLED
@@ -3611,7 +3613,7 @@ class PlayState extends MusicBeatState
 						case 'exploitation':
 							if (((health + (FlxEase.backInOut(health / 16.5)) - 0.002) >= 0) && !(curBeat >= 320 && curBeat <= 330))
 							{
-								health += ((FlxEase.backInOut(health / 16.5)) * (curBeat <= 160 ? 0.25 : 1)) - 0.002;
+								health += ((FlxEase.backInOut(health / 16.5)) * (curBeat <= 160 ? 0.25 : 1)) - 0.002; //some training wheels cuz rapparep say mod too hard
 							}
 						case 'five-nights':
 							if ((health - 0.023) > 0)
@@ -6195,7 +6197,7 @@ class PlayState extends MusicBeatState
 						{
 							spr.centerStrum();
 							spr.alpha = 0;
-							spr.x += (spr.width / 4);
+							spr.x -= (spr.width / 4);
 						});
 					case 1276:
 						dadStrums.forEach(function(spr:StrumNote)

@@ -17,3 +17,5 @@ term_admin_error1==:linebreak:No version of the :addquote:admin:addquote: comman
 term_admin_error2== parameter(s).
 term_grant_error1== is not a valid user or character.
 term_moldy_error==:linebreak:you know what? im gonna close the game so you can watch my baldi's basics playthrough...
+
+term_texts_ins==Searches for a text file with the specified ID, and if it exists, display it.

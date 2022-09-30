@@ -187,7 +187,43 @@ class TerminalState extends MusicBeatState
             previousText = "> ";
             UpdateText("");
         }));
-        CommandList.push(new TerminalCommand("secret mod leak", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("texts", LanguageManager.getTerminalString("term_texts_ins"), function(arguments:Array<String>)
+        {
+            UpdatePreviousText(false); //resets the text
+            var tx = "";
+            switch (arguments[0])
+            {
+                default:
+                    tx = "File not found.";
+                case "dave":
+                    tx = "Forever lost and adrift.\nTrying to change his destiny.\nDespite this, it pulls him by a lead.\nIt doesn't matter to him though.\nHe has a child to feed.";
+                case "bambi":
+                    tx = "A forgotten god.\nThe truth will never be known.\nThe extent of his powers won't ever unfold.";
+                case "tristan":
+                    tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
+                case "expunged":
+                    tx = "The End. They weren't created by a beast. \nThey were created by the one who wanted power the leeeeeeeeeeee \n[DATA DELETED]\n[FUCK YOU!]";
+                case "exbungo":
+                    tx = "I don't have a poem this guy is just fat and ugly as fuck.";
+                case "recurser":
+                    tx = "The final counter-measure.";
+                case "1":
+                    tx = "LOG 1\nHello. I'm currently writing this from in my lab.\nThis entry will probably be short.\nTristan is only 3 and will wake up soon.\nBut this is mostly just to test things. Bye.";
+                case "2":
+                    tx = "[DATA CORRUPTED]";
+                case "3":
+                    tx = "[DATA CORRUPTED]";
+                case "4":
+                    tx = "LOG 4\nI'm currently working on studying interdimensional dislocation.\nThere has to be a root cause. Some trigger.\nI hope there aren't any long term side effects.";
+                case "6":
+                    tx = "LOG 6\nMy interdimensional dislocation appears to be caused by mass amount of stress.\nHow strange.\nMaybe I could isolate this effect.";
+                case "boyfriend":
+                    tx = "LOG -1:\nBeep skeedoop bop! Skeep leep. Skadeep!";
+                
+            }
+            UpdateText("\n" + tx);
+        }));
+        CommandList.push(new TerminalCommand("welcometobaldis", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
         {
             FlxG.switchState(new MathGameState());
         }, false, true));
