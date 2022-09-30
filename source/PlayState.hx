@@ -327,7 +327,7 @@ class PlayState extends MusicBeatState
 	var desertBG:BGSprite;
 	var desertBG2:BGSprite;
 	var sign:BGSprite;
-	var georgia:BGSprite;
+    var georgia:BGSprite;
 	var train:BGSprite;
 	var trainSpeed:Float;
 
@@ -1213,7 +1213,7 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/bedroom/night/bg');
 				preload('playrobot/playrobot_shadow');
 			case 'escape-from-california':
-				for (spr in ['1500miles', '1000miles', '500miles', 'welcomeToGeorgia', 'georgiaLol'])
+				for (spr in ['1500miles', '1000miles', '500miles', 'welcomeToGeorgia', 'georgia'])
 				{
 					preload('california/$spr');
 				}
@@ -2731,7 +2731,6 @@ class PlayState extends MusicBeatState
 			{
 				georgia.x -= trainSpeed * scrollSpeed * elapsed;
 			}
-			
 		}
 
 		if (SONG.song.toLowerCase() == 'recursed')
@@ -6898,14 +6897,14 @@ class PlayState extends MusicBeatState
 
 						remove(desertBG);
 						remove(desertBG2);
-
-						georgia = new BGSprite('georgia', -600, -300, Paths.image('california/georgiaLol', 'shared'), null, 1, 1, true);
-						georgia.setGraphicSize(Std.int(georgia.width * 4));
+						
+					
+						georgia = new BGSprite('georgia', 400, 0, Paths.image('california/geor gea', 'shared'), null, 1, 1, true);
+						georgia.setGraphicSize(Std.int(georgia.width * 2));
 						georgia.updateHitbox();
 						georgia.color = nightColor;
 						backgroundSprites.add(georgia);
 						add(georgia);
-						
 				}
 		}
 		if (shakeCam)
