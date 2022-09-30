@@ -415,7 +415,7 @@ class PlayState extends MusicBeatState
 	
 	//five night
 	var time:FlxText;
-	var times:Array<Int> = [12, 1, 2, 3, 4, 5, 6];
+	var times:Array<Int> = [12, 1, 2, 3, 4, 5];
 	var night:FlxText;
 	var powerLeft:Float;
 	var powerMeter:FlxSprite;
@@ -4475,11 +4475,7 @@ class PlayState extends MusicBeatState
 			songScore += score;
 		}
 
-		if (inFiveNights)
-		{
-			createScorePopUp(-20,-70, false, daRating,combo,note.noteStyle);
-		}
-		else
+		if (!inFiveNights)
 		{
 			createScorePopUp(0,0, true, daRating,combo,note.noteStyle);
 		}
