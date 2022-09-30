@@ -85,8 +85,9 @@ class DialogueBox extends FlxSpriteGroup
 					else
 					{
 						FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
-						
 					}
+				default:
+					FlxG.sound.music.stop();
 			}
 			FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}

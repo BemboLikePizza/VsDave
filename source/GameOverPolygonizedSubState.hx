@@ -199,6 +199,10 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 				FlxG.camera.fade(FlxColor.BLACK, 2, false, function()
 				{
 					LoadingState.loadAndSwitchState(new PlayState());
+					if (FlxG.save.data.exploitationState == 'playing')
+					{
+						Sys.exit(0);
+					}
 				});
 			});
 		}

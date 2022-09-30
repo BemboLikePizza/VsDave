@@ -6045,7 +6045,7 @@ class PlayState extends MusicBeatState
 							expungedWindowMode = false;
 							window = null;
 						}
-						PlatformUtil.sendWindowsNotification("", "Threat expunged.dat succesfully contained.");
+						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Threat expunged.dat succesfully contained.");
 						#end
 				}
 			case 'shredder':
@@ -6981,10 +6981,10 @@ class PlayState extends MusicBeatState
 		#if windows
 		if (window != null)
 		{
+			expungedWindowMode = false;
 			window.close();
 			//x,y, width, height
-			FlxTween.tween(Application.current.window, {x: windowProperties[0], y: windowProperties[1], width: windowProperties[2], height: windowProperties[3]}, 2, {ease: FlxEase.bounceOut});
-			expungedWindowMode = false;
+			FlxTween.tween(Application.current.window, {x: windowProperties[0], y: windowProperties[1], width: windowProperties[2], height: windowProperties[3]}, 1, {ease: FlxEase.circInOut});
 
 		}
 		#end

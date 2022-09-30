@@ -604,6 +604,7 @@ class Prompt extends FlxSpriteGroup
 	{
 		var leftP = controls.LEFT_P;
 		var rightP = controls.RIGHT_P;
+		var enter = controls.ACCEPT;
 
 		if (leftP)
 		{
@@ -624,7 +625,13 @@ class Prompt extends FlxSpriteGroup
 				curSelected = 0;
 			}
 			updateText();
-		}/*
+		}
+		if (enter)
+		{
+			select(texts[curSelected]);
+		}
+		
+		/*
 		if (FlxG.mouse.overlaps(noText) && curSelected != texts.indexOf(noText))
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'));
