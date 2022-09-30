@@ -40,10 +40,11 @@ freeplay_lmao==LMAO
 freeplay_skipchar==Segure o CTRL para pular a Seleção de Personagem
 
 // Pause State //
-pause_resume==Resume
-pause_restart==Restart Song
-pause_exit==Exit to menu
-pause_nomiss==Developer No Miss
+pause_Resume==Resumir
+pause_Restart Song==Reiniciar Musica
+pause_Change Character==Trocar de Personagem
+pause_Exit to menu==Sair para o Menu
+pause_Developer No Miss==Invencibilidade Dev
 
 // Credits State //
 credits_dev==Desenvolvedores
@@ -103,12 +104,15 @@ keybind_preset==Presets de Teclas:
 
 // Story Mode State // 
 story_track==Faixas
-story_weekScore==Pontuação da Semana:
+story_weekScore==Pontuação:
 story_tutorial==Aula de ritmo de Dave!
 story_daveWeek==A Divertida Batalha de Rap Contra Dave!
 story_bambiWeek==O Divertido Labirinto de Milho do Sr. Bambi!
 story_finale==O Final
 story_festivalWeek==O Festival de Milho do Bambi!
+story_masterWeek==Semana do Mestre Bambi!
+story_masterWeekToPlay==?????????
+
 
 // CHARACTER SELECT STATE //
 character_reset==Pressione R para Reiniciar
@@ -261,3 +265,107 @@ memory_sub8==Antes que tudo se acabe,
 memory_sub9==Quer cantar só mais uma vez?
 memory_sub10==Yeah!
 memory_sub11==Ótimo! Vamos nessa!
+
+// Exploitation Subtitles //
+exploit_sub1==Mai que porra?
+exploit_sub2==Ehhhhhhhhhhhhhhhhhhhhh!!!
+exploit_sub3==Wahahauahahahuehehe!
+exploit_sub4==Porra de celular...
+exploit_sub5==Eoooooooooooooooooo
+exploit_sub6==Seeeiuuuuuuuuuuuuuu
+exploit_sub7==Naaaaaaaaaaaaaaaaaaaaa
+exploit_sub8==Aehehehe...
+exploit_sub9==Oh he...
+exploit_sub10==Você tá tão
+exploit_sub11==foi trollado!
+exploit_sub12==Oops...
+exploit_sub13==Você mentindo!
+exploit_sub14==VOCÊ MENTINDO!
+
+//Vs Dave Rap Two Subtitles//
+daveraptwo_sub1==Me chame de Dave
+daveraptwo_sub2==Joga o meu game
+daveraptwo_sub3==Sou o Dave e tenho um mod
+daveraptwo_sub4==Sou o Dave e comigo tu não pode
+daveraptwo_sub5==Meu pipi coça(yum)
+daveraptwo_sub6==3.0
+daveraptwo_sub7==Vs Dave, eu sou gay
+daveraptwo_sub8==Mr. Bambi ama quebrar celular (ha)
+daveraptwo_sub9==Dive going gamestop with buy game Xbox
+daveraptwo_sub10==Jogue o mod Vs Dave and Bambi 3.0
+daveraptwo_sub11==Disponível no GameBanana!
+daveraptwo_sub12==Yum.
+
+indignancy_sub1==Me mata, eu quero morrer carai
+indignancy_sub2==Me chuta, por favor senpai
+indignancy_sub3==Me chutoooou
+indignancy_sub4==Eu sair daqui.
+indignancy_sub5==AuuuuuuAAAAAAAAAAAAAAA
+
+3d_gameOver_polygonized==Você foi Poligonizado!
+3d_gameOver_restart==Tentar de novo?
+
+//developers 
+credit_MoldyGH==Diretor, Criador, Programador, Compositor, Desenvolvedor Principal
+credit_MissingTextureMan101==Desenvolvedor Secundário e Programador
+credit_rapparep lol==Artista Principal
+credit_TheBuilderXD==Artista Secundário
+credit_Erizur==Programador do novo Menu Principal, Artista & Tradutor Espanhol
+credit_T5mpler==Programador e Assistente
+credit_Zmac==Cenários 3D, ajuda com os intro texts
+credit_pointy==Artista & Charter
+credit_Billy Bobbo==Apoio Moral & Sugestão de Ideas
+
+//translators
+credit_dani==Tradutor (Espanhol)
+credit_Aizakku==Tradutor (Português Brasileiro)
+credit_Soulegal==Tradutor (Português Brasileiro)
+
+//contributors
+credit_Steph45==Programação adicional
+credit_evdial==Artista principal da semana do Bambi
+credit_wugalex==Artista de Cenário
+credit_Jukebox==Artista de Cenário
+credit_Oxygen==Compositor
+credit_Alexander Cooper 19==Compositor, Charter
+credit_Aadsta==Compositor, Artista de Cenário
+credit_Project Tea==Charter
+credit_Top 10 Awesome==Compositor, Carinha engraçado
+credit_BombasticHype==Fez a cutscene da House
+credit_Ruby==Compositor (Adventure)
+credit_Lancey==Artista pros Cenários no Menu
+credit_Paraso==Artista pros Cenários no Menu
+credit_SAMMYPIGZY==Artista
+credit_R34LD34L==Compositor
+credit_Devianator==Ajudou com os ícones nos créditos
+credit_sk0rbias==Artista pro Menu
+credit_Your mom==Compôs o Vs Dave Rap, 100% real.
+credit_sibottle==Compositor
+
+//Beta Testers
+credit_letsy==Beta Tester
+credit_wildy==Beta Tester
+credit_peejeada==Beta Tester & Apoiador
+credit_bendygaming_1==Beta Tester, Irmão super foda e legal do Moldy
+credit_YourAverageMental==Beta Tester
+credit_vex==Beta Tester
+credit_xml==Beta Tester
+credit_ztgds==Ajuda adicional com Programação, Beta Tester
+credit_ashtonyes==Beta Tester
+credit_Silver Escaper==Beta Tester
+credit_TrustVVorthy==Beta Tester
+credit_Gorbini==Beta Tester
+credit_Log Man==Beta Tester
+credit_Mooncakeez==Beta Tester
+credit_Foxnap==Beta Tester
+credit_nihilistt==Beta Tester
+credit_mantis==Beta Tester
+credit_ArturSef==Beta Tester
+credit_normal==Beta Tester
+credit_Rendurse==Beta Tester
+credit_Lordryan1999==Beta Tester
+credit_Vanquiler==Beta Tester
+credit_Villezen==Beta Tester
+credit_TecheVent==Beta Tester
+credit_emiko==Beta Tester
+credit_Cotiles==Beta Tester
