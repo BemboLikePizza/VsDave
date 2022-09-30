@@ -164,6 +164,10 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 			{
 				Main.toggleFuckedFPS(false);
 			}
+			if (FlxG.save.data.exploitationState == 'playing')
+			{
+				Sys.exit(0);
+			}
 			if (PlayState.isStoryMode)
 				FlxG.switchState(new StoryMenuState());
 			else
