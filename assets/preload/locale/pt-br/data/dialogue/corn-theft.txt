@@ -1,19 +1,26 @@
+:bambi,annoyed: Puta que pario!
 :generic: CHAMADA RECEBIDA DE: DAVE
-:bambi:Hã? Alô?
-:dave,confused: Ei Bambi, eles não estão invadindo.
-:bambi,confused: Que?
-:dave,confused: Eu convidei eles pra cá como uma desculpa por quase transformar o mundo em 3D.
-:bambi: Ok? Como assim?
-:dave,confused: Bambi, escuta-
-:bambi,annoyed: Eu não sei o que você quer dizer, TCHAU!
+:bambi,confused: Hã? Alô?
+:dave,phone: Ei Bambi, é o Dave...
+:bambi,confused: Por que ta me ligando?
+:dave,phone: Por algum acaso você tá cantando contra dois "invasores" do seu tamanho por conta de milho?
+:bambi,annoyed: Sim... justificadamente!
+:dave,phone: Bambi. Eles não tão invadindo nada.
+:bambi,confused: Como é?
+:dave,phone: Eu te avisei antes que nós iriamos ter um piquenique por aqui!
+:bambi,confused: Isso não faz sentido...
+:dave,phone: Bambi, escuta-
+:bambi,annoyed: Eu sei o que ta acontecendo aqui!
+:bambi,annoyed: Esses não sao os amigos que achava que fosse!
+:dave,phone: Bambi cê tá zoando com a minha cara-
 :generic: CHAMADA ENCERRADA
 :bambi: Uhhh...
-:bambi: Vocês dois tão usando convite do Dave como desculpa pra roubar milho!?
-:gf,what: Como é?
-:gf,what: Isso não é o que a gente tá querendo fazer de jeito algum!
-:bf,confused: Bee buuhh bi beeen boo bi bayb
+:bambi: Vocês tão usando convite do Dave como desculpa pra roubar milho!?
+:gf,what: A gente chegou nem perto disso!
+:bf,confused: Beep beep vroom vroom!
 :bambi: Ok, quer saber-
-:bambi: Não vence dessa vez... se não... se não...
+:bambi: Não ganhe dessa vez... se não... se não...
 :bambi: Eu vou quebrar meu celular!
-:bambi: É, eu vou quebrar meu celular e você vai ficar de castigo!
-:bf,confused: Bop..
+:bambi: Sim, eu vou quebrar meu celular e você vai ficar de castigo!
+:bf,confused: Bop...
+:gf,what: Se isso é o que você considera um castigo então você tem problema na cabeça.

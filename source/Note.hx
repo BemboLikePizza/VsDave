@@ -348,8 +348,19 @@ class Note extends FlxSprite
 			{
 				prevNote.animation.play('${notes[prevNote.noteData]}hold');
 
-				prevNote.scale.y *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 1.5;
-				prevNote.updateHitbox();
+				if (noteStyle != 'shape')
+				{
+					prevNote.scale.y *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 1.5;
+					prevNote.updateHitbox();
+				}
+				else
+				{
+					//INCOMPLETE
+					prevNote.scale.y *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.75;
+					prevNote.scale.x *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.5;
+					prevNote.offset.y += prevNote.height / 3;
+					prevNote.updateHitbox();
+				}
 			}
 		}
 
@@ -414,6 +425,20 @@ class Note extends FlxSprite
 	{
 		x = strum.x + noteOffset;
 		alpha = strum.alpha * alphaMult;
+		if (strum.pressingKey5)
+		{
+			if (noteStyle != "shape")
+			{
+				alpha *= 0.5;
+			}
+		}
+		else
+		{
+			if (noteStyle == "shape")
+			{
+				alpha *= 0.5;
+			}
+		}
 	}
 
 	public function isInState(state:String)

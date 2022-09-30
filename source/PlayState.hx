@@ -4507,6 +4507,11 @@ class PlayState extends MusicBeatState
 
 		var key5 = controls.KEY5 && (SONG.song.toLowerCase() == 'polygonized' || SONG.song.toLowerCase() == 'interdimensional');
 
+		playerStrums.forEach(function(strum:StrumNote)
+		{
+			strum.pressingKey5 = key5;
+		});
+
 		var upP = controls.UP_P;
 		var rightP = controls.RIGHT_P;
 		var downP = controls.DOWN_P;

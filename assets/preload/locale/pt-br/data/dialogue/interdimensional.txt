@@ -1,7 +1,7 @@
-setfont_normal:dave,3d-scared:ЩО ВІДБУВАЄТЬСЯ
-:dave,3d-scared:ይህ የሆነው ለምንድነው
-distort:dave,3d-scared:โลกยังคงเป็นสามมิติ
-undistort:dave,3d-scared:ستموت
-:dave,3d-scared:ВЕРНУТЬ МЕНЯ К ОБЫЧНОЙ ФОРМЕ
-:dave,3d-scared:나를 다시 데려오려면 그보다 더 많은 일을 해야 할 것입니다
-:bf,confused:Boop bap
+setfont_code:dave,festival-3d-scared:UH OH NOT AGAIN
+:dave,festival-3d-scared:THIS ISN'T A GOOD TIME RIGHT NOW
+distort:dave,festival-3d-scared:THERE ARE PEOPLE AROUND, THEY COULD GET HURT
+undistort:dave,festival-3d-scared:HELP
+:dave,festival-3d-scared:WAIT I HAVE AN IDEA THAT COULD SAVE ME AND EVERYONE ELSE
+:dave,festival-3d-scared:TRY RAP BATTLING ME LIKE LAST TIME
+setfont_normal:bf,confused:Boop bap

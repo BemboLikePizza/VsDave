@@ -1,0 +1,12 @@
+:generic: After the events of Splitathon, BF and GF are invited to a festival to sing with Dave and his friends a few weeks later.
+:dave,festival: Hello you two!
+:dave,festival: Are you ready to rap, BF?
+:bf: Bep.
+:dave,festival: We're a bit scarce with a crowd but I'll do my best to put on a great show!
+:gf,happy: We're usually pretty good at making one.
+:dave,festival: Great! I've got a lineup of people for you to sing with.
+:dave,festival: It'll be Bambi, Tristan, and then me!
+:dave,festival: If we create one big enough of a buzz I might just sing another..
+:bambi,annoyed: Come on!!!
+:dave,festival: Alright alright, I'll let you guys start!
+:bf,ready: Yeah!

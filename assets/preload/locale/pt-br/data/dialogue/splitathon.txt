@@ -1,11 +1,22 @@
-:dave,splitathon:Sabe, eu gosto de ficar de boa.
-:dave,splitathon:Mas a gente ainda não decidiu quem é o melhor rapper.
-:dave,splitathon:Então, eu proponho uma batalha de 10 minutos.
-:dave,splitathon:Quem vencer será proclamado como o mestre dos rappers.
-:bambi,splitathon:E quanto a mim?
-:dave,splitathon:Bambi.
-:dave,splitathon:Por favor fica fora disso, isso é só entre mim e o Boyfriend.
+:generic:Continuamos com o grupo lá fora, se socializando.
+:dave,splitathon:Ei, uhh, seu nome é BF, certo?
+:bf:Bo?
+:dave,splitathon:Eu sinto que nunca realmente se decidimos da última vez que nós cantamos..
+:bf:Bop?
+:gf,what: Decidimos o que?
+:dave,splitathon:Não decidimos em quem é o melhor nessa coisa toda de cantoria.
+:bf:Boh.
+:gf:Bom, eu posso separar uns arranjos aqui rapidinho se você realmente quiser saber.
+:dave,splitathon:Bem, se esse for o caso..
+:dave,splitathon:GF, ponha o instrumental mais longo que você tem!
+:gf:Tá certo então.. O melhor que posso fazer é dez minutos.
+:dave,splitathon:Bom, o que acha de uma batalha de 10 minutos BF?
+:bf,ready:Yeah!
+:dave,splitathon:Quem durar mais do que o outro será proclamado o melhor rapper.
+:bambi,splitathon:E eu?
+:dave,splitathon:Bambi, isso não é da sua conta..
 :bambi,splitathon:...
-:dave,splitathon:Tá certo, vamos acabar com isso!
-:gf,cheer:Tô torcendo por você Boyfriend!
-:bf,ready:Beep bo bop
+:generic:Bambi parece chateado mas se senta e simplesmente assiste.
+:bambi,splitathon:Ok.
+:dave,splitathon:Certo, vamos acabar com isso!
+:bf,ready:Beep bo bop!
