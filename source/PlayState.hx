@@ -196,6 +196,7 @@ class PlayState extends MusicBeatState
 	private var noteLimboFrames:Int;
 
 	public var camZooming:Bool = false;
+	public var crazyZooming:Bool = false;
 	private var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
@@ -290,7 +291,7 @@ class PlayState extends MusicBeatState
 	public var modchart:ExploitationModchartType;
 	var weirdBG:FlxSprite;
 
-	var mcStarted:Bool = false;
+	var mcStarted:Bool = false; 
 	public static var devBotplay:Bool = false;
 	public var creditsPopup:CreditsPopUp;
 	public var blackScreen:FlxSprite;
@@ -413,7 +414,7 @@ class PlayState extends MusicBeatState
 	var vignette:FlxSprite;
 
 	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh', 'alright instagram its shoutout time'];
-	
+
 	override public function create()
 	{
 		instance = this;
@@ -3421,6 +3422,11 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 		}
+		if (crazyZooming)
+		{
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
+			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
+		}
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
@@ -3524,7 +3530,7 @@ class PlayState extends MusicBeatState
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
 					if (SONG.song != 'Warmup')
-						camZooming = true;
+						camZooming = true; 
 
 					var altAnim:String = "";
 					var healthtolower:Float = 0.02;
@@ -5816,7 +5822,7 @@ class PlayState extends MusicBeatState
 					case 1024 | 1312:
 						defaultCamZoom = 1.1;
 						shakeCam = true;
-						camZooming = true;
+						crazyZooming = true;
 
 						pre3dSkin = boyfriend.curCharacter;
 						for (char in [boyfriend, gf])
@@ -5836,13 +5842,21 @@ class PlayState extends MusicBeatState
 					case 1152 | 1408:
 						defaultCamZoom = 0.9;
 						shakeCam = false;
-						camZooming = false;
+						crazyZooming = false;
 
 						if (boyfriend.curCharacter != pre3dSkin)
 						{
 							switchBF(pre3dSkin, boyfriend.getPosition());
 							switchGF(boyfriend.skins.get('gfSkin'), gf.getPosition());
 						}
+				}
+			case 'adventure':
+				switch (curStep)
+				{
+					case 1151:
+						defaultCamZoom = 1;
+					case 1407:
+						defaultCamZoom = 0.8;	
 				}
 			case 'glitch':
 				switch (curStep)
@@ -5862,15 +5876,15 @@ class PlayState extends MusicBeatState
 						FlxTween.linearMotion(dad, dad.x, dad.y, 25, 50, 20, true);
 					case 848:
 						shakeCam = false;
-						camZooming = false;
+						crazyZooming = false;
 						defaultCamZoom = 1;
 					case 132 | 612 | 740 | 771 | 836:
 						shakeCam = true;
-						camZooming = true;
+						crazyZooming = true;
 						defaultCamZoom = 1.2;
 					case 144 | 624 | 752 | 784:
 						shakeCam = false;
-						camZooming = false;
+						crazyZooming = false;
 						defaultCamZoom = 0.8;
 					case 1231:
 						defaultCamZoom = 0.8;
@@ -5903,6 +5917,15 @@ class PlayState extends MusicBeatState
 			case 'indignancy':
 				switch (curStep)
 				{
+					case 124:
+						defaultCamZoom += 0.2;
+					case 176:
+                        defaultCamZoom -= 0.2;
+						crazyZooming = true;
+					case 320 | 864 | 1632:
+						crazyZooming = true;	
+					case 304 | 832 | 1088 | 2144:
+						crazyZooming = false;
 					case 1216:
 						defaultCamZoom += 0.2;
 						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
@@ -6611,11 +6634,16 @@ class PlayState extends MusicBeatState
 		wiggleShit.update(Conductor.crochet);
 		#end
 
-		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0 || (SONG.song.toLowerCase() == 'memory' && curBeat >= 416 && curBeat <= 672) || (SONG.song.toLowerCase() == 'mealie' && curBeat >= 464 && curBeat <= 592))
+		if (camZooming && curBeat % 4 == 0)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
+		if (crazyZooming && curBeat % 1 == 0)
+		{
+			FlxG.camera.zoom += 0.015;
+			camHUD.zoom += 0.03;
+		}	
 		if (curBeat % 4 == 0 && SONG.song.toLowerCase() == 'recursed')
 		{
 			freeplayBG.alpha = 0.8;
@@ -6861,6 +6889,9 @@ class PlayState extends MusicBeatState
 				{
 					case 416:
 						switchDad('dave-annoyed', dad.getPosition());
+						crazyZooming = true;
+					case 672:
+						crazyZooming = false;
 				}
 			case 'escape-from-california':
 				switch (curBeat)
@@ -6915,13 +6946,20 @@ class PlayState extends MusicBeatState
 						remove(desertBG2);
 						
 					
-						georgia = new BGSprite('georgia', 400, 0, Paths.image('california/geor gea', 'shared'), null, 1, 1, true);
-						georgia.setGraphicSize(Std.int(georgia.width * 2));
+						georgia = new BGSprite('georgia', 400, -50, Paths.image('california/geor gea', 'shared'), null, 1, 1, true);
+						georgia.setGraphicSize(Std.int(georgia.width * 2.5));
 						georgia.updateHitbox();
 						georgia.color = nightColor;
 						backgroundSprites.add(georgia);
 						add(georgia);
 				}
+			case 'mealie':
+				switch(curBeat) {
+                    case 464:
+						crazyZooming = true;
+					case 592:
+						crazyZooming = false;
+				}				
 		}
 		if (shakeCam)
 		{

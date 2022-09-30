@@ -27,7 +27,7 @@ class PauseSubState extends MusicBeatSubstate
 		new PauseOption('Resume'),
 		new PauseOption('Restart Song'),
 		new PauseOption('Change Character'),
-		new PauseOption('Developer No Miss'),
+		new PauseOption('No Miss Mode'),
 		new PauseOption('Exit to menu')
 	];
 	#else
@@ -230,8 +230,9 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.camZooming = false;
 					FlxG.mouse.visible = false;
 					FlxG.switchState(new CharacterSelectState());	
-			case "Developer No Miss":
+			case "No Miss Mode":
 				PlayState.devBotplay = !PlayState.devBotplay;
+				PlayState.SONG.validScore = false;
 			case "Exit to menu":
 				if (MathGameState.failedGame)
 				{

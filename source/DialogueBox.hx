@@ -64,7 +64,7 @@ class DialogueBox extends FlxSpriteGroup
 			{
 				case 'house' | 'insanity' | 'splitathon' | 'shredder':
 					FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
-				case 'polygonized' | 'interdimensional':
+				case 'polygonized' | 'interdimensional' | 'master':
 					FlxG.sound.playMusic(Paths.music('scaryAmbience'), 0);
 				case 'supernovae' | 'glitch':
 					randomNumber = FlxG.random.int(0, 50);
