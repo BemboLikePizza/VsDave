@@ -2864,7 +2864,6 @@ class PlayState extends MusicBeatState
 					{
 						dad.canDance = true;
 						dad.canSing = true;
-						dad.playAnim('idle');
 					};
 				} : {
 					health = 0;
