@@ -44,7 +44,7 @@ pause_Resume==Resumir
 pause_Restart Song==Reiniciar Musica
 pause_Change Character==Trocar de Personagem
 pause_Exit to menu==Sair para o Menu
-pause_Developer No Miss==Invencibilidade Dev
+pause_No Miss Mode==Invencibilidade
 
 // Credits State //
 credits_dev==Desenvolvedores

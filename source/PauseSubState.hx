@@ -231,8 +231,7 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.mouse.visible = false;
 					FlxG.switchState(new CharacterSelectState());	
 			case "No Miss Mode":
-				PlayState.devBotplay = !PlayState.devBotplay;
-				PlayState.SONG.validScore = false;
+				PlayState.instance.noMiss = !PlayState.instance.noMiss;
 			case "Exit to menu":
 				if (MathGameState.failedGame)
 				{

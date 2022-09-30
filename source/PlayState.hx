@@ -292,7 +292,7 @@ class PlayState extends MusicBeatState
 	var weirdBG:FlxSprite;
 
 	var mcStarted:Bool = false; 
-	public static var devBotplay:Bool = false;
+	public var noMiss:Bool = false;
 	public var creditsPopup:CreditsPopUp;
 	public var blackScreen:FlxSprite;
 
@@ -3660,7 +3660,7 @@ class PlayState extends MusicBeatState
 				}
 				if (!daNote.wasGoodHit && daNote.mustPress && daNote.finishedGenerating && Conductor.songPosition >= daNote.strumTime + (350 / (0.45 * FlxMath.roundDecimal(SONG.speed * noteSpeed, 2))))
 				{
-					if (!devBotplay)
+					if (!noMiss)
 						noteMiss(daNote.originalType, daNote);
 
 					vocals.volume = 0;
@@ -4378,7 +4378,7 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'shit';
 			totalNotesHit -= 2;
-			score = 50;
+			score = 10;
 			ss = false;
 			shits++;
 		}
@@ -4386,7 +4386,7 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'shit';
 			totalNotesHit -= 2;
-			score = 50;
+			score = 25;
 			ss = false;
 			shits++;
 		}
@@ -4413,21 +4413,21 @@ class PlayState extends MusicBeatState
 		}
 		score = cast(FlxMath.roundDecimal(cast(score, Float) * curmult[note.noteData], 0), Int); //this is old code thats stupid Std.Int exists but i dont feel like changing this
 
-		if (daRating != 'shit' || daRating != 'bad')
+		if (!noMiss)
 		{
 			songScore += score;
-
-			if (inFiveNights)
-			{
-				createScorePopUp(-20,-70, false, daRating,combo,note.noteStyle);
-			}
-			else
-			{
-				createScorePopUp(0,0, true, daRating,combo,note.noteStyle);
-			}
-
-			curSection += 1;
 		}
+
+		if (inFiveNights)
+		{
+			createScorePopUp(-20,-70, false, daRating,combo,note.noteStyle);
+		}
+		else
+		{
+			createScorePopUp(0,0, true, daRating,combo,note.noteStyle);
+		}
+
+		curSection += 1;
 	}
 
 	public function NearlyEquals(value1:Float, value2:Float, unimportantDifference:Float = 10):Bool
@@ -4726,7 +4726,7 @@ class PlayState extends MusicBeatState
 				gf.playAnim('sad');
 			}
 			combo = 0;
-			songScore -= 10;
+			songScore -= 100;
 
 			if (note != null)
 			{
@@ -4822,7 +4822,7 @@ class PlayState extends MusicBeatState
 		{
 			if(note.mustPress && note.finishedGenerating)
 			{
-				if (!devBotplay)
+				if (!noMiss)
 					noteMiss(note.noteData, note);
 			}
 			return;
@@ -4838,7 +4838,7 @@ class PlayState extends MusicBeatState
 		{
 			if (controlArray[i])
 			{
-				if (!devBotplay)
+				if (!noMiss)
 					noteMiss(i, note);
 			}	
 		}

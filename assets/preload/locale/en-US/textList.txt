@@ -47,7 +47,7 @@ pause_Resume==Resume
 pause_Restart Song==Restart Song
 pause_Change Character==Change Character
 pause_Exit to menu==Exit To Menu
-pause_Developer No Miss==Developer No Miss
+pause_No Miss Mode==No Miss Mode
 
 // Options State //
 option_change_keybinds==Change Keybinds
