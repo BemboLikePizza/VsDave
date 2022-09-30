@@ -6739,11 +6739,11 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(strum, {x: targetPosition}, 0.6, {ease: FlxEase.backOut});
 						});
 					case 143:
-						swapGlitch(Conductor.crochet / 4000, 'cheating');
+						swapGlitch(Conductor.crochet / 1500, 'cheating');
 					case 144:
 						modchart = ExploitationModchartType.Cheating; //While we're here, lets bring back a familiar modchart
 					case 191:
-						swapGlitch(Conductor.crochet / 4000, 'expunged');
+						swapGlitch(Conductor.crochet / 1500, 'expunged');
 					case 192:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6757,11 +6757,11 @@ class PlayState extends MusicBeatState
 					case 224:
 						modchart = ExploitationModchartType.Jitterwave;
 					case 255:
-						swapGlitch(Conductor.crochet / 4000, 'unfair');
+						swapGlitch(Conductor.crochet / 1500, 'unfair');
 					case 256:
 						modchart = ExploitationModchartType.Unfairness;
 					case 287:
-						swapGlitch(Conductor.crochet / 4000, 'chains');
+						swapGlitch(Conductor.crochet / 1500, 'chains');
 					case 288:
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6773,7 +6773,7 @@ class PlayState extends MusicBeatState
 						});
 						modchart = ExploitationModchartType.PingPong;
 					case 455:
-						swapGlitch(Conductor.crochet / 4000, 'cheating-2');
+						swapGlitch(Conductor.crochet / 1500, 'cheating-2');
 						modchart = ExploitationModchartType.None;
 						dadStrums.forEach(function(strum:StrumNote)
 						{
@@ -6798,7 +6798,7 @@ class PlayState extends MusicBeatState
 					case 480:
 						switchNotePositions([2,3,6,0,5,7,4,1]);
 					case 486:
-						swapGlitch((Conductor.crochet / 4000) * 2, 'expunged');
+						swapGlitch((Conductor.crochet / 1500) * 2, 'expunged');
 					case 487:
 						modchart = ExploitationModchartType.ScrambledNotes;
 				}
