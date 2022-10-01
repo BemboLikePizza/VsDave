@@ -5172,7 +5172,7 @@ class PlayState extends MusicBeatState
 		switch (boyfriend.curCharacter)
 		{
 			case 'bambi-3d':
-				gameOver();
+				health = 0;
 				return;
 			case 'tristan-golden' | 'tristan-golden-glowing':
 				FlxG.sound.play(Paths.sound('recursed/boom', 'shared'), 1.5, false);
@@ -5329,13 +5329,16 @@ class PlayState extends MusicBeatState
 	}
 	function cancelRecursedCamTween()
 	{
-		rotatingCamTween.cancel();
-		rotatingCamTween = null;
-
-		camRotateAngle = 0;
-		
-		FlxG.camera.angle = 0;
-		camHUD.angle = 0;
+		if (rotatingCamTween != null)
+		{
+			rotatingCamTween.cancel();
+			rotatingCamTween = null;
+	
+			camRotateAngle = 0;
+			
+			FlxG.camera.angle = 0;
+			camHUD.angle = 0;
+		}
 	}
 	function cinematicBars(time:Float, closeness:Float)
 	{
