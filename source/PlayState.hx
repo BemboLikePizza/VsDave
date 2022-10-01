@@ -3455,10 +3455,6 @@ class PlayState extends MusicBeatState
 		}
 
 		#if debug
-		if (FlxG.keys.justPressed.ALT)
-		{
-			powerLeft = 0;
-		}
 		if (FlxG.keys.justPressed.FOUR)
 		{
 			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\nCAMERA POSITION: ${camFollow.getPosition()}');
