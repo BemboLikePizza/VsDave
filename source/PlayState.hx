@@ -6748,7 +6748,10 @@ class PlayState extends MusicBeatState
 			kadeEngineWatermark.font = Paths.font('exploit/${chosenFont}.ttf');
 			creditsWatermark.font = Paths.font('exploit/${chosenFont}.ttf');
 			scoreTxt.font = Paths.font('exploit/${chosenFont}.ttf');
-			songName.font = Paths.font('exploit/${chosenFont}.ttf');
+			if (songName != null)
+			{
+				songName.font = Paths.font('exploit/${chosenFont}.ttf');
+			}
 		}
 		#if desktop
 		DiscordClient.changePresence(detailsText
