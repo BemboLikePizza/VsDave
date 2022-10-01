@@ -2950,9 +2950,12 @@ class PlayState extends MusicBeatState
 					dad.playAnim('fail', true);
 					if(dad.animation.curAnim.name == 'fail' && dad.animation.curAnim.finished)
 					{
-						dad.canDance = true;
-						dad.canSing = true;
-						dad.playAnim('idle');
+						new FlxTimer().start(1.5, function(timer:FlxTimer)
+						{
+							dad.canDance = true;
+							dad.canSing = true;
+							dad.dance();
+						});
 					};
 					powerLeft -= FlxG.random.int(2, 4);
 				} : {
