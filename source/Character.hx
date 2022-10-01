@@ -494,7 +494,7 @@ class Character extends FlxSprite
 				{
 					animation.addByPrefix('sing${anim.toUpperCase()}-alt', 'bambi alt $anim', 24, false);
 				}
-				animation.addByPrefix('hey', 'bambi hey', 24, false);
+				animation.addByPrefix('hey', 'bambi look', 24, false);
 				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
 				
 				barColor = FlxColor.fromRGB(37, 191, 55);

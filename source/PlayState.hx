@@ -383,7 +383,6 @@ class PlayState extends MusicBeatState
 
 	var rotatingCamTween:FlxTween;
 
-
 	static var DOWNSCROLL_Y:Float;
 	static var UPSCROLL_Y:Float;
 
@@ -1234,6 +1233,8 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/nimbi/nimbiVoid');
 				preload('backgrounds/void/interdimensions/nimbi/nimbi_land');
 				preload('backgrounds/void/interdimensions/nimbi/nimbi');
+			case 'mealie':
+				preload('bambi/im_gonna_break_me_phone');
 			case 'recursed':
 				switch (boyfriend.curCharacter)
 				{
@@ -1732,7 +1733,7 @@ class PlayState extends MusicBeatState
 				
 				interdimensionBG = bg;
 
-				for (char in ['ball', 'bimpe', 'maldo', 'memes kids', 'muko', 'ruby man', 'tristan'])
+				for (char in ['ball', 'bimpe', 'maldo', 'memes kids', 'muko', 'ruby man', 'tristan', 'bambi'])
 				{
 					var bgChar = new FlyingBGChar(char, Paths.image('backgrounds/festival/scaredCrowd/$char'));
 					sprites.add(bgChar);
@@ -5131,8 +5132,8 @@ class PlayState extends MusicBeatState
 		{
 			missedRecursedLetterCount++;
 			var recursedCover = new FlxSprite().loadGraphic(Paths.image('recursed/recursedX'));
-			recursedCover.x = (boyfriend.x + (boyfriend.width / 2) - boyfriend.globalOffset[0]) + new FlxRandom().float(-recursedCover.width, recursedCover.width);
-			recursedCover.y = (boyfriend.y + (boyfriend.height / 2) - boyfriend.globalOffset[1]) + new FlxRandom().float(-recursedCover.height, recursedCover.height) / 2;
+			recursedCover.x = (boyfriend.getGraphicMidpoint().x - boyfriend.width / 2) + new FlxRandom().float(-recursedCover.width, recursedCover.width);
+			recursedCover.y = (boyfriend.getGraphicMidpoint().y - boyfriend.height / 2) + new FlxRandom().float(-recursedCover.height, recursedCover.height) / 2;
 
 			recursedCover.angle = new FlxRandom().float(0, 180);
 			
@@ -6068,6 +6069,7 @@ class PlayState extends MusicBeatState
 						makeInvisibleNotes(false);
 					case 1584:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub15'), 0.02, 1);
+					case 1746:
 					case 1751:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub9'), 0.02, 0.6);
 					case 1770:
