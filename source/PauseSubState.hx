@@ -250,7 +250,8 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.switchState(new CharacterSelectState());	
 			case "No Miss Mode":
 				PlayState.instance.noMiss = !PlayState.instance.noMiss;
-				if (PlayState.SONG.song.toLowerCase() == 'exploitation' || PlayState.SONG.song.toLowerCase() == 'cheating' || PlayState.SONG.song.toLowerCase() == 'unfairness')
+				var nm = PlayState.SONG.song.toLowerCase();
+				if (nm == 'exploitation' || nm == 'cheating' || nm == 'unfairness' || nm == 'recursed' || nm == 'glitch' || nm == 'master' || nm == 'supernovae' || nm == 'recursed')
 				{
 					PlayState.instance.health = 0;
 					close();

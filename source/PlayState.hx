@@ -2715,6 +2715,11 @@ class PlayState extends MusicBeatState
 	{
 		elapsedtime += elapsed;
 
+		if (songName != null)
+		{
+			songName.text = FlxStringUtil.formatTime((FlxG.sound.music.length - FlxG.sound.music.time) / 1000);
+		}
+
 		if (startingSong && startTimer != null && !startTimer.active)
 			startTimer.active = true;
 
