@@ -316,6 +316,8 @@ credits_contributor==Colaboradores
 credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimientos Especiales
 
+credits_songby==Cancion por
+
 //Developers 
 credit_MoldyGH==Director, Creador, Programador, Compositor, Desarollador Principal
 credit_MissingTextureMan101==Segundo Desarollador y Programador

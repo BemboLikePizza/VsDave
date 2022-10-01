@@ -128,8 +128,8 @@ class CreditsPopUp extends FlxSpriteGroup
 			bg.antialiasing = headingPath.antiAliasing;
 			curHeading = headingPath;
 		}
-		createHeadingText('Song by ${songCreatorIcon != '' ? songCreatorIcon : songCreator}');
-		
+		createHeadingText(LanguageManager.getTextString("credits_songby") + ' ' + '${songCreatorIcon != '' ? songCreatorIcon : songCreator}');
+
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'supernovae' | 'glitch':

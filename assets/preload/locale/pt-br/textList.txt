@@ -54,6 +54,8 @@ credits_contributor==Contribuidores
 credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimentos Especiais
 
+credits_songby==Música de
+
 // Credits Words //
 supernovae_credit==Música original feita por ArchWk!
 glitch_credit==Música original feita por DeadShadow e PixelGH!
