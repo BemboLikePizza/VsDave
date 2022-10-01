@@ -1,7 +1,7 @@
-setfont_code:dave,festival-3d-scared:UH OH NOT AGAIN
-:dave,festival-3d-scared:THIS ISN'T A GOOD TIME RIGHT NOW
-distort:dave,festival-3d-scared:THERE ARE PEOPLE AROUND, THEY COULD GET HURT
-undistort:dave,festival-3d-scared:HELP
-:dave,festival-3d-scared:WAIT I HAVE AN IDEA THAT COULD SAVE ME AND EVERYONE ELSE
-:dave,festival-3d-scared:TRY RAP BATTLING ME LIKE LAST TIME
+setfont_code:dave,festival-3d-scared:UH OH DE NOVO NÃO
+:dave,festival-3d-scared:ISSO NÃO É MESMO UMA BOA HORA
+distort:dave,festival-3d-scared:TEM GENTE POR AQUI, ELES PODEM SE MACHUCAR
+undistort:dave,festival-3d-scared:AJUDA
+:dave,festival-3d-scared:ESPERA EU TENHO UMA IDEIA QUE PODE SALVAR TODOS E EU
+:dave,festival-3d-scared:TENTA CANTAR COMIGO IGUAL DA ÚLTIMA VEZ
 setfont_normal:bf,confused:Boop bap
