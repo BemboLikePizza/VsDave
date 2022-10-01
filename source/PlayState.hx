@@ -2948,7 +2948,7 @@ class PlayState extends MusicBeatState
 					var slam = new FlxSound().loadEmbedded(Paths.sound('fiveNights/slam'));
 					slam.play();
 					dad.playAnim('fail', true);
-					if(dad.animation.curAnim.name == 'fail' && dad.animation.curAnim.finished)
+					dad.animation.finishCallback = function(animation:String)
 					{
 						new FlxTimer().start(1.5, function(timer:FlxTimer)
 						{
