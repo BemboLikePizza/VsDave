@@ -41,16 +41,10 @@ freeplay_fucked==ESTAS EN PELIGRO
 freeplay_skipChar==Mantén CTRL para saltarse la Seleción de Personaje
 
 // Pause State //
-pause_resume==Continuar
-pause_restart==Reiniciar Cancion
-pause_exit==Salir al menu
-pause_nomiss==Deshabilitar Fallos
-pause_Change Character==Change Character
-
 pause_Resume==Continuar
 pause_Restart Song==Reiniciar Cancion
 pause_Change Character==Cambiar Personaje
-pause_Exit to menu==Salir al menú
+pause_Exit to menu==Salir al menu
 pause_No Miss Mode==Deshabilitar
 
 // Credits Words //
