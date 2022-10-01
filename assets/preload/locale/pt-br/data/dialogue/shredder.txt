@@ -1,12 +1,12 @@
-:generic: After the events of Splitathon, BF and GF are invited to a festival to sing with Dave and his friends a few weeks later.
-:dave,festival: Hello you two!
-:dave,festival: Are you ready to rap, BF?
+:generic: Após os eventos de Splitathon, BF e GF são ambos convidados para o festival para cantar com Dave e seus amigos algumas semanas depois.
+:dave,festival: Oi gente!
+:dave,festival: Você tá pronto pra cantar, BF?
 :bf: Bep.
-:dave,festival: We're a bit scarce with a crowd but I'll do my best to put on a great show!
-:gf,happy: We're usually pretty good at making one.
-:dave,festival: Great! I've got a lineup of people for you to sing with.
-:dave,festival: It'll be Bambi, Tristan, and then me!
-:dave,festival: If we create one big enough of a buzz I might just sing another..
-:bambi,annoyed: Come on!!!
-:dave,festival: Alright alright, I'll let you guys start!
+:dave,festival: Nós estamos meio vazios em questão de plateia mas vou tentar meu melhor pra dar um showzão!
+:gf,happy: Nós somos geralmente muito bons nisso.
+:dave,festival: Ótimo! Eu tenho uma fila de pessoas pra você cantar contra.
+:dave,festival: Vai ser o Bambi, Tristan, aí depois eu!
+:dave,festival: Se nós criarmos animação o suficiente eu talvez possa cantar outra..
+:bambi,annoyed: Vamo lá!!!
+:dave,festival: Beleza beleza, eu vou deixar vocês começarem!
 :bf,ready: Yeah!
