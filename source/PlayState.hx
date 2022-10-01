@@ -3363,7 +3363,7 @@ class PlayState extends MusicBeatState
 					DiscordClient.changePresence("I have your IP address", null, null, true);
 					#end
 					return;
-				case 'exploitation':
+				case 'exploitation' | 'master':
 					health = 0;
 				case 'recursed':
 					ChartingState.hahaFunnyRecursed();
@@ -6959,10 +6959,8 @@ class PlayState extends MusicBeatState
 						switchNotePositions([7,1,0,2,3,5,4,6]);
 						switchNoteScroll(false);
 					case 120:
-						switchNotePositions([3,2,1,0,7,6,5,4]);
 						switchNoteScroll();
 					case 124:
-						switchNotePositions([0,2,3,1,4,6,7,5]);
 						switchNoteScroll();
 					case 72:
 						switchNotePositions([6,7,2,3,4,5,0,1]);
