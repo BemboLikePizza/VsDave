@@ -3830,7 +3830,7 @@ class PlayState extends MusicBeatState
 		{
 			if (note.animation.curAnim.name.endsWith('end'))
 			{
-				val += (note.height * 2);
+				val += (note.height * 2.05);
 			}
 		}
 		return val;

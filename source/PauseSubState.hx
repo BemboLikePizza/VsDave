@@ -25,7 +25,7 @@ class PauseSubState extends MusicBeatSubstate
 	var menuItems:Array<PauseOption> = [
 		new PauseOption('Resume'),
 		new PauseOption('Restart Song'),
-		//new PauseOption('Change Character'),
+		new PauseOption('Change Character'),
 		new PauseOption('No Miss Mode'),
 		new PauseOption('Exit to menu')
 	];
@@ -44,6 +44,25 @@ class PauseSubState extends MusicBeatSubstate
 		
 		funnyTexts = new FlxTypedGroup<FlxText>();
 		add(funnyTexts);
+
+		for(item in menuItems)
+		{
+			if(item.optionName == 'Change Character')
+			{
+				if(PlayState.isStoryMode == true || PlayState.SONG.song.toLowerCase() == 'five-nights')
+				{
+					menuItems.remove(item);
+				}
+				else
+				{
+					continue;
+				}
+			}
+			else
+			{
+				continue;
+			}
+		}
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{

@@ -20,6 +20,7 @@ main_warningdata==¿Estás seguro de que quieres restablecer tus datos?
 // Main Menu Descriptions //
 desc_story==¡Juega el modo historia para desbloquear nuevos personajes y entender la historia!
 desc_freeplay==¡Juega cualquier canción como quieras y consigue nuevas puntuaciones!
+desc_freeplay_glitch==Juega mi canción como yo quiero y falla.
 desc_credits==¡Mira que personas trabajaron o contribuyeron al mod!
 desc_ost==Escucha las canciones del mod.
 desc_options==Ajusta las opciones del juego o cambia las teclas.
@@ -45,7 +46,7 @@ pause_Resume==Continuar
 pause_Restart Song==Reiniciar Cancion
 pause_Change Character==Cambiar Personaje
 pause_Exit to menu==Salir al menu
-pause_No Miss Mode==Deshabilitar
+pause_No Miss Mode==Deshabilitar Fallos
 
 // Credits Words //
 supernovae_credit==¡La canción original fue creada por ArchWk!
