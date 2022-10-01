@@ -1094,30 +1094,34 @@ class PlayState extends MusicBeatState
 		if (inFiveNights)
 		{
 			time = new FlxText(1175, 24, 0, '12 AM', 60);
-			time.setFormat(Paths.font('fnaf.ttf'), 60, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			time.setFormat(Paths.font('fnaf.ttf'), 60, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			time.scrollFactor.set();
 			time.antialiasing = false;
+			time.borderSize = 2.5;
 			time.cameras = [camHUD];
 			add(time);
 
 			night = new FlxText(1175, 70, 0, 'Night 7', 34);
-			night.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			night.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			night.scrollFactor.set();
 			night.antialiasing = false;
+			night.borderSize = 2.5;
 			night.cameras = [camHUD];
 			add(night);
 
 			powerLeftText = new FlxText(1100, 650, 0, 'Power Left: 100%', 34);
-			powerLeftText.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			powerLeftText.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			powerLeftText.scrollFactor.set();
 			powerLeftText.antialiasing = false;
+			powerLeftText.borderSize = 2;
 			powerLeftText.cameras = [camHUD];
 			add(powerLeftText);
 
 			usage = new FlxText(1100, 685, 0, 'Usage: ', 34);
-			usage.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			usage.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			usage.scrollFactor.set();
 			usage.antialiasing = false;
+			usage.borderSize = 2;
 			usage.cameras = [camHUD];
 			add(usage);
 			
@@ -2943,7 +2947,7 @@ class PlayState extends MusicBeatState
 					var slam = new FlxSound().loadEmbedded(Paths.sound('fiveNights/slam'));
 					slam.play();
 					dad.playAnim('fail', true);
-					dad.animation.finishCallback = function(animation:String)
+					if(dad.animation.curAnim.name == 'fail' && dad.animation.curAnim.finished)
 					{
 						dad.canDance = true;
 						dad.canSing = true;
