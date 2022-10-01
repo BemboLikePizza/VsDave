@@ -417,8 +417,13 @@ class PlayState extends MusicBeatState
 	var time:FlxText;
 	var times:Array<Int> = [12, 1, 2, 3, 4, 5];
 	var night:FlxText;
-	var powerLeft:Float;
+	var powerLeft:Float = 100;
+	var powerRanOut:Bool;
+	var powerDrainer:Float = 1;
 	var powerMeter:FlxSprite;
+	var powerLeftText:FlxText;
+	var usage:FlxText;
+
 
 	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh', 'alright instagram its shoutout time'];
 
@@ -1101,6 +1106,25 @@ class PlayState extends MusicBeatState
 			night.antialiasing = false;
 			night.cameras = [camHUD];
 			add(night);
+
+			powerLeftText = new FlxText(1100, 650, 0, 'Power Left: 100%', 34);
+			powerLeftText.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			powerLeftText.scrollFactor.set();
+			powerLeftText.antialiasing = false;
+			powerLeftText.cameras = [camHUD];
+			add(powerLeftText);
+
+			usage = new FlxText(1100, 685, 0, 'Usage: ', 34);
+			usage.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			usage.scrollFactor.set();
+			usage.antialiasing = false;
+			usage.cameras = [camHUD];
+			add(usage);
+			
+			powerMeter = new FlxSprite(1200, 685).loadGraphic(Paths.image('fiveNights/powerMeter'));
+			powerMeter.scrollFactor.set();
+			powerMeter.cameras = [camHUD];
+			add(powerMeter);
 		}
 		
 		var healthBarPath = '';
@@ -2852,6 +2876,56 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
+			powerLeft = Math.max(powerLeft - (elapsed / 1.5) * powerDrainer, 0);
+			powerLeftText.text = 'Power Left: ${Math.floor(powerLeft)}%';
+			if (powerLeft <= 0 && !powerRanOut && curStep < 1088)
+			{
+				powerRanOut = true;
+				
+				boyfriend.stunned = true;
+
+				persistentUpdate = false;
+				persistentDraw = false;
+				paused = true;
+	
+				vocals.volume = 0;
+				FlxG.sound.music.volume = 0;
+
+				FlxTween.tween(camHUD, {alpha: 0}, 1);
+				
+				for (note in unspawnNotes)
+				{
+					unspawnNotes.remove(note);
+				}
+
+				var black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+				black.scrollFactor.set();
+				black.screenCenter();
+				add(black);
+
+				var powerDown = new FlxSound().loadEmbedded(Paths.sound('fiveNights/powerOut', 'shared'));
+				powerDown.play();
+			}
+			if (powerRanOut)
+			{
+				curStep < 1088 ? {
+					new FlxTimer().start(FlxG.random.int(2, 4), function(timer:FlxTimer)
+					{
+						if (FlxG.random.int(0, 4) == 0)
+						{
+							health = 0;
+						}
+					}, Std.int(Math.POSITIVE_INFINITY));
+				} : {
+					powerRanOut = false;
+
+					persistentUpdate = true;
+					persistentDraw = true;
+					
+					camHUD.alpha = 1;
+					sixAM();
+				}
+			}
 			if (time != null)
 			{
 				var curTime = Std.int(Math.min(Math.floor(FlxG.sound.music.time / 1000 / (((Conductor.stepCrochet / 1000) * 1088) / times.length - 1)), times.length));
@@ -2860,7 +2934,6 @@ class PlayState extends MusicBeatState
 			if (FlxG.mouse.overlaps(doorButton) && FlxG.mouse.justPressed && !doorChanging || controls.KEY5 && !doorChanging)
 			{
 				changeDoorState(!doorClosed);
-				trace(doorClosed);
 			}
 			if (dad.curCharacter == 'nofriend' && dad.animation.curAnim.name == 'attack' && dad.animation.curAnim.finished)
 			{
@@ -2874,6 +2947,7 @@ class PlayState extends MusicBeatState
 						dad.canSing = true;
 						dad.playAnim('idle');
 					};
+					powerLeft -= FlxG.random.int(2, 4);
 				} : {
 					health = 0;
 				}
@@ -3375,6 +3449,10 @@ class PlayState extends MusicBeatState
 		}
 
 		#if debug
+		if (FlxG.keys.justPressed.ALT)
+		{
+			powerLeft = 0;
+		}
 		if (FlxG.keys.justPressed.FOUR)
 		{
 			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\nCAMERA POSITION: ${camFollow.getPosition()}');
@@ -6013,11 +6091,15 @@ class PlayState extends MusicBeatState
 			case 'indignancy':
 				switch (curStep)
 				{
-					case 124:
+					case 124 | 304 | 496 | 502 | 576 | 848:
 						defaultCamZoom += 0.2;
 					case 176:
                         defaultCamZoom -= 0.2;
 						crazyZooming = true;
+					case 320 | 832 | 864:
+						defaultCamZoom -= 0.2;
+					case 508:
+						defaultCamZoom -= 0.4;		
 					case 320 | 864:
 						crazyZooming = true;	
 					case 304 | 832 | 1088 | 2144:
@@ -6045,6 +6127,8 @@ class PlayState extends MusicBeatState
 					case 1622:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub5'), 0.02, 0.3);
 						
+						defaultCamZoom += 0.4;
+						FlxG.camera.shake(0.015, 0.6);
 						dad.canDance = false;
 						dad.playAnim('scream', true);
 						dad.animation.finishCallback = function(animation:String)
@@ -6052,6 +6136,7 @@ class PlayState extends MusicBeatState
 							dad.canDance = true;
 						}
 					case 1632:
+						defaultCamZoom -= 0.4;
 						crazyZooming = true;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 				}
@@ -6423,33 +6508,20 @@ class PlayState extends MusicBeatState
 						}
 				}
 			case 'five-nights':
-				switch (curStep)
+				if (!powerRanOut)
 				{
-					case 60:
-						switchNoteSide();
-					case 64 | 320 | 480 | 576 | 704 | 832 | 1024:
-						nofriendAttack();
-					case 992:
-						defaultCamZoom = 1.2;
-						FlxTween.tween(camHUD, {alpha: 0}, 1);
-					case 1088:
-						FlxG.camera.flash(FlxColor.WHITE, 0.5);
-						black = new FlxSprite(0, 0).makeGraphic(2560, 1440, FlxColor.BLACK);
-						black.screenCenter();
-						black.scrollFactor.set();
-						black.cameras = [camHUD];
-						add(black);
-						
-						var sixAM:FlxText = new FlxText(0, 0, 0, "6 AM", 90);
-						sixAM.setFormat(Paths.font('fnaf.ttf'), 90, FlxColor.WHITE, CENTER);
-						sixAM.antialiasing = false;
-						sixAM.scrollFactor.set();
-						sixAM.screenCenter();
-						sixAM.cameras = [camHUD];
-						add(sixAM);
-						
-						var crowdSmall = new FlxSound().loadEmbedded(Paths.sound('fiveNights/CROWD_SMALL_CHIL_EC049202', 'shared'));
-						crowdSmall.play();
+					switch (curStep)
+					{
+						case 60:
+							switchNoteSide();
+						case 64 | 320 | 480 | 576 | 704 | 832 | 1024:
+							nofriendAttack();
+						case 992:
+							defaultCamZoom = 1.2;
+							FlxTween.tween(camHUD, {alpha: 0}, 1);
+						case 1088:
+							sixAM();
+					}
 				}
 			case 'bot-trot':
 				switch (curStep)
@@ -7345,6 +7417,30 @@ class PlayState extends MusicBeatState
 		var runSfx = new FlxSound().loadEmbedded(Paths.soundRandom('fiveNights/run', 1, 2, 'shared'));
 		runSfx.play();
 	}
+	function sixAM()
+	{
+		FlxG.sound.music.volume = 1;
+		vocals.volume = 1;
+		camHUD.alpha = 1;
+
+		FlxG.camera.flash(FlxColor.WHITE, 0.5);
+		black = new FlxSprite(0, 0).makeGraphic(2560, 1440, FlxColor.BLACK);
+		black.screenCenter();
+		black.scrollFactor.set();
+		black.cameras = [camHUD];
+		add(black);
+
+		var sixAM:FlxText = new FlxText(0, 0, 0, "6 AM", 90);
+		sixAM.setFormat(Paths.font('fnaf.ttf'), 90, FlxColor.WHITE, CENTER);
+		sixAM.antialiasing = false;
+		sixAM.scrollFactor.set();
+		sixAM.screenCenter();
+		sixAM.cameras = [camHUD];
+		add(sixAM);
+
+		var crowdSmall = new FlxSound().loadEmbedded(Paths.sound('fiveNights/CROWD_SMALL_CHIL_EC049202', 'shared'));
+		crowdSmall.play();
+	}
 	public function getCamZoom():Float
 	{
 		return defaultCamZoom;
@@ -7528,17 +7624,23 @@ class PlayState extends MusicBeatState
 		if (doorClosed)
 		{
 			doorButton.loadGraphic(Paths.image('fiveNights/btn_doorClosed'));
+			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter_2'));
 			door.animation.play('doorShut');
+			
+			powerDrainer = 2;
 		}
 		else
 		{
 			doorButton.loadGraphic(Paths.image('fiveNights/btn_doorOpen'));
+			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter'));
 			door.animation.play('doorOpen');
+
+			powerDrainer = 1;
 		}
 		door.animation.finishCallback = function(animation:String)
 		{
 			doorChanging = false;
-		}	
+		}
 	}
 	function changeSign(asset:String, ?position:FlxPoint)
 	{
