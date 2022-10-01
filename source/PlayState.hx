@@ -3168,6 +3168,10 @@ class PlayState extends MusicBeatState
 				LanguageManager.getTextString('play_miss') + misses +  " | " + 
 				LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
 		}
+		if (noMiss)
+		{
+			scoreTxt.text += " | NO MISS!!";
+		}
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
@@ -3269,6 +3273,8 @@ class PlayState extends MusicBeatState
 					return;
 				case 'exploitation':
 					health = 0;
+				case 'recursed':
+					ChartingState.hahaFunnyRecursed();
 				case 'glitch':
 					isStoryMode = false;
 					storyPlaylist = [];
