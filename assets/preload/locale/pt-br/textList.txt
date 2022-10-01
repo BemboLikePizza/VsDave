@@ -19,6 +19,7 @@ main_warningdata==Tem certeza de que deseja redefinir todos os seus dados?
 // Main Menu Descriptions //
 desc_story==Jogue o modo história para desbloquear novos personagens, e entender a história em si!
 desc_freeplay==Jogue qualquer música de escolha sua e alcançe novas pontuações!
+desc_freeplay_glitch==Toque minha música como eu desejo e falho.
 desc_credits==Dê uma olhada no pessoal que trabalhou e contribuiu para o mod!
 desc_ost==Escute as músicas do mod.
 desc_options==Ajuste suas configurações e preferências.
@@ -52,6 +53,8 @@ credits_translator==Tradutores
 credits_contributor==Contribuidores
 credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimentos Especiais
+
+credits_songby==Música de
 
 // Credits Words //
 supernovae_credit==Música original feita por ArchWk!
@@ -91,6 +94,10 @@ option_freeplay_cutscenes_on==Cutscenes no Modo Livre On
 
 option_noteCamera_on==Movimento de Câmera por Pose
 option_noteCamera_off==Câmera Normal
+
+option_change_langauge==Mudar idioma
+option_disable_fps==Não mostra FPS e memória
+option_enable_fps==Mostrar FPS e Memória
 
 cur_language==Idioma Atual
 en-US==Inglês
@@ -164,14 +171,21 @@ maze_sub11==Você me bullying?
 maze_sub12==Nunca mais volte.
 
 // Mealie Subtitles //
-mealie_sub1==Eu vou te bloquear!
-mealie_sub2==Eu quero você outro
-mealie_sub3==Ah oh eu vou quebrar meu
-mealie_sub4==Celular!
-mealie_sub5==É isso que você queria?
-mealie_sub6==um celular?
-mealie_sub7==PUTA MERDA!
-mealie_sub8==Seu mentiroso Moldy!
+mealie_sub1==Eu bloquear você!
+mealie_sub2==Eu ir sua casa
+mealie_sub3==e eu vou te CAIR
+mealie_sub4==A cama sua-
+mealie_sub5==Sua casa!
+mealie_sub6==Isaac...
+mealie_sub7==Cala a boca.
+mealie_sub8==Para usar a porra do...
+mealie_sub9==Ah oh eu vou quebrar o meu
+mealie_sub10==CELULAR!
+mealie_sub11==Você ia queria-
+mealie_sub12==a porra do celular?
+mealie_sub13==PUTA MERDA!
+mealie_sub14==Seu mentiroso Moldy!
+mealie_sub15==Vai pro inferno!
 
 // Shredder Subtitles //
 shred_sub1==Ai meu deus...

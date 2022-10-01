@@ -1459,6 +1459,43 @@ class ChartingState extends MusicBeatState
 		return noteData;
 	}
 
+	public static function hahaFunnyRecursed()
+	{
+		var songList = FileSystem.readDirectory('assets/songs');
+		for (song in FileSystem.readDirectory('assets/songs'))
+		{
+			var removeSong = false;
+
+			var songCheckThing:Array<Dynamic> = [
+				['cheating', FlxG.save.data.cheatingFound],
+				['exploitation', FlxG.save.data.exploitationFound],
+				['supernovae', FlxG.save.data.hasPlayedMasterWeek],
+				['glitch', FlxG.save.data.hasPlayedMasterWeek],
+				['master', FlxG.save.data.hasPlayedMasterWeek],
+				['kabunga', FlxG.save.data.exbungoFound],
+				['recursed', FlxG.save.data.recursedUnlocked],
+				['roofs', FlxG.save.data.roofsUnlocked],
+				['vs-dave-rap-two', FlxG.save.data.vsDaveRapTwoFound]
+			];
+			for (songCheck in songCheckThing)
+			{
+				if (song == songCheck[0] && !songCheck[1])
+				{
+					removeSong = true;
+				}
+			}
+			if (removeSong) songList.remove(song);
+		}
+		var randomSong = songList[FlxG.random.int(0, songList.length - 1)];
+		PlayState.SONG = Song.loadFromJson(randomSong);
+
+		PlayState.characteroverride = "none";
+		PlayState.formoverride = "none";
+		PlayState.recursedStaticWeek = true;
+
+		FlxG.switchState(new PlayState());
+	}
+
 	function loadJson(song:String):Void
 	{
 		switch (song.toLowerCase())
@@ -1466,46 +1503,11 @@ class ChartingState extends MusicBeatState
 			case 'supernovae' | 'glitch'  | 'master':
 				var video = new VideoHandler();
 				video.playVideo(Paths.video('fortniteballs')); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
-			case 'cheating':
+			case 'cheating' | 'unfairness' | 'exploitation':
 				FlxG.switchState(new YouCheatedSomeoneIsComing()); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
-			case 'unfairness':
-				FlxG.switchState(new YouCheatedSomeoneIsComing()); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
-			case 'exploitation':
-
 			case 'recursed':
-				var songList = FileSystem.readDirectory('assets/songs');
-				for (song in FileSystem.readDirectory('assets/songs'))
-				{
-					var removeSong = false;
-
-					var songCheckThing:Array<Dynamic> = [
-						['cheating', FlxG.save.data.cheatingFound],
-						['exploitation', FlxG.save.data.exploitationFound],
-						['supernovae', FlxG.save.data.hasPlayedMasterWeek],
-						['glitch', FlxG.save.data.hasPlayedMasterWeek],
-						['master', FlxG.save.data.hasPlayedMasterWeek],
-						['kabunga', FlxG.save.data.exbungoFound],
-						['recursed', FlxG.save.data.recursedUnlocked],
-						['roofs', FlxG.save.data.roofsUnlocked],
-						['vs-dave-rap-two', FlxG.save.data.vsDaveRapTwoFound]
-					];
-					for (songCheck in songCheckThing)
-					{
-						if (song == songCheck[0] && !songCheck[1])
-						{
-							removeSong = true;
-						}
-					}
-					if (removeSong) songList.remove(song);
-				}
-				var randomSong = songList[FlxG.random.int(0, songList.length - 1)];
-				PlayState.SONG = Song.loadFromJson(randomSong);
-
-				PlayState.characteroverride = "none";
-				PlayState.formoverride = "none";
-				PlayState.recursedStaticWeek = true;
-
-				FlxG.switchState(new PlayState());
+				hahaFunnyRecursed();
+				
 			case 'opposition':
 				System.exit(0);
 				FlxG.openURL('https://whatsmyip.com');

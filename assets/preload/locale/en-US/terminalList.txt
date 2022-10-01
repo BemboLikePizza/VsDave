@@ -8,6 +8,7 @@ term_admin_ins==Shows the admin list, use grant to grant rights.
 term_admlist_ins==:linebreak:To add extra users, add the grant parameter and the name.:linebreak:(Example: admin grant expungo.dat):linebreak:NOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.
 term_clear_ins==Clears the screen.
 term_leak_ins==No providing such leaks.
+term_texts_ins==Searches for a text file with the specified ID, and if it exists, display it.
 
 // Errors and argument outputs //
 term_loading==:linebreak:Loading...
@@ -17,5 +18,3 @@ term_admin_error1==:linebreak:No version of the :addquote:admin:addquote: comman
 term_admin_error2== parameter(s).
 term_grant_error1== is not a valid user or character.
 term_moldy_error==:linebreak:you know what? im gonna close the game so you can watch my baldi's basics playthrough...
-
-term_texts_ins==Searches for a text file with the specified ID, and if it exists, display it.

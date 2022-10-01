@@ -415,7 +415,7 @@ class PlayState extends MusicBeatState
 	
 	//five night
 	var time:FlxText;
-	var times:Array<Int> = [12, 1, 2, 3, 4, 5, 6];
+	var times:Array<Int> = [12, 1, 2, 3, 4, 5];
 	var night:FlxText;
 	var powerLeft:Float = 100;
 	var powerRanOut:Bool;
@@ -1072,8 +1072,8 @@ class PlayState extends MusicBeatState
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.fromRGB(57, 255, 20));
 			insert(members.indexOf(songPosBG), songPosBar);
 			
-			songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
-			songName.setFormat(font, 32 * fontScaler, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			songName = new FlxText(songPosBG.x, songPosBG.y, 0, "0:00", 32);
+			songName.setFormat(font, 32 * fontScaler, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5 * fontScaler;
 			songName.antialiasing = true;
@@ -2071,7 +2071,7 @@ class PlayState extends MusicBeatState
 
 			if (SONG.song.toLowerCase() == "exploitation")
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
-			if (SONG.song.toLowerCase() == "overdrive")
+			else if (SONG.song.toLowerCase() == "overdrive")
 				introAssets.set('default', ['ui/spr_start_sprites_0', "ui/spr_start_sprites_1", "ui/spr_start_sprites_2"]);
 			else
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
@@ -2215,7 +2215,7 @@ class PlayState extends MusicBeatState
 					}
 					if (['polygonized', 'interdimensional'].contains(SONG.song.toLowerCase()))
 					{
-						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image('ui/shapeNoteWarning', 'shared'));
+						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image('ui/shapeNoteWarning'));
 						shapeNoteWarning.cameras = [camHUD];
 						shapeNoteWarning.scrollFactor.set();
 						shapeNoteWarning.antialiasing = false;
@@ -2739,6 +2739,11 @@ class PlayState extends MusicBeatState
 	{
 		elapsedtime += elapsed;
 
+		if (songName != null)
+		{
+			songName.text = FlxStringUtil.formatTime((FlxG.sound.music.length - FlxG.sound.music.time) / 1000);
+		}
+
 		if (startingSong && startTimer != null && !startTimer.active)
 			startTimer.active = true;
 
@@ -2937,6 +2942,7 @@ class PlayState extends MusicBeatState
 					{
 						dad.canDance = true;
 						dad.canSing = true;
+						dad.playAnim('idle');
 					};
 					powerLeft -= FlxG.random.int(2, 4);
 				} : {
@@ -3241,6 +3247,10 @@ class PlayState extends MusicBeatState
 				LanguageManager.getTextString('play_miss') + misses +  " | " + 
 				LanguageManager.getTextString('play_accuracy') + truncateFloat(accuracy, 2) + "%";
 		}
+		if (noMiss)
+		{
+			scoreTxt.text += " | NO MISS!!";
+		}
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
@@ -3342,6 +3352,8 @@ class PlayState extends MusicBeatState
 					return;
 				case 'exploitation':
 					health = 0;
+				case 'recursed':
+					ChartingState.hahaFunnyRecursed();
 				case 'glitch':
 					isStoryMode = false;
 					storyPlaylist = [];
@@ -3744,8 +3756,6 @@ class PlayState extends MusicBeatState
 							if (curBeat >= 464 && curBeat <= 592) {
 								health -= (healthtolower / 1.5);
 							}
-						case 'indignancy':
-							health -= healthtolower;	
 						case 'five-nights':
 							if ((health - 0.023) > 0)
 							{
@@ -3909,7 +3919,7 @@ class PlayState extends MusicBeatState
 		{
 			if (note.animation.curAnim.name.endsWith('end'))
 			{
-				val += (note.height * 2);
+				val += (note.height * 2.05);
 			}
 		}
 		return val;
@@ -4552,11 +4562,7 @@ class PlayState extends MusicBeatState
 			songScore += score;
 		}
 
-		if (inFiveNights)
-		{
-			createScorePopUp(-20,-70, false, daRating,combo,note.noteStyle);
-		}
-		else
+		if (!inFiveNights)
 		{
 			createScorePopUp(0,0, true, daRating,combo,note.noteStyle);
 		}
@@ -5421,7 +5427,7 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 128:
-						defaultCamZoom += 0.2;
+						defaultCamZoom += 0.1;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 						black.screenCenter();
@@ -5439,17 +5445,17 @@ class PlayState extends MusicBeatState
 					case 248:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub5'), 0.02, 0.5, {subtitleSize: 60});
 					case 256:
-						defaultCamZoom -= 0.2;
+						defaultCamZoom -= 0.1;
 						FlxG.camera.flash();
 						FlxTween.tween(black, {alpha: 0}, 1);
 						makeInvisibleNotes(false);
 					case 640:
 						FlxG.camera.flash();
 						black.alpha = 0.6;
-						defaultCamZoom += 0.2;
+						defaultCamZoom += 0.1;
 					case 768:
 						FlxG.camera.flash();
-						defaultCamZoom -= 0.2;
+						defaultCamZoom -= 0.1;
 						black.alpha = 0;
 					case 1028:
 						makeInvisibleNotes(true);
@@ -6034,33 +6040,63 @@ class PlayState extends MusicBeatState
 				{
 					case 659:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub1'), 0.02, 0.6);
-					case 1194:
+					case 1183:
+						defaultCamZoom += 0.2;
+						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+						black.screenCenter();
+						black.alpha = 0;
+						add(black);
+						FlxTween.tween(black, {alpha: 0.6}, 1);
+						makeInvisibleNotes(true);
+					case 1193:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub2'), 0.02, 0.6);
+					case 1208:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub3'), 0.02, 1.5);
+					case 1228:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 1);
+					case 1242:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 1);
+					case 1257:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub6'), 0.02, 0.5);
+					case 1266:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub7'), 0.02, 1.5);
+					case 1289:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub8'), 0.02, 2);
+					case 1344:
+						defaultCamZoom -= 0.2;
+						FlxTween.tween(black, {alpha: 0}, 1);
+						makeInvisibleNotes(false);
+					case 1584:
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub15'), 0.02, 1);
 					case 1751:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub3'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub9'), 0.02, 0.6);
 					case 1770:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub4'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub10'), 0.02, 0.6);
 					case 1776:
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad(FlxG.random.int(0, 999) == 0 ? 'bambi-angey-old' : 'bambi-angey', dad.getPosition());
 						dad.color = nightColor;
 					case 1800:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub5'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub11'), 0.02, 0.6);
 					case 1810:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub6'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub12'), 0.02, 0.6);
 					case 1843:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub7'), 0.02, 1, {subtitleSize: 60});
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub13'), 0.02, 1, {subtitleSize: 60});
 					case 2418:
-						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub8'), 0.02, 0.6);
+						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub14'), 0.02, 0.6);				
 				}
 			case 'indignancy':
 				switch (curStep)
 				{
-					case 124:
+					case 124 | 304 | 496 | 502 | 576 | 848:
 						defaultCamZoom += 0.2;
 					case 176:
                         defaultCamZoom -= 0.2;
 						crazyZooming = true;
+					case 320 | 832 | 864:
+						defaultCamZoom -= 0.2;
+					case 508:
+						defaultCamZoom -= 0.4;		
 					case 320 | 864:
 						crazyZooming = true;	
 					case 304 | 832 | 1088 | 2144:
@@ -6088,6 +6124,8 @@ class PlayState extends MusicBeatState
 					case 1622:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub5'), 0.02, 0.3);
 						
+						defaultCamZoom += 0.4;
+						FlxG.camera.shake(0.015, 0.6);
 						dad.canDance = false;
 						dad.playAnim('scream', true);
 						dad.animation.finishCallback = function(animation:String)
@@ -6095,6 +6133,7 @@ class PlayState extends MusicBeatState
 							dad.canDance = true;
 						}
 					case 1632:
+						defaultCamZoom -= 0.4;
 						crazyZooming = true;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 				}

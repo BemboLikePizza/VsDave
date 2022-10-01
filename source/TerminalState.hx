@@ -204,9 +204,11 @@ class TerminalState extends MusicBeatState
                 case "expunged":
                     tx = "The End. They weren't created by a beast. \nThey were created by the one who wanted power the leeeeeeeeeeee \n[DATA DELETED]\n[FUCK YOU!]";
                 case "exbungo":
-                    tx = "I don't have a poem this guy is just fat and ugly as fuck.";
+                    tx = "[FAT AND UGLY.]";
                 case "recurser":
-                    tx = "The final counter-measure.";
+                    tx = "A being of chaos that wants to spread order.\nDespite this, his sanity is at the border.";
+                case "moldy":
+                    tx = "Let me show you my DS family!";    
                 case "1":
                     tx = "LOG 1\nHello. I'm currently writing this from in my lab.\nThis entry will probably be short.\nTristan is only 3 and will wake up soon.\nBut this is mostly just to test things. Bye.";
                 case "2":
@@ -215,6 +217,8 @@ class TerminalState extends MusicBeatState
                     tx = "[DATA CORRUPTED]";
                 case "4":
                     tx = "LOG 4\nI'm currently working on studying interdimensional dislocation.\nThere has to be a root cause. Some trigger.\nI hope there aren't any long term side effects.";
+                case "5":
+                    tx = "[DATA CORRUPTED]";
                 case "6":
                     tx = "LOG 6\nMy interdimensional dislocation appears to be caused by mass amount of stress.\nHow strange.\nMaybe I could isolate this effect.";
                 case "boyfriend":

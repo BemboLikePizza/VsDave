@@ -112,7 +112,7 @@ class CharacterSelectState extends MusicBeatState
 			new CharacterForm('dave-angey', '3D Dave', [2, 2, 0.25, 0.25], '3D')
 		]),
 		new CharacterInSelect('bambi-3d', [0, 3, 0, 0], [
-			new CharacterForm('bambi-3d', '3D Bambi', [0, 3, 0, 0], '3D'),
+			new CharacterForm('bambi-3d', 'Expunged', [0, 3, 0, 0], '3D'),
 		])
 	];
 	#if SHADERS_ENABLED

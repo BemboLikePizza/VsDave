@@ -8,6 +8,7 @@ term_admin_ins==Mostra a lista de administradores, use grant para garantir direi
 term_admlist_ins==:linebreak:Para adicionar outros usúarios, use o parâmetro grant e o nome.:linebreak:(Exemplo: admin grant expungo.dat):linebreak:AVISO: ADICIONAR PERSONAGENS COMO ADMINISTRADORES PODE CAUSAR MUDANÇAS INESPERADAS...
 term_clear_ins==Limpa a tela.
 term_leak_ins==Não fornecer tais leaks.
+term_texts_ins==Procura um arquivo de texto com o ID especificado e, se existir, o exibe.
 
 // Errors and argument outputs //
 term_loading==:linebreak:Carregando...

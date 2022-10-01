@@ -165,14 +165,21 @@ maze_sub11==You are bully me?
 maze_sub12==Never come back again.
 
 // Mealie Subtitles //
-mealie_sub1==I will block you!
-mealie_sub2==I want you else
-mealie_sub3==Ah oh I'm gonna break my
-mealie_sub4==PHONE!
-mealie_sub5==Is you wanted the-
-mealie_sub6==fucking phone?
-mealie_sub7==HOLY SHIT!
-mealie_sub8==You fucking liar Moldy!
+mealie_sub1==I gonna block you!
+mealie_sub2==I going you house
+mealie_sub3==And I going you FALL
+mealie_sub4==The bed your-
+mealie_sub5==Your house!
+mealie_sub6==Isaac...
+mealie_sub7==Shut da fock up.
+mealie_sub8==Stop use da focking...
+mealie_sub9==Ah oh I'm gonna break my
+mealie_sub10==PHONE!
+mealie_sub11==Is you wanted the-
+mealie_sub12==fucking phone?
+mealie_sub13==HOLY SHIT!
+mealie_sub14==You fucking liar Moldy!
+mealie_sub15==Go to focking hell!
 
 // Shredder Subtitles //
 shred_sub1==Oh my god...
@@ -313,6 +320,8 @@ credits_translator==Translators
 credits_contributor==Contributors
 credits_betaTester==Beta Testers
 credits_specialThanks==Special Thanks
+
+credits_songby==Song by
 
 //developers 
 credit_MoldyGH==Director, Creator, Programmer, Musician, Main Developer
