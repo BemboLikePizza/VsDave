@@ -606,7 +606,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Down', 24, false);
 				animation.addByPrefix('singLEFT', 'Left', 24, false);
 		
-				barColor = FlxColor.fromRGB(17, 223, 10);
+				barColor = FlxColor.fromRGB(13, 151, 21);
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
