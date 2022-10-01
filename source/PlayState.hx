@@ -6010,11 +6010,15 @@ class PlayState extends MusicBeatState
 			case 'indignancy':
 				switch (curStep)
 				{
-					case 124:
+					case 124 | 304 | 496 | 502 | 576 | 848:
 						defaultCamZoom += 0.2;
 					case 176:
                         defaultCamZoom -= 0.2;
 						crazyZooming = true;
+					case 320 | 832 | 864:
+						defaultCamZoom -= 0.2;
+					case 508:
+						defaultCamZoom -= 0.4;		
 					case 320 | 864:
 						crazyZooming = true;	
 					case 304 | 832 | 1088 | 2144:
@@ -6042,6 +6046,8 @@ class PlayState extends MusicBeatState
 					case 1622:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('indignancy_sub5'), 0.02, 0.3);
 						
+						defaultCamZoom += 0.4;
+						FlxG.camera.shake(0.015, 0.6);
 						dad.canDance = false;
 						dad.playAnim('scream', true);
 						dad.animation.finishCallback = function(animation:String)
@@ -6049,6 +6055,7 @@ class PlayState extends MusicBeatState
 							dad.canDance = true;
 						}
 					case 1632:
+						defaultCamZoom -= 0.4;
 						crazyZooming = true;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 				}
