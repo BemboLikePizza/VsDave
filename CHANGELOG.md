@@ -27,7 +27,7 @@ The final major update for Vs. Dave and Bambi is finally here. I hope you enjoye
 ## Additions
 - Keybinds Menu made by [T5mpler](https://github.com/T5mpler)
 - Song countdown audio changes depending on the character you're rapping with
-- New Main Menu made by [Erizur](https://github.com/Erizur)
+- New Main Menu and Story Menu made by [Erizur](https://github.com/Erizur)
 - In-song subtitles.
 - TRANSLATIONS! You can now play Vs. Dave and Bambi on English, Spanish or Portugese!
 - Playable characters now have custom deaths and animations
