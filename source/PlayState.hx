@@ -7383,7 +7383,7 @@ class PlayState extends MusicBeatState
 				case 'bf-pixel':
 					positionOffset.y += -225;
 			}
-			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x - curSinger.globalOffset[0], curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y - curSinger.globalOffset[1]);
+			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x, curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y);
 			
 			FlxTween.tween(spotLight, {x: targetPosition.x, y: targetPosition.y}, 0.66, {ease: FlxEase.circOut});
 			lastSinger = curSinger;
@@ -7641,7 +7641,7 @@ class PlayState extends MusicBeatState
 			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter'));
 			door.animation.play('doorOpen');
 
-			powerDrainer = 1;
+			powerDrainer = 0.35;
 		}
 		door.animation.finishCallback = function(animation:String)
 		{
