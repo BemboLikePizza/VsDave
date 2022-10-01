@@ -461,7 +461,7 @@ class BlockedGlitchShader extends FlxShader
 class DitherShader extends FlxShader
 {
     // couldn't find a shadertoy link srry http://devlog-martinsh.blogspot.com/2011/03/glsl-8x8-bayer-matrix-dithering.html
-    #if SHADERS_ENABLED
+    #if DITHER_SHADER
     @:glFragmentSource('
         #pragma header
         #extension GL_ARB_arrays_of_arrays : require

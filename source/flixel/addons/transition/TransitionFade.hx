@@ -163,7 +163,7 @@ class TransitionFade extends TransitionEffect
 		{
 			// no direction
 			s.makeGraphic(Std.int(region.width), Std.int(region.height), _data.color);
-			#if SHADERS_ENABLED
+			#if DITHER_SHADER
 			s.shader = dShader.shader;
 			#end
 		}
@@ -178,7 +178,7 @@ class TransitionFade extends TransitionEffect
 			pixels.copyPixels(gvert, gvert.rect, new Point(0, locY));
 			s.pixels = pixels;
 			s.scale.set(region.width, 1.0);
-			#if SHADERS_ENABLED
+			#if DITHER_SHADER
 			s.shader = dShader.shader;
 			#end
 			s.updateHitbox();
@@ -194,7 +194,7 @@ class TransitionFade extends TransitionEffect
 			pixels.copyPixels(ghorz, ghorz.rect, new Point(locX, 0));
 			s.pixels = pixels;
 			s.scale.set(1.0, region.height);
-			#if SHADERS_ENABLED
+			#if DITHER_SHADER
 			s.shader = dShader.shader;
 			#end
 			s.updateHitbox();
@@ -204,7 +204,7 @@ class TransitionFade extends TransitionEffect
 			// diagonal wipe
 			locY = DirY > 0 ? region.height : 0;
 			s.loadGraphic(getGradient());
-			#if SHADERS_ENABLED
+			#if DITHER_SHADER
 			s.shader = dShader.shader;
 			#end
 			s.flipX = DirX < 0;
