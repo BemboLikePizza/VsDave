@@ -1067,8 +1067,8 @@ class PlayState extends MusicBeatState
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.fromRGB(57, 255, 20));
 			insert(members.indexOf(songPosBG), songPosBar);
 			
-			songName = new FlxText(songPosBG.x, songPosBG.y, 0, SONG.song, 32);
-			songName.setFormat(font, 32 * fontScaler, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			songName = new FlxText(songPosBG.x, songPosBG.y, 0, "0:00", 32);
+			songName.setFormat(font, 32 * fontScaler, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5 * fontScaler;
 			songName.antialiasing = true;
