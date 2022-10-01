@@ -327,6 +327,7 @@ class MainMenuState extends MusicBeatState
 		}
 		if (canInteract)
 		{
+			#if debug
 			if (FlxG.keys.justPressed.SEVEN)
 			{
 				FlxG.switchState(new TerminalState());
@@ -335,6 +336,7 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.switchState(new ChartingState());
 			}
+			#end
 			if (FlxG.keys.justPressed.R)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
