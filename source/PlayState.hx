@@ -2197,6 +2197,10 @@ class PlayState extends MusicBeatState
 						focusOnDadGlobal = true;
 						ZoomCam(true);
 					}
+					if (songName != null)
+					{
+						songName.visible = true;
+					}
 				case 4:
 					if (!isGreetingsCutscene)
 					{
@@ -2285,8 +2289,6 @@ class PlayState extends MusicBeatState
 	function startSong():Void
 	{
 		startingSong = false;
-
-		songName.visible = true;
 
 		previousFrameTime = FlxG.game.ticks;
 
@@ -2876,7 +2878,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
-			powerLeft = Math.max(powerLeft - (elapsed / 1.5) * powerDrainer, 0);
+			powerLeft = Math.max(powerLeft - (elapsed / 4) * powerDrainer, 0);
 			powerLeftText.text = 'Power Left: ${Math.floor(powerLeft)}%';
 			if (powerLeft <= 0 && !powerRanOut && curStep < 1088)
 			{
@@ -7627,7 +7629,7 @@ class PlayState extends MusicBeatState
 			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter_2'));
 			door.animation.play('doorShut');
 			
-			powerDrainer = 2;
+			powerDrainer = 3;
 		}
 		else
 		{
