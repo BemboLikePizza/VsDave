@@ -2218,9 +2218,9 @@ class PlayState extends MusicBeatState
 							}, startDelay: 3});
 						}});
 					}
-					if (['polygonized', 'interdimensional'].contains(SONG.song.toLowerCase()))
+					if (['polygonized', 'interdimensional', 'five-nights'].contains(SONG.song.toLowerCase()))
 					{
-						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image('ui/shapeNoteWarning'));
+						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image(!inFiveNights ? 'ui/shapeNoteWarning' : 'ui/doorWarning'));
 						shapeNoteWarning.cameras = [camHUD];
 						shapeNoteWarning.scrollFactor.set();
 						shapeNoteWarning.antialiasing = false;
@@ -7629,7 +7629,7 @@ class PlayState extends MusicBeatState
 			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter_2'));
 			door.animation.play('doorShut');
 			
-			powerDrainer = 3;
+			powerDrainer = 6;
 		}
 		else
 		{
@@ -7637,7 +7637,7 @@ class PlayState extends MusicBeatState
 			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter'));
 			door.animation.play('doorOpen');
 
-			powerDrainer = 0.35;
+			powerDrainer = 0.5;
 		}
 		door.animation.finishCallback = function(animation:String)
 		{
