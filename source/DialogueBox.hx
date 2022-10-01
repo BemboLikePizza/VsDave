@@ -86,6 +86,8 @@ class DialogueBox extends FlxSpriteGroup
 					{
 						FlxG.sound.playMusic(Paths.music('DaveDialogue'), 0);
 					}
+				case 'rano':
+					FlxG.sound.playMusic(Paths.music('stocknightambianceforranolol'), 0);	
 				default:
 					FlxG.sound.music.stop();
 			}
