@@ -389,6 +389,7 @@ class CharacterSelectState extends MusicBeatState
 			LoadingState.loadAndSwitchState(new FreeplayState());
 		}
 
+		#if debug
 		if (FlxG.keys.justPressed.SEVEN)
 		{
 			for (character in characters)
@@ -399,6 +400,7 @@ class CharacterSelectState extends MusicBeatState
 				}
 			}
 		}
+		#end
 		
 		for (i in 0...controlSet.length)
 		{

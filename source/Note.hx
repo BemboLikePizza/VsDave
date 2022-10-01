@@ -32,7 +32,7 @@ class Note extends FlxSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 
-	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d'];
+	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d', 'nofriend'];
 
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
@@ -317,13 +317,13 @@ class Note extends FlxSprite
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			var rng:FlxRandom = new FlxRandom();
-			if (rng.int(0, 481) == 1)
+			if (rng.int(0, 484) == 1)
 			{
 				LocalScrollSpeed = 0.1;
 			}
 			else
 			{
-				LocalScrollSpeed = rng.float(2.8, 3.7);
+				LocalScrollSpeed = rng.float(2.9, 3.6);
 			}
 		}
 
@@ -425,6 +425,10 @@ class Note extends FlxSprite
 	{
 		x = strum.x + noteOffset;
 		alpha = strum.alpha * alphaMult;
+		if (!strum.playerStrum)
+		{
+			return;
+		}
 		if (strum.pressingKey5)
 		{
 			if (noteStyle != "shape")

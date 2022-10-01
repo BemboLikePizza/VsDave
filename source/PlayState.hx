@@ -1076,6 +1076,7 @@ class PlayState extends MusicBeatState
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5 * fontScaler;
 			songName.antialiasing = true;
+			songName.visible = false;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
 			var yValues = CoolUtil.getMinAndMax(songName.height, songPosBG.height);
@@ -1092,30 +1093,34 @@ class PlayState extends MusicBeatState
 		if (inFiveNights)
 		{
 			time = new FlxText(1175, 24, 0, '12 AM', 60);
-			time.setFormat(Paths.font('fnaf.ttf'), 60, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			time.setFormat(Paths.font('fnaf.ttf'), 60, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			time.scrollFactor.set();
 			time.antialiasing = false;
+			time.borderSize = 2.5;
 			time.cameras = [camHUD];
 			add(time);
 
 			night = new FlxText(1175, 70, 0, 'Night 7', 34);
-			night.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			night.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			night.scrollFactor.set();
 			night.antialiasing = false;
+			night.borderSize = 2.5;
 			night.cameras = [camHUD];
 			add(night);
 
 			powerLeftText = new FlxText(1100, 650, 0, 'Power Left: 100%', 34);
-			powerLeftText.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			powerLeftText.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			powerLeftText.scrollFactor.set();
 			powerLeftText.antialiasing = false;
+			powerLeftText.borderSize = 2;
 			powerLeftText.cameras = [camHUD];
 			add(powerLeftText);
 
 			usage = new FlxText(1100, 685, 0, 'Usage: ', 34);
-			usage.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT);
+			usage.setFormat(Paths.font('fnaf.ttf'), 34, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			usage.scrollFactor.set();
 			usage.antialiasing = false;
+			usage.borderSize = 2;
 			usage.cameras = [camHUD];
 			add(usage);
 			
@@ -2197,6 +2202,10 @@ class PlayState extends MusicBeatState
 						focusOnDadGlobal = true;
 						ZoomCam(true);
 					}
+					if (songName != null)
+					{
+						songName.visible = true;
+					}
 				case 4:
 					if (!isGreetingsCutscene)
 					{
@@ -2214,9 +2223,9 @@ class PlayState extends MusicBeatState
 							}, startDelay: 3});
 						}});
 					}
-					if (['polygonized', 'interdimensional'].contains(SONG.song.toLowerCase()))
+					if (['polygonized', 'interdimensional', 'five-nights'].contains(SONG.song.toLowerCase()))
 					{
-						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image('ui/shapeNoteWarning'));
+						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image(!inFiveNights ? 'ui/shapeNoteWarning' : 'ui/doorWarning'));
 						shapeNoteWarning.cameras = [camHUD];
 						shapeNoteWarning.scrollFactor.set();
 						shapeNoteWarning.antialiasing = false;
@@ -2490,7 +2499,7 @@ class PlayState extends MusicBeatState
 		{
 			var arrowType:Int = note_order[i];
 			var strumType:String = '';
-			if (funnyFloatyBoys.contains(dad.curCharacter) && player == 0 || funnyFloatyBoys.contains(boyfriend.curCharacter) && player == 1)
+			if ((funnyFloatyBoys.contains(dad.curCharacter) || dad.curCharacter == "nofriend") && player == 0 || funnyFloatyBoys.contains(boyfriend.curCharacter) && player == 1)
 			{
 				strumType = '3D';
 			}
@@ -2874,7 +2883,7 @@ class PlayState extends MusicBeatState
 		}
 		if (SONG.song.toLowerCase() == 'five-nights')
 		{
-			powerLeft = Math.max(powerLeft - (elapsed / 1.5) * powerDrainer, 0);
+			powerLeft = Math.max(powerLeft - (elapsed / 4) * powerDrainer, 0);
 			powerLeftText.text = 'Power Left: ${Math.floor(powerLeft)}%';
 			if (powerLeft <= 0 && !powerRanOut && curStep < 1088)
 			{
@@ -2939,7 +2948,7 @@ class PlayState extends MusicBeatState
 					var slam = new FlxSound().loadEmbedded(Paths.sound('fiveNights/slam'));
 					slam.play();
 					dad.playAnim('fail', true);
-					dad.animation.finishCallback = function(animation:String)
+					if(dad.animation.curAnim.name == 'fail' && dad.animation.curAnim.finished)
 					{
 						dad.canDance = true;
 						dad.canSing = true;
@@ -3447,10 +3456,6 @@ class PlayState extends MusicBeatState
 		}
 
 		#if debug
-		if (FlxG.keys.justPressed.ALT)
-		{
-			powerLeft = 0;
-		}
 		if (FlxG.keys.justPressed.FOUR)
 		{
 			trace('DUMP LOL:\nDAD POSITION: ${dad.getPosition()}\nBOYFRIEND POSITION: ${boyfriend.getPosition()}\nGF POSITION: ${gf.getPosition()}\nCAMERA POSITION: ${camFollow.getPosition()}');
@@ -3657,7 +3662,7 @@ class PlayState extends MusicBeatState
 				if (daNote.mustPress && (Conductor.songPosition >= daNote.strumTime) && daNote.health != 2 && daNote.noteStyle == 'phone')
 				{
 					daNote.health = 2;
-					dad.playAnim('singSmash', true);
+					dad.playAnim(dad.animation.getByName("singThrow") == null ? 'singSmash' : 'singThrow', true);
 				}
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
@@ -5088,7 +5093,7 @@ class PlayState extends MusicBeatState
 					gf.playAnim('cheer', true);
 					if (note.health != 2)
 					{
-						dad.playAnim('singSmash', true);
+						dad.playAnim(dad.animation.getByName("singThrow") == null ? 'singSmash' : 'singThrow', true);
 					}
 			}
 			cameraMoveOnNote(note.originalType, 'bf');
@@ -6138,6 +6143,37 @@ class PlayState extends MusicBeatState
 						defaultCamZoom -= 0.4;
 						crazyZooming = true;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+				}
+				switch (curBeat)
+				{
+					case 335:
+						if (!spotLightPart)
+						{
+							spotLightPart = true;
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+	
+							spotLight = new FlxSprite().loadGraphic(Paths.image('spotLight'));
+							spotLight.blend = BlendMode.ADD;
+							spotLight.setGraphicSize(Std.int(spotLight.width * (dad.frameWidth / spotLight.width) * spotLightScaler));
+							spotLight.updateHitbox();
+							spotLight.alpha = 0;
+							spotLight.origin.set(spotLight.origin.x,spotLight.origin.y - (spotLight.frameHeight / 2));
+							add(spotLight);
+	
+							spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y + dad.frameHeight / 2 - (spotLight.height));
+	
+							updateSpotlight(false);
+							
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							FlxTween.tween(spotLight, {alpha: 1}, 1);
+						}
+					case 408:
+						spotLightPart = false;
+						FlxTween.tween(spotLight, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
+						{
+							remove(spotLight);
+						}});
+						FlxTween.tween(black, {alpha: 0}, 1);
 				}
 			case 'exploitation':
 				switch(curStep)
@@ -7376,8 +7412,13 @@ class PlayState extends MusicBeatState
 				case 'bf-pixel':
 					positionOffset.y += -225;
 			}
-			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x - curSinger.globalOffset[0], curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y - curSinger.globalOffset[1]);
+			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x, curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y);
 			
+			if (SONG.song.toLowerCase() == 'indignancy')
+			{
+				targetPosition.y += 80;
+			}
+
 			FlxTween.tween(spotLight, {x: targetPosition.x, y: targetPosition.y}, 0.66, {ease: FlxEase.circOut});
 			lastSinger = curSinger;
 		}
@@ -7626,7 +7667,7 @@ class PlayState extends MusicBeatState
 			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter_2'));
 			door.animation.play('doorShut');
 			
-			powerDrainer = 2;
+			powerDrainer = 6;
 		}
 		else
 		{
@@ -7634,7 +7675,7 @@ class PlayState extends MusicBeatState
 			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter'));
 			door.animation.play('doorOpen');
 
-			powerDrainer = 1;
+			powerDrainer = 0.5;
 		}
 		door.animation.finishCallback = function(animation:String)
 		{
