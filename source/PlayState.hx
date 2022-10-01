@@ -5340,7 +5340,7 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 128:
-						defaultCamZoom += 0.2;
+						defaultCamZoom += 0.1;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 						black.screenCenter();
@@ -5358,17 +5358,17 @@ class PlayState extends MusicBeatState
 					case 248:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('blocked_sub5'), 0.02, 0.5, {subtitleSize: 60});
 					case 256:
-						defaultCamZoom -= 0.2;
+						defaultCamZoom -= 0.1;
 						FlxG.camera.flash();
 						FlxTween.tween(black, {alpha: 0}, 1);
 						makeInvisibleNotes(false);
 					case 640:
 						FlxG.camera.flash();
 						black.alpha = 0.6;
-						defaultCamZoom += 0.2;
+						defaultCamZoom += 0.1;
 					case 768:
 						FlxG.camera.flash();
-						defaultCamZoom -= 0.2;
+						defaultCamZoom -= 0.1;
 						black.alpha = 0;
 					case 1028:
 						makeInvisibleNotes(true);
