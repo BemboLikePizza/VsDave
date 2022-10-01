@@ -19,6 +19,7 @@ main_warningdata==Tem certeza de que deseja redefinir todos os seus dados?
 // Main Menu Descriptions //
 desc_story==Jogue o modo história para desbloquear novos personagens, e entender a história em si!
 desc_freeplay==Jogue qualquer música de escolha sua e alcançe novas pontuações!
+desc_freeplay_glitch==Toque minha música como eu desejo e falho.
 desc_credits==Dê uma olhada no pessoal que trabalhou e contribuiu para o mod!
 desc_ost==Escute as músicas do mod.
 desc_options==Ajuste suas configurações e preferências.
