@@ -6298,7 +6298,7 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(iconP2, {alpha: 0}, 1, {ease: FlxEase.bounceOut});
 						}
 						#end
-					case 2081:
+					case 2083:
 						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Threat expunged.dat succesfully contained.");
 				}
 			case 'shredder':
