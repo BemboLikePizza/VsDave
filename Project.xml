@@ -20,6 +20,9 @@
 	<!--Desktop-->
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
+	<!--macOS-->
+	<window if="mac" orientation="auto" fullscreen="false" resizable="true" vsync="false" allow-high-dpi="true" />
+
 	<!--Mobile-->
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
 
