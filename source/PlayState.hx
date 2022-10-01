@@ -6142,6 +6142,37 @@ class PlayState extends MusicBeatState
 						crazyZooming = true;
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 				}
+				switch (curBeat)
+				{
+					case 335:
+						if (!spotLightPart)
+						{
+							spotLightPart = true;
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+	
+							spotLight = new FlxSprite().loadGraphic(Paths.image('spotLight'));
+							spotLight.blend = BlendMode.ADD;
+							spotLight.setGraphicSize(Std.int(spotLight.width * (dad.frameWidth / spotLight.width) * spotLightScaler));
+							spotLight.updateHitbox();
+							spotLight.alpha = 0;
+							spotLight.origin.set(spotLight.origin.x,spotLight.origin.y - (spotLight.frameHeight / 2));
+							add(spotLight);
+	
+							spotLight.setPosition(dad.getGraphicMidpoint().x - spotLight.width / 2, dad.getGraphicMidpoint().y + dad.frameHeight / 2 - (spotLight.height));
+	
+							updateSpotlight(false);
+							
+							FlxTween.tween(black, {alpha: 0.6}, 1);
+							FlxTween.tween(spotLight, {alpha: 1}, 1);
+						}
+					case 408:
+						spotLightPart = false;
+						FlxTween.tween(spotLight, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
+						{
+							remove(spotLight);
+						}});
+						FlxTween.tween(black, {alpha: 0}, 1);
+				}
 			case 'exploitation':
 				switch(curStep)
 				{
@@ -7381,6 +7412,11 @@ class PlayState extends MusicBeatState
 			}
 			var targetPosition = new FlxPoint(curSinger.getGraphicMidpoint().x - spotLight.width / 2 + positionOffset.x, curSinger.getGraphicMidpoint().y + curSinger.frameHeight / 2 - (spotLight.height) - positionOffset.y);
 			
+			if (SONG.song.toLowerCase() == 'indignancy')
+			{
+				targetPosition.y += 80;
+			}
+
 			FlxTween.tween(spotLight, {x: targetPosition.x, y: targetPosition.y}, 0.66, {ease: FlxEase.circOut});
 			lastSinger = curSinger;
 		}
