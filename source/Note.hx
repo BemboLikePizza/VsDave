@@ -425,6 +425,10 @@ class Note extends FlxSprite
 	{
 		x = strum.x + noteOffset;
 		alpha = strum.alpha * alphaMult;
+		if (!strum.playerStrum)
+		{
+			return;
+		}
 		if (strum.pressingKey5)
 		{
 			if (noteStyle != "shape")

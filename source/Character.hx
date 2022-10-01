@@ -496,6 +496,7 @@ class Character extends FlxSprite
 				}
 				animation.addByPrefix('hey', 'bambi hey', 24, false);
 				animation.addByPrefix('singSmash', 'bambi phone', 24, false);
+				animation.addByPrefix('singThrow', 'bambi throw', 24, false);
 				
 				barColor = FlxColor.fromRGB(37, 191, 55);
 

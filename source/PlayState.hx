@@ -1072,6 +1072,7 @@ class PlayState extends MusicBeatState
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5 * fontScaler;
 			songName.antialiasing = true;
+			songName.visible = false;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
 			var yValues = CoolUtil.getMinAndMax(songName.height, songPosBG.height);
@@ -2260,6 +2261,8 @@ class PlayState extends MusicBeatState
 	function startSong():Void
 	{
 		startingSong = false;
+
+		songName.visible = true;
 
 		previousFrameTime = FlxG.game.ticks;
 
@@ -3578,7 +3581,7 @@ class PlayState extends MusicBeatState
 				if (daNote.mustPress && (Conductor.songPosition >= daNote.strumTime) && daNote.health != 2 && daNote.noteStyle == 'phone')
 				{
 					daNote.health = 2;
-					dad.playAnim('singSmash', true);
+					dad.playAnim(dad.animation.getByName("singThrow") == null ? 'singSmash' : 'singThrow', true);
 				}
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
@@ -5009,7 +5012,7 @@ class PlayState extends MusicBeatState
 					gf.playAnim('cheer', true);
 					if (note.health != 2)
 					{
-						dad.playAnim('singSmash', true);
+						dad.playAnim(dad.animation.getByName("singThrow") == null ? 'singSmash' : 'singThrow', true);
 					}
 			}
 			cameraMoveOnNote(note.originalType, 'bf');
