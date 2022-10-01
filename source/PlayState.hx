@@ -3667,8 +3667,6 @@ class PlayState extends MusicBeatState
 							if (curBeat >= 464 && curBeat <= 592) {
 								health -= (healthtolower / 1.5);
 							}
-						case 'indignancy':
-							health -= healthtolower;	
 						case 'five-nights':
 							if ((health - 0.023) > 0)
 							{
