@@ -317,13 +317,13 @@ class Note extends FlxSprite
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
 		{
 			var rng:FlxRandom = new FlxRandom();
-			if (rng.int(0, 481) == 1)
+			if (rng.int(0, 484) == 1)
 			{
 				LocalScrollSpeed = 0.1;
 			}
 			else
 			{
-				LocalScrollSpeed = rng.float(2.8, 3.7);
+				LocalScrollSpeed = rng.float(2.9, 3.6);
 			}
 		}
 
