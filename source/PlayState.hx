@@ -7637,7 +7637,7 @@ class PlayState extends MusicBeatState
 			powerMeter.loadGraphic(Paths.image('fiveNights/powerMeter'));
 			door.animation.play('doorOpen');
 
-			powerDrainer = 0.2;
+			powerDrainer = 0.35;
 		}
 		door.animation.finishCallback = function(animation:String)
 		{
