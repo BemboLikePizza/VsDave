@@ -2047,7 +2047,7 @@ class PlayState extends MusicBeatState
 
 			if (SONG.song.toLowerCase() == "exploitation")
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go_glitch"]);
-			if (SONG.song.toLowerCase() == "overdrive")
+			else if (SONG.song.toLowerCase() == "overdrive")
 				introAssets.set('default', ['ui/spr_start_sprites_0', "ui/spr_start_sprites_1", "ui/spr_start_sprites_2"]);
 			else
 				introAssets.set('default', ['ui/ready', "ui/set", "ui/go"]);
