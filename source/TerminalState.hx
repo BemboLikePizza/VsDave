@@ -249,7 +249,7 @@ class TerminalState extends MusicBeatState
                 case "boyfriend":
                     tx = "LOG [REDACTED]\nA multiversal constant, for some reason. Must dive into further research.";
                 case "order":
-                    tx = "What is order? There are many definitions. But the only one that will matter to Recurser is the following:\nThe opposite of [DATA EXPUNGED]";
+                    tx = "What is order? There are many definitions. But right here I will write the one that will matter to project Recurser:\nThe opposite of [DATA EXPUNGED]";
                 case "power":
                     tx = "[I HATE THEM.] [THEY COULD'VE HAD SO MUCH POWER, BUT THEY THREW IT AWAY.]\n[AND IN THAT HEAP OF UNWANTED POWER, I WAS CREATED.]";
                 case "birthday":
