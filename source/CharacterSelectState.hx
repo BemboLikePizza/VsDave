@@ -493,11 +493,13 @@ class CharacterSelectState extends MusicBeatState
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
+		#if debug
 		if (FlxG.keys.justPressed.R && !selectedCharacter)
 		{
 			reset();
 			FlxG.resetState();
 		}
+		#end
 	}
 	public static function unlockCharacter(character:String)
 	{

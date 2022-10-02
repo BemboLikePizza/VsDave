@@ -41,12 +41,21 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
+
 		
 		funnyTexts = new FlxTypedGroup<FlxText>();
 		add(funnyTexts);
 
 		for(item in menuItems)
 		{
+			if (PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
+			{
+				if(item.optionName != 'Resume' && item.optionName != 'No Miss Mode')
+				{
+					menuItems.remove(item);
+				}
+				continue;
+			}
 			if(item.optionName == 'Change Character')
 			{
 				if(PlayState.isStoryMode == true || PlayState.SONG.song.toLowerCase() == 'five-nights')
@@ -62,6 +71,10 @@ class PauseSubState extends MusicBeatSubstate
 			{
 				continue;
 			}
+		}
+		if (PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
+		{
+			menuItems.remove(PauseOption.getOption(menuItems, 'Change Character')); //GO AWAY YOU STUPID BITCH
 		}
 
 		switch (PlayState.SONG.song.toLowerCase())
