@@ -227,7 +227,7 @@ class TerminalState extends MusicBeatState
                 case "3":
                     tx = "LOG 3\nI'm currently working on studying interdimensional dislocation.\nThere has to be a root cause. Some trigger.\nI hope there aren't any long term side effects.";
                 case "4":
-                    tx = "LOG 4\nI'm doing various tests on myself, trying to figure out what causes the POLYGONization.\nBut I must keep a smile. For Tristan's sake.";
+                    tx = "LOG 4\nI'm doing various tests on myself, trying to figure out what causes the POLYGONization.\nIt hurts a bit, \nBut I must keep a smile. For Tristan's sake.";
                 case "5":
                     tx = "[DATA DELETED]";
                 case "6":
