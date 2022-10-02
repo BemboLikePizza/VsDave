@@ -1500,7 +1500,7 @@ class ChartingState extends MusicBeatState
 	{
 		switch (song.toLowerCase())
 		{
-			case 'supernovae' | 'glitch'  | 'master':
+			case 'supernovae' | 'glitch'  | 'master' | 'roofs':
 				//video doesnt work fix this later
 				var deathSound:FlxSound = new FlxSound();
 				deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
