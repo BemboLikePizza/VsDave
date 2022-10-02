@@ -56,6 +56,8 @@ class LanguageManager
       }
       else
       {
+         returnedString = returnedString.replace(':linebreak:', '\n');
+         returnedString = returnedString.replace(':addquote:', '\"');
          return returnedString;
       }
    }

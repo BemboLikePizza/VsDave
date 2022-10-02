@@ -50,7 +50,6 @@
 	<assets path="assets/fonts" embed='true'/>
 
 	<define name="SHADERS_ENABLED" unless="mac"/>
-	<define name="DITHER_SHADER" unless="mac || windows"/>
 	<define name="PRELOAD_ALL" unless="web" />
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
 	

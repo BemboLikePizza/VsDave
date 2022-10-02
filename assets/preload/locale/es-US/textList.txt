@@ -17,6 +17,10 @@ main_discord==Discord
 main_resetdata==Presiona R para restablecer tus datos
 main_warningdata==¿Estás seguro de que quieres restablecer tus datos?
 
+compat_warning==Quieres habilitar el modo de compatibilidad?:linebreak:Evita el lag/cierre en algunas PCs, pero deshabilita efectos especiales.
+compat_yes==Si
+compat_no==No
+
 // Main Menu Descriptions //
 desc_story==¡Juega el modo historia para desbloquear nuevos personajes y entender la historia!
 desc_freeplay==¡Juega cualquier canción como quieras y consigue nuevas puntuaciones!
@@ -91,6 +95,9 @@ option_change_langauge==Cambiar Idioma
 option_disable_fps==No mostrar FPS y Memoria
 option_enable_fps==Mostrar FPS y Memoria
 
+option_enable_compat==Activar Modo de Compatibilidad
+option_disable_compat==Desactivar Modo de Compatibilidad
+
 en-US==Inglés
 es-US==Español
 pt-br==Brasilero-Portugués
@@ -123,6 +130,7 @@ play_easy==FACIL
 play_score==Puntuación:
 play_miss==Fallos:
 play_accuracy==Precisión:
+fnaf_retry==¿Reintentar?
 
 // Blocked Subtitles //
 blocked_sub1==Te bloqueo...

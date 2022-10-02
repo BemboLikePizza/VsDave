@@ -16,6 +16,11 @@ main_discord==Discord
 main_resetdata==Pressione R para redefinir seus dados
 main_warningdata==Tem certeza de que deseja redefinir todos os seus dados?
 
+// Compatibility Mode Screen//
+compat_warning==Deseja ativar o modo de compatibilidade?:linebreak:Isso ajudará no atraso/travamento em PCs de baixo custo, mas desabilita alguns efeitos especiais.
+compat_yes==Sim
+compat_no==Não
+
 // Main Menu Descriptions //
 desc_story==Jogue o modo história para desbloquear novos personagens, e entender a história em si!
 desc_freeplay==Jogue qualquer música de escolha sua e alcançe novas pontuações!
@@ -99,6 +104,9 @@ option_change_langauge==Mudar idioma
 option_disable_fps==Não mostra FPS e memória
 option_enable_fps==Mostrar FPS e Memória
 
+option_enable_compat==Ativar o modo de compatibilidade
+option_disable_compat==Desabilitar o modo de compatibilidade
+
 cur_language==Idioma Atual
 en-US==Inglês
 es-US==Espanhol
@@ -133,6 +141,7 @@ play_easy==Fácil
 play_score==Pontuação:
 play_miss==Erros:
 play_accuracy==Precisão:
+fnaf_retry==Tentar novamente?
 
 // Blocked Subtitles //
 blocked_sub1==Eu te bloquear...

@@ -84,6 +84,7 @@ class OptionsMenu extends MusicBeatState
 			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
 			+ "\n" + LanguageManager.getTextString('option_change_langauge')
 			+ "\n" + (FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'))
+			+ "\n" + (CompatTool.save.data.compatMode ? LanguageManager.getTextString('option_enable_compat') : LanguageManager.getTextString('option_disable_compat'))
 			);
 
 		grpControls = new FlxTypedGroup<Alphabet>();
@@ -122,6 +123,7 @@ class OptionsMenu extends MusicBeatState
 		if (controls.BACK)
 		{
 			FlxG.save.flush();
+			CompatTool.save.flush();
 			FlxG.switchState(new MainMenuState());
 		}
 		if (controls.UP_P)
@@ -179,6 +181,9 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.disableFps = !FlxG.save.data.disableFps;
 					Main.fps.visible = !FlxG.save.data.disableFps;
 					updateGroupControls(FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'), 9, 'Vertical');
+				case 10:
+					CompatTool.save.data.compatMode = !CompatTool.save.data.compatMode;
+					updateGroupControls(CompatTool.save.data.compatMode ? LanguageManager.getTextString('option_enable_compat') : LanguageManager.getTextString('option_disable_compat'), 10, 'Vertical');
 			}
 		}
 	}
