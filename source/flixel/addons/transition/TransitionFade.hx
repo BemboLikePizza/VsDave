@@ -40,9 +40,12 @@ class TransitionFade extends TransitionEffect
 		super(data);
 
 		back = makeSprite(data.direction.x, data.direction.y, data.region);
-		back.scrollFactor.set(0, 0);
-		#if DITHER_SHADER
-		back.shader = dShader.shader;
+		back.scrollFactor.set(1, 1);
+		#if SHADERS_ENABLED
+		if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+		{
+			back.shader = dShader.shader;
+		}
 		#end
 		add(back);
 	}

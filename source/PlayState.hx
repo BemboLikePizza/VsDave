@@ -5488,7 +5488,10 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.3;
 					case 1200:
 						#if SHADERS_ENABLED
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+							{
+								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							}
 						#end
 						FlxTween.tween(black, {alpha: 0.7}, (Conductor.stepCrochet / 1000) * 8);
 					case 1216:
@@ -6490,7 +6493,10 @@ class PlayState extends MusicBeatState
 
 						defaultCamZoom += 0.2;
 						#if SHADERS_ENABLED
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+						{
+							camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						}
 						#end
 						FlxTween.tween(black, {alpha: 0.6}, 1);
 						makeInvisibleNotes(true);
@@ -6499,7 +6505,10 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.1;
 					case 1568:
 						#if SHADERS_ENABLED
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+							{
+								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							}
 						#end
 						defaultCamZoom += 0.1;
 					case 1584:
@@ -6507,7 +6516,10 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.1;
 					case 1600:
 						#if SHADERS_ENABLED
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+							{
+								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							}
 						#end
 						defaultCamZoom += 0.1;
 					case 1616:
@@ -6515,7 +6527,10 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.1;
 					case 1632:
 						#if SHADERS_ENABLED
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+							{
+								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							}
 						#end
 						defaultCamZoom += 0.1;
 					case 1648:

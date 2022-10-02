@@ -95,6 +95,9 @@ option_change_langauge==Cambiar Idioma
 option_disable_fps==No mostrar FPS y Memoria
 option_enable_fps==Mostrar FPS y Memoria
 
+option_enable_compat==Activar Modo de Compatibilidad
+option_disable_compat==Desactivar Modo de Compatibilidad
+
 en-US==Inglés
 es-US==Español
 pt-br==Brasilero-Portugués

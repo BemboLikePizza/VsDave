@@ -87,6 +87,9 @@ option_change_langauge==Change Language
 option_disable_fps==Disable FPS & Memory Counter
 option_enable_fps==Enable FPS & Memory Counter
 
+option_enable_compat==Compatibility Mode OFF
+option_disable_compat==Compatibility Mode ON
+
 
 en-US==English
 es-US==Spanish

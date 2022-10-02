@@ -81,6 +81,12 @@ class TitleState extends MusicBeatState
 
 		Main.fps.visible = !FlxG.save.data.disableFps;
 
+		CompatTool.initSave();
+		if(CompatTool.save.data.compatMode == null)
+        {
+            FlxG.switchState(new CompatWarningState());
+        }
+
 		if (FlxG.save.data.weekUnlocked != null)
 		{
 			// FIX LATER!!!
