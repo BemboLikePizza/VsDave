@@ -2230,25 +2230,28 @@ class PlayState extends MusicBeatState
 					}
 					if (['polygonized', 'interdimensional', 'five-nights'].contains(SONG.song.toLowerCase()))
 					{
-						var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image(!inFiveNights ? 'ui/shapeNoteWarning' : 'ui/doorWarning'));
-						shapeNoteWarning.cameras = [camHUD];
-						shapeNoteWarning.scrollFactor.set();
-						shapeNoteWarning.antialiasing = false;
-						shapeNoteWarning.alpha = 0;
-						add(shapeNoteWarning);
-						
-						FlxTween.tween(shapeNoteWarning, {alpha: 1}, 1);
-						FlxTween.tween(shapeNoteWarning, {y: 450}, 1, {ease: FlxEase.backOut, onComplete: function(tween:FlxTween)
+						if (localFunny != CharacterFunnyEffect.Recurser)
 						{
-							new FlxTimer().start(2, function(timer:FlxTimer)
+							var shapeNoteWarning = new FlxSprite(0, FlxG.height * 2).loadGraphic(Paths.image(!inFiveNights ? 'ui/shapeNoteWarning' : 'ui/doorWarning'));
+							shapeNoteWarning.cameras = [camHUD];
+							shapeNoteWarning.scrollFactor.set();
+							shapeNoteWarning.antialiasing = false;
+							shapeNoteWarning.alpha = 0;
+							add(shapeNoteWarning);
+							
+							FlxTween.tween(shapeNoteWarning, {alpha: 1}, 1);
+							FlxTween.tween(shapeNoteWarning, {y: 450}, 1, {ease: FlxEase.backOut, onComplete: function(tween:FlxTween)
 							{
-								FlxTween.tween(shapeNoteWarning, {alpha: 0}, 1);
-								FlxTween.tween(shapeNoteWarning, {y: FlxG.height * 2}, 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
+								new FlxTimer().start(2, function(timer:FlxTimer)
 								{
-									remove(shapeNoteWarning);
-								}});
-							});
-						}});
+									FlxTween.tween(shapeNoteWarning, {alpha: 0}, 1);
+									FlxTween.tween(shapeNoteWarning, {y: FlxG.height * 2}, 1, {ease: FlxEase.backIn, onComplete: function(tween:FlxTween)
+									{
+										remove(shapeNoteWarning);
+									}});
+								});
+							}});
+						}
 					}
 			}
 
