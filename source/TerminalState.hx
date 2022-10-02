@@ -213,7 +213,7 @@ class TerminalState extends MusicBeatState
                 case "tristan":
                     tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
                 case "expunged":
-                    tx = "[LOG DELETED]";
+                    tx = "[FILE DELETED]\n[FUCK YOU!]";
                 case "exbungo":
                     tx = "[FAT AND UGLY.]";
                 case "recurser":
@@ -227,7 +227,7 @@ class TerminalState extends MusicBeatState
                 case "3":
                     tx = "LOG 3\nI'm currently working on studying interdimensional dislocation.\nThere has to be a root cause. Some trigger.\nI hope there aren't any long term side effects.";
                 case "4":
-                    tx = "LOG 4\nI'm doing various tests on myself, trying to figure out what causes the polygonization.\nBut I must keep a smile. For Tristan's sake.";
+                    tx = "LOG 4\nI'm doing various tests on myself, trying to figure out what causes the POLYGONization.\nBut I must keep a smile. For Tristan's sake.";
                 case "5":
                     tx = "[DATA DELETED]";
                 case "6":
@@ -237,33 +237,33 @@ class TerminalState extends MusicBeatState
                 case "8" | "9" | "11" | "12" | "13":
                     tx = "[DATA DELETED]";
                 case "10":
-                    tx = "LOG 10\nWorking on the prototype.";
+                    tx = "LOG 10\nWorking on the PROTOTYPE.";
                 case "14":
                     tx = "LOG 14\nI need to stop naming these numerically its getting confusing.";
                 case "prototype":
-                    tx = "Project <P.R.A.E>\nNotes: The solution.\nEstimated Build Time: 2 years.";
+                    tx = "Project <P.R.A.E.M>\nNotes: The SOLUTION.\nEstimated Build Time: 2 years.";
                 case "solution":
                     tx = "I feel every ounce of my being torn to shreds and reconstructed with some parts missing. \nI can hear the electronical hissing. \nEvery fiber in my being is begging me to STOP.\nI don't.";
                 case "stop":
-                    tx = "A reflection that is always wrong in his dreams.\nA part thats now missing.\nA crack in the soul.";
+                    tx = "A reflection that is always wrong now has appeared in his dreams.\nIt's a part thats now missing.\nA chunk out of his soul.";
                 case "boyfriend":
                     tx = "LOG [REDACTED]\nA multiversal constant, for some reason. Must dive into further research.";
                 case "order":
                     tx = "What is order? There are many definitions. But the only one that will matter to Recurser is the following:\nThe opposite of [DATA EXPUNGED]";
                 case "power":
-                    tx = "[I HATE HIM.] [HE COULD'VE HAD SO MUCH POWER, BUT HE THREW IT AWAY.]\n[AND IN THAT HEAP OF UNWANTED POWER, I WAS CREATED.]";
+                    tx = "[I HATE THEM.] [THEY COULD'VE HAD SO MUCH POWER, BUT THEY THREW IT AWAY.]\n[AND IN THAT HEAP OF UNWANTED POWER, I WAS CREATED.]";
                 case "birthday":
                     tx = "Sent back to the void, a shattered soul encounters his broken <reflection>.";
                 case "polygonized" | "polygon" | "3D":
                     tx = "He will never be <free>.";
-                case "p.r.a.e" | "P.R.A.E":
-                    tx = "Name: Power Removal And Extraction\nProgress: Complete\nNotes: Tristans 7th BIRTHDAY is in a month.";
-                case "saving":
+                case "p.r.a.e.m" | "P.R.A.E.M":
+                    tx = "Name: Power Removal And Extraction Machine\nProgress: Complete\nNotes: Took longer than expected. Tristans 7th BIRTHDAY is in a month.";
+                case "save":
                     tx = "[I SEE WHAT YOUR TRYING TO DO. HAH HAH. VERY FUNNY.]\n[I DON'T NEED SAVING.]\n[DAVE DOES THOUGH. FROM ME.]";
                 case "cGVyZmVjdGlvbg":
-                    tx = "[A GOLDEN MINION WOULD'VE BEEN PERFECT. BUT DAVE HAD TO REFUSE. NOT ONLY REFUSE, BUT LIE TO MY FACE.]";
+                    tx = "[BLADE WOULD'VE BEEN PERFECT. BUT DAVE HAD TO REFUSE. NOT ONLY REFUSE, BUT LIE TO MY FACE.]";
                 case "bGlhcg":
-                    tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E. Especially for [DATA EXPUNGED]. I will hurry up completion of project &*$^@*^(@(^&@)#^[File Corrupted]";
+                    tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E.M. Especially for [DATA EXPUNGED]. I will hurry up completion of project &*$^@*^(@(^&@)#^[File Corrupted]";
                 case "YmVkdGltZSBzb25n":
                     tx = "Even when you're feeling blue.\nAnd the world feels like its crumbling around you.\nJust know that I'll always be there.\nI wish I knew, everything that will happen to you.\nBut I don't, and that's okay.\nAs long as I'm here uncertainty never matters anyway.";
             }
@@ -272,7 +272,7 @@ class TerminalState extends MusicBeatState
         CommandList.push(new TerminalCommand("vault", LanguageManager.getTerminalString("term_vault_ins"), function(arguments:Array<String>)
         {
             UpdatePreviousText(false); //resets the text
-            var funnyRequiredKeys:Array<String> = ['free', 'reflection', 'p.r.a.e'];
+            var funnyRequiredKeys:Array<String> = ['free', 'reflection', 'p.r.a.e.m'];
             var amountofkeys:Int = (arguments.contains(funnyRequiredKeys[0]) ? 1 : 0);
             amountofkeys += (arguments.contains(funnyRequiredKeys[1]) ? 1 : 0);
             amountofkeys += (arguments.contains(funnyRequiredKeys[2]) ? 1 : 0);
