@@ -283,7 +283,7 @@ class TerminalState extends MusicBeatState
                 case "YmVkdGltZSBzb25n":
                     tx = "Even when you're feeling blue.\nAnd the world feels like its crumbling around you.\nJust know that I'll always be there.\nI wish I knew, everything that will happen to you.\nBut I don't, and that's okay.\nAs long as I'm here uncertainty never matters anyway.";
                 case "dGhlIG1lZXRpbmcgcDE=":
-                    tx = "Conversation Log (1/2)\nRecurser: You're Dave\n[Dave turns around abruptly, startled.]\nDave: Uh. Yeah.\nRecurser: I've been watching.\nDave: ...\nRecurser: Why are you 3D? Can you stop?\nDave: I... don't know. And if I would, I could.\nOut of Order. This... isn't what you do.\nDave:\"Out of Order..?\"";
+                    tx = "Conversation Log (1/2)\nRecurser: You're Dave\n[Dave turns around abruptly, startled.]\nDave: Uh. Yeah.\nRecurser: I've been watching.\nDave: ...\nRecurser: Why are you 3D? Can you stop?\nDave: I... don't know. And if I would, I could.\nRecurser: Out of Order. This... isn't what you do.\nDave: \"Out of Order..?\"";
                     /*tx = "Conversation Log
                     Recurser: You're Dave.
                     [Dave turns around abruptly with a startled look on his face.]
