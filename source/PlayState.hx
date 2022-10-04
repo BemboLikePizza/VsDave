@@ -3290,14 +3290,17 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				playerStrums.forEach(function(note:StrumNote)
+				if (SONG.song.toLowerCase() == 'exploitation') //damn it
 				{
-					FlxTween.completeTweensOf(note);
-				});
-				dadStrums.forEach(function(note:StrumNote)
-				{
-					FlxTween.completeTweensOf(note);
-				});
+					playerStrums.forEach(function(note:StrumNote)
+					{
+						FlxTween.completeTweensOf(note);
+					});
+					dadStrums.forEach(function(note:StrumNote)
+					{
+						FlxTween.completeTweensOf(note);
+					});
+				}
 				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 			}
 		}
