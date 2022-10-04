@@ -88,7 +88,7 @@ class TerminalState extends MusicBeatState
 		displayText.setFormat(Paths.font("fixedsys.ttf"), 16);
         displayText.size *= 2;
 		displayText.antialiasing = false;
-        FlxG.sound.music.stop();
+        FlxG.sound.playMusic(Paths.music('TheAmbience','shared'), 0.7);
 
         CommandList.push(new TerminalCommand("help", LanguageManager.getTerminalString("term_help_ins"), function(arguments:Array<String>)
         {
@@ -215,13 +215,17 @@ class TerminalState extends MusicBeatState
                 case "god" | "artifact1":
                     tx = "Artifact 1:\nA stone with symbols and writing carved into it.\nDescription:Its a figure that has hundreds of EYEs all across its body.\nNotes: Why does it look so much like Bambi?";
                 case "eye":
-                    tx = "Our lord told us that he would remove one of his eyes everyday.\nThat maybe one day he won't be as wise.\nAnd that we shouldn't refer to him as our lord once that happens.\n...\nPlease, I promise you that's what he said. I-I'm not lying.\nH-hey what are yo- BACK THE FUCK OFF-";
+                    tx = "Our lord told us that he would remove one of his eyes everyday.\nHe tells me that he's doing this to save us.\nBut that he might one day become unreasonable and we need to have faith in ourselves.\n...\nPlease, I promise you that's what he said. I-I'm not lying.\nDon't hurt me.";
+                //case "lord":
+                    //tx = "A being of many eyes. Knowledge of so many things. Yet he choses to give it up for a greater cause. To assist the golden heart of the future.";
                 case "artifact2":
                     tx = "Artifact 2:\nAn almost entirely destroyed red robe.\nDescription: A red robe. It has a symbol that resembles Bambi's hat, etched on it.";
                 case "tristan":
                     tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
                 case "expunged":
                     tx = "[FILE DELETED]\n[FUCK YOU!]";
+                case "deleted":
+                    tx = "The unnamable never was a god. Just an accident.";
                 case "exbungo":
                     tx = "[FAT AND UGLY.]";
                 case "recurser":
@@ -237,13 +241,13 @@ class TerminalState extends MusicBeatState
                 case "4":
                     tx = "LOG 4\nI'm doing various tests on myself, trying to figure out what causes the POLYGONization.\nIt hurts a bit, \nBut I must keep a smile. For Tristan's sake.";
                 case "5":
-                    tx = "[DATA DELETED]";
+                    tx = "[FILE DELETED]";
                 case "6":
                     tx = "LOG 6\nNot infront of Tristan. I almost lost him in that void. I- [DATA DELETED]";
                 case "7":
                     tx = "LOG 7\nMy interdimensional dislocation appears to be caused by mass amount of stress.\nHow strange.\nMaybe I could isolate this effect somehow?";
                 case "8" | "9" | "11" | "12" | "13":
-                    tx = "[DATA DELETED]";
+                    tx = "[FILE DELETED]";
                 case "10":
                     tx = "LOG 10\nWorking on the PROTOTYPE.";
                 case "14":
@@ -339,6 +343,7 @@ class TerminalState extends MusicBeatState
         displayText.text = previousText + val;
     }
 
+    //after all of my work this STILL DOESNT COMPLETELY STOP THE TEXT SHIT FROM GOING OFF THE SCREEN IM GONNA DIE
     public function UpdatePreviousText(reset:Bool)
     {
         previousText = displayText.text + (reset ? "\n> " : "");
@@ -346,11 +351,11 @@ class TerminalState extends MusicBeatState
         curCommand = "";
         var finalthing:String = "";
         var splits:Array<String> = displayText.text.split("\n");
-        if (splits.length <= 23)
+        if (splits.length <= 22)
         {
             return;
         }
-        var split_end:Int = Math.round(Math.max(splits.length - 23,0));
+        var split_end:Int = Math.round(Math.max(splits.length - 22,0));
         for (i in split_end...splits.length)
         {
             var split:String = splits[i];

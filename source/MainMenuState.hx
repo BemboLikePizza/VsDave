@@ -336,6 +336,10 @@ class MainMenuState extends MusicBeatState
 			{
 				FlxG.switchState(new ChartingState());
 			}
+			if (FlxG.keys.justPressed.NINE)
+			{
+				FlxG.switchState(new FunnyTextState(CoolUtil.coolTextFile(Paths.txt('dialogue/recurser-post'))));
+			}
 			#end
 			#if release
 				if (FlxG.keys.justPressed.SEVEN)

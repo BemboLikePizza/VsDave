@@ -4317,6 +4317,15 @@ class PlayState extends MusicBeatState
 					STUPDVARIABLETHATSHOULDNTBENEEDED = marcello;
 					new FlxTimer().start(5.5, THROWPHONEMARCELLO);
 				default:
+					if (localFunny == CharacterFunnyEffect.Recurser)
+					{
+						FlxG.switchState(new FunnyTextState(CoolUtil.coolTextFile(Paths.txt('dialogue/recurser-post'))));
+						if(FlxTransitionableState.skipNextTransIn)
+						{
+							Transition.nextCamera = null;
+						}
+						return;
+					}
 					FlxG.switchState(new FreeplayState());
 			}
 			if(FlxTransitionableState.skipNextTransIn)
