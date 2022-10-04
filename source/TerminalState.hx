@@ -330,7 +330,7 @@ class TerminalState extends MusicBeatState
         }));
         CommandList.push(new TerminalCommand("welcometobaldis", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
         {
-            FlxG.switchState(new MathGameState());
+            UpdateText("\nThis was fun while it lasted but do it the intended way now plz k thx");
         }, false, true));
 
         add(displayText);
