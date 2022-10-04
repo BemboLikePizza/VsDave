@@ -50,7 +50,8 @@ class TerminalState extends MusicBeatState
         "alt",
         "lbracket",
         "rbracket",
-        "comma"
+        "comma",
+        "plus"
     ];
 
     var formattedSymbols:Array<String> =
@@ -72,7 +73,8 @@ class TerminalState extends MusicBeatState
         "",
         "[",
         "]",
-        ","
+        ",",
+        "="
     ];
     public var fakeDisplayGroup:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
     public var expungedTimer:FlxTimer;
@@ -83,7 +85,7 @@ class TerminalState extends MusicBeatState
         Main.fps.visible = false;
         PlayState.isStoryMode = false;
         displayText = new FlxText(0, 0, FlxG.width, previousText, 32);
-		displayText.setFormat(Paths.font("PixelOperator-Bold.ttf"), 16);
+		displayText.setFormat(Paths.font("fixedsys.ttf"), 16);
         displayText.size *= 2;
 		displayText.antialiasing = false;
         FlxG.sound.music.stop();
@@ -202,14 +204,20 @@ class TerminalState extends MusicBeatState
         {
             UpdatePreviousText(false); //resets the text
             var tx = "";
-            switch (arguments[0])
+            switch (arguments[0].toLowerCase())
             {
                 default:
                     tx = "File not found.";
                 case "dave":
                     tx = "Forever lost and adrift.\nTrying to change his destiny.\nDespite this, it pulls him by a lead.\nIt doesn't matter to him though.\nHe has a child to feed.";
                 case "bambi":
-                    tx = "A forgotten god.\nThe truth will never be known.\nThe extent of his POWERs won't ever unfold.";
+                    tx = "A forgotten GOD.\nThe truth will never be known.\nThe extent of his POWERs won't ever unfold.";
+                case "god" | "artifact1":
+                    tx = "Artifact 1:\nA stone with symbols and writing carved into it.\nDescription:Its a figure that has hundreds of EYEs all across its body.\nNotes: Why does it look so much like Bambi?";
+                case "eye":
+                    tx = "Our lord told us that he would remove one of his eyes everyday.\nThat maybe one day he won't be as wise.\nAnd that we shouldn't refer to him as our lord once that happens.\n...\nPlease, I promise you that's what he said. I-I'm not lying.\nH-hey what are yo- BACK THE FUCK OFF-";
+                case "artifact2":
+                    tx = "Artifact 2:\nAn almost entirely destroyed red robe.\nDescription: A red robe. It has a symbol that resembles Bambi's hat, etched on it.";
                 case "tristan":
                     tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
                 case "expunged":
@@ -243,29 +251,60 @@ class TerminalState extends MusicBeatState
                 case "prototype":
                     tx = "Project <P.R.A.E.M>\nNotes: The SOLUTION.\nEstimated Build Time: 2 years.";
                 case "solution":
-                    tx = "I feel every ounce of my being torn to shreds and reconstructed with some parts missing. \nI can hear the electronical hissing. \nEvery fiber in my being is begging me to STOP.\nI don't.";
+                    tx = "I feel every ounce of my being torn to shreds and reconstructed with some parts removed.\nI can hear the electronical hissing of the machine.\nEvery fiber in my being is begging me to STOP.\nI don't.";
                 case "stop":
                     tx = "A reflection that is always wrong now has appeared in his dreams.\nIt's a part thats now missing.\nA chunk out of his soul.";
                 case "boyfriend":
                     tx = "LOG [REDACTED]\nA multiversal constant, for some reason. Must dive into further research.";
                 case "order":
-                    tx = "What is order? There are many definitions. But right here I will write the one that will matter to project Recurser:\nThe opposite of [DATA EXPUNGED]";
+                    tx = "What is order? There are many definitions. Recurser doesn't use any of these though.\nThey want to keep everything the way they love it.\nTo them, that's order.";
                 case "power":
                     tx = "[I HATE THEM.] [THEY COULD'VE HAD SO MUCH POWER, BUT THEY THREW IT AWAY.]\n[AND IN THAT HEAP OF UNWANTED POWER, I WAS CREATED.]";
                 case "birthday":
                     tx = "Sent back to the void, a shattered soul encounters his broken <reflection>.";
                 case "polygonized" | "polygon" | "3D":
                     tx = "He will never be <free>.";
-                case "p.r.a.e.m" | "P.R.A.E.M":
+                case "p.r.a.e.m":
                     tx = "Name: Power Removal And Extraction Machine\nProgress: Complete\nNotes: Took longer than expected. Tristans 7th BIRTHDAY is in a month.";
                 case "save":
                     tx = "[I SEE WHAT YOUR TRYING TO DO. HAH HAH. VERY FUNNY.]\n[I DON'T NEED SAVING.]\n[DAVE DOES THOUGH. FROM ME.]";
+            }
+            //case sensitive!!
+            switch (arguments[0])
+            {
                 case "cGVyZmVjdGlvbg":
                     tx = "[BLADE WOULD'VE BEEN PERFECT. BUT DAVE HAD TO REFUSE. NOT ONLY REFUSE, BUT LIE TO MY FACE.]";
                 case "bGlhcg":
-                    tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E.M. Especially for [DATA EXPUNGED]. I will hurry up completion of project &*$^@*^(@(^&@)#^[File Corrupted]";
+                    tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E.M. Especially for [DATA EXPUNGED]. Not now. Not ever.";
                 case "YmVkdGltZSBzb25n":
                     tx = "Even when you're feeling blue.\nAnd the world feels like its crumbling around you.\nJust know that I'll always be there.\nI wish I knew, everything that will happen to you.\nBut I don't, and that's okay.\nAs long as I'm here uncertainty never matters anyway.";
+                case "dGhlIG1lZXRpbmcgcDE=":
+                    tx = "Conversation Log (1/2)\nRecurser: You're Dave\n[Dave turns around abruptly, startled.]\nDave: Uh. Yeah.\nRecurser: I've been watching.\nDave: ...\nRecurser: Why are you 3D? Can you stop?\nDave: I... don't know. And if I would, I could.\nOut of Order. This... isn't what you do.\nDave:\"Out of Order..?\"";
+                    /*tx = "Conversation Log
+                    Recurser: You're Dave.
+                    [Dave turns around abruptly with a startled look on his face.]
+                    Dave: Uh. Yeah.
+                    Recurser: I've been watching.
+                    Dave: ...
+                    Recurser: Why are you 3D? Can you stop?
+                    Dave: I. I don't know and I would if I could.
+                    Recurser: Out of Order. This.. isn't what you do.
+                    Dave: \"Out of Order..?\"
+                    Recurser: Yeah. Things aren't the way they are. Wrong.
+                    Dave: I can.. certainly agree with that.
+                    Recurser: And... what about [DATA EXPUNGED]
+                    [Dave frezes.]
+                    Dave: What..? How did you-
+                    Recurser: I already have explained. I've been watching.
+                    Dave: ...
+                    Dave: Can... you help me?
+                    Recurser: Hm?
+                    Dave: You spend a lot of time around here... Can you, prevent [DATA EXPUNGED] from messing things up. Please.
+                    Recurser: ... I'll stop [DATA EXPUNGED] from making things Out of Order.
+                    Dave: ... Thank you...
+                    {CONVERSATION ENDED}";*/
+                case "dGhlIG1lZXRpbmcgcDI=":
+                    tx = "Conversation Log (2/2)\nRecurser: Yeah. Things aren't the way they are supposed to be. Wrong.\nDave: I can... agree.\nRecurser: And... what about [DATA EXPUNGED]\n[Dave Freezes]\nDave: How did you-\nRecurser: I already have explained. I've been watching.\nDave: ... \nDave:Can you help me..?\nDave: You spend a lot of time around this... place. Can you prevent [DATA EXPUNGED] from messing things up please...\nRecurser: I'll stop them from causing things to go Out of Order.\nDave: Thank you...";
             }
             UpdateText("\n" + tx);
         }));
@@ -278,7 +317,7 @@ class TerminalState extends MusicBeatState
             amountofkeys += (arguments.contains(funnyRequiredKeys[2]) ? 1 : 0);
             if (arguments.contains(funnyRequiredKeys[0]) && arguments.contains(funnyRequiredKeys[1]) && arguments.contains(funnyRequiredKeys[2]))
             {
-                UpdateText("\nVault unlocked.\ncGVyZmVjdGlvbg\nbGlhcg\nYmVkdGltZSBzb25n");
+                UpdateText("\nVault unlocked.\ncGVyZmVjdGlvbg\nbGlhcg\nYmVkdGltZSBzb25n\ndGhlIG1lZXRpbmcgcDE=\ndGhlIG1lZXRpbmcgcDI=");
             }
             else
             {
@@ -445,7 +484,7 @@ class TerminalState extends MusicBeatState
         {
             var lastFakeDisplay = fakeDisplayGroup.members[i - 1];
             var fakeDisplay:FlxText = new FlxText(0, 0, FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);
-            fakeDisplay.setFormat(Paths.font("PixelOperator-Bold.ttf"), 16);
+            fakeDisplay.setFormat(Paths.font("fixedsys.ttf"), 16);
             fakeDisplay.size *= 2;
             fakeDisplay.antialiasing = false;
 
