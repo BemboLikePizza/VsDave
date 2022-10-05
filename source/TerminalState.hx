@@ -333,7 +333,7 @@ class TerminalState extends MusicBeatState
             amountofkeys += (arguments.contains(funnyRequiredKeys[2]) ? 1 : 0);
             if (arguments.contains(funnyRequiredKeys[0]) && arguments.contains(funnyRequiredKeys[1]) && arguments.contains(funnyRequiredKeys[2]))
             {
-                UpdateText("\nVault unlocked.\ncGVyZmVjdGlvbg\nbGlhcg\nYmVkdGltZSBzb25n\ndGhlIG1lZXRpbmcgcDE=\ndGhlIG1lZXRpbmcgcDI=\nYmlydGhkYXk=\nZW1haWw=");
+                UpdateText("\nVault unlocked.\ncGVyZmVjdGlvbg\nbGlhcg\nYmVkdGltZSBzb25n\ndGhlIG1lZXRpbmcgcDE=\ndGhlIG1lZXRpbmcgcDI=\nYmlydGhkYXk=\nZW1haWw=\nYXJ0aWZhY3QzLWE=");
             }
             else
             {
