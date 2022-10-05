@@ -2841,7 +2841,10 @@ class PlayState extends MusicBeatState
 			if (isRecursed)
 			{
 				timeLeft -= elapsed;
-				timeLeftText.text = FlxStringUtil.formatTime(Math.floor(timeLeft));
+				if (timeLeftText != null)
+				{
+					timeLeftText.text = FlxStringUtil.formatTime(Math.floor(timeLeft));
+				}
 
 				camRotateAngle += elapsed * 5 * (rotateCamToRight ? 1 : -1);
 
@@ -5229,7 +5232,10 @@ class PlayState extends MusicBeatState
 				}
 		}
 		preRecursedSkin = (formoverride != 'none' && boyfriend.curCharacter == formoverride ? formoverride : boyfriend.curCharacter);
-		switchBF(boyfriend.skins.get('recursed'), boyfriend.getPosition());
+		if (boyfriend.skins.exists('recursed'))
+		{
+			switchBF(boyfriend.skins.get('recursed'), boyfriend.getPosition());
+		}
 		bfGroup.add(boyfriend);
 		addRecursedUI();		
 	}
