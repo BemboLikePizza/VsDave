@@ -223,7 +223,9 @@ class TerminalState extends MusicBeatState
                 //case "lord":
                     //tx = "A being of many eyes. Knowledge of so many things. Yet he choses to give it up for a greater cause. To assist the golden heart of the future.";
                 case "artifact2":
-                    tx = "Artifact 2:\nAn almost entirely destroyed red robe.\nDescription: A red robe. It has a symbol that resembles Bambi's hat, etched on it.";
+                    tx = "Artifact 2:\nAn almost entirely destroyed red robe.\nDescription: A red robe. \nIt has a symbol that resembles Bambi's hat, etched on it.";
+                case "artifact3":
+                    tx = "Artifact 3:\nA notebook, found on the floor of the 3D realm.\nNotes: I haven't bothered with the cypher yet.\nI have more important matters.";
                 case "tristan":
                     tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
                 case "expunged":
@@ -285,7 +287,7 @@ class TerminalState extends MusicBeatState
                 case "bGlhcg":
                     tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E.M. Especially for [DATA EXPUNGED]. Not now. Not ever.";
                 case "YmVkdGltZSBzb25n":
-                    tx = "Even when you're feeling blue.\nAnd the world feels like its crumbling around you.\nJust know that I'll always be there.\nI wish I knew, everything that will happen to you.\nBut I don't, and that's okay.\nAs long as I'm here uncertainty never matters anyway.";
+                    tx = "Even when you're feeling blue.\nAnd the world feels like its crumbling around you.\nJust know that I'll always be there.\nI wish I knew, everything that will happen to you.\nBut I don't, and that's okay.\nAs long as I'm here you'll always see a sunny day.";
                 case "dGhlIG1lZXRpbmcgcDE=":
                     tx = "Conversation Log (1/2)\nRecurser: You're Dave\n[Dave turns around abruptly, startled.]\nDave: Uh. Yeah.\nRecurser: I've been watching.\nDave: ...\nRecurser: Why are you 3D? Can you stop?\nDave: I... don't know. And if I would, I could.\nRecurser: Out of Order. This... isn't what you do.\nDave: \"Out of Order..?\"";
                     /*tx = "Conversation Log
@@ -313,6 +315,8 @@ class TerminalState extends MusicBeatState
                     {CONVERSATION ENDED}";*/
                 case "dGhlIG1lZXRpbmcgcDI=":
                     tx = "Conversation Log (2/2)\nRecurser: Yeah. Things aren't the way they are supposed to be. Wrong.\nDave: I can... agree.\nRecurser: And... what about [DATA EXPUNGED]\n[Dave Freezes]\nDave: How did you-\nRecurser: I already have explained. I've been watching.\nDave: ... \nDave:Can you help me..?\nDave: You spend a lot of time around this... place. Can you prevent [DATA EXPUNGED] from messing things up please...\nRecurser: I'll stop them from causing things to go Out of Order.\nDave: Thank you...";
+                case "YXJ0aWZhY3QzLWE=":
+                    tx = "http://gg.gg/davetabase-artifact3";
             }
             UpdateText("\n" + tx);
         }));
