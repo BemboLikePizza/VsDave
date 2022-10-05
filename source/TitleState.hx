@@ -287,6 +287,11 @@ class TitleState extends MusicBeatState
 				pressedEnter = true;
 			#end
 		}
+
+		if (FlxG.keys.justPressed.ALT)
+		{
+			FlxG.switchState(new CompatWarningState());
+		}
 		
 		if (pressedEnter && !transitioning && skippedIntro)
 		{

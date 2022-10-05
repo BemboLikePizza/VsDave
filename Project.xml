@@ -3,7 +3,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin' | VS. Dave and Bambi 3.0" file="VsDave" packageName="dnbteam.daveandbambi" package="dnbteam.daveandbambi" main="Main" version="3.0.0" company="dnbteam"/>
+	<app title="Friday Night Funkin' | VS. Dave and Bambi 3.0b" file="VsDave" packageName="dnbteam.daveandbambi" package="dnbteam.daveandbambi" main="Main" version="3.0.0" company="dnbteam"/>
 	<app preloader="flixel.system.FlxPreloader"/>
 
 	<set name="APP_ID" value="0x0100f6c013bbc000"/>
