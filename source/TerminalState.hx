@@ -4,6 +4,7 @@ import sys.io.File;
 import lime.app.Application;
 import flixel.tweens.FlxTween;
 import flixel.math.FlxRandom;
+import openfl.filters.ShaderFilter;
 import haxe.ds.Map;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
@@ -12,6 +13,7 @@ import flixel.FlxState;
 import flixel.*;
 import flixel.util.FlxTimer;
 import flash.system.System;
+import flixel.system.FlxSound;
 
 using StringTools;
 
@@ -29,6 +31,7 @@ class TerminalState extends MusicBeatState
     public var displayText:FlxText;
     var expungedActivated:Bool = false;
     public var CommandList:Array<TerminalCommand> = new Array<TerminalCommand>();
+    public var typeSound:FlxSound;
 
     // [BAD PERSON] was too lazy to finish this lol.
     var unformattedSymbols:Array<String> =
@@ -88,6 +91,7 @@ class TerminalState extends MusicBeatState
 		displayText.setFormat(Paths.font("fixedsys.ttf"), 16);
         displayText.size *= 2;
 		displayText.antialiasing = false;
+        typeSound = FlxG.sound.load(Paths.sound('terminal_space'), 0.6);
         FlxG.sound.playMusic(Paths.music('TheAmbience','shared'), 0.7);
 
         CommandList.push(new TerminalCommand("help", LanguageManager.getTerminalString("term_help_ins"), function(arguments:Array<String>)
@@ -418,10 +422,12 @@ class TerminalState extends MusicBeatState
             if (keyJustPressed == FlxKey.BACKSPACE)
             {
                 curCommand = curCommand.substr(0,curCommand.length - 1);
+                typeSound.play();
             }
             else if (keyJustPressed == FlxKey.SPACE)
             {
                 curCommand += " ";
+                typeSound.play();
             }
             else
             {
@@ -439,6 +445,7 @@ class TerminalState extends MusicBeatState
                     toShow = toShow.toUpperCase();
                 }
                 curCommand += toShow;
+                typeSound.play();
             }
             UpdateText(curCommand);
         }
