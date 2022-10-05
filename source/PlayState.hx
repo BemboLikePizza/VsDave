@@ -3056,6 +3056,21 @@ class PlayState extends MusicBeatState
 				spr.y = ((FlxG.height / 2) - (spr.height / 2)) + (Math.cos((elapsedtime + (spr.ID)) * 2) * 300);
 			});
 		}
+		if (!inCutscene)
+		{
+			if (localFunny == CharacterFunnyEffect.Recurser)
+			{
+				playerStrums.forEach(function(spr:StrumNote)
+				{
+					spr.y = spr.baseY + ((Math.sin(elapsedtime + spr.ID)) * (spr.height * 0.75));
+				});
+				dadStrums.forEach(function(spr:StrumNote)
+				{
+					spr.y = spr.baseY + ((Math.sin(elapsedtime + (spr.ID + 4))) * (spr.height * 0.75));
+				});
+			}
+		}
+
 		if (SONG.song.toLowerCase() == 'exploitation' && !inCutscene && mcStarted) // fuck you
 		{
 			switch (modchart)
@@ -3803,14 +3818,13 @@ class PlayState extends MusicBeatState
 					notes.remove(daNote, true);
 					daNote.destroy();
 				}
-				switch (SONG.song.toLowerCase())
+				if (daNote.MyStrum != null)
 				{
-					case 'unfairness' | 'exploitation':
-						if (daNote.MyStrum != null)
-							daNote.y = yFromNoteStrumTime(daNote, daNote.MyStrum, scrollType == 'downscroll');
-
-					default:
-						daNote.y = yFromNoteStrumTime(daNote, strumLine, scrollType == 'downscroll');
+					daNote.y = yFromNoteStrumTime(daNote, daNote.MyStrum, scrollType == 'downscroll');
+				}
+				else
+				{
+					daNote.y = yFromNoteStrumTime(daNote, strumLine, scrollType == 'downscroll');
 				}
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));

@@ -219,19 +219,21 @@ class TerminalState extends MusicBeatState
                 case "god" | "artifact1":
                     tx = "Artifact 1:\nA stone with symbols and writing carved into it.\nDescription:Its a figure that has hundreds of EYEs all across its body.\nNotes: Why does it look so much like Bambi?";
                 case "eye":
-                    tx = "Our lord told us that he would remove one of his eyes everyday.\nHe tells me that he's doing this to save us.\nBut that he might one day become unreasonable and we need to have faith in ourselves.\n...\nPlease, I promise you that's what he said. I-I'm not lying.\nDon't hurt me.";
-                //case "lord":
-                    //tx = "A being of many eyes. Knowledge of so many things. Yet he choses to give it up for a greater cause. To assist the golden heart of the future.";
+                    tx = "Our LORD told us that he would remove one of his eyes everyday.\nHe tells me that he's doing this to save us.\nThat he might one day become unreasonable and we need to have faith in ourselves.\n...\nPlease, I promise you that's what he said. I-I'm not lying.\nDon't hurt me.";
+                case "lord":
+                    tx = "A being of many eyes. A being so wise. He gives it all up to ensure, that the golden one will have a bright future.";
                 case "artifact2":
                     tx = "Artifact 2:\nAn almost entirely destroyed red robe.\nDescription: A red robe. \nIt has a symbol that resembles Bambi's hat, etched on it.";
                 case "artifact3":
                     tx = "Artifact 3:\nA notebook, found on the floor of the 3D realm.\nNotes: I haven't bothered with the cypher yet.\nI have more important matters.";
+                case "artifact4":
+                    tx = "\"Artifact\" 4:\nA weird email, with attached images that use the same cypher as Artifact 3.\nNotes: Who sent this?";
                 case "tristan":
                     tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
                 case "expunged":
                     tx = "[FILE DELETED]\n[FUCK YOU!]";
                 case "deleted":
-                    tx = "The unnamable never was a god. Just an accident.";
+                    tx = "The unnamable never was a god and never will be. Just an accident.";
                 case "exbungo":
                     tx = "[FAT AND UGLY.]";
                 case "recurser":
@@ -245,7 +247,7 @@ class TerminalState extends MusicBeatState
                 case "3":
                     tx = "LOG 3\nI'm currently working on studying interdimensional dislocation.\nThere has to be a root cause. Some trigger.\nI hope there aren't any long term side effects.";
                 case "4":
-                    tx = "LOG 4\nI'm doing various tests on myself, trying to figure out what causes the POLYGONization.\nIt hurts a bit, \nBut I must keep a smile. For Tristan's sake.";
+                    tx = "LOG 4\nI'm doing various tests on myself, trying to figure out what causes the POLYGONization.\nIt hurts a lot, \nBut I must keep a smile. For Tristan's sake.";
                 case "5":
                     tx = "[FILE DELETED]";
                 case "6":
@@ -276,14 +278,12 @@ class TerminalState extends MusicBeatState
                     tx = "He will never be <free>.";
                 case "p.r.a.e.m":
                     tx = "Name: Power Removal And Extraction Machine\nProgress: Complete\nNotes: Took longer than expected. Tristans 7th BIRTHDAY is in a month.";
-                case "save":
-                    tx = "[I SEE WHAT YOUR TRYING TO DO. HAH HAH. VERY FUNNY.]\n[I DON'T NEED SAVING.]\n[DAVE DOES THOUGH. FROM ME.]";
             }
             //case sensitive!!
             switch (arguments[0])
             {
                 case "cGVyZmVjdGlvbg":
-                    tx = "[BLADE WOULD'VE BEEN PERFECT. BUT DAVE HAD TO REFUSE. NOT ONLY REFUSE, BUT LIE TO MY FACE.]";
+                    tx = "[BLADE WOULD'VE BEEN PERFECT. BUT DAVE HAD TO REFUSE.]";
                 case "bGlhcg":
                     tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E.M. Especially for [DATA EXPUNGED]. Not now. Not ever.";
                 case "YmVkdGltZSBzb25n":
@@ -317,6 +317,10 @@ class TerminalState extends MusicBeatState
                     tx = "Conversation Log (2/2)\nRecurser: Yeah. Things aren't the way they are supposed to be. Wrong.\nDave: I can... agree.\nRecurser: And... what about [DATA EXPUNGED]\n[Dave Freezes]\nDave: How did you-\nRecurser: I already have explained. I've been watching.\nDave: ... \nDave:Can you help me..?\nDave: You spend a lot of time around this... place. Can you prevent [DATA EXPUNGED] from messing things up please...\nRecurser: I'll stop them from causing things to go Out of Order.\nDave: Thank you...";
                 case "YXJ0aWZhY3QzLWE=":
                     tx = "http://gg.gg/davetabase-artifact3";
+                case "YmlydGhkYXk=":
+                    tx = "http://gg.gg/davetabase-birthday";
+                case "ZW1haWw=":
+                    tx = "http://gg.gg/davetabase-mysterious-email";
             }
             UpdateText("\n" + tx);
         }));
@@ -329,11 +333,11 @@ class TerminalState extends MusicBeatState
             amountofkeys += (arguments.contains(funnyRequiredKeys[2]) ? 1 : 0);
             if (arguments.contains(funnyRequiredKeys[0]) && arguments.contains(funnyRequiredKeys[1]) && arguments.contains(funnyRequiredKeys[2]))
             {
-                UpdateText("\nVault unlocked.\ncGVyZmVjdGlvbg\nbGlhcg\nYmVkdGltZSBzb25n\ndGhlIG1lZXRpbmcgcDE=\ndGhlIG1lZXRpbmcgcDI=");
+                UpdateText("\nVault unlocked.\ncGVyZmVjdGlvbg\nbGlhcg\nYmVkdGltZSBzb25n\ndGhlIG1lZXRpbmcgcDE=\ndGhlIG1lZXRpbmcgcDI=\nYmlydGhkYXk=\nZW1haWw=");
             }
             else
             {
-                UpdateText("\n" + "Invalid keys. Valid keys:" + amountofkeys);
+                UpdateText("\n" + "Invalid keys. Valid keys: " + amountofkeys);
             }
         }));
         CommandList.push(new TerminalCommand("welcometobaldis", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
