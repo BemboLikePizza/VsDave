@@ -254,10 +254,14 @@ class TerminalState extends MusicBeatState
                     tx = "LOG 6\nNot infront of Tristan. I almost lost him in that void. I- [DATA DELETED]";
                 case "7":
                     tx = "LOG 7\nMy interdimensional dislocation appears to be caused by mass amount of stress.\nHow strange.\nMaybe I could isolate this effect somehow?";
-                case "8" | "9" | "11" | "12" | "13":
+                case "8":
+                    tx = "LOG 8\nHey, Muko here. Dave recently called me to assist with the PROTOTYPE. \nIt's been kind of fun. He won't tell me what it does though.";
+                case "9" | "11" | "13":
                     tx = "[FILE DELETED]";
+                case "12":
+                    tx = "LOG 12\nThe prototype going pretty well.\n Dave still won't tell me what this thing does.\nI can't figure it out even with the\nblueprints.\nI managed to convince him to take a break and\ngo to Cicis Pizza with me and Maldo.\nHe brought Tristan long as well. It was fun.\n-Maldo";
                 case "10":
-                    tx = "LOG 10\nWorking on the PROTOTYPE.";
+                    tx = "LOG 10\nWorking on the prototype.";
                 case "14":
                     tx = "LOG 14\nI need to stop naming these numerically its getting confusing.";
                 case "prototype":
