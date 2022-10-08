@@ -6351,7 +6351,7 @@ class PlayState extends MusicBeatState
 						}
 						#end
 					case 2083:
-						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Threat expunged.dat succesfully contained.");
+						PlatformUtil.sendWindowsNotification("Anticheat.dll", "Threat expunged.dat successfully contained.");
 				}
 			case 'shredder':
 				switch (curStep)
