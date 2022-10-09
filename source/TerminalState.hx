@@ -292,33 +292,8 @@ class TerminalState extends MusicBeatState
                     tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E.M. Especially for [DATA EXPUNGED]. Not now. Not ever.";
                 case "YmVkdGltZSBzb25n":
                     tx = "Even when you're feeling blue.\nAnd the world feels like its crumbling around you.\nJust know that I'll always be there.\nI wish I knew, everything that will happen to you.\nBut I don't, and that's okay.\nAs long as I'm here you'll always see a sunny day.";
-                case "dGhlIG1lZXRpbmcgcDE=":
-                    tx = "Conversation Log (1/2)\nRecurser: You're Dave\n[Dave turns around abruptly, startled.]\nDave: Uh. Yeah.\nRecurser: I've been watching.\nDave: ...\nRecurser: Why are you 3D? Can you stop?\nDave: I... don't know. And if I would, I could.\nRecurser: Out of Order. This... isn't what you do.\nDave: \"Out of Order..?\"";
-                    /*tx = "Conversation Log
-                    Recurser: You're Dave.
-                    [Dave turns around abruptly with a startled look on his face.]
-                    Dave: Uh. Yeah.
-                    Recurser: I've been watching.
-                    Dave: ...
-                    Recurser: Why are you 3D? Can you stop?
-                    Dave: I. I don't know and I would if I could.
-                    Recurser: Out of Order. This.. isn't what you do.
-                    Dave: \"Out of Order..?\"
-                    Recurser: Yeah. Things aren't the way they are. Wrong.
-                    Dave: I can.. certainly agree with that.
-                    Recurser: And... what about [DATA EXPUNGED]
-                    [Dave frezes.]
-                    Dave: What..? How did you-
-                    Recurser: I already have explained. I've been watching.
-                    Dave: ...
-                    Dave: Can... you help me?
-                    Recurser: Hm?
-                    Dave: You spend a lot of time around here... Can you, prevent [DATA EXPUNGED] from messing things up. Please.
-                    Recurser: ... I'll stop [DATA EXPUNGED] from making things Out of Order.
-                    Dave: ... Thank you...
-                    {CONVERSATION ENDED}";*/
-                case "dGhlIG1lZXRpbmcgcDI=":
-                    tx = "Conversation Log (2/2)\nRecurser: Yeah. Things aren't the way they are supposed to be. Wrong.\nDave: I can... agree.\nRecurser: And... what about [DATA EXPUNGED]\n[Dave Freezes]\nDave: How did you-\nRecurser: I already have explained. I've been watching.\nDave: ... \nDave:Can you help me..?\nDave: You spend a lot of time around this... place. Can you prevent [DATA EXPUNGED] from messing things up please...\nRecurser: I'll stop them from causing things to go Out of Order.\nDave: Thank you...";
+                case "Y29udmVyc2F0aW9u":
+                    tx = "Log 336\nI encountered some entity in the void today.\nCalled me \"Out of Order\".\nIt mentioned [DATA EXPUNGED] and I asked it for help.\nI don't know if I can trust it but I don't really have\nany other options.";
                 case "YXJ0aWZhY3QzLWE=":
                     tx = "http://gg.gg/davetabase-artifact3";
                 case "YmlydGhkYXk=":
