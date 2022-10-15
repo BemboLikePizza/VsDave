@@ -197,6 +197,10 @@ class TerminalState extends MusicBeatState
                             });
                     }
                 }
+                else
+                {
+                    UpdateText("\nInvalid Parameter"); //todo: translate.
+                }
             }
         }));
         CommandList.push(new TerminalCommand("clear", LanguageManager.getTerminalString("term_clear_ins"), function(arguments:Array<String>)
@@ -231,7 +235,7 @@ class TerminalState extends MusicBeatState
                 case "tristan":
                     tx = "The key to defeating the one whose name shall not be stated.\nA heart of gold that will never become faded.";
                 case "expunged":
-                    tx = "[FILE DELETED]\n[FUCK YOU!]";
+                    tx = "[FILE DELETED]\n[FUCK YOU!]"; // [THIS AND EXBUNGOS FILE ARE THE ONLY ONES I HAVE ACCESS TO UNFORTUNATELY. I HATE IT]
                 case "deleted":
                     tx = "The unnamable never was a god and never will be. Just an accident.";
                 case "exbungo":
@@ -259,7 +263,7 @@ class TerminalState extends MusicBeatState
                 case "9" | "11" | "13":
                     tx = "[FILE DELETED]";
                 case "12":
-                    tx = "LOG 12\nThe prototype going pretty well.\n Dave still won't tell me what this thing does.\nI can't figure it out even with the\nblueprints.\nI managed to convince him to take a break and\ngo to Cicis Pizza with me and Maldo.\nHe brought Tristan long as well. It was fun.\n-Maldo";
+                    tx = "LOG 12\nThe prototype going pretty well.\nDave still won't tell me what this thing does.\nI can't figure it out even with the\nblueprints.\nI managed to convince him to take a break and\ngo to Cicis Pizza with me and Maldo.\nHe brought Tristan long as well. It was fun.\n-Maldo";
                 case "10":
                     tx = "LOG 10\nWorking on the prototype.";
                 case "14":

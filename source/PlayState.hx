@@ -1,4 +1,4 @@
-package;
+package; // "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
 
 import CreditsMenuState.CreditsText;
 import TerminalCheatingState.TerminalText;
@@ -657,13 +657,13 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			stageCheck = SONG.stage;
+			stageCheck = SONG.stage; //is this even used anywhere, like not even the new songs use it.
 		}
 		backgroundSprites = createBackgroundSprites(stageCheck, false);
 		switch (SONG.song.toLowerCase())
 		{
 			case 'secret':
-				UsingNewCam = true;
+				UsingNewCam = true; //LMAO THE ONLY SONG THAT STILL USES "NEW" CAM
 		}
 		switch (SONG.song.toLowerCase())
 		{
@@ -1321,7 +1321,7 @@ class PlayState extends MusicBeatState
 		doof.cameras = [camDialogue];
 		
 		#if SHADERS_ENABLED
-		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo)
+		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo) //i desperately wanted it so if you use downscroll it switches it to upscroll and flips the entire hud upside down but i never got to it
 		{
 			lazychartshader.waveAmplitude = 0.03;
 			lazychartshader.waveFrequency = 5;
@@ -1520,7 +1520,7 @@ class PlayState extends MusicBeatState
 				add(cornBag);
 				add(sign);
 
-				if (['blocked', 'corn-theft', 'maze', 'mealie'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, 4) == 0)
+				if (['blocked', 'corn-theft', 'maze', 'mealie'].contains(SONG.song.toLowerCase()) && !MathGameState.failedGame && FlxG.random.int(0, 4) == 0) //this really should be rarer in story but whatever.
 				{
 					FlxG.mouse.visible = true;
 					baldi = new BGSprite('baldi', 400, 110, Paths.image('backgrounds/farm/baldo', 'shared'), null, 0.65, 0.65);
@@ -3414,7 +3414,7 @@ class PlayState extends MusicBeatState
 					FlxG.switchState(new PlayState());
 					return;
 				case 'kabunga':
-					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html");
+					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html"); //banger game
 					System.exit(0);
 				case 'vs-dave-rap':
 				{
@@ -5115,6 +5115,8 @@ class PlayState extends MusicBeatState
 			{
 				default:
 					//'LEFT', 'DOWN', 'UP', 'RIGHT'
+
+					//todo: replace cynda code. this could probably be done with a ? operator instead.
 					var fuckingDumbassBullshitFuckYou:String;
 					var noteTypes = guitarSection ? notestuffsGuitar : notestuffs;
 					fuckingDumbassBullshitFuckYou = noteTypes[Math.round(Math.abs(note.originalType)) % playerStrumAmount];
@@ -5935,7 +5937,7 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(black, {alpha: 0.6}, 1);
 							makeInvisibleNotes(true);
 							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub1'), 0.02, 0.6);
-						case 537:
+						case 537: //you know looking back on this we really should've added an event note or something. or just a text file that handles these timings. wth is this.
 							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub2'), 0.02, 0.6);
 						case 552:
 							subtitleManager.addSubtitle(LanguageManager.getTextString('cheating_sub3'), 0.02, 0.6);
@@ -7862,7 +7864,7 @@ class PlayState extends MusicBeatState
 	function generateWindowSprite()
 	{
 		var m = new Matrix();
-		m.translate(0,120);
+		m.translate(0,120); //THIS CAUSES THE LAST FRAME IN EXPUNGEDS UP ANIMATION TO GET CUT OFF GOD DAMN IT. i mean it also breaks all the other characters but idc as much about that.
 		expungedSpr.graphics.beginBitmapFill(dad.pixels, m);
 		expungedSpr.graphics.drawRect(0, 0, dad.pixels.width, dad.pixels.height);
 		expungedSpr.graphics.endFill();
