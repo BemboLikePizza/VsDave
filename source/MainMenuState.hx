@@ -29,6 +29,8 @@ import flixel.input.keyboard.FlxKey;
 import Discord.DiscordClient;
 #end
 
+import flixel.system.FlxSound;
+
 using StringTools;
 
 class MainMenuState extends MusicBeatState
