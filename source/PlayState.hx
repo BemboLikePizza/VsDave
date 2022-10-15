@@ -4794,7 +4794,7 @@ class PlayState extends MusicBeatState
 				{
 					if (!note.mustPress)
 					{
-						continue;
+						continue; //how did this get here
 					}
 					if (controlArray[note.noteData % 4])
 					{ //further tweaks to the conductor safe zone offset multiplier needed.
