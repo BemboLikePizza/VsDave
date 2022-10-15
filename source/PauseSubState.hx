@@ -46,37 +46,6 @@ class PauseSubState extends MusicBeatSubstate
 		funnyTexts = new FlxTypedGroup<FlxText>();
 		add(funnyTexts);
 
-		for(item in menuItems)
-		{
-			if (PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
-			{
-				if(item.optionName != 'Resume' && item.optionName != 'No Miss Mode')
-				{
-					menuItems.remove(item);
-				}
-				continue;
-			}
-			if(item.optionName == 'Change Character')
-			{
-				if(PlayState.isStoryMode == true || PlayState.SONG.song.toLowerCase() == 'five-nights')
-				{
-					menuItems.remove(item);
-				}
-				else
-				{
-					continue;
-				}
-			}
-			else
-			{
-				continue;
-			}
-		}
-		if (PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
-		{
-			menuItems.remove(PauseOption.getOption(menuItems, 'Change Character')); //GO AWAY YOU STUPID BITCH
-		}
-
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			default:
@@ -120,7 +89,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.antialiasing = true;
 		levelDifficulty.borderSize = 2.5;
 		levelDifficulty.updateHitbox();
-		if (PlayState.SONG.song.toLowerCase() == 'exploitation')
+		if (PlayState.SONG.song.toLowerCase() == 'exploitation' && !PlayState.isGreetingsCutscene)
 		{
 			add(levelDifficulty);
 		}
@@ -143,9 +112,20 @@ class PauseSubState extends MusicBeatSubstate
 					doALittleTrolling(levelDifficulty);
 			}
 		}});
-		if (FreeplayState.skipSelect.contains(PlayState.SONG.song.toLowerCase()))
+		if (PlayState.isStoryMode || FreeplayState.skipSelect.contains(PlayState.SONG.song.toLowerCase()) || PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
 		{
 			menuItems.remove(PauseOption.getOption(menuItems, 'Change Character'));
+		}
+		for (item in menuItems)
+		{
+			if (PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
+			{
+				if(item.optionName != 'Resume' && item.optionName != 'No Miss Mode')
+				{
+					menuItems.remove(PauseOption.getOption(menuItems, item.optionName));
+				}
+				continue;
+			}
 		}
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
@@ -167,8 +147,8 @@ class PauseSubState extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		var scrollSpeed:Float = 50;
-      	bg.x -= scrollSpeed * elapsed;
-      	bg.y -= scrollSpeed * elapsed;
+		bg.x -= scrollSpeed * elapsed;
+		bg.y -= scrollSpeed * elapsed;
 
 		timeElapsed += elapsed;
 		if (pauseMusic.volume < 0.75)
@@ -182,18 +162,10 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (upP)
 		{
-			if (expungedSelectWaitTime <= 2)
-			{
-				expungedSelectWaitTime = 2;
-			}
 			changeSelection(-1);
 		}
 		if (downP)
 		{
-			if (expungedSelectWaitTime <= 2)
-			{
-				expungedSelectWaitTime = 2;
-			}
 			changeSelection(1);
 		}
 		if (PlayState.SONG.song.toLowerCase() == 'exploitation' && this.exists && PauseSubState != null)
@@ -204,7 +176,7 @@ class PauseSubState extends MusicBeatSubstate
 			}
 			else
 			{
-				expungedSelectWaitTime = new FlxRandom().float(2, 7);
+				expungedSelectWaitTime = new FlxRandom().float(0.5, 2);
 				changeSelection(new FlxRandom().int((menuItems.length - 1) * -1, menuItems.length - 1));
 			}
 		}
@@ -264,7 +236,7 @@ class PauseSubState extends MusicBeatSubstate
 			case "No Miss Mode":
 				PlayState.instance.noMiss = !PlayState.instance.noMiss;
 				var nm = PlayState.SONG.song.toLowerCase();
-				if (nm == 'exploitation' || nm == 'cheating' || nm == 'unfairness' || nm == 'recursed' || nm == 'glitch' || nm == 'master' || nm == 'supernovae' || nm == 'recursed')
+				if (['exploitation', 'cheating', 'unfairness', 'recursed', 'glitch', 'master', 'supernovae'].contains(nm))
 				{
 					PlayState.instance.health = 0;
 					close();
@@ -289,12 +261,6 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.window.close();
 					}
 				}
-
-				if (FlxG.save.data.exploitationState == 'playing')
-				{
-					Sys.exit(0);
-				}
-
 				PlayState.instance.shakeCam = false;
 				PlayState.instance.camZooming = false;
 				FlxG.mouse.visible = false;

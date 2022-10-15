@@ -34,9 +34,12 @@ class KeybindPrefs
 		if (controlsSave != null && controlsSave.data.keybinds != null)
 		{
 			var funnyKeybinds:Map<String, Array<FlxKey>> = controlsSave.data.keybinds;
-			if (!funnyKeybinds.exists("key5"))
+			for (control in defaultKeybinds.keys())
 			{
-				funnyKeybinds.set("key5",defaultKeybinds.get("key5"));
+				if (!funnyKeybinds.exists(control))
+				{
+					funnyKeybinds.set(control, defaultKeybinds.get(control));
+				}
 			}
 			setKeybinds(funnyKeybinds);
 		}

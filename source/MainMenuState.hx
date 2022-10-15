@@ -327,29 +327,13 @@ class MainMenuState extends MusicBeatState
 		}
 		if (canInteract)
 		{
-			#if debug
 			if (FlxG.keys.justPressed.SEVEN)
 			{
-				FlxG.switchState(new TerminalState());
+				var deathSound:FlxSound = new FlxSound();
+				deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
+				deathSound.volume = FlxG.random.float(0.6, 1);
+				deathSound.play();
 			}
-			if (FlxG.keys.justPressed.EIGHT)
-			{
-				FlxG.switchState(new ChartingState());
-			}
-			if (FlxG.keys.justPressed.NINE)
-			{
-				FlxG.switchState(new FunnyTextState(CoolUtil.coolTextFile(Paths.txt('dialogue/recurser-post'))));
-			}
-			#end
-			#if release
-				if (FlxG.keys.justPressed.SEVEN)
-				{
-					var deathSound:FlxSound = new FlxSound();
-					deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
-					deathSound.volume = FlxG.random.float(0.6, 1);
-					deathSound.play();
-				}
-			#end
 			if (FlxG.keys.justPressed.R)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -528,24 +512,12 @@ class MainMenuState extends MusicBeatState
 	}
 	function resetData()
 	{
-		FlxG.save.bind('funkin', 'ninjamuffin99');
-
-		FlxG.save.erase();
-
-		FlxG.save.flush();
-
-		FlxG.save.bind('controls', 'ninjamuffin99');
-
-		FlxG.save.erase();
-
-		FlxG.save.flush();
-
-		FlxG.save.bind('language', 'ninjamuffin99');
-
-		FlxG.save.erase();
-
-		FlxG.save.flush();
-		
+		for (save in ['funkin', 'controls', 'language'])
+		{
+			FlxG.save.bind(save, 'ninjamuffin99');
+			FlxG.save.erase();
+			FlxG.save.flush();
+		}
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		Highscore.songScores = new Map();

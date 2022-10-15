@@ -164,7 +164,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeftCharacter = ['bambi', 'bevelmad'];
 			case 'splitathon':
 				portraitLeftCharacter = ['bambi', 'splitathon'];
-			case 'shredder':
+			case 'shredder' | 'rano':
 				portraitLeftCharacter = ['dave', 'festival-happy'];
 			case 'greetings':
 				portraitLeftCharacter = ['dave', 'festival-tired'];
@@ -355,14 +355,22 @@ class DialogueBox extends FlxSpriteGroup
 				case 'dave':
 					switch (curExpression)
 					{
+						case 'scared':
+							portraitLeft.setPosition(180, 220);
 						case 'phone':
 							portraitLeft.setPosition(77, 145);
+						case '3d-scared':
+							portraitLeft.setPosition(110, 226);
+						case 'shocked':
+							portraitLeft.setPosition(150, 220);	
+						case 'furious':
+							portraitLeft.setPosition(170, 220);	
 						case 'festival-3d-scared':
 							portraitLeft.setPosition(135, 174);
 						case 'festival-tired' | 'festival-exhausted' | 'festival':
-							portraitLeft.setPosition(200, 175);		
+							portraitLeft.setPosition(200, 175);
 						default:
-							portraitLeft.setPosition(200, 220);	
+							portraitLeft.setPosition(200, 220);
 					}
 				case 'bambi': //guys its the funny bambi character
 					portraitLeft.setPosition(200, 220);

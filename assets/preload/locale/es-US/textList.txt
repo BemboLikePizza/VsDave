@@ -2,8 +2,8 @@
 Presiona Enter para empezar
 
 // OUTDATED SUBSTATE //
-introWarningFirstPlay==Hola! Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, presiona N, al contrario, presiona Y. Puedes cambiar esto en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard"
-introWarningSeen==Este mod utiliza shaders que le puede resultar perturbador a algunos. Si deseas sacarlos, desactiva la opcion de "Efectos" en el menu de opciones. También, Supernovae y Glitch no se deben de tomar seriamente, y no están compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard" Presiona Enter para continuar.
+introWarningFirstPlay==¡Hola! Este mod utiliza shaders que podrían ser molestos para algunos. Si deseas sacarlos, presiona N, al contrario, presiona Y. Puedes cambiar esto en el menú de opciones. También, Supernovae y Glitch no se deben de tomar en serio, y no fueron compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard"
+introWarningSeen==¡Hola! Este mod utiliza shaders que podrían ser molestos algunos. Si deseas sacarlos, desactiva la opcion de "Efectos" en el menu de opciones. También, Supernovae y Glitch no se deben de tomar en serio, y no fueron compuestas por mí. Supernovae fue compuesta por "ArchWk" y Glitch por "The Boneyard" Presiona Enter para continuar.
 intoWarningExpunged==Cobarde.
 
 // Main Menu State //
@@ -41,15 +41,15 @@ freeplay_hard==DIFICIL
 freeplay_normal==NORMAL
 freeplay_easy==FACIL
 freeplay_finale==FINAL
-freeplay_fucked==ESTAS EN PELIGRO
+freeplay_fucked==ESTAS JODIDO
 
 freeplay_skipChar==Mantén CTRL para saltarse la Seleción de Personaje
 
 // Pause State //
 pause_Resume==Continuar
-pause_Restart Song==Reiniciar Cancion
+pause_Restart Song==Reiniciar Canción
 pause_Change Character==Cambiar Personaje
-pause_Exit to menu==Salir al menu
+pause_Exit to menu==Salir al menú
 pause_No Miss Mode==Deshabilitar Fallos
 
 // Credits Words //
@@ -57,8 +57,8 @@ supernovae_credit==¡La canción original fue creada por ArchWk!
 glitch_credit==¡La canción original fue creada por DeadShadow y PixelGH!
 mealie_credit==¡La canción original fue creada por Alexander Cooper 19!
 overdrive_credit==¡La canción original fue creada por Top 10 Awesome!
-unfairness_credit==¡Presionar sin notas esta desactivado! JODETE!
-cheating_credit==¡Las notas estan en desorden! JODETE!
+unfairness_credit==¡Ghost Tapping esta desactivado! JODETE!
+cheating_credit==¡Las notas estan revueltas! JODETE!
 exploitation_credit==¡No sobrevivirás
 kabunga_credit==OH DIOS MIO ACABO DE DESINFLARME
 
@@ -68,27 +68,27 @@ option_change_keybinds==Cambiar Teclas
 option_ghostTapping_on==Ghost Tapping
 option_ghostTapping_off==Sin Ghost Tapping
 
-option_downscroll==Notas para abajo
-option_upscroll==Notas para arriba
+option_downscroll==Notas hacia abajo
+option_upscroll==Notas hacia arriba
 
-option_songPosition_on==Barra de progreso Activado
-option_songPosition_off==Barra de progreso Desactivado
+option_songPosition_on==Barra de progreso Activada
+option_songPosition_off==Barra de progreso Desactivada
 
 option_eyesores_enabled==Efectos Activados
 option_eyesores_disabled==Efectos Desactivados
 
-option_selfAwareness_on==Autoconciencia Activada
-option_selfAwareness_off==Autoconciencia Desactivada
+option_selfAwareness_on==Autoconsciencia Activada
+option_selfAwareness_off==Autoconsciencia Desactivada
 
 option_hitsound_on==Hitsounds Activados
 option_hitsound_off==Hitsounds Desactivados
 
-option_fpsCap==Cambiar FPS Maximos
+option_fpsCap==Cambiar FPS Máximo
 
-option_freeplay_cutscenes_off==Escenas en Juego Libre Desactivado
-option_freeplay_cutscenes_on==Escenas en Juego Libre Activado
+option_freeplay_cutscenes_off==Escenas en Juego Libre Desactivadas
+option_freeplay_cutscenes_on==Escenas en Juego Libre Activadas
 
-option_noteCamera_on==Camara Dinamica
+option_noteCamera_on==Camara Dinámica
 option_noteCamera_off==Camara Normal
 
 option_change_langauge==Cambiar Idioma
@@ -110,7 +110,7 @@ keybind_preset==Controles por defecto:
 // Story Mode State //
 story_track==Canciones
 story_weekScore==Puntuación:
-story_tutorial==¡Clase de ritmo de Dave!
+story_tutorial==Clase de Funkin' con Dave
 story_daveWeek==¡La divertida batalla de rap de Dave!
 story_bambiWeek==¡El diverido laberinto de maiz de Mr. Bambi!
 story_finale==El Final
@@ -119,12 +119,12 @@ story_masterWeek==¡La semana de maestros de Bambi!
 story_masterWeekToPlay==?????????
 
 // CHARACTER SELECT STATE //
-character_reset==Presiona R para resetear
+character_reset==Presiona R para restablecer tus personajes
 
 // Cool Util / Diffs //
-play_hard==DIFICIL
+play_hard==DIFÍCIL
 play_normal==NORMAL
-play_easy==FACIL
+play_easy==FÁCIL
 
 // Play State //
 play_score==Puntuación:
@@ -133,89 +133,89 @@ play_accuracy==Precisión:
 fnaf_retry==¿Reintentar?
 
 // Blocked Subtitles //
-blocked_sub1==Te bloqueo...
-blocked_sub2==Eres un monstruo...
+blocked_sub1==Te bloqueo.
+blocked_sub2==Eres un monstruo.
 blocked_sub3==Arruinas mi vida!
-blocked_sub4==Moldy voy a bloquearte en serio
-blocked_sub5==PARA SIEMPRE.
+blocked_sub4==Moldy por dios te voy a bloquear para siempre.
+blocked_sub5==POR SIEMPRE.
 blocked_sub6==Intento...
 blocked_sub7==No, no intento ayudarte...
-blocked_sub8==Porque mirame...
-blocked_sub9==Mirame...
-blocked_sub10==Mirame y suscribete
+blocked_sub8==Porque me sigues...
+blocked_sub9==Porque...
+blocked_sub10==sigueme suscribete
 blocked_sub11==Como sea.
 
 // Corn-Theft Subtitles //
-ctheft_sub1==Porque me baneo...
-ctheft_sub2==Porque me baneastes?
+ctheft_sub1==Porque me añade...
+ctheft_sub2==¿Por qué me quieres añadir?
 ctheft_sub3==No-
 ctheft_sub4==No me importa...
-ctheft_sub5==Tu quieres...
-ctheft_sub6==Te bloqueo...
-ctheft_sub7==No voy a regresar otra vez.
+ctheft_sub5==Tu quieres
+ctheft_sub6==Te voy a bloquear
+ctheft_sub7==No volveré nunca más.
 
 // Maze Subtitles //
 maze_sub1==Digo...
 maze_sub2==Tu puedes
-maze_sub3==Jugar conmigo...
-maze_sub4==No quieres?
-maze_sub5==Nunca regreses de nuevo.
-maze_sub6==Esta bien!
-maze_sub7==Como quieras
-maze_sub8==Juegas conmigo?
+maze_sub3==Jugarme...
+maze_sub4==¿No puedes?
+maze_sub5==No vuelvas nunca más.
+maze_sub6==¡Bien!
+maze_sub7==Lo que quieras.
+maze_sub8==¿Me juegas?
 maze_sub9==Bien.
-maze_sub10==Que quieres jugar?
-maze_sub11==Me quieres acosar?
-maze_sub12==Nunca regreses de nuevo.
+maze_sub10==¿Que quieres jugar?
+maze_sub11==¿Tu me acosas?
+maze_sub12==No vuelvas nunca más.
 
 // Mealie Subtitles //
-mealie_sub1==Te voy a bloquear!
-mealie_sub2==Voy a tu casa
-mealie_sub3==Y te haré CAER
+mealie_sub1==¡Te voy bloquear!
+mealie_sub2==Yo voy tu casa
+mealie_sub3==Y yo voy a CAERTE
 mealie_sub4==La casa tu-
 mealie_sub5==Tu casa!
 mealie_sub6==Isaac...
-mealie_sub7==Cierra tu boca.
+mealie_sub7==Calla la maldita boca.
 mealie_sub8==Deja de usar el maldito...
 mealie_sub9==Ah oh voy a romper mi
-mealie_sub10==CELULAR!
-mealie_sub11==Eso es lo que querías?
-mealie_sub12==el telefono?
-mealie_sub13==DIOS MIO!
-mealie_sub14==Eres un maldito mentiroso Moldy!
-mealie_sub15==Vete al infierno!
+mealie_sub10==¡TELÉFONO!
+mealie_sub11==¿Eso querías el-
+mealie_sub12==maldito telefono?
+mealie_sub13==¡OH MIERDA!
+mealie_sub14==¡Maldito mentiroso Moldy!
+mealie_sub15==¡Vete al infierno!
 
 // Shredder Subtitles //
 shred_sub1==Oh dios mio...
-shred_sub2==Te odio
-shred_sub3==Ese tipo, Te odio demasiado...
-shred_sub4==Mira tu closet!
-shred_sub5==Mira tu closet!
+shred_sub2==Joder, cómo te odio.
+shred_sub3==Ese puto, te odio demasiado...
+shred_sub4==¡Revisa tu closet!
+shred_sub5==¡Revisa tu closet!
 shred_sub6==O si no
 shred_sub7==Te mataré y tiraré toda tu
 shred_sub8==Basura.
-shred_sub9==Y esto
-shred_sub10==Durrrr!
-shred_sub11==Miren sus closets estupidos
-shred_sub12==Miren sus closets estupidos
-shred_sub13==Eso es todo!
-shred_sub14==Eso es todo!
+shred_sub9==Así
+shred_sub10==¡Grrrrr!
+shred_sub11==Revisen sus closets concha de su madre
+shred_sub12==Revisen sus closets concha de su madre
+shred_sub13==¡Eso es todo!
+shred_sub14==¡Eso es todo!
 
 // Exploitation Subtitles //
-exploit_sub1==Que rayos?
-exploit_sub2==Ehhhhhhhhhhhhhhhhhhhhh!!!
-exploit_sub3==Wahahauahahahuehehe!
-exploit_sub4==Estupido telefono...
+exploit_sub1==¿Que mierda?
+exploit_sub2==¡¡¡Ehhhhhhhhhhhhhhhhhhhhh!!!
+exploit_sub3==Wajajauajajajuejeje!
+exploit_sub4==Puto teléfono...
 exploit_sub5==Eoooooooooooooooooo
 exploit_sub6==Seeeiuuuuuuuuuuuuuu
 exploit_sub7==Naaaaaaaaaaaaaaaaaaaaa
-exploit_sub8==Aehehehe...
-exploit_sub9==Oh he...
-exploit_sub10==Tu eres demiasiado
-exploit_sub11==se troleado!
+exploit_sub8==Aejejeje...
+exploit_sub9==Oh je...
+exploit_sub10==Eres tan ..
+exploit_sub11==¡se troleado!
 exploit_sub12==Whoopsies...
-exploit_sub13==Estas mintiendo!
-exploit_sub14==ESTAS MINTIENDO!
+exploit_sub13==¡Me mientes!
+exploit_sub14==¡ME MIENTES!
 exploit_sub15==A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€A€
 
 // Escape from California Subtitles //
@@ -224,74 +224,74 @@ california_sub2==WAAAAAAAAAAAAAAAAAAAAAA!-
 
 // Cheating Subtitles //
 cheating_sub1==Te bloqueo.
-cheating_sub2==Eres un mounstro.
+cheating_sub2==Eres un monstruo.
 cheating_sub3==Arruinas mi vida!
-cheating_sub4==Moldy enserio te voy a bloquear para siempre.
-cheating_sub5==Te estoy bloqueando.
-cheating_sub6==Puedes dejar de clickear a amigos...
-cheating_sub7==Jumpman12 te bloqueo Moldy!
+cheating_sub4==Moldy por dios te voy a bloquear para siempre.
+cheating_sub5==Te estoy bloqueado.
+cheating_sub6==Deja presionar click para añadir
+cheating_sub7==¡Jumpman12 te bloqueo Moldy!
 cheating_sub8==Auugh auugh
 cheating_sub9==*sin sentido*
 cheating_sub10==Ok, *sin sentido*
-cheating_sub11==Eres estupido.
+cheating_sub11==Tonto.
 cheating_sub12==Uhhh, *sin sentido*
-cheating_sub13==Cuales son uhhh...
-cheating_sub14==Cuales son tus juegos divertidos?
-cheating_sub15==Cu-
-cheating_sub16==Cual es tu juego favorito?
-cheating_sub17==CUal es tu favorito?
+cheating_sub13==Cual es eehhhh...
+cheating_sub14==¿Cual es tus juegos divertidos?
+cheating_sub15==Qué-
+cheating_sub16==¿Qué es tu juego favorito?
+cheating_sub17==¿Cual es tu favorito?
 cheating_sub18==Su nombre...
 cheating_sub19==El dijo...
 cheating_sub20==juegos muertos.
-cheating_sub21==Idiota!
+cheating_sub21==¡Pendejo!
 cheating_sub22==Jumpman...
 cheating_sub23==No...
-cheating_sub24==Idiota, heh!
+cheating_sub24==Pendejo, jeje!
 cheating_sub25==Dios mio tan...
 cheating_sub26==Esto no es gracioso, es estupido
-cheating_sub27==Ohoh!!!
-cheating_sub28==Hehehe! Huhuhuhuh...
-cheating_sub29==Hehehehe...
-cheating_sub30==Huhuhuhuhuhu, hehe!
+cheating_sub27==¡¡¡Ojojo!!!
+cheating_sub28==¡Jejeje! Jujujuju...
+cheating_sub29==Jejejeje...
+cheating_sub30==¡Jujujujujuju, jeje!
 
 //Unfairness Subtitles//
-unfairness_sub1==Mentira!
+unfairness_sub1==¡Bromeaba!
 unfairness_sub2==Yo...
-unfairness_sub3==Pinte...
-unfairness_sub4==Esto lo pinte por dos horas
-unfairness_sub5==Mira!
+unfairness_sub3==Pinté...
+unfairness_sub4==Esto lo pinté por dos horas.
+unfairness_sub5==¡Mira!
 unfairness_sub6==No les miento esto es...
 unfairness_sub7==Jodidamente cierto!
 
 //Vs Dave Rap Subtitles//
 daverap_sub1==VS Dave, es un poco basura
 daverap_sub2==Me recuerda a las heces
-daverap_sub3==Oooooh!
+daverap_sub3==¡Oooooh!
 daverap_sub4==Cuando pienso de Obama
 daverap_sub5==Fortnite
-daverap_sub6==Me dan ganas de tirarme un pedo!
-daverap_sub7==Yeah!
+daverap_sub6==¡Me dan ganas de tirarme un pedo!
+daverap_sub7==¡Yeah!
 daverap_sub8==Me resbale con una banana!
-daverap_sub9==Ow!
-daverap_sub10==Conducimos el Jalopy!
-daverap_sub11==Oh si!
+daverap_sub9==¡Ow!
+daverap_sub10==¡Conducimos el Jalopy!
+daverap_sub11==¡Oh si!
 daverap_sub12==Gordon Freeman es verde
 daverap_sub13==Suscribete a Stats45
-daverap_sub14==Yeah!
-daverap_sub15==Me pica el ****, quema como baldi sick.
+daverap_sub14==¡Yeah!
+daverap_sub15==Me pica la verga, quema como baldi sick.
 
 //Memory Subtitles//
 memory_sub1==Bueno.
 memory_sub2==Hasta ahora esto fue una gran aventura,
 memory_sub3==Pero quiero decir esto.
-memory_sub4==Aunque probablemente vayas a enfrentarte a mejores enemigos,
+memory_sub4==Incluso si te vas a enfrentarte con nuevos oponentes,
 memory_sub5==Recuerda que siempre estaré en tu corazón,
 memory_sub6==Y que siempre te apoyaré en el camino
 memory_sub7==tanto como pueda. Pero...
 memory_sub8==antes de que las cosas lleguen a su fin,
-memory_sub9==Quieres terminar este rap conmigo?
+memory_sub9==¿Quieres terminar este rap conmigo?
 memory_sub10==Yeah!
-memory_sub11==Okay! Hagamoslo!
+memory_sub11==¡Bien! ¡Hagamoslo!
 
 //Vs Dave Rap Two Subtitles//
 daveraptwo_sub1==Dave es el nombre
@@ -302,7 +302,7 @@ daveraptwo_sub5==Me pica la salchicha (yum)
 daveraptwo_sub6==3.0
 daveraptwo_sub7==Vs Dave, soy gay
 daveraptwo_sub8==A Mr. Bambi le gusta romper el telefono (ha)
-daveraptwo_sub9==Dive va a gamestop para comprar juego de Xbox
+daveraptwo_sub9==Dive va al gamestop para comprar juego de Xbox
 daveraptwo_sub10==Juega el mod Vs Dave and Bambi 3.0
 daveraptwo_sub11==Disponible en GameBanana!
 daveraptwo_sub12==Yum.
@@ -310,8 +310,8 @@ daveraptwo_sub12==Yum.
 //Indignancy (screwed 2) Subtitles//
 indignancy_sub1==Matame, quiero morir
 indignancy_sub2==Expulsame, porfavor senpai
-indignancy_sub3==Me expulsaronnnnn
-indignancy_sub4==Me voy a ir.
+indignancy_sub3==Expulsameeeeeeeeeeeee
+indignancy_sub4==Ya me voy.
 indignancy_sub5==AuuuuuuAAAAAAAAAAAAAAA-
 
 3d_gameOver_polygonized==¡Has sido poligonizado!
@@ -391,4 +391,4 @@ credit_emiko==Beta Tester
 credit_Cotiles==Beta Tester
 
 //Special Thanks
-credit_You!==Por jugar el mod y contribuir a la masiva comunidad que creamos.
+credit_You!==Por jugar el mod y contribuir al crecimiento de la comunidad que creamos.

@@ -13,6 +13,8 @@ class SubtitleManager extends FlxTypedGroup<Subtitle>
 		subtitle.y = ((FlxG.height - subtitle.height) / 2) - 200;
 		subtitle.manager = this;
 		add(subtitle);
+		
+		trace(text);
    }
 	public function onSubtitleComplete(subtitle:Subtitle)
 	{

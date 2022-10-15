@@ -93,7 +93,7 @@ class Note extends FlxSprite
 		}
 
 		var notePathLol:String = 'notes/NOTE_assets';
-		var noteSize:Float = 0.7; // Here incase we need to do something like pixel arrows
+		var noteSize:Float = 0.7;
 
 		if ((((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1)
 				|| CharactersWith3D.contains(PlayState.characteroverride) || CharactersWith3D.contains(PlayState.formoverride)) && musthit))
@@ -174,7 +174,6 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = false;
-				noteOffset = 8;
 
 			case 'text':
 				frames = Paths.getSparrowAtlas('ui/alphabet');
@@ -228,7 +227,7 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
-			case 'phone' | 'phone-alt': //'notes/NOTE_assets'
+			case 'phone' | 'phone-alt':
 				if (!isSustainNote)
 				{
 					frames = Paths.getSparrowAtlas('notes/NOTE_phone', 'shared');
@@ -365,22 +364,21 @@ class Note extends FlxSprite
 				}
 			}
 		}
-
-		if (noteData == 2 && noteStyle == 'shape')
+		if (noteStyle == 'shape')
 		{
-			noteOffset += 10;
+			switch (noteData)
+			{
+				case 1:
+					noteOffset += 4;
+				case 2:
+					noteOffset += 10;
+			}
+			if (isSustainNote)
+			{
+				alphaMult = 1;
+				noteOffset += (width / 2);
+			}
 		}
-		else if (noteData == 1 && noteStyle == 'shape')
-		{
-			noteOffset += 4;
-		}
-
-		if (noteStyle == 'shape' && isSustainNote)
-		{
-			alphaMult = 1;
-			noteOffset += (width / 2);
-		}
-
 	}
 
 	override function update(elapsed:Float)
@@ -427,10 +425,7 @@ class Note extends FlxSprite
 	{
 		x = strum.x + noteOffset;
 		alpha = strum.alpha * alphaMult;
-		if (!strum.playerStrum)
-		{
-			return;
-		}
+
 		if (strum.pressingKey5)
 		{
 			if (noteStyle != "shape")

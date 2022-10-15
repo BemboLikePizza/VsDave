@@ -172,13 +172,18 @@ class TitleState extends MusicBeatState
 			eye.alpha = 0;
 			add(eye);
 
-			loopEyeTween = FlxTween.tween(eye, {alpha: 1}, 1, {onComplete: function(tween:FlxTween)
-			{
-				FlxTween.tween(eye, {alpha: 0}, 1, {onComplete: function(tween:FlxTween)
+			loopEyeTween = FlxTween.tween(eye, {alpha: 1}, 1, {
+				onComplete: function(tween:FlxTween)
 				{
-					loopEyeTween.start();
-				}});
-			}});
+					FlxTween.tween(eye, {alpha: 0}, 1, {
+						onComplete: function(tween:FlxTween)
+						{
+							loopEyeTween.start();
+						}
+					});
+				},
+				type: PERSIST
+			});
 		}
 		
 		if (!awaitingExploitation)
