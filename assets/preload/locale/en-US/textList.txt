@@ -18,6 +18,11 @@ main_discord==Discord
 main_resetdata==Press R to reset your data
 main_warningdata==Are you sure you want to reset all of your data?
 
+// Compatibility Mode Screen//
+compat_warning==Do you want to enable compatibility mode?:linebreak:It will help on lag/crashes on low-end PCs, but disables some special effects.
+compat_yes==Yes
+compat_no==No
+
 // Main Menu Descriptions //
 desc_story==Play the story mode to unlock new characters, and understand the story!
 desc_freeplay==Play any song as you wish and get new scores!
@@ -84,6 +89,9 @@ option_enable_fps==Enable FPS & Memory Counter
 
 option_songBarType_ShowTime==Song Bar Type: Time Left
 option_songBarType_SongName==Song Bar Type: Show Song Name
+
+option_enable_compat==Compatibility Mode OFF
+option_disable_compat==Compatibility Mode ON
 
 en-US==English
 es-US==Spanish

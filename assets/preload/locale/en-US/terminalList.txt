@@ -6,6 +6,7 @@ term_help_ins==Displays this menu.
 term_char_ins==Shows the list of characters.
 term_admin_ins==Shows the admin list, use grant to grant rights.
 term_admlist_ins==:linebreak:To add extra users, add the grant parameter and the name.:linebreak:(Example: admin grant expungo.dat):linebreak:NOTE: ADDING CHARACTERS AS ADMINS CAN CAUSE UNEXPECTED CHANGES.
+term_vault_ins==Store valuable files here. Takes 3 key parameters seperated by spaces.
 term_clear_ins==Clears the screen.
 term_leak_ins==No providing such leaks.
 term_texts_ins==Searches for a text file with the specified ID, and if it exists, display it.

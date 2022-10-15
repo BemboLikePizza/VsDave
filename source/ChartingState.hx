@@ -1500,9 +1500,13 @@ class ChartingState extends MusicBeatState
 	{
 		switch (song.toLowerCase())
 		{
-			case 'supernovae' | 'glitch'  | 'master':
-				var video = new VideoHandler();
-				video.playVideo(Paths.video('fortniteballs')); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
+			case 'supernovae' | 'glitch'  | 'master' | 'roofs':
+				//video doesnt work fix this later
+				var deathSound:FlxSound = new FlxSound();
+				deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
+				deathSound.volume = FlxG.random.float(0.6, 1);
+				deathSound.play();
+				return;
 			case 'cheating' | 'unfairness' | 'exploitation':
 				FlxG.switchState(new YouCheatedSomeoneIsComing()); // YOU THINK YOU ARE SO CLEVER DON'T YOU? HAHA FUCK YOU
 			case 'recursed':

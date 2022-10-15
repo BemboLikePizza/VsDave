@@ -41,6 +41,7 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
+
 		
 		funnyTexts = new FlxTypedGroup<FlxText>();
 		add(funnyTexts);
@@ -111,9 +112,20 @@ class PauseSubState extends MusicBeatSubstate
 					doALittleTrolling(levelDifficulty);
 			}
 		}});
-		if (PlayState.isStoryMode || FreeplayState.skipSelect.contains(PlayState.SONG.song.toLowerCase()))
+		if (PlayState.isStoryMode || FreeplayState.skipSelect.contains(PlayState.SONG.song.toLowerCase()) || PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
 		{
 			menuItems.remove(PauseOption.getOption(menuItems, 'Change Character'));
+		}
+		for (item in menuItems)
+		{
+			if (PlayState.instance.localFunny == PlayState.CharacterFunnyEffect.Recurser)
+			{
+				if(item.optionName != 'Resume' && item.optionName != 'No Miss Mode')
+				{
+					menuItems.remove(PauseOption.getOption(menuItems, item.optionName));
+				}
+				continue;
+			}
 		}
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();

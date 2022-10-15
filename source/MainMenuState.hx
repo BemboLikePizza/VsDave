@@ -71,7 +71,7 @@ class MainMenuState extends MusicBeatState
 	public static var finishedFunnyMove:Bool = false;
 
 	public static var daRealEngineVer:String = 'Dave';
-	public static var engineVer:String = '3.0';
+	public static var engineVer:String = '3.0b';
 
 	public static var engineVers:Array<String> = 
 	[
@@ -327,6 +327,13 @@ class MainMenuState extends MusicBeatState
 		}
 		if (canInteract)
 		{
+			if (FlxG.keys.justPressed.SEVEN)
+			{
+				var deathSound:FlxSound = new FlxSound();
+				deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
+				deathSound.volume = FlxG.random.float(0.6, 1);
+				deathSound.play();
+			}
 			if (FlxG.keys.justPressed.R)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
