@@ -142,6 +142,8 @@ class MainMenuState extends MusicBeatState
 		#end
 		
 		KeybindPrefs.loadControls();
+		
+		MathGameState.accessThroughTerminal = false;
 
 		// daRealEngineVer = engineVers[FlxG.random.int(0, 2)];
 

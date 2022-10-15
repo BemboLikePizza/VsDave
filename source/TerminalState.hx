@@ -325,6 +325,7 @@ class TerminalState extends MusicBeatState
         }));
         CommandList.push(new TerminalCommand("secret mod leak", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
         {
+			MathGameState.accessThroughTerminal = true;
             FlxG.switchState(new MathGameState());
         }, false, true));
 

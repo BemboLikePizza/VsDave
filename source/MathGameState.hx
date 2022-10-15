@@ -37,6 +37,7 @@ class MathGameState extends MusicBeatState
    var endState:String = '';
    public var endDelay:Float;
    public static var failedGame:Bool;
+   public static var accessThroughTerminal:Bool;
 
    override function create()
    {
@@ -226,7 +227,7 @@ class MathGameState extends MusicBeatState
 
                   FlxG.switchState(new PlayState());
                case 'failed':
-                  FlxG.switchState(new PlayState());      
+                  accessThroughTerminal ? FlxG.switchState(new MainMenuState()) : FlxG.switchState(new PlayState());      
             }
          }
       }
