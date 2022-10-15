@@ -327,14 +327,6 @@ class MainMenuState extends MusicBeatState
 		}
 		if (canInteract)
 		{
-			if (FlxG.keys.justPressed.SEVEN)
-			{
-				FlxG.switchState(new TerminalState());
-			}
-			if (FlxG.keys.justPressed.EIGHT)
-			{
-				FlxG.switchState(new ChartingState());
-			}
 			if (FlxG.keys.justPressed.R)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -513,24 +505,12 @@ class MainMenuState extends MusicBeatState
 	}
 	function resetData()
 	{
-		FlxG.save.bind('funkin', 'ninjamuffin99');
-
-		FlxG.save.erase();
-
-		FlxG.save.flush();
-
-		FlxG.save.bind('controls', 'ninjamuffin99');
-
-		FlxG.save.erase();
-
-		FlxG.save.flush();
-
-		FlxG.save.bind('language', 'ninjamuffin99');
-
-		FlxG.save.erase();
-
-		FlxG.save.flush();
-		
+		for (save in ['funkin', 'controls', 'language'])
+		{
+			FlxG.save.bind(save, 'ninjamuffin99');
+			FlxG.save.erase();
+			FlxG.save.flush();
+		}
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		Highscore.songScores = new Map();

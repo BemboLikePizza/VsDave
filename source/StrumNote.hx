@@ -8,36 +8,38 @@ class StrumNote extends FlxSprite
 	public var baseY:Float;
 	public var playerStrum:Bool;
 	public var pressingKey5:Bool;
-   public function new(x:Float, y:Float, type:String, strumID:Int, playerStrum:Bool)
-   {
-      super(x, y);
-	  baseY = y;
-	  pressingKey5 = false;
+	public function new(x:Float, y:Float, type:String, strumID:Int, playerStrum:Bool)
+	{
+		super(x, y);
+		baseY = y;
+		pressingKey5 = false;
 
-	  ID = strumID;
+		ID = strumID;
 
-      //get the frames and stuff
-      switch (type)
-      {
-         case '3D':
-            frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D');
-         case 'top10awesome':
-            frames = Paths.getSparrowAtlas('notes/OMGtop10awesomehi');
-         case 'gh':
-            frames = Paths.getSparrowAtlas('notes/NOTEGH_assets');
-         default:
-            frames = Paths.getSparrowAtlas('notes/NOTE_assets');
-      }
-      //actually load in the animation
-      switch (type)
-      {
-         case 'gh':
+		// get the frames and stuff
+		switch (type)
+		{
+			case '3D':
+				frames = Paths.getSparrowAtlas('notes/NOTE_assets_3D');
+			case 'top10awesome':
+				frames = Paths.getSparrowAtlas('notes/OMGtop10awesomehi');
+			case 'gh':
+				frames = Paths.getSparrowAtlas('notes/NOTEGH_assets');
+			case 'shape':
+				frames = Paths.getSparrowAtlas('notes/NOTE_assets_Shape');
+			default:
+				frames = Paths.getSparrowAtlas('notes/NOTE_assets');
+		}
+		// actually load in the animation
+		switch (type)
+		{
+			case 'gh':
 				animation.addByPrefix('green', 'A Strum');
 				animation.addByPrefix('red', 'B Strum');
 				animation.addByPrefix('yellow', 'C Strum');
-            animation.addByPrefix('blue', 'D Strum');
-            animation.addByPrefix('orange', 'E Strum');
-            
+				animation.addByPrefix('blue', 'D Strum');
+				animation.addByPrefix('orange', 'E Strum');
+
 				switch (Math.abs(strumID))
 				{
 					case 0:
@@ -85,18 +87,18 @@ class StrumNote extends FlxSprite
 						animation.addByPrefix('pressed', 'right press', 24, false);
 						animation.addByPrefix('confirm', 'right confirm', 24, false);
 				}
-      }
-      animation.play('static');
+		}
+		animation.play('static');
 
-      antialiasing = type != '3D';
+		antialiasing = type != '3D';
 
-      setGraphicSize(Std.int(width * 0.7));
-      updateHitbox();
-	  
-      scrollFactor.set();
+		setGraphicSize(Std.int(width * 0.7));
+		updateHitbox();
+
+		scrollFactor.set();
 
 		this.playerStrum = playerStrum;
-   	}
+	}
 	public function resetX()
 	{
 		x = baseX;

@@ -227,7 +227,7 @@ class TerminalState extends MusicBeatState
             }
             UpdateText("\n" + tx);
         }));
-        CommandList.push(new TerminalCommand("welcometobaldis", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
+        CommandList.push(new TerminalCommand("secret mod leak", LanguageManager.getTerminalString("term_leak_ins"), function(arguments:Array<String>)
         {
             FlxG.switchState(new MathGameState());
         }, false, true));
@@ -347,39 +347,52 @@ class TerminalState extends MusicBeatState
         }
     }
 
-    function expungedReignStarts()
-    {
-            var glitch = new FlxSprite(0, 0);
-            glitch.frames = Paths.getSparrowAtlas('ui/glitch/glitch');
-            glitch.animation.addByPrefix('glitchScreen', 'glitch', 40);
-            glitch.animation.play('glitchScreen');
-            glitch.setGraphicSize(FlxG.width, FlxG.height);
-            glitch.updateHitbox();
-            glitch.screenCenter();
-            glitch.scrollFactor.set();
-            glitch.antialiasing = false;
-            if (FlxG.save.data.eyesores)
-            {
-                add(glitch);
-            }
+	function expungedReignStarts()
+	{
+		var glitch = new FlxSprite(0, 0);
+		glitch.frames = Paths.getSparrowAtlas('ui/glitch/glitch');
+		glitch.animation.addByPrefix('glitchScreen', 'glitch', 40);
+		glitch.animation.play('glitchScreen');
+		glitch.setGraphicSize(FlxG.width, FlxG.height);
+		glitch.updateHitbox();
+		glitch.screenCenter();
+		glitch.scrollFactor.set();
+		glitch.antialiasing = false;
+		if (FlxG.save.data.eyesores)
+		{
+			add(glitch);
+		}
 
-        add(fakeDisplayGroup);
-        
-        var expungedLines:Array<String> = ['TAKING OVER....', 'ATTEMPTING TO HIJACK ADMIN OVERRIDE...', 'THIS REALM IS MINE', "DON'T YOU UNDERSTAND? THIS IS MY WORLD NOW.", "I WIN, YOU LOSE.", "GAME OVER.", "THIS IS IT.", "FUCK YOU!", "I HAVE THE PLOT ARMOR NOW!!", "AHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH", "EXPUNGED'S REIGN SHALL START", '[DATA EXPUNGED]'];
-        var i:Int = 0;
-        var camFollow = new FlxObject(FlxG.width / 2, -FlxG.height / 2, 1, 1);
-        
-        #if windows
-            if (FlxG.save.data.selfAwareness)
-            {
-                expungedLines.push("Hacking into " + Sys.environment()["COMPUTERNAME"] + "...");
-            }
-        #end
+		add(fakeDisplayGroup);
+
+		var expungedLines:Array<String> = [
+			'TAKING OVER....',
+			'ATTEMPTING TO HIJACK ADMIN OVERRIDE...',
+			'THIS REALM IS MINE',
+			"DON'T YOU UNDERSTAND? THIS IS MY WORLD NOW.",
+			"I WIN, YOU LOSE.",
+			"GAME OVER.",
+			"THIS IS IT.",
+			"FUCK YOU!",
+			"I HAVE THE PLOT ARMOR NOW!!",
+			"AHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAH",
+			"EXPUNGED'S REIGN SHALL START",
+			'[DATA EXPUNGED]'
+		];
+		var i:Int = 0;
+		var camFollow = new FlxObject(FlxG.width / 2, -FlxG.height / 2, 1, 1);
+
+		#if windows
+		if (FlxG.save.data.selfAwareness)
+		{
+			expungedLines.push("Hacking into " + Sys.environment()["COMPUTERNAME"] + "...");
+		}
+		#end
 
         FlxG.camera.follow(camFollow, 1);
 
         expungedActivated = true;
-        expungedTimer = new FlxTimer().start(FlxG.elapsed * 2, function(timer:FlxTimer) //t5 make this get slowed down when eyesores is off
+        expungedTimer = new FlxTimer().start(FlxG.elapsed * 2, function(timer:FlxTimer)
         {
             var lastFakeDisplay = fakeDisplayGroup.members[i - 1];
             var fakeDisplay:FlxText = new FlxText(0, 0, FlxG.width, "> " + expungedLines[new FlxRandom().int(0, expungedLines.length - 1)], 19);

@@ -132,8 +132,11 @@ class Character extends FlxSprite
 				}
 				animation.addByPrefix('hey', 'hey', 24, false);
 				
-				animation.addByIndices('attack', 'jumpscare', CoolUtil.numberArray(23, 0), '', 24, false);
-				animation.addByIndices('fail', 'jumpscare', CoolUtil.numberArray(44, 24), '', 24, false);
+				//animation.addByIndices('attack', 'jumpscare', CoolUtil.numberArray(23, 0), '', 24, false);
+				//animation.addByIndices('fail', 'jumpscare', CoolUtil.numberArray(44, 24), '', 24, false);
+				
+				animation.addByPrefix('jumpscare', 'jumpscare', 24, false);
+				trace(animation.getByName('jumpscare').frames);
 				
 				loadOffsetFile(curCharacter);
 				
@@ -163,7 +166,7 @@ class Character extends FlxSprite
 				skins.set('gfSkin', 'gf-pixel');
 				skins.set('3d', 'bf-3d');
 					
-				globalOffset = [196, 163];
+				globalOffset = [196, 160];
 
 				barColor = FlxColor.fromRGB(49, 176, 209);
 
@@ -724,7 +727,7 @@ class Character extends FlxSprite
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
-				globalOffset = [-35, -30];
+				globalOffset = [0, 15];
 
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				nativelyPlayable = true;
@@ -745,7 +748,7 @@ class Character extends FlxSprite
 				
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [-35, -30];
+				globalOffset = [0, 15];
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				
@@ -780,7 +783,7 @@ class Character extends FlxSprite
 	
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 				
-				globalOffset = [-35, -35];
+				globalOffset = [0, 15];
 
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				skins.set('recursed', 'tristan-recursed');
@@ -818,7 +821,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 						
 				loadOffsetFile(curCharacter);
-				globalOffset = [-35, -35];
+				globalOffset = [-35, -30];
 					
 				barColor = FlxColor.fromRGB(255, 222, 0);
 				skins.set('recursed', 'tristan-recursed');
@@ -838,7 +841,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
-				globalOffset = [-35, -30];
+				globalOffset = [0, 20];
 				
 				barColor = FlxColor.fromRGB(255, 19, 15);
 				

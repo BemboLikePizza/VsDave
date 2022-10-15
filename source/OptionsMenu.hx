@@ -35,6 +35,11 @@ class OptionsMenu extends MusicBeatState
 	var languages:Array<Language> = new Array<Language>();
 	var currentLanguage:Int = 0;
 	var curLanguage:String = LanguageManager.save.data.language;
+	var songBarOptions = [
+		'ShowTime',
+		'SongName',
+	];
+	var curSongBarOptionSelected:Int;
 	override function create()
 	{
 		#if desktop
@@ -70,21 +75,22 @@ class OptionsMenu extends MusicBeatState
 			add(menuBG);
 		}
 		
-		
 		languages = LanguageManager.getLanguages();
+		curSongBarOptionSelected = songBarOptions.indexOf(FlxG.save.data.songBarOption);
 
 		controlsStrings = CoolUtil.coolStringFile( 
 			LanguageManager.getTextString('option_change_keybinds')
 			+ "\n" + (FlxG.save.data.newInput ? LanguageManager.getTextString('option_ghostTapping_on') : LanguageManager.getTextString('option_ghostTapping_off')) 
 			+ "\n" + (FlxG.save.data.downscroll ? LanguageManager.getTextString('option_downscroll') : LanguageManager.getTextString('option_upscroll'))
 			+ "\n" + (FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off'))
+			+ "\n" +  LanguageManager.getTextString('option_songBarType_${songBarOptions[curSongBarOptionSelected]}')
 			+ "\n" + (FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')) 
 			+ "\n" + (FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off'))
 			+ "\n" + (FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off'))
 			+ "\n" + (FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off'))
 			+ "\n" + LanguageManager.getTextString('option_change_langauge')
 			+ "\n" + (FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'))
-			);
+		);
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
@@ -161,24 +167,32 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.songPosition = !FlxG.save.data.songPosition;
 					updateGroupControls((FlxG.save.data.songPosition ? LanguageManager.getTextString('option_songPosition_on') : LanguageManager.getTextString('option_songPosition_off')), 3, 'Vertical');	
 				case 4:
-					FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
-					updateGroupControls((FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')), 4, 'Vertical');
+					curSongBarOptionSelected++;
+					if (curSongBarOptionSelected > songBarOptions.length - 1)
+					{
+						curSongBarOptionSelected = 0;
+					}
+					FlxG.save.data.songBarOption = songBarOptions[curSongBarOptionSelected];
+					updateGroupControls(LanguageManager.getTextString('option_songBarType_${songBarOptions[curSongBarOptionSelected]}'), 4, 'Vertical');	
 				case 5:
-					FlxG.save.data.selfAwareness = !FlxG.save.data.selfAwareness;
-					updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')), 5, 'Vertical');
+					FlxG.save.data.eyesores = !FlxG.save.data.eyesores;
+					updateGroupControls((FlxG.save.data.eyesores ? LanguageManager.getTextString('option_eyesores_enabled') : LanguageManager.getTextString('option_eyesores_disabled')), 5, 'Vertical');
 				case 6:
-					FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
-					updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 6, 'Vertical');
+					FlxG.save.data.selfAwareness = !FlxG.save.data.selfAwareness;
+					updateGroupControls((FlxG.save.data.selfAwareness ? LanguageManager.getTextString('option_selfAwareness_on') : LanguageManager.getTextString('option_selfAwareness_off')), 6, 'Vertical');
 				case 7:
-					FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
-					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 7, 'Vertical');
+					FlxG.save.data.donoteclick = !FlxG.save.data.donoteclick;
+					updateGroupControls((FlxG.save.data.donoteclick ? LanguageManager.getTextString('option_hitsound_on') : LanguageManager.getTextString('option_hitsound_off')), 7, 'Vertical');
 				case 8:
-					updateGroupControls(LanguageManager.getTextString('option_change_langauge'), 8, 'Vertical');
-					FlxG.switchState(new ChangeLanguageState());
+					FlxG.save.data.noteCamera = !FlxG.save.data.noteCamera;
+					updateGroupControls((FlxG.save.data.noteCamera ? LanguageManager.getTextString('option_noteCamera_on') : LanguageManager.getTextString('option_noteCamera_off')), 8, 'Vertical');
 				case 9:
+					updateGroupControls(LanguageManager.getTextString('option_change_langauge'), 9, 'Vertical');
+					FlxG.switchState(new ChangeLanguageState());
+				case 10:
 					FlxG.save.data.disableFps = !FlxG.save.data.disableFps;
 					Main.fps.visible = !FlxG.save.data.disableFps;
-					updateGroupControls(FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'), 9, 'Vertical');
+					updateGroupControls(FlxG.save.data.disableFps ? LanguageManager.getTextString('option_enable_fps') : LanguageManager.getTextString('option_disable_fps'), 10, 'Vertical');
 			}
 		}
 	}

@@ -173,7 +173,8 @@ class CreditsMenuState extends MusicBeatState
       ]),
       new Person("Project Tea", CreditsType.Contributor,
       [
-         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
+         new Social('youtube', 'https://youtube.com/c/ProjectTea'),
+         new Social('discord', 'Project Tea#9139'),
       ]),
       new Person("Top 10 Awesome", CreditsType.Contributor,
       [
@@ -182,6 +183,10 @@ class CreditsMenuState extends MusicBeatState
       new Person("BombasticHype", CreditsType.Contributor,
       [  
          new Social ('youtube', 'https://www.youtube.com/c/BombasticHype')
+      ]),
+      new Person("Sky!", CreditsType.Contributor,
+      [  
+         new Social ('youtube', 'https://www.youtube.com/c/Grantare'),
       ]),
       new Person("Ruby", CreditsType.Contributor,
       [  
@@ -193,6 +198,16 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://youtube.com/c/Lancey170'),
          new Social('twitter', 'https://twitter.com/Lancey170')
       ]),
+      new Person("Lancey", CreditsType.Contributor,
+      [  
+         new Social('youtube', 'https://youtube.com/c/Lancey170'),
+         new Social('twitter', 'https://twitter.com/Lancey170')
+      ]),
+      new Person("ShiftyTM", CreditsType.Contributor,
+      [  
+         new Social('youtube', 'https://youtube.com/channel/UC8NHfjpy6tNWgnM7889S1Ew'),
+      ]),
+      
       new Person("Paraso", CreditsType.Contributor,
       [  
 
@@ -267,7 +282,8 @@ class CreditsMenuState extends MusicBeatState
       ]),
       new Person("xml", CreditsType.BetaTester,
       [
-         new Social('twitter', 'https://twitter.com/vex________')
+         new Social('youtube', 'https://www.youtube.com/channel/UCL5UPJDEFDZLo4D62pcmIBQ'),
+         new Social('twitter', 'https://twitter.com/AstrayFile')
       ]),
       
       new Person("ztgds", CreditsType.BetaTester,
@@ -313,7 +329,7 @@ class CreditsMenuState extends MusicBeatState
          new Social('twitter', 'https://twitter.com/Foxnap2')
       ]),
       
-      new Person("nihilistt", CreditsType.BetaTester,
+      new Person("lotuswaterz", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
          new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
@@ -339,7 +355,6 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('twitter', 'https://twitter.com/RendurseDev')
       ]),
-
       new Person("Lordryan1999", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
@@ -359,7 +374,7 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/c/Villezen')
       ]),
-      new Person("emiko", CreditsType.BetaTester,
+      new Person("miko", CreditsType.BetaTester,
       [
          new Social('youtube', 'https://www.youtube.com/channel/UC3mIybwSekVs5VEJSe2yjog')
       ]),
@@ -532,6 +547,11 @@ class CreditsMenuState extends MusicBeatState
             {
                new FlxTimer().start((FlxG.sound.music.length / 1000) - (FlxG.sound.music.time / 1000), function(timer:FlxTimer)
                {
+			      if (!FlxG.save.data.hasSeenCreditsMenu)
+				  {
+				     FlxG.save.data.hasSeenCreditsMenu = true;
+					 FlxG.save.flush();
+				  }
                   FlxG.sound.playMusic(Paths.music('theend'));
                   FlxG.switchState(new StoryMenuState());
                });
@@ -541,7 +561,7 @@ class CreditsMenuState extends MusicBeatState
 		super.create();
 	}
    
-	override function update(elapsed:Float)
+   override function update(elapsed:Float)
    {
 
       var fadeTimer:Float = 0.08;
@@ -553,7 +573,7 @@ class CreditsMenuState extends MusicBeatState
       {
          FlxG.camera.follow(StupidCameraFollow, 0.1);
          super.update(elapsed);
-         if (back)
+         if (back && FlxG.save.data.hasSeenCreditsMenu)
          {
             //make sure they get the epic song no matter what
             FlxG.sound.playMusic(Paths.music('theend'));

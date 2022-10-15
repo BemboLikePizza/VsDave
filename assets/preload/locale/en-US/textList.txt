@@ -82,6 +82,8 @@ option_change_langauge==Change Language
 option_disable_fps==Disable FPS & Memory Counter
 option_enable_fps==Enable FPS & Memory Counter
 
+option_songBarType_ShowTime==Song Bar Type: Time Left
+option_songBarType_SongName==Song Bar Type: Show Song Name
 
 en-US==English
 es-US==Spanish
@@ -350,8 +352,10 @@ credit_Aadsta==Composer, BG Artist
 credit_Project Tea==Charter
 credit_Top 10 Awesome==Composer, Funny Guy
 credit_BombasticHype==Did a House cutscene
+credit_Sky!==Made Bambi Voice Bank Used in the New Bambi Songs Made By Moldy
 credit_Ruby==Adventure Song
 credit_Lancey==Menu BG Artist
+credit_ShiftyTM==Made Tuned Bambi chromatic used in Maze & Indignancy
 credit_Paraso==Menu BG Artist
 credit_SAMMYPIGZY==Artist
 credit_R34LD34L==Composer
@@ -376,7 +380,7 @@ credit_Gorbini==Beta Tester
 credit_Log Man==Beta Tester
 credit_Mooncakeez==Beta Tester
 credit_Foxnap==Beta Tester
-credit_nihilistt==Beta Tester
+credit_lotuswaterz==Beta Tester
 credit_mantis==Beta Tester
 credit_ArturSef==Beta Tester
 credit_normal==Beta Tester

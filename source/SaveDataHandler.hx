@@ -17,9 +17,6 @@ class SaveDataHandler
 		if (FlxG.save.data.downscroll == null)
 			FlxG.save.data.downscroll = false;
 
-		if (FlxG.save.data.freeplayCuts == null)
-			FlxG.save.data.freeplayCuts = false;
-
 		if (FlxG.save.data.eyesores == null)
 			FlxG.save.data.eyesores = true;
 
@@ -58,5 +55,11 @@ class SaveDataHandler
 
 		if (FlxG.save.data.enteredTerminalCheatingState == null)
 			FlxG.save.data.enteredTerminalCheatingState = false;
+			
+		if (FlxG.save.data.hasSeenCreditsMenu == null)
+			FlxG.save.data.hasSeenCreditsMenu = false;
+		
+		if (FlxG.save.data.songBarOption == null)
+			FlxG.save.data.songBarOption = 'ShowTime';
     }
 }

@@ -18,8 +18,8 @@ main_warningdata==Tem certeza de que deseja redefinir todos os seus dados?
 
 // Main Menu Descriptions //
 desc_story==Jogue o modo história para desbloquear novos personagens, e entender a história em si!
-desc_freeplay==Jogue qualquer música de escolha sua e alcançe novas pontuações!
-desc_freeplay_glitch==Toque minha música como eu desejo e falho.
+desc_freeplay==Jogue qualquer música de escolha sua e alcance novas pontuações!
+desc_freeplay_glitch==Toque minha música como eu desejo e falhe.
 desc_credits==Dê uma olhada no pessoal que trabalhou e contribuiu para o mod!
 desc_ost==Escute as músicas do mod.
 desc_options==Ajuste suas configurações e preferências.
@@ -35,10 +35,10 @@ freeplay_hard==Difícil
 freeplay_normal==Normal
 freeplay_easy==Fácil
 freeplay_finale==FINAL
-freeplay_fucked==YOU'RE FUCKED
-freeplay_lmao==LMAO
+freeplay_fucked==CÊ TÁ FUDIDO
+freeplay_lmao==KKKKKKK
 
-freeplay_skipchar==Segure o CTRL para pular a Seleção de Personagem
+freeplay_skipChar==Segure o CTRL para pular a Seleção de Personagem
 
 // Pause State //
 pause_Resume==Resumir
@@ -54,7 +54,7 @@ credits_contributor==Contribuidores
 credits_betaTester==Beta Testers
 credits_specialThanks==Agradecimentos Especiais
 
-credits_songby==Música de
+credits_songby==Música por
 
 // Credits Words //
 supernovae_credit==Música original feita por ArchWk!
@@ -75,14 +75,14 @@ option_ghostTapping_off==Sem Ghost Tapping
 option_downscroll==Downscroll
 option_upscroll==Upscroll
 
-option_songPosition_on==Posição da Música On
-option_songPosition_off==Posição da Música Off
+option_songPosition_on==Posicao da Musica On
+option_songPosition_off==Posicao da Musica Off
 
 option_eyesores_enabled==Efeitos Ativados
 option_eyesores_disabled==Efeitos Desativados
 
-option_selfAwareness_on==Autoconsciência Ativada
-option_selfAwareness_off==Autoconsciência Desativada
+option_selfAwareness_on==Autoconsciencia Ativada
+option_selfAwareness_off==Autoconsciencia Desativada
 
 option_hitsound_on==Hitsounds Ativos
 option_hitsound_off==Hitsounds Desativados
@@ -92,17 +92,20 @@ option_fpsCap==idk
 option_freeplay_cutscenes_off==Cutscenes no Modo Livre Off
 option_freeplay_cutscenes_on==Cutscenes no Modo Livre On
 
-option_noteCamera_on==Movimento de Câmera por Pose
-option_noteCamera_off==Câmera Normal
+option_noteCamera_on==Movimento de Camera por Pose
+option_noteCamera_off==Camera Normal
 
 option_change_langauge==Mudar idioma
-option_disable_fps==Não mostra FPS e memória
-option_enable_fps==Mostrar FPS e Memória
+option_disable_fps==Nao mostrar FPS
+option_enable_fps==Mostrar FPS
+
+option_songBarType_Time Left==Tipo da Barra de Música: Tempo Restante
+option_songBarType_Song Name==Tipo da Barra de Música: Nome da Música
 
 cur_language==Idioma Atual
-en-US==Inglês
+en-US==Ingles
 es-US==Espanhol
-pt-br==Português Brasileiro
+pt-br==Portugues BR
 ru-RU==Russian
 
 // Keybind State //
@@ -305,7 +308,7 @@ daveraptwo_sub5==Meu pipi coça(yum)
 daveraptwo_sub6==3.0
 daveraptwo_sub7==Vs Dave, eu sou gay
 daveraptwo_sub8==Mr. Bambi ama quebrar celular (ha)
-daveraptwo_sub9==Dive going gamestop with buy game Xbox
+daveraptwo_sub9==Mergulho gamestop com comprar game xbox
 daveraptwo_sub10==Jogue o mod Vs Dave and Bambi 3.0
 daveraptwo_sub11==Disponível no GameBanana!
 daveraptwo_sub12==Yum.
@@ -372,7 +375,7 @@ credit_Gorbini==Beta Tester
 credit_Log Man==Beta Tester
 credit_Mooncakeez==Beta Tester
 credit_Foxnap==Beta Tester
-credit_nihilistt==Beta Tester
+credit_lotuswaterz==Beta Tester
 credit_mantis==Beta Tester
 credit_ArturSef==Beta Tester
 credit_normal==Beta Tester
