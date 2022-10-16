@@ -358,8 +358,11 @@ credit_Aadsta==Compositor, Artista de Cenário
 credit_Project Tea==Charter
 credit_Top 10 Awesome==Compositor, Carinha engraçado
 credit_BombasticHype==Fez a cutscene da House
+credit_Sky!==Fez o voice bank nas novas músicas do Bambi feitas pelo Moldy
 credit_Ruby==Compositor (Adventure)
 credit_Lancey==Artista pros Cenários no Menu
+credit_Cup==Fez os cabeçalhos das músicas
+credit_ShiftyTM==Fez a voz do Bambi afinado na Maze & Indignancy
 credit_Paraso==Artista pros Cenários no Menu
 credit_SAMMYPIGZY==Artista
 credit_R34LD34L==Compositor
@@ -367,6 +370,7 @@ credit_Devianator==Ajudou com os ícones nos créditos
 credit_sk0rbias==Artista pro Menu
 credit_Your mom==Compôs o Vs Dave Rap, 100% real.
 credit_sibottle==Compositor
+credit_chromasen==Ajuda com código nas janelas
 
 //Beta Testers
 credit_letsy==Beta Tester
@@ -393,5 +397,5 @@ credit_Lordryan1999==Beta Tester
 credit_Vanquiler==Beta Tester
 credit_Villezen==Beta Tester
 credit_TecheVent==Beta Tester
-credit_emiko==Beta Tester
+credit_miko==Beta Tester
 credit_Cotiles==Beta Tester

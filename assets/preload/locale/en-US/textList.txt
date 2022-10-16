@@ -363,6 +363,7 @@ credit_BombasticHype==Did a House cutscene
 credit_Sky!==Made Bambi Voice Bank Used in the New Bambi Songs Made By Moldy
 credit_Ruby==Adventure Song
 credit_Lancey==Menu BG Artist
+credit_Cup==Made the song headings 
 credit_ShiftyTM==Made Tuned Bambi chromatic used in Maze & Indignancy
 credit_Paraso==Menu BG Artist
 credit_SAMMYPIGZY==Artist
@@ -371,6 +372,7 @@ credit_Devianator==Help with Credits icons
 credit_sk0rbias==Menu Artist
 credit_Your mom==Composed Vs Dave Rap, totally.
 credit_sibottle==Composer
+credit_chromasen==Help with window code
 
 //Beta Testers
 credit_letsy==Beta Tester
@@ -397,7 +399,7 @@ credit_Lordryan1999==Beta Tester
 credit_Vanquiler==Beta Tester
 credit_Villezen==Beta Tester
 credit_TecheVent==Beta Tester
-credit_emiko==Beta Tester
+credit_miko==Beta Tester
 credit_Cotiles==Beta Tester
 
 //Special Thanks

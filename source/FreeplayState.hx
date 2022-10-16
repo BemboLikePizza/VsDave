@@ -724,11 +724,6 @@ class FreeplayState extends MusicBeatState
 		if (curSelected >= songs.length)
 			curSelected = 0;
 
-		curChar = Highscore.getChar(songs[curSelected].songName);
-
-		if (diffText != null)
-			updateDifficultyText();
-		
 		if (songs[curSelected].songName != 'Enter Terminal')
 		{
 			#if !switch
@@ -738,7 +733,12 @@ class FreeplayState extends MusicBeatState
 			#if PRELOAD_ALL
 			FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
 			#end
+			
+			curChar = Highscore.getChar(songs[curSelected].songName);
 		}
+		
+		if (diffText != null)
+			updateDifficultyText();
 		
 		var bullShit:Int = 0;
 

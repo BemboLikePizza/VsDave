@@ -337,6 +337,8 @@ class MainMenuState extends MusicBeatState
 				deathSound.loadEmbedded(Paths.soundRandom('missnote', 1, 3));
 				deathSound.volume = FlxG.random.float(0.6, 1);
 				deathSound.play();
+				
+				FlxG.camera.shake(0.05, 0.1);
 			}
 			if (FlxG.keys.justPressed.R)
 			{

@@ -100,7 +100,7 @@ class CreditsMenuState extends MusicBeatState
       [
          new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
          new Social('twitter', 'https://twitter.com/RealT5mpler'),
-         new Social('souncloud', 'https://soundcloud.com/t5mpler')
+         new Social('soundcloud', 'https://soundcloud.com/t5mpler')
       ]),
       new Person("Zmac", CreditsType.Dev,
       [
@@ -198,10 +198,9 @@ class CreditsMenuState extends MusicBeatState
          new Social('youtube', 'https://youtube.com/c/Lancey170'),
          new Social('twitter', 'https://twitter.com/Lancey170')
       ]),
-      new Person("Lancey", CreditsType.Contributor,
+      new Person("Cup", CreditsType.Contributor,
       [  
-         new Social('youtube', 'https://youtube.com/c/Lancey170'),
-         new Social('twitter', 'https://twitter.com/Lancey170')
+         new Social('youtube', 'https://youtube.com/channel/UCEeVFDTzxe2K8dMng_7YU7A'),
       ]),
       new Person("ShiftyTM", CreditsType.Contributor,
       [  
