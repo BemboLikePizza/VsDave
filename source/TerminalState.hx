@@ -206,6 +206,7 @@ class TerminalState extends MusicBeatState
         CommandList.push(new TerminalCommand("clear", LanguageManager.getTerminalString("term_clear_ins"), function(arguments:Array<String>)
         {
             previousText = "> ";
+            displayText.y = 0;
             UpdateText("");
         }));
         CommandList.push(new TerminalCommand("open", LanguageManager.getTerminalString("term_texts_ins"), function(arguments:Array<String>)
@@ -339,7 +340,6 @@ class TerminalState extends MusicBeatState
         displayText.text = previousText + val;
     }
 
-    //after all of my work this STILL DOESNT COMPLETELY STOP THE TEXT SHIT FROM GOING OFF THE SCREEN IM GONNA DIE
     public function UpdatePreviousText(reset:Bool)
     {
         previousText = displayText.text + (reset ? "\n> " : "");
@@ -366,6 +366,8 @@ class TerminalState extends MusicBeatState
         }
         previousText = finalthing;
         displayText.text = finalthing;
+        if(displayText.height > 720)
+          displayText.y = 720 - displayText.height;
     }
 
     override function update(elapsed:Float):Void
