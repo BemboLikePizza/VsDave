@@ -6174,18 +6174,8 @@ class PlayState extends MusicBeatState
 						angryBamb.animation.addByPrefix('throw', 'a', 24, false);
 						angryBamb.animation.play('breakmyphone');
 						angryBamb.animation.finishCallback = function(name)  {
-							switch(name)
-							{
-								case 'breakmyphone':
-									angryBamb.animation.play('breakmyphone-loop');
-								// case 'doyouwan':
-								// 	angryBamb.visible = false;
-								// 	dad.visible = true;
-								case 'holyshit':
-									dad.visible = true;
-									angryBamb.kill();
-									angryBamb.destroy();
-							}
+							if(name == 'breakmyphone')
+								angryBamb.animation.play('breakmyphone-loop');
 						};
 						angryBamb.color = nightColor;
 						add(angryBamb);
@@ -6224,6 +6214,8 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = mealie_whatItWasBefore;
 						FlxG.camera.zoom = mealie_whatItWasBefore;
 						FlxTween.tween(this, {defaultCamZoom: 1.5}, 46);
+						angryBamb.kill();
+						angryBamb.destroy();
 					case 2369:
 						FlxTween.tween(this, {defaultCamZoom: mealie_whatItWasBefore - 0.2}, 1, {ease: FlxEase.sineOut});
 					case 2418:
