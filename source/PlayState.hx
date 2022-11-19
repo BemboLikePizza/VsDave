@@ -6178,6 +6178,7 @@ class PlayState extends MusicBeatState
 								angryBamb.animation.play('breakmyphone-loop');
 						};
 						angryBamb.color = nightColor;
+						angryBamb.antialiasing = true;
 						add(angryBamb);
 					case 1751:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub9'), 0.02, 0.6);
@@ -6198,6 +6199,8 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.2;
 					case 1831:
 						FlxTween.tween(this, {defaultCamZoom: 2.5}, 0.25, {ease: FlxEase.cubeInOut});
+						boyfriend.canDance = false;
+						boyfriend.playAnim('scared');
 					case 1840:
 						angryBamb.animation.play('holyshit', true);
 						angryBamb.offset.set();
@@ -6208,6 +6211,7 @@ class PlayState extends MusicBeatState
 					case 1843:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub13'), 0.02, 1, {subtitleSize: 60});
 					case 1856:
+						boyfriend.canDance = true;
 						FlxG.camera.flash(FlxColor.WHITE, 0.25);
 						switchDad(FlxG.random.int(0, 999) == 0 ? 'bambi-angey-old' : 'bambi-angey', dad.getPosition());
 						dad.color = nightColor;
