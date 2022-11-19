@@ -425,6 +425,11 @@ class PlayState extends MusicBeatState
 	var doorButton:BGSprite;
 	var doorClosed:Bool;
 	var doorChanging:Bool;
+	
+	//mealie
+	var mealie_whatItWasBefore:Float = 0;
+	var angryBamb:FlxSprite;
+	
 
 	var banbiWindowNames:Array<String> = ['when you realize you have school this monday', 'industrial society and its future', 'my ears burn', 'i got that weed card', 'my ass itch', 'bruh', 'alright instagram its shoutout time'];
 
@@ -1262,6 +1267,8 @@ class PlayState extends MusicBeatState
 				preload('backgrounds/void/interdimensions/nimbi/nimbi');
 			case 'mealie':
 				preload('bambi/im_gonna_break_me_phone');
+				preload('bambi/Angry_Bambi');
+				// preload('bambi/bambimaddddd');
 			case 'recursed':
 				switch (boyfriend.curCharacter)
 				{
@@ -6147,21 +6154,78 @@ class PlayState extends MusicBeatState
 						makeInvisibleNotes(false);
 					case 1584:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub15'), 0.02, 1);
-					case 1746:
+					case 1712:
+						defaultCamZoom += 0.2;
+					case 1742:
+						defaultCamZoom += 1;
+					case 1746: //1746
+						vocals.volume = 1;
+						ZoomCam(true);
+						defaultCamZoom -= 1.2;
+						makeInvisibleNotes(true);
+						
+						dad.visible = false;
+						angryBamb = new FlxSprite(dad.x - 130, dad.y - 85);
+						angryBamb.frames = Paths.getSparrowAtlas('bambi/im_gonna_break_me_phone', 'shared');
+						angryBamb.animation.addByIndices('breakmyphone', 'bambi idiot', [for (i in 37...113) i], '', 24, false);
+						angryBamb.animation.addByIndices('breakmyphone-loop', 'bambi idiot', [112, 113], '', 24, true);
+						angryBamb.animation.addByIndices('doyouwan', 'bambi idiot', [for (i in 121...175) i], '', 24, false);
+						angryBamb.animation.addByIndices('holyshit', 'bambi idiot', [for (i in 194...231) i], '', 24, false);
+						angryBamb.animation.addByPrefix('throw', 'a', 24, false);
+						angryBamb.animation.play('breakmyphone');
+						angryBamb.animation.finishCallback = function(name)  {
+							switch(name)
+							{
+								case 'breakmyphone':
+									angryBamb.animation.play('breakmyphone-loop');
+								// case 'doyouwan':
+								// 	angryBamb.visible = false;
+								// 	dad.visible = true;
+								case 'holyshit':
+									dad.visible = true;
+									angryBamb.kill();
+									angryBamb.destroy();
+							}
+						};
+						angryBamb.color = nightColor;
+						add(angryBamb);
 					case 1751:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub9'), 0.02, 0.6);
 					case 1770:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub10'), 0.02, 0.6);
-					case 1776:
-						FlxG.camera.flash(FlxColor.WHITE, 0.25);
-						switchDad(FlxG.random.int(0, 999) == 0 ? 'bambi-angey-old' : 'bambi-angey', dad.getPosition());
-						dad.color = nightColor;
+					case 1793:
+						angryBamb.animation.play('doyouwan', true);
 					case 1800:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub11'), 0.02, 0.6);
 					case 1810:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub12'), 0.02, 0.6);
+						makeInvisibleNotes(false);
+					case 1820:
+						angryBamb.animation.play('throw');
+						angryBamb.offset.set(39, -64);
+					case 1824:
+						mealie_whatItWasBefore = defaultCamZoom + 0.2;
+						defaultCamZoom += 0.2;
+					case 1831:
+						FlxTween.tween(this, {defaultCamZoom: 2.5}, 0.25, {ease: FlxEase.cubeInOut});
+					case 1840:
+						angryBamb.animation.play('holyshit', true);
+						angryBamb.offset.set();
+						FlxTween.tween(this, {defaultCamZoom: mealie_whatItWasBefore}, 0.73, {ease: FlxEase.cubeOut, 
+							onComplete: function(a:FlxTween) {
+								FlxTween.tween(this, {defaultCamZoom: 2}, 0.7, {ease: FlxEase.cubeIn});
+						}});
 					case 1843:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub13'), 0.02, 1, {subtitleSize: 60});
+					case 1856:
+						FlxG.camera.flash(FlxColor.WHITE, 0.25);
+						switchDad(FlxG.random.int(0, 999) == 0 ? 'bambi-angey-old' : 'bambi-angey', dad.getPosition());
+						dad.color = nightColor;
+						defaultCamZoom = mealie_whatItWasBefore;
+						FlxG.camera.zoom = mealie_whatItWasBefore;
+						FlxTween.tween(this, {defaultCamZoom: 1.5}, 46);
+					case 2369:
+						FlxTween.tween(this, {defaultCamZoom: mealie_whatItWasBefore - 0.2}, 1, {ease: FlxEase.sineOut});
 					case 2418:
 						subtitleManager.addSubtitle(LanguageManager.getTextString('mealie_sub14'), 0.02, 0.6);				
 				}
