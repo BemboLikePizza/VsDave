@@ -62,7 +62,7 @@ class GameOverFNAF extends MusicBeatSubstate
 			add(staticBG);
 
 			remove(jumpscare);
-			
+
 			new FlxTimer().start(2, function(timer:FlxTimer)
 			{
 				endBullshit();
@@ -81,6 +81,7 @@ class GameOverFNAF extends MusicBeatSubstate
 			FlxG.switchState(new FreeplayState());
 		}
 	}
+
 	function endBullshit():Void
 	{
 		new FlxTimer().start(0.7, function(tmr:FlxTimer)

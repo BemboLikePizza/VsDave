@@ -8,6 +8,7 @@ class StrumNote extends FlxSprite
 	public var baseY:Float;
 	public var playerStrum:Bool;
 	public var pressingKey5:Bool;
+
 	public function new(x:Float, y:Float, type:String, strumID:Int, playerStrum:Bool)
 	{
 		super(x, y);
@@ -99,14 +100,17 @@ class StrumNote extends FlxSprite
 
 		this.playerStrum = playerStrum;
 	}
+
 	public function resetX()
 	{
 		x = baseX;
 	}
+
 	public function resetY()
 	{
 		y = baseY;
 	}
+
 	public function centerStrum()
 	{
 		x = baseX + 320 * (playerStrum ? -1 : 1) + 78 / 4;
