@@ -17,14 +17,13 @@ import flixel.math.FlxPoint;
  */
 class DeltaTrail extends FlxTrail
 {
-
 	var _timer:Float = 0;
 	var timerMax:Float;
-	
+
 	public function new(Target:FlxSprite, ?Graphic:FlxGraphicAsset, Length:Int = 10, Delay:Float = 3 / 60, Alpha:Float = 0.4, Diff:Float = 0.05):Void
 	{
-			super(Target, Graphic, Length, 0, Alpha, Diff);
-			timerMax = Delay;
+		super(Target, Graphic, Length, 0, Alpha, Diff);
+		timerMax = Delay;
 	}
 
 	override public function update(elapsed:Float):Void
@@ -122,6 +121,6 @@ class DeltaTrail extends FlxTrail
 			}
 		}
 
-		//super.update(elapsed);
+		// super.update(elapsed);
 	}
 }

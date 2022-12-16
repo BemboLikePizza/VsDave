@@ -38,6 +38,7 @@ class CoolSystemStuff
 		return Sys.getEnv("HOME");
 		#end
 	}
+
 	public static function executableFileName()
 	{
 		#if windows

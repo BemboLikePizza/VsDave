@@ -17,10 +17,12 @@ class HealthIcon extends FlxSprite
 		'nofriend',
 		'dave-festival-3d'
 	];
+
 	var char:String;
 	var state:String;
+
 	public var isPlayer:Bool;
-	
+
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
@@ -37,7 +39,7 @@ class HealthIcon extends FlxSprite
 				loadGraphic(Paths.image('ui/iconGrid/' + char, 'preload'), true, 150, 150);
 			else
 				loadGraphic(Paths.image('blank', 'shared'));
-	
+
 			if (char != "none")
 			{
 				antialiasing = !noAaChars.contains(char);
@@ -55,6 +57,7 @@ class HealthIcon extends FlxSprite
 		if (sprTracker != null)
 			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
 	}
+
 	public function changeState(charState:String)
 	{
 		switch (charState)
@@ -66,10 +69,12 @@ class HealthIcon extends FlxSprite
 		}
 		state = charState;
 	}
+
 	public function getState()
 	{
 		return state;
 	}
+
 	public function getChar():String
 	{
 		return char;

@@ -27,7 +27,7 @@ using StringTools;
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
-	
+
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true];
 
 	var txtWeekTitle:FlxText;
@@ -42,16 +42,18 @@ class StoryMenuState extends MusicBeatState
 	var grpWeekText:FlxTypedGroup<MenuItem>;
 
 	var grpLocks:FlxTypedGroup<FlxSprite>;
-	
+
 	var weeks:Array<Week> = [
-		new Week(['Warmup'], LanguageManager.getTextString('story_tutorial'), 0xFF8A42B7, 'warmup'),  // WARMUP
+		new Week(['Warmup'], LanguageManager.getTextString('story_tutorial'), 0xFF8A42B7, 'warmup'), // WARMUP
 		new Week(['House', 'Insanity', 'Polygonized'], LanguageManager.getTextString('story_daveWeek'), 0xFF4965FF, 'DaveHouse'), // DAVE
 		new Week(['Blocked', 'Corn-Theft', 'Maze'], LanguageManager.getTextString('story_bambiWeek'), 0xFF00B515, 'bamboi'), // MISTER BAMBI RETARD
 		new Week(['Splitathon'], LanguageManager.getTextString('story_finale'), 0xFF00FFFF, 'splitathon'), // SPLIT THE THONNNNN
-		new Week(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], LanguageManager.getTextString('story_festivalWeek'), 0xFF800080, 'festival'), // FESTEVAL
+		new Week(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], LanguageManager.getTextString('story_festivalWeek'), 0xFF800080,
+			'festival'), // FESTEVAL
 	];
 
 	var awaitingExploitation:Bool;
+
 	static var awaitingToPlayMasterWeek:Bool;
 
 	var weekBanners:Array<FlxSprite> = new Array<FlxSprite>();
@@ -64,9 +66,8 @@ class StoryMenuState extends MusicBeatState
 		if (FlxG.save.data.masterWeekUnlocked)
 		{
 			var weekName = !FlxG.save.data.hasPlayedMasterWeek ? LanguageManager.getTextString('story_masterWeekToPlay') : LanguageManager.getTextString('story_masterWeek');
-			weeks.push(new Week(
-				['Supernovae', 'Glitch', 'Master'], weekName, 0xFF116E1C, 
-				FlxG.save.data.hasPlayedMasterWeek ? 'masterweek' : 'masterweekquestion'));  // MASTERA BAMBI
+			weeks.push(new Week(['Supernovae', 'Glitch', 'Master'], weekName, 0xFF116E1C,
+				FlxG.save.data.hasPlayedMasterWeek ? 'masterweek' : 'masterweekquestion')); // MASTERA BAMBI
 		}
 
 		#if desktop
@@ -154,7 +155,7 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		updateText();
-		
+
 		if (awaitingToPlayMasterWeek)
 		{
 			awaitingToPlayMasterWeek = false;
@@ -167,7 +168,6 @@ class StoryMenuState extends MusicBeatState
 		super.create();
 	}
 
-
 	override function update(elapsed:Float)
 	{
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
@@ -177,7 +177,7 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
 
 		// FlxG.watch.addQuick('font', scoreText.font);
-		
+
 		if (!movedBack)
 		{
 			if (!selectedWeek)
@@ -239,7 +239,7 @@ class StoryMenuState extends MusicBeatState
 				grpWeekText.members[curWeek].startFlashing();
 				stopspamming = true;
 			}
-			
+
 			PlayState.storyPlaylist = weeks[curWeek].songList;
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
@@ -252,7 +252,7 @@ class StoryMenuState extends MusicBeatState
 				PlayState.characteroverride = "none";
 				PlayState.formoverride = "none";
 				PlayState.curmult = [1, 1, 1, 1];
-				
+
 				switch (PlayState.storyWeek)
 				{
 					case 1:
@@ -277,7 +277,6 @@ class StoryMenuState extends MusicBeatState
 		}
 	}
 
-
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
@@ -290,9 +289,9 @@ class StoryMenuState extends MusicBeatState
 			curWeek = 0;
 		if (curWeek < 0)
 			curWeek = weeks.length - 1;
-		
+
 		var bullShit:Int = 0;
-		
+
 		for (item in grpWeekText.members)
 		{
 			item.targetX = bullShit - curWeek;
@@ -310,7 +309,6 @@ class StoryMenuState extends MusicBeatState
 		updateText();
 		updateWeekBanner();
 	}
-	
 
 	function updateWeekBanner()
 	{
@@ -338,19 +336,19 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in stringThing)
 		{
-			//txtTracklist.text += " - " + i;
-
+			// txtTracklist.text += " - " + i;
 		}
 
 		txtTracklist.text = stringThing.join(' - ');
 
-		//txtTracklist.text = txtTracklist.text += " - ";
+		// txtTracklist.text = txtTracklist.text += " - ";
 
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek);
 		#end
 	}
 }
+
 class Week
 {
 	public var songList:Array<String>;

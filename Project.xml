@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://lime.openfl.org/project/1.0.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
+<project>
 
 	<!-- _________________________ Application Settings _________________________ -->
 
 	<app title="Friday Night Funkin' | VS. Dave and Bambi 3.0b" file="VsDave" packageName="dnbteam.daveandbambi" package="dnbteam.daveandbambi" main="Main" version="3.0.0" company="dnbteam"/>
 	<app preloader="flixel.system.FlxPreloader"/>
-
-	<set name="APP_ID" value="0x0100f6c013bbc000"/>
 	<set name="SWF_VERSION" value="11.8"/>
 
 	<!-- ____________________________ Window Settings ___________________________ -->
@@ -25,10 +23,6 @@
 
 	<!--Mobile-->
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
-
-	<!--Switch-->
-	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
-
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<classpath name="source" />
@@ -71,7 +65,6 @@
 	<haxelib name="hscript" />
 	<haxelib name="actuate" />
 	<haxelib name="flixel-ui" />
-	<haxelib name="faxe" if='switch'/>
 	<haxelib name="hxCodec" if="desktop || android" />
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
@@ -79,7 +72,6 @@
 	
 	<!--Allow working memory greater than 1 Gig, therefore preventing the mod on slower hardware with less ram to lag-->
 	<haxedef name="HXCPP_GC_BIG_BLOCKS"/>
-	
 
 	<setenv name="next"/>
 

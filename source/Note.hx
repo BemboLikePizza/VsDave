@@ -14,6 +14,7 @@ import flixel.util.FlxColor;
 import PlayState;
 
 using StringTools;
+
 import StringTools;
 
 class Note extends FlxSprite
@@ -32,7 +33,17 @@ class Note extends FlxSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 
-	private var CharactersWith3D:Array<String> = ["dave-angey", "bambi-3d", 'bambi-unfair', 'exbungo', 'expunged', 'dave-festival-3d', 'dave-3d-recursed', 'bf-3d', 'nofriend'];
+	private var CharactersWith3D:Array<String> = [
+		"dave-angey",
+		"bambi-3d",
+		'bambi-unfair',
+		'exbungo',
+		'expunged',
+		'dave-festival-3d',
+		'dave-3d-recursed',
+		'bf-3d',
+		'nofriend'
+	];
 
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
@@ -55,7 +66,8 @@ class Note extends FlxSprite
 
 	var notes = ['purple', 'blue', 'green', 'red'];
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal", inCharter:Bool = false, guitarSection:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?musthit:Bool = true, noteStyle:String = "normal",
+			inCharter:Bool = false, guitarSection:Bool = false)
 	{
 		super();
 
@@ -71,22 +83,22 @@ class Note extends FlxSprite
 
 		x += 78;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
-		//NOW IT SHALL FOR REALLY ALWAYS BE OFF SCREEN.
-		//luckily i think only the devs really noticed that you can see the notes spawn in at the bottom of the screen when there is a modchart.
+		// NOW IT SHALL FOR REALLY ALWAYS BE OFF SCREEN.
+		// luckily i think only the devs really noticed that you can see the notes spawn in at the bottom of the screen when there is a modchart.
 		y -= 9000;
-		
+
 		inCharter ? this.strumTime = strumTime : {
 			this.strumTime = Math.round(strumTime);
 			alpha = 0;
 		}
-		
+
 		if (this.strumTime < 0)
 			this.strumTime = 0;
 
 		if (isInState('PlayState'))
 		{
 			this.strumTime += FlxG.save.data.offset;
-		}		
+		}
 		if ((guitarSection && inCharter && noteData < 5) || (guitarSection))
 		{
 			notes = ['green', 'red', 'yellow', 'blue', 'orange'];
@@ -95,10 +107,14 @@ class Note extends FlxSprite
 		var notePathLol:String = 'notes/NOTE_assets';
 		var noteSize:Float = 0.7;
 
-		if ((((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit) || ((CharactersWith3D.contains(PlayState.SONG.player1)
-				|| CharactersWith3D.contains(PlayState.characteroverride) || CharactersWith3D.contains(PlayState.formoverride)) && musthit))
-				|| ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1)) && ((this.strumTime / 50) % 20 > 10)))
-				&& this.noteStyle == 'normal')
+		if ((((CharactersWith3D.contains(PlayState.SONG.player2) && !musthit)
+			|| ((CharactersWith3D.contains(PlayState.SONG.player1)
+				|| CharactersWith3D.contains(PlayState.characteroverride)
+				|| CharactersWith3D.contains(PlayState.formoverride))
+				&& musthit))
+			|| ((CharactersWith3D.contains(PlayState.SONG.player2) || CharactersWith3D.contains(PlayState.SONG.player1))
+				&& ((this.strumTime / 50) % 20 > 10)))
+			&& this.noteStyle == 'normal')
 		{
 			this.noteStyle = '3D';
 			notePathLol = 'notes/NOTE_assets_3D';
@@ -138,21 +154,21 @@ class Note extends FlxSprite
 				animation.addByPrefix('redScroll', 'red0');
 				animation.addByPrefix('blueScroll', 'blue0');
 				animation.addByPrefix('purpleScroll', 'purple0');
-		
+
 				animation.addByPrefix('purpleholdend', 'pruple end hold');
 				animation.addByPrefix('greenholdend', 'green hold end');
 				animation.addByPrefix('redholdend', 'red hold end');
 				animation.addByPrefix('blueholdend', 'blue hold end');
-		
+
 				animation.addByPrefix('purplehold', 'purple hold piece');
 				animation.addByPrefix('greenhold', 'green hold piece');
 				animation.addByPrefix('redhold', 'red hold piece');
 				animation.addByPrefix('bluehold', 'blue hold piece');
-	
+
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = noteStyle != '3D';
-			
+
 			case 'shape':
 				frames = Paths.getSparrowAtlas(notePathLol, 'shared');
 
@@ -160,7 +176,7 @@ class Note extends FlxSprite
 				animation.addByPrefix('redScroll', 'red0');
 				animation.addByPrefix('blueScroll', 'blue0');
 				animation.addByPrefix('purpleScroll', 'purple0');
-		
+
 				animation.addByPrefix('purplehold', 'purple hold piece');
 				animation.addByPrefix('greenhold', 'green hold piece');
 				animation.addByPrefix('redhold', 'red hold piece');
@@ -179,9 +195,9 @@ class Note extends FlxSprite
 				frames = Paths.getSparrowAtlas('ui/alphabet');
 
 				var noteColors = ['purple', 'blue', 'green', 'red'];
-	
+
 				var boldLetters:Array<String> = new Array<String>();
-	
+
 				for (frameName in frames.frames)
 				{
 					if (frameName.name.contains('bold'))
@@ -206,7 +222,6 @@ class Note extends FlxSprite
 				animation.addByPrefix('greenScroll', 'A Note');
 				animation.addByPrefix('greenhold', 'A Hold Piece');
 				animation.addByPrefix('greenholdend', 'A Hold End');
-
 
 				animation.addByPrefix('redScroll', 'B Note');
 				animation.addByPrefix('redhold', 'B Hold Piece');
@@ -245,20 +260,19 @@ class Note extends FlxSprite
 				animation.addByPrefix('greenholdend', 'green hold end');
 				animation.addByPrefix('redholdend', 'red hold end');
 				animation.addByPrefix('blueholdend', 'blue hold end');
-		
+
 				animation.addByPrefix('purplehold', 'purple hold piece');
 				animation.addByPrefix('greenhold', 'green hold piece');
 				animation.addByPrefix('redhold', 'red hold piece');
 				animation.addByPrefix('bluehold', 'blue hold piece');
 
 				LocalScrollSpeed = 1.08;
-				
+
 				setGraphicSize(Std.int(width * noteSize));
 				updateHitbox();
 				antialiasing = true;
-				
-				noteOffset = 20;
 
+				noteOffset = 20;
 		}
 		var str:String = PlayState.SONG.song.toLowerCase();
 		if (isInState('PlayState'))
@@ -356,7 +370,7 @@ class Note extends FlxSprite
 				}
 				else
 				{
-					//INCOMPLETE
+					// INCOMPLETE
 					prevNote.scale.y *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.75;
 					prevNote.scale.x *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.5;
 					prevNote.offset.y += prevNote.height / 3;
@@ -402,7 +416,7 @@ class Note extends FlxSprite
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
 				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
 				canBeHit = true;
-			else 
+			else
 				canBeHit = false;
 
 			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
@@ -421,6 +435,7 @@ class Note extends FlxSprite
 			alphaMult = 0.3;
 		}
 	}
+
 	public function GoToStrum(strum:StrumNote)
 	{
 		x = strum.x + noteOffset;

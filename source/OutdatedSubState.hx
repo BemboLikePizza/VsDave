@@ -25,7 +25,7 @@ class OutdatedSubState extends MusicBeatState
 		if (InExpungedState)
 		{
 			txt = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('intoWarningExpunged'), 32);
-			
+
 			FlxG.save.data.exploitationState = null;
 			FlxG.save.flush();
 		}
@@ -64,13 +64,14 @@ class OutdatedSubState extends MusicBeatState
 		{
 			FlxG.save.data.begin_thing = true;
 			FlxG.save.data.eyesores = false;
-			leaveState();	
+			leaveState();
 		}
 		super.update(elapsed);
 	}
+
 	function leaveState()
 	{
-		if(!FlxG.save.data.alreadyGoneToWarningScreen)
+		if (!FlxG.save.data.alreadyGoneToWarningScreen)
 		{
 			FlxG.save.data.alreadyGoneToWarningScreen = true;
 			FlxG.save.flush();
