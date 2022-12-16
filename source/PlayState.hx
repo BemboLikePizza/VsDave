@@ -84,6 +84,8 @@ import lime.app.Application;
 #end
 import flixel.system.debug.Window;
 import lime.app.Application;
+import lime.graphics.RenderContext;
+import lime.graphics.RenderContextAttributes;
 import openfl.Lib;
 import openfl.geom.Matrix;
 import lime.ui.Window;
@@ -142,8 +144,10 @@ class PlayState extends MusicBeatState
 
 	#if SHADERS_ENABLED
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
+	public static var ssFilter:ShaderFilter = new ShaderFilter(screenshader.shader);
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
+	public static var blockedFilter:ShaderFilter;
 
 	public var dither:DitherEffect = new DitherEffect();
 	#end
@@ -1401,6 +1405,7 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'blocked' || SONG.song.toLowerCase() == 'shredder')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
+			blockedFilter = new ShaderFilter(blockedShader.shader);
 		}
 		#end
 		startingSong = true;
@@ -3362,7 +3367,7 @@ class PlayState extends MusicBeatState
 		}
 
 		#if SHADERS_ENABLED
-		FlxG.camera.setFilters([new ShaderFilter(screenshader.shader)]); // this is very stupid but doesn't effect memory all that much so
+		FlxG.camera.setFilters([ssFilter]); // this is very stupid but doesn't effect memory all that much so
 		#end
 		if (shakeCam && eyesoreson)
 		{
@@ -5660,7 +5665,7 @@ class PlayState extends MusicBeatState
 						#if SHADERS_ENABLED
 						if (CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
 						{
-							camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							camHUD.setFilters([blockedFilter]);
 						}
 						#end
 						FlxTween.tween(black, {alpha: 0.7}, (Conductor.stepCrochet / 1000) * 8);
@@ -6608,7 +6613,10 @@ class PlayState extends MusicBeatState
 						makeInvisibleNotes(false);
 					case 784 | 816 | 912 | 944:
 						#if SHADERS_ENABLED
-						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+						if (CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+						{
+							camHUD.setFilters([blockedFilter]);
+						}
 						#end
 						defaultCamZoom += 0.2;
 						FlxTween.tween(black, {alpha: 0.6}, 1);
@@ -6759,7 +6767,7 @@ class PlayState extends MusicBeatState
 						#if SHADERS_ENABLED
 						if (CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
 						{
-							camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							camHUD.setFilters([blockedFilter]);
 						}
 						#end
 						FlxTween.tween(black, {alpha: 0.6}, 1);
@@ -6771,7 +6779,7 @@ class PlayState extends MusicBeatState
 						#if SHADERS_ENABLED
 						if (CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
 						{
-							camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							camHUD.setFilters([blockedFilter]);
 						}
 						#end
 						defaultCamZoom += 0.1;
@@ -6782,7 +6790,7 @@ class PlayState extends MusicBeatState
 						#if SHADERS_ENABLED
 						if (CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
 						{
-							camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							camHUD.setFilters([blockedFilter]);
 						}
 						#end
 						defaultCamZoom += 0.1;
@@ -6793,7 +6801,7 @@ class PlayState extends MusicBeatState
 						#if SHADERS_ENABLED
 						if (CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
 						{
-							camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
+							camHUD.setFilters([blockedFilter]);
 						}
 						#end
 						defaultCamZoom += 0.1;
