@@ -1,108 +1,264 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="im_gonna_break_me_phone.png">
-	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- Created with Adobe Animate version 22.0.1.105 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="bambi idiot0000" x="0" y="0" width="323" height="318" frameX="-137" frameY="-90" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0001" x="0" y="0" width="323" height="318" frameX="-137" frameY="-90" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0002" x="328" y="0" width="330" height="318" frameX="-130" frameY="-90" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0003" x="663" y="0" width="332" height="317" frameX="-130" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0004" x="1000" y="0" width="324" height="317" frameX="-138" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0005" x="1329" y="0" width="318" height="317" frameX="-144" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0006" x="1652" y="0" width="312" height="321" frameX="-144" frameY="-87" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0007" x="1969" y="0" width="321" height="321" frameX="-135" frameY="-87" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0008" x="2295" y="0" width="322" height="320" frameX="-135" frameY="-88" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0009" x="2622" y="0" width="325" height="320" frameX="-132" frameY="-88" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0010" x="2952" y="0" width="325" height="319" frameX="-132" frameY="-89" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0011" x="3282" y="0" width="322" height="319" frameX="-135" frameY="-89" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0012" x="3609" y="0" width="322" height="318" frameX="-135" frameY="-90" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0013" x="0" y="326" width="317" height="318" frameX="-137" frameY="-90" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0014" x="322" y="326" width="317" height="314" frameX="-137" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0015" x="644" y="326" width="305" height="314" frameX="-151" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0016" x="954" y="326" width="305" height="316" frameX="-151" frameY="-92" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0017" x="1264" y="326" width="309" height="316" frameX="-148" frameY="-92" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0018" x="1264" y="326" width="309" height="316" frameX="-148" frameY="-92" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0019" x="1578" y="326" width="307" height="317" frameX="-150" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0020" x="1890" y="326" width="307" height="317" frameX="-150" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0021" x="2202" y="326" width="307" height="317" frameX="-150" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0022" x="2514" y="326" width="307" height="317" frameX="-150" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0023" x="2826" y="326" width="307" height="317" frameX="-150" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0024" x="3138" y="326" width="307" height="317" frameX="-149" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0025" x="3450" y="326" width="307" height="317" frameX="-149" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0026" x="3762" y="326" width="313" height="317" frameX="-149" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0027" x="3762" y="326" width="313" height="317" frameX="-149" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0028" x="0" y="649" width="337" height="314" frameX="-147" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0029" x="342" y="649" width="337" height="314" frameX="-147" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0030" x="684" y="649" width="311" height="304" frameX="-142" frameY="-103" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0031" x="1000" y="649" width="311" height="304" frameX="-142" frameY="-103" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0032" x="1316" y="649" width="272" height="311" frameX="-125" frameY="-96" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0033" x="1593" y="649" width="272" height="311" frameX="-125" frameY="-96" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0034" x="1870" y="649" width="308" height="316" frameX="-118" frameY="-92" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0035" x="2183" y="649" width="437" height="336" frameX="-85" frameY="-72" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0036" x="2183" y="649" width="437" height="336" frameX="-85" frameY="-72" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0037" x="2625" y="649" width="418" height="321" frameX="-90" frameY="-87" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0038" x="2625" y="649" width="418" height="321" frameX="-90" frameY="-87" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0039" x="3048" y="649" width="409" height="316" frameX="-97" frameY="-92" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0040" x="3048" y="649" width="409" height="316" frameX="-97" frameY="-92" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0041" x="3462" y="649" width="397" height="313" frameX="-104" frameY="-95" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0042" x="3462" y="649" width="397" height="313" frameX="-104" frameY="-95" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0043" x="0" y="990" width="393" height="310" frameX="-108" frameY="-98" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0044" x="0" y="990" width="393" height="310" frameX="-108" frameY="-98" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0045" x="398" y="990" width="394" height="311" frameX="-108" frameY="-97" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0046" x="797" y="990" width="394" height="311" frameX="-108" frameY="-97" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0047" x="1196" y="990" width="394" height="311" frameX="-108" frameY="-97" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0048" x="1595" y="990" width="394" height="311" frameX="-108" frameY="-97" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0049" x="1994" y="990" width="392" height="311" frameX="-108" frameY="-97" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0050" x="2391" y="990" width="405" height="310" frameX="-97" frameY="-98" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0051" x="2801" y="990" width="405" height="310" frameX="-97" frameY="-98" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0052" x="3211" y="990" width="428" height="319" frameX="-87" frameY="-89" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0053" x="3644" y="990" width="428" height="319" frameX="-87" frameY="-89" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0054" x="0" y="1314" width="356" height="315" frameX="-117" frameY="-93" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0055" x="361" y="1314" width="356" height="315" frameX="-117" frameY="-93" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0056" x="722" y="1314" width="340" height="343" frameX="-125" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0057" x="1067" y="1314" width="296" height="350" frameX="-149" frameY="-87" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0058" x="1368" y="1314" width="296" height="345" frameX="-149" frameY="-87" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0059" x="1669" y="1314" width="393" height="374" frameX="-50" frameY="-58" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0060" x="2067" y="1314" width="393" height="374" frameX="-50" frameY="-58" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0061" x="2465" y="1314" width="288" height="317" frameX="-172" frameY="-117" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0062" x="2758" y="1314" width="288" height="317" frameX="-172" frameY="-117" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0063" x="3051" y="1314" width="271" height="324" frameX="-180" frameY="-108" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0064" x="3327" y="1314" width="271" height="324" frameX="-180" frameY="-108" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0065" x="3603" y="1314" width="272" height="328" frameX="-180" frameY="-104" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0066" x="0" y="1693" width="272" height="328" frameX="-180" frameY="-104" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0067" x="277" y="1693" width="421" height="424" frameX="-22" frameY="-8" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0068" x="703" y="1693" width="421" height="424" frameX="-22" frameY="-8" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0069" x="1129" y="1693" width="281" height="328" frameX="-180" frameY="-105" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0070" x="1415" y="1693" width="281" height="328" frameX="-180" frameY="-105" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0071" x="1701" y="1693" width="437" height="432" frameX="-8" frameY="0" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0072" x="2143" y="1693" width="437" height="432" frameX="-8" frameY="0" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0073" x="2585" y="1693" width="281" height="327" frameX="-180" frameY="-104" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0074" x="2871" y="1693" width="281" height="327" frameX="-180" frameY="-104" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0075" x="3157" y="1693" width="445" height="427" frameX="0" frameY="-5" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0076" x="3607" y="1693" width="401" height="424" frameX="-78" frameY="-10" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0077" x="0" y="2130" width="436" height="429" frameX="-7" frameY="-3" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0078" x="441" y="2130" width="286" height="315" frameX="-176" frameY="-118" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0079" x="732" y="2130" width="286" height="315" frameX="-176" frameY="-118" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0080" x="1023" y="2130" width="272" height="328" frameX="-180" frameY="-104" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0081" x="1300" y="2130" width="272" height="328" frameX="-180" frameY="-104" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0082" x="1577" y="2130" width="272" height="332" frameX="-180" frameY="-100" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0083" x="1854" y="2130" width="272" height="332" frameX="-180" frameY="-100" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0084" x="2131" y="2130" width="274" height="329" frameX="-180" frameY="-103" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0085" x="2410" y="2130" width="274" height="329" frameX="-180" frameY="-103" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0086" x="2689" y="2130" width="332" height="343" frameX="-168" frameY="-89" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0087" x="2689" y="2130" width="332" height="343" frameX="-168" frameY="-89" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0088" x="3026" y="2130" width="444" height="341" frameX="-105" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0089" x="3475" y="2130" width="444" height="341" frameX="-105" frameY="-91" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0090" x="0" y="2564" width="424" height="337" frameX="-111" frameY="-95" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0091" x="429" y="2564" width="424" height="337" frameX="-111" frameY="-95" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0092" x="858" y="2564" width="419" height="338" frameX="-115" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0093" x="1282" y="2564" width="419" height="338" frameX="-115" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0094" x="1706" y="2564" width="417" height="336" frameX="-116" frameY="-96" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0095" x="2128" y="2564" width="417" height="336" frameX="-116" frameY="-96" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0096" x="2550" y="2564" width="419" height="338" frameX="-115" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0097" x="2974" y="2564" width="419" height="338" frameX="-115" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0098" x="3398" y="2564" width="419" height="338" frameX="-115" frameY="-94" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0099" x="0" y="2907" width="413" height="334" frameX="-117" frameY="-98" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0100" x="418" y="2907" width="413" height="334" frameX="-117" frameY="-98" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0101" x="836" y="2907" width="401" height="330" frameX="-119" frameY="-102" frameWidth="549" frameHeight="437"/>
-	<SubTexture name="bambi idiot0102" x="1242" y="2907" width="401" height="330" frameX="-119" frameY="-102" frameWidth="549" frameHeight="437"/>
+	<SubTexture name="a_bambi throw0000" x="4985" y="5923" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0001" x="4985" y="5923" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0002" x="6197" y="5923" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0003" x="6197" y="5923" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0004" x="8" y="6378" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0005" x="1220" y="6378" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0006" x="2432" y="6378" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0007" x="3644" y="6378" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0008" x="4856" y="6378" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0009" x="6068" y="6378" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0010" x="8" y="6753" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0011" x="1220" y="6753" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0012" x="2432" y="6753" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0013" x="3644" y="6753" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0014" x="4856" y="6753" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0015" x="6068" y="6753" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0016" x="8" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0017" x="1220" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0018" x="2432" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0019" x="3644" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0020" x="3644" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0021" x="4856" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0022" x="4856" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0023" x="6068" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0024" x="6068" y="7128" width="1208" height="371"/>
+	<SubTexture name="a_bambi throw0025" x="6068" y="7128" width="1208" height="371"/>
+	<SubTexture name="bambi idiot0000" x="8" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0001" x="8" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0002" x="561" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0003" x="1114" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0004" x="1667" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0005" x="2220" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0006" x="2773" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0007" x="3326" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0008" x="3879" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0009" x="4432" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0010" x="4985" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0011" x="5538" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0012" x="6091" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0013" x="6644" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0014" x="7197" y="8" width="549" height="451"/>
+	<SubTexture name="bambi idiot0015" x="8" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0016" x="561" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0017" x="1114" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0018" x="1114" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0019" x="1667" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0020" x="2220" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0021" x="2773" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0022" x="3326" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0023" x="3879" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0024" x="4432" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0025" x="4985" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0026" x="5538" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0027" x="5538" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0028" x="6091" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0029" x="6644" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0030" x="7197" y="463" width="549" height="451"/>
+	<SubTexture name="bambi idiot0031" x="8" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0032" x="561" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0033" x="1114" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0034" x="1667" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0035" x="2220" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0036" x="2220" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0037" x="2773" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0038" x="2773" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0039" x="3326" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0040" x="3326" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0041" x="3879" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0042" x="3879" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0043" x="4432" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0044" x="4432" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0045" x="4985" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0046" x="5538" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0047" x="6091" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0048" x="6644" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0049" x="7197" y="918" width="549" height="451"/>
+	<SubTexture name="bambi idiot0050" x="8" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0051" x="561" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0052" x="1114" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0053" x="1667" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0054" x="2220" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0055" x="2773" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0056" x="3326" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0057" x="3879" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0058" x="4432" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0059" x="4985" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0060" x="5538" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0061" x="6091" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0062" x="6644" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0063" x="7197" y="1373" width="549" height="451"/>
+	<SubTexture name="bambi idiot0064" x="8" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0065" x="561" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0066" x="1114" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0067" x="1667" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0068" x="2220" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0069" x="2773" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0070" x="3326" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0071" x="3879" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0072" x="4432" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0073" x="4985" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0074" x="5538" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0075" x="6091" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0076" x="6644" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0077" x="7197" y="1828" width="549" height="451"/>
+	<SubTexture name="bambi idiot0078" x="8" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0079" x="561" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0080" x="1114" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0081" x="1667" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0082" x="2220" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0083" x="2773" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0084" x="3326" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0085" x="3879" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0086" x="4432" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0087" x="4432" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0088" x="4985" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0089" x="5538" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0090" x="6091" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0091" x="6644" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0092" x="7197" y="2283" width="549" height="451"/>
+	<SubTexture name="bambi idiot0093" x="8" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0094" x="561" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0095" x="1114" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0096" x="1667" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0097" x="2220" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0098" x="2773" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0099" x="3326" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0100" x="3879" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0101" x="4432" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0102" x="4985" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0103" x="5538" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0104" x="6091" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0105" x="6644" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0106" x="7197" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0107" x="6644" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0108" x="7197" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0109" x="6644" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0110" x="7197" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0111" x="6644" y="2738" width="549" height="451"/>
+	<SubTexture name="bambi idiot0112" x="8" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0113" x="561" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0114" x="1114" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0115" x="1667" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0116" x="2220" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0117" x="2773" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0118" x="3326" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0119" x="3879" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0120" x="4432" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0121" x="4985" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0122" x="5538" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0123" x="6091" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0124" x="6644" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0125" x="7197" y="3193" width="549" height="451"/>
+	<SubTexture name="bambi idiot0126" x="8" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0127" x="561" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0128" x="1114" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0129" x="561" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0130" x="1667" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0131" x="2220" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0132" x="2773" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0133" x="3326" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0134" x="3879" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0135" x="4432" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0136" x="4985" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0137" x="5538" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0138" x="6091" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0139" x="6644" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0140" x="7197" y="3648" width="549" height="451"/>
+	<SubTexture name="bambi idiot0141" x="8" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0142" x="561" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0143" x="1114" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0144" x="1667" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0145" x="2220" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0146" x="2773" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0147" x="3326" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0148" x="3879" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0149" x="4432" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0150" x="4985" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0151" x="5538" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0152" x="6091" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0153" x="6644" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0154" x="7197" y="4103" width="549" height="451"/>
+	<SubTexture name="bambi idiot0155" x="8" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0156" x="561" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0157" x="1114" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0158" x="1667" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0159" x="2220" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0160" x="2773" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0161" x="3326" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0162" x="3879" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0163" x="4432" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0164" x="4985" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0165" x="5538" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0166" x="6091" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0167" x="6644" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0168" x="7197" y="4558" width="549" height="451"/>
+	<SubTexture name="bambi idiot0169" x="8" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0170" x="561" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0171" x="1114" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0172" x="1667" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0173" x="2220" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0174" x="2773" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0175" x="3326" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0176" x="3879" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0177" x="4432" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0178" x="4985" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0179" x="5538" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0180" x="6091" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0181" x="6644" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0182" x="5538" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0183" x="6091" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0184" x="6644" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0185" x="5538" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0186" x="6091" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0187" x="6644" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0188" x="5538" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0189" x="6091" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0190" x="6644" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0191" x="5538" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0192" x="6091" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0193" x="6644" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0194" x="7197" y="5013" width="549" height="451"/>
+	<SubTexture name="bambi idiot0195" x="8" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0196" x="561" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0197" x="1114" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0198" x="1114" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0199" x="1667" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0200" x="1667" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0201" x="2220" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0202" x="2220" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0203" x="2773" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0204" x="3326" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0205" x="3879" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0206" x="4432" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0207" x="4985" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0208" x="5538" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0209" x="6091" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0210" x="6091" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0211" x="6644" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0212" x="6644" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0213" x="7197" y="5468" width="549" height="451"/>
+	<SubTexture name="bambi idiot0214" x="8" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0215" x="561" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0216" x="1114" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0217" x="1667" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0218" x="1667" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0219" x="2220" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0220" x="2220" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0221" x="2773" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0222" x="2773" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0223" x="3326" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0224" x="3326" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0225" x="3879" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0226" x="3879" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0227" x="3879" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0228" x="3879" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0229" x="3879" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0230" x="3879" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0231" x="3879" y="5923" width="549" height="451"/>
+	<SubTexture name="bambi idiot0232" x="4432" y="5923" width="549" height="451"/>
 </TextureAtlas>
