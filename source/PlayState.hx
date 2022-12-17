@@ -1871,7 +1871,7 @@ class PlayState extends MusicBeatState
 				freeplayBG.alpha = 0;
 				add(freeplayBG);
 
-				charBackdrop = new FlxBackdrop(Paths.image('recursed/daveScroll'), 1, 1, true, true);
+				charBackdrop = new FlxBackdrop(Paths.image('recursed/daveScroll'), #if (flixel < "5.0.0") 1, 1, true, true, #else XY, #end 1, 1);
 				charBackdrop.antialiasing = true;
 				charBackdrop.scale.set(2, 2);
 				charBackdrop.screenCenter();
