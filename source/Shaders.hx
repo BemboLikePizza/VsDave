@@ -19,7 +19,7 @@ class GlitchEffect
 {
 	public var shader(default, null):GlitchShader = new GlitchShader();
 
-	#if SHADERS_ENABLED
+	#if (SHADERS_ENABLED || mac)
 	public var waveSpeed(default, set):Float = 0;
 	public var waveFrequency(default, set):Float = 0;
 	public var waveAmplitude(default, set):Float = 0;
@@ -228,7 +228,7 @@ class DitherEffect
 
 class GlitchShader extends FlxShader
 {
-	#if SHADERS_ENABLED
+	#if (SHADERS_ENABLED || mac)
 	@:glFragmentSource('
     #pragma header
     //uniform float tx, ty; // x,y waves phase

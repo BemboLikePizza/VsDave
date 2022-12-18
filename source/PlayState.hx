@@ -145,11 +145,12 @@ class PlayState extends MusicBeatState
 	#if SHADERS_ENABLED
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var ssFilter:ShaderFilter = new ShaderFilter(screenshader.shader);
-	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
 	public static var blockedFilter:ShaderFilter;
-
 	public var dither:DitherEffect = new DitherEffect();
+	#end
+	#if (SHADERS_ENABLED || mac)
+	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	#end
 
 	public var UsingNewCam:Bool = false;
@@ -1392,7 +1393,7 @@ class PlayState extends MusicBeatState
 		}
 		doof.cameras = [camDialogue];
 
-		#if SHADERS_ENABLED
+		#if (SHADERS_ENABLED || mac)
 		if (SONG.song.toLowerCase() == 'kabunga'
 			|| localFunny == CharacterFunnyEffect.Exbungo) // i desperately wanted it so if you use downscroll it switches it to upscroll and flips the entire hud upside down but i never got to it
 		{
@@ -1402,6 +1403,8 @@ class PlayState extends MusicBeatState
 
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
+		#end
+		#if SHADERS_ENABLED
 		if (SONG.song.toLowerCase() == 'blocked' || SONG.song.toLowerCase() == 'shredder')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
@@ -2069,7 +2072,7 @@ class PlayState extends MusicBeatState
 
 	function voidShader(background:BGSprite)
 	{
-		#if SHADERS_ENABLED
+		#if (SHADERS_ENABLED || mac)
 		var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 		testshader.waveAmplitude = 0.1;
 		testshader.waveFrequency = 5;
@@ -2899,7 +2902,7 @@ class PlayState extends MusicBeatState
 		{
 			if (curbg.active) // only the polygonized background is active
 			{
-				#if SHADERS_ENABLED
+				#if (SHADERS_ENABLED || mac)
 				var shad = cast(curbg.shader, Shaders.GlitchShader);
 				shad.uTime.value[0] += elapsed;
 				#end
@@ -3377,11 +3380,6 @@ class PlayState extends MusicBeatState
 
 		#if SHADERS_ENABLED
 		screenshader.shader.uTime.value[0] += elapsed;
-		lazychartshader.shader.uTime.value[0] += elapsed;
-		if (blockedShader != null)
-		{
-			blockedShader.update(elapsed);
-		}
 		if (shakeCam && eyesoreson)
 		{
 			screenshader.shader.uampmul.value[0] = 1;
@@ -3391,6 +3389,15 @@ class PlayState extends MusicBeatState
 			screenshader.shader.uampmul.value[0] -= (elapsed / 2);
 		}
 		screenshader.Enabled = shakeCam && eyesoreson;
+		#end
+		#if (SHADERS_ENABLED || mac)
+		lazychartshader.shader.uTime.value[0] += elapsed;
+		#end
+		#if SHADERS_ENABLED
+		if (blockedShader != null)
+		{
+			blockedShader.update(elapsed);
+		}
 		#end
 
 		super.update(elapsed);
