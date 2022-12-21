@@ -42,7 +42,6 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		super();
 
-		
 		funnyTexts = new FlxTypedGroup<FlxText>();
 		add(funnyTexts);
 
@@ -204,7 +203,7 @@ class PauseSubState extends MusicBeatSubstate
 				{
 					if (PlayState.window != null)
 					{
-						PlayState.window.close();
+						PlayState.closeExpungedWindow();
 					}
 				}
 				FlxG.mouse.visible = false;
@@ -226,7 +225,7 @@ class PauseSubState extends MusicBeatSubstate
 						Main.toggleFuckedFPS(false);
 						if (PlayState.window != null)
 						{
-							PlayState.window.close();
+							PlayState.closeExpungedWindow();
 						}
 					}
 					PlayState.instance.shakeCam = false;
@@ -236,11 +235,13 @@ class PauseSubState extends MusicBeatSubstate
 			case "No Miss Mode":
 				PlayState.instance.noMiss = !PlayState.instance.noMiss;
 				var nm = PlayState.SONG.song.toLowerCase();
+				#if release
 				if (['exploitation', 'cheating', 'unfairness', 'recursed', 'glitch', 'master', 'supernovae'].contains(nm))
 				{
 					PlayState.instance.health = 0;
 					close();
 				}
+				#end
 			case "Exit to menu":
 				if (MathGameState.failedGame)
 				{
@@ -258,7 +259,7 @@ class PauseSubState extends MusicBeatSubstate
 					Main.toggleFuckedFPS(false);
 					if (PlayState.window != null)
 					{
-						PlayState.window.close();
+						PlayState.closeExpungedWindow();
 					}
 				}
 				PlayState.instance.shakeCam = false;

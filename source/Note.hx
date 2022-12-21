@@ -356,27 +356,15 @@ class Note extends FlxSprite
 				}
 				else
 				{
-					//INCOMPLETE
 					prevNote.scale.y *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.75;
 					prevNote.scale.x *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.5;
 					prevNote.offset.y += prevNote.height / 3;
 					prevNote.updateHitbox();
 				}
 			}
-		}
-		if (noteStyle == 'shape')
-		{
-			switch (noteData)
-			{
-				case 1:
-					noteOffset += 4;
-				case 2:
-					noteOffset += 10;
-			}
-			if (isSustainNote)
+			if (noteStyle == 'shape' && isSustainNote)
 			{
 				alphaMult = 1;
-				noteOffset += (width / 2);
 			}
 		}
 	}

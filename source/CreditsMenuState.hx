@@ -213,13 +213,13 @@ class CreditsMenuState extends MusicBeatState
       ]),
       new Person("SAMMYPIGZY", CreditsType.Contributor,
       [  
-         new Social('youtube', 'https://www.youtube.com/channel/UCVbNlXsQ-9WA2WcN8u2se_Q'),
-         new Social('twitter', 'https://twitter.com/TH3_R34L_D34L')
+         new Social('twitter', 'https://twitter.com/sammypigzy')
       ]),
       
       new Person("R34LD34L", CreditsType.Contributor,
       [  
-
+		 new Social('youtube', 'https://www.youtube.com/channel/UCVbNlXsQ-9WA2WcN8u2se_Q'),
+         new Social('twitter', 'https://twitter.com/TH3_R34L_D34L')
       ]),
       
       new Person("Devianator", CreditsType.Contributor,

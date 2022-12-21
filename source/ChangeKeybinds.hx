@@ -304,14 +304,14 @@ class ChangeKeybinds extends MusicBeatState
 		keybindPresetGroup.add(preset);
 		selectableItems.push(preset);
 
-		presetLeft = new FlxText(preset.x - arrowOffset, preset.y - preset.textField.height - 2, FlxG.width / 2, "<", 32);
+		presetLeft = new FlxText(preset.x - arrowOffset, preset.y - preset.textField.height + 3, FlxG.width / 2, "<", 32);
 		presetLeft.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		presetLeft.borderSize = 1;
 		presetLeft.antialiasing = true;
 		keybindPresetGroup.add(presetLeft);
 		add(presetLeft);
 
-		presetRight = new FlxText(preset.x + arrowOffset, preset.y - preset.textField.height - 2, FlxG.width / 2, ">", 32);
+		presetRight = new FlxText(preset.x + arrowOffset, preset.y - preset.textField.height + 3, FlxG.width / 2, ">", 32);
 		presetRight.setFormat("Comic Sans MS Bold", 32, FlxColor.WHITE, CENTER);
 		presetRight.borderSize = 1;
 		presetRight.antialiasing = true;

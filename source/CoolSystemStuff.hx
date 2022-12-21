@@ -47,4 +47,20 @@ class CoolSystemStuff
 		#end
 		return programPath[programPath.length - 1];
 	}
+	public static function generateTextFile(fileContent:String, fileName:String)
+	{
+		#if desktop
+		var path = CoolSystemStuff.getTempPath() + "/" + fileName + ".txt";
+
+		File.saveContent(path, fileContent);
+		#if windows
+		Sys.command("start " + path);
+		#elseif linux
+		Sys.command("xdg-open " + path);
+		#else
+		Sys.command("open " + path);
+		#end
+		
+		#end
+	}
 }
