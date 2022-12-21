@@ -27,10 +27,10 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 	var bg:FlxSprite;
 	var voidShader:Shaders.GlitchEffect;
 
-	public function new(x:Float, y:Float,char:String)
+	public function new(x:Float, y:Float, char:String)
 	{
 		super();
-		
+
 		var sheetInfo:String = '';
 		switch (char)
 		{
@@ -58,13 +58,13 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 		bg.alpha = 0;
 		bg.setGraphicSize(Std.int(bg.width * 1.5));
 		add(bg);
-		
+
 		#if SHADERS_ENABLED
 		voidShader = new Shaders.GlitchEffect();
 		voidShader.waveAmplitude = 0.1;
 		voidShader.waveFrequency = 5;
 		voidShader.waveSpeed = 2;
-		
+
 		bg.shader = voidShader.shader;
 		#end
 
@@ -81,8 +81,8 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 
 		FlxG.camera.follow(camFollow, LOCKON, 0.01);
 
-		FlxTween.tween(bf, {alpha: 0, 'scale.x': 0, 'scale.y': 0}, 2, { 
-			ease: FlxEase.expoInOut, 
+		FlxTween.tween(bf, {alpha: 0, 'scale.x': 0, 'scale.y': 0}, 2, {
+			ease: FlxEase.expoInOut,
 			onUpdate: function(tween:FlxTween)
 			{
 				bf.angle += FlxG.elapsed * 250;
@@ -139,7 +139,6 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 				}
 			}
 		});
-
 	}
 
 	override function update(elapsed:Float)
@@ -186,7 +185,6 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 
 	override function beatHit()
 	{
-		
 	}
 
 	var isEnding:Bool = false;

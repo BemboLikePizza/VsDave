@@ -9,7 +9,8 @@ import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.text.FlxText;
 
-typedef SubtitleProperties = {
+typedef SubtitleProperties =
+{
 	var ?x:Float;
    var ?y:Float;
    var ?subtitleSize:Int;
@@ -65,7 +66,16 @@ class Subtitle extends FlxTypeText
    }
    function init(properties:SubtitleProperties):SubtitleProperties
 	{
-      if (properties == null) properties = {};
+		properties = init(properties);
+
+		super(properties.x, properties.y, FlxG.width, text, 36);
+		sounds = null;
+
+		setFormat("Comic Sans MS Bold", properties.subtitleSize, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		antialiasing = true;
+		borderSize = 2;
+
+		screenCenter(properties.screenCenter);
 
       if (properties.x == null) properties.x = FlxG.width / 2;
       if (properties.y == null) properties.y = (FlxG.height / 2) - 200;
