@@ -66,17 +66,8 @@ class Subtitle extends FlxTypeText
    }
    function init(properties:SubtitleProperties):SubtitleProperties
 	{
-		properties = init(properties);
-
-		super(properties.x, properties.y, FlxG.width, text, 36);
-		sounds = null;
-
-		setFormat("Comic Sans MS Bold", properties.subtitleSize, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		antialiasing = true;
-		borderSize = 2;
-
-		screenCenter(properties.screenCenter);
-
+      if (properties == null) properties = {};
+      
       if (properties.x == null) properties.x = FlxG.width / 2;
       if (properties.y == null) properties.y = (FlxG.height / 2) - 200;
       if (properties.subtitleSize == null) properties.subtitleSize = 36;
