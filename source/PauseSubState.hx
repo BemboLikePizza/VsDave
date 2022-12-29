@@ -210,7 +210,7 @@ class PauseSubState extends MusicBeatSubstate
 				{
 					if (PlayState.window != null)
 					{
-						PlayState.closeExpungedWindow();
+						PlayState.instance.closeExpungedWindow();
 					}
 				}
 				FlxG.mouse.visible = false;
@@ -246,7 +246,7 @@ class PauseSubState extends MusicBeatSubstate
 						Main.toggleFuckedFPS(false);
 						if (PlayState.window != null)
 						{
-							PlayState.closeExpungedWindow();
+							PlayState.instance.closeExpungedWindow();
 						}
 					}
 				}
@@ -281,7 +281,7 @@ class PauseSubState extends MusicBeatSubstate
 					Main.toggleFuckedFPS(false);
 					if (PlayState.window != null)
 					{
-						PlayState.closeExpungedWindow();
+						PlayState.instance.closeExpungedWindow();
 					}
 				}
 				PlayState.instance.shakeCam = false;

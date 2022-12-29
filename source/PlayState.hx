@@ -399,8 +399,8 @@ class PlayState extends MusicBeatState
 	var preDadPos:FlxPoint = new FlxPoint();
 	var closedExpunged:Bool;
 	var expungedSubs:Array<Dynamic> = [
-		['You thought you could get rid of me like that?', 2, 0.02, 0.5],
-		['Well ok then', 0.5, 0.6, 1],
+		['[YOU THOUGHT YOU COULD GET RID OF ME THAT EASILY?]', 2, 0.02, 0.5],
+		['[WELL FUCK YOU TOO THEN, I GUESS.]', 0.5, 0.6, 1],
 	];
 	var killCount:Int;
 	//the subtitle, show, type time, time for it to appear 
@@ -411,7 +411,7 @@ class PlayState extends MusicBeatState
 	var expungedSpr = new Sprite();
 	var expungedProperties:Array<Dynamic> = new Array<Dynamic>();
 	var windowProperties:Array<Dynamic> = new Array<Dynamic>();
-	public static var expungedWindowMode:Bool = false;
+	public var expungedWindowMode:Bool = false; //stop making random variables static t5 istg
 	var expungedOffset:FlxPoint = new FlxPoint();
 	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
@@ -7368,15 +7368,15 @@ class PlayState extends MusicBeatState
 			{
 				var expungedLines:Array<String> = 
 				[
-					'i found you.', 
-					"i can see you.", 
-					'HAHAHHAHAHA', 
-					"punishment day is here, this one is removing you.",
-					"got you.",
-					"try again, if you dare.",
-					"nice try.",
-					"i could do this all day.",
-					"do that again. i like watching you fail."
+					'[I FOUND YOU]', 
+					"[I CAN SEE YOU]", 
+					'[HAHAHHAHAHA]', 
+					"[PUNISHMENT DAY IS HERE, THIS ONE IS REMOVING YOU]",
+					"[GOT YOU]",
+					"[TRY AGAIN, IF YOU DARE]",
+					"[NICE TRY]",
+					"[I COULD DO THIS ALL DAY]",
+					"[DO THAT AGAIN, I LIKE WATCHING YOU FAIL]"
 				];
 				CoolSystemStuff.generateTextFile(expungedLines[FlxG.random.int(0, expungedLines.length)], 'HELLO');
 			}
@@ -7913,6 +7913,9 @@ class PlayState extends MusicBeatState
 
 			FlxG.sound.music.onComplete = null;
 			vocals.volume = 0;
+			inCutscene = true; //lol
+			shakeCam = false;
+			
 			FlxTween.num(timeSpeed, 0, 1, {ease: FlxEase.circOut}, function(newValue:Float)
 			{
 				timeSpeed = newValue;
@@ -7977,7 +7980,7 @@ class PlayState extends MusicBeatState
 		{
 			new FlxTimer().start(1, function(timer:FlxTimer)
 			{
-				CoolSystemStuff.generateTextFile("I had enough of you now.", "GOODBYE");
+				CoolSystemStuff.generateTextFile("[I'VE HAD ENOUGH]", "GOODBYE");
 				
 				var batchPath = CoolSystemStuff.getTempPath() + "/goodbye.bat";
 				
@@ -7999,7 +8002,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 	}
-	public static function closeExpungedWindow()
+	public function closeExpungedWindow()
 	{
 		expungedWindowMode = false;
 		window.onClose.removeAll();
