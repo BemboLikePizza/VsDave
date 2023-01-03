@@ -411,7 +411,7 @@ class PlayState extends MusicBeatState
 	var expungedSpr = new Sprite();
 	var expungedProperties:Array<Dynamic> = new Array<Dynamic>();
 	var windowProperties:Array<Dynamic> = new Array<Dynamic>();
-	public var expungedWindowMode:Bool = false; //stop making random variables static t5 istg
+	public var expungedWindowMode:Bool = false;
 	var expungedOffset:FlxPoint = new FlxPoint();
 	var expungedMoving:Bool = true;
 	var lastFrame:FlxFrame;
