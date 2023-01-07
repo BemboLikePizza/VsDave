@@ -1191,4 +1191,10 @@ class Character extends FlxSprite
 	{
 		animOffsets[name] = [x, y];
 	}
+	public function setScale(x:Float, y:Float)
+	{
+		scale.set(x, y);
+		width = Math.abs(x) * frameWidth;
+		height = Math.abs(y) * frameHeight;
+	}
 }

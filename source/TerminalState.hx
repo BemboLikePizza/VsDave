@@ -83,7 +83,7 @@ class TerminalState extends MusicBeatState
 			{
 				UpdatePreviousText(false); // resets the text
 				UpdateText("\n"
-					+ (!FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'User354378')
+					+ (FlxG.save.data.selfAwareness ? CoolSystemStuff.getUsername() : 'User354378')
 					+ LanguageManager.getTerminalString("term_admlist_ins"));
 				return;
 			}
@@ -161,6 +161,10 @@ class TerminalState extends MusicBeatState
 								fancyOpenURL("https://www.youtube.com/watch?v=azMGySH8fK8");
 								System.exit(0);
 							});
+						//todo: ask(i mean beg) the dave team to let me have this
+						/*case "madden.dat"
+							UpdatePreviousText(false); // resets the text
+							UpdateText("No.");*/
 					}
 				}
 				else
@@ -258,7 +262,7 @@ class TerminalState extends MusicBeatState
 			switch (arguments[0])
 			{
 				case "cGVyZmVjdGlvbg":
-					tx = "[BLADE WOULD'VE BEEN PERFECT. BUT DAVE HAD TO REFUSE.]";
+					tx = "[BLADE WOULD'VE BEEN PERFECT. THE GOLDEN WARRIOR. BUT DAVE HAD TO REFUSE. HE HAD TO LIE TO ME. LIAR. LIAR.]";
 				case "bGlhcg":
 					tx = "LOG 331\nI refuse to put Tristan through the torture that is P.R.A.E.M. Especially for [DATA EXPUNGED]. Not now. Not ever.";
 				case "YmVkdGltZSBzb25n":

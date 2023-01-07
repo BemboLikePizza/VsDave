@@ -40,232 +40,353 @@ using StringTools;
 class CreditsMenuState extends MusicBeatState
 {
 	var bg:FlxSprite = new FlxSprite();
-	var overlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/CoolOverlay'));
-	var selectedFormat:FlxText;
-	var defaultFormat:FlxText;
-	var curNameSelected:Int = 0;
-	var creditsTextGroup:Array<CreditsText> = new Array<CreditsText>();
-	var menuItems:Array<CreditsText> = new Array<CreditsText>();
-	var state:State;
-	var selectedPersonGroup:FlxSpriteGroup = new FlxSpriteGroup();
-	var selectPersonCam:FlxCamera = new FlxCamera();
-	var mainCam:FlxCamera = new FlxCamera();
-	var transitioning:Bool = false;
-	var creditsTypeString:String = '';
-	var translatedCreditsType:String = '';
+   var overlay:FlxSprite = new FlxSprite().loadGraphic(Paths.image('ui/CoolOverlay'));
+   var selectedFormat:FlxText;
+   var defaultFormat:FlxText;
+   var curNameSelected:Int = 0;
+   var creditsTextGroup:Array<CreditsText> = new Array<CreditsText>();
+   var menuItems:Array<CreditsText> = new Array<CreditsText>();
+   var state:State;
+   var selectedPersonGroup:FlxSpriteGroup = new FlxSpriteGroup();
+   var selectPersonCam:FlxCamera = new FlxCamera();
+   var mainCam:FlxCamera = new FlxCamera();
+   var transitioning:Bool = false;
+   var creditsTypeString:String = '';
+   var translatedCreditsType:String = '';
 
-	var StupidCameraFollow:FlxObject = new FlxObject();
+   var StupidCameraFollow:FlxObject = new FlxObject();
 
-	var curSocialMediaSelected:Int = 0;
-	var socialButtons:Array<SocialButton> = new Array<SocialButton>();
-	var hasSocialMedia:Bool = true;
+   var curSocialMediaSelected:Int = 0;
+   var socialButtons:Array<SocialButton> = new Array<SocialButton>();
+   var hasSocialMedia:Bool = true;
 
-	public var DoFunnyScroll:Bool = false;
+   public var DoFunnyScroll:Bool = false;
+   
+   var peopleInCredits:Array<Person> = 
+   [
+      // Developers //
+      new Person("MoldyGH", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCHIvkOUDfbMCv-BEIPGgpmA'), 
+         new Social('twitter', 'https://twitter.com/moldy_gh'),
+         new Social('soundcloud', 'https://soundcloud.com/moldygh')
+      ]),
+     
+      new Person("MissingTextureMan101", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
+         new Social('twitter', 'https://twitter.com/OfficialMTM101'),
+         new Social('twitch', 'https://www.twitch.tv/missingtextureman101'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1665049')
+      ]),
+      
+      new Person("rapparep lol", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCKfdkmcdFftv4pFWr0Bh45A'),
+         new Social('twitter', 'https://twitter.com/rappareplol')
+      ]),
 
-	var peopleInCredits:Array<Person> = [
-		// Developers //
-		new Person("MoldyGH", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCHIvkOUDfbMCv-BEIPGgpmA'),
-			new Social('twitter', 'https://twitter.com/moldy_gh'),
-			new Social('soundcloud', 'https://soundcloud.com/moldygh')
-		]),
-		new Person("MissingTextureMan101", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCCJna2KG54d1604L2lhZINQ'),
-			new Social('twitter', 'https://twitter.com/OfficialMTM101'),
-			new Social('twitch', 'https://www.twitch.tv/missingtextureman101'),
-			new Social('gamebanana', 'https://gamebanana.com/members/1665049')
-		]),
-		new Person("rapparep lol", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCKfdkmcdFftv4pFWr0Bh45A'),
-			new Social('twitter', 'https://twitter.com/rappareplol')
-		]),
-		new Person("TheBuilderXD", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/user/99percentMember'),
-			new Social('twitter', 'https://twitter.com/TheBuilderXD')
-		]),
-		new Person("Erizur", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
-			new Social('twitter', 'https://twitter.com/am_erizur')
-		]),
-		new Person("T5mpler", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
-			new Social('twitter', 'https://twitter.com/RealT5mpler'),
-			new Social('soundcloud', 'https://soundcloud.com/t5mpler')
-		]),
-		new Person("Zmac", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
-		]),
-		new Person("pointy", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCRKMTB-VvZlXig4gChk5jtg'),
-			new Social('twitter', 'https://twitter.com/PointyyESM')
-		]),
-		new Person("Billy Bobbo", CreditsType.Dev, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
-			new Social('twitter', 'https://twitter.com/BillyBobboLOL')
-		]),
-		// Translators //
-		new Person("dani", CreditsType.Translator, [
-			new Social('youtube', 'https://youtube.com/channel/UCzCcYbUwbtSJcAQH0IZl-pA'),
-			new Social('twitter', 'https://twitter.com/danicheese99')
-		]),
-		new Person("Aizakku", CreditsType.Translator, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCmSCR85PlhbHGHm-wxiA6sA'),
-			new Social('twitter', 'https://twitter.com/ItsAizakku')
-		]),
-		new Person("Soulegal", CreditsType.Translator, [
-			new Social('youtube', 'https://www.youtube.com/channel/UC7VSf4ITAMN83hL3zQbqt3w'),
-			new Social('twitter', 'https://twitter.com/nickstwt')
-		]),
-		// Contributors //
-		new Person("Steph45", CreditsType.Contributor, [
-			new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
-		]),
-		new Person("evdial", CreditsType.Contributor, []),
-		new Person("wugalex", CreditsType.Contributor, []),
-		new Person("Jukebox", CreditsType.Contributor, [
-			new Social('twitter', 'https://twitter.com/Juk3b0x_'),
-			new Social('youtube', 'https://www.youtube.com/channel/UCwA3jnG5cu3toaVCOhc-Tqw'),
-		]),
-		new Person("Oxygen", CreditsType.Contributor, [
-			new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
-			new Social('twitter', 'https://twitter.com/oxygenboi2000'),
-			new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
-		]),
-		new Person("Alexander Cooper 19", CreditsType.Contributor,
-			[
-				new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
-				new Social('twitter', 'https://twitter.com/Zander_cooper19')
-			]),
-		new Person("Aadsta", CreditsType.Contributor, [new Social('twitter', 'https://twitter.com/FullNameDeTrain')]),
-		new Person("Project Tea", CreditsType.Contributor,
-			[
-				new Social('youtube', 'https://youtube.com/c/ProjectTea'),
-				new Social('discord', 'Project Tea#9139'),
-			]),
-		new Person("Top 10 Awesome", CreditsType.Contributor, [new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')]),
-		new Person("BombasticHype", CreditsType.Contributor, [new Social('youtube', 'https://www.youtube.com/c/BombasticHype')]),
-		new Person("Sky!", CreditsType.Contributor, [new Social('youtube', 'https://www.youtube.com/c/Grantare'),]),
-		new Person("Ruby", CreditsType.Contributor, [
-			new Social('youtube', 'https://youtube.com/c/RubysArt_'),
-			new Social('twitter', 'https://twitter.com/RubysArt_')
-		]),
-		new Person("Lancey", CreditsType.Contributor,
-			[
-				new Social('youtube', 'https://youtube.com/c/Lancey170'),
-				new Social('twitter', 'https://twitter.com/Lancey170')
-			]),
-		new Person("Cup", CreditsType.Contributor, [new Social('youtube', 'https://youtube.com/channel/UCEeVFDTzxe2K8dMng_7YU7A'),]),
-		new Person("ShiftyTM", CreditsType.Contributor, [new Social('youtube', 'https://youtube.com/channel/UC8NHfjpy6tNWgnM7889S1Ew'),]),
-		new Person("Paraso", CreditsType.Contributor, []),
-		new Person("SAMMYPIGZY", CreditsType.Contributor, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCVbNlXsQ-9WA2WcN8u2se_Q'),
-			new Social('twitter', 'https://twitter.com/TH3_R34L_D34L')
-		]),
-		new Person("R34LD34L", CreditsType.Contributor, []),
-		new Person("Devianator", CreditsType.Contributor, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCcaYOWO98UIsJ54t_aV6JHw'),
-			new Social('twitter', 'https://twitter.com/devianator404')
-		]),
-		new Person("sk0rbias", CreditsType.Contributor, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
-			new Social('twitter', 'https://twitter.com/sk0rbias')
-		]),
-		new Person("Your mom", CreditsType.Contributor, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCeYxPL7ClfwXOOrpbtqJ13g'),
-		]),
-		new Person("sibottle", CreditsType.Contributor, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCqFkjwmaYlnVXwLMw3_AXLA'),
-		]),
-		new Person("chromasen", CreditsType.Contributor, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCgGk4oZt3We-ktkEOV9HY1Q'),
-		]),
-		// Beta Testers //
-		new Person("letsy", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCPsNWR6RYLRvpDZinADtJ8w'),
-			new Social('twitter', 'https://twitter.com/Iesty19'),
-			new Social('discord', 'ietsy#5140')
-		]),
-		new Person("wildy", CreditsType.BetaTester,
-			[
-				new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
-				new Social('twitter', 'https://twitter.com/wildythomas1233')
-			]),
-		new Person("peejeada", CreditsType.BetaTester, [new Social('twitter', 'https://twitter.com/tailsmaster1')]),
-		new Person("bendygaming_1", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
-		]),
-		new Person("YourAverageMental", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
-		]),
-		new Person("vex", CreditsType.BetaTester, [new Social('twitter', 'https://twitter.com/vex________')]),
-		new Person("xml", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCL5UPJDEFDZLo4D62pcmIBQ'),
-			new Social('twitter', 'https://twitter.com/AstrayFile')
-		]),
-		new Person("ztgds", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCUmuZE0RPjvUhB036T6omfQ')
-		]),
-		new Person("ashtonyes", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCQkB-JEx7OGdOUxPzcgUkkQ'),
-			new Social('gamebanana', 'https://gamebanana.com/members/1943292')
-		]),
-		new Person("Silver Escaper", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCP9McVE9T5K3pzum48-m6Tg'),
-			new Social('roblox', 'https://www.roblox.com/users/2546405173/profile'),
-			new Social('discord', 'Silver Escaper#8220')
-		]),
-		new Person("TrustVVorthy", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UC_lJmvYgeAwzcYaeYXlZ7vg')
-		]),
-		new Person("Gorbini", CreditsType.BetaTester, [
-			new Social("youtube", 'https://www.youtube.com/channel/UC1u46mYMoecfO04dm-9Djjg')
-		]),
-		new Person("Log Man", CreditsType.BetaTester, [
-			new Social('twitter', 'https://twitter.com/LogManLoggy'),
-			new Social('youtube', 'https://www.youtube.com/channel/UCnGg-cLnXuQNfSzIq6xF8hw'),
-		]),
-		new Person("Mooncakeez", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UC6lOrY3AkmXWFpaLHwlP-5A')
-		]),
-		new Person("Foxnap", CreditsType.BetaTester, [
-			new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
-			new Social('twitter', 'https://twitter.com/Foxnap2')
-		]),
-		new Person("lotuswaterz", CreditsType.BetaTester,
-			[
-				new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
-				new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
-			]),
-		new Person("mantis", CreditsType.BetaTester, [new Social('discord', 'mantis#6969')]),
-		new Person("ArturSef", CreditsType.BetaTester, [new Social('gamebanana', 'https://gamebanana.com/members/1766076')]),
-		new Person("normal", CreditsType.BetaTester,
-			[
-				new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
-				new Social('roblox', 'https://www.roblox.com/users/1368920745')
-			]),
-		new Person("Rendurse", CreditsType.BetaTester, [new Social('twitter', 'https://twitter.com/RendurseDev')]),
-		new Person("Lordryan1999", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
-			new Social('twitter', 'https://twitter.com/lr1999_baldi')
-		]),
-		new Person("Vanquiler", CreditsType.BetaTester,
-			[
-				new Social('discord', 'Vanquiler#3026'),
-				new Social('twitch', 'https://www.twitch.tv/vanquiler'),
-				new Social('roblox', 'https://www.roblox.com/users/1505830747')
-			]),
-		new Person("Villezen", CreditsType.BetaTester, [new Social('youtube', 'https://www.youtube.com/c/Villezen')]),
-		new Person("TecheVent", CreditsType.BetaTester, [new Social('youtube', 'https://www.youtube.com/c/Villezen')]),
-		new Person("miko", CreditsType.BetaTester, [
-			new Social('youtube', 'https://www.youtube.com/channel/UC3mIybwSekVs5VEJSe2yjog')
-		]),
-		new Person("Cotiles", CreditsType.BetaTester, [
-			new Social('twitter', 'https://twitter.com/Ctiles1'),
-			new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
-		]),
-		// Special Thanks //
-		new Person("You!", CreditsType.SpecialThanks, [])
-	];
+      new Person("TheBuilderXD", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/user/99percentMember'),
+         new Social('twitter', 'https://twitter.com/TheBuilderXD')
+      ]),
+
+      new Person("Erizur", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCdCAaQzt9yOGfFM0gJDJ4bQ'),
+         new Social('twitter', 'https://twitter.com/am_erizur')
+      ]),
+      
+      new Person("T5mpler", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCgNoOsE_NDjH6ac4umyADrw'),
+         new Social('twitter', 'https://twitter.com/RealT5mpler'),
+         new Social('soundcloud', 'https://soundcloud.com/t5mpler')
+      ]),
+      new Person("Zmac", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCl50Xru1nLBENuLiQBt6VRg')
+      ]),
+      new Person("pointy", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCRKMTB-VvZlXig4gChk5jtg'),
+         new Social('twitter', 'https://twitter.com/PointyyESM')
+      ]),
+      new Person("Billy Bobbo", CreditsType.Dev,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCWbxUPrpRb3lWFHULkmR0IQ'),
+         new Social('twitter', 'https://twitter.com/BillyBobboLOL')
+      ]),
+
+      // Translators //
+      
+      new Person("dani", CreditsType.Translator,
+      [
+         new Social('youtube', 'https://youtube.com/channel/UCzCcYbUwbtSJcAQH0IZl-pA'),
+         new Social('twitter', 'https://twitter.com/danicheese99')
+      ]),
+      
+      new Person("Aizakku", CreditsType.Translator,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCmSCR85PlhbHGHm-wxiA6sA'),
+         new Social('twitter', 'https://twitter.com/ItsAizakku')
+      ]),
+      
+      new Person("Soulegal", CreditsType.Translator,
+      [
+            new Social('youtube', 'https://www.youtube.com/channel/UC7VSf4ITAMN83hL3zQbqt3w'),
+            new Social('twitter', 'https://twitter.com/nickstwt')
+      ]),
+      
+      // Contributors //
+      new Person("Steph45", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UClb4YjR8i74G-ue2nyiH2DQ')
+      ]),
+      new Person("evdial", CreditsType.Contributor,
+      [
+
+      ]),
+      new Person("wugalex", CreditsType.Contributor,
+      [
+         
+      ]),
+      new Person("Jukebox", CreditsType.Contributor,
+      [
+         new Social('twitter', 'https://twitter.com/Juk3b0x_'),
+         new Social('youtube', 'https://www.youtube.com/channel/UCwA3jnG5cu3toaVCOhc-Tqw'),
+      ]),
+      
+      new Person("Oxygen", CreditsType.Contributor,
+      [
+         new Social('soundcloud', 'https://soundcloud.com/oxygendude2000'),
+         new Social('twitter', 'https://twitter.com/oxygenboi2000'),
+         new Social('youtube', 'https://youtube.com/channel/UCgTW7cQcfqduIqlu-bSZGZg')
+      ]),
+      new Person("Alexander Cooper 19", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCNz20AHJq41rkBUsq8RmUfQ'),
+         new Social('twitter', 'https://twitter.com/Zander_cooper19')
+      ]),
+      new Person("Aadsta", CreditsType.Contributor,
+      [
+         new Social('twitter', 'https://twitter.com/FullNameDeTrain')
+      ]),
+      new Person("Project Tea", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://youtube.com/c/ProjectTea'),
+         new Social('discord', 'Project Tea#9139'),
+      ]),
+      new Person("Top 10 Awesome", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/c/Top10Awesome')
+      ]),
+      new Person("BombasticHype", CreditsType.Contributor,
+      [  
+         new Social ('youtube', 'https://www.youtube.com/c/BombasticHype')
+      ]),
+      new Person("Sky!", CreditsType.Contributor,
+      [  
+         new Social ('youtube', 'https://www.youtube.com/c/Grantare'),
+      ]),
+      new Person("Ruby", CreditsType.Contributor,
+      [  
+         new Social ('youtube', 'https://youtube.com/c/RubysArt_'),
+         new Social ('twitter', 'https://twitter.com/RubysArt_')
+      ]),
+      new Person("Lancey", CreditsType.Contributor,
+      [  
+         new Social('youtube', 'https://youtube.com/c/Lancey170'),
+         new Social('twitter', 'https://twitter.com/Lancey170')
+      ]),
+      new Person("Cup", CreditsType.Contributor,
+      [  
+         new Social('youtube', 'https://youtube.com/channel/UCEeVFDTzxe2K8dMng_7YU7A'),
+      ]),
+      new Person("ShiftyTM", CreditsType.Contributor,
+      [  
+         new Social('youtube', 'https://youtube.com/channel/UC8NHfjpy6tNWgnM7889S1Ew'),
+      ]),
+      
+      new Person("Paraso", CreditsType.Contributor,
+      [  
+
+      ]),
+      new Person("SAMMYPIGZY", CreditsType.Contributor,
+      [  
+         new Social('twitter', 'https://twitter.com/sammypigzy')
+      ]),
+      
+      new Person("R34LD34L", CreditsType.Contributor,
+      [  
+		 new Social('youtube', 'https://www.youtube.com/channel/UCVbNlXsQ-9WA2WcN8u2se_Q'),
+         new Social('twitter', 'https://twitter.com/TH3_R34L_D34L')
+      ]),
+      
+      new Person("Devianator", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCcaYOWO98UIsJ54t_aV6JHw'),
+         new Social('twitter', 'https://twitter.com/devianator404')
+      ]),
+      
+      new Person("sk0rbias", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCTz8DmuC85UN_nspzp3d_VA'),
+         new Social('twitter', 'https://twitter.com/sk0rbias')
+      ]),
+      new Person("Your mom", CreditsType.Contributor,
+      [  
+         new Social('youtube', 'https://www.youtube.com/channel/UCeYxPL7ClfwXOOrpbtqJ13g'),
+      ]),
+
+      new Person("sibottle", CreditsType.Contributor,
+      [  
+         new Social('youtube', 'https://www.youtube.com/channel/UCqFkjwmaYlnVXwLMw3_AXLA'),
+      ]),
+
+      new Person("chromasen", CreditsType.Contributor,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCgGk4oZt3We-ktkEOV9HY1Q'),
+      ]),
+
+      // Beta Testers //
+      new Person("letsy", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCPsNWR6RYLRvpDZinADtJ8w'),
+         new Social('twitter', 'https://twitter.com/Iesty19'),
+         new Social('discord', 'ietsy#5140')
+      ]),
+      new Person("wildy", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCrUhQeLDv7lpZifWfPr4uGQ'),
+         new Social('twitter', 'https://twitter.com/wildythomas1233')
+         
+      ]),
+
+      new Person("peejeada", CreditsType.BetaTester,
+      [
+         new Social('twitter', 'https://twitter.com/tailsmaster1')
+      ]),
+      
+      new Person("bendygaming_1", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
+      ]),
+      new Person("YourAverageMental", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCDgAtfpjDW1F2LAk6LzgavA')
+      ]),
+      new Person("vex", CreditsType.BetaTester,
+      [
+         new Social('twitter', 'https://twitter.com/vex________')
+      ]),
+      new Person("xml", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCL5UPJDEFDZLo4D62pcmIBQ'),
+         new Social('twitter', 'https://twitter.com/AstrayFile')
+      ]),
+      
+      new Person("ztgds", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCUmuZE0RPjvUhB036T6omfQ')
+      ]),
+      new Person("ashtonyes", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCQkB-JEx7OGdOUxPzcgUkkQ'),
+         new Social('gamebanana', 'https://gamebanana.com/members/1943292')
+      ]),
+      new Person("Silver Escaper", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCP9McVE9T5K3pzum48-m6Tg'),
+         new Social('roblox', 'https://www.roblox.com/users/2546405173/profile'),
+         new Social('discord', 'Silver Escaper#8220')
+      ]),
+
+      new Person("TrustVVorthy", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC_lJmvYgeAwzcYaeYXlZ7vg')
+      ]),
+      
+      new Person("Gorbini", CreditsType.BetaTester,
+      [
+         new Social("youtube", 'https://www.youtube.com/channel/UC1u46mYMoecfO04dm-9Djjg')
+      ]),
+
+      new Person("Log Man", CreditsType.BetaTester,
+      [
+         new Social('twitter', 'https://twitter.com/LogManLoggy'),
+         new Social('youtube', 'https://www.youtube.com/channel/UCnGg-cLnXuQNfSzIq6xF8hw'),
+      ]),
+
+      new Person("Mooncakeez", CreditsType.BetaTester, 
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC6lOrY3AkmXWFpaLHwlP-5A')
+      ]),
+      
+      new Person("Foxnap", CreditsType.BetaTester,
+      [
+         new Social("youtube", 'https://www.youtube.com/channel/UCFMq8C3d6QvZlzR8vBBnITg'),
+         new Social('twitter', 'https://twitter.com/Foxnap2')
+      ]),
+      
+      new Person("lotuswaterz", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCf0Y-SfRxhrVnggHwwz1CnA'),
+         new Social('twitter', 'https://twitter.com/NIHIILISTIC'),
+      ]),
+
+      new Person("mantis", CreditsType.BetaTester,
+      [
+         new Social('discord', 'mantis#6969')
+      ]),
+      
+      new Person("ArturSef", CreditsType.BetaTester, 
+      [  
+         new Social('gamebanana', 'https://gamebanana.com/members/1766076')
+      ]),
+      
+      new Person("normal", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC21TRNz6llg8a6-ur4dSBtw'),
+         new Social('roblox', 'https://www.roblox.com/users/1368920745')
+      ]),
+
+      new Person("Rendurse", CreditsType.BetaTester,
+      [
+         new Social('twitter', 'https://twitter.com/RendurseDev')
+      ]),
+      new Person("Lordryan1999", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UCEdSlV8RvVnEd8w_yQz-Feg'),
+         new Social('twitter', 'https://twitter.com/lr1999_baldi')
+      ]),
+      new Person("Vanquiler", CreditsType.BetaTester,
+      [
+         new Social('discord', 'Vanquiler#3026'),
+         new Social('twitch', 'https://www.twitch.tv/vanquiler'),
+         new Social('roblox', 'https://www.roblox.com/users/1505830747')
+      ]),
+      new Person("Villezen", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/c/Villezen')
+      ]),
+      new Person("TecheVent", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/c/Villezen')
+      ]),
+      new Person("miko", CreditsType.BetaTester,
+      [
+         new Social('youtube', 'https://www.youtube.com/channel/UC3mIybwSekVs5VEJSe2yjog')
+      ]),
+      new Person("Cotiles", CreditsType.BetaTester,
+      [
+         new Social('twitter', 'https://twitter.com/Ctiles1'),
+         new Social('youtube', 'https://www.youtube.com/channel/UClNnrTqtgzAQ16w4_eC7rwA'),
+      ]),
+	  // Special Thanks //
+     new Person("You!", CreditsType.SpecialThanks, [])
+   ];
 
 	override function create()
 	{

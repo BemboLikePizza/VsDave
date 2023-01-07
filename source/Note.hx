@@ -85,7 +85,8 @@ class Note extends FlxSprite
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
 		// NOW IT SHALL FOR REALLY ALWAYS BE OFF SCREEN.
 		// luckily i think only the devs really noticed that you can see the notes spawn in at the bottom of the screen when there is a modchart.
-		y -= 9000;
+		//NOW IT SHOULD ACTUALLY BE OFF SCREEN.
+		y -= 99000;
 
 		inCharter ? this.strumTime = strumTime : {
 			this.strumTime = Math.round(strumTime);
@@ -370,27 +371,15 @@ class Note extends FlxSprite
 				}
 				else
 				{
-					// INCOMPLETE
 					prevNote.scale.y *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.75;
 					prevNote.scale.x *= (Conductor.stepCrochet / 100) * PlayState.SONG.speed * 0.5;
 					prevNote.offset.y += prevNote.height / 3;
 					prevNote.updateHitbox();
 				}
 			}
-		}
-		if (noteStyle == 'shape')
-		{
-			switch (noteData)
-			{
-				case 1:
-					noteOffset += 4;
-				case 2:
-					noteOffset += 10;
-			}
-			if (isSustainNote)
+			if (noteStyle == 'shape' && isSustainNote)
 			{
 				alphaMult = 1;
-				noteOffset += (width / 2);
 			}
 		}
 	}

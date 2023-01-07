@@ -243,7 +243,7 @@ class CharacterSelectState extends MusicBeatState
 		resetText.setFormat(Paths.font("comic.ttf"), 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		resetText.autoSize = false;
 		resetText.fieldWidth = FlxG.height;
-		resetText.x -= resetText.textField.textWidth;
+		resetText.x -= resetText.textField.textWidth + 100;
 		resetText.y -= resetText.textField.textHeight - 100;
 		resetText.borderSize = 3;
 		resetText.cameras = [camHUD];
@@ -483,13 +483,11 @@ class CharacterSelectState extends MusicBeatState
 			UpdateBF();
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 		}
-		#if debug
 		if (FlxG.keys.justPressed.R && !selectedCharacter)
 		{
 			reset();
 			FlxG.resetState();
 		}
-		#end
 	}
 
 	public static function unlockCharacter(character:String)
