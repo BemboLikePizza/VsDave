@@ -9,12 +9,14 @@ import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;
 
-typedef SongHeading = {
+typedef SongHeading =
+{
 	var path:String;
 	var antiAliasing:Bool;
 	var ?animation:Animation;
 	var iconOffset:Float;
 }
+
 class CreditsPopUp extends FlxSpriteGroup
 {
 	public var bg:FlxSprite;
@@ -22,6 +24,7 @@ class CreditsPopUp extends FlxSpriteGroup
 
 	public var funnyText:FlxText;
 	public var funnyIcon:FlxSprite;
+
 	var iconOffset:Float;
 	var curHeading:SongHeading;
 
@@ -36,8 +39,9 @@ class CreditsPopUp extends FlxSpriteGroup
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
-			case 'warmup' | 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'indignancy' |  'splitathon' | 'shredder' | 'greetings' |
-				'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'kabunga' | 'secret' | 'unfairness' | 'rano' | 'master':
+			case 'warmup' | 'house' | 'insanity' | 'polygonized' | 'bonus-song' | 'blocked' | 'corn-theft' | 'maze' | 'indignancy' | 'splitathon' |
+				'shredder' | 'greetings' | 'interdimensional' | 'cheating' | 'escape-from-california' | 'five-nights' | 'kabunga' | 'secret' | 'unfairness' |
+				'rano' | 'master':
 				songCreator = 'MoldyGH';
 			case 'exploitation':
 				songCreator = 'Oxygen';
@@ -81,26 +85,46 @@ class CreditsPopUp extends FlxSpriteGroup
 			case 8:
 				headingPath = {path: 'songHeadings/tristanHeading', antiAliasing: true, iconOffset: 0};
 			case 9:
-				headingPath = {path: 'songHeadings/botHeading', antiAliasing: true,
-				animation: new Animation('botTrot', 'Bot trot', 24, true, [false, false]), iconOffset: 0};
+				headingPath = {
+					path: 'songHeadings/botHeading',
+					antiAliasing: true,
+					animation: new Animation('botTrot', 'Bot trot', 24, true, [false, false]),
+					iconOffset: 0
+				};
 			case 10:
 				headingPath = {path: 'songHeadings/recursedHeading', antiAliasing: true, iconOffset: 5};
 			case 11:
-				headingPath = {path: 'songHeadings/californiaHeading', antiAliasing: true,
-				animation: new Animation('california', 'California', 24, true, [false, false]), iconOffset: 0};
+				headingPath = {
+					path: 'songHeadings/californiaHeading',
+					antiAliasing: true,
+					animation: new Animation('california', 'California', 24, true, [false, false]),
+					iconOffset: 0
+				};
 			case 12:
 				headingPath = {path: 'songHeadings/fnafHeading', antiAliasing: true, iconOffset: 0};
 			case 13:
 				headingPath = {path: 'songHeadings/fnfengeading', antiAliasing: false, iconOffset: 0};
 			case 14:
-				headingPath = {path: 'songHeadings/cheatingHeading', antiAliasing: true,
-				animation: new Animation('cheating', 'Cheating', 24, true, [false, false]), iconOffset: 0};
+				headingPath = {
+					path: 'songHeadings/cheatingHeading',
+					antiAliasing: true,
+					animation: new Animation('cheating', 'Cheating', 24, true, [false, false]),
+					iconOffset: 0
+				};
 			case 15:
-				headingPath = {path: 'songHeadings/unfairHeading', antiAliasing: true,
-				animation: new Animation('unfair', 'Unfairness', 24, true, [false, false]), iconOffset: 0};
+				headingPath = {
+					path: 'songHeadings/unfairHeading',
+					antiAliasing: true,
+					animation: new Animation('unfair', 'Unfairness', 24, true, [false, false]),
+					iconOffset: 0
+				};
 			case 16:
-				headingPath = {path: 'songHeadings/expungedHeading', antiAliasing: true,
-				animation: new Animation('expunged', 'Expunged', 24, true, [false, false]), iconOffset: 0};
+				headingPath = {
+					path: 'songHeadings/expungedHeading',
+					antiAliasing: true,
+					animation: new Animation('expunged', 'Expunged', 24, true, [false, false]),
+					iconOffset: 0
+				};
 		}
 		switch (PlayState.SONG.song.toLowerCase())
 		{
@@ -111,8 +135,12 @@ class CreditsPopUp extends FlxSpriteGroup
 		}
 		if (PlayState.recursedStaticWeek)
 		{
-			headingPath = {path: 'songHeadings/somethingHeading', antiAliasing: false,
-				animation: new Animation('scramble', 'Scramble', 24, true, [false, false]), iconOffset: 0};
+			headingPath = {
+				path: 'songHeadings/somethingHeading',
+				antiAliasing: false,
+				animation: new Animation('scramble', 'Scramble', 24, true, [false, false]),
+				iconOffset: 0
+			};
 		}
 
 		if (headingPath != null)
@@ -141,6 +169,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		var yValues = CoolUtil.getMinAndMax(bg.height, funnyText.height);
 		funnyText.y = funnyText.y + ((yValues[0] - yValues[1]) / 2);
 	}
+
 	public function switchHeading(newHeading:SongHeading)
 	{
 		if (bg != null)
@@ -165,13 +194,14 @@ class CreditsPopUp extends FlxSpriteGroup
 		bg.antialiasing = newHeading.antiAliasing;
 		curHeading = newHeading;
 		add(bg);
-		
+
 		rescaleBG();
 	}
+
 	public function changeText(newText:String, newIcon:String, rescaleHeading:Bool = true)
 	{
 		createHeadingText(newText);
-		
+
 		if (funnyIcon != null)
 		{
 			remove(funnyIcon);
@@ -185,6 +215,7 @@ class CreditsPopUp extends FlxSpriteGroup
 			rescaleBG();
 		}
 	}
+
 	function createHeadingText(text:String)
 	{
 		if (funnyText != null)
@@ -197,6 +228,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		funnyText.antialiasing = true;
 		add(funnyText);
 	}
+
 	public function rescaleIcon()
 	{
 		var offset = (curHeading == null ? 0 : curHeading.iconOffset);
@@ -208,6 +240,7 @@ class CreditsPopUp extends FlxSpriteGroup
 		var heightValues = CoolUtil.getMinAndMax(funnyIcon.height, funnyText.height);
 		funnyIcon.setPosition(funnyText.textField.textWidth + offset, (heightValues[0] - heightValues[1]) / 2);
 	}
+
 	function rescaleBG()
 	{
 		bg.setGraphicSize(Std.int((funnyText.textField.textWidth + funnyIcon.width + 0.5)), Std.int(funnyText.height + 0.5));

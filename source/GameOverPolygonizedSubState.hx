@@ -27,10 +27,10 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 	var bg:FlxSprite;
 	var voidShader:Shaders.GlitchEffect;
 
-	public function new(x:Float, y:Float,char:String)
+	public function new(x:Float, y:Float, char:String)
 	{
 		super();
-		
+
 		var sheetInfo:String = '';
 		switch (char)
 		{
@@ -41,15 +41,6 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 				deathSuffix = '-bambi';
 				bgSuffix = 'cheating/cheater';
 		}
-		switch (char)
-		{
-			case 'dave-angey':
-				sheetInfo = 'dave/characters/Dave_3D_Dead';
-			case 'bambi-3d':
-				sheetInfo = 'expunged/Bambi_3D_Death';
-			case 'dave-3d-recursed':
-				sheetInfo = 'recursed/characters/Dave_3D_Recursed_Dead';
-		}
 
 		bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/$bgSuffix', 'shared'));
 		bg.scrollFactor.set();
@@ -58,13 +49,13 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 		bg.alpha = 0;
 		bg.setGraphicSize(Std.int(bg.width * 1.5));
 		add(bg);
-		
+
 		#if SHADERS_ENABLED
 		voidShader = new Shaders.GlitchEffect();
 		voidShader.waveAmplitude = 0.1;
 		voidShader.waveFrequency = 5;
 		voidShader.waveSpeed = 2;
-		
+
 		bg.shader = voidShader.shader;
 		#end
 
@@ -81,8 +72,8 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 
 		FlxG.camera.follow(camFollow, LOCKON, 0.01);
 
-		FlxTween.tween(bf, {alpha: 0, 'scale.x': 0, 'scale.y': 0}, 2, { 
-			ease: FlxEase.expoInOut, 
+		FlxTween.tween(bf, {alpha: 0, 'scale.x': 0, 'scale.y': 0}, 2, {
+			ease: FlxEase.expoInOut,
 			onUpdate: function(tween:FlxTween)
 			{
 				bf.angle += FlxG.elapsed * 250;
@@ -90,56 +81,44 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 			},
 			onComplete: function(tween:FlxTween)
 			{
-				var charDeath = new FlxSprite();
-				charDeath.frames = Paths.getSparrowAtlas(sheetInfo);
-				charDeath.animation.addByPrefix('death', 'dead', 24, false);
-				charDeath.scrollFactor.set();
-				charDeath.antialiasing = false;
-				charDeath.screenCenter();
-				charDeath.animation.play('death');
-				charDeath.animation.finishCallback = function(anim:String)
-				{
-					remove(charDeath);
-					polygonizedText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_polygonized'), 32);
-					polygonizedText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-					polygonizedText.borderSize = 2.5;
-					polygonizedText.antialiasing = true;
-					polygonizedText.screenCenter();
-					polygonizedText.scrollFactor.set();
-					polygonizedText.scale.set();
-					add(polygonizedText);
+				polygonizedText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_polygonized'), 32);
+				polygonizedText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+				polygonizedText.borderSize = 2.5;
+				polygonizedText.antialiasing = true;
+				polygonizedText.screenCenter();
+				polygonizedText.scrollFactor.set();
+				polygonizedText.scale.set();
+				add(polygonizedText);
 
-					FlxTween.tween(polygonizedText, {'scale.x': 1, 'scale.y': 1}, 1, {
-						ease: FlxEase.backOut,
-						onUpdate: function(tween:FlxTween)
-						{
-							polygonizedText.centerOrigin();
-						}
-					});
-
-					FlxG.sound.play(Paths.sound('trumpet', 'shared'), 1, false, null, function()
+				FlxTween.tween(polygonizedText, {'scale.x': 1, 'scale.y': 1}, 1, {
+					ease: FlxEase.backOut,
+					onUpdate: function(tween:FlxTween)
 					{
-						FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
+						polygonizedText.centerOrigin();
+					}
+				});
 
-						restartText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_restart'), 32);
-						restartText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-						restartText.borderSize = 2.5;
-						restartText.antialiasing = true;
-						restartText.screenCenter();
-						restartText.y += 300;
-						restartText.scrollFactor.set();
-						restartText.alpha = 0;
-						add(restartText);
+				FlxG.sound.play(Paths.sound('trumpet', 'shared'), 1, false, null, function()
+				{
+					FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
 
-						FlxTween.tween(polygonizedText, {y: polygonizedText.y - 300}, 1, {ease: FlxEase.expoOut});
+					restartText = new FlxText(0, 0, FlxG.width, LanguageManager.getTextString('3d_gameOver_restart'), 32);
+					restartText.setFormat(Paths.font('comic.ttf'), 40, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					restartText.borderSize = 2.5;
+					restartText.antialiasing = true;
+					restartText.screenCenter();
+					restartText.y += 300;
+					restartText.scrollFactor.set();
+					restartText.alpha = 0;
+					add(restartText);
 
-						FlxTween.tween(bg, {alpha: 0.6}, 1);
-						FlxTween.tween(restartText, {alpha: 1}, 1);
-					});
-				}
+					FlxTween.tween(polygonizedText, {y: polygonizedText.y - 300}, 1, {ease: FlxEase.expoOut});
+
+					FlxTween.tween(bg, {alpha: 0.6}, 1);
+					FlxTween.tween(restartText, {alpha: 1}, 1);
+				});
 			}
 		});
-
 	}
 
 	override function update(elapsed:Float)
@@ -183,12 +162,6 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 			Conductor.songPosition = FlxG.sound.music.time;
 		}
 	}
-
-	override function beatHit()
-	{
-		
-	}
-
 	var isEnding:Bool = false;
 
 	function endBullshit():Void

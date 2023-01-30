@@ -12,99 +12,103 @@ import flixel.util.FlxColor;
 
 class TerminalCheatingState extends FlxUIState
 {
-   var typedText:FlxTypeText;
-   var terminalTextsLeft:Array<TerminalText> = new Array<TerminalText>();
-   var curTextIndex:Int = 0;
-   var typeTime:Float = 0.05;
-   var startText:String = '> ';
-   
-   var onCommandsComplete:Void->Void;
+	var typedText:FlxTypeText;
+	var terminalTextsLeft:Array<TerminalText> = new Array<TerminalText>();
+	var curTextIndex:Int = 0;
+	var typeTime:Float = 0.05;
+	var startText:String = '> ';
 
-   public function new(terminalTexts:Array<TerminalText>, onCommandsComplete:Void->Void)
-   {
-      terminalTextsLeft = terminalTexts;
-      this.onCommandsComplete = onCommandsComplete;
+	var onCommandsComplete:Void->Void;
 
-      super();
-   }
-   override function create()
+	public function new(terminalTexts:Array<TerminalText>, onCommandsComplete:Void->Void)
 	{
-      if (!FlxG.save.data.enteredTerminalCheatingState)
-      {
-         FlxG.save.data.enteredTerminalCheatingState = true;
-         FlxG.save.flush();
-      }
-      FlxG.sound.music.onComplete = null;
-      FlxG.sound.music.fadeOut(1, 0, function(tween:FlxTween)
-      {
-         FlxG.sound.music.stop();
-      });
+		terminalTextsLeft = terminalTexts;
+		this.onCommandsComplete = onCommandsComplete;
 
-      if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
-      {
-         var vcr:VCRDistortionShader = new VCRDistortionShader();
-         FlxG.camera.setFilters([new ShaderFilter(vcr)]);
-      }
+		super();
+	}
 
-      var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/terminal'));
-      bg.setGraphicSize(FlxG.width, FlxG.height);
-      bg.updateHitbox();
-      bg.screenCenter();
-      bg.scrollFactor.set();
-      add(bg);
+	override function create()
+	{
+		if (!FlxG.save.data.enteredTerminalCheatingState)
+		{
+			FlxG.save.data.enteredTerminalCheatingState = true;
+			FlxG.save.flush();
+		}
+		FlxG.sound.music.onComplete = null;
+		FlxG.sound.music.fadeOut(1, 0, function(tween:FlxTween)
+		{
+			FlxG.sound.music.stop();
+		});
 
-      typedText = new FlxTypeText(50, 100, FlxG.width, terminalTextsLeft[0].texts[curTextIndex][0], 12);
-      typedText.setFormat(Paths.font("consola.ttf"), 24, FlxColor.LIME, FlxTextAlign.LEFT);
-      typedText.sounds = [FlxG.sound.load(Paths.sound('terminal_space'), 0.6)];
-      typedText.antialiasing = false;
-      typedText.showCursor = true;
-      typedText.prefix = startText;
-      add(typedText);
+		if (CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
+		{
+			var vcr:VCRDistortionShader = new VCRDistortionShader();
+			FlxG.camera.setFilters([new ShaderFilter(vcr)]);
+		}
 
-      startTypingText();
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('backgrounds/terminal'));
+		bg.setGraphicSize(FlxG.width, FlxG.height);
+		bg.updateHitbox();
+		bg.screenCenter();
+		bg.scrollFactor.set();
+		add(bg);
+
+		typedText = new FlxTypeText(50, 100, FlxG.width, terminalTextsLeft[0].texts[curTextIndex][0], 12);
+		typedText.setFormat(Paths.font("consola.ttf"), 24, FlxColor.LIME, FlxTextAlign.LEFT);
+		typedText.sounds = [FlxG.sound.load(Paths.sound('terminal_space'), 0.6)];
+		typedText.antialiasing = false;
+		typedText.showCursor = true;
+		typedText.prefix = startText;
+		add(typedText);
+
+		startTypingText();
 
 		super.create();
 	}
+
 	override function update(elapsed:Float)
 	{
-      if (FlxG.keys.justPressed.ENTER && FlxG.save.data.enteredTerminalCheatingState)
-      {
-         FlxG.camera.setFilters([]);
+		if (FlxG.keys.justPressed.ENTER && FlxG.save.data.enteredTerminalCheatingState)
+		{
+			FlxG.camera.setFilters([]);
 			onCommandsComplete();
-      }
+		}
 		super.update(elapsed);
 	}
-   function continueTerminalText()
-   {
-      curTextIndex++;
-      var curDisplayedText = terminalTextsLeft[0].texts[curTextIndex - 1][0];
-      var delay:Float = terminalTextsLeft[0].texts[curTextIndex - 1][1];
-      var nextText = terminalTextsLeft[0].texts[curTextIndex][0];
 
-      typedText.prefix += curDisplayedText;
-      typedText.resetText(nextText);
+	function continueTerminalText()
+	{
+		curTextIndex++;
+		var curDisplayedText = terminalTextsLeft[0].texts[curTextIndex - 1][0];
+		var delay:Float = terminalTextsLeft[0].texts[curTextIndex - 1][1];
+		var nextText = terminalTextsLeft[0].texts[curTextIndex][0];
 
-      new FlxTimer().start(delay, function(timer:FlxTimer)
-      {
+		typedText.prefix += curDisplayedText;
+		typedText.resetText(nextText);
+
+		new FlxTimer().start(delay, function(timer:FlxTimer)
+		{
 			startTypingText();
-      });
-   }
-   function nextTerminalText()
-   {
+		});
+	}
+
+	function nextTerminalText()
+	{
 		if (terminalTextsLeft.length - 1 > 0)
 		{
-         terminalTextsLeft.remove(terminalTextsLeft[0]);
+			terminalTextsLeft.remove(terminalTextsLeft[0]);
 			curTextIndex = 0;
 
 			var newText = terminalTextsLeft[0].texts[curTextIndex][0];
 			var yOffset = terminalTextsLeft[0].yOffset;
 			var delay = terminalTextsLeft[0].texts[curTextIndex][1];
-			
+
 			new FlxTimer().start(delay, function(timer:FlxTimer)
 			{
-            typedText.prefix = startText;
-            typedText.resetText(newText);
-            typedText.y += yOffset;
+				typedText.prefix = startText;
+				typedText.resetText(newText);
+				typedText.y += yOffset;
 
 				startTypingText();
 			});
@@ -113,9 +117,10 @@ class TerminalCheatingState extends FlxUIState
 		{
 			end();
 		}
-   }
-   function startTypingText()
-   {
+	}
+
+	function startTypingText()
+	{
 		typedText.start(typeTime, false, false, [], function()
 		{
 			if (curTextIndex + 1 > terminalTextsLeft[0].texts.length - 1)
@@ -127,25 +132,28 @@ class TerminalCheatingState extends FlxUIState
 				continueTerminalText();
 			}
 		});
-   }
-   function end()
-   {
+	}
+
+	function end()
+	{
 		new FlxTimer().start(1, function(timer:FlxTimer)
 		{
 			FlxG.camera.setFilters([]);
 			onCommandsComplete();
 		});
-   }
+	}
 }
+
 class TerminalText
 {
-   public var yOffset:Float;
-   public var texts:Array<Dynamic> = new Array<Dynamic>();
-   //the text, and the delay before the next text
+	public var yOffset:Float;
+	public var texts:Array<Dynamic> = new Array<Dynamic>();
 
-   public function new(yOffset:Float, texts:Array<Dynamic>)
-   {
-      this.yOffset = yOffset;
-      this.texts = texts;
-   }
+	// the text, and the delay before the next text
+
+	public function new(yOffset:Float, texts:Array<Dynamic>)
+	{
+		this.yOffset = yOffset;
+		this.texts = texts;
+	}
 }

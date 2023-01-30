@@ -7,12 +7,10 @@ import openfl.utils.Assets;
 import flixel.FlxG;
 import openfl.Lib;
 
-
-
 class VCRDistortionShader extends FlxShader // https://www.shadertoy.com/view/ldjGzV and https://www.shadertoy.com/view/Ms23DR and https://www.shadertoy.com/view/MsXGD4 and https://www.shadertoy.com/view/Xtccz4
 {
-  #if SHADERS_ENABLED
-  @:glFragmentSource('
+	#if SHADERS_ENABLED
+	@:glFragmentSource('
     #pragma header
 
     uniform float iTime;
@@ -132,9 +130,9 @@ class VCRDistortionShader extends FlxShader // https://www.shadertoy.com/view/ld
 
     }
   ')
-  #end
-  public function new()
-  {
-    super();
-  }
+	#end
+	public function new()
+	{
+		super();
+	}
 }
